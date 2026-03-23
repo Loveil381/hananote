@@ -1,0 +1,8 @@
+{
+  "@@locale": "zh",
+  "appTitle": "HanaNote",
+  "loading": "加载中...",
+  "error": "错误",
+  "ok": "确定",
+  "cancel": "取消"
+}
