@@ -1,0 +1,7 @@
+Resolving dependencies...
+Because hananote depends on bloc_test ^9.2.0 which doesn't match any versions, version solving failed.
+
+
+You can try the following suggestion to make the pubspec resolve:
+* Try upgrading your constraint on bloc_test: flutter pub add dev:bloc_test:^10.0.0
+Failed to update packages.

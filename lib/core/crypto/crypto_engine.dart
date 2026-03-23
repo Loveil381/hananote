@@ -4,9 +4,11 @@ import 'dart:typed_data';
 import 'package:flutter/foundation.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:hananote/core/error/failures.dart';
+import 'package:injectable/injectable.dart';
 import 'package:pointycastle/export.dart';
 
 /// Handles AES-256-GCM encryption and decryption.
+@lazySingleton
 class CryptoEngine {
   /// The length of the GCM Initialization Vector (IV) in bytes.
   static const int _ivLength = 12;

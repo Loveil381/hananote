@@ -3,9 +3,11 @@ import 'dart:math';
 import 'dart:typed_data';
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:injectable/injectable.dart';
 import 'package:pointycastle/export.dart';
 
 /// Manages key derivation and secure storage.
+@lazySingleton
 class KeyManager {
   /// Constructor for [KeyManager].
   KeyManager(this._secureStorage);

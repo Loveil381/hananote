@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hananote/app/router.dart';
+import 'package:hananote/app/theme/app_theme.dart';
 
 /// Main application widget.
 class HanaNote extends StatelessWidget {
@@ -11,10 +12,7 @@ class HanaNote extends StatelessWidget {
     return MaterialApp.router(
       routerConfig: appRouter,
       title: 'HanaNote',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.pinkAccent),
-        useMaterial3: true,
-      ),
+      theme: AppTheme.getTheme(AppThemeType.sakura),
       /*
       localizationsDelegates: const [
         // AppLocalizations.delegate,

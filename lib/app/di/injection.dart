@@ -6,5 +6,6 @@ import 'package:injectable/injectable.dart';
 final GetIt getIt = GetIt.instance;
 
 @InjectableInit()
+
 /// Configures dependency injection.
 void configureDependencies() => getIt.init();

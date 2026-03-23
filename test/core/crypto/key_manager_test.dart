@@ -8,7 +8,7 @@ class MockFlutterSecureStorage extends Mock implements FlutterSecureStorage {}
 void main() {
   late KeyManager keyManager;
   late MockFlutterSecureStorage mockSecureStorage;
-  
+
   // Custom in-memory storage for test
   final inMemoryStorage = <String, String>{};
 
