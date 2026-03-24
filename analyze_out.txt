@@ -1,0 +1,33 @@
+﻿Analyzing hananote...                                           
+
+   info - The referenced name isn't visible in scope - lib\core\error\failures.dart:30:34 - comment_references
+   info - The referenced name isn't visible in scope - lib\features\medication\presentation\bloc\adherence_state.dart:6:17 - comment_references
+   info - The referenced name isn't visible in scope - lib\features\medication\presentation\bloc\drug_list_state.dart:6:17 - comment_references
+   info - The referenced name isn't visible in scope - lib\features\medication\presentation\bloc\inventory_cubit.dart:12:10 - comment_references
+   info - The referenced name isn't visible in scope - lib\features\medication\presentation\bloc\inventory_state.dart:6:17 - comment_references
+   info - The referenced name isn't visible in scope - lib\features\medication\presentation\bloc\schedule_editor_state.dart:96:40 - comment_references
+   info - The referenced name isn't visible in scope - lib\features\medication\presentation\bloc\today_schedule_event.dart:8:28 - comment_references
+   info - The referenced name isn't visible in scope - lib\features\medication\presentation\bloc\today_schedule_state.dart:6:17 - comment_references
+   info - The value of the argument is redundant because it matches the default value - test\features\medication\presentation\bloc\adherence_cubit_test.dart:37:27 - avoid_redundant_argument_values
+  error - The named parameter 'isActive' is required, but there's no corresponding argument - test\features\medication\presentation\bloc\schedule_editor_cubit_test.dart:22:61 - missing_required_argument
+   info - The value of the argument is redundant because it matches the default value - test\features\medication\presentation\bloc\schedule_editor_cubit_test.dart:29:36 - avoid_redundant_argument_values
+   info - The value of the argument is redundant because it matches the default value - test\features\medication\presentation\bloc\schedule_editor_cubit_test.dart:94:42 - avoid_redundant_argument_values
+   info - The value of the argument is redundant because it matches the default value - test\features\medication\presentation\bloc\schedule_editor_cubit_test.dart:107:42 - avoid_redundant_argument_values
+  error - The named parameter 'isActive' is required, but there's no corresponding argument - test\features\medication\presentation\bloc\today_schedule_bloc_test.dart:39:35 - missing_required_argument
+   info - The value of the argument is redundant because it matches the default value - test\features\medication\presentation\bloc\today_schedule_bloc_test.dart:46:36 - avoid_redundant_argument_values
+
+flutter : 15 issues found. (r
+an in 4.9s)
+発生場所 行:1 文字:1
++ flutter analyze 2>&1 | Out-
+File -FilePath analyze_out.tx
+t -Encoding u ...
++ ~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo           
+   : NotSpecified: (15 issu  
+  es found. (ran in 4.9s):   
+ String) [], RemoteExcept    
+ion
+    + FullyQualifiedErrorId  
+   : NativeCommandError
+ 

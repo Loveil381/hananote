@@ -1,0 +1,38 @@
+﻿00:00 +0: loading C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/adherence_cubit_test.dart
+00:00 +0: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/adherence_cubit_test.dart: initial state is AdherenceInitial
+00:00 +1: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/adherence_cubit_test.dart: loadStats emits [loading, loaded] on success
+00:00 +2: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/adherence_cubit_test.dart: loadStats computes overallRate as mean across drugs
+00:00 +3: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/adherence_cubit_test.dart: loadStats overallRate is 0.0 when no drugs
+00:00 +4: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/adherence_cubit_test.dart: loadStats emits [loading, error] on failure
+00:00 +5: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/drug_list_cubit_test.dart: initial state is DrugListInitial
+00:00 +6: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/drug_list_cubit_test.dart: loadDrugs emits [loading, loaded] on success
+00:00 +7: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/drug_list_cubit_test.dart: loadDrugs emits [loading, error] on failure
+00:00 +8: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/drug_list_cubit_test.dart: loadDrugs emits loaded with empty list when no drugs exist
+00:00 +9: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/drug_list_cubit_test.dart: addDrug reloads list on success
+00:00 +10: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/drug_list_cubit_test.dart: addDrug emits error on failure
+00:00 +11: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/drug_list_cubit_test.dart: updateDrug reloads list on success
+00:00 +12: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/drug_list_cubit_test.dart: deleteDrug reloads list on success
+00:00 +13: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/drug_list_cubit_test.dart: toggleDrugActive flips isActive and reloads
+00:01 +14: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/inventory_cubit_test.dart: initial state is InventoryInitial
+00:01 +15: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/inventory_cubit_test.dart: loadInventory emits [loading, loaded] on success
+00:01 +16: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/inventory_cubit_test.dart: loadInventory computes lowStockCount correctly
+00:01 +17: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/inventory_cubit_test.dart: loadInventory emits [loading, error] on failure
+00:01 +18: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/inventory_cubit_test.dart: updateStock updates stock and reloads on success
+00:01 +19: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/inventory_cubit_test.dart: updateStock emits error when repository fails
+00:01 +20: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/schedule_editor_cubit_test.dart: initial state is ScheduleEditorIdle
+00:01 +21: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/schedule_editor_cubit_test.dart: initNew emits ScheduleEditorEditing with isNew=true
+00:01 +22: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/schedule_editor_cubit_test.dart: initEdit emits ScheduleEditorEditing populated from existing schedule
+00:01 +23: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/schedule_editor_cubit_test.dart: validate returns false when dosageAmount is null
+00:01 +24: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/schedule_editor_cubit_test.dart: validate returns true when all required fields are set
+00:01 +25: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/schedule_editor_cubit_test.dart: save emits [saving, saved] on success for new schedule
+00:01 +26: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/schedule_editor_cubit_test.dart: save emits [saving, error] on repository failure
+00:01 +27: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/schedule_editor_cubit_test.dart: save emits [saving, saved] when editing existing schedule
+00:02 +28: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/today_schedule_bloc_test.dart: initial state is TodayScheduleInitial
+00:02 +29: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/today_schedule_bloc_test.dart: LoadTodaySchedule emits [loading, loaded] on success
+00:02 +30: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/today_schedule_bloc_test.dart: LoadTodaySchedule emits [loading, error] on failure
+00:02 +31: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/today_schedule_bloc_test.dart: LoadTodaySchedule emits loaded with 0/0 counts for empty list
+00:02 +32: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/today_schedule_bloc_test.dart: LoadTodaySchedule counts completed items correctly
+00:02 +33: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/today_schedule_bloc_test.dart: LogDoseTodaySchedule logs dose and reloads on success
+00:02 +34: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/today_schedule_bloc_test.dart: LogDoseTodaySchedule emits error when logMedication fails
+00:02 +35: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/today_schedule_bloc_test.dart: SkipDoseTodaySchedule skips dose and reloads on success
+00:02 +36: All tests passed!

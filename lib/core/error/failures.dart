@@ -26,3 +26,13 @@ sealed class Failure with _$Failure {
   const factory Failure.unexpected({required String message}) =
       UnexpectedFailure;
 }
+
+/// Extracts the human-readable [message] from any [Failure] variant.
+String failureMessage(Failure failure) => switch (failure) {
+      DatabaseFailure(:final message) => message,
+      CryptoFailure(:final message) => message,
+      StorageFailure(:final message) => message,
+      AuthFailure(:final message) => message,
+      ValidationFailure(:final message) => message,
+      UnexpectedFailure(:final message) => message,
+    };
