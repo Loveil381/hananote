@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:fpdart/fpdart.dart';
 import 'package:hananote/core/crypto/key_manager.dart';
+import 'package:hananote/core/database/tables/medication_tables.dart';
 import 'package:hananote/core/error/failures.dart';
 import 'package:injectable/injectable.dart';
 import 'package:path/path.dart';
@@ -15,6 +16,17 @@ class SecureDatabase {
 
   final KeyManager _keyManager;
   Database? _db;
+
+  /// Returns the open database instance.
+  ///
+  /// Throws a [StateError] when the database has not been opened yet.
+  Database get database {
+    final db = _db;
+    if (db == null || !db.isOpen) {
+      throw StateError('Database is not open.');
+    }
+    return db;
+  }
 
   /// Open the encrypted database.
   Future<Either<Failure, Database>> open(String password) async {
@@ -78,7 +90,12 @@ class SecureDatabase {
   }
 
   Future<void> _runInitialMigrations(Database db) async {
-    // Create initial schema.
-    // Example: await db.execute('CREATE TABLE User (id TEXT)');
+    for (final statement in MedicationTables.allCreateStatements) {
+      await db.execute(statement);
+    }
+
+    for (final statement in MedicationTables.createIndices) {
+      await db.execute(statement);
+    }
   }
 }

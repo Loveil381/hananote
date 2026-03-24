@@ -882,12 +882,12 @@ mixin _$MedicationSchedule {
   MedicationFrequency get frequency => throw _privateConstructorUsedError;
   AdministrationRoute get administrationRoute =>
       throw _privateConstructorUsedError;
+  DateTime get startDate => throw _privateConstructorUsedError;
+  bool get isActive => throw _privateConstructorUsedError;
   List<TimeOfDay> get scheduleTimes => throw _privateConstructorUsedError;
   int? get intervalDays => throw _privateConstructorUsedError;
-  DateTime get startDate => throw _privateConstructorUsedError;
   DateTime? get endDate => throw _privateConstructorUsedError;
   String? get notes => throw _privateConstructorUsedError;
-  bool get isActive => throw _privateConstructorUsedError;
 
   /// Create a copy of MedicationSchedule
   /// with the given fields replaced by the non-null parameter values.
@@ -909,12 +909,12 @@ abstract class $MedicationScheduleCopyWith<$Res> {
       DosageUnit dosageUnit,
       MedicationFrequency frequency,
       AdministrationRoute administrationRoute,
+      DateTime startDate,
+      bool isActive,
       List<TimeOfDay> scheduleTimes,
       int? intervalDays,
-      DateTime startDate,
       DateTime? endDate,
-      String? notes,
-      bool isActive});
+      String? notes});
 
   $MedicationFrequencyCopyWith<$Res> get frequency;
 }
@@ -940,12 +940,12 @@ class _$MedicationScheduleCopyWithImpl<$Res, $Val extends MedicationSchedule>
     Object? dosageUnit = null,
     Object? frequency = null,
     Object? administrationRoute = null,
+    Object? startDate = null,
+    Object? isActive = null,
     Object? scheduleTimes = null,
     Object? intervalDays = freezed,
-    Object? startDate = null,
     Object? endDate = freezed,
     Object? notes = freezed,
-    Object? isActive = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -972,6 +972,14 @@ class _$MedicationScheduleCopyWithImpl<$Res, $Val extends MedicationSchedule>
           ? _value.administrationRoute
           : administrationRoute // ignore: cast_nullable_to_non_nullable
               as AdministrationRoute,
+      startDate: null == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      isActive: null == isActive
+          ? _value.isActive
+          : isActive // ignore: cast_nullable_to_non_nullable
+              as bool,
       scheduleTimes: null == scheduleTimes
           ? _value.scheduleTimes
           : scheduleTimes // ignore: cast_nullable_to_non_nullable
@@ -980,10 +988,6 @@ class _$MedicationScheduleCopyWithImpl<$Res, $Val extends MedicationSchedule>
           ? _value.intervalDays
           : intervalDays // ignore: cast_nullable_to_non_nullable
               as int?,
-      startDate: null == startDate
-          ? _value.startDate
-          : startDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
       endDate: freezed == endDate
           ? _value.endDate
           : endDate // ignore: cast_nullable_to_non_nullable
@@ -992,10 +996,6 @@ class _$MedicationScheduleCopyWithImpl<$Res, $Val extends MedicationSchedule>
           ? _value.notes
           : notes // ignore: cast_nullable_to_non_nullable
               as String?,
-      isActive: null == isActive
-          ? _value.isActive
-          : isActive // ignore: cast_nullable_to_non_nullable
-              as bool,
     ) as $Val);
   }
 
@@ -1025,12 +1025,12 @@ abstract class _$$MedicationScheduleImplCopyWith<$Res>
       DosageUnit dosageUnit,
       MedicationFrequency frequency,
       AdministrationRoute administrationRoute,
+      DateTime startDate,
+      bool isActive,
       List<TimeOfDay> scheduleTimes,
       int? intervalDays,
-      DateTime startDate,
       DateTime? endDate,
-      String? notes,
-      bool isActive});
+      String? notes});
 
   @override
   $MedicationFrequencyCopyWith<$Res> get frequency;
@@ -1055,12 +1055,12 @@ class __$$MedicationScheduleImplCopyWithImpl<$Res>
     Object? dosageUnit = null,
     Object? frequency = null,
     Object? administrationRoute = null,
+    Object? startDate = null,
+    Object? isActive = null,
     Object? scheduleTimes = null,
     Object? intervalDays = freezed,
-    Object? startDate = null,
     Object? endDate = freezed,
     Object? notes = freezed,
-    Object? isActive = null,
   }) {
     return _then(_$MedicationScheduleImpl(
       id: null == id
@@ -1087,6 +1087,14 @@ class __$$MedicationScheduleImplCopyWithImpl<$Res>
           ? _value.administrationRoute
           : administrationRoute // ignore: cast_nullable_to_non_nullable
               as AdministrationRoute,
+      startDate: null == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      isActive: null == isActive
+          ? _value.isActive
+          : isActive // ignore: cast_nullable_to_non_nullable
+              as bool,
       scheduleTimes: null == scheduleTimes
           ? _value._scheduleTimes
           : scheduleTimes // ignore: cast_nullable_to_non_nullable
@@ -1095,10 +1103,6 @@ class __$$MedicationScheduleImplCopyWithImpl<$Res>
           ? _value.intervalDays
           : intervalDays // ignore: cast_nullable_to_non_nullable
               as int?,
-      startDate: null == startDate
-          ? _value.startDate
-          : startDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
       endDate: freezed == endDate
           ? _value.endDate
           : endDate // ignore: cast_nullable_to_non_nullable
@@ -1107,10 +1111,6 @@ class __$$MedicationScheduleImplCopyWithImpl<$Res>
           ? _value.notes
           : notes // ignore: cast_nullable_to_non_nullable
               as String?,
-      isActive: null == isActive
-          ? _value.isActive
-          : isActive // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -1125,12 +1125,12 @@ class _$MedicationScheduleImpl implements _MedicationSchedule {
       required this.dosageUnit,
       required this.frequency,
       required this.administrationRoute,
+      required this.startDate,
+      required this.isActive,
       final List<TimeOfDay> scheduleTimes = const <TimeOfDay>[],
       this.intervalDays,
-      required this.startDate,
       this.endDate,
-      this.notes,
-      required this.isActive})
+      this.notes})
       : assert(dosageAmount > 0, 'dosageAmount must be positive'),
         _scheduleTimes = scheduleTimes;
 
@@ -1146,6 +1146,10 @@ class _$MedicationScheduleImpl implements _MedicationSchedule {
   final MedicationFrequency frequency;
   @override
   final AdministrationRoute administrationRoute;
+  @override
+  final DateTime startDate;
+  @override
+  final bool isActive;
   final List<TimeOfDay> _scheduleTimes;
   @override
   @JsonKey()
@@ -1158,17 +1162,13 @@ class _$MedicationScheduleImpl implements _MedicationSchedule {
   @override
   final int? intervalDays;
   @override
-  final DateTime startDate;
-  @override
   final DateTime? endDate;
   @override
   final String? notes;
-  @override
-  final bool isActive;
 
   @override
   String toString() {
-    return 'MedicationSchedule(id: $id, drugId: $drugId, dosageAmount: $dosageAmount, dosageUnit: $dosageUnit, frequency: $frequency, administrationRoute: $administrationRoute, scheduleTimes: $scheduleTimes, intervalDays: $intervalDays, startDate: $startDate, endDate: $endDate, notes: $notes, isActive: $isActive)';
+    return 'MedicationSchedule(id: $id, drugId: $drugId, dosageAmount: $dosageAmount, dosageUnit: $dosageUnit, frequency: $frequency, administrationRoute: $administrationRoute, startDate: $startDate, isActive: $isActive, scheduleTimes: $scheduleTimes, intervalDays: $intervalDays, endDate: $endDate, notes: $notes)';
   }
 
   @override
@@ -1186,16 +1186,16 @@ class _$MedicationScheduleImpl implements _MedicationSchedule {
                 other.frequency == frequency) &&
             (identical(other.administrationRoute, administrationRoute) ||
                 other.administrationRoute == administrationRoute) &&
+            (identical(other.startDate, startDate) ||
+                other.startDate == startDate) &&
+            (identical(other.isActive, isActive) ||
+                other.isActive == isActive) &&
             const DeepCollectionEquality()
                 .equals(other._scheduleTimes, _scheduleTimes) &&
             (identical(other.intervalDays, intervalDays) ||
                 other.intervalDays == intervalDays) &&
-            (identical(other.startDate, startDate) ||
-                other.startDate == startDate) &&
             (identical(other.endDate, endDate) || other.endDate == endDate) &&
-            (identical(other.notes, notes) || other.notes == notes) &&
-            (identical(other.isActive, isActive) ||
-                other.isActive == isActive));
+            (identical(other.notes, notes) || other.notes == notes));
   }
 
   @override
@@ -1207,12 +1207,12 @@ class _$MedicationScheduleImpl implements _MedicationSchedule {
       dosageUnit,
       frequency,
       administrationRoute,
+      startDate,
+      isActive,
       const DeepCollectionEquality().hash(_scheduleTimes),
       intervalDays,
-      startDate,
       endDate,
-      notes,
-      isActive);
+      notes);
 
   /// Create a copy of MedicationSchedule
   /// with the given fields replaced by the non-null parameter values.
@@ -1232,12 +1232,12 @@ abstract class _MedicationSchedule implements MedicationSchedule {
       required final DosageUnit dosageUnit,
       required final MedicationFrequency frequency,
       required final AdministrationRoute administrationRoute,
+      required final DateTime startDate,
+      required final bool isActive,
       final List<TimeOfDay> scheduleTimes,
       final int? intervalDays,
-      required final DateTime startDate,
       final DateTime? endDate,
-      final String? notes,
-      required final bool isActive}) = _$MedicationScheduleImpl;
+      final String? notes}) = _$MedicationScheduleImpl;
 
   @override
   String get id;
@@ -1252,17 +1252,17 @@ abstract class _MedicationSchedule implements MedicationSchedule {
   @override
   AdministrationRoute get administrationRoute;
   @override
+  DateTime get startDate;
+  @override
+  bool get isActive;
+  @override
   List<TimeOfDay> get scheduleTimes;
   @override
   int? get intervalDays;
   @override
-  DateTime get startDate;
-  @override
   DateTime? get endDate;
   @override
   String? get notes;
-  @override
-  bool get isActive;
 
   /// Create a copy of MedicationSchedule
   /// with the given fields replaced by the non-null parameter values.
