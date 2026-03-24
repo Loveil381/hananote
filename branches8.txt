@@ -1,0 +1,9 @@
+﻿* main
+  remotes/origin/HEAD -> origin/main
+  remotes/origin/feature/auth
+  remotes/origin/feature/medication-bloc
+  remotes/origin/feature/medication-data
+  remotes/origin/feature/medication-domain
+  remotes/origin/feature/medication-ui
+  remotes/origin/feature/project-skeleton
+  remotes/origin/main

@@ -1,0 +1,11 @@
+﻿commit 6a0a375afcd082c76d3b9176bffe40c27f4e60af
+Author: Loveil381 <qq381490307@gmail.com>
+Date:   Mon Mar 23 17:33:22 2026 +0900
+
+    docs(ai-cto): initialize CTO memory files for cross-session context
+
+ docs/ai-cto/COMPETITORS.md | 30 ++++++++++++++++++++++++++++++
+ docs/ai-cto/DECISIONS.md   | 32 ++++++++++++++++++++++++++++++++
+ docs/ai-cto/STATUS.md      | 33 +++++++++++++++++++++++++++++++++
+ docs/ai-cto/VISION.md      | 44 ++++++++++++++++++++++++++++++++++++++++++++
+ 4 files changed, 139 insertions(+)

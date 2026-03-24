@@ -1,0 +1,436 @@
+﻿commit 1fb04f6b9489cce9c7430e926af4b0f1b8b365dc
+Author: Loveil381 <qq381490307@gmail.com>
+Date:   Tue Mar 24 13:20:25 2026 +0900
+
+    feat(medication): implement UI pages 窶・today, drug list, add drug, schedule editor, inventory
+
+ lib/app/pages/home_page.dart                       |  59 ++++
+ lib/app/router.dart                                |  15 +
+ lib/core/l10n/arb/app_en.arb                       |  51 ++-
+ lib/core/l10n/arb/app_ja.arb                       |  35 +-
+ lib/core/l10n/arb/app_localizations.dart           | 198 +++++++++++
+ lib/core/l10n/arb/app_localizations_en.dart        | 103 ++++++
+ lib/core/l10n/arb/app_localizations_ja.dart        | 105 +++++-
+ lib/core/l10n/arb/app_localizations_zh.dart        | 105 +++++-
+ lib/core/l10n/arb/app_zh.arb                       |  35 +-
+ .../presentation/pages/add_drug_page.dart          | 186 ++++++++++
+ .../presentation/pages/drug_list_page.dart         | 171 ++++++++++
+ .../presentation/pages/inventory_page.dart         | 201 +++++++++++
+ .../presentation/pages/schedule_editor_page.dart   | 378 +++++++++++++++++++++
+ .../medication/presentation/pages/today_page.dart  | 204 +++++++++++
+ .../presentation/widgets/dose_action_sheet.dart    | 175 ++++++++++
+ .../medication/presentation/widgets/drug_card.dart | 174 ++++++++++
+ .../presentation/widgets/progress_ring.dart        |  63 ++++
+ .../presentation/widgets/today_dose_card.dart      | 151 ++++++++
+ 18 files changed, 2404 insertions(+), 5 deletions(-)
+
+commit 57e2fdbc8e96c592442057824a702dd36693cbf7
+Author: Loveil381 <qq381490307@gmail.com>
+Date:   Tue Mar 24 12:08:04 2026 +0900
+
+    feat(auth): implement app lock, PIN setup, biometric, wipe data, and startup flow
+
+ lib/app/app.dart                                   |   27 +-
+ lib/app/di/injection.config.dart                   |   39 +
+ lib/app/di/register_module.dart                    |    4 +
+ lib/app/home_page.dart                             |   52 +
+ lib/app/router.dart                                |    5 +-
+ lib/core/database/secure_database.dart             |    9 +-
+ lib/core/error/failures.dart                       |    2 +-
+ lib/core/utils/id_generator.dart                   |   12 +
+ .../data/datasources/auth_local_datasource.dart    |   77 ++
+ .../data/repositories/auth_repository_impl.dart    |  133 +++
+ .../auth/domain/entities/auth_settings.dart        |   17 +
+ .../domain/entities/auth_settings.freezed.dart     |  253 +++++
+ .../auth/domain/repositories/auth_repository.dart  |   33 +
+ lib/features/auth/domain/usecases/change_pin.dart  |   33 +
+ lib/features/auth/domain/usecases/setup_app.dart   |   77 ++
+ lib/features/auth/domain/usecases/unlock_app.dart  |   37 +
+ lib/features/auth/domain/usecases/wipe_data.dart   |   16 +
+ .../auth/presentation/bloc/auth_cubit.dart         |  184 ++++
+ .../auth/presentation/bloc/auth_state.dart         |   29 +
+ .../auth/presentation/bloc/auth_state.freezed.dart | 1124 ++++++++++++++++++++
+ .../auth/presentation/pages/auth_wrapper_page.dart |   49 +
+ .../auth/presentation/pages/lock_screen_page.dart  |  264 +++++
+ .../auth/presentation/pages/setup_page.dart        |  135 +++
+ .../presentation/bloc/adherence_state.dart         |    2 +-
+ .../presentation/bloc/drug_list_state.dart         |    2 +-
+ .../presentation/bloc/inventory_cubit.dart         |    4 +-
+ .../presentation/bloc/inventory_state.dart         |    2 +-
+ .../presentation/bloc/schedule_editor_cubit.dart   |   10 +-
+ .../presentation/bloc/schedule_editor_state.dart   |    2 +-
+ .../presentation/bloc/today_schedule_bloc.dart     |   14 +-
+ .../presentation/bloc/today_schedule_event.dart    |    2 +-
+ .../presentation/bloc/today_schedule_state.dart    |    2 +-
+ test/core/utils/id_generator_test.dart             |   20 +
+ .../auth/domain/usecases/setup_app_test.dart       |   65 ++
+ .../auth/domain/usecases/unlock_app_test.dart      |   41 +
+ .../auth/presentation/bloc/auth_cubit_test.dart    |  126 +++
+ .../presentation/bloc/adherence_cubit_test.dart    |    2 +-
+ .../bloc/schedule_editor_cubit_test.dart           |    6 +-
+ .../bloc/today_schedule_bloc_test.dart             |    2 +-
+ 39 files changed, 2858 insertions(+), 55 deletions(-)
+
+commit 7626bd3a1cb0148288205aed57984d959cbc2b29
+Author: Loveil381 <qq381490307@gmail.com>
+Date:   Tue Mar 24 11:28:38 2026 +0900
+
+    feat(medication): implement BLoC/Cubit presentation layer
+
+ analyze_out.txt                                    |  33 +
+ lib/core/error/failure_extensions.dart             |  15 +
+ lib/core/error/failures.dart                       |  10 +
+ .../presentation/bloc/adherence_cubit.dart         |  40 +
+ .../presentation/bloc/adherence_state.dart         |  27 +
+ .../presentation/bloc/adherence_state.freezed.dart | 665 +++++++++++++++++
+ .../presentation/bloc/drug_list_cubit.dart         |  71 ++
+ .../presentation/bloc/drug_list_state.dart         |  24 +
+ .../presentation/bloc/drug_list_state.freezed.dart | 638 ++++++++++++++++
+ .../presentation/bloc/inventory_cubit.dart         |  65 ++
+ .../presentation/bloc/inventory_state.dart         |  25 +
+ .../presentation/bloc/inventory_state.freezed.dart | 663 +++++++++++++++++
+ .../presentation/bloc/schedule_editor_cubit.dart   | 197 +++++
+ .../presentation/bloc/schedule_editor_state.dart   | 150 ++++
+ .../presentation/bloc/today_schedule_bloc.dart     | 130 ++++
+ .../presentation/bloc/today_schedule_event.dart    |  34 +
+ .../bloc/today_schedule_event.freezed.dart         | 818 +++++++++++++++++++++
+ .../presentation/bloc/today_schedule_state.dart    |  27 +
+ .../bloc/today_schedule_state.freezed.dart         | 716 ++++++++++++++++++
+ .../presentation/bloc/adherence_cubit_test.dart    | 124 ++++
+ .../presentation/bloc/drug_list_cubit_test.dart    | 192 +++++
+ .../medication/presentation/bloc/fixtures.dart     |  12 +
+ .../presentation/bloc/inventory_cubit_test.dart    | 142 ++++
+ .../bloc/schedule_editor_cubit_test.dart           | 170 +++++
+ .../bloc/today_schedule_bloc_test.dart             | 220 ++++++
+ test_out.txt                                       |  38 +
+ 26 files changed, 5246 insertions(+)
+
+commit fae04361f1fab3a2173527bfd8cef2c8ac8baf61
+Author: Loveil381 <qq381490307@gmail.com>
+Date:   Tue Mar 24 09:39:17 2026 +0900
+
+    feat(medication): implement data layer with DB schema, models, datasource, and repository
+
+ lib/app/di/injection.config.dart                   |  11 +
+ lib/core/database/secure_database.dart             |  21 +-
+ lib/core/database/tables/medication_tables.dart    |  92 ++++
+ .../datasources/medication_local_datasource.dart   | 219 +++++++++
+ .../data/models/drug_inventory_model.dart          |  69 +++
+ .../data/models/drug_inventory_model.freezed.dart  | 352 +++++++++++++++
+ .../data/models/drug_inventory_model.g.dart        |  35 ++
+ .../medication/data/models/drug_model.dart         |  65 +++
+ .../medication/data/models/drug_model.freezed.dart | 353 +++++++++++++++
+ .../medication/data/models/drug_model.g.dart       |  33 ++
+ .../data/models/medication_log_model.dart          |  84 ++++
+ .../data/models/medication_log_model.freezed.dart  | 487 +++++++++++++++++++++
+ .../data/models/medication_log_model.g.dart        |  45 ++
+ .../data/models/medication_model_converters.dart   |  87 ++++
+ .../data/models/medication_schedule_model.dart     |  91 ++++
+ .../models/medication_schedule_model.freezed.dart  | 473 ++++++++++++++++++++
+ .../data/models/medication_schedule_model.g.dart   |  43 ++
+ .../repositories/medication_repository_impl.dart   | 383 ++++++++++++++++
+ .../medication/domain/entities/drug.freezed.dart   |  54 +--
+ .../domain/entities/drug_inventory.freezed.dart    |  56 +--
+ .../entities/medication_schedule.freezed.dart      | 102 ++---
+ .../medication_local_datasource_test.dart          | 103 +++++
+ test/features/medication/data/fixtures.dart        | 123 ++++++
+ .../medication/data/models/drug_model_test.dart    |  30 ++
+ .../models/medication_schedule_model_test.dart     |  85 ++++
+ .../medication_repository_impl_test.dart           | 100 +++++
+ 26 files changed, 3488 insertions(+), 108 deletions(-)
+
+commit a21813d3643b85a1492f8f6b0eb9254edfa9bfa2
+Author: Loveil381 <qq381490307@gmail.com>
+Date:   Mon Mar 23 18:25:08 2026 +0900
+
+    feat(medication): implement complete domain layer with entities, repository, and use cases
+
+ lib/features/medication/domain/entities/drug.dart  |   21 +
+ .../medication/domain/entities/drug.freezed.dart   |  311 +++++
+ .../medication/domain/entities/drug_inventory.dart |   22 +
+ .../domain/entities/drug_inventory.freezed.dart    |  314 +++++
+ lib/features/medication/domain/entities/enums.dart |  194 +++
+ .../medication/domain/entities/medication_log.dart |   27 +
+ .../domain/entities/medication_log.freezed.dart    |  434 +++++++
+ .../domain/entities/medication_schedule.dart       |   75 ++
+ .../entities/medication_schedule.freezed.dart      | 1273 ++++++++++++++++++++
+ .../domain/repositories/medication_repository.dart |   73 ++
+ .../medication/domain/usecases/add_drug.dart       |   52 +
+ .../domain/usecases/calculate_next_dose.dart       |  180 +++
+ .../domain/usecases/check_inventory.dart           |   59 +
+ .../medication/domain/usecases/delete_drug.dart    |   14 +
+ .../domain/usecases/get_adherence_stats.dart       |   75 ++
+ .../medication/domain/usecases/get_all_drugs.dart  |   15 +
+ .../domain/usecases/get_medication_logs.dart       |   42 +
+ .../domain/usecases/get_today_schedule.dart        |  185 +++
+ .../medication/domain/usecases/log_medication.dart |  155 +++
+ .../medication/domain/usecases/update_drug.dart    |   15 +
+ .../medication/domain/usecases/add_drug_test.dart  |   72 ++
+ .../domain/usecases/calculate_next_dose_test.dart  |  135 +++
+ .../domain/usecases/check_inventory_test.dart      |   57 +
+ .../domain/usecases/delete_drug_test.dart          |   45 +
+ .../medication/domain/usecases/fixtures.dart       |  117 ++
+ .../domain/usecases/get_adherence_stats_test.dart  |   66 +
+ .../domain/usecases/get_all_drugs_test.dart        |   48 +
+ .../domain/usecases/get_medication_logs_test.dart  |   59 +
+ .../domain/usecases/get_today_schedule_test.dart   |   64 +
+ .../domain/usecases/log_medication_test.dart       |   84 ++
+ .../domain/usecases/update_drug_test.dart          |   48 +
+ 31 files changed, 4331 insertions(+)
+
+commit ccbcde92381c7a4f0972dbf88978604a1d8c06e7
+Author: Loveil381 <qq381490307@gmail.com>
+Date:   Mon Mar 23 18:06:38 2026 +0900
+
+    fix(core): pin dependency versions, fix Either returns, add DI annotations, add theme system
+
+ analyze.txt                                   |    4 +
+ lib/app/app.dart                              |    6 +-
+ lib/app/di/injection.config.dart              |   19 +-
+ lib/app/di/injection.dart                     |    1 +
+ lib/app/di/register_module.dart               |   10 +
+ lib/app/theme/app_colors.dart                 |   43 +
+ lib/app/theme/app_theme.dart                  |  105 +++
+ lib/core/crypto/crypto_engine.dart            |    2 +
+ lib/core/crypto/key_manager.dart              |    2 +
+ lib/core/database/secure_database.dart        |   80 +-
+ lib/core/error/failures.freezed.dart          | 1257 ++++++++++++++++---------
+ lib/core/l10n/arb/app_ja.arb                  |    2 +-
+ lib/core/l10n/arb/app_zh.arb                  |    2 +-
+ lib/features/auth/.gitkeep                    |    0
+ lib/features/blood_test/.gitkeep              |    0
+ macos/Flutter/GeneratedPluginRegistrant.swift |    4 +-
+ pub_err.txt                                   |    7 +
+ pub_get_err.txt                               |  Bin 0 -> 1336 bytes
+ pubspec.lock                                  |  172 ++--
+ pubspec.yaml                                  |   32 +-
+ test/core/crypto/key_manager_test.dart        |    2 +-
+ windows/flutter/generated_plugins.cmake       |    1 -
+ 22 files changed, 1195 insertions(+), 556 deletions(-)
+
+commit 6a0a375afcd082c76d3b9176bffe40c27f4e60af
+Author: Loveil381 <qq381490307@gmail.com>
+Date:   Mon Mar 23 17:33:22 2026 +0900
+
+    docs(ai-cto): initialize CTO memory files for cross-session context
+
+ docs/ai-cto/COMPETITORS.md | 30 ++++++++++++++++++++++++++++++
+ docs/ai-cto/DECISIONS.md   | 32 ++++++++++++++++++++++++++++++++
+ docs/ai-cto/STATUS.md      | 33 +++++++++++++++++++++++++++++++++
+ docs/ai-cto/VISION.md      | 44 ++++++++++++++++++++++++++++++++++++++++++++
+ 4 files changed, 139 insertions(+)
+
+commit 0206fd764ebecee256cedf6c1bd1be06e33ff900
+Author: Loveil381 <qq381490307@gmail.com>
+Date:   Mon Mar 23 17:16:38 2026 +0900
+
+    feat(core): initialize project skeleton with crypto engine and secure database
+
+ analysis_options.yaml                              |  33 +-
+ analyze_err.txt                                    |  10 +
+ l10n.yaml                                          |   3 +
+ lib/app/app.dart                                   |  33 +
+ lib/app/di/.gitkeep                                |   0
+ lib/app/di/injection.config.dart                   |  28 +
+ lib/app/di/injection.dart                          |  10 +
+ lib/app/router.dart                                |  14 +
+ lib/app/theme/.gitkeep                             |   0
+ lib/core/crypto/.gitkeep                           |   0
+ lib/core/crypto/crypto_engine.dart                 | 105 +++
+ lib/core/crypto/key_manager.dart                   |  75 ++
+ lib/core/database/migrations/.gitkeep              |   0
+ lib/core/database/secure_database.dart             |  62 ++
+ lib/core/database/tables/.gitkeep                  |   0
+ lib/core/error/.gitkeep                            |   0
+ lib/core/error/failures.dart                       |  28 +
+ lib/core/error/failures.freezed.dart               | 724 ++++++++++++++++
+ lib/core/l10n/arb/.gitkeep                         |   0
+ lib/core/l10n/arb/app_en.arb                       |   8 +
+ lib/core/l10n/arb/app_ja.arb                       |   8 +
+ lib/core/l10n/arb/app_localizations.dart           | 167 ++++
+ lib/core/l10n/arb/app_localizations_en.dart        |  25 +
+ lib/core/l10n/arb/app_localizations_ja.dart        |  25 +
+ lib/core/l10n/arb/app_localizations_zh.dart        |  25 +
+ lib/core/l10n/arb/app_zh.arb                       |   8 +
+ lib/core/storage/.gitkeep                          |   0
+ lib/core/storage/encrypted_file_store.dart         |   2 +
+ lib/core/utils/.gitkeep                            |   0
+ lib/core/utils/extensions.dart                     |   2 +
+ lib/features/analytics/.gitkeep                    |   0
+ lib/features/auth/data/.gitkeep                    |   0
+ lib/features/auth/domain/.gitkeep                  |   0
+ lib/features/auth/presentation/.gitkeep            |   0
+ lib/features/blood_test/data/.gitkeep              |   0
+ lib/features/blood_test/domain/.gitkeep            |   0
+ lib/features/blood_test/presentation/.gitkeep      |   0
+ lib/features/journal/.gitkeep                      |   0
+ lib/features/knowledge/.gitkeep                    |   0
+ lib/features/measurement/.gitkeep                  |   0
+ lib/features/medication/data/datasources/.gitkeep  |   0
+ lib/features/medication/data/models/.gitkeep       |   0
+ lib/features/medication/data/repositories/.gitkeep |   0
+ lib/features/medication/domain/entities/.gitkeep   |   0
+ .../medication/domain/repositories/.gitkeep        |   0
+ lib/features/medication/domain/usecases/.gitkeep   |   0
+ lib/features/medication/presentation/bloc/.gitkeep |   0
+ .../medication/presentation/pages/.gitkeep         |   0
+ .../medication/presentation/widgets/.gitkeep       |   0
+ lib/features/photo/.gitkeep                        |   0
+ lib/features/settings/.gitkeep                     |   0
+ lib/features/simulator/.gitkeep                    |   0
+ lib/features/timeline/.gitkeep                     |   0
+ lib/main.dart                                      | 125 +--
+ linux/flutter/generated_plugin_registrant.cc       |   4 +
+ linux/flutter/generated_plugins.cmake              |   1 +
+ macos/Flutter/GeneratedPluginRegistrant.swift      |   8 +
+ pub_get_err.txt                                    |   0
+ pubspec.lock                                       | 952 ++++++++++++++++++++-
+ pubspec.yaml                                       | 107 +--
+ test/core/crypto/crypto_engine_test.dart           |  70 ++
+ test/core/crypto/key_manager_test.dart             | 111 +++
+ test/core/error/failures_test.dart                 |  36 +
+ test/widget_test.dart                              |  30 -
+ windows/flutter/generated_plugin_registrant.cc     |   6 +
+ windows/flutter/generated_plugins.cmake            |   3 +
+ 66 files changed, 2585 insertions(+), 263 deletions(-)
+
+commit bc03bbb96355145a97717635f271ee49207b74f5
+Author: Loveil381 <qq381490307@gmail.com>
+Date:   Mon Mar 23 16:03:37 2026 +0900
+
+    chore: initial project setup and configs
+
+ .agents/rules/flutter-project.md                   |  47 ++
+ .agents/skills/code-review/SKILL.md                |  55 ++
+ .agents/skills/pk-reference/SKILL.md               |  39 ++
+ .gitignore                                         |  45 ++
+ .metadata                                          |  45 ++
+ AGENTS.md                                          |  60 ++
+ README.md                                          |  16 +
+ analysis_options.yaml                              |  28 +
+ android/.gitignore                                 |  14 +
+ android/app/build.gradle.kts                       |  44 ++
+ android/app/src/debug/AndroidManifest.xml          |   7 +
+ android/app/src/main/AndroidManifest.xml           |  45 ++
+ .../kotlin/com/example/hananote/MainActivity.kt    |   5 +
+ .../main/res/drawable-v21/launch_background.xml    |  12 +
+ .../src/main/res/drawable/launch_background.xml    |  12 +
+ .../app/src/main/res/mipmap-hdpi/ic_launcher.png   | Bin 0 -> 544 bytes
+ .../app/src/main/res/mipmap-mdpi/ic_launcher.png   | Bin 0 -> 442 bytes
+ .../app/src/main/res/mipmap-xhdpi/ic_launcher.png  | Bin 0 -> 721 bytes
+ .../app/src/main/res/mipmap-xxhdpi/ic_launcher.png | Bin 0 -> 1031 bytes
+ .../src/main/res/mipmap-xxxhdpi/ic_launcher.png    | Bin 0 -> 1443 bytes
+ android/app/src/main/res/values-night/styles.xml   |  18 +
+ android/app/src/main/res/values/styles.xml         |  18 +
+ android/app/src/profile/AndroidManifest.xml        |   7 +
+ android/build.gradle.kts                           |  24 +
+ android/gradle.properties                          |   2 +
+ android/gradle/wrapper/gradle-wrapper.properties   |   5 +
+ android/settings.gradle.kts                        |  26 +
+ ios/.gitignore                                     |  34 +
+ ios/Flutter/AppFrameworkInfo.plist                 |  26 +
+ ios/Flutter/Debug.xcconfig                         |   1 +
+ ios/Flutter/Release.xcconfig                       |   1 +
+ ios/Runner.xcodeproj/project.pbxproj               | 616 ++++++++++++++++++
+ .../project.xcworkspace/contents.xcworkspacedata   |   7 +
+ .../xcshareddata/IDEWorkspaceChecks.plist          |   8 +
+ .../xcshareddata/WorkspaceSettings.xcsettings      |   8 +
+ .../xcshareddata/xcschemes/Runner.xcscheme         | 101 +++
+ ios/Runner.xcworkspace/contents.xcworkspacedata    |   7 +
+ .../xcshareddata/IDEWorkspaceChecks.plist          |   8 +
+ .../xcshareddata/WorkspaceSettings.xcsettings      |   8 +
+ ios/Runner/AppDelegate.swift                       |  13 +
+ .../AppIcon.appiconset/Contents.json               | 122 ++++
+ .../AppIcon.appiconset/Icon-App-1024x1024@1x.png   | Bin 0 -> 10932 bytes
+ .../AppIcon.appiconset/Icon-App-20x20@1x.png       | Bin 0 -> 295 bytes
+ .../AppIcon.appiconset/Icon-App-20x20@2x.png       | Bin 0 -> 406 bytes
+ .../AppIcon.appiconset/Icon-App-20x20@3x.png       | Bin 0 -> 450 bytes
+ .../AppIcon.appiconset/Icon-App-29x29@1x.png       | Bin 0 -> 282 bytes
+ .../AppIcon.appiconset/Icon-App-29x29@2x.png       | Bin 0 -> 462 bytes
+ .../AppIcon.appiconset/Icon-App-29x29@3x.png       | Bin 0 -> 704 bytes
+ .../AppIcon.appiconset/Icon-App-40x40@1x.png       | Bin 0 -> 406 bytes
+ .../AppIcon.appiconset/Icon-App-40x40@2x.png       | Bin 0 -> 586 bytes
+ .../AppIcon.appiconset/Icon-App-40x40@3x.png       | Bin 0 -> 862 bytes
+ .../AppIcon.appiconset/Icon-App-60x60@2x.png       | Bin 0 -> 862 bytes
+ .../AppIcon.appiconset/Icon-App-60x60@3x.png       | Bin 0 -> 1674 bytes
+ .../AppIcon.appiconset/Icon-App-76x76@1x.png       | Bin 0 -> 762 bytes
+ .../AppIcon.appiconset/Icon-App-76x76@2x.png       | Bin 0 -> 1226 bytes
+ .../AppIcon.appiconset/Icon-App-83.5x83.5@2x.png   | Bin 0 -> 1418 bytes
+ .../LaunchImage.imageset/Contents.json             |  23 +
+ .../LaunchImage.imageset/LaunchImage.png           | Bin 0 -> 68 bytes
+ .../LaunchImage.imageset/LaunchImage@2x.png        | Bin 0 -> 68 bytes
+ .../LaunchImage.imageset/LaunchImage@3x.png        | Bin 0 -> 68 bytes
+ .../Assets.xcassets/LaunchImage.imageset/README.md |   5 +
+ ios/Runner/Base.lproj/LaunchScreen.storyboard      |  37 ++
+ ios/Runner/Base.lproj/Main.storyboard              |  26 +
+ ios/Runner/Info.plist                              |  49 ++
+ ios/Runner/Runner-Bridging-Header.h                |   1 +
+ ios/RunnerTests/RunnerTests.swift                  |  12 +
+ lib/main.dart                                      | 122 ++++
+ linux/.gitignore                                   |   1 +
+ linux/CMakeLists.txt                               | 128 ++++
+ linux/flutter/CMakeLists.txt                       |  88 +++
+ linux/flutter/generated_plugin_registrant.cc       |  11 +
+ linux/flutter/generated_plugin_registrant.h        |  15 +
+ linux/flutter/generated_plugins.cmake              |  23 +
+ linux/runner/CMakeLists.txt                        |  26 +
+ linux/runner/main.cc                               |   6 +
+ linux/runner/my_application.cc                     | 148 +++++
+ linux/runner/my_application.h                      |  21 +
+ macos/.gitignore                                   |   7 +
+ macos/Flutter/Flutter-Debug.xcconfig               |   1 +
+ macos/Flutter/Flutter-Release.xcconfig             |   1 +
+ macos/Flutter/GeneratedPluginRegistrant.swift      |  10 +
+ macos/Runner.xcodeproj/project.pbxproj             | 705 +++++++++++++++++++++
+ .../xcshareddata/IDEWorkspaceChecks.plist          |   8 +
+ .../xcshareddata/xcschemes/Runner.xcscheme         |  99 +++
+ macos/Runner.xcworkspace/contents.xcworkspacedata  |   7 +
+ .../xcshareddata/IDEWorkspaceChecks.plist          |   8 +
+ macos/Runner/AppDelegate.swift                     |  13 +
+ .../AppIcon.appiconset/Contents.json               |  68 ++
+ .../AppIcon.appiconset/app_icon_1024.png           | Bin 0 -> 102994 bytes
+ .../AppIcon.appiconset/app_icon_128.png            | Bin 0 -> 5680 bytes
+ .../AppIcon.appiconset/app_icon_16.png             | Bin 0 -> 520 bytes
+ .../AppIcon.appiconset/app_icon_256.png            | Bin 0 -> 14142 bytes
+ .../AppIcon.appiconset/app_icon_32.png             | Bin 0 -> 1066 bytes
+ .../AppIcon.appiconset/app_icon_512.png            | Bin 0 -> 36406 bytes
+ .../AppIcon.appiconset/app_icon_64.png             | Bin 0 -> 2218 bytes
+ macos/Runner/Base.lproj/MainMenu.xib               | 343 ++++++++++
+ macos/Runner/Configs/AppInfo.xcconfig              |  14 +
+ macos/Runner/Configs/Debug.xcconfig                |   2 +
+ macos/Runner/Configs/Release.xcconfig              |   2 +
+ macos/Runner/Configs/Warnings.xcconfig             |  13 +
+ macos/Runner/DebugProfile.entitlements             |  12 +
+ macos/Runner/Info.plist                            |  32 +
+ macos/Runner/MainFlutterWindow.swift               |  15 +
+ macos/Runner/Release.entitlements                  |   8 +
+ macos/RunnerTests/RunnerTests.swift                |  12 +
+ pubspec.lock                                       | 213 +++++++
+ pubspec.yaml                                       |  89 +++
+ test/widget_test.dart                              |  30 +
+ web/favicon.png                                    | Bin 0 -> 917 bytes
+ web/icons/Icon-192.png                             | Bin 0 -> 5292 bytes
+ web/icons/Icon-512.png                             | Bin 0 -> 8252 bytes
+ web/icons/Icon-maskable-192.png                    | Bin 0 -> 5594 bytes
+ web/icons/Icon-maskable-512.png                    | Bin 0 -> 20998 bytes
+ web/index.html                                     |  38 ++
+ web/manifest.json                                  |  35 +
+ windows/.gitignore                                 |  17 +
+ windows/CMakeLists.txt                             | 108 ++++
+ windows/flutter/CMakeLists.txt                     | 109 ++++
+ windows/flutter/generated_plugin_registrant.cc     |  11 +
+ windows/flutter/generated_plugin_registrant.h      |  15 +
+ windows/flutter/generated_plugins.cmake            |  23 +
+ windows/runner/CMakeLists.txt                      |  40 ++
+ windows/runner/Runner.rc                           | 121 ++++
+ windows/runner/flutter_window.cpp                  |  71 +++
+ windows/runner/flutter_window.h                    |  33 +
+ windows/runner/main.cpp                            |  43 ++
+ windows/runner/resource.h                          |  16 +
+ windows/runner/resources/app_icon.ico              | Bin 0 -> 33772 bytes
+ windows/runner/runner.exe.manifest                 |  14 +
+ windows/runner/utils.cpp                           |  65 ++
+ windows/runner/utils.h                             |  19 +
+ windows/runner/win32_window.cpp                    | 288 +++++++++
+ windows/runner/win32_window.h                      | 102 +++
+ 133 files changed, 5156 insertions(+)
