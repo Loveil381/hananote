@@ -34,7 +34,7 @@ DrugAdherenceStat _stat({double rate = 0.8, String id = 'drug-1'}) =>
     DrugAdherenceStat(drug: _drug(id: id), rate: rate);
 
 final _params = GetAdherenceStatsParams(
-  from: DateTime(2026, 3, 1),
+  from: DateTime(2026, 3),
   to: DateTime(2026, 3, 31),
 );
 

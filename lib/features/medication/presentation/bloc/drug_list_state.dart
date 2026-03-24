@@ -3,7 +3,7 @@ import 'package:hananote/features/medication/domain/entities/drug.dart';
 
 part 'drug_list_state.freezed.dart';
 
-/// States for [DrugListCubit].
+/// States for `DrugListCubit`.
 @freezed
 sealed class DrugListState with _$DrugListState {
   /// Not yet loaded.

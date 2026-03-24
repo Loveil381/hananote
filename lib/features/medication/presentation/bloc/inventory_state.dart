@@ -3,7 +3,7 @@ import 'package:hananote/features/medication/domain/usecases/check_inventory.dar
 
 part 'inventory_state.freezed.dart';
 
-/// States for [InventoryCubit].
+/// States for `InventoryCubit`.
 @freezed
 sealed class InventoryState with _$InventoryState {
   /// Not yet loaded.

@@ -27,7 +27,7 @@ sealed class Failure with _$Failure {
       UnexpectedFailure;
 }
 
-/// Extracts the human-readable [message] from any [Failure] variant.
+/// Extracts the human-readable `message` from any [Failure] variant.
 String failureMessage(Failure failure) => switch (failure) {
       DatabaseFailure(:final message) => message,
       CryptoFailure(:final message) => message,

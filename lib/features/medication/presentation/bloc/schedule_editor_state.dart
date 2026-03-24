@@ -93,7 +93,7 @@ final class ScheduleEditorEditing extends ScheduleEditorState {
   /// Optional notes.
   final String? notes;
 
-  /// Validation result from the last [validate] call.
+  /// Validation result from the last `validate` call.
   final ScheduleValidationResult? validation;
 
   /// Returns a copy with the given fields replaced.

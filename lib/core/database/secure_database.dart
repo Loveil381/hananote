@@ -17,6 +17,12 @@ class SecureDatabase {
   final KeyManager _keyManager;
   Database? _db;
 
+  /// Returns the full database file path used by the app.
+  Future<String> getDatabasePath() async {
+    final dbPath = await getDatabasesPath();
+    return join(dbPath, 'hananote_secure.db');
+  }
+
   /// Returns the open database instance.
   ///
   /// Throws a [StateError] when the database has not been opened yet.
@@ -33,8 +39,7 @@ class SecureDatabase {
     try {
       if (_db != null && _db!.isOpen) return right(_db!);
 
-      final dbPath = await getDatabasesPath();
-      final path = join(dbPath, 'hananote_secure.db');
+      final path = await getDatabasePath();
 
       // Retrieve the 256-bit key from KeyManager, base64 encode it to use
       // as SQLCipher password

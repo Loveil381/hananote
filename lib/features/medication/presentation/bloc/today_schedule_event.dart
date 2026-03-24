@@ -5,7 +5,7 @@ import 'package:hananote/features/medication/domain/entities/medication_schedule
 
 part 'today_schedule_event.freezed.dart';
 
-/// All events handled by [TodayScheduleBloc].
+/// All events handled by `TodayScheduleBloc`.
 @freezed
 sealed class TodayScheduleEvent with _$TodayScheduleEvent {
   /// Requests the schedule for the given [date] (defaults to today).

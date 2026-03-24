@@ -3,7 +3,7 @@ import 'package:hananote/features/medication/domain/usecases/get_today_schedule.
 
 part 'today_schedule_state.freezed.dart';
 
-/// States for [TodayScheduleBloc].
+/// States for `TodayScheduleBloc`.
 @freezed
 sealed class TodayScheduleState with _$TodayScheduleState {
   /// Not yet loaded.

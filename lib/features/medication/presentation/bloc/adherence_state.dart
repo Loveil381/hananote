@@ -3,7 +3,7 @@ import 'package:hananote/features/medication/domain/usecases/get_adherence_stats
 
 part 'adherence_state.freezed.dart';
 
-/// States for [AdherenceCubit].
+/// States for `AdherenceCubit`.
 @freezed
 sealed class AdherenceState with _$AdherenceState {
   /// Not yet loaded.

@@ -1,7 +1,6 @@
-import 'dart:math';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hananote/core/error/failures.dart';
+import 'package:hananote/core/utils/id_generator.dart';
 import 'package:hananote/features/medication/domain/entities/enums.dart';
 import 'package:hananote/features/medication/domain/entities/medication_log.dart';
 import 'package:hananote/features/medication/domain/entities/medication_schedule.dart';
@@ -27,7 +26,6 @@ class TodayScheduleBloc extends Bloc<TodayScheduleEvent, TodayScheduleState> {
 
   final GetTodaySchedule _getTodaySchedule;
   final LogMedication _logMedication;
-  final _random = Random.secure();
 
   /// The date currently displayed; used for reload after mutations.
   DateTime? _currentDate;
@@ -63,7 +61,7 @@ class TodayScheduleBloc extends Bloc<TodayScheduleEvent, TodayScheduleState> {
     final now = DateTime.now();
     final isLate = _isDoseLate(event.schedule, now);
     final log = MedicationLog(
-      id: _generateId(),
+      id: IdGenerator.generate(),
       scheduleId: event.schedule.id,
       drugId: event.drug.id,
       timestamp: now,
@@ -91,7 +89,7 @@ class TodayScheduleBloc extends Bloc<TodayScheduleEvent, TodayScheduleState> {
     Emitter<TodayScheduleState> emit,
   ) async {
     final log = MedicationLog(
-      id: _generateId(),
+      id: IdGenerator.generate(),
       scheduleId: event.schedule.id,
       drugId: event.drug.id,
       timestamp: DateTime.now(),
@@ -111,12 +109,6 @@ class TodayScheduleBloc extends Bloc<TodayScheduleEvent, TodayScheduleState> {
 
   Future<void> _reload(Emitter<TodayScheduleState> emit) =>
       _onLoad(LoadTodaySchedule(date: _currentDate), emit);
-
-  /// Generates a random hex ID for a new log entry.
-  String _generateId() {
-    final bytes = List<int>.generate(16, (_) => _random.nextInt(256));
-    return bytes.map((b) => b.toRadixString(16).padLeft(2, '0')).join();
-  }
 
   /// Returns true when [now] is past all scheduled times for today.
   bool _isDoseLate(MedicationSchedule schedule, DateTime now) {

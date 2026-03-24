@@ -43,7 +43,7 @@ MedicationSchedule _schedule() => MedicationSchedule(
       dosageUnit: DosageUnit.mg,
       frequency: const MedicationFrequency.daily(timesPerDay: 1),
       administrationRoute: AdministrationRoute.oral,
-      startDate: DateTime(2026, 3, 1),
+      startDate: DateTime(2026, 3),
       isActive: true,
     );
 

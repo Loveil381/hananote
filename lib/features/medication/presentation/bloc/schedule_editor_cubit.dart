@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hananote/core/error/failures.dart';
+import 'package:hananote/core/utils/id_generator.dart';
 import 'package:hananote/features/medication/domain/entities/enums.dart';
 import 'package:hananote/features/medication/domain/entities/medication_schedule.dart';
 import 'package:hananote/features/medication/domain/repositories/medication_repository.dart';
@@ -174,7 +175,7 @@ class ScheduleEditorCubit extends Cubit<ScheduleEditorState> {
     }
 
     return MedicationSchedule(
-      id: s.existingId ?? _generateId(),
+      id: s.existingId ?? IdGenerator.generate(),
       drugId: s.drugId,
       dosageAmount: s.dosageAmount!,
       dosageUnit: s.dosageUnit!,
@@ -186,12 +187,5 @@ class ScheduleEditorCubit extends Cubit<ScheduleEditorState> {
       isActive: true,
       notes: s.notes,
     );
-  }
-
-  /// Simple ID generator using millisecond timestamp; avoids adding a package.
-  static String _generateId() {
-    final ms = DateTime.now().millisecondsSinceEpoch.toRadixString(16);
-    final suffix = (ms.hashCode ^ Object.hash(ms, ms)).toRadixString(16);
-    return '$ms-$suffix';
   }
 }

@@ -8,8 +8,8 @@ import 'package:hananote/features/medication/presentation/bloc/inventory_state.d
 
 /// Manages medication inventory state.
 ///
-/// Provides [loadInventory] and [updateStock].
-/// The [lowStockCount] in the loaded state drives any alert badges in the UI.
+/// Provides `loadInventory` and `updateStock`.
+/// The `lowStockCount` in the loaded state drives any alert badges in the UI.
 class InventoryCubit extends Cubit<InventoryState> {
   /// Creates an [InventoryCubit].
   InventoryCubit(this._checkInventory, this._repository)
