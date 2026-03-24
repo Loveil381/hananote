@@ -4,5 +4,54 @@
   "loading": "Loading...",
   "error": "Error",
   "ok": "OK",
-  "cancel": "Cancel"
+  "cancel": "Cancel",
+  "goodMorning": "Good morning",
+  "goodAfternoon": "Good afternoon",
+  "goodEvening": "Good evening",
+  "addDrug": "Add Medication",
+  "editDrug": "Edit Medication",
+  "drugName": "Medication Name",
+  "genericName": "Generic Name",
+  "dosage": "Dosage",
+  "frequency": "Frequency",
+  "takeDose": "Take Dose",
+  "skipDose": "Skip Dose",
+  "save": "Save",
+  "delete": "Delete",
+  "confirm": "Confirm",
+  "inventory": "Inventory",
+  "remaining": "Remaining",
+  "lowStock": "Low Stock",
+  "daysLeft": "{days} Days Left",
+  "@daysLeft": {
+    "placeholders": {
+      "days": {
+        "type": "String",
+        "example": "5"
+      }
+    }
+  },
+  "nextTime": "Next: {time}",
+  "@nextTime": {
+    "placeholders": {
+      "time": {
+        "type": "String",
+        "example": "08:00"
+      }
+    }
+  },
+  "completedDose": "Completed",
+  "noActiveDrugs": "No active medications",
+  "addFirstDrug": "Add your first medication",
+  "category": "Category",
+  "route": "Route",
+  "unit": "Unit",
+  "notes": "Notes",
+  "injectionSite": "Injection Site",
+  "patchSite": "Patch Site",
+  "quantity": "Quantity",
+  "active": "Active",
+  "inactive": "Inactive",
+  "today": "Today",
+  "medications": "Medications"
 }

@@ -129,6 +129,204 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Cancel'**
   String get cancel;
+
+  /// No description provided for @goodMorning.
+  ///
+  /// In en, this message translates to:
+  /// **'Good morning'**
+  String get goodMorning;
+
+  /// No description provided for @goodAfternoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Good afternoon'**
+  String get goodAfternoon;
+
+  /// No description provided for @goodEvening.
+  ///
+  /// In en, this message translates to:
+  /// **'Good evening'**
+  String get goodEvening;
+
+  /// No description provided for @addDrug.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Medication'**
+  String get addDrug;
+
+  /// No description provided for @editDrug.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Medication'**
+  String get editDrug;
+
+  /// No description provided for @drugName.
+  ///
+  /// In en, this message translates to:
+  /// **'Medication Name'**
+  String get drugName;
+
+  /// No description provided for @genericName.
+  ///
+  /// In en, this message translates to:
+  /// **'Generic Name'**
+  String get genericName;
+
+  /// No description provided for @dosage.
+  ///
+  /// In en, this message translates to:
+  /// **'Dosage'**
+  String get dosage;
+
+  /// No description provided for @frequency.
+  ///
+  /// In en, this message translates to:
+  /// **'Frequency'**
+  String get frequency;
+
+  /// No description provided for @takeDose.
+  ///
+  /// In en, this message translates to:
+  /// **'Take Dose'**
+  String get takeDose;
+
+  /// No description provided for @skipDose.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip Dose'**
+  String get skipDose;
+
+  /// No description provided for @save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
+
+  /// No description provided for @delete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get delete;
+
+  /// No description provided for @confirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get confirm;
+
+  /// No description provided for @inventory.
+  ///
+  /// In en, this message translates to:
+  /// **'Inventory'**
+  String get inventory;
+
+  /// No description provided for @remaining.
+  ///
+  /// In en, this message translates to:
+  /// **'Remaining'**
+  String get remaining;
+
+  /// No description provided for @lowStock.
+  ///
+  /// In en, this message translates to:
+  /// **'Low Stock'**
+  String get lowStock;
+
+  /// No description provided for @daysLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'{days} Days Left'**
+  String daysLeft(String days);
+
+  /// No description provided for @nextTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Next: {time}'**
+  String nextTime(String time);
+
+  /// No description provided for @completedDose.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get completedDose;
+
+  /// No description provided for @noActiveDrugs.
+  ///
+  /// In en, this message translates to:
+  /// **'No active medications'**
+  String get noActiveDrugs;
+
+  /// No description provided for @addFirstDrug.
+  ///
+  /// In en, this message translates to:
+  /// **'Add your first medication'**
+  String get addFirstDrug;
+
+  /// No description provided for @category.
+  ///
+  /// In en, this message translates to:
+  /// **'Category'**
+  String get category;
+
+  /// No description provided for @route.
+  ///
+  /// In en, this message translates to:
+  /// **'Route'**
+  String get route;
+
+  /// No description provided for @unit.
+  ///
+  /// In en, this message translates to:
+  /// **'Unit'**
+  String get unit;
+
+  /// No description provided for @notes.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes'**
+  String get notes;
+
+  /// No description provided for @injectionSite.
+  ///
+  /// In en, this message translates to:
+  /// **'Injection Site'**
+  String get injectionSite;
+
+  /// No description provided for @patchSite.
+  ///
+  /// In en, this message translates to:
+  /// **'Patch Site'**
+  String get patchSite;
+
+  /// No description provided for @quantity.
+  ///
+  /// In en, this message translates to:
+  /// **'Quantity'**
+  String get quantity;
+
+  /// No description provided for @active.
+  ///
+  /// In en, this message translates to:
+  /// **'Active'**
+  String get active;
+
+  /// No description provided for @inactive.
+  ///
+  /// In en, this message translates to:
+  /// **'Inactive'**
+  String get inactive;
+
+  /// No description provided for @today.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get today;
+
+  /// No description provided for @medications.
+  ///
+  /// In en, this message translates to:
+  /// **'Medications'**
+  String get medications;
 }
 
 class _AppLocalizationsDelegate
