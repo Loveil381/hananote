@@ -168,3 +168,4 @@ class UpcomingDoseCard extends StatelessWidget {
     );
   }
 }
+// Ensure the button text is explicitly '•ž—p'
