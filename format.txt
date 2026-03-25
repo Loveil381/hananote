@@ -1,0 +1,9 @@
+Could not format because the source could not be parsed:
+
+line 292, column 21 of lib\features\journal\presentation\pages\record_page.dart: Expected an identifier.
+    ╷
+292 │                   ),,
+    │                     ^
+    ╵
+Formatted lib\features\timeline\presentation\pages\timeline_page.dart
+Formatted 1 file (1 changed) in 0.01 seconds.
