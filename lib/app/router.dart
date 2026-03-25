@@ -1,27 +1,82 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hananote/app/pages/home_page.dart';
+import 'package:hananote/app/presentation/main_shell.dart';
 import 'package:hananote/features/auth/presentation/pages/auth_wrapper_page.dart';
+import 'package:hananote/features/blood_test/presentation/pages/data_page.dart';
+import 'package:hananote/features/journal/presentation/pages/record_page.dart';
 import 'package:hananote/features/medication/presentation/pages/add_drug_page.dart';
 import 'package:hananote/features/medication/presentation/pages/schedule_editor_page.dart';
+import 'package:hananote/features/medication/presentation/pages/today_page.dart';
+import 'package:hananote/features/settings/presentation/pages/profile_page.dart';
+import 'package:hananote/features/timeline/presentation/pages/timeline_page.dart';
+
+final GlobalKey<NavigatorState> _rootNavigatorKey =
+    GlobalKey<NavigatorState>(debugLabel: 'root');
 
 /// The main application router configuration.
 final GoRouter appRouter = GoRouter(
+  navigatorKey: _rootNavigatorKey,
   initialLocation: '/',
   routes: [
     GoRoute(
       path: '/',
       builder: (context, state) => const AuthWrapperPage(),
     ),
-    GoRoute(
-      path: '/home',
-      builder: (context, state) => const HomePage(),
+    StatefulShellRoute.indexedStack(
+      builder: (context, state, navigationShell) {
+        return MainShell(navigationShell: navigationShell);
+      },
+      branches: [
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: '/today',
+              builder: (context, state) => const TodayPage(),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: '/record',
+              builder: (context, state) => const RecordPage(),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: '/timeline',
+              builder: (context, state) => const TimelinePage(),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: '/data',
+              builder: (context, state) => const DataPage(),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: '/profile',
+              builder: (context, state) => const ProfilePage(),
+            ),
+          ],
+        ),
+      ],
     ),
     GoRoute(
       path: '/add_drug',
+      parentNavigatorKey: _rootNavigatorKey,
       builder: (context, state) => const AddDrugPage(),
     ),
     GoRoute(
       path: '/edit_schedule',
+      parentNavigatorKey: _rootNavigatorKey,
       builder: (context, state) => const ScheduleEditorPage(),
     ),
   ],

@@ -1,0 +1,20 @@
+﻿90520e2 HEAD@{0}: checkout: moving from feature/medication-ui to main
+1bc71d5 refs/heads/feature/medication-ui@{0}: commit: fix(theme): rewrite app_theme to use HanaColors, resolve l10n bug
+1bc71d5 HEAD@{1}: commit: fix(theme): rewrite app_theme to use HanaColors, resolve l10n bug
+c6b9de5 HEAD@{2}: reset: moving to feature/medication-ui
+c6b9de5 refs/heads/feature/medication-ui@{1}: commit: style: fix lints for theme and UI shell
+c6b9de5 HEAD@{3}: commit: style: fix lints for theme and UI shell
+b586ecf refs/heads/feature/medication-ui@{2}: commit: docs(ai-cto): update STATUS and DECISIONS for round 8
+b586ecf HEAD@{4}: commit: docs(ai-cto): update STATUS and DECISIONS for round 8
+05acde0 refs/heads/feature/medication-ui@{3}: commit: feat(navigation): implement 5-tab shell route with glassmorphism nav bar
+05acde0 HEAD@{5}: commit: feat(navigation): implement 5-tab shell route with glassmorphism nav bar
+1ca7964 refs/heads/feature/medication-ui@{4}: commit: feat(theme): implement HanaNote design system v2 from Stitch specs
+1ca7964 HEAD@{6}: commit: feat(theme): implement HanaNote design system v2 from Stitch specs
+90520e2 refs/heads/feature/design-system-v2@{0}: branch: Created from HEAD
+90520e2 worktrees/hananote_main_integration/HEAD@{0}: checkout: moving from main to feature/design-system-v2
+90520e2 refs/remotes/origin/main@{0}: update by push
+90520e2 refs/heads/main@{0}: commit: docs(design): add Stitch exported UI designs for all screens
+90520e2 worktrees/hananote_main_integration/HEAD@{1}: commit: docs(design): add Stitch exported UI designs for all screens
+88c4422 worktrees/hananote_main_integration/HEAD@{2}: checkout: moving from feature/crypto-core to main
+79d2418 refs/heads/feature/crypto-core@{0}: commit: feat(core): implement CryptoEngine AES-256-GCM + SecureDatabase SQLCipher + app lifecycle blur + lint cleanup
+79d2418 worktrees/hananote_main_integration/HEAD@{3}: commit: feat(core): implement CryptoEngine AES-256-GCM + SecureDatabase SQLCipher + app lifecycle blur + lint cleanup

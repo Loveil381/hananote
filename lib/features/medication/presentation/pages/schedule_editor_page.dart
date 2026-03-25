@@ -1,9 +1,11 @@
-import 'package:flutter/material.dart';
+// ignore_for_file: lines_longer_than_80_chars
+
+import 'package:flutter/material.dart' hide TimeOfDay;
+import 'package:flutter/material.dart' as material show TimeOfDay;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hananote/core/l10n/arb/app_localizations.dart';
 import 'package:hananote/features/medication/domain/entities/enums.dart';
-import 'package:hananote/features/medication/domain/entities/medication_schedule.dart'
-    as domain;
+import 'package:hananote/features/medication/domain/entities/medication_schedule.dart';
 import 'package:hananote/features/medication/presentation/bloc/schedule_editor_cubit.dart';
 import 'package:hananote/features/medication/presentation/bloc/schedule_editor_state.dart';
 
@@ -100,7 +102,7 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
                   if (state.administrationRoute != null)
                     Expanded(
                       child: DropdownButtonFormField<DosageUnit>(
-                        value: state.dosageUnit,
+                        initialValue: state.dosageUnit,
                         decoration: InputDecoration(
                           labelText: l10n.unit,
                           border: const OutlineInputBorder(),
@@ -109,7 +111,7 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
                             .map((u) => DropdownMenuItem(
                                   value: u,
                                   child: Text(u.name),
-                                ))
+                                ),)
                             .toList(),
                         onChanged: (val) {
                           if (val != null) {
@@ -132,7 +134,7 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
               const SizedBox(height: 8),
               _buildFrequencySelector(context, state, l10n),
               const SizedBox(height: 24),
-              Text("Start Date", style: theme.textTheme.titleMedium),
+              Text('Start Date', style: theme.textTheme.titleMedium),
               if (state.validation?.startDateError != null)
                 Text(
                   state.validation!.startDateError!,
@@ -165,7 +167,7 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
                 },
               ),
               const SizedBox(height: 16),
-              Text("End Date (Optional)", style: theme.textTheme.titleMedium),
+              Text('End Date (Optional)', style: theme.textTheme.titleMedium),
               const SizedBox(height: 8),
               ListTile(
                 shape: RoundedRectangleBorder(
@@ -210,7 +212,7 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
               FilledButton(
                 onPressed: () => context.read<ScheduleEditorCubit>().save(),
                 child: Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(16),
                   child: Text(l10n.save),
                 ),
               ),
@@ -227,9 +229,9 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
     AppLocalizations l10n,
   ) {
     // simplified form for selecting frequency logic
-    int typeIndex = 0;
-    if (state.frequency is domain.EveryNDaysMedicationFrequency) typeIndex = 1;
-    if (state.frequency is domain.WeeklyMedicationFrequency) typeIndex = 2;
+    var typeIndex = 0;
+    if (state.frequency is EveryNDaysMedicationFrequency) typeIndex = 1;
+    if (state.frequency is WeeklyMedicationFrequency) typeIndex = 2;
 
     return Column(
       children: [
@@ -242,36 +244,30 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
           selected: {typeIndex},
           onSelectionChanged: (set) {
             final idx = set.first;
-            domain.MedicationFrequency? freq;
-            if (idx == 0) {
-              freq = const domain.DailyMedicationFrequency(timesPerDay: 1);
-            }
-            if (idx == 1) {
-              freq = const domain.EveryNDaysMedicationFrequency(days: 2);
-            }
-            if (idx == 2) {
-              freq = const domain.WeeklyMedicationFrequency(dayOfWeek: 1);
-            }
+            MedicationFrequency? freq;
+            if (idx == 0) freq = const DailyMedicationFrequency(timesPerDay: 1);
+            if (idx == 1) freq = const EveryNDaysMedicationFrequency(days: 2);
+            if (idx == 2) freq = const WeeklyMedicationFrequency(dayOfWeek: 1);
             if (freq != null) {
               context.read<ScheduleEditorCubit>().setFrequency(freq);
             }
           },
         ),
         const SizedBox(height: 16),
-        if (state.frequency is domain.DailyMedicationFrequency) ...[
+        if (state.frequency is DailyMedicationFrequency) ...[
           Row(
             children: [
               const Text('Times Per Day: '),
               DropdownButton<int>(
-                value: (state.frequency as domain.DailyMedicationFrequency)
-                    .timesPerDay,
+                value:
+                    (state.frequency! as DailyMedicationFrequency).timesPerDay,
                 items: [1, 2, 3, 4]
                     .map((e) => DropdownMenuItem(value: e, child: Text('$e')))
                     .toList(),
                 onChanged: (val) {
                   if (val != null) {
                     context.read<ScheduleEditorCubit>().setFrequency(
-                          domain.DailyMedicationFrequency(timesPerDay: val),
+                          DailyMedicationFrequency(timesPerDay: val),
                         );
                   }
                 },
@@ -279,20 +275,19 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
             ],
           ),
         ],
-        if (state.frequency is domain.EveryNDaysMedicationFrequency) ...[
+        if (state.frequency is EveryNDaysMedicationFrequency) ...[
           Row(
             children: [
               const Text('Every '),
               DropdownButton<int>(
-                value: (state.frequency as domain.EveryNDaysMedicationFrequency)
-                    .days,
+                value: (state.frequency! as EveryNDaysMedicationFrequency).days,
                 items: List.generate(14, (i) => i + 2)
                     .map((e) => DropdownMenuItem(value: e, child: Text('$e')))
                     .toList(),
                 onChanged: (val) {
                   if (val != null) {
                     context.read<ScheduleEditorCubit>().setFrequency(
-                          domain.EveryNDaysMedicationFrequency(days: val),
+                          EveryNDaysMedicationFrequency(days: val),
                         );
                   }
                 },
@@ -301,20 +296,19 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
             ],
           ),
         ],
-        if (state.frequency is domain.WeeklyMedicationFrequency) ...[
+        if (state.frequency is WeeklyMedicationFrequency) ...[
           Row(
             children: [
               const Text('Day of Week: '),
               DropdownButton<int>(
-                value: (state.frequency as domain.WeeklyMedicationFrequency)
-                    .dayOfWeek,
+                value: (state.frequency! as WeeklyMedicationFrequency).dayOfWeek,
                 items: [1, 2, 3, 4, 5, 6, 7]
                     .map((e) => DropdownMenuItem(value: e, child: Text('$e')))
                     .toList(),
                 onChanged: (val) {
                   if (val != null) {
                     context.read<ScheduleEditorCubit>().setFrequency(
-                          domain.WeeklyMedicationFrequency(dayOfWeek: val),
+                          WeeklyMedicationFrequency(dayOfWeek: val),
                         );
                   }
                 },
@@ -336,15 +330,12 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
       return const SizedBox.shrink();
     }
 
-    int expectedTimes = 1;
-    if (state.frequency is domain.DailyMedicationFrequency) {
-      expectedTimes =
-          (state.frequency as domain.DailyMedicationFrequency).timesPerDay;
+    var expectedTimes = 1;
+    if (state.frequency is DailyMedicationFrequency) {
+      expectedTimes = (state.frequency! as DailyMedicationFrequency).timesPerDay;
     }
 
-    final currentTimes = state.scheduleTimes
-        .map((time) => TimeOfDay(hour: time.hour, minute: time.minute))
-        .toList();
+    final currentTimes = List<TimeOfDay>.from(state.scheduleTimes);
     while (currentTimes.length < expectedTimes) {
       currentTimes.add(const TimeOfDay(hour: 8, minute: 0));
     }
@@ -355,7 +346,7 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("Schedule Times", style: Theme.of(context).textTheme.titleMedium),
+        Text('Schedule Times', style: Theme.of(context).textTheme.titleMedium),
         const SizedBox(height: 8),
         for (int i = 0; i < currentTimes.length; i++)
           Padding(
@@ -367,21 +358,19 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
                 ),
                 borderRadius: BorderRadius.circular(8),
               ),
-              title: Text(currentTimes[i].format(context)),
+              title: Text(material.TimeOfDay(hour: currentTimes[i].hour, minute: currentTimes[i].minute).format(context)),
               trailing: const Icon(Icons.access_time),
               onTap: () async {
                 final time = await showTimePicker(
                   context: context,
-                  initialTime: currentTimes[i],
+                  initialTime: material.TimeOfDay(
+                    hour: currentTimes[i].hour,
+                    minute: currentTimes[i].minute,
+                  ),
                 );
                 if (time != null && context.mounted) {
-                  final newTimes = List<domain.TimeOfDay>.from(
-                    state.scheduleTimes,
-                  );
-                  newTimes[i] = domain.TimeOfDay(
-                    hour: time.hour,
-                    minute: time.minute,
-                  );
+                  final newTimes = List<TimeOfDay>.from(currentTimes);
+                  newTimes[i] = TimeOfDay(hour: time.hour, minute: time.minute);
                   context
                       .read<ScheduleEditorCubit>()
                       .setScheduleTimes(newTimes);

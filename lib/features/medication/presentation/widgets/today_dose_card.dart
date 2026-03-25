@@ -1,3 +1,5 @@
+// ignore_for_file: public_member_api_docs, lines_longer_than_80_chars, comment_references
+
 import 'package:flutter/material.dart';
 import 'package:hananote/core/l10n/arb/app_localizations.dart';
 import 'package:hananote/features/medication/domain/entities/enums.dart';
@@ -131,7 +133,7 @@ class TodayDoseCard extends StatelessWidget {
     for (final time in item.scheduledDateTimes) {
       if (time.isAfter(now)) {
         return l10n.nextTime(
-            '${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}');
+            '${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}',);
       }
     }
     return l10n.today;

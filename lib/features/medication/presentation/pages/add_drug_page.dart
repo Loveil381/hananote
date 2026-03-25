@@ -174,7 +174,7 @@ class _AddDrugPageState extends State<AddDrugPage> {
             FilledButton(
               onPressed: _submit,
               child: Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(16),
                 child: Text(l10n.save),
               ),
             ),

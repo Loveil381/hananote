@@ -1,0 +1,50 @@
+﻿On branch main
+Your branch is up to date with 'origin/main'.
+
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+  (use "git merge --abort" to abort the merge)
+
+Changes to be committed:
+	new file:   analyze_out_utf8.txt
+	modified:   docs/ai-cto/DECISIONS.md
+	deleted:    lib/app/home_page.dart
+	new file:   lib/app/presentation/main_shell.dart
+	modified:   lib/app/router.dart
+	deleted:    lib/app/theme/app_colors.dart
+	modified:   lib/app/theme/app_theme.dart
+	new file:   lib/app/theme/hana_colors.dart
+	new file:   lib/app/theme/hana_gradients.dart
+	new file:   lib/app/theme/hana_shadows.dart
+	modified:   lib/core/l10n/arb/app_zh.arb
+	modified:   lib/features/auth/presentation/pages/auth_wrapper_page.dart
+	new file:   lib/features/blood_test/presentation/pages/data_page.dart
+	new file:   lib/features/journal/presentation/pages/record_page.dart
+	modified:   lib/features/medication/presentation/pages/add_drug_page.dart
+	modified:   lib/features/medication/presentation/pages/inventory_page.dart
+	modified:   lib/features/medication/presentation/widgets/dose_action_sheet.dart
+	modified:   lib/features/medication/presentation/widgets/today_dose_card.dart
+	new file:   lib/features/settings/presentation/pages/profile_page.dart
+	new file:   lib/features/timeline/presentation/pages/timeline_page.dart
+	new file:   out.txt
+	new file:   out2.txt
+	new file:   out3.txt
+	new file:   out5.txt
+	modified:   pubspec.yaml
+
+Unmerged paths:
+  (use "git add/rm <file>..." as appropriate to mark resolution)
+	deleted by us:   analyze_out.txt
+	both modified:   docs/ai-cto/STATUS.md
+	deleted by them: lib/app/pages/home_page.dart
+	both modified:   lib/features/medication/presentation/pages/drug_list_page.dart
+	both modified:   lib/features/medication/presentation/pages/schedule_editor_page.dart
+	both modified:   lib/features/medication/presentation/pages/today_page.dart
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	reflog.txt
+	reflog2.txt
+	status.txt
+	status8.txt
+

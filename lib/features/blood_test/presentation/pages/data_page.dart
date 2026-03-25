@@ -2,15 +2,15 @@
 
 import 'package:flutter/material.dart';
 
-class TodayPage extends StatelessWidget {
-  const TodayPage({super.key});
+class DataPage extends StatelessWidget {
+  const DataPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: Text(
-          '今日',
+          '数据',
           style: Theme.of(context).textTheme.headlineMedium,
         ),
       ),

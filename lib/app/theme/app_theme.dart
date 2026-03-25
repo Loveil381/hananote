@@ -1,104 +1,108 @@
 // ignore_for_file: public_member_api_docs
 
 import 'package:flutter/material.dart';
-import 'package:hananote/app/theme/app_colors.dart';
+import 'package:hananote/app/theme/hana_colors.dart';
 
 /// Enum for available app themes.
 enum AppThemeType {
   sakura,
-  lavender,
-  sky,
-  starryNight,
-  cyberpunk,
+  lavender, // Stubbed for now
+  sky, // Stubbed for now
+  starryNight, // Stubbed for now
+  cyberpunk, // Stubbed for now
 }
 
 /// Provides ThemeData for each theme type.
 class AppTheme {
   static ThemeData getTheme(AppThemeType type) {
+    // Currently only sakura is fully implemented per DESIGN.md v2
     switch (type) {
       case AppThemeType.sakura:
-        return _buildTheme(
-          primary: AppColors.sakuraPrimary,
-          secondary: AppColors.sakuraSecondary,
-          surface: AppColors.sakuraSurface,
-          background: AppColors.sakuraBackground,
-          brightness: Brightness.light,
-        );
       case AppThemeType.lavender:
-        return _buildTheme(
-          primary: AppColors.lavenderPrimary,
-          secondary: AppColors.lavenderSecondary,
-          surface: AppColors.lavenderSurface,
-          background: AppColors.lavenderBackground,
-          brightness: Brightness.light,
-        );
       case AppThemeType.sky:
-        return _buildTheme(
-          primary: AppColors.skyPrimary,
-          secondary: AppColors.skySecondary,
-          surface: AppColors.skySurface,
-          background: AppColors.skyBackground,
-          brightness: Brightness.light,
-        );
       case AppThemeType.starryNight:
-        return _buildTheme(
-          primary: AppColors.starryPrimary,
-          secondary: AppColors.starrySecondary,
-          surface: AppColors.starrySurface,
-          background: AppColors.starryBackground,
-          brightness: Brightness.dark,
-        );
       case AppThemeType.cyberpunk:
-        return _buildTheme(
-          primary: AppColors.cyberPrimary,
-          secondary: AppColors.cyberSecondary,
-          surface: AppColors.cyberSurface,
-          background: AppColors.cyberBackground,
-          brightness: Brightness.dark,
-        );
+        return _buildSakuraTheme();
     }
   }
 
-  static ThemeData _buildTheme({
-    required Color primary,
-    required Color secondary,
-    required Color surface,
-    required Color background,
-    required Brightness brightness,
-  }) {
-    final colorScheme = ColorScheme(
-      brightness: brightness,
-      primary: primary,
-      onPrimary: brightness == Brightness.light
-          ? AppColors.textDark
-          : AppColors.textLight,
-      secondary: secondary,
-      onSecondary: brightness == Brightness.light
-          ? AppColors.textDark
-          : AppColors.textLight,
-      surface: surface,
-      onSurface: brightness == Brightness.light
-          ? AppColors.textDark
-          : AppColors.textLight,
-      error: AppColors.error,
-      onError: AppColors.textLight,
+  static ThemeData _buildSakuraTheme() {
+    const colorScheme = ColorScheme(
+      brightness: Brightness.light,
+      primary: HanaColors.primary,
+      onPrimary: HanaColors.onPrimary,
+      primaryContainer: HanaColors.primaryContainer,
+      onPrimaryContainer: HanaColors.onPrimaryContainer,
+      secondary: HanaColors.secondary,
+      onSecondary: HanaColors.onSecondary,
+      secondaryContainer: HanaColors.secondaryContainer,
+      onSecondaryContainer: HanaColors.onSecondaryContainer,
+      tertiary: HanaColors.tertiary,
+      onTertiary: HanaColors.onTertiary,
+      tertiaryContainer: HanaColors.tertiaryContainer,
+      onTertiaryContainer: HanaColors.onTertiaryContainer,
+      error: HanaColors.error,
+      onError: HanaColors.onError,
+      errorContainer: HanaColors.errorContainer,
+      onErrorContainer: HanaColors.onErrorContainer,
+      surface: HanaColors.surface,
+      onSurface: HanaColors.onSurface,
+      surfaceContainerHighest: HanaColors.surfaceVariant,
+      onSurfaceVariant: HanaColors.onSurfaceVariant,
+      outline: HanaColors.outline,
+      outlineVariant: HanaColors.outlineVariant,
+      inverseSurface: HanaColors.inverseSurface,
+      onInverseSurface: HanaColors.inverseOnSurface,
+      inversePrimary: HanaColors.inversePrimary,
+      surfaceTint: HanaColors.surfaceTint,
+    );
+
+    const textTheme = TextTheme(
+      headlineLarge: TextStyle(
+          fontFamily: 'PlusJakartaSans', fontWeight: FontWeight.w800,),
+      headlineMedium: TextStyle(
+          fontFamily: 'PlusJakartaSans', fontWeight: FontWeight.bold,),
+      headlineSmall: TextStyle(
+          fontFamily: 'PlusJakartaSans', fontWeight: FontWeight.bold,),
+      bodyLarge: TextStyle(fontFamily: 'BeVietnamPro'),
+      bodyMedium: TextStyle(fontFamily: 'BeVietnamPro'),
+      bodySmall: TextStyle(fontFamily: 'BeVietnamPro'),
+      labelLarge: TextStyle(fontFamily: 'BeVietnamPro'),
+      labelMedium: TextStyle(fontFamily: 'BeVietnamPro'),
+      labelSmall: TextStyle(fontFamily: 'BeVietnamPro'),
     );
 
     return ThemeData(
       colorScheme: colorScheme,
       useMaterial3: true,
-      cardTheme: CardThemeData(
+      scaffoldBackgroundColor: HanaColors.background,
+      textTheme: textTheme,
+      cardTheme: const CardThemeData(
+        color: HanaColors.surfaceContainerLowest,
+        elevation: 0,
+
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.all(Radius.circular(16)),
         ),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+          shape: const StadiumBorder(),
+          backgroundColor: HanaColors.primary,
+          foregroundColor: HanaColors.onPrimary,
         ),
+      ),
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
+      appBarTheme: const AppBarTheme(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        surfaceTintColor: Colors.transparent,
+        foregroundColor: HanaColors.primary,
+        scrolledUnderElevation: 0,
+        centerTitle: false,
       ),
     );
   }

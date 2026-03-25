@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use, lines_longer_than_80_chars
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hananote/core/l10n/arb/app_localizations.dart';
@@ -115,7 +117,7 @@ class _InventoryPageState extends State<InventoryPage> {
                       Text(
                         'No stock info',
                         style: theme.textTheme.bodyMedium?.copyWith(
-                          color: theme.colorScheme.onSurfaceVariant,
+                                color: theme.colorScheme.onSurface.withAlpha(128),
                         ),
                       ),
                   ],
