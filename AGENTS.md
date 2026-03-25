@@ -44,6 +44,9 @@ dart format .
 - NEVER hardcode user-facing strings (use l10n)
 - NEVER import from another feature's data layer
 - NEVER use dynamic type unless parsing JSON
+- NEVER use `git push --force` or `git push -f` — always use `git push --force-with-lease` if force is absolutely necessary
+- NEVER push to a branch name different from the current local branch — verify with `git branch --show-current` before pushing
+- NEVER delete a remote branch that has not been merged into main — verify with `git log main..<branch> --oneline` first
 
 ## Naming Conventions
 - Files: snake_case.dart
