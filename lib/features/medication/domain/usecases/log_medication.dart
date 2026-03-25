@@ -4,8 +4,10 @@ import 'package:hananote/features/medication/domain/entities/drug_inventory.dart
 import 'package:hananote/features/medication/domain/entities/enums.dart';
 import 'package:hananote/features/medication/domain/entities/medication_log.dart';
 import 'package:hananote/features/medication/domain/repositories/medication_repository.dart';
+import 'package:injectable/injectable.dart';
 
 /// Records a medication event and deducts stock when inventory exists.
+@injectable
 class LogMedication {
   /// Creates a [LogMedication] use case.
   LogMedication(this._repository);

@@ -51,3 +51,14 @@
 - **决定**: 将 CryptoEngine/SecureDatabase 从 P0 降为 P1，UI 实现提升为 P0
 - **理由**: 需要可视化的 App 验证设计效果和用户体验，加密层可在UI稳定后接入不会破坏架构
 - **日期**: 第8轮
+
+## DEC-010: 全部5Tab UI壳完成后转向数据绑定
+- **决定**: 停止新UI页面开发，转向将已有Cubit接入已完成的UI壳
+- **理由**: 5个Tab全部是硬编码假数据，继续铺UI不产生用户价值；已有MedicationCubit是现成的数据源
+- **第一个接入点**: Today Tab + MedicationCubit
+- **日期**: 第12轮
+
+## DEC-011: git安全规则写入AGENTS.md
+- **决定**: 将禁止force-push、禁止跨分支push、禁止删除未合并分支三条规则写入AGENTS.md
+- **理由**: Round 8-9 期间多次出现分支丢失和合并事故
+- **日期**: 第9轮（补录）  

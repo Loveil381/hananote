@@ -1,0 +1,33 @@
+Could not format because the source could not be parsed:
+
+line 549, column 46 of lib\features\blood_test\presentation\pages\data_page.dart: Expected an identifier.
+    ╷
+549 │         size.width * 0.5, size.height * 0.4);,
+    │                                              ^
+    ╵
+line 549, column 45 of lib\features\blood_test\presentation\pages\data_page.dart: Expected to find ';'.
+    ╷
+549 │         size.width * 0.5, size.height * 0.4);,
+    │                                             ^
+    ╵
+line 549, column 46 of lib\features\blood_test\presentation\pages\data_page.dart: Unexpected text ';'.
+    ╷
+549 │         size.width * 0.5, size.height * 0.4);,
+    │                                              ^
+    ╵
+line 551, column 79 of lib\features\blood_test\presentation\pages\data_page.dart: Expected an identifier.
+    ╷
+551 │         size.width * 0.75, size.height * 0.2, size.width, size.height * 0.45);,
+    │                                                                               ^
+    ╵
+line 551, column 78 of lib\features\blood_test\presentation\pages\data_page.dart: Expected to find ';'.
+    ╷
+551 │         size.width * 0.75, size.height * 0.2, size.width, size.height * 0.45);,
+    │                                                                              ^
+    ╵
+line 551, column 79 of lib\features\blood_test\presentation\pages\data_page.dart: Unexpected text ';'.
+    ╷
+551 │         size.width * 0.75, size.height * 0.2, size.width, size.height * 0.45);,
+    │                                                                               ^
+    ╵
+Formatted 1 file (0 changed) in 0.01 seconds.

@@ -260,7 +260,9 @@ class _RecordEntryCard extends StatelessWidget {
                         const SizedBox(height: 16),
                         Container(
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 12, vertical: 4,),
+                            horizontal: 12,
+                            vertical: 4,
+                          ),
                           decoration: BoxDecoration(
                             color: tagBgColor,
                             borderRadius: BorderRadius.circular(9999),

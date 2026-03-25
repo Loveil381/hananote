@@ -5,6 +5,7 @@ import 'package:hananote/features/medication/domain/entities/enums.dart';
 import 'package:hananote/features/medication/domain/entities/medication_log.dart';
 import 'package:hananote/features/medication/domain/entities/medication_schedule.dart';
 import 'package:hananote/features/medication/domain/repositories/medication_repository.dart';
+import 'package:injectable/injectable.dart';
 
 /// A medication item due today with completion state.
 class TodayScheduleItem {
@@ -41,6 +42,7 @@ class TodayScheduleItem {
 }
 
 /// Returns all due medication items for a given day.
+@injectable
 class GetTodaySchedule {
   /// Creates a [GetTodaySchedule] use case.
   GetTodaySchedule(this._repository);
