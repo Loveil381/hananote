@@ -4,7 +4,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hananote/app/theme/hana_colors.dart';
-import 'package:hananote/app/theme/hana_gradients.dart';
 import 'package:hananote/app/theme/hana_shadows.dart';
 
 class MainShell extends StatelessWidget {
@@ -45,7 +44,7 @@ class _GlassNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: HanaColors.surface.withOpacity(0.8),
+        color: HanaColors.surface.withAlpha(204),
         borderRadius: const BorderRadius.vertical(top: Radius.circular(32)),
         boxShadow: HanaShadows.navBarShadow,
       ),
@@ -72,13 +71,13 @@ class _GlassNavigationBar extends StatelessWidget {
                     onTap: () => onTap(1),
                   ),
                   _NavItem(
-                    icon: Icons.timeline,
+                    icon: Icons.auto_graph,
                     label: '轨迹',
                     isSelected: currentIndex == 2,
                     onTap: () => onTap(2),
                   ),
                   _NavItem(
-                    icon: Icons.analytics_outlined,
+                    icon: Icons.analytics,
                     label: '数据',
                     isSelected: currentIndex == 3,
                     onTap: () => onTap(3),
@@ -123,7 +122,12 @@ class _NavItem extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
         decoration: isSelected
             ? BoxDecoration(
-                gradient: HanaGradients.primaryGradient,
+                gradient: LinearGradient(
+                  colors: [
+                    const Color(0xFFFFB7C5).withAlpha(51),
+                    const Color(0xFFFCD3FB).withAlpha(51),
+                  ],
+                ),
                 borderRadius: BorderRadius.circular(9999),
               )
             : const BoxDecoration(),
@@ -134,7 +138,7 @@ class _NavItem extends StatelessWidget {
               icon,
               color: isSelected
                   ? HanaColors.primary
-                  : HanaColors.primary.withOpacity(0.5),
+                  : HanaColors.primary.withAlpha(128),
             ),
             const SizedBox(height: 2),
             Text(
@@ -145,7 +149,7 @@ class _NavItem extends StatelessWidget {
                 fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
                 color: isSelected
                     ? HanaColors.primary
-                    : HanaColors.primary.withOpacity(0.5),
+                    : HanaColors.primary.withAlpha(128),
               ),
             ),
           ],

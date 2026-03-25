@@ -12,8 +12,6 @@ import 'package:hananote/features/timeline/presentation/pages/timeline_page.dart
 
 final GlobalKey<NavigatorState> _rootNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'root');
-final GlobalKey<NavigatorState> _shellNavigatorKey =
-    GlobalKey<NavigatorState>(debugLabel: 'shell');
 
 /// The main application router configuration.
 final GoRouter appRouter = GoRouter(

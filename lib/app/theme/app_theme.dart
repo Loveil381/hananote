@@ -1,3 +1,5 @@
+// ignore_for_file: public_member_api_docs
+
 import 'package:flutter/material.dart';
 import 'package:hananote/app/theme/hana_colors.dart';
 
@@ -16,7 +18,10 @@ class AppTheme {
     // Currently only sakura is fully implemented per DESIGN.md v2
     switch (type) {
       case AppThemeType.sakura:
-      default:
+      case AppThemeType.lavender:
+      case AppThemeType.sky:
+      case AppThemeType.starryNight:
+      case AppThemeType.cyberpunk:
         return _buildSakuraTheme();
     }
   }
@@ -53,15 +58,12 @@ class AppTheme {
     );
 
     const textTheme = TextTheme(
-      displayLarge: TextStyle(fontFamily: 'PlusJakartaSans'),
-      displayMedium: TextStyle(fontFamily: 'PlusJakartaSans'),
-      displaySmall: TextStyle(fontFamily: 'PlusJakartaSans'),
-      headlineLarge: TextStyle(fontFamily: 'PlusJakartaSans'),
-      headlineMedium: TextStyle(fontFamily: 'PlusJakartaSans'),
-      headlineSmall: TextStyle(fontFamily: 'PlusJakartaSans'),
-      titleLarge: TextStyle(fontFamily: 'PlusJakartaSans'),
-      titleMedium: TextStyle(fontFamily: 'PlusJakartaSans'),
-      titleSmall: TextStyle(fontFamily: 'PlusJakartaSans'),
+      headlineLarge: TextStyle(
+          fontFamily: 'PlusJakartaSans', fontWeight: FontWeight.w800,),
+      headlineMedium: TextStyle(
+          fontFamily: 'PlusJakartaSans', fontWeight: FontWeight.bold,),
+      headlineSmall: TextStyle(
+          fontFamily: 'PlusJakartaSans', fontWeight: FontWeight.bold,),
       bodyLarge: TextStyle(fontFamily: 'BeVietnamPro'),
       bodyMedium: TextStyle(fontFamily: 'BeVietnamPro'),
       bodySmall: TextStyle(fontFamily: 'BeVietnamPro'),
@@ -75,22 +77,18 @@ class AppTheme {
       useMaterial3: true,
       scaffoldBackgroundColor: HanaColors.background,
       textTheme: textTheme,
-      cardTheme: CardTheme(
+      cardTheme: const CardThemeData(
         color: HanaColors.surfaceContainerLowest,
         elevation: 0,
+
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.all(Radius.circular(16)),
         ),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(9999),
-          ),
-          // Gradient is applied via wrapped Ink in UI components,
-          // setting transparent bg and no shadow here.
-          backgroundColor: Colors.transparent,
-          shadowColor: Colors.transparent,
+          shape: const StadiumBorder(),
+          backgroundColor: HanaColors.primary,
           foregroundColor: HanaColors.onPrimary,
         ),
       ),
@@ -101,6 +99,8 @@ class AppTheme {
       appBarTheme: const AppBarTheme(
         backgroundColor: Colors.transparent,
         elevation: 0,
+        surfaceTintColor: Colors.transparent,
+        foregroundColor: HanaColors.primary,
         scrolledUnderElevation: 0,
         centerTitle: false,
       ),

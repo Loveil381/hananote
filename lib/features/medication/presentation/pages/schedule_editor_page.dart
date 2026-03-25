@@ -1,6 +1,9 @@
-import 'package:flutter/material.dart';
+// ignore_for_file: lines_longer_than_80_chars
+
+import 'package:flutter/material.dart' hide TimeOfDay;
+import 'package:flutter/material.dart' as material show TimeOfDay;
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:hananote/core/l10n/arb/app_localizations.dart';
 import 'package:hananote/features/medication/domain/entities/enums.dart';
 import 'package:hananote/features/medication/domain/entities/medication_schedule.dart';
 import 'package:hananote/features/medication/presentation/bloc/schedule_editor_cubit.dart';
@@ -41,7 +44,7 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
 
     return BlocConsumer<ScheduleEditorCubit, ScheduleEditorState>(
       listener: _onStateChange,
@@ -355,16 +358,19 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
                 ),
                 borderRadius: BorderRadius.circular(8),
               ),
-              title: Text(currentTimes[i].format(context)),
+              title: Text(material.TimeOfDay(hour: currentTimes[i].hour, minute: currentTimes[i].minute).format(context)),
               trailing: const Icon(Icons.access_time),
               onTap: () async {
                 final time = await showTimePicker(
                   context: context,
-                  initialTime: currentTimes[i],
+                  initialTime: material.TimeOfDay(
+                    hour: currentTimes[i].hour,
+                    minute: currentTimes[i].minute,
+                  ),
                 );
                 if (time != null && context.mounted) {
                   final newTimes = List<TimeOfDay>.from(currentTimes);
-                  newTimes[i] = time;
+                  newTimes[i] = TimeOfDay(hour: time.hour, minute: time.minute);
                   context
                       .read<ScheduleEditorCubit>()
                       .setScheduleTimes(newTimes);

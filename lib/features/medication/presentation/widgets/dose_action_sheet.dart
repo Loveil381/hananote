@@ -1,5 +1,7 @@
+// ignore_for_file: public_member_api_docs, lines_longer_than_80_chars
+
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:hananote/core/l10n/arb/app_localizations.dart';
 import 'package:hananote/features/medication/domain/entities/enums.dart';
 
 /// A bottom sheet that gathers extra details for doses requiring sites/counts.
@@ -47,7 +49,7 @@ class _DoseActionSheetState extends State<DoseActionSheet> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final bottomInset = MediaQuery.of(context).viewInsets.bottom;
 
     return Padding(

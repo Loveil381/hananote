@@ -1,6 +1,8 @@
+// ignore_for_file: deprecated_member_use, lines_longer_than_80_chars
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:hananote/core/l10n/arb/app_localizations.dart';
 import 'package:hananote/features/medication/domain/usecases/check_inventory.dart';
 import 'package:hananote/features/medication/presentation/bloc/inventory_cubit.dart';
 import 'package:hananote/features/medication/presentation/bloc/inventory_state.dart';
@@ -24,7 +26,7 @@ class _InventoryPageState extends State<InventoryPage> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
       appBar: AppBar(
@@ -115,7 +117,7 @@ class _InventoryPageState extends State<InventoryPage> {
                       Text(
                         'No stock info',
                         style: theme.textTheme.bodyMedium?.copyWith(
-                          color: theme.colorScheme.onSurfaceVariant,
+                                color: theme.colorScheme.onSurface.withAlpha(128),
                         ),
                       ),
                   ],
