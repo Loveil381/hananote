@@ -41,7 +41,7 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = AppLocalizations.of(context);
 
     return BlocConsumer<ScheduleEditorCubit, ScheduleEditorState>(
       listener: _onStateChange,
@@ -99,7 +99,7 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
                   if (state.administrationRoute != null)
                     Expanded(
                       child: DropdownButtonFormField<DosageUnit>(
-                        value: state.dosageUnit,
+                        initialValue: state.dosageUnit,
                         decoration: InputDecoration(
                           labelText: l10n.unit,
                           border: const OutlineInputBorder(),
@@ -108,7 +108,7 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
                             .map((u) => DropdownMenuItem(
                                   value: u,
                                   child: Text(u.name),
-                                ))
+                                ),)
                             .toList(),
                         onChanged: (val) {
                           if (val != null) {
@@ -131,7 +131,7 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
               const SizedBox(height: 8),
               _buildFrequencySelector(context, state, l10n),
               const SizedBox(height: 24),
-              Text("Start Date", style: theme.textTheme.titleMedium),
+              Text('Start Date', style: theme.textTheme.titleMedium),
               if (state.validation?.startDateError != null)
                 Text(
                   state.validation!.startDateError!,
@@ -164,7 +164,7 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
                 },
               ),
               const SizedBox(height: 16),
-              Text("End Date (Optional)", style: theme.textTheme.titleMedium),
+              Text('End Date (Optional)', style: theme.textTheme.titleMedium),
               const SizedBox(height: 8),
               ListTile(
                 shape: RoundedRectangleBorder(
@@ -209,7 +209,7 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
               FilledButton(
                 onPressed: () => context.read<ScheduleEditorCubit>().save(),
                 child: Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(16),
                   child: Text(l10n.save),
                 ),
               ),
@@ -226,7 +226,7 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
     AppLocalizations l10n,
   ) {
     // simplified form for selecting frequency logic
-    int typeIndex = 0;
+    var typeIndex = 0;
     if (state.frequency is EveryNDaysMedicationFrequency) typeIndex = 1;
     if (state.frequency is WeeklyMedicationFrequency) typeIndex = 2;
 
@@ -257,7 +257,7 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
               const Text('Times Per Day: '),
               DropdownButton<int>(
                 value:
-                    (state.frequency as DailyMedicationFrequency).timesPerDay,
+                    (state.frequency! as DailyMedicationFrequency).timesPerDay,
                 items: [1, 2, 3, 4]
                     .map((e) => DropdownMenuItem(value: e, child: Text('$e')))
                     .toList(),
@@ -277,7 +277,7 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
             children: [
               const Text('Every '),
               DropdownButton<int>(
-                value: (state.frequency as EveryNDaysMedicationFrequency).days,
+                value: (state.frequency! as EveryNDaysMedicationFrequency).days,
                 items: List.generate(14, (i) => i + 2)
                     .map((e) => DropdownMenuItem(value: e, child: Text('$e')))
                     .toList(),
@@ -298,7 +298,7 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
             children: [
               const Text('Day of Week: '),
               DropdownButton<int>(
-                value: (state.frequency as WeeklyMedicationFrequency).dayOfWeek,
+                value: (state.frequency! as WeeklyMedicationFrequency).dayOfWeek,
                 items: [1, 2, 3, 4, 5, 6, 7]
                     .map((e) => DropdownMenuItem(value: e, child: Text('$e')))
                     .toList(),
@@ -327,9 +327,9 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
       return const SizedBox.shrink();
     }
 
-    int expectedTimes = 1;
+    var expectedTimes = 1;
     if (state.frequency is DailyMedicationFrequency) {
-      expectedTimes = (state.frequency as DailyMedicationFrequency).timesPerDay;
+      expectedTimes = (state.frequency! as DailyMedicationFrequency).timesPerDay;
     }
 
     final currentTimes = List<TimeOfDay>.from(state.scheduleTimes);
@@ -343,7 +343,7 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("Schedule Times", style: Theme.of(context).textTheme.titleMedium),
+        Text('Schedule Times', style: Theme.of(context).textTheme.titleMedium),
         const SizedBox(height: 8),
         for (int i = 0; i < currentTimes.length; i++)
           Padding(

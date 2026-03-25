@@ -47,7 +47,7 @@ class _DoseActionSheetState extends State<DoseActionSheet> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = AppLocalizations.of(context);
     final bottomInset = MediaQuery.of(context).viewInsets.bottom;
 
     return Padding(
@@ -104,7 +104,7 @@ class _DoseActionSheetState extends State<DoseActionSheet> {
             Text(l10n.quantity, style: theme.textTheme.labelLarge),
             const SizedBox(height: 8),
             DropdownButtonFormField<int>(
-              value: _patchCount ?? 1,
+              initialValue: _patchCount ?? 1,
               decoration: const InputDecoration(border: OutlineInputBorder()),
               items: [1, 2, 3, 4]
                   .map((e) => DropdownMenuItem(value: e, child: Text('$e')))
@@ -117,7 +117,7 @@ class _DoseActionSheetState extends State<DoseActionSheet> {
             Text(l10n.quantity, style: theme.textTheme.labelLarge),
             const SizedBox(height: 8),
             DropdownButtonFormField<int>(
-              value: _gelPumps ?? 1,
+              initialValue: _gelPumps ?? 1,
               decoration: const InputDecoration(border: OutlineInputBorder()),
               items: List.generate(10, (i) => i + 1)
                   .map((e) => DropdownMenuItem(value: e, child: Text('$e')))

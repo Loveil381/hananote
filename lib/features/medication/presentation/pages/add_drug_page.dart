@@ -75,7 +75,7 @@ class _AddDrugPageState extends State<AddDrugPage> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = AppLocalizations.of(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -174,7 +174,7 @@ class _AddDrugPageState extends State<AddDrugPage> {
             FilledButton(
               onPressed: _submit,
               child: Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(16),
                 child: Text(l10n.save),
               ),
             ),

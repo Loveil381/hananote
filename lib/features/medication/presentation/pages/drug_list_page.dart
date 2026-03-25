@@ -26,7 +26,7 @@ class _DrugListPageState extends State<DrugListPage> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = AppLocalizations.of(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -118,12 +118,12 @@ class _DrugListPageState extends State<DrugListPage> {
   }
 
   Widget _buildDrugItem(
-      BuildContext context, Drug drug, AppLocalizations l10n) {
+      BuildContext context, Drug drug, AppLocalizations l10n,) {
     return Dismissible(
       key: ValueKey(drug.id),
       direction: DismissDirection.endToStart,
       confirmDismiss: (direction) async {
-        return await showDialog<bool>(
+        return showDialog<bool>(
           context: context,
           builder: (ctx) => AlertDialog(
             title: Text(l10n.delete),

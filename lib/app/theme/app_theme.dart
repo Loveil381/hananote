@@ -22,7 +22,7 @@ class AppTheme {
   }
 
   static ThemeData _buildSakuraTheme() {
-    final colorScheme = const ColorScheme(
+    const colorScheme = ColorScheme(
       brightness: Brightness.light,
       primary: HanaColors.primary,
       onPrimary: HanaColors.onPrimary,
@@ -40,11 +40,9 @@ class AppTheme {
       onError: HanaColors.onError,
       errorContainer: HanaColors.errorContainer,
       onErrorContainer: HanaColors.onErrorContainer,
-      background: HanaColors.background,
-      onBackground: HanaColors.onSurface,
       surface: HanaColors.surface,
       onSurface: HanaColors.onSurface,
-      surfaceVariant: HanaColors.surfaceVariant,
+      surfaceContainerHighest: HanaColors.surfaceVariant,
       onSurfaceVariant: HanaColors.onSurfaceVariant,
       outline: HanaColors.outline,
       outlineVariant: HanaColors.outlineVariant,
@@ -54,7 +52,7 @@ class AppTheme {
       surfaceTint: HanaColors.surfaceTint,
     );
 
-    final textTheme = const TextTheme(
+    const textTheme = TextTheme(
       displayLarge: TextStyle(fontFamily: 'PlusJakartaSans'),
       displayMedium: TextStyle(fontFamily: 'PlusJakartaSans'),
       displaySmall: TextStyle(fontFamily: 'PlusJakartaSans'),

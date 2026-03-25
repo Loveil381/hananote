@@ -1,3 +1,5 @@
+// ignore_for_file: public_member_api_docs, lines_longer_than_80_chars
+
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
