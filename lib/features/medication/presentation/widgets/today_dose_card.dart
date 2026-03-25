@@ -133,7 +133,8 @@ class TodayDoseCard extends StatelessWidget {
     for (final time in item.scheduledDateTimes) {
       if (time.isAfter(now)) {
         return l10n.nextTime(
-            '${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}',);
+          '${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}',
+        );
       }
     }
     return l10n.today;
