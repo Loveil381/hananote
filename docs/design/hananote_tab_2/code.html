@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Be+Vietnam+Pro:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-variant": "#e8e1da",
+                        "surface-container-highest": "#e8e1da",
+                        "on-primary-fixed-variant": "#6b3743",
+                        "surface-dim": "#dfd9d1",
+                        "surface-tint": "#864e5a",
+                        "inverse-primary": "#fbb3c1",
+                        "inverse-on-surface": "#f7f0e8",
+                        "background": "#fff8f1",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed-dim": "#fbb3c1",
+                        "on-tertiary-fixed-variant": "#8b1a16",
+                        "on-primary-fixed": "#360c19",
+                        "primary": "#864e5a",
+                        "inverse-surface": "#33302b",
+                        "secondary": "#745475",
+                        "primary-container": "#ffb7c5",
+                        "surface-container": "#f4ede5",
+                        "surface": "#fff8f1",
+                        "on-secondary-fixed": "#2b112f",
+                        "outline-variant": "#d6c2c4",
+                        "on-tertiary-container": "#9f2922",
+                        "on-background": "#1e1b17",
+                        "on-secondary-container": "#78587a",
+                        "on-error-container": "#93000a",
+                        "outline": "#837375",
+                        "on-primary-container": "#7b4551",
+                        "primary-fixed": "#ffd9df",
+                        "surface-container-low": "#f9f3eb",
+                        "on-tertiary-fixed": "#410001",
+                        "surface-bright": "#fff8f1",
+                        "error": "#ba1a1a",
+                        "surface-container-high": "#eee7df",
+                        "on-surface": "#1e1b17",
+                        "on-secondary-fixed-variant": "#5a3c5d",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#ffb4aa",
+                        "secondary-container": "#fcd3fb",
+                        "tertiary": "#ac332a",
+                        "secondary-fixed-dim": "#e2bae1",
+                        "on-error": "#ffffff",
+                        "tertiary-container": "#ffb9b0",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed": "#ffd6fe",
+                        "on-surface-variant": "#514345",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed": "#ffdad5",
+                        "on-tertiary": "#ffffff"
+                    },
+                    fontFamily: {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Be Vietnam Pro"],
+                        "label": ["Be Vietnam Pro"]
+                    },
+                    borderRadius: { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .timeline-line {
+            background: linear-gradient(to bottom, #FFB7C5, #FCD3FB);
+            width: 2px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .glass-header {
+            background: rgba(255, 248, 241, 0.8);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background font-body min-h-screen pb-32">
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 py-4 glass-header">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary cursor-pointer active:scale-95 duration-200">settings</span>
+</div>
+<h1 class="font-headline font-semibold text-lg tracking-tight text-primary">我的成长轨迹</h1>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary cursor-pointer active:scale-95 duration-200">calendar_today</span>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-20 px-4 max-w-md mx-auto">
+<!-- Time Range Pills -->
+<section class="flex justify-between items-center gap-2 mb-8 mt-4 overflow-x-auto no-scrollbar py-2">
+<button class="px-5 py-2 rounded-full text-sm font-medium bg-primary-container text-on-primary-container shadow-sm whitespace-nowrap">1月</button>
+<button class="px-5 py-2 rounded-full text-sm font-medium bg-surface-container-high text-on-surface-variant whitespace-nowrap">3月</button>
+<button class="px-5 py-2 rounded-full text-sm font-medium bg-surface-container-high text-on-surface-variant whitespace-nowrap">6月</button>
+<button class="px-5 py-2 rounded-full text-sm font-medium bg-surface-container-high text-on-surface-variant whitespace-nowrap">1年</button>
+<button class="px-5 py-2 rounded-full text-sm font-medium bg-surface-container-high text-on-surface-variant whitespace-nowrap">全部</button>
+</section>
+<!-- Timeline Container -->
+<div class="relative py-8">
+<!-- Central Line -->
+<div class="absolute timeline-line h-full top-0"></div>
+<!-- Card 1: Milestone (Right) -->
+<div class="relative grid grid-cols-2 gap-8 mb-12">
+<div class="flex justify-end items-center opacity-40">
+<span class="text-xs font-label">2026.3.15</span>
+</div>
+<div class="relative">
+<!-- Dot -->
+<div class="absolute -left-[45px] top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-white border-4 border-primary shadow-sm z-10"></div>
+<!-- Card -->
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-[0_4px_20px_rgba(134,78,90,0.04)] border-l-4 border-[#FFD700] active:scale-95 transition-transform">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-[#B8860B] text-sm" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold text-primary opacity-60">里程碑</span>
+</div>
+<h3 class="text-sm font-bold text-on-surface">HRT 第100天！ 🎉</h3>
+<p class="text-[10px] text-on-surface-variant mt-1">2026.3.15</p>
+</div>
+</div>
+</div>
+<!-- Card 2: Blood Test (Left) -->
+<div class="relative grid grid-cols-2 gap-8 mb-12">
+<div class="relative text-right">
+<!-- Dot -->
+<div class="absolute -right-[43px] top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-white border-4 border-[#4CAF50] shadow-sm z-10"></div>
+<!-- Card -->
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-[0_4px_20px_rgba(134,78,90,0.04)] border-r-4 border-[#4CAF50] active:scale-95 transition-transform">
+<div class="flex items-center justify-end gap-2 mb-1">
+<span class="text-xs font-bold text-[#2E7D32] opacity-60">血液检查</span>
+<span class="material-symbols-outlined text-[#4CAF50] text-sm" data-weight="fill" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</div>
+<h3 class="text-sm font-bold text-on-surface">雌二醇 ↑ 89→156 pg/mL</h3>
+<div class="mt-2 h-4 w-full bg-[#E8F5E9] rounded-full relative overflow-hidden">
+<div class="absolute h-full w-2/3 bg-[#4CAF50] rounded-full"></div>
+</div>
+</div>
+</div>
+<div class="flex justify-start items-center opacity-40">
+<span class="text-xs font-label">2026.2.20</span>
+</div>
+</div>
+<!-- Card 3: Body Measurement (Right) -->
+<div class="relative grid grid-cols-2 gap-8 mb-12">
+<div class="flex justify-end items-center opacity-40">
+<span class="text-xs font-label">2026.1.15</span>
+</div>
+<div class="relative">
+<div class="absolute -left-[45px] top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-white border-4 border-secondary shadow-sm z-10"></div>
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-[0_4px_20px_rgba(134,78,90,0.04)] border-l-4 border-secondary active:scale-95 transition-transform">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-secondary text-sm">straighten</span>
+<span class="text-xs font-bold text-secondary opacity-60">体征记录</span>
+</div>
+<h3 class="text-sm font-bold text-on-surface">胸围 +2.3cm (3个月)</h3>
+<p class="text-[10px] text-on-surface-variant mt-1">测量于晨间</p>
+</div>
+</div>
+</div>
+<!-- Card 4: Mood Diary (Left) -->
+<div class="relative grid grid-cols-2 gap-8 mb-12">
+<div class="relative text-right">
+<div class="absolute -right-[43px] top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-white border-4 border-primary-container shadow-sm z-10"></div>
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-[0_4px_20px_rgba(134,78,90,0.04)] border-r-4 border-primary-container active:scale-95 transition-transform">
+<div class="flex items-center justify-end gap-2 mb-1">
+<span class="text-xs font-bold text-primary opacity-60">心情便签</span>
+<span class="material-symbols-outlined text-primary text-sm">local_florist</span>
+</div>
+<h3 class="text-sm font-bold text-on-surface">😊 今天被叫了姐姐，好开心</h3>
+</div>
+</div>
+<div class="flex justify-start items-center opacity-40">
+<span class="text-xs font-label">2025.12.15</span>
+</div>
+</div>
+<!-- Start Endpoint -->
+<div class="flex flex-col items-center mt-8 pb-12">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center mb-3">
+<span class="material-symbols-outlined text-primary">psychiatry</span>
+</div>
+<span class="text-xs font-medium text-on-surface-variant">旅程开始 · 2025.12.01</span>
+<div class="w-2 h-2 rounded-full bg-primary mt-4"></div>
+</div>
+</div>
+</main>
+<!-- Floating Action Button -->
+<button class="fixed bottom-28 right-6 w-14 h-14 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-white shadow-xl shadow-primary/20 active:scale-90 transition-transform z-40">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-2 bg-[#FFF8F1]/80 backdrop-blur-xl rounded-t-[2rem] shadow-[0_-4px_24px_rgba(134,78,90,0.06)] z-50">
+<div class="flex flex-col items-center justify-center text-[#864E5A]/50 p-2 hover:text-[#864E5A] transition-opacity">
+<span class="material-symbols-outlined">home</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-medium tracking-wide">首页</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#864E5A]/50 p-2 hover:text-[#864E5A] transition-opacity">
+<span class="material-symbols-outlined">edit_note</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-medium tracking-wide">记录</span>
+</div>
+<!-- Active Tab: 轨迹 -->
+<div class="flex flex-col items-center justify-center bg-gradient-to-br from-[#FFB7C5] to-[#FCD3FB] text-white rounded-full p-3 scale-110 -translate-y-2 shadow-lg shadow-[#FFB7C5]/30 active:scale-90 transition-transform duration-300">
+<span class="material-symbols-outlined">auto_graph</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-medium tracking-wide">轨迹</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#864E5A]/50 p-2 hover:text-[#864E5A] transition-opacity">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-medium tracking-wide">数据</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#864E5A]/50 p-2 hover:text-[#864E5A] transition-opacity">
+<span class="material-symbols-outlined">person</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-medium tracking-wide">我的</span>
+</div>
+</nav>
+</body></html>

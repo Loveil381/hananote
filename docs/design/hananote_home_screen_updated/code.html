@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Be+Vietnam+Pro:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .headline-font {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .glass-effect {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-fixed": "#ffdad5",
+              "secondary-container": "#fcd3fb",
+              "on-tertiary": "#ffffff",
+              "primary-fixed-dim": "#fbb3c1",
+              "background": "#fff8f1",
+              "surface-bright": "#fff8f1",
+              "primary-container": "#ffb7c5",
+              "on-secondary-fixed": "#2b112f",
+              "surface": "#fff8f1",
+              "on-surface-variant": "#514345",
+              "inverse-primary": "#fbb3c1",
+              "inverse-on-surface": "#f7f0e8",
+              "on-secondary-container": "#78587a",
+              "on-tertiary-fixed": "#410001",
+              "secondary-fixed-dim": "#e2bae1",
+              "on-error-container": "#93000a",
+              "surface-container": "#f4ede5",
+              "surface-container-lowest": "#ffffff",
+              "tertiary-fixed-dim": "#ffb4aa",
+              "secondary-fixed": "#ffd6fe",
+              "surface-container-high": "#eee7df",
+              "surface-variant": "#e8e1da",
+              "on-tertiary-fixed-variant": "#8b1a16",
+              "error-container": "#ffdad6",
+              "on-secondary": "#ffffff",
+              "on-primary-container": "#7b4551",
+              "on-error": "#ffffff",
+              "outline-variant": "#d6c2c4",
+              "on-primary-fixed": "#360c19",
+              "inverse-surface": "#33302b",
+              "error": "#ba1a1a",
+              "surface-dim": "#dfd9d1",
+              "primary-fixed": "#ffd9df",
+              "on-primary": "#ffffff",
+              "outline": "#837375",
+              "on-surface": "#1e1b17",
+              "tertiary-container": "#ffb9b0",
+              "secondary": "#745475",
+              "surface-tint": "#864e5a",
+              "surface-container-low": "#f9f3eb",
+              "primary": "#864e5a",
+              "on-tertiary-container": "#9f2922",
+              "on-primary-fixed-variant": "#6b3743",
+              "tertiary": "#ac332a",
+              "on-background": "#1e1b17",
+              "surface-container-highest": "#e8e1da",
+              "on-secondary-fixed-variant": "#5a3c5d"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Be Vietnam Pro"],
+              "label": ["Be Vietnam Pro"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen pb-32 selection:bg-primary-container">
+<!-- Top AppBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 bg-[#FFF8F1]/80 backdrop-blur-xl">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#864E5A]" data-icon="sparkles">colors_spark</span>
+<h1 class="font-['Plus_Jakarta_Sans'] text-xl font-bold tracking-tight text-[#864E5A]">花笺</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#FFB7C5]/10 active:scale-95 transition-transform duration-300">
+<span class="material-symbols-outlined text-[#864E5A]" data-icon="calendar_today">calendar_today</span>
+</button>
+</div>
+</header>
+<main class="pt-20 px-6 max-w-2xl mx-auto space-y-8">
+<!-- Greeting Header -->
+<section class="space-y-1">
+<div class="flex justify-between items-end">
+<div>
+<h2 class="text-3xl font-extrabold headline-font tracking-tight text-primary">今天好</h2>
+<p class="text-on-surface-variant font-medium mt-1">3月25日 周二</p>
+</div>
+<div class="w-14 h-14 rounded-full overflow-hidden border-2 border-primary-container/30">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="Soft aesthetic anime style female character portrait with soft pink hair and gentle expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1tGVMlD8wyfLcHA64jA7mTCb528Sq3HFsKKkOq-4Jc_0yXWzn-ktDwt3Cn-AiYXpceQauPs30nFv3Ah8w_GK-WgdkwNd4swKhuYDaYMHg181w_dcpfekrNtY_BrnM4sF_j39moZ0-iPMCKPlPxvtyNMDVzZgZH2qnIdOdvfs1RtJAyDyCNhdEwEQ8-O-1Btc1ln3SZHobp56nPGx6RGx42PMsYGLMBF6aX1WUlxyczuYzhwHuVmSGpuW_Y-KFNwLjYDy3Q25dP5YZ"/>
+</div>
+</div>
+</section>
+<!-- Main Countdown Card (Bento Style) -->
+<section>
+<div class="relative overflow-hidden p-6 rounded-lg bg-gradient-to-br from-primary-container to-secondary-container shadow-[0_8px_32px_rgba(134,78,90,0.12)] border border-white/20 group">
+<div class="relative z-10">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-on-primary-container text-sm" data-icon="schedule" style="font-variation-settings: 'FILL' 1;">schedule</span>
+<span class="text-xs font-bold uppercase tracking-widest text-on-primary-container/70">下次服药倒计时</span>
+</div>
+<div class="flex items-baseline gap-1 mb-2">
+<span class="text-4xl font-extrabold headline-font text-on-primary-container">2</span>
+<span class="text-sm font-bold text-on-primary-container mr-2">小时</span>
+<span class="text-4xl font-extrabold headline-font text-on-primary-container">34</span>
+<span class="text-sm font-bold text-on-primary-container">分</span>
+</div>
+<div class="bg-white/40 backdrop-blur-md inline-block px-3 py-1.5 rounded-full border border-white/30">
+<p class="text-sm font-semibold text-on-primary-container">补佳乐 2mg · 晚间剂量</p>
+</div>
+</div>
+<!-- Decorative Elements -->
+<div class="absolute -right-8 -bottom-8 w-32 h-32 bg-white/20 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-700"></div>
+<span class="absolute right-6 top-6 material-symbols-outlined text-white/40 text-6xl opacity-20 transform rotate-12" data-icon="medication">medication</span>
+</div>
+</section>
+<!-- Morning Completed Section -->
+<section class="space-y-4">
+<div class="flex items-center justify-between px-1">
+<h3 class="text-lg font-bold text-on-surface flex items-center gap-2">
+                    早间完成
+                    <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+</h3>
+<span class="text-xs font-bold text-on-surface-variant/60 uppercase tracking-widest">已达成</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Med Card 1 -->
+<div class="bg-surface-container-lowest p-4 rounded-lg flex items-center justify-between transition-all hover:translate-y-[-2px]">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-primary-fixed/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="pill">pill</span>
+</div>
+<div>
+<p class="font-bold text-on-surface">补佳乐 2mg</p>
+<p class="text-sm text-on-surface-variant/70">08:30 已服用</p>
+</div>
+</div>
+<div class="w-8 h-8 rounded-full bg-secondary-container/50 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-lg" data-icon="check" style="font-variation-settings: 'wght' 700;">check</span>
+</div>
+</div>
+<!-- Med Card 2 -->
+<div class="bg-surface-container-lowest p-4 rounded-lg flex items-center justify-between transition-all hover:translate-y-[-2px]">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-secondary-fixed/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary" data-icon="pill">pill</span>
+</div>
+<div>
+<p class="font-bold text-on-surface">螺内酯 50mg</p>
+<p class="text-sm text-on-surface-variant/70">08:30 已服用</p>
+</div>
+</div>
+<div class="w-8 h-8 rounded-full bg-secondary-container/50 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-lg" data-icon="check" style="font-variation-settings: 'wght' 700;">check</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Upcoming Section -->
+<section class="space-y-4">
+<h3 class="text-lg font-bold text-on-surface px-1 flex items-center gap-2">
+                即将到来
+                <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+</h3>
+<div class="bg-surface-container-lowest p-1 rounded-lg border-2 border-tertiary-container/30 relative overflow-hidden">
+<div class="p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 rounded-full bg-tertiary-container/20 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-tertiary text-3xl" data-icon="calendar_month">calendar_month</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<p class="font-bold text-lg text-on-surface">补佳乐 2mg</p>
+<span class="bg-tertiary-container/40 text-on-tertiary-container text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">晚间</span>
+</div>
+<p class="text-sm font-medium text-on-surface-variant">预计 20:00 服用</p>
+</div>
+</div>
+<button class="bg-gradient-to-r text-white px-8 py-3 rounded-full font-bold shadow-lg shadow-tertiary/20 active:scale-95 transition-all from-[#FFB7C5] to-[#C8A2C8]">
+                        确认服用
+                    </button>
+</div>
+<!-- Animated-like background shape -->
+<div class="absolute -left-4 -top-4 w-12 h-12 bg-tertiary/5 rounded-full blur-xl"></div>
+</div>
+</section>
+<!-- Quote Card -->
+<section>
+<div class="bg-surface-container-low p-8 rounded-lg text-center relative overflow-hidden">
+<img alt="Decoration" class="absolute inset-0 w-full h-full object-cover opacity-10" data-alt="Beautiful close up of delicate cherry blossoms in soft sunlight with high key aesthetic and creamy bokeh" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDm4kKJwsAVhrHbr3U736OcpX7NHAfV1gWGylguzyqAlwcLOn4-dySCljWrq3gr2YXi2Bqt6RO3a-RmBHBazhpmMkkQBTDQK0Oih_mrua1sb9m1hjqnHejQ1ikW_c6I12bnwIMuxU3r3-3A7yZKuNv9PJFJ7y-q6iHqKaMkN8F-G2zuGu4rAAmiqhPnVu51fg8TrRg9QkOw_lCunwLurdDv8YDPwVFgKd9N3XvV70_BOP1ZPv5x9H_4BuP-TD0ymUB7O8DAdtfFnTeh"/>
+<div class="relative z-10">
+<span class="material-symbols-outlined text-primary/40 mb-3 block" data-icon="format_quote">format_quote</span>
+<p class="text-lg font-medium text-on-surface tracking-wide italic">“ 每一天都在变成更好的自己 ”</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-[#FFF8F1]/80 backdrop-blur-xl rounded-t-[32px] shadow-[0_-4px_24px_rgba(134,78,90,0.06)]">
+<!-- 今日 (Active) -->
+<a class="flex flex-col items-center justify-center bg-gradient-to-br from-[#FFB7C5] to-[#FCD3FB] text-[#864E5A] rounded-full px-5 py-2 scale-110 active:scale-90 transition-all duration-300 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="auto_awesome" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-bold mt-0.5">今日</span>
+</a>
+<!-- 记录 -->
+<a class="flex flex-col items-center justify-center text-[#864E5A]/50 px-4 py-2 hover:text-[#864E5A] active:scale-90 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="edit_note">edit_note</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-medium mt-0.5">记录</span>
+</a>
+<!-- 轨迹 -->
+<a class="flex flex-col items-center justify-center text-[#864E5A]/50 px-4 py-2 hover:text-[#864E5A] active:scale-90 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="Timeline">timeline</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-medium mt-0.5">轨迹</span>
+</a>
+<!-- 数据 -->
+<a class="flex flex-col items-center justify-center text-[#864E5A]/50 px-4 py-2 hover:text-[#864E5A] active:scale-90 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-medium mt-0.5">数据</span>
+</a>
+<!-- 我的 -->
+<a class="flex flex-col items-center justify-center text-[#864E5A]/50 px-4 py-2 hover:text-[#864E5A] active:scale-90 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-medium mt-0.5">我的</span>
+</a>
+</nav>
+<!-- Floating Action Button (FAB) - Suppressed per rules for context, but keeping primary navigation clear -->
+</body></html>
