@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hananote/app/home_page.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hananote/features/auth/presentation/bloc/auth_cubit.dart';
 import 'package:hananote/features/auth/presentation/bloc/auth_state.dart';
 import 'package:hananote/features/auth/presentation/pages/lock_screen_page.dart';
@@ -19,6 +19,8 @@ class AuthWrapperPage extends StatelessWidget {
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
             ..showSnackBar(SnackBar(content: Text(state.message)));
+        } else if (state is AuthUnlocked) {
+          context.go('/today');
         }
       },
       child: BlocBuilder<AuthCubit, AuthState>(
@@ -28,7 +30,9 @@ class AuthWrapperPage extends StatelessWidget {
             AuthNeedsSetup() || AuthWiped() => const SetupPage(),
             AuthLocked(:final biometricAvailable) =>
               LockScreenPage(biometricAvailable: biometricAvailable),
-            AuthUnlocked() => const HomePage(),
+            AuthUnlocked() => const Scaffold(
+                body: Center(child: CircularProgressIndicator()),
+              ),
             AuthError() => const _LoadingPage(),
           };
         },

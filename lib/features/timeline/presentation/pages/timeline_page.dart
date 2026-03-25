@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class TodayPage extends StatelessWidget {
-  const TodayPage({super.key});
+class TimelinePage extends StatelessWidget {
+  const TimelinePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: Text(
-          '今日',
+          '轨迹',
           style: Theme.of(context).textTheme.headlineMedium,
         ),
       ),
