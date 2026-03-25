@@ -58,3 +58,8 @@ Format: type(scope): description
 Types: feat, fix, refactor, test, docs, chore, style
 Scopes: core, medication, blood-test, measurement, photo, auth, journal, simulator
 Example: `feat(medication): add injection cycle calculator`
+
+## Privacy Rules (added from community feedback)
+- See `.agents/rules/privacy-security.md` for full enforcement rules
+- Key additions: app background blur overlay, clipboard protection, backup key separation
+- These were validated by target user community and are non-negotiable
