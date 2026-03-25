@@ -1,4 +1,0 @@
-Analyzing hananote...                                           
-
-   info - The value of the argument is redundant because it matches the default value - lib\app\theme\app_theme.dart:90:19 - avoid_redundant_argument_values
-

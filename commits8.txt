@@ -1,9 +1,0 @@
-﻿1fb04f6 feat(medication): implement UI pages 窶・today, drug list, add drug, schedule editor, inventory
-57e2fdb feat(auth): implement app lock, PIN setup, biometric, wipe data, and startup flow
-7626bd3 feat(medication): implement BLoC/Cubit presentation layer
-fae0436 feat(medication): implement data layer with DB schema, models, datasource, and repository
-a21813d feat(medication): implement complete domain layer with entities, repository, and use cases
-ccbcde9 fix(core): pin dependency versions, fix Either returns, add DI annotations, add theme system
-6a0a375 docs(ai-cto): initialize CTO memory files for cross-session context
-0206fd7 feat(core): initialize project skeleton with crypto engine and secure database
-bc03bbb chore: initial project setup and configs

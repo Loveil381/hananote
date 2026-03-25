@@ -1,56 +1,50 @@
 ---
+name: privacy-security
 activation: always_on
+description: HanaNote privacy and security enforcement rules
 ---
 
-# HanaNote — Privacy & Security Enforcement Rules
-
-These are NON-NEGOTIABLE. Violating any is a 🔴 Critical bug.
-
 ## Photo Storage
-- ALL photos encrypted with AES-256-GCM before writing to disk
-- Photos stored in app sandbox ONLY. NEVER use MediaStore, PhotoKit, or system gallery APIs
-- iOS: set `isExcludedFromBackup = true` on photo directories
-- Android: set `android:allowBackup="false"` in AndroidManifest.xml
-- NEVER write photo bytes to a temp file unencrypted, even briefly
+- ALL photos MUST be encrypted with AES-256-GCM before writing to disk
+- Store encrypted files only in app sandbox, NEVER in system gallery
+- iOS: Set isExcludedFromBackup=true on storage directory
+- Android: android:allowBackup="false" in AndroidManifest.xml
 
 ## App Lifecycle Privacy
-- When app enters background (AppLifecycleState.inactive / paused), MUST overlay
-  a blur or solid color screen to prevent task switcher from capturing sensitive content
-- Implement via WidgetsBindingObserver in the root widget
-- The overlay must cover the ENTIRE screen, not just a portion
+- When app enters background (AppLifecycleState.inactive/paused), MUST overlay a blur/solid color screen to block task-switcher snapshots
+- Implement via WidgetsBindingObserver in root widget
+- Use a Stack with an opaque overlay widget that appears on inactive/paused
 
 ## Clipboard
-- App MUST NOT automatically read clipboard on launch or resume
-- Clipboard access only on explicit user action (user taps a "Paste" button)
-- NEVER write sensitive data (drug names, lab values, passwords) to system clipboard
+- App MUST NOT automatically read clipboard content
+- Clipboard access only on explicit user action (e.g., "Paste" button)
+- Never write sensitive data (drug names, dosages, lab results) to clipboard without explicit user request
 
 ## Network
-- Core functions MUST work 100% offline with zero network calls
+- App MUST be 100% offline by default
 - No telemetry, analytics, or crash reporting without explicit user opt-in
-- If network permission not granted: graceful degradation, no crashes
+- Any network request (knowledge base update, optional OCR) requires user initiation and confirmation
 
 ## Logging
-- NEVER log: drug names, dosages, lab values, photo paths, user notes, passwords, keys
-- Debug builds: log anonymized operation types only ("dose_logged", "photo_encrypted")
-- Release builds: crash reports only, with user consent
+- NEVER log drug names, dosages, hormone levels, or any health data
+- Debug logs may only record abstract operation types (e.g., "db_write", "file_encrypt")
+- Release builds: disable ALL debug logging
 
 ## Encryption Keys
-- Stored ONLY in flutter_secure_storage (iOS Keychain / Android KeyStore)
-- Key derivation from user password via Argon2id or PBKDF2
-- Backup files (.vault) encrypted with separate user-chosen backup password
-- NEVER store keys in SharedPreferences, local files, or source code
+- Store derived keys in flutter_secure_storage (Keychain on iOS, KeyStore on Android)
+- Use Argon2id for key derivation from user password
+- Backup files (.vault) use independent password, NOT device-bound keys
+- UI must clearly warn users to remember their backup password
 
 ## Notifications
-- Default text: "日常提醒 ✓" — zero health/drug info
-- Text MUST be user-customizable
-- NEVER include drug names, dosages, or health terms in notification payload or title
+- Notification text MUST be vague/generic (e.g., "Daily reminder ✓")
+- NEVER include drug names, dosages, or health info in notifications
+- User can customize notification text in settings
 
 ## Disguise
-- Support alternate app icons (iOS Alternate Icons API / Android Activity Alias)
-- Support custom display name on home screen
-- Disguise password → innocent UI; real password → HanaNote
+- Support alternate app icon and display name
+- Support disguise password screen (fake calculator/notes appearance)
 
 ## Emergency Clear
-- One-tap wipe: DB + photos + preferences + cached thumbnails
-- Require double confirmation (prevent accidental trigger)
-- After clear, app shows fresh onboarding state
+- One-tap data wipe: DB + encrypted photos + preferences + caches
+- Require double confirmation before execution

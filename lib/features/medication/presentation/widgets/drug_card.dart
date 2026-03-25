@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:hananote/core/l10n/arb/app_localizations.dart';
 import 'package:hananote/features/medication/domain/entities/drug.dart';
 import 'package:hananote/features/medication/domain/entities/enums.dart';
 
@@ -121,7 +121,7 @@ class DrugCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: chipColor.withAlpha(25),
         borderRadius: BorderRadius.circular(8),
-        border: BorderSide(color: chipColor.withAlpha(50)),
+        border: Border.all(color: chipColor.withAlpha(50)),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,

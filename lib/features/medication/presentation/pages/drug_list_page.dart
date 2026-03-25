@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:hananote/core/l10n/arb/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hananote/features/medication/domain/entities/drug.dart';
 import 'package:hananote/features/medication/presentation/bloc/drug_list_cubit.dart';
@@ -118,7 +118,10 @@ class _DrugListPageState extends State<DrugListPage> {
   }
 
   Widget _buildDrugItem(
-      BuildContext context, Drug drug, AppLocalizations l10n) {
+    BuildContext context,
+    Drug drug,
+    AppLocalizations l10n,
+  ) {
     return Dismissible(
       key: ValueKey(drug.id),
       direction: DismissDirection.endToStart,

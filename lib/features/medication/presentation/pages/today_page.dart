@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:hananote/core/l10n/arb/app_localizations.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hananote/features/medication/domain/entities/drug.dart';
+import 'package:hananote/features/medication/domain/entities/medication_schedule.dart';
+import 'package:hananote/features/medication/domain/usecases/get_today_schedule.dart';
 import 'package:hananote/features/medication/presentation/bloc/today_schedule_bloc.dart';
 import 'package:hananote/features/medication/presentation/bloc/today_schedule_event.dart';
 import 'package:hananote/features/medication/presentation/bloc/today_schedule_state.dart';
@@ -52,7 +55,7 @@ class _TodayPageState extends State<TodayPage> {
                   return _buildEmptyState(context, l10n, theme);
                 }
 
-                returnCustomScrollView(
+                return _buildCustomScrollView(
                   context,
                   l10n,
                   theme,
@@ -70,14 +73,14 @@ class _TodayPageState extends State<TodayPage> {
     );
   }
 
-  Widget returnCustomScrollView(
+  Widget _buildCustomScrollView(
     BuildContext context,
     AppLocalizations l10n,
     ThemeData theme,
     String dateStr,
     int completedCount,
     int totalCount,
-    dynamic items,
+    List<TodayScheduleItem> items,
   ) {
     return CustomScrollView(
       slivers: [
@@ -166,7 +169,10 @@ class _TodayPageState extends State<TodayPage> {
     );
   }
 
-  Future<void> _handleTake(BuildContext context, dynamic item) async {
+  Future<void> _handleTake(
+    BuildContext context,
+    TodayScheduleItem item,
+  ) async {
     final bloc = context.read<TodayScheduleBloc>();
     final route = item.drug.administrationRoute;
     DoseResult? result;
@@ -192,7 +198,7 @@ class _TodayPageState extends State<TodayPage> {
     );
   }
 
-  void _handleSkip(BuildContext context, dynamic item) {
+  void _handleSkip(BuildContext context, TodayScheduleItem item) {
     context.read<TodayScheduleBloc>().add(
           SkipDoseTodaySchedule(
             schedule: item.schedule,

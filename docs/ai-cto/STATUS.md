@@ -1,33 +1,34 @@
-# HanaNote — 项目状态
-> 最后更新: 第零轮
+# HanaNote 项目状态
 
-## 当前轮次: #0 (项目初始化)
-## 当前分支: feature/project-skeleton
-## 代码质量: N/A (尚无代码)
+## 当前轮次: #7 (恢复会话后)
+## 当前阶段: 分支整合 + MVP 核心功能开发
+## 产品完成度: ~15%
 
-## 功能完成度
-| 功能模块 | 状态 | 完成度 | 目标版本 |
-|---------|------|--------|---------|
-| Core/Crypto | 🔄 进行中 | 0% | MVP |
-| Core/Database | 🔄 进行中 | 0% | MVP |
-| Auth (App Lock) | ⏳ 计划中 | 0% | MVP |
-| Medication | ⏳ 计划中 | 0% | MVP |
-| Blood Test | ⏳ 计划中 | 0% | MVP |
-| Measurement | ⏳ 计划中 | 0% | MVP |
-| Photo | ⏳ 计划中 | 0% | V1.0 |
-| Journal | ⏳ 计划中 | 0% | V1.0 |
-| Timeline | ⏳ 计划中 | 0% | V1.0 |
-| PK Simulator | ⏳ 计划中 | 0% | V1.5 |
-| Knowledge | ⏳ 计划中 | 0% | V1.5 |
-| Analytics | ⏳ 计划中 | 0% | V2.0 |
-| 二次元角色 | ⏳ 计划中 | 0% | V2.0 |
-| Settings/Themes | ⏳ 计划中 | 0% | V2.0 |
+## 已完成功能
+| 模块 | 状态 | 说明 |
+|------|------|------|
+| 项目骨架 | ✅ 完成 | Clean Arch 目录结构、DI、主题、l10n |
+| Medication Domain | ✅ 完成 | 实体、仓库接口、Use Cases |
+| Medication Data | ✅ 完成 | DB Schema、Models、DataSource、Repository |
+| Medication BLoC | ✅ 完成 | Cubit 表现层 |
+| Medication UI | ✅ 完成 | 今日用药、药品列表、添加药品、排程、库存 |
+| Auth (应用锁) | ✅ 完成 | PIN + 生物识别 + 数据清除 + 启动流程 |
 
-## 未解决问题
-- 仓库尚未创建
-- App 名称待最终确认
+## 待开发 (MVP 关键路径)
+| 模块 | 优先级 | 说明 |
+|------|--------|------|
+| CryptoEngine 实现 | 🔴 P0 | AES-256-GCM + Argon2id，当前仅接口 |
+| SecureDatabase 实现 | 🔴 P0 | SQLCipher 实际接入 |
+| 应用切换模糊遮罩 | 🔴 P0 | D006 社区反馈 |
+| 提醒/通知系统 | 🟠 P1 | flutter_local_notifications |
+| 验血追踪 | 🟠 P1 | blood_test 全栈 |
+| 身体测量 | 🟡 P2 | measurement 全栈 |
 
-## 下一步
-- 完成项目骨架 (#0.1)
-- 完成 Core/Crypto 实现
-- 开始 Medication Feature
+## 配置文件状态
+| 文件 | 状态 |
+|------|------|
+| AGENTS.md | ✅ |
+| .agents/rules/flutter-project.md | ✅ |
+| .agents/rules/privacy-security.md | 🔄 本轮恢复 |
+| .agents/skills/code-review/SKILL.md | ✅ |
+| .agents/skills/pk-reference/SKILL.md | ✅ |
