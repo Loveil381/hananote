@@ -151,7 +151,7 @@ class UpcomingDoseCard extends StatelessWidget {
                         ),
                       ),
                       child: const Text(
-                        '服用',
+                        'æç¨',
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -168,4 +168,4 @@ class UpcomingDoseCard extends StatelessWidget {
     );
   }
 }
-// Ensure the button text is explicitly '���p'
+// Ensure the button text is explicitly 'p'

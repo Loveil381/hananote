@@ -8,11 +8,13 @@ import 'package:hananote/features/medication/domain/usecases/get_today_schedule.
 import 'package:hananote/features/medication/domain/usecases/log_medication.dart';
 import 'package:hananote/features/medication/presentation/bloc/today_schedule_event.dart';
 import 'package:hananote/features/medication/presentation/bloc/today_schedule_state.dart';
+import 'package:injectable/injectable.dart';
 
 /// Manages the daily medication schedule for a given date.
 ///
 /// Handles loading, dose logging, and dose skipping. Every mutation
 /// triggers a reload so the UI always reflects persisted state.
+@injectable
 class TodayScheduleBloc extends Bloc<TodayScheduleEvent, TodayScheduleState> {
   /// Creates a [TodayScheduleBloc].
   TodayScheduleBloc(

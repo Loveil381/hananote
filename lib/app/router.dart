@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hananote/app/di/injection.dart';
 import 'package:hananote/app/presentation/main_shell.dart';
 import 'package:hananote/features/auth/presentation/pages/auth_wrapper_page.dart';
 import 'package:hananote/features/blood_test/presentation/pages/data_page.dart';
 import 'package:hananote/features/journal/presentation/pages/record_page.dart';
+import 'package:hananote/features/medication/presentation/bloc/today_schedule_bloc.dart';
+import 'package:hananote/features/medication/presentation/bloc/today_schedule_event.dart';
 import 'package:hananote/features/medication/presentation/pages/add_drug_page.dart';
 import 'package:hananote/features/medication/presentation/pages/schedule_editor_page.dart';
 import 'package:hananote/features/medication/presentation/pages/today_page.dart';
@@ -31,7 +35,11 @@ final GoRouter appRouter = GoRouter(
           routes: [
             GoRoute(
               path: '/today',
-              builder: (context, state) => const TodayPage(),
+              builder: (context, state) => BlocProvider(
+                create: (_) =>
+                    getIt<TodayScheduleBloc>()..add(const LoadTodaySchedule()),
+                child: const TodayPage(),
+              ),
             ),
           ],
         ),
