@@ -117,7 +117,7 @@ class _InventoryPageState extends State<InventoryPage> {
                       Text(
                         'No stock info',
                         style: theme.textTheme.bodyMedium?.copyWith(
-                                color: theme.colorScheme.onSurface.withAlpha(128),
+                          color: theme.colorScheme.onSurface.withAlpha(128),
                         ),
                       ),
                   ],

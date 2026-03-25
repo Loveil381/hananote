@@ -59,11 +59,17 @@ class AppTheme {
 
     const textTheme = TextTheme(
       headlineLarge: TextStyle(
-          fontFamily: 'PlusJakartaSans', fontWeight: FontWeight.w800,),
+        fontFamily: 'PlusJakartaSans',
+        fontWeight: FontWeight.w800,
+      ),
       headlineMedium: TextStyle(
-          fontFamily: 'PlusJakartaSans', fontWeight: FontWeight.bold,),
+        fontFamily: 'PlusJakartaSans',
+        fontWeight: FontWeight.bold,
+      ),
       headlineSmall: TextStyle(
-          fontFamily: 'PlusJakartaSans', fontWeight: FontWeight.bold,),
+        fontFamily: 'PlusJakartaSans',
+        fontWeight: FontWeight.bold,
+      ),
       bodyLarge: TextStyle(fontFamily: 'BeVietnamPro'),
       bodyMedium: TextStyle(fontFamily: 'BeVietnamPro'),
       bodySmall: TextStyle(fontFamily: 'BeVietnamPro'),
@@ -80,7 +86,6 @@ class AppTheme {
       cardTheme: const CardThemeData(
         color: HanaColors.surfaceContainerLowest,
         elevation: 0,
-
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(16)),
         ),

@@ -108,10 +108,12 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
                           border: const OutlineInputBorder(),
                         ),
                         items: state.administrationRoute!.supportedUnits
-                            .map((u) => DropdownMenuItem(
-                                  value: u,
-                                  child: Text(u.name),
-                                ),)
+                            .map(
+                              (u) => DropdownMenuItem(
+                                value: u,
+                                child: Text(u.name),
+                              ),
+                            )
                             .toList(),
                         onChanged: (val) {
                           if (val != null) {
@@ -301,7 +303,8 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
             children: [
               const Text('Day of Week: '),
               DropdownButton<int>(
-                value: (state.frequency! as WeeklyMedicationFrequency).dayOfWeek,
+                value:
+                    (state.frequency! as WeeklyMedicationFrequency).dayOfWeek,
                 items: [1, 2, 3, 4, 5, 6, 7]
                     .map((e) => DropdownMenuItem(value: e, child: Text('$e')))
                     .toList(),
@@ -332,7 +335,8 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
 
     var expectedTimes = 1;
     if (state.frequency is DailyMedicationFrequency) {
-      expectedTimes = (state.frequency! as DailyMedicationFrequency).timesPerDay;
+      expectedTimes =
+          (state.frequency! as DailyMedicationFrequency).timesPerDay;
     }
 
     final currentTimes = List<TimeOfDay>.from(state.scheduleTimes);
@@ -358,7 +362,12 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
                 ),
                 borderRadius: BorderRadius.circular(8),
               ),
-              title: Text(material.TimeOfDay(hour: currentTimes[i].hour, minute: currentTimes[i].minute).format(context)),
+              title: Text(
+                material.TimeOfDay(
+                  hour: currentTimes[i].hour,
+                  minute: currentTimes[i].minute,
+                ).format(context),
+              ),
               trailing: const Icon(Icons.access_time),
               onTap: () async {
                 final time = await showTimePicker(

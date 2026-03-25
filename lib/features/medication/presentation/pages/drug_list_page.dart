@@ -118,7 +118,10 @@ class _DrugListPageState extends State<DrugListPage> {
   }
 
   Widget _buildDrugItem(
-      BuildContext context, Drug drug, AppLocalizations l10n,) {
+    BuildContext context,
+    Drug drug,
+    AppLocalizations l10n,
+  ) {
     return Dismissible(
       key: ValueKey(drug.id),
       direction: DismissDirection.endToStart,
