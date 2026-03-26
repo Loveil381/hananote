@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hananote/app/di/injection.dart';
 import 'package:hananote/app/router.dart';
 import 'package:hananote/app/theme/app_theme.dart';
+import 'package:hananote/core/privacy/app_blur_overlay.dart';
 import 'package:hananote/features/auth/presentation/bloc/auth_cubit.dart';
 
 /// Main application widget.
@@ -18,6 +19,9 @@ class HanaNote extends StatelessWidget {
         routerConfig: appRouter,
         title: 'HanaNote',
         theme: AppTheme.getTheme(AppThemeType.sakura),
+        builder: (context, child) => AppBlurOverlay(
+          child: child ?? const SizedBox.shrink(),
+        ),
       ),
     );
   }
