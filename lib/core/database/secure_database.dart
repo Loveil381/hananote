@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:fpdart/fpdart.dart';
 import 'package:hananote/core/crypto/key_manager.dart';
+import 'package:hananote/core/database/tables/blood_test_tables.dart';
 import 'package:hananote/core/database/tables/medication_tables.dart';
 import 'package:hananote/core/error/failures.dart';
 import 'package:injectable/injectable.dart';
@@ -99,7 +100,15 @@ class SecureDatabase {
       await db.execute(statement);
     }
 
+    for (final statement in BloodTestTables.allCreateStatements) {
+      await db.execute(statement);
+    }
+
     for (final statement in MedicationTables.createIndices) {
+      await db.execute(statement);
+    }
+
+    for (final statement in BloodTestTables.createIndices) {
       await db.execute(statement);
     }
   }
