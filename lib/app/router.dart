@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:hananote/app/di/injection.dart';
 import 'package:hananote/app/presentation/main_shell.dart';
 import 'package:hananote/features/auth/presentation/pages/auth_wrapper_page.dart';
+import 'package:hananote/features/blood_test/presentation/bloc/blood_test_bloc.dart';
+import 'package:hananote/features/blood_test/presentation/bloc/blood_test_event.dart';
 import 'package:hananote/features/blood_test/presentation/pages/data_page.dart';
 import 'package:hananote/features/journal/presentation/pages/record_page.dart';
 import 'package:hananote/features/medication/presentation/bloc/today_schedule_bloc.dart';
@@ -63,7 +65,11 @@ final GoRouter appRouter = GoRouter(
           routes: [
             GoRoute(
               path: '/data',
-              builder: (context, state) => const DataPage(),
+              builder: (context, state) => BlocProvider(
+                create: (_) =>
+                    getIt<BloodTestBloc>()..add(const LoadBloodTestDashboard()),
+                child: const DataPage(),
+              ),
             ),
           ],
         ),

@@ -89,7 +89,9 @@ class _SetupPageState extends State<SetupPage> {
                             prefixIcon: Icon(Icons.lock_outline_rounded),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                  color: HanaColors.primary, width: 2,),
+                                color: HanaColors.primary,
+                                width: 2,
+                              ),
                             ),
                           ),
                         ),
@@ -104,7 +106,9 @@ class _SetupPageState extends State<SetupPage> {
                             prefixIcon: Icon(Icons.verified_user_outlined),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                  color: HanaColors.primary, width: 2,),
+                                color: HanaColors.primary,
+                                width: 2,
+                              ),
                             ),
                           ),
                         ),

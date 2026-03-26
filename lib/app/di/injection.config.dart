@@ -29,12 +29,32 @@ import 'package:hananote/features/auth/domain/usecases/unlock_app.dart'
 import 'package:hananote/features/auth/domain/usecases/wipe_data.dart' as _i69;
 import 'package:hananote/features/auth/presentation/bloc/auth_cubit.dart'
     as _i464;
+import 'package:hananote/features/blood_test/data/datasources/blood_test_local_datasource.dart'
+    as _i596;
+import 'package:hananote/features/blood_test/data/repositories/blood_test_repository_impl.dart'
+    as _i155;
+import 'package:hananote/features/blood_test/domain/repositories/blood_test_repository.dart'
+    as _i979;
+import 'package:hananote/features/blood_test/domain/usecases/add_blood_test_report.dart'
+    as _i798;
+import 'package:hananote/features/blood_test/domain/usecases/get_all_blood_test_reports.dart'
+    as _i712;
+import 'package:hananote/features/blood_test/domain/usecases/get_hormone_trend.dart'
+    as _i341;
+import 'package:hananote/features/blood_test/presentation/bloc/blood_test_bloc.dart'
+    as _i1026;
 import 'package:hananote/features/medication/data/datasources/medication_local_datasource.dart'
     as _i1047;
 import 'package:hananote/features/medication/data/repositories/medication_repository_impl.dart'
     as _i1024;
 import 'package:hananote/features/medication/domain/repositories/medication_repository.dart'
     as _i160;
+import 'package:hananote/features/medication/domain/usecases/get_today_schedule.dart'
+    as _i336;
+import 'package:hananote/features/medication/domain/usecases/log_medication.dart'
+    as _i1050;
+import 'package:hananote/features/medication/presentation/bloc/today_schedule_bloc.dart'
+    as _i14;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:local_auth/local_auth.dart' as _i152;
 
@@ -70,6 +90,8 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.lazySingleton<_i1047.MedicationLocalDataSource>(
         () => _i1047.MedicationLocalDataSourceImpl(gh<_i59.SecureDatabase>()));
+    gh.lazySingleton<_i596.BloodTestLocalDataSource>(
+        () => _i596.BloodTestLocalDataSourceImpl(gh<_i59.SecureDatabase>()));
     gh.factory<_i465.ChangePin>(
         () => _i465.ChangePin(gh<_i1072.AuthRepository>()));
     gh.factory<_i909.SetupApp>(
@@ -83,9 +105,29 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i177.UnlockApp>(),
           gh<_i69.WipeData>(),
         ));
+    gh.lazySingleton<_i979.BloodTestRepository>(() =>
+        _i155.BloodTestRepositoryImpl(gh<_i596.BloodTestLocalDataSource>()));
     gh.lazySingleton<_i160.MedicationRepository>(() =>
         _i1024.MedicationRepositoryImpl(
             gh<_i1047.MedicationLocalDataSource>()));
+    gh.factory<_i336.GetTodaySchedule>(
+        () => _i336.GetTodaySchedule(gh<_i160.MedicationRepository>()));
+    gh.factory<_i1050.LogMedication>(
+        () => _i1050.LogMedication(gh<_i160.MedicationRepository>()));
+    gh.factory<_i798.AddBloodTestReport>(
+        () => _i798.AddBloodTestReport(gh<_i979.BloodTestRepository>()));
+    gh.factory<_i712.GetAllBloodTestReports>(
+        () => _i712.GetAllBloodTestReports(gh<_i979.BloodTestRepository>()));
+    gh.factory<_i341.GetHormoneTrend>(
+        () => _i341.GetHormoneTrend(gh<_i979.BloodTestRepository>()));
+    gh.factory<_i14.TodayScheduleBloc>(() => _i14.TodayScheduleBloc(
+          gh<_i336.GetTodaySchedule>(),
+          gh<_i1050.LogMedication>(),
+        ));
+    gh.factory<_i1026.BloodTestBloc>(() => _i1026.BloodTestBloc(
+          getAllReports: gh<_i712.GetAllBloodTestReports>(),
+          getTrend: gh<_i341.GetHormoneTrend>(),
+        ));
     return this;
   }
 }
