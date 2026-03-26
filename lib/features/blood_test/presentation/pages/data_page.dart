@@ -1,8 +1,16 @@
 // ignore_for_file: public_member_api_docs
 
 import 'dart:ui';
+
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hananote/app/theme/hana_colors.dart';
+import 'package:hananote/features/blood_test/domain/entities/enums.dart';
+import 'package:hananote/features/blood_test/presentation/bloc/blood_test_bloc.dart';
+import 'package:hananote/features/blood_test/presentation/bloc/blood_test_event.dart';
+import 'package:hananote/features/blood_test/presentation/bloc/blood_test_state.dart';
+import 'package:intl/intl.dart';
 
 class DataPage extends StatelessWidget {
   const DataPage({super.key});
@@ -68,332 +76,452 @@ class DataPage extends StatelessWidget {
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const SizedBox(height: 100),
-
-            // Hormone Cards Section
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Text(
-                    '激素指标',
-                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: HanaColors.primary,
-                        ),
-                  ),
-                  Text(
-                    '最近更新：2026.03.15',
-                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                          color: HanaColors.onSurfaceVariant
-                              .withAlpha((255 * 0.6).round()),
-                        ),
-                  ),
-                ],
-              ),
+      body: BlocBuilder<BloodTestBloc, BloodTestState>(
+        builder: (context, state) {
+          return state.map(
+            initial: (_) => const SizedBox.shrink(),
+            loading: (_) => const Center(
+              child: CircularProgressIndicator(color: HanaColors.primary),
             ),
-            const SizedBox(height: 16),
-            const SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Row(
-                children: [
-                  _HormoneCard(
-                    name: '雌二醇',
-                    value: '156',
-                    unit: 'pg/mL',
-                    rangeLabel: '目标范围',
-                    rangeValue: '100 - 200',
-                    statusColor: Color(0xFF34D399),
-                    isWarning: false,
-                  ),
-                  SizedBox(width: 16),
-                  _HormoneCard(
-                    name: '睾酮',
-                    value: '32',
-                    unit: 'ng/dL',
-                    rangeLabel: '目标范围',
-                    rangeValue: '< 50',
-                    statusColor: Color(0xFF34D399),
-                    isWarning: false,
-                  ),
-                  SizedBox(width: 16),
-                  _HormoneCard(
-                    name: '泌乳素',
-                    value: '28',
-                    unit: 'ng/mL',
-                    rangeLabel: '阈值',
-                    rangeValue: '≥ 25',
-                    statusColor: Color(0xFFFBBF24),
-                    isWarning: true,
-                  ),
-                ],
-              ),
-            ),
+            error: (e) => Center(child: Text(e.message)),
+            loaded: (loadedState) => _buildBody(context, loadedState),
+          );
+        },
+      ),
+    );
+  }
 
-            const SizedBox(height: 32),
+  Widget _buildBody(BuildContext context, BloodTestLoaded state) {
+    final dateFormat = DateFormat('yyyy.MM.dd');
+    final lastUpdatedText = state.lastUpdated != null
+        ? '最近更新：${dateFormat.format(state.lastUpdated!)}'
+        : '无最近更新';
 
-            // Trend Chart Section
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Container(
-                padding: const EdgeInsets.all(24),
-                decoration: BoxDecoration(
-                  color: HanaColors.surfaceContainerLow,
-                  borderRadius: BorderRadius.circular(32),
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          const SizedBox(height: 100),
+
+          // Hormone Cards Section
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  '激素指标',
+                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: HanaColors.primary,
+                      ),
                 ),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          '雌二醇趋势',
-                          style:
-                              Theme.of(context).textTheme.titleLarge?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                    color: HanaColors.primary,
-                                  ),
-                        ),
-                        Container(
-                          padding: const EdgeInsets.all(4),
-                          decoration: BoxDecoration(
-                            color: HanaColors.surfaceContainerHigh,
-                            borderRadius: BorderRadius.circular(9999),
-                          ),
-                          child: Row(
-                            children: [
-                              _buildPill('1月', false),
-                              _buildPill('3月', true),
-                              _buildPill('6月', false),
-                              _buildPill('1年', false),
-                            ],
-                          ),
-                        ),
-                      ],
+                Text(
+                  lastUpdatedText,
+                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                        color: HanaColors.onSurfaceVariant
+                            .withAlpha((255 * 0.6).round()),
+                      ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 16),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Row(
+              children: state.latestReadings.values.map((reading) {
+                final isSelected = state.selectedTrendHormone == reading.type;
+                final status = reading.type.statusFor(reading.value);
+                final statusColor = _getStatusColor(status);
+                final (minVal, maxVal) = reading.type.targetRange;
+                final rangeValue = '$minVal - $maxVal';
+
+                return Padding(
+                  padding: const EdgeInsets.only(right: 16),
+                  child: GestureDetector(
+                    onTap: () {
+                      context.read<BloodTestBloc>().add(
+                            SelectHormoneForTrend(reading.type),
+                          );
+                    },
+                    child: _HormoneCard(
+                      name: reading.type.displayName,
+                      value: reading.value.toStringAsFixed(1),
+                      unit: reading.type.defaultUnit,
+                      rangeLabel: '目标范围',
+                      rangeValue: rangeValue,
+                      statusColor: statusColor,
+                      isWarning: status != HormoneStatus.normal,
+                      isSelected: isSelected,
                     ),
-                    const SizedBox(height: 24),
-                    // Chart Area
-                    SizedBox(
-                      height: 192,
-                      width: double.infinity,
-                      child: Stack(
+                  ),
+                );
+              }).toList(),
+            ),
+          ),
+
+          const SizedBox(height: 32),
+
+          // Trend Chart Section
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Container(
+              padding: const EdgeInsets.all(24),
+              decoration: BoxDecoration(
+                color: HanaColors.surfaceContainerLow,
+                borderRadius: BorderRadius.circular(32),
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        '${state.selectedTrendHormone.displayName}趋势',
+                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: HanaColors.primary,
+                            ),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.all(4),
+                        decoration: BoxDecoration(
+                          color: HanaColors.surfaceContainerHigh,
+                          borderRadius: BorderRadius.circular(9999),
+                        ),
+                        child: Row(
+                          children: [
+                            _buildRangePill(
+                              context,
+                              state,
+                              TrendRange.oneMonth,
+                              '1月',
+                            ),
+                            _buildRangePill(
+                              context,
+                              state,
+                              TrendRange.threeMonths,
+                              '3月',
+                            ),
+                            _buildRangePill(
+                              context,
+                              state,
+                              TrendRange.sixMonths,
+                              '6月',
+                            ),
+                            _buildRangePill(
+                              context,
+                              state,
+                              TrendRange.oneYear,
+                              '1年',
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 24),
+                  // Chart Area
+                  SizedBox(
+                    height: 192,
+                    width: double.infinity,
+                    child: _buildTrendChart(state),
+                  ),
+                  const SizedBox(height: 48),
+                  // Legend
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Row(
                         children: [
-                          // Grid Lines
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: List.generate(
-                              4,
-                              (index) => Container(
-                                height: 1,
-                                color:
-                                    HanaColors.onSurfaceVariant.withAlpha(13),
-                              ),
+                          Container(
+                            width: 8,
+                            height: 8,
+                            decoration: const BoxDecoration(
+                              color: HanaColors.primaryContainer,
+                              shape: BoxShape.circle,
                             ),
                           ),
-                          // Target Zone
-                          Positioned(
-                            top: 48,
-                            bottom: 48,
-                            left: 0,
-                            right: 0,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: const Color(0xFF10B981).withAlpha(13),
-                                border: Border(
-                                  top: BorderSide(
-                                    color:
-                                        const Color(0xFF10B981).withAlpha(26),
-                                  ),
-                                  bottom: BorderSide(
-                                    color:
-                                        const Color(0xFF10B981).withAlpha(26),
-                                  ),
-                                ),
-                              ),
-                              alignment: Alignment.centerRight,
-                              padding: const EdgeInsets.only(right: 8),
-                              child: const Text(
-                                'TARGET',
-                                style: TextStyle(
-                                  fontSize: 8,
-                                  fontWeight: FontWeight.bold,
-                                  color: Color(0x8010B981),
-                                  letterSpacing: 2,
-                                ),
-                              ),
-                            ),
-                          ),
-                          // Spline
-                          Positioned.fill(
-                            child: CustomPaint(
-                              painter: _TrendChartPainter(),
-                            ),
-                          ),
-                          // X Axis Labels
-                          Positioned(
-                            bottom: -24,
-                            left: 0,
-                            right: 0,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  '1月',
-                                  style: TextStyle(
-                                    fontSize: 10,
-                                    color: HanaColors.onSurfaceVariant
-                                        .withAlpha(102),
-                                  ),
-                                ),
-                                Text(
-                                  '2月',
-                                  style: TextStyle(
-                                    fontSize: 10,
-                                    color: HanaColors.onSurfaceVariant
-                                        .withAlpha(102),
-                                  ),
-                                ),
-                                Text(
-                                  '3月',
-                                  style: TextStyle(
-                                    fontSize: 10,
-                                    color: HanaColors.onSurfaceVariant
-                                        .withAlpha(102),
-                                  ),
-                                ),
-                              ],
+                          const SizedBox(width: 6),
+                          Text(
+                            '实测数值',
+                            style: TextStyle(
+                              fontSize: 10,
+                              color: HanaColors.onSurfaceVariant.withAlpha(153),
                             ),
                           ),
                         ],
                       ),
-                    ),
-                    const SizedBox(height: 48),
-                    // Legend
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Row(
-                          children: [
-                            Container(
-                              width: 8,
-                              height: 8,
-                              decoration: const BoxDecoration(
-                                color: HanaColors.primaryContainer,
-                                shape: BoxShape.circle,
+                      const SizedBox(width: 16),
+                      Row(
+                        children: [
+                          Container(
+                            width: 8,
+                            height: 8,
+                            decoration: BoxDecoration(
+                              color: const Color(0xFF10B981).withAlpha(26),
+                              border: Border.all(
+                                color: const Color(0xFF10B981).withAlpha(51),
                               ),
                             ),
-                            const SizedBox(width: 6),
-                            Text(
-                              '实测数值',
-                              style: TextStyle(
-                                fontSize: 10,
-                                color:
-                                    HanaColors.onSurfaceVariant.withAlpha(153),
-                              ),
+                          ),
+                          const SizedBox(width: 6),
+                          Text(
+                            '目标健康域',
+                            style: TextStyle(
+                              fontSize: 10,
+                              color: HanaColors.onSurfaceVariant.withAlpha(153),
                             ),
-                          ],
-                        ),
-                        const SizedBox(width: 16),
-                        Row(
-                          children: [
-                            Container(
-                              width: 8,
-                              height: 8,
-                              decoration: BoxDecoration(
-                                color: const Color(0xFF10B981).withAlpha(26),
-                                border: Border.all(
-                                  color: const Color(0xFF10B981).withAlpha(51),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 6),
-                            Text(
-                              '目标健康域',
-                              style: TextStyle(
-                                fontSize: 10,
-                                color:
-                                    HanaColors.onSurfaceVariant.withAlpha(153),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
-
-            const SizedBox(height: 32),
-            // History Section
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Text(
-                    '历史记录',
-                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: HanaColors.primary,
-                        ),
-                  ),
-                  const SizedBox(height: 16),
-                  const _HistoryCard(
-                    date: '2026.03.15',
-                    summary: '雌二醇: 156 / 睾酮: 32',
-                    borderColor: Color(0xFF34D399),
-                  ),
-                  const SizedBox(height: 12),
-                  const _HistoryCard(
-                    date: '2026.02.12',
-                    summary: '雌二醇: 142 / 睾酮: 35',
-                    borderColor: Color(0xFF34D399),
-                  ),
-                  const SizedBox(height: 12),
-                  const _HistoryCard(
-                    date: '2026.01.10',
-                    summary: '雌二醇: 98 / 睾酮: 31',
-                    borderColor: Color(0xFFFBBF24),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ],
               ),
             ),
-            const SizedBox(height: 120),
-          ],
+          ),
+
+          const SizedBox(height: 32),
+          // History Section
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(
+                  '历史记录',
+                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: HanaColors.primary,
+                      ),
+                ),
+                const SizedBox(height: 16),
+                ...state.reports.map((report) {
+                  final dateStr = dateFormat.format(report.testDate);
+                  final summary = report.readings
+                      .take(3)
+                      .map((r) => '${r.type.displayName}: ${r.value}')
+                      .join(' / ');
+
+                  var highestStatus = HormoneStatus.normal;
+                  for (final r in report.readings) {
+                    final status = r.type.statusFor(r.value);
+                    if (status == HormoneStatus.critical) {
+                      highestStatus = HormoneStatus.critical;
+                    } else if (status == HormoneStatus.warning &&
+                        highestStatus != HormoneStatus.critical) {
+                      highestStatus = HormoneStatus.warning;
+                    }
+                  }
+
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 12),
+                    child: _HistoryCard(
+                      date: dateStr,
+                      summary: summary,
+                      borderColor: _getStatusColor(highestStatus),
+                    ),
+                  );
+                }),
+              ],
+            ),
+          ),
+          const SizedBox(height: 120),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildRangePill(
+    BuildContext context,
+    BloodTestLoaded state,
+    TrendRange range,
+    String text,
+  ) {
+    final isSelected = state.selectedRange == range;
+    return GestureDetector(
+      onTap: () {
+        context.read<BloodTestBloc>().add(SelectTrendRange(range));
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+        decoration: BoxDecoration(
+          color: isSelected
+              ? HanaColors.surfaceContainerLowest
+              : Colors.transparent,
+          borderRadius: BorderRadius.circular(9999),
+          boxShadow: isSelected
+              ? [
+                  BoxShadow(
+                    color: Colors.black.withAlpha(10),
+                    blurRadius: 4,
+                  ),
+                ]
+              : null,
+        ),
+        child: Text(
+          text,
+          style: TextStyle(
+            fontSize: 10,
+            fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
+            color: isSelected
+                ? HanaColors.primary
+                : HanaColors.onSurfaceVariant.withAlpha((255 * 0.6).round()),
+          ),
         ),
       ),
     );
   }
 
-  Widget _buildPill(String text, bool isSelected) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-      decoration: BoxDecoration(
-        color:
-            isSelected ? HanaColors.surfaceContainerLowest : Colors.transparent,
-        borderRadius: BorderRadius.circular(9999),
-        boxShadow: isSelected
-            ? [BoxShadow(color: Colors.black.withAlpha(10), blurRadius: 4)]
-            : null,
-      ),
-      child: Text(
-        text,
-        style: TextStyle(
-          fontSize: 10,
-          fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
-          color: isSelected
-              ? HanaColors.primary
-              : HanaColors.onSurfaceVariant.withAlpha((255 * 0.6).round()),
+  Widget _buildTrendChart(BloodTestLoaded state) {
+    if (state.trendData.isEmpty) {
+      return const Center(
+        child: Text(
+          '暂无趋势数据',
+          style: TextStyle(color: HanaColors.onSurfaceVariant),
+        ),
+      );
+    }
+
+    final readingWithDates = state.trendData.map((reading) {
+      final report = state.reports.firstWhere(
+        (r) => r.id == reading.reportId,
+        orElse: () => state.reports.first,
+      );
+      return (date: report.testDate, value: reading.value);
+    }).toList()
+      ..sort((a, b) => a.date.compareTo(b.date));
+
+    final spots = readingWithDates.asMap().entries.map((e) {
+      return FlSpot(e.key.toDouble(), e.value.value);
+    }).toList();
+
+    final (minVal, maxVal) = state.selectedTrendHormone.targetRange;
+
+    return LineChart(
+      LineChartData(
+        minY: minVal * 0.5,
+        gridData: FlGridData(
+          drawVerticalLine: false,
+          horizontalInterval: maxVal > 0 ? maxVal / 2 : 1,
+          getDrawingHorizontalLine: (value) {
+            return FlLine(
+              color: HanaColors.onSurfaceVariant.withAlpha(13),
+              strokeWidth: 1,
+            );
+          },
+        ),
+        titlesData: FlTitlesData(
+          topTitles: const AxisTitles(),
+          rightTitles: const AxisTitles(),
+          leftTitles: const AxisTitles(),
+          bottomTitles: AxisTitles(
+            sideTitles: SideTitles(
+              showTitles: true,
+              reservedSize: 30,
+              interval: 1,
+              getTitlesWidget: (value, meta) {
+                final index = value.toInt();
+                if (index >= 0 && index < readingWithDates.length) {
+                  final data = readingWithDates[index];
+                  return Padding(
+                    padding: const EdgeInsets.only(top: 8),
+                    child: Text(
+                      DateFormat('M月').format(data.date),
+                      style: TextStyle(
+                        fontSize: 10,
+                        color: HanaColors.onSurfaceVariant.withAlpha(102),
+                      ),
+                    ),
+                  );
+                }
+                return const SizedBox.shrink();
+              },
+            ),
+          ),
+        ),
+        borderData: FlBorderData(show: false),
+        extraLinesData: ExtraLinesData(
+          horizontalLines: [
+            HorizontalLine(
+              y: maxVal,
+              color: const Color(0xFF10B981).withAlpha(26),
+              label: HorizontalLineLabel(
+                show: true,
+                alignment: Alignment.topRight,
+                padding: const EdgeInsets.only(right: 8, bottom: 4),
+                style: const TextStyle(
+                  fontSize: 8,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0x8010B981),
+                  letterSpacing: 2,
+                ),
+                labelResolver: (_) => 'TARGET',
+              ),
+            ),
+            HorizontalLine(
+              y: minVal,
+              color: const Color(0xFF10B981).withAlpha(26),
+            ),
+          ],
+        ),
+        lineBarsData: [
+          LineChartBarData(
+            spots: spots,
+            isCurved: true,
+            color: const Color(0xFFFFB7C5),
+            barWidth: 3,
+            isStrokeCapRound: true,
+            dotData: FlDotData(
+              getDotPainter: (spot, percent, barData, index) {
+                return FlDotCirclePainter(
+                  radius: 6,
+                  color: HanaColors.primary,
+                  strokeWidth: 2,
+                  strokeColor: Colors.white,
+                );
+              },
+            ),
+            belowBarData: BarAreaData(
+              show: true,
+              color: const Color(0x1A10B981),
+              cutOffY: maxVal,
+              applyCutOffY: true,
+            ),
+          ),
+        ],
+        lineTouchData: LineTouchData(
+          touchTooltipData: LineTouchTooltipData(
+            getTooltipColor: (_) => HanaColors.surfaceContainerHighest,
+            tooltipRoundedRadius: 8,
+            getTooltipItems: (touchedSpots) {
+              return touchedSpots.map((LineBarSpot touchedSpot) {
+                const textStyle = TextStyle(
+                  color: HanaColors.primary,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14,
+                );
+                return LineTooltipItem(
+                  touchedSpot.y.toStringAsFixed(1),
+                  textStyle,
+                );
+              }).toList();
+            },
+          ),
         ),
       ),
     );
+  }
+
+  Color _getStatusColor(HormoneStatus status) {
+    return switch (status) {
+      HormoneStatus.normal => const Color(0xFF34D399),
+      HormoneStatus.warning => HanaColors.tertiary,
+      HormoneStatus.critical => HanaColors.error,
+    };
   }
 }
 
@@ -406,6 +534,7 @@ class _HormoneCard extends StatelessWidget {
     required this.rangeValue,
     required this.statusColor,
     required this.isWarning,
+    required this.isSelected,
   });
 
   final String name;
@@ -415,6 +544,7 @@ class _HormoneCard extends StatelessWidget {
   final String rangeValue;
   final Color statusColor;
   final bool isWarning;
+  final bool isSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -425,9 +555,12 @@ class _HormoneCard extends StatelessWidget {
         color: HanaColors.surfaceContainerLowest,
         borderRadius: BorderRadius.circular(24),
         border: Border.all(
-          color: isWarning
-              ? HanaColors.tertiaryContainer.withAlpha((255 * 0.3).round())
-              : HanaColors.primary.withAlpha((255 * 0.05).round()),
+          color: isSelected
+              ? HanaColors.primary
+              : isWarning
+                  ? HanaColors.error.withAlpha((255 * 0.3).round())
+                  : HanaColors.primary.withAlpha((255 * 0.05).round()),
+          width: isSelected ? 2 : 1,
         ),
         boxShadow: const [
           BoxShadow(
@@ -471,7 +604,7 @@ class _HormoneCard extends StatelessWidget {
               fontFamily: 'Plus Jakarta Sans',
               fontSize: 24,
               fontWeight: FontWeight.bold,
-              color: isWarning ? HanaColors.tertiary : HanaColors.primary,
+              color: isWarning ? HanaColors.error : HanaColors.primary,
             ),
           ),
           Text(
@@ -573,55 +706,4 @@ class _HistoryCard extends StatelessWidget {
       ),
     );
   }
-}
-
-class _TrendChartPainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    final path = Path()
-      ..moveTo(0, size.height * 0.8)
-      ..quadraticBezierTo(
-        size.width * 0.25,
-        size.height * 0.6,
-        size.width * 0.5,
-        size.height * 0.4,
-      )
-      ..quadraticBezierTo(
-        size.width * 0.75,
-        size.height * 0.2,
-        size.width,
-        size.height * 0.45,
-      );
-
-    final paintLine = Paint()
-      ..color = const Color(0xFFFFB7C5)
-      ..strokeWidth = 3
-      ..style = PaintingStyle.stroke
-      ..strokeCap = StrokeCap.round;
-
-    canvas.drawPath(path, paintLine);
-
-    final pointPaint = Paint()
-      ..color = HanaColors.primary
-      ..style = PaintingStyle.fill;
-    final strokePaint = Paint()
-      ..color = Colors.white
-      ..strokeWidth = 2
-      ..style = PaintingStyle.stroke;
-
-    final points = [
-      Offset(0, size.height * 0.8),
-      Offset(size.width * 0.5, size.height * 0.4),
-      Offset(size.width, size.height * 0.45),
-    ];
-
-    for (final p in points) {
-      canvas
-        ..drawCircle(p, 6, pointPaint)
-        ..drawCircle(p, 6, strokePaint);
-    }
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }

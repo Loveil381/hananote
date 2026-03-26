@@ -224,15 +224,21 @@ class _PinKeypad extends StatelessWidget {
         if (token == 'bio') {
           return _KeyButton(
             onTap: onBiometric,
-            child: const Icon(Icons.fingerprint_rounded,
-                size: 28, color: HanaColors.primary,),
+            child: const Icon(
+              Icons.fingerprint_rounded,
+              size: 28,
+              color: HanaColors.primary,
+            ),
           );
         }
         if (token == 'back') {
           return _KeyButton(
             onTap: onBackspace,
-            child: const Icon(Icons.backspace_outlined,
-                size: 24, color: HanaColors.onSurfaceVariant,),
+            child: const Icon(
+              Icons.backspace_outlined,
+              size: 24,
+              color: HanaColors.onSurfaceVariant,
+            ),
           );
         }
         return _KeyButton(
@@ -240,9 +246,10 @@ class _PinKeypad extends StatelessWidget {
           child: Text(
             token,
             style: const TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.w600,
-                color: HanaColors.onSurface,),
+              fontSize: 28,
+              fontWeight: FontWeight.w600,
+              color: HanaColors.onSurface,
+            ),
           ),
         );
       },

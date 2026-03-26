@@ -41,6 +41,8 @@ import 'package:hananote/features/blood_test/domain/usecases/get_all_blood_test_
     as _i712;
 import 'package:hananote/features/blood_test/domain/usecases/get_hormone_trend.dart'
     as _i341;
+import 'package:hananote/features/blood_test/presentation/bloc/blood_test_bloc.dart'
+    as _i1026;
 import 'package:hananote/features/medication/data/datasources/medication_local_datasource.dart'
     as _i1047;
 import 'package:hananote/features/medication/data/repositories/medication_repository_impl.dart'
@@ -121,6 +123,10 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i14.TodayScheduleBloc>(() => _i14.TodayScheduleBloc(
           gh<_i336.GetTodaySchedule>(),
           gh<_i1050.LogMedication>(),
+        ));
+    gh.factory<_i1026.BloodTestBloc>(() => _i1026.BloodTestBloc(
+          getAllReports: gh<_i712.GetAllBloodTestReports>(),
+          getTrend: gh<_i341.GetHormoneTrend>(),
         ));
     return this;
   }
