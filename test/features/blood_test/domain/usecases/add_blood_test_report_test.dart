@@ -14,6 +14,10 @@ void main() {
   late _MockBloodTestRepository repository;
   late AddBloodTestReport useCase;
 
+  setUpAll(() {
+    registerFallbackValue(buildReport());
+  });
+
   setUp(() {
     repository = _MockBloodTestRepository();
     useCase = AddBloodTestReport(repository);
@@ -32,11 +36,12 @@ void main() {
           message: 'Blood test report must contain at least one reading.',
         ),
       );
+      verifyNever(() => repository.addReport(report));
     });
 
     test('stores the report when validation succeeds', () async {
       final report = buildReport();
-      when(() => repository.addReport(report)).thenAnswer(
+      when(() => repository.addReport(any())).thenAnswer(
         (_) async => right(report),
       );
 
@@ -47,6 +52,7 @@ void main() {
         report,
       );
       verify(() => repository.addReport(report)).called(1);
+      verifyNoMoreInteractions(repository);
     });
   });
 }

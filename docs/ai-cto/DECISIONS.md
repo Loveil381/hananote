@@ -74,3 +74,14 @@
 - **决定**: 将 LockScreenPage 和 SetupPage 从硬编码颜色迁移到 HanaColors
 - **理由**: 保持全 App 视觉一致性，消除设计债务
 - **日期**: 第13轮
+
+## DEC-014: BloodTest feature 采用 Medication 同款分层
+- **决定**: BloodTest feature 采用与 Medication 相同的 Clean Architecture 分层（entity → repository → usecase → bloc → UI）
+- **理由**: 保持 feature 间结构一致，便于并行开发、复用测试模式和后续数据绑定扩展
+- **补充**: HormoneType enum 内嵌 WPATH / Endocrine Society 目标范围，用于自动状态判定
+- **日期**: 第15轮
+
+## DEC-015: Data Tab 趋势图迁移到 fl_chart
+- **决定**: Data Tab 趋势图从 CustomPaint 迁移至 fl_chart
+- **理由**: 支持交互式 tooltip、动态时间范围切换，并降低自绘图表维护成本
+- **日期**: 第15轮

@@ -1,7 +1,8 @@
 # HanaNote 项目状态
-## 当前轮次: #14
-## 当前阶段: 加密链路验证 + 隐私功能实现
-## 产品完成度: ~45%
+## 当前轮次: #15
+## 当前阶段: BloodTest 数据绑定 + 隐私功能收尾
+## 产品完成度: 55%
+## 数据绑定进度: 2/5
 
 ## 已完成功能
 | 模块 | 状态 | 说明 |
@@ -16,8 +17,10 @@
 | Today Tab UI + 数据绑定 | ✅ | TodayScheduleBloc 驱动，CountdownCard/MedicationStatusCard/UpcomingDoseCard 接真实状态 |
 | Record Tab UI | ✅ | 3 入口卡片 (拍照/围度/日记)，blurred AppBar |
 | Timeline Tab UI | ✅ | 时间轴卡片, 时间范围选择器, FAB, 渐变线 |
-| Data Tab UI | ✅ | 激素指标卡片, 趋势图 (CustomPaint), 历史记录列表 |
+| Data Tab UI | ✅ | 激素指标卡片, 趋势图 (fl_chart), 历史记录列表 |
+| BloodTest 全栈 | ✅ | entity → repository → usecase → bloc → UI，Data Tab 接入真实数据 |
 | Profile Tab UI | ✅ | 头像+渐变环, 药物管理网格, 隐私设置, 数据操作, 关于 |
+| 应用切换模糊遮罩 | ✅ | DEC-006 隐私增强已落地，修复上轮状态遗漏 |
 | CryptoEngine | ✅ | AES-256-GCM + AAD 支持, isolate 加密, 单元测试 |
 | KeyManager | ✅ | Argon2id (64MB/3iter/4par), 常量时间比较, 单元测试 |
 | SecureDatabase | ✅ | SQLCipher 集成, medication_tables DDL |
@@ -26,8 +29,6 @@
 ## 待开发 (按优先级)
 | 模块 | 优先级 | 说明 |
 |------|------|------|
-| 应用切换模糊遮罩 | 🔴 P0 | DEC-006 社区反馈，隐私核心功能 |
-| Data Tab 接入 BloodTestCubit | 🟠 P1 | fl_chart 趋势图 + 真实数据 |
 | Record Tab 接入 JournalCubit | 🟠 P1 | 拍照+围度+日记功能接入 |
 | Timeline Tab 跨功能数据聚合 | 🟠 P1 | medication/blood_test/measurement |
 | Profile Tab 接入 SettingsCubit | 🟠 P1 | 开关/备份/清除功能接入 |
@@ -41,7 +42,7 @@
 | 今日 | /today | medication | ✅ 完成 | ✅ 完成 |
 | 记录 | /record | journal | ✅ 完成 | ⏳ 待做 |
 | 轨迹 | /timeline | timeline | ✅ 完成 | ⏳ 待做 |
-| 数据 | /data | blood_test | ✅ 完成 | ⏳ 待做 |
+| 数据 | /data | blood_test | ✅ 完成 | ✅ 完成 |
 | 我的 | /profile | settings | ✅ 完成 | ⏳ 待做 |
 
 ## 加密链路状态

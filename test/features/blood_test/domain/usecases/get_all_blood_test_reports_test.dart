@@ -43,6 +43,8 @@ void main() {
         result.swap().getOrElse((_) => throw StateError('expected failure')),
         failure,
       );
+      verify(() => repository.getAllReports()).called(1);
+      verifyNoMoreInteractions(repository);
     });
   });
 }
