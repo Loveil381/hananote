@@ -27,10 +27,15 @@ class CryptoEngine {
   /// [IV + Ciphertext + MAC tag].
   Future<Either<Failure, Uint8List>> encrypt(
     Uint8List plaintext,
-    Uint8List key,
-  ) async {
+    Uint8List key, {
+    Uint8List? aad,
+  }) async {
     try {
-      final payload = {'plaintext': plaintext, 'key': key};
+      final payload = <String, Uint8List>{
+        'plaintext': plaintext,
+        'key': key,
+        'aad': aad ?? Uint8List(0),
+      };
       final result = await compute(_encryptInIsolate, payload);
       return right(result);
     } on Exception catch (e) {
@@ -41,10 +46,15 @@ class CryptoEngine {
   /// Decrypt given payload (IV + Ciphertext + MAC tag) using AES-256-GCM.
   Future<Either<Failure, Uint8List>> decrypt(
     Uint8List encrypted,
-    Uint8List key,
-  ) async {
+    Uint8List key, {
+    Uint8List? aad,
+  }) async {
     try {
-      final payload = {'encrypted': encrypted, 'key': key};
+      final payload = <String, Uint8List>{
+        'encrypted': encrypted,
+        'key': key,
+        'aad': aad ?? Uint8List(0),
+      };
       final result = await compute(_decryptInIsolate, payload);
       return right(result);
     } on Exception catch (e) {
@@ -52,9 +62,10 @@ class CryptoEngine {
     }
   }
 
-  static Uint8List _encryptInIsolate(Map<String, dynamic> payload) {
-    final plaintext = payload['plaintext'] as Uint8List;
-    final key = payload['key'] as Uint8List;
+  static Uint8List _encryptInIsolate(Map<String, Uint8List> payload) {
+    final plaintext = payload['plaintext']!;
+    final key = payload['key']!;
+    final aad = payload['aad']!;
 
     final engine = CryptoEngine();
     final iv = engine._generateIV();
@@ -66,7 +77,7 @@ class CryptoEngine {
           KeyParameter(key),
           128, // MAC size in bits
           iv,
-          Uint8List(0), // No AAD for now
+          aad,
         ),
       );
 
@@ -80,9 +91,10 @@ class CryptoEngine {
     return result.toBytes();
   }
 
-  static Uint8List _decryptInIsolate(Map<String, dynamic> payload) {
-    final encrypted = payload['encrypted'] as Uint8List;
-    final key = payload['key'] as Uint8List;
+  static Uint8List _decryptInIsolate(Map<String, Uint8List> payload) {
+    final encrypted = payload['encrypted']!;
+    final key = payload['key']!;
+    final aad = payload['aad']!;
 
     if (encrypted.length < _ivLength) {
       throw ArgumentError('Encrypted data too short.');
@@ -98,7 +110,7 @@ class CryptoEngine {
           KeyParameter(key),
           128, // MAC size in bits
           iv,
-          Uint8List(0), // No AAD for now
+          aad,
         ),
       );
 
