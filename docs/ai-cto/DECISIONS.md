@@ -61,4 +61,16 @@
 ## DEC-011: git安全规则写入AGENTS.md
 - **决定**: 将禁止force-push、禁止跨分支push、禁止删除未合并分支三条规则写入AGENTS.md
 - **理由**: Round 8-9 期间多次出现分支丢失和合并事故
-- **日期**: 第9轮（补录）  
+- **日期**: 第9轮（补录）
+
+## DEC-012: Argon2id 替换 PBKDF2
+- **决定**: 将 KeyManager 的密钥派生算法从 PBKDF2-HMAC-SHA256 升级为 Argon2id
+- **理由**: Argon2id 是 memory-hard 算法，对 GPU/ASIC 暴力破解的抵抗力远优于 PBKDF2；OWASP 2024 推荐 Argon2id 作为首选
+- **参数**: memory=64MB, iterations=3, parallelism=4, hashLength=32
+- **依赖**: hashlib 包 (纯 Dart，无 FFI)
+- **日期**: 第13轮
+
+## DEC-013: Auth UI 迁移到设计系统 v2
+- **决定**: 将 LockScreenPage 和 SetupPage 从硬编码颜色迁移到 HanaColors
+- **理由**: 保持全 App 视觉一致性，消除设计债务
+- **日期**: 第13轮
