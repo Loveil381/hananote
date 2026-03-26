@@ -82,7 +82,7 @@ void main() {
 
   setUpAll(() {
     registerFallbackValue(HormoneType.estradiol);
-    registerFallbackValue(DateTime(2026, 1, 1));
+    registerFallbackValue(DateTime(2026));
   });
 
   setUp(() {
@@ -211,8 +211,10 @@ void main() {
           ),
         ).captured;
 
-        expect((captured[0] as DateTime).isBefore(captured[1] as DateTime),
-            isTrue);
+        expect(
+          (captured[0] as DateTime).isBefore(captured[1] as DateTime),
+          isTrue,
+        );
       },
     );
   });
@@ -221,7 +223,7 @@ void main() {
     blocTest<BloodTestBloc, BloodTestState>(
       'updates the selected range and trend data',
       build: buildBloc,
-      seed: () => buildLoadedState(selectedRange: TrendRange.threeMonths),
+      seed: buildLoadedState,
       setUp: () {
         when(
           () => getTrend(
@@ -269,8 +271,10 @@ void main() {
           ),
         ).captured;
 
-        expect((captured[0] as DateTime).isBefore(captured[1] as DateTime),
-            isTrue);
+        expect(
+          (captured[0] as DateTime).isBefore(captured[1] as DateTime),
+          isTrue,
+        );
       },
     );
   });

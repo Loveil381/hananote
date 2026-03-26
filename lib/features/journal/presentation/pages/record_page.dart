@@ -2,56 +2,88 @@
 
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hananote/app/theme/hana_colors.dart';
+import 'package:hananote/features/journal/presentation/bloc/record_bloc.dart';
+import 'package:hananote/features/journal/presentation/bloc/record_state.dart';
+import 'package:intl/intl.dart';
 
 class RecordPage extends StatelessWidget {
   const RecordPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: HanaColors.background,
-      extendBodyBehindAppBar: true,
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(64),
-        child: ClipRRect(
-          child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
-            child: AppBar(
-              backgroundColor:
-                  HanaColors.background.withAlpha((255 * 0.8).round()),
-              elevation: 0,
-              scrolledUnderElevation: 0,
-              centerTitle: true,
-              leading: IconButton(
-                icon: const Icon(Icons.notes, color: HanaColors.primary),
-                onPressed: () {},
-              ),
-              title: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Text(
-                    '今日记录',
-                    style: TextStyle(
-                      fontFamily: 'Plus Jakarta Sans',
-                      fontWeight: FontWeight.w600,
-                      fontSize: 18,
-                      color: HanaColors.primary,
-                      letterSpacing: -0.5,
-                    ),
+    return BlocBuilder<RecordBloc, RecordState>(
+      builder: (context, state) {
+        final todayStr = DateFormat('M月d日').format(DateTime.now());
+        
+        var moodTag = '开始你的第一篇日记';
+        var photoTag = '还没有拍照记录';
+        var measureTag = '还没有测量记录';
+        
+        state.mapOrNull(
+          loaded: (loadedState) {
+            if (loadedState.journalStreak > 0) {
+              moodTag = '已连续记录 ${loadedState.journalStreak} 天';
+            }
+            if (loadedState.lastPhotoDate != null) {
+              final dateStr =
+                  DateFormat('M月d日').format(loadedState.lastPhotoDate!);
+              photoTag = '上次：$dateStr';
+            }
+            if (loadedState.lastMeasurementSummary != null) {
+              measureTag = loadedState.lastMeasurementSummary!;
+            }
+          },
+        );
+
+        return Scaffold(
+          backgroundColor: HanaColors.background,
+          extendBodyBehindAppBar: true,
+          appBar: PreferredSize(
+            preferredSize: const Size.fromHeight(64),
+            child: ClipRRect(
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
+                child: AppBar(
+                  backgroundColor: HanaColors.background.withAlpha(
+                    (255 * 0.8).round(),
                   ),
-                  Text(
-                    '3月25日',
-                    style: TextStyle(
-                      fontFamily: 'Plus Jakarta Sans',
-                      fontWeight: FontWeight.w500,
-                      fontSize: 10,
-                      color: HanaColors.primary.withAlpha((255 * 0.6).round()),
-                      letterSpacing: 2,
-                    ),
+                  elevation: 0,
+                  scrolledUnderElevation: 0,
+                  centerTitle: true,
+                  leading: IconButton(
+                    icon: const Icon(Icons.notes, color: HanaColors.primary),
+                    onPressed: () {},
                   ),
-                ],
-              ),
+                  title: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Text(
+                        '今日记录',
+                        style: TextStyle(
+                          fontFamily: 'Plus Jakarta Sans',
+                          fontWeight: FontWeight.w600,
+                          fontSize: 18,
+                          color: HanaColors.primary,
+                          letterSpacing: -0.5,
+                        ),
+                      ),
+                      Text(
+                        todayStr,
+                        style: TextStyle(
+                          fontFamily: 'Plus Jakarta Sans',
+                          fontWeight: FontWeight.w500,
+                          fontSize: 10,
+                          color: HanaColors.primary.withAlpha(
+                            (255 * 0.6).round(),
+                          ),
+                          letterSpacing: 2,
+                        ),
+                      ),
+                    ],
+                  ),
               actions: [
                 IconButton(
                   icon:
@@ -87,7 +119,7 @@ class RecordPage extends StatelessWidget {
               icon: Icons.camera_alt,
               title: '拍照记录',
               subtitle: '加密存储，只有你能看到',
-              tag: '上次：3月22日',
+              tag: photoTag,
               accentColor: HanaColors.primaryContainer,
               tagBgColor: HanaColors.primaryContainer.withAlpha(77),
               bgIcon: Icons.photo_library,
@@ -98,22 +130,23 @@ class RecordPage extends StatelessWidget {
               icon: Icons.straighten,
               title: '身体测量',
               subtitle: '记录身体的每一点变化',
-              tag: '胸围 86.2cm · 3月20日',
+              tag: measureTag,
               accentColor: HanaColors.secondaryContainer,
               tagBgColor: HanaColors.secondaryContainer.withAlpha(128),
               bgIcon: Icons.show_chart,
               bgIconRotation: -12 * 3.14159 / 180,
             ),
             const SizedBox(height: 24),
-            const _RecordEntryCard(
+            _RecordEntryCard(
               icon: Icons.menu_book,
               title: '心情日记',
               subtitle: '今天想说点什么',
-              tag: '已连续记录 7 天',
+              tag: moodTag,
               accentColor: HanaColors.surfaceContainerHigh,
               tagBgColor: HanaColors.surfaceContainerHigh,
               bgIcon: Icons.auto_stories,
               bgIconRotation: 6 * 3.14159 / 180,
+              onTap: () => context.push('/journal/edit'),
             ),
             const SizedBox(height: 48),
             Center(
@@ -155,6 +188,8 @@ class RecordPage extends StatelessWidget {
         ),
       ),
     );
+      },
+    );
   }
 }
 
@@ -168,6 +203,7 @@ class _RecordEntryCard extends StatelessWidget {
     required this.tagBgColor,
     required this.bgIcon,
     required this.bgIconRotation,
+    this.onTap,
   });
 
   final IconData icon;
@@ -178,13 +214,14 @@ class _RecordEntryCard extends StatelessWidget {
   final Color tagBgColor;
   final IconData bgIcon;
   final double bgIconRotation;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        onTap: () {},
+        onTap: onTap ?? () {},
         borderRadius: BorderRadius.circular(16),
         child: Container(
           padding: const EdgeInsets.all(24),

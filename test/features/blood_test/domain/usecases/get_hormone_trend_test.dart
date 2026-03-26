@@ -80,7 +80,9 @@ void main() {
 
       expect(result.isRight(), isTrue);
       expect(
-          result.getOrElse((_) => throw StateError('expected list')), isEmpty);
+        result.getOrElse((_) => throw StateError('expected list')),
+        isEmpty,
+      );
       verify(
         () => repository.getReadingsByType(
           HormoneType.testosterone,

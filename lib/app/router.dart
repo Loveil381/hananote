@@ -7,6 +7,9 @@ import 'package:hananote/features/auth/presentation/pages/auth_wrapper_page.dart
 import 'package:hananote/features/blood_test/presentation/bloc/blood_test_bloc.dart';
 import 'package:hananote/features/blood_test/presentation/bloc/blood_test_event.dart';
 import 'package:hananote/features/blood_test/presentation/pages/data_page.dart';
+import 'package:hananote/features/journal/presentation/bloc/record_bloc.dart';
+import 'package:hananote/features/journal/presentation/bloc/record_event.dart';
+import 'package:hananote/features/journal/presentation/pages/journal_edit_page.dart';
 import 'package:hananote/features/journal/presentation/pages/record_page.dart';
 import 'package:hananote/features/medication/presentation/bloc/today_schedule_bloc.dart';
 import 'package:hananote/features/medication/presentation/bloc/today_schedule_event.dart';
@@ -49,7 +52,11 @@ final GoRouter appRouter = GoRouter(
           routes: [
             GoRoute(
               path: '/record',
-              builder: (context, state) => const RecordPage(),
+              builder: (context, state) => BlocProvider(
+                create: (_) => getIt<RecordBloc>()
+                  ..add(const LoadRecordSummary()),
+                child: const RecordPage(),
+              ),
             ),
           ],
         ),
@@ -92,6 +99,11 @@ final GoRouter appRouter = GoRouter(
       path: '/edit_schedule',
       parentNavigatorKey: _rootNavigatorKey,
       builder: (context, state) => const ScheduleEditorPage(),
+    ),
+    GoRoute(
+      path: '/journal/edit',
+      parentNavigatorKey: _rootNavigatorKey,
+      builder: (context, state) => const JournalEditPage(),
     ),
   ],
 );

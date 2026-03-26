@@ -43,6 +43,22 @@ import 'package:hananote/features/blood_test/domain/usecases/get_hormone_trend.d
     as _i341;
 import 'package:hananote/features/blood_test/presentation/bloc/blood_test_bloc.dart'
     as _i1026;
+import 'package:hananote/features/journal/data/datasources/journal_local_datasource.dart'
+    as _i929;
+import 'package:hananote/features/journal/data/repositories/journal_repository_impl.dart'
+    as _i394;
+import 'package:hananote/features/journal/domain/repositories/journal_repository.dart'
+    as _i1032;
+import 'package:hananote/features/journal/domain/usecases/add_journal_entry.dart'
+    as _i1022;
+import 'package:hananote/features/journal/domain/usecases/get_all_journal_entries.dart'
+    as _i73;
+import 'package:hananote/features/journal/domain/usecases/get_journal_streak.dart'
+    as _i910;
+import 'package:hananote/features/journal/domain/usecases/update_journal_entry.dart'
+    as _i628;
+import 'package:hananote/features/journal/presentation/bloc/record_bloc.dart'
+    as _i697;
 import 'package:hananote/features/medication/data/datasources/medication_local_datasource.dart'
     as _i1047;
 import 'package:hananote/features/medication/data/repositories/medication_repository_impl.dart'
@@ -92,6 +108,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i1047.MedicationLocalDataSourceImpl(gh<_i59.SecureDatabase>()));
     gh.lazySingleton<_i596.BloodTestLocalDataSource>(
         () => _i596.BloodTestLocalDataSourceImpl(gh<_i59.SecureDatabase>()));
+    gh.lazySingleton<_i929.JournalLocalDataSource>(
+        () => _i929.JournalLocalDataSourceImpl(gh<_i59.SecureDatabase>()));
     gh.factory<_i465.ChangePin>(
         () => _i465.ChangePin(gh<_i1072.AuthRepository>()));
     gh.factory<_i909.SetupApp>(
@@ -114,6 +132,16 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i336.GetTodaySchedule(gh<_i160.MedicationRepository>()));
     gh.factory<_i1050.LogMedication>(
         () => _i1050.LogMedication(gh<_i160.MedicationRepository>()));
+    gh.lazySingleton<_i1032.JournalRepository>(
+        () => _i394.JournalRepositoryImpl(gh<_i929.JournalLocalDataSource>()));
+    gh.factory<_i1022.AddJournalEntry>(
+        () => _i1022.AddJournalEntry(gh<_i1032.JournalRepository>()));
+    gh.factory<_i73.GetAllJournalEntries>(
+        () => _i73.GetAllJournalEntries(gh<_i1032.JournalRepository>()));
+    gh.factory<_i910.GetJournalStreak>(
+        () => _i910.GetJournalStreak(gh<_i1032.JournalRepository>()));
+    gh.factory<_i628.UpdateJournalEntry>(
+        () => _i628.UpdateJournalEntry(gh<_i1032.JournalRepository>()));
     gh.factory<_i798.AddBloodTestReport>(
         () => _i798.AddBloodTestReport(gh<_i979.BloodTestRepository>()));
     gh.factory<_i712.GetAllBloodTestReports>(
@@ -127,6 +155,10 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i1026.BloodTestBloc>(() => _i1026.BloodTestBloc(
           getAllReports: gh<_i712.GetAllBloodTestReports>(),
           getTrend: gh<_i341.GetHormoneTrend>(),
+        ));
+    gh.factory<_i697.RecordBloc>(() => _i697.RecordBloc(
+          gh<_i910.GetJournalStreak>(),
+          gh<_i1032.JournalRepository>(),
         ));
     return this;
   }

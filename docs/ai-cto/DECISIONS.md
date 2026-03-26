@@ -85,3 +85,11 @@
 - **决定**: Data Tab 趋势图从 CustomPaint 迁移至 fl_chart
 - **理由**: 支持交互式 tooltip、动态时间范围切换，并降低自绘图表维护成本
 - **日期**: 第15轮
+
+## DEC-016: Journal feature 采用与 Medication/BloodTest 同款 Clean Architecture 分层
+- **决定**: Journal feature 采用与 Medication/BloodTest 同款 Clean Architecture 分层。RecordBloc 作为 Record Tab 的统一聚合 Bloc，当前驱动 Journal 元数据，Phase 2 将扩展 Photo 和 Measurement。
+- **日期**: round 16
+
+## DEC-017: 日记编辑页直接注入 UseCase 而非创建独立 Bloc
+- **决定**: 日记编辑页直接注入 UseCase 而非创建独立 Bloc，因为编辑页是一次性操作页面，不需要持续状态管理。
+- **日期**: round 16

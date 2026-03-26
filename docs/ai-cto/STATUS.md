@@ -1,8 +1,8 @@
 # HanaNote 项目状态
 ## 当前轮次: #15
 ## 当前阶段: BloodTest 数据绑定 + 隐私功能收尾
-## 产品完成度: 55%
-## 数据绑定进度: 2/5
+## 产品完成度: 62%
+## 数据绑定进度: 3/5
 
 ## 已完成功能
 | 模块 | 状态 | 说明 |
@@ -16,6 +16,7 @@
 | DESIGN.md 设计规范 | ✅ | 色彩/字体/组件/do-dont 规则 |
 | Today Tab UI + 数据绑定 | ✅ | TodayScheduleBloc 驱动，CountdownCard/MedicationStatusCard/UpcomingDoseCard 接真实状态 |
 | Record Tab UI | ✅ | 3 入口卡片 (拍照/围度/日记)，blurred AppBar |
+| Journal feature | ✅ | Clean Architecture 分层 + RecordBloc 聚合 Journal 元数据 |
 | Timeline Tab UI | ✅ | 时间轴卡片, 时间范围选择器, FAB, 渐变线 |
 | Data Tab UI | ✅ | 激素指标卡片, 趋势图 (fl_chart), 历史记录列表 |
 | BloodTest 全栈 | ✅ | entity → repository → usecase → bloc → UI，Data Tab 接入真实数据 |
@@ -29,7 +30,7 @@
 ## 待开发 (按优先级)
 | 模块 | 优先级 | 说明 |
 |------|------|------|
-| Record Tab 接入 JournalCubit | 🟠 P1 | 拍照+围度+日记功能接入 |
+| Record Tab 数据绑定（Phase 1 — Journal） | ✅ | RecordBloc 驱动 Journal streak + latest entry |
 | Timeline Tab 跨功能数据聚合 | 🟠 P1 | medication/blood_test/measurement |
 | Profile Tab 接入 SettingsCubit | 🟠 P1 | 开关/备份/清除功能接入 |
 | 提醒/通知系统 | 🟡 P2 | flutter_local_notifications |
@@ -40,7 +41,7 @@
 | Tab | 路由 | Feature | UI状态 | 数据绑定 |
 |-----|------|---------|--------|----------|
 | 今日 | /today | medication | ✅ 完成 | ✅ 完成 |
-| 记录 | /record | journal | ✅ 完成 | ⏳ 待做 |
+| 记录 | /record | journal | ✅ 完成 | ✅ 完成（Phase 1 — Journal） |
 | 轨迹 | /timeline | timeline | ✅ 完成 | ⏳ 待做 |
 | 数据 | /data | blood_test | ✅ 完成 | ✅ 完成 |
 | 我的 | /profile | settings | ✅ 完成 | ⏳ 待做 |
