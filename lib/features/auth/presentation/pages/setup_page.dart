@@ -85,7 +85,7 @@ class _SetupPageState extends State<SetupPage> {
                           keyboardType: TextInputType.number,
                           maxLength: 6,
                           decoration: const InputDecoration(
-                            labelText: 'PIN',
+                            labelText: '密码',
                             prefixIcon: Icon(Icons.lock_outline_rounded),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
@@ -100,7 +100,7 @@ class _SetupPageState extends State<SetupPage> {
                           keyboardType: TextInputType.number,
                           maxLength: 6,
                           decoration: const InputDecoration(
-                            labelText: 'Confirm PIN',
+                            labelText: '确认密码',
                             prefixIcon: Icon(Icons.verified_user_outlined),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(

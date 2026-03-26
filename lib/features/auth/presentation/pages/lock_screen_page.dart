@@ -160,7 +160,7 @@ class _LockScreenPageState extends State<LockScreenPage> {
 
   void _handleConfirm() {
     if (_pin.length != 6) {
-      showError('Enter all 6 digits.');
+      showError('请输入完整的6位密码');
       return;
     }
     final pin = _pin;
