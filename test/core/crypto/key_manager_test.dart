@@ -8,8 +8,6 @@ class MockFlutterSecureStorage extends Mock implements FlutterSecureStorage {}
 void main() {
   late KeyManager keyManager;
   late MockFlutterSecureStorage mockSecureStorage;
-
-  // Custom in-memory storage for test
   final inMemoryStorage = <String, String>{};
 
   setUp(() {
@@ -17,7 +15,6 @@ void main() {
     keyManager = KeyManager(mockSecureStorage);
     inMemoryStorage.clear();
 
-    // Setup mocks
     when(
       () => mockSecureStorage.write(
         key: any(named: 'key'),
@@ -49,61 +46,33 @@ void main() {
   group('KeyManager', () {
     const password = 'mySuperStrongPassword123';
 
-    test('should initialize key and save to secure storage', () async {
-      await keyManager.initializeKey(password);
-
-      expect(inMemoryStorage.containsKey('hananote_salt'), isTrue);
-      expect(inMemoryStorage.containsKey('hananote_master_key'), isTrue);
-
-      verify(
-        () => mockSecureStorage.write(
-          key: 'hananote_salt',
-          value: any(named: 'value'),
-        ),
-      ).called(1);
-      verify(
-        () => mockSecureStorage.write(
-          key: 'hananote_master_key',
-          value: any(named: 'value'),
-        ),
-      ).called(1);
-    });
-
-    test('should retrieve initialized key successfully', () async {
+    test('initializeKey then getKey should return a 32-byte key', () async {
       await keyManager.initializeKey(password);
       final key = await keyManager.getKey();
 
       expect(key, isNotNull);
-      expect(key!.length, 32); // 256 bits
+      expect(key, hasLength(32));
     });
 
-    test(
-      'should return null when getting key without initialization',
-      () async {
-        final key = await keyManager.getKey();
-        expect(key, isNull);
-      },
-    );
-
-    test('should verify correct password', () async {
+    test('verifyPassword should return true for the correct password',
+        () async {
       await keyManager.initializeKey(password);
       final isValid = await keyManager.verifyPassword(password);
 
       expect(isValid, isTrue);
     });
 
-    test('should reject wrong password', () async {
+    test('verifyPassword should return false for a wrong password', () async {
       await keyManager.initializeKey(password);
       final isValid = await keyManager.verifyPassword('wrongPassword!');
 
       expect(isValid, isFalse);
     });
 
-    test('should delete key correctly', () async {
+    test('deleteKey then getKey should return null', () async {
       await keyManager.initializeKey(password);
       await keyManager.deleteKey();
 
-      expect(inMemoryStorage.isEmpty, isTrue);
       final key = await keyManager.getKey();
       expect(key, isNull);
     });

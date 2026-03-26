@@ -3,8 +3,8 @@ import 'dart:math';
 import 'dart:typed_data';
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:hashlib/hashlib.dart';
 import 'package:injectable/injectable.dart';
-import 'package:pointycastle/export.dart';
 
 /// Manages key derivation and secure storage.
 @lazySingleton
@@ -16,8 +16,13 @@ class KeyManager {
 
   static const String _keyStorageKey = 'hananote_master_key';
   static const String _saltStorageKey = 'hananote_salt';
+  static const int _saltLength = 16;
+  static const int _hashLength = 32;
+  static const int _memorySizeKb = 65536;
+  static const int _iterations = 3;
+  static const int _parallelism = 4;
 
-  /// Derive key from password using PBKDF2 and save it to secure storage.
+  /// Derive key from password using Argon2id and save it to secure storage.
   Future<void> initializeKey(String password) async {
     final salt = _generateSalt();
     final key = _deriveKey(password, salt);
@@ -45,13 +50,7 @@ class KeyManager {
 
     final testKey = _deriveKey(password, salt);
 
-    // Constant-time comparison
-    if (testKey.length != storedKey.length) return false;
-    var result = 0;
-    for (var i = 0; i < testKey.length; i++) {
-      result |= testKey[i] ^ storedKey[i];
-    }
-    return result == 0;
+    return _constantTimeEquals(testKey, storedKey);
   }
 
   /// Delete the key for emergency or logout purposes.
@@ -62,16 +61,32 @@ class KeyManager {
 
   Uint8List _generateSalt() {
     final random = Random.secure();
-    final salt = Uint8List(16);
-    for (var i = 0; i < 16; i++) {
+    final salt = Uint8List(_saltLength);
+    for (var i = 0; i < _saltLength; i++) {
       salt[i] = random.nextInt(256);
     }
     return salt;
   }
 
   Uint8List _deriveKey(String password, Uint8List salt) {
-    final derivator = PBKDF2KeyDerivator(HMac(SHA256Digest(), 64))
-      ..init(Pbkdf2Parameters(salt, 100000, 32)); // 32 bytes = 256 bits
-    return derivator.process(Uint8List.fromList(utf8.encode(password)));
+    final derivator = Argon2(
+      parallelism: _parallelism,
+      memorySizeKB: _memorySizeKb,
+      iterations: _iterations,
+      hashLength: _hashLength,
+      salt: salt,
+    );
+
+    return Uint8List.fromList(derivator.convert(utf8.encode(password)).bytes);
+  }
+
+  bool _constantTimeEquals(Uint8List left, Uint8List right) {
+    if (left.length != right.length) return false;
+
+    var result = 0;
+    for (var i = 0; i < left.length; i++) {
+      result |= left[i] ^ right[i];
+    }
+    return result == 0;
   }
 }
