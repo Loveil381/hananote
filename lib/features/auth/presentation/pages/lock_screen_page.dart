@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hananote/app/theme/hana_colors.dart';
 import 'package:hananote/features/auth/presentation/bloc/auth_cubit.dart';
 import 'package:hananote/features/auth/presentation/bloc/auth_state.dart';
 
@@ -25,6 +26,7 @@ class _LockScreenPageState extends State<LockScreenPage> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     final dots = List.generate(
       6,
       (index) => AnimatedContainer(
@@ -33,8 +35,8 @@ class _LockScreenPageState extends State<LockScreenPage> {
         height: 14,
         decoration: BoxDecoration(
           color: index < _pin.length
-              ? const Color(0xFFCF6B95)
-              : const Color(0xFFE9D3DE),
+              ? HanaColors.primary
+              : HanaColors.outlineVariant,
           borderRadius: BorderRadius.circular(999),
         ),
       ),
@@ -49,13 +51,12 @@ class _LockScreenPageState extends State<LockScreenPage> {
       child: Scaffold(
         body: Container(
           decoration: const BoxDecoration(
-            gradient: RadialGradient(
-              center: Alignment.topCenter,
-              radius: 1.4,
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
               colors: [
-                Color(0xFFFFF8FB),
-                Color(0xFFFFEAF2),
-                Color(0xFFFFF9FB),
+                HanaColors.background,
+                HanaColors.surfaceContainerLow,
               ],
             ),
           ),
@@ -72,23 +73,27 @@ class _LockScreenPageState extends State<LockScreenPage> {
                         width: 92,
                         height: 92,
                         decoration: BoxDecoration(
-                          color: Colors.white.withValues(alpha: 0.86),
+                          color: HanaColors.surfaceContainerLowest,
                           borderRadius: BorderRadius.circular(30),
                         ),
                         child: const Icon(
                           Icons.shield_moon_rounded,
                           size: 44,
-                          color: Color(0xFFCF6B95),
+                          color: HanaColors.primary,
                         ),
                       ),
                       const SizedBox(height: 28),
-                      const Text(
-                        'Welcome back',
-                        style: TextStyle(
-                          fontSize: 28,
-                          fontWeight: FontWeight.w700,
-                          color: Color(0xFF4C2637),
-                        ),
+                      Text(
+                        '欢迎回来',
+                        style: theme.textTheme.headlineMedium?.copyWith(
+                              fontWeight: FontWeight.w700,
+                              color: HanaColors.onSurface,
+                            ) ??
+                            const TextStyle(
+                              fontSize: 28,
+                              fontWeight: FontWeight.w700,
+                              color: HanaColors.onSurface,
+                            ),
                       ),
                       const SizedBox(height: 12),
                       Row(
@@ -105,7 +110,7 @@ class _LockScreenPageState extends State<LockScreenPage> {
                         child: Text(
                           _errorMessage ?? '',
                           style: const TextStyle(
-                            color: Color(0xFFD2556F),
+                            color: HanaColors.error,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -219,20 +224,25 @@ class _PinKeypad extends StatelessWidget {
         if (token == 'bio') {
           return _KeyButton(
             onTap: onBiometric,
-            child: const Icon(Icons.fingerprint_rounded, size: 28),
+            child: const Icon(Icons.fingerprint_rounded,
+                size: 28, color: HanaColors.primary,),
           );
         }
         if (token == 'back') {
           return _KeyButton(
             onTap: onBackspace,
-            child: const Icon(Icons.backspace_outlined, size: 24),
+            child: const Icon(Icons.backspace_outlined,
+                size: 24, color: HanaColors.onSurfaceVariant,),
           );
         }
         return _KeyButton(
           onTap: () => onNumberTap(token),
           child: Text(
             token,
-            style: const TextStyle(fontSize: 28, fontWeight: FontWeight.w600),
+            style: const TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.w600,
+                color: HanaColors.onSurface,),
           ),
         );
       },
@@ -252,7 +262,7 @@ class _KeyButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.white.withValues(alpha: 0.9),
+      color: HanaColors.surfaceContainerLowest,
       borderRadius: BorderRadius.circular(24),
       child: InkWell(
         borderRadius: BorderRadius.circular(24),

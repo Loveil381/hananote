@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hananote/app/theme/hana_colors.dart';
 import 'package:hananote/features/auth/presentation/bloc/auth_cubit.dart';
 
 /// First-run PIN setup page.
@@ -30,9 +31,12 @@ class _SetupPageState extends State<SetupPage> {
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [Color(0xFFFFF5F8), Color(0xFFFFE8F0), Color(0xFFFFF9FB)],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              HanaColors.background,
+              HanaColors.surfaceContainerLow,
+            ],
           ),
         ),
         child: SafeArea(
@@ -43,13 +47,13 @@ class _SetupPageState extends State<SetupPage> {
                 constraints: const BoxConstraints(maxWidth: 420),
                 child: DecoratedBox(
                   decoration: BoxDecoration(
-                    color: Colors.white.withValues(alpha: 0.92),
+                    color: HanaColors.surfaceContainerLowest,
                     borderRadius: BorderRadius.circular(28),
-                    boxShadow: const [
+                    boxShadow: [
                       BoxShadow(
-                        color: Color(0x22D7789B),
+                        color: HanaColors.primary.withAlpha(20),
                         blurRadius: 36,
-                        offset: Offset(0, 24),
+                        offset: const Offset(0, 24),
                       ),
                     ],
                   ),
@@ -60,18 +64,18 @@ class _SetupPageState extends State<SetupPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text(
-                          'Secure your space',
+                          '守护你的空间',
                           style: TextStyle(
                             fontSize: 28,
                             fontWeight: FontWeight.w700,
-                            color: Color(0xFF4A2637),
+                            color: HanaColors.onSurface,
                           ),
                         ),
                         const SizedBox(height: 10),
                         Text(
-                          'Set your password to protect your data.',
+                          '设置密码来保护你的数据。',
                           style: theme.textTheme.bodyLarge?.copyWith(
-                            color: const Color(0xFF7B5A69),
+                            color: HanaColors.onSurfaceVariant,
                           ),
                         ),
                         const SizedBox(height: 24),
@@ -83,6 +87,10 @@ class _SetupPageState extends State<SetupPage> {
                           decoration: const InputDecoration(
                             labelText: 'PIN',
                             prefixIcon: Icon(Icons.lock_outline_rounded),
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: HanaColors.primary, width: 2,),
+                            ),
                           ),
                         ),
                         const SizedBox(height: 12),
@@ -94,6 +102,10 @@ class _SetupPageState extends State<SetupPage> {
                           decoration: const InputDecoration(
                             labelText: 'Confirm PIN',
                             prefixIcon: Icon(Icons.verified_user_outlined),
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: HanaColors.primary, width: 2,),
+                            ),
                           ),
                         ),
                         const SizedBox(height: 8),
@@ -102,7 +114,7 @@ class _SetupPageState extends State<SetupPage> {
                           value: _biometricEnabled,
                           onChanged: (value) =>
                               setState(() => _biometricEnabled = value),
-                          title: const Text('Use biometrics when available'),
+                          title: const Text('可用时使用生物识别'),
                         ),
                         const SizedBox(height: 12),
                         SizedBox(
@@ -115,9 +127,13 @@ class _SetupPageState extends State<SetupPage> {
                                     biometricEnabled: _biometricEnabled,
                                   );
                             },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: HanaColors.primary,
+                              foregroundColor: HanaColors.onPrimary,
+                            ),
                             child: const Padding(
                               padding: EdgeInsets.symmetric(vertical: 14),
-                              child: Text('Continue'),
+                              child: Text('继续'),
                             ),
                           ),
                         ),
