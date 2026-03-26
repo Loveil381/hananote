@@ -57,6 +57,8 @@ import 'package:hananote/features/journal/domain/usecases/get_journal_streak.dar
     as _i910;
 import 'package:hananote/features/journal/domain/usecases/update_journal_entry.dart'
     as _i628;
+import 'package:hananote/features/journal/presentation/bloc/record_bloc.dart'
+    as _i697;
 import 'package:hananote/features/medication/data/datasources/medication_local_datasource.dart'
     as _i1047;
 import 'package:hananote/features/medication/data/repositories/medication_repository_impl.dart'
@@ -153,6 +155,10 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i1026.BloodTestBloc>(() => _i1026.BloodTestBloc(
           getAllReports: gh<_i712.GetAllBloodTestReports>(),
           getTrend: gh<_i341.GetHormoneTrend>(),
+        ));
+    gh.factory<_i697.RecordBloc>(() => _i697.RecordBloc(
+          gh<_i910.GetJournalStreak>(),
+          gh<_i1032.JournalRepository>(),
         ));
     return this;
   }

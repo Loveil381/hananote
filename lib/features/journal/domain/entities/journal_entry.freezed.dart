@@ -20,9 +20,9 @@ mixin _$JournalEntry {
   DateTime get date => throw _privateConstructorUsedError;
   String get content => throw _privateConstructorUsedError;
   MoodLevel get mood => throw _privateConstructorUsedError;
+  DateTime get createdAt => throw _privateConstructorUsedError;
   List<String>? get tags => throw _privateConstructorUsedError;
   String? get notes => throw _privateConstructorUsedError;
-  DateTime get createdAt => throw _privateConstructorUsedError;
   DateTime? get updatedAt => throw _privateConstructorUsedError;
 
   /// Create a copy of JournalEntry
@@ -43,9 +43,9 @@ abstract class $JournalEntryCopyWith<$Res> {
       DateTime date,
       String content,
       MoodLevel mood,
+      DateTime createdAt,
       List<String>? tags,
       String? notes,
-      DateTime createdAt,
       DateTime? updatedAt});
 }
 
@@ -68,9 +68,9 @@ class _$JournalEntryCopyWithImpl<$Res, $Val extends JournalEntry>
     Object? date = null,
     Object? content = null,
     Object? mood = null,
+    Object? createdAt = null,
     Object? tags = freezed,
     Object? notes = freezed,
-    Object? createdAt = null,
     Object? updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
@@ -90,6 +90,10 @@ class _$JournalEntryCopyWithImpl<$Res, $Val extends JournalEntry>
           ? _value.mood
           : mood // ignore: cast_nullable_to_non_nullable
               as MoodLevel,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       tags: freezed == tags
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
@@ -98,10 +102,6 @@ class _$JournalEntryCopyWithImpl<$Res, $Val extends JournalEntry>
           ? _value.notes
           : notes // ignore: cast_nullable_to_non_nullable
               as String?,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
       updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
@@ -123,9 +123,9 @@ abstract class _$$JournalEntryImplCopyWith<$Res>
       DateTime date,
       String content,
       MoodLevel mood,
+      DateTime createdAt,
       List<String>? tags,
       String? notes,
-      DateTime createdAt,
       DateTime? updatedAt});
 }
 
@@ -146,9 +146,9 @@ class __$$JournalEntryImplCopyWithImpl<$Res>
     Object? date = null,
     Object? content = null,
     Object? mood = null,
+    Object? createdAt = null,
     Object? tags = freezed,
     Object? notes = freezed,
-    Object? createdAt = null,
     Object? updatedAt = freezed,
   }) {
     return _then(_$JournalEntryImpl(
@@ -168,6 +168,10 @@ class __$$JournalEntryImplCopyWithImpl<$Res>
           ? _value.mood
           : mood // ignore: cast_nullable_to_non_nullable
               as MoodLevel,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       tags: freezed == tags
           ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
@@ -176,10 +180,6 @@ class __$$JournalEntryImplCopyWithImpl<$Res>
           ? _value.notes
           : notes // ignore: cast_nullable_to_non_nullable
               as String?,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
       updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
@@ -196,9 +196,9 @@ class _$JournalEntryImpl implements _JournalEntry {
       required this.date,
       required this.content,
       required this.mood,
+      required this.createdAt,
       final List<String>? tags,
       this.notes,
-      required this.createdAt,
       this.updatedAt})
       : _tags = tags;
 
@@ -210,6 +210,8 @@ class _$JournalEntryImpl implements _JournalEntry {
   final String content;
   @override
   final MoodLevel mood;
+  @override
+  final DateTime createdAt;
   final List<String>? _tags;
   @override
   List<String>? get tags {
@@ -223,13 +225,11 @@ class _$JournalEntryImpl implements _JournalEntry {
   @override
   final String? notes;
   @override
-  final DateTime createdAt;
-  @override
   final DateTime? updatedAt;
 
   @override
   String toString() {
-    return 'JournalEntry(id: $id, date: $date, content: $content, mood: $mood, tags: $tags, notes: $notes, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'JournalEntry(id: $id, date: $date, content: $content, mood: $mood, createdAt: $createdAt, tags: $tags, notes: $notes, updatedAt: $updatedAt)';
   }
 
   @override
@@ -241,17 +241,17 @@ class _$JournalEntryImpl implements _JournalEntry {
             (identical(other.date, date) || other.date == date) &&
             (identical(other.content, content) || other.content == content) &&
             (identical(other.mood, mood) || other.mood == mood) &&
-            const DeepCollectionEquality().equals(other._tags, _tags) &&
-            (identical(other.notes, notes) || other.notes == notes) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
+            const DeepCollectionEquality().equals(other._tags, _tags) &&
+            (identical(other.notes, notes) || other.notes == notes) &&
             (identical(other.updatedAt, updatedAt) ||
                 other.updatedAt == updatedAt));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, id, date, content, mood,
-      const DeepCollectionEquality().hash(_tags), notes, createdAt, updatedAt);
+      createdAt, const DeepCollectionEquality().hash(_tags), notes, updatedAt);
 
   /// Create a copy of JournalEntry
   /// with the given fields replaced by the non-null parameter values.
@@ -268,9 +268,9 @@ abstract class _JournalEntry implements JournalEntry {
       required final DateTime date,
       required final String content,
       required final MoodLevel mood,
+      required final DateTime createdAt,
       final List<String>? tags,
       final String? notes,
-      required final DateTime createdAt,
       final DateTime? updatedAt}) = _$JournalEntryImpl;
 
   @override
@@ -282,11 +282,11 @@ abstract class _JournalEntry implements JournalEntry {
   @override
   MoodLevel get mood;
   @override
+  DateTime get createdAt;
+  @override
   List<String>? get tags;
   @override
   String? get notes;
-  @override
-  DateTime get createdAt;
   @override
   DateTime? get updatedAt;
 
