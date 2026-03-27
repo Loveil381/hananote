@@ -21,6 +21,7 @@ class KeyManager {
   static const int _memorySizeKb = 65536;
   static const int _iterations = 3;
   static const int _parallelism = 4;
+  Uint8List? _cachedKey;
 
   /// Derive key from password using Argon2id and save it to secure storage.
   Future<void> initializeKey(String password) async {
@@ -29,13 +30,26 @@ class KeyManager {
 
     await _secureStorage.write(key: _saltStorageKey, value: base64Encode(salt));
     await _secureStorage.write(key: _keyStorageKey, value: base64Encode(key));
+    _cachedKey = key;
   }
 
   /// Retrieve the symmetric key from secure storage.
   Future<Uint8List?> getKey() async {
+    final cachedKey = _cachedKey;
+    if (cachedKey != null) {
+      return cachedKey;
+    }
     final encodedKey = await _secureStorage.read(key: _keyStorageKey);
     if (encodedKey == null) return null;
-    return base64Decode(encodedKey);
+    final key = base64Decode(encodedKey);
+    _cachedKey = key;
+    return key;
+  }
+
+  /// Returns the current in-memory session key when available, otherwise
+  /// lazily hydrates it from secure storage.
+  Future<Uint8List?> getCurrentKey() {
+    return getKey();
   }
 
   /// Verify if the given password matches the stored key.
@@ -57,6 +71,7 @@ class KeyManager {
   Future<void> deleteKey() async {
     await _secureStorage.delete(key: _keyStorageKey);
     await _secureStorage.delete(key: _saltStorageKey);
+    _cachedKey = null;
   }
 
   Uint8List _generateSalt() {

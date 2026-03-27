@@ -93,6 +93,26 @@ import 'package:hananote/features/medication/domain/usecases/sync_medication_rem
     as _i445;
 import 'package:hananote/features/medication/presentation/bloc/today_schedule_bloc.dart'
     as _i14;
+import 'package:hananote/features/photo/data/datasources/photo_local_data_source.dart'
+    as _i432;
+import 'package:hananote/features/photo/data/repositories/photo_repository_impl.dart'
+    as _i763;
+import 'package:hananote/features/photo/domain/repositories/photo_repository.dart'
+    as _i203;
+import 'package:hananote/features/photo/domain/services/photo_crypto_service.dart'
+    as _i484;
+import 'package:hananote/features/photo/domain/usecases/delete_photo.dart'
+    as _i210;
+import 'package:hananote/features/photo/domain/usecases/get_latest_photo.dart'
+    as _i284;
+import 'package:hananote/features/photo/domain/usecases/get_photo_history.dart'
+    as _i937;
+import 'package:hananote/features/photo/domain/usecases/load_photo_full.dart'
+    as _i496;
+import 'package:hananote/features/photo/domain/usecases/load_photo_thumbnail.dart'
+    as _i903;
+import 'package:hananote/features/photo/domain/usecases/save_photo.dart'
+    as _i62;
 import 'package:hananote/features/settings/data/datasources/settings_local_datasource.dart'
     as _i843;
 import 'package:hananote/features/settings/data/repositories/settings_repository_impl.dart'
@@ -146,8 +166,16 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i260.AuthLocalDataSourceImpl(gh<_i558.FlutterSecureStorage>()));
     gh.lazySingleton<_i287.NotificationService>(() =>
         _i287.NotificationService(gh<_i163.FlutterLocalNotificationsPlugin>()));
+    gh.factory<_i484.PhotoCryptoService>(() => _i484.PhotoCryptoService(
+          gh<_i472.CryptoEngine>(),
+          gh<_i869.KeyManager>(),
+        ));
     gh.lazySingleton<_i59.SecureDatabase>(
         () => _i59.SecureDatabase(gh<_i869.KeyManager>()));
+    gh.factory<_i496.LoadPhotoFull>(
+        () => _i496.LoadPhotoFull(gh<_i484.PhotoCryptoService>()));
+    gh.factory<_i903.LoadPhotoThumbnail>(
+        () => _i903.LoadPhotoThumbnail(gh<_i484.PhotoCryptoService>()));
     gh.lazySingleton<_i1072.AuthRepository>(() => _i735.AuthRepositoryImpl(
           gh<_i260.AuthLocalDataSource>(),
           gh<_i869.KeyManager>(),
@@ -157,10 +185,14 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.lazySingleton<_i708.MeasurementLocalDataSource>(
         () => _i708.MeasurementLocalDataSourceImpl(gh<_i59.SecureDatabase>()));
+    gh.lazySingleton<_i432.PhotoLocalDataSource>(
+        () => _i432.PhotoLocalDataSourceImpl(gh<_i59.SecureDatabase>()));
     gh.lazySingleton<_i1047.MedicationLocalDataSource>(
         () => _i1047.MedicationLocalDataSourceImpl(gh<_i59.SecureDatabase>()));
     gh.lazySingleton<_i596.BloodTestLocalDataSource>(
         () => _i596.BloodTestLocalDataSourceImpl(gh<_i59.SecureDatabase>()));
+    gh.lazySingleton<_i203.PhotoRepository>(
+        () => _i763.PhotoRepositoryImpl(gh<_i432.PhotoLocalDataSource>()));
     gh.lazySingleton<_i929.JournalLocalDataSource>(
         () => _i929.JournalLocalDataSourceImpl(gh<_i59.SecureDatabase>()));
     gh.factory<_i465.ChangePin>(
@@ -206,11 +238,23 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i255.GetMeasurementHistory(gh<_i502.MeasurementRepository>()));
     gh.factory<_i1060.SaveMeasurement>(
         () => _i1060.SaveMeasurement(gh<_i502.MeasurementRepository>()));
+    gh.factory<_i210.DeletePhoto>(() => _i210.DeletePhoto(
+          gh<_i203.PhotoRepository>(),
+          gh<_i484.PhotoCryptoService>(),
+        ));
+    gh.factory<_i62.SavePhoto>(() => _i62.SavePhoto(
+          gh<_i203.PhotoRepository>(),
+          gh<_i484.PhotoCryptoService>(),
+        ));
     gh.factory<_i590.MeasurementBloc>(() => _i590.MeasurementBloc(
           gh<_i255.GetMeasurementHistory>(),
           gh<_i1060.SaveMeasurement>(),
           gh<_i469.DeleteMeasurement>(),
         ));
+    gh.factory<_i284.GetLatestPhoto>(
+        () => _i284.GetLatestPhoto(gh<_i203.PhotoRepository>()));
+    gh.factory<_i937.GetPhotoHistory>(
+        () => _i937.GetPhotoHistory(gh<_i203.PhotoRepository>()));
     gh.lazySingleton<_i1032.JournalRepository>(
         () => _i394.JournalRepositoryImpl(gh<_i929.JournalLocalDataSource>()));
     gh.lazySingleton<_i755.SettingsRepository>(

@@ -6,6 +6,7 @@ import 'package:hananote/core/database/tables/blood_test_tables.dart';
 import 'package:hananote/core/database/tables/journal_tables.dart';
 import 'package:hananote/core/database/tables/measurement_tables.dart';
 import 'package:hananote/core/database/tables/medication_tables.dart';
+import 'package:hananote/core/database/tables/photo_tables.dart';
 import 'package:hananote/core/error/failures.dart';
 import 'package:injectable/injectable.dart';
 import 'package:path/path.dart';
@@ -17,7 +18,7 @@ class SecureDatabase {
   /// Constructor for [SecureDatabase].
   SecureDatabase(this._keyManager);
 
-  static const int _databaseVersion = 2;
+  static const int _databaseVersion = 3;
 
   final KeyManager _keyManager;
   Database? _db;
@@ -119,6 +120,10 @@ class SecureDatabase {
       await db.execute(statement);
     }
 
+    for (final statement in PhotoTables.allCreateStatements) {
+      await db.execute(statement);
+    }
+
     for (final statement in MedicationTables.createIndices) {
       await db.execute(statement);
     }
@@ -134,6 +139,10 @@ class SecureDatabase {
     for (final statement in MeasurementTables.createIndices) {
       await db.execute(statement);
     }
+
+    for (final statement in PhotoTables.createIndices) {
+      await db.execute(statement);
+    }
   }
 
   Future<void> _runUpgradeMigrations(
@@ -147,6 +156,16 @@ class SecureDatabase {
       }
 
       for (final statement in MeasurementTables.createIndices) {
+        await db.execute(statement);
+      }
+    }
+
+    if (oldVersion < 3 && newVersion >= 3) {
+      for (final statement in PhotoTables.allCreateStatements) {
+        await db.execute(statement);
+      }
+
+      for (final statement in PhotoTables.createIndices) {
         await db.execute(statement);
       }
     }
