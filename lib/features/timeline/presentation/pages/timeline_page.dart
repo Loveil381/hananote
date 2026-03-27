@@ -1,10 +1,18 @@
-// ignore_for_file: public_member_api_docs
-
 import 'dart:ui';
-import 'package:flutter/material.dart';
-import 'package:hananote/app/theme/hana_colors.dart';
 
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hananote/app/theme/hana_colors.dart';
+import 'package:hananote/features/timeline/domain/entities/enums.dart';
+import 'package:hananote/features/timeline/domain/entities/timeline_event.dart';
+import 'package:hananote/features/timeline/presentation/bloc/timeline_bloc.dart';
+import 'package:hananote/features/timeline/presentation/bloc/timeline_event.dart';
+import 'package:hananote/features/timeline/presentation/bloc/timeline_state.dart';
+import 'package:intl/intl.dart';
+
+/// Timeline page showing aggregated cross-feature events.
 class TimelinePage extends StatelessWidget {
+  /// Creates a [TimelinePage].
   const TimelinePage({super.key});
 
   @override
@@ -28,7 +36,7 @@ class TimelinePage extends StatelessWidget {
                 onPressed: () {},
               ),
               title: const Text(
-                '成长轨迹',
+                '时间线',
                 style: TextStyle(
                   fontFamily: 'Plus Jakarta Sans',
                   fontWeight: FontWeight.w600,
@@ -52,156 +60,70 @@ class TimelinePage extends StatelessWidget {
       ),
       body: Stack(
         children: [
-          SingleChildScrollView(
-            child: Column(
-              children: [
-                const SizedBox(height: 100),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
-                  child: Row(
-                    children: [
-                      _buildPill('1月', true),
-                      const SizedBox(width: 8),
-                      _buildPill('3月', false),
-                      const SizedBox(width: 8),
-                      _buildPill('6月', false),
-                      const SizedBox(width: 8),
-                      _buildPill('1年', false),
-                      const SizedBox(width: 8),
-                      _buildPill('全部', false),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 32),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
-                  child: Stack(
-                    alignment: Alignment.topCenter,
-                    children: [
-                      Positioned.fill(
-                        child: Center(
-                          child: Container(
-                            width: 2,
-                            decoration: const BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [Color(0xFFFFB7C5), Color(0xFFFCD3FB)],
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
-                              ),
+          BlocBuilder<TimelineBloc, TimelineState>(
+            builder: (context, state) {
+              final selectedRange = switch (state) {
+                TimelineLoaded(:final selectedRange) => selectedRange,
+                _ => TimelineRange.oneMonth,
+              };
+
+              return SingleChildScrollView(
+                child: Column(
+                  children: [
+                    const SizedBox(height: 100),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      padding: const EdgeInsets.symmetric(horizontal: 24),
+                      child: Row(
+                        children: TimelineRange.values.indexed.map((entry) {
+                          final index = entry.$1;
+                          final range = entry.$2;
+
+                          return Padding(
+                            padding: EdgeInsets.only(
+                              right: index == TimelineRange.values.length - 1
+                                  ? 0
+                                  : 8,
                             ),
-                          ),
-                        ),
-                      ),
-                      Column(
-                        children: [
-                          const _TimelineCard(
-                            date: '2026.3.15',
-                            type: '里程碑',
-                            title: 'HRT 100 天',
-                            borderColor: Color(0xFFFFD700),
-                            icon: Icons.star,
-                            iconColor: Color(0xFFB8860B),
-                            isRight: true,
-                          ),
-                          const SizedBox(height: 48),
-                          _TimelineCard(
-                            date: '2026.2.20',
-                            type: '血液检测',
-                            title: '雌二醇 89→156 pg/mL',
-                            borderColor: const Color(0xFF4CAF50),
-                            icon: Icons.favorite,
-                            iconColor: const Color(0xFF4CAF50),
-                            isRight: false,
-                            extra: Container(
-                              margin: const EdgeInsets.only(top: 8),
-                              height: 16,
-                              decoration: BoxDecoration(
-                                color: const Color(0xFFE8F5E9),
-                                borderRadius: BorderRadius.circular(9999),
-                              ),
-                              child: LayoutBuilder(
-                                builder: (context, constraints) {
-                                  return Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: Container(
-                                      width: constraints.maxWidth * 0.67,
-                                      height: 16,
-                                      decoration: BoxDecoration(
-                                        color: const Color(0xFF4CAF50),
-                                        borderRadius:
-                                            BorderRadius.circular(9999),
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ),
+                            child: _RangePill(
+                              text: range.displayName,
+                              isSelected: range == selectedRange,
+                              onTap: () => context.read<TimelineBloc>().add(
+                                    TimelineBlocEvent.selectRange(range),
+                                  ),
                             ),
-                          ),
-                          const SizedBox(height: 48),
-                          const _TimelineCard(
-                            date: '2026.1.15',
-                            type: '身体变化',
-                            title: '胸围 +2.3cm (3个月)',
-                            borderColor: HanaColors.secondary,
-                            icon: Icons.straighten,
-                            iconColor: HanaColors.secondary,
-                            isRight: true,
-                          ),
-                          const SizedBox(height: 48),
-                          const _TimelineCard(
-                            date: '2025.12.15',
-                            type: '心情',
-                            title: '今天心情很好',
-                            borderColor: HanaColors.primaryContainer,
-                            icon: Icons.local_florist,
-                            iconColor: HanaColors.primary,
-                            isRight: false,
-                          ),
-                          const SizedBox(height: 32),
-                          Column(
-                            children: [
-                              Container(
-                                width: 40,
-                                height: 40,
-                                decoration: const BoxDecoration(
-                                  color: HanaColors.surfaceContainerHighest,
-                                  shape: BoxShape.circle,
-                                ),
-                                child: const Icon(
-                                  Icons.psychology,
-                                  color: HanaColors.primary,
-                                ),
-                              ),
-                              const SizedBox(height: 12),
-                              Text(
-                                '旅程开始 · 2025.12.01',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .labelSmall
-                                    ?.copyWith(
-                                      color: HanaColors.onSurfaceVariant,
-                                    ),
-                              ),
-                              const SizedBox(height: 16),
-                              Container(
-                                width: 8,
-                                height: 8,
-                                decoration: const BoxDecoration(
-                                  color: HanaColors.primary,
-                                  shape: BoxShape.circle,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
+                          );
+                        }).toList(),
                       ),
-                    ],
-                  ),
+                    ),
+                    const SizedBox(height: 32),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24),
+                      child: switch (state) {
+                        TimelineInitial() || TimelineLoading() =>
+                          const _TimelineLoadingView(),
+                        TimelineError(:final message) => _TimelineErrorView(
+                            message: message,
+                          ),
+                        TimelineLoaded(
+                          :final events,
+                          :final hrtStartDate,
+                        ) =>
+                          events.isEmpty
+                              ? _TimelineEmptyView(
+                                  hrtStartDate: hrtStartDate,
+                                )
+                              : _TimelineContent(
+                                  events: events,
+                                  hrtStartDate: hrtStartDate,
+                                ),
+                      },
+                    ),
+                    const SizedBox(height: 140),
+                  ],
                 ),
-                const SizedBox(height: 140),
-              ],
-            ),
+              );
+            },
           ),
           Positioned(
             bottom: 120,
@@ -242,35 +164,296 @@ class TimelinePage extends StatelessWidget {
       ),
     );
   }
+}
 
-  Widget _buildPill(String text, bool isSelected) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-      decoration: BoxDecoration(
-        color: isSelected
-            ? HanaColors.primaryContainer
-            : HanaColors.surfaceContainerHigh,
-        borderRadius: BorderRadius.circular(9999),
-        boxShadow: isSelected
-            ? [
-                BoxShadow(
-                  color: HanaColors.primaryContainer.withAlpha(51),
-                  blurRadius: 8,
-                  offset: const Offset(0, 2),
-                ),
-              ]
-            : null,
-      ),
-      child: Text(
-        text,
-        style: TextStyle(
-          fontSize: 12,
-          fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+class _RangePill extends StatelessWidget {
+  const _RangePill({
+    required this.text,
+    required this.isSelected,
+    required this.onTap,
+  });
+
+  final String text;
+  final bool isSelected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+        decoration: BoxDecoration(
           color: isSelected
-              ? HanaColors.onPrimaryContainer
-              : HanaColors.onSurfaceVariant,
+              ? HanaColors.primaryContainer
+              : HanaColors.surfaceContainerHigh,
+          borderRadius: BorderRadius.circular(9999),
+          boxShadow: isSelected
+              ? [
+                  BoxShadow(
+                    color: HanaColors.primaryContainer.withAlpha(51),
+                    blurRadius: 8,
+                    offset: const Offset(0, 2),
+                  ),
+                ]
+              : null,
+        ),
+        child: Text(
+          text,
+          style: TextStyle(
+            fontSize: 12,
+            fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+            color: isSelected
+                ? HanaColors.onPrimaryContainer
+                : HanaColors.onSurfaceVariant,
+          ),
         ),
       ),
+    );
+  }
+}
+
+class _TimelineContent extends StatelessWidget {
+  const _TimelineContent({
+    required this.events,
+    required this.hrtStartDate,
+  });
+
+  final List<TimelineEvent> events;
+  final DateTime? hrtStartDate;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      alignment: Alignment.topCenter,
+      children: [
+        Positioned.fill(
+          child: Center(
+            child: Container(
+              width: 2,
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [Color(0xFFFFB7C5), Color(0xFFFCD3FB)],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                ),
+              ),
+            ),
+          ),
+        ),
+        Column(
+          children: [
+            ...events.indexed.expand((entry) sync* {
+              final index = entry.$1;
+              final event = entry.$2;
+
+              yield _TimelineCard(
+                date: _formatDate(event.date),
+                type: event.type.displayName,
+                title: event.title,
+                subtitle: event.subtitle,
+                borderColor: event.type.borderColor,
+                icon: event.type.icon,
+                iconColor: event.type.iconColor,
+                isRight: index.isEven,
+                extra: _buildExtra(event),
+              );
+
+              if (index != events.length - 1) {
+                yield const SizedBox(height: 48);
+              }
+            }),
+            if (hrtStartDate != null) ...[
+              const SizedBox(height: 32),
+              _JourneyStartMarker(date: hrtStartDate!),
+            ],
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget? _buildExtra(TimelineEvent event) {
+    if (event.type != TimelineEventType.bloodTest) {
+      return null;
+    }
+
+    final targetRate = (event.metadata?['targetRate'] as num?)?.toDouble();
+    if (targetRate == null) {
+      return null;
+    }
+
+    final clampedRate = targetRate.clamp(0.0, 1.0);
+    return Container(
+      margin: const EdgeInsets.only(top: 12),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            '达标率 ${(clampedRate * 100).round()}%',
+            style: const TextStyle(
+              fontSize: 11,
+              fontWeight: FontWeight.w600,
+              color: HanaColors.onSurfaceVariant,
+            ),
+          ),
+          const SizedBox(height: 6),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(9999),
+            child: SizedBox(
+              height: 12,
+              child: Stack(
+                children: [
+                  Container(color: const Color(0xFFE8F5E9)),
+                  FractionallySizedBox(
+                    widthFactor: clampedRate,
+                    child: Container(color: const Color(0xFF4CAF50)),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  static String _formatDate(DateTime date) =>
+      DateFormat('yyyy.M.d').format(date);
+}
+
+class _TimelineLoadingView extends StatelessWidget {
+  const _TimelineLoadingView();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Padding(
+      padding: EdgeInsets.symmetric(vertical: 120),
+      child: Center(
+        child: CircularProgressIndicator(color: HanaColors.primary),
+      ),
+    );
+  }
+}
+
+class _TimelineErrorView extends StatelessWidget {
+  const _TimelineErrorView({required this.message});
+
+  final String message;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 120, horizontal: 24),
+      child: Column(
+        children: [
+          const Icon(
+            Icons.error_outline_rounded,
+            color: HanaColors.primary,
+            size: 28,
+          ),
+          const SizedBox(height: 12),
+          Text(
+            message,
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  color: HanaColors.onSurfaceVariant,
+                ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _TimelineEmptyView extends StatelessWidget {
+  const _TimelineEmptyView({required this.hrtStartDate});
+
+  final DateTime? hrtStartDate;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 40),
+      child: Column(
+        children: [
+          Container(
+            width: 72,
+            height: 72,
+            decoration: const BoxDecoration(
+              color: HanaColors.surfaceContainerHigh,
+              shape: BoxShape.circle,
+            ),
+            child: const Icon(
+              Icons.auto_stories_rounded,
+              color: HanaColors.primary,
+              size: 32,
+            ),
+          ),
+          const SizedBox(height: 20),
+          Text(
+            '你的故事即将开始 🌸',
+            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.w700,
+                  color: HanaColors.onSurface,
+                ),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            '当你记录服药、检测和心情后，这里会慢慢长成一条属于你的时间线。',
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  color: HanaColors.onSurfaceVariant,
+                ),
+          ),
+          if (hrtStartDate != null) ...[
+            const SizedBox(height: 40),
+            _JourneyStartMarker(date: hrtStartDate!),
+          ],
+        ],
+      ),
+    );
+  }
+}
+
+class _JourneyStartMarker extends StatelessWidget {
+  const _JourneyStartMarker({required this.date});
+
+  final DateTime date;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          width: 40,
+          height: 40,
+          decoration: const BoxDecoration(
+            color: HanaColors.surfaceContainerHighest,
+            shape: BoxShape.circle,
+          ),
+          child: const Icon(
+            Icons.psychology,
+            color: HanaColors.primary,
+          ),
+        ),
+        const SizedBox(height: 12),
+        Text(
+          '旅程开始 ${DateFormat('yyyy.MM.dd').format(date)}',
+          style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                color: HanaColors.onSurfaceVariant,
+              ),
+        ),
+        const SizedBox(height: 16),
+        Container(
+          width: 8,
+          height: 8,
+          decoration: const BoxDecoration(
+            color: HanaColors.primary,
+            shape: BoxShape.circle,
+          ),
+        ),
+      ],
     );
   }
 }
@@ -284,12 +467,14 @@ class _TimelineCard extends StatelessWidget {
     required this.icon,
     required this.iconColor,
     required this.isRight,
+    this.subtitle,
     this.extra,
   });
 
   final String date;
   final String type;
   final String title;
+  final String? subtitle;
   final Color borderColor;
   final IconData icon;
   final Color iconColor;
@@ -358,6 +543,17 @@ class _TimelineCard extends StatelessWidget {
                   color: HanaColors.onSurface,
                 ),
           ),
+          if (subtitle != null) ...[
+            const SizedBox(height: 6),
+            Text(
+              subtitle!,
+              textAlign: isRight ? TextAlign.left : TextAlign.right,
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: HanaColors.onSurfaceVariant,
+                    height: 1.4,
+                  ),
+            ),
+          ],
           if (extra != null) extra!,
         ],
       ),

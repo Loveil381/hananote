@@ -85,6 +85,10 @@ import 'package:hananote/features/settings/domain/usecases/wipe_all_data.dart'
     as _i135;
 import 'package:hananote/features/settings/presentation/bloc/settings_bloc.dart'
     as _i994;
+import 'package:hananote/features/timeline/domain/usecases/get_timeline_events.dart'
+    as _i965;
+import 'package:hananote/features/timeline/presentation/bloc/timeline_bloc.dart'
+    as _i116;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:local_auth/local_auth.dart' as _i152;
 
@@ -167,6 +171,12 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i910.GetJournalStreak(gh<_i1032.JournalRepository>()));
     gh.factory<_i628.UpdateJournalEntry>(
         () => _i628.UpdateJournalEntry(gh<_i1032.JournalRepository>()));
+    gh.factory<_i965.GetTimelineEvents>(() => _i965.GetTimelineEvents(
+          gh<_i160.MedicationRepository>(),
+          gh<_i979.BloodTestRepository>(),
+          gh<_i1032.JournalRepository>(),
+          gh<_i755.SettingsRepository>(),
+        ));
     gh.factory<_i798.AddBloodTestReport>(
         () => _i798.AddBloodTestReport(gh<_i979.BloodTestRepository>()));
     gh.factory<_i712.GetAllBloodTestReports>(
@@ -176,6 +186,10 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i14.TodayScheduleBloc>(() => _i14.TodayScheduleBloc(
           gh<_i336.GetTodaySchedule>(),
           gh<_i1050.LogMedication>(),
+        ));
+    gh.factory<_i116.TimelineBloc>(() => _i116.TimelineBloc(
+          gh<_i965.GetTimelineEvents>(),
+          gh<_i755.SettingsRepository>(),
         ));
     gh.factory<_i1026.BloodTestBloc>(() => _i1026.BloodTestBloc(
           getAllReports: gh<_i712.GetAllBloodTestReports>(),
