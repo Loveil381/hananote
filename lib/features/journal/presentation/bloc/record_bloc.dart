@@ -3,20 +3,27 @@ import 'package:hananote/features/journal/domain/repositories/journal_repository
 import 'package:hananote/features/journal/domain/usecases/get_journal_streak.dart';
 import 'package:hananote/features/journal/presentation/bloc/record_event.dart';
 import 'package:hananote/features/journal/presentation/bloc/record_state.dart';
+import 'package:hananote/features/measurement/domain/entities/measurement_entry.dart';
+import 'package:hananote/features/measurement/domain/entities/measurement_type.dart';
+import 'package:hananote/features/measurement/domain/repositories/measurement_repository.dart';
 import 'package:injectable/injectable.dart';
 
 /// Bloc for RecordPage to display dynamic streak and latest records
 @lazySingleton
 class RecordBloc extends Bloc<RecordEvent, RecordState> {
   /// Creates a [RecordBloc]
-  RecordBloc(this._getJournalStreak, this._repository)
-      : super(const RecordState.initial()) {
+  RecordBloc(
+    this._getJournalStreak,
+    this._repository,
+    this._measurementRepository,
+  ) : super(const RecordState.initial()) {
     on<LoadRecordSummary>(_onLoadRecordSummary);
     on<RefreshRecordSummary>(_onRefreshRecordSummary);
   }
 
   final GetJournalStreak _getJournalStreak;
   final JournalRepository _repository;
+  final MeasurementRepository _measurementRepository;
 
   Future<void> _onLoadRecordSummary(
     LoadRecordSummary event,
@@ -40,13 +47,25 @@ class RecordBloc extends Bloc<RecordEvent, RecordState> {
       (entry) => lastJournalDate = entry?.date,
     );
 
+    final latestMeasurementResult = await _measurementRepository.getLatest();
+    DateTime? lastMeasurementDate;
+    String? lastMeasurementSummary;
+    latestMeasurementResult.fold(
+      (failure) => null,
+      (entry) {
+        lastMeasurementDate = entry?.date;
+        lastMeasurementSummary =
+            entry == null ? null : _buildMeasurementSummary(entry);
+      },
+    );
+
     emit(
       RecordState.loaded(
         journalStreak: streak,
         lastJournalDate: lastJournalDate,
         lastPhotoDate: null,
-        lastMeasurementDate: null,
-        lastMeasurementSummary: null,
+        lastMeasurementDate: lastMeasurementDate,
+        lastMeasurementSummary: lastMeasurementSummary,
       ),
     );
   }
@@ -56,5 +75,38 @@ class RecordBloc extends Bloc<RecordEvent, RecordState> {
     Emitter<RecordState> emit,
   ) async {
     add(const RecordEvent.loadSummary());
+  }
+
+  static String? _buildMeasurementSummary(MeasurementEntry entry) {
+    final parts = <String>[];
+    for (final type in MeasurementTypes.summary) {
+      final value = entry.valueFor(type);
+      if (value != null) {
+        parts.add(
+          '${_summaryLabel(type)}: ${_formatValue(value)}${type.unit}',
+        );
+      }
+    }
+
+    if (parts.isEmpty) {
+      return null;
+    }
+
+    return parts.join(' · ');
+  }
+
+  static String _summaryLabel(MeasurementType type) {
+    return switch (type) {
+      MeasurementType.bust => '胸',
+      MeasurementType.waist => '腰',
+      MeasurementType.hip => '臀',
+      _ => type.displayName,
+    };
+  }
+
+  static String _formatValue(double value) {
+    return value == value.roundToDouble()
+        ? value.toStringAsFixed(0)
+        : value.toStringAsFixed(1);
   }
 }

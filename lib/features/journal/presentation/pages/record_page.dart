@@ -137,6 +137,7 @@ class RecordPage extends StatelessWidget {
                   tagBgColor: HanaColors.secondaryContainer.withAlpha(128),
                   bgIcon: Icons.show_chart,
                   bgIconRotation: -12 * 3.14159 / 180,
+                  onTap: () => context.push('/measurement'),
                 ),
                 const SizedBox(height: 24),
                 _RecordEntryCard(

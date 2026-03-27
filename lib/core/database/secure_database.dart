@@ -4,6 +4,7 @@ import 'package:fpdart/fpdart.dart';
 import 'package:hananote/core/crypto/key_manager.dart';
 import 'package:hananote/core/database/tables/blood_test_tables.dart';
 import 'package:hananote/core/database/tables/journal_tables.dart';
+import 'package:hananote/core/database/tables/measurement_tables.dart';
 import 'package:hananote/core/database/tables/medication_tables.dart';
 import 'package:hananote/core/error/failures.dart';
 import 'package:injectable/injectable.dart';
@@ -15,6 +16,8 @@ import 'package:sqflite_sqlcipher/sqflite.dart';
 class SecureDatabase {
   /// Constructor for [SecureDatabase].
   SecureDatabase(this._keyManager);
+
+  static const int _databaseVersion = 2;
 
   final KeyManager _keyManager;
   Database? _db;
@@ -58,9 +61,12 @@ class SecureDatabase {
       _db = await openDatabase(
         path,
         password: dbPassword,
-        version: 1,
+        version: _databaseVersion,
         onCreate: (db, version) async {
           await _runInitialMigrations(db);
+        },
+        onUpgrade: (db, oldVersion, newVersion) async {
+          await _runUpgradeMigrations(db, oldVersion, newVersion);
         },
       );
 
@@ -109,6 +115,10 @@ class SecureDatabase {
       await db.execute(statement);
     }
 
+    for (final statement in MeasurementTables.allCreateStatements) {
+      await db.execute(statement);
+    }
+
     for (final statement in MedicationTables.createIndices) {
       await db.execute(statement);
     }
@@ -119,6 +129,26 @@ class SecureDatabase {
 
     for (final statement in JournalTables.createIndices) {
       await db.execute(statement);
+    }
+
+    for (final statement in MeasurementTables.createIndices) {
+      await db.execute(statement);
+    }
+  }
+
+  Future<void> _runUpgradeMigrations(
+    Database db,
+    int oldVersion,
+    int newVersion,
+  ) async {
+    if (oldVersion < 2 && newVersion >= 2) {
+      for (final statement in MeasurementTables.allCreateStatements) {
+        await db.execute(statement);
+      }
+
+      for (final statement in MeasurementTables.createIndices) {
+        await db.execute(statement);
+      }
     }
   }
 }
