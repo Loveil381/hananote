@@ -71,6 +71,18 @@ import 'package:hananote/features/medication/domain/usecases/log_medication.dart
     as _i1050;
 import 'package:hananote/features/medication/presentation/bloc/today_schedule_bloc.dart'
     as _i14;
+import 'package:hananote/features/settings/data/datasources/settings_local_datasource.dart'
+    as _i843;
+import 'package:hananote/features/settings/data/repositories/settings_repository_impl.dart'
+    as _i1024;
+import 'package:hananote/features/settings/domain/repositories/settings_repository.dart'
+    as _i755;
+import 'package:hananote/features/settings/domain/usecases/get_profile_dashboard.dart'
+    as _i287;
+import 'package:hananote/features/settings/domain/usecases/update_app_settings.dart'
+    as _i695;
+import 'package:hananote/features/settings/domain/usecases/wipe_all_data.dart'
+    as _i135;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:local_auth/local_auth.dart' as _i152;
 
@@ -132,8 +144,19 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i336.GetTodaySchedule(gh<_i160.MedicationRepository>()));
     gh.factory<_i1050.LogMedication>(
         () => _i1050.LogMedication(gh<_i160.MedicationRepository>()));
+    gh.lazySingleton<_i843.SettingsLocalDataSource>(
+        () => _i843.SettingsLocalDataSourceImpl(
+              gh<_i558.FlutterSecureStorage>(),
+              gh<_i1047.MedicationLocalDataSource>(),
+              gh<_i160.MedicationRepository>(),
+            ));
     gh.lazySingleton<_i1032.JournalRepository>(
         () => _i394.JournalRepositoryImpl(gh<_i929.JournalLocalDataSource>()));
+    gh.lazySingleton<_i755.SettingsRepository>(
+        () => _i1024.SettingsRepositoryImpl(
+              gh<_i843.SettingsLocalDataSource>(),
+              gh<_i1072.AuthRepository>(),
+            ));
     gh.factory<_i1022.AddJournalEntry>(
         () => _i1022.AddJournalEntry(gh<_i1032.JournalRepository>()));
     gh.factory<_i73.GetAllJournalEntries>(
@@ -156,6 +179,12 @@ extension GetItInjectableX on _i174.GetIt {
           getAllReports: gh<_i712.GetAllBloodTestReports>(),
           getTrend: gh<_i341.GetHormoneTrend>(),
         ));
+    gh.factory<_i287.GetProfileDashboard>(
+        () => _i287.GetProfileDashboard(gh<_i755.SettingsRepository>()));
+    gh.factory<_i695.UpdateAppSettings>(
+        () => _i695.UpdateAppSettings(gh<_i755.SettingsRepository>()));
+    gh.factory<_i135.WipeAllData>(
+        () => _i135.WipeAllData(gh<_i755.SettingsRepository>()));
     gh.lazySingleton<_i697.RecordBloc>(() => _i697.RecordBloc(
           gh<_i910.GetJournalStreak>(),
           gh<_i1032.JournalRepository>(),
