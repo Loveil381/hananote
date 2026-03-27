@@ -30,6 +30,7 @@ dependencies:
   path: any
   pointycastle: ^3.9.0
   sqflite_sqlcipher: ^3.1.0
+  timezone: any
 
 dev_dependencies:
   bloc_test: any

@@ -9,6 +9,7 @@ extension FailureX on Failure {
         CryptoFailure(:final message) => message,
         StorageFailure(:final message) => message,
         AuthFailure(:final message) => message,
+        NotificationFailure(:final message) => message,
         ValidationFailure(:final message) => message,
         UnexpectedFailure(:final message) => message,
       };

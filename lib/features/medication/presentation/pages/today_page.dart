@@ -191,30 +191,23 @@ class TodayPage extends StatelessWidget {
 
         final widgets = <Widget>[];
 
-        // Countdown Card
-        if (upcoming != null) {
-          final diff = upcomingTime.difference(now);
-          final isOverdue = diff.isNegative;
-          final hours = isOverdue ? 0 : diff.inHours;
-          final minutes = isOverdue ? 0 : diff.inMinutes % 60;
-
-          widgets.addAll([
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: CountdownCard(
-                  hours: hours,
-                  minutes: minutes,
-                  drugName: upcoming.drug.name,
-                  dosage: '${upcoming.schedule.dosageAmount}'
-                      '${upcoming.schedule.dosageUnit.name}',
-                  route: upcoming.schedule.administrationRoute.name,
-                ),
+        final countdownDrug = upcoming ?? items.first;
+        widgets.addAll([
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: CountdownCard(
+                nextScheduledTime: upcomingTime,
+                isCompleteForToday: uncompletedItems.isEmpty,
+                drugName: countdownDrug.drug.name,
+                dosage: '${countdownDrug.schedule.dosageAmount}'
+                    '${countdownDrug.schedule.dosageUnit.name}',
+                route: countdownDrug.schedule.administrationRoute.name,
               ),
             ),
-            const SliverToBoxAdapter(child: SizedBox(height: 32)),
-          ]);
-        }
+          ),
+          const SliverToBoxAdapter(child: SizedBox(height: 32)),
+        ]);
 
         // Completed Section
         final completedItems = items.where((i) => i.isCompleted).toList();
