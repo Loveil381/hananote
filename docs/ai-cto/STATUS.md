@@ -1,8 +1,8 @@
 # HanaNote 项目状态
-## 当前轮次: #15
-## 当前阶段: BloodTest 数据绑定 + 隐私功能收尾
-## 产品完成度: 62%
-## 数据绑定进度: 3/5
+## 当前轮次: #17
+## 当前阶段: Settings 数据绑定 + 质量修复
+## 产品完成度: 70%
+## 数据绑定进度: 4/5
 
 ## 已完成功能
 | 模块 | 状态 | 说明 |
@@ -21,6 +21,7 @@
 | Data Tab UI | ✅ | 激素指标卡片, 趋势图 (fl_chart), 历史记录列表 |
 | BloodTest 全栈 | ✅ | entity → repository → usecase → bloc → UI，Data Tab 接入真实数据 |
 | Profile Tab UI | ✅ | 头像+渐变环, 药物管理网格, 隐私设置, 数据操作, 关于 |
+| Settings feature | ✅ | UserProfile/AppSettings + SettingsBloc + Profile Tab 数据绑定 |
 | 应用切换模糊遮罩 | ✅ | DEC-006 隐私增强已落地，修复上轮状态遗漏 |
 | CryptoEngine | ✅ | AES-256-GCM + AAD 支持, isolate 加密, 单元测试 |
 | KeyManager | ✅ | Argon2id (64MB/3iter/4par), 常量时间比较, 单元测试 |
@@ -32,7 +33,6 @@
 |------|------|------|
 | Record Tab 数据绑定（Phase 1 — Journal） | ✅ | RecordBloc 驱动 Journal streak + latest entry |
 | Timeline Tab 跨功能数据聚合 | 🟠 P1 | medication/blood_test/measurement |
-| Profile Tab 接入 SettingsCubit | 🟠 P1 | 开关/备份/清除功能接入 |
 | 提醒/通知系统 | 🟡 P2 | flutter_local_notifications |
 | PK 药代动力学模拟器 | 🟡 P2 | 参考 estrannaise.js 3-compartment 模型 |
 | Today Tab 实时倒计时 Timer | 🟡 P2 | 当前倒计时不实时刷新 |
@@ -44,7 +44,7 @@
 | 记录 | /record | journal | ✅ 完成 | ✅ 完成（Phase 1 — Journal） |
 | 轨迹 | /timeline | timeline | ✅ 完成 | ⏳ 待做 |
 | 数据 | /data | blood_test | ✅ 完成 | ✅ 完成 |
-| 我的 | /profile | settings | ✅ 完成 | ⏳ 待做 |
+| 我的 | /profile | settings | ✅ 完成 | ✅ 完成 |
 
 ## 加密链路状态
 | 组件 | 状态 | 说明 |

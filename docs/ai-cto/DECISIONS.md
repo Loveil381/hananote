@@ -93,3 +93,11 @@
 ## DEC-017: 日记编辑页直接注入 UseCase 而非创建独立 Bloc
 - **决定**: 日记编辑页直接注入 UseCase 而非创建独立 Bloc，因为编辑页是一次性操作页面，不需要持续状态管理。
 - **日期**: round 16
+
+## DEC-018: Settings feature 使用 FlutterSecureStorage 存储简单配置
+- **决定**: Settings feature 使用 FlutterSecureStorage（key-value）而非 SQLite 存储 UserProfile 和 AppSettings，因为这些是非关系型简单配置数据，不需要 SQL 查询能力。
+- **日期**: round 17
+
+## DEC-019: RecordBloc 改为 lazySingleton 修复刷新链路
+- **决定**: RecordBloc 从 @injectable 改为 @lazySingleton，确保 JournalEditPage 保存后能正确触发 RecordPage 刷新。此为 Round 16 的 bug fix。
+- **日期**: round 17

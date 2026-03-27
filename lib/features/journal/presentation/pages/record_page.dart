@@ -17,11 +17,11 @@ class RecordPage extends StatelessWidget {
     return BlocBuilder<RecordBloc, RecordState>(
       builder: (context, state) {
         final todayStr = DateFormat('M月d日').format(DateTime.now());
-        
+
         var moodTag = '开始你的第一篇日记';
         var photoTag = '还没有拍照记录';
         var measureTag = '还没有测量记录';
-        
+
         state.mapOrNull(
           loaded: (loadedState) {
             if (loadedState.journalStreak > 0) {
@@ -84,110 +84,110 @@ class RecordPage extends StatelessWidget {
                       ),
                     ],
                   ),
-              actions: [
-                IconButton(
-                  icon:
-                      const Icon(Icons.history_edu, color: HanaColors.primary),
-                  onPressed: () {},
+                  actions: [
+                    IconButton(
+                      icon: const Icon(Icons.history_edu,
+                          color: HanaColors.primary,),
+                      onPressed: () {},
+                    ),
+                  ],
                 ),
+              ),
+            ),
+          ),
+          body: SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const SizedBox(height: 100),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: Text(
+                    '你好，\n今天想留下什么回忆？',
+                    style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                          fontFamily: 'Plus Jakarta Sans',
+                          fontWeight: FontWeight.w800,
+                          color: HanaColors.primary,
+                          letterSpacing: -0.5,
+                          height: 1.2,
+                        ),
+                  ),
+                ),
+                const SizedBox(height: 32),
+                _RecordEntryCard(
+                  icon: Icons.camera_alt,
+                  title: '拍照记录',
+                  subtitle: '加密存储，只有你能看到',
+                  tag: photoTag,
+                  accentColor: HanaColors.primaryContainer,
+                  tagBgColor: HanaColors.primaryContainer.withAlpha(77),
+                  bgIcon: Icons.photo_library,
+                  bgIconRotation: 12 * 3.14159 / 180,
+                ),
+                const SizedBox(height: 24),
+                _RecordEntryCard(
+                  icon: Icons.straighten,
+                  title: '身体测量',
+                  subtitle: '记录身体的每一点变化',
+                  tag: measureTag,
+                  accentColor: HanaColors.secondaryContainer,
+                  tagBgColor: HanaColors.secondaryContainer.withAlpha(128),
+                  bgIcon: Icons.show_chart,
+                  bgIconRotation: -12 * 3.14159 / 180,
+                ),
+                const SizedBox(height: 24),
+                _RecordEntryCard(
+                  icon: Icons.menu_book,
+                  title: '心情日记',
+                  subtitle: '今天想说点什么',
+                  tag: moodTag,
+                  accentColor: HanaColors.surfaceContainerHigh,
+                  tagBgColor: HanaColors.surfaceContainerHigh,
+                  bgIcon: Icons.auto_stories,
+                  bgIconRotation: 6 * 3.14159 / 180,
+                  onTap: () => context.push('/journal/edit'),
+                ),
+                const SizedBox(height: 48),
+                Center(
+                  child: Stack(
+                    alignment: Alignment.topRight,
+                    children: [
+                      Icon(
+                        Icons.spa,
+                        size: 64,
+                        color: HanaColors.primary.withAlpha(77),
+                      ),
+                      Positioned(
+                        top: 0,
+                        right: 0,
+                        child: Container(
+                          width: 12,
+                          height: 12,
+                          decoration: const BoxDecoration(
+                            color: HanaColors.primaryContainer,
+                            shape: BoxShape.circle,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 16),
+                Center(
+                  child: Text(
+                    '每一次记录都是对未来的温柔期许',
+                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                          color: HanaColors.primary.withAlpha(153),
+                          letterSpacing: 2,
+                        ),
+                  ),
+                ),
+                const SizedBox(height: 120),
               ],
             ),
           ),
-        ),
-      ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const SizedBox(height: 100),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: Text(
-                '你好，\n今天想留下什么回忆？',
-                style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                      fontFamily: 'Plus Jakarta Sans',
-                      fontWeight: FontWeight.w800,
-                      color: HanaColors.primary,
-                      letterSpacing: -0.5,
-                      height: 1.2,
-                    ),
-              ),
-            ),
-            const SizedBox(height: 32),
-            _RecordEntryCard(
-              icon: Icons.camera_alt,
-              title: '拍照记录',
-              subtitle: '加密存储，只有你能看到',
-              tag: photoTag,
-              accentColor: HanaColors.primaryContainer,
-              tagBgColor: HanaColors.primaryContainer.withAlpha(77),
-              bgIcon: Icons.photo_library,
-              bgIconRotation: 12 * 3.14159 / 180,
-            ),
-            const SizedBox(height: 24),
-            _RecordEntryCard(
-              icon: Icons.straighten,
-              title: '身体测量',
-              subtitle: '记录身体的每一点变化',
-              tag: measureTag,
-              accentColor: HanaColors.secondaryContainer,
-              tagBgColor: HanaColors.secondaryContainer.withAlpha(128),
-              bgIcon: Icons.show_chart,
-              bgIconRotation: -12 * 3.14159 / 180,
-            ),
-            const SizedBox(height: 24),
-            _RecordEntryCard(
-              icon: Icons.menu_book,
-              title: '心情日记',
-              subtitle: '今天想说点什么',
-              tag: moodTag,
-              accentColor: HanaColors.surfaceContainerHigh,
-              tagBgColor: HanaColors.surfaceContainerHigh,
-              bgIcon: Icons.auto_stories,
-              bgIconRotation: 6 * 3.14159 / 180,
-              onTap: () => context.push('/journal/edit'),
-            ),
-            const SizedBox(height: 48),
-            Center(
-              child: Stack(
-                alignment: Alignment.topRight,
-                children: [
-                  Icon(
-                    Icons.spa,
-                    size: 64,
-                    color: HanaColors.primary.withAlpha(77),
-                  ),
-                  Positioned(
-                    top: 0,
-                    right: 0,
-                    child: Container(
-                      width: 12,
-                      height: 12,
-                      decoration: const BoxDecoration(
-                        color: HanaColors.primaryContainer,
-                        shape: BoxShape.circle,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 16),
-            Center(
-              child: Text(
-                '每一次记录都是对未来的温柔期许',
-                style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                      color: HanaColors.primary.withAlpha(153),
-                      letterSpacing: 2,
-                    ),
-              ),
-            ),
-            const SizedBox(height: 120),
-          ],
-        ),
-      ),
-    );
+        );
       },
     );
   }
