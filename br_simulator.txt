@@ -1,0 +1,27 @@
+﻿  Generating the build script.
+  Reading the asset graph.
+  Checking for updates.
+  Updating the asset graph.
+  Building, incremental build.
+  0s freezed on 211 inputs; lib/app/app.dart
+  0s freezed on 211 inputs: 1 skipped; lib/app/di/injection.dart
+W SDK language version 3.10.0 is newer than `analyzer` language version 3.9.0. Run `flutter packages upgrade`.
+  3s freezed on 211 inputs: 130 skipped, 1 same; spent 2sﾂanalyzing; lib/features/simulator/domain/entities/ester_type.dart
+  5s freezed on 211 inputs: 132 skipped, 1 output, 2 same, 3 no-op; spent 3sﾂanalyzing; lib/features/simulator/domain/usecases/run_pk_simulation.dart
+  21s freezed on 211 inputs: 132 skipped, 2 output, 2 same, 4 no-op; spent 16sﾂanalyzing, 3sﾂresolving; lib/features/simulator/presentation/blocs/simulator_event.dart
+  21s freezed on 211 inputs: 200 skipped, 2 output, 2 same, 7 no-op; spent 16sﾂanalyzing, 3sﾂresolving
+  0s json_serializable on 422 inputs; lib/app/app.dart
+  1s json_serializable on 422 inputs: 269 skipped, 10 no-op; lib/features/simulator/presentation/blocs/simulator_bloc.freezed.dart
+  4s json_serializable on 422 inputs: 395 skipped, 14 no-op; spent 2sﾂanalyzing, 1sﾂtracking; test/features/simulator/domain/run_pk_simulation_test.freezed.dart
+  4s json_serializable on 422 inputs: 405 skipped, 17 no-op; spent 2sﾂanalyzing, 1sﾂtracking
+  0s source_gen:combining_builder on 422 inputs; lib/app/app.dart
+  1s source_gen:combining_builder on 422 inputs: 239 skipped; lib/features/settings/data/repositories/settings_repository_impl.freezed.dart
+  1s source_gen:combining_builder on 422 inputs: 418 skipped, 4 no-op; spent 1sﾂtracking
+  0s injectable_generator:injectable_builder on 844 inputs; lib/app/app.dart
+  0s injectable_generator:injectable_builder on 844 inputs: 827 skipped, 1 output, 2 same, 14 no-op
+  0s injectable_generator:injectable_config_builder on 844 inputs; lib/app/app.dart
+  1s injectable_generator:injectable_config_builder on 844 inputs: 4 skipped, 1 output; lib/app/di/injection.freezed.dart
+  1s injectable_generator:injectable_config_builder on 844 inputs: 830 skipped, 1 output, 13 no-op
+  Running the post build.
+  Writing the asset graph.
+  Built with build_runner in 32s; wrote 8 outputs.

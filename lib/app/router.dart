@@ -18,6 +18,7 @@ import 'package:hananote/features/medication/presentation/pages/schedule_editor_
 import 'package:hananote/features/medication/presentation/pages/today_page.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_bloc.dart';
 import 'package:hananote/features/settings/presentation/pages/profile_page.dart';
+import 'package:hananote/features/simulator/presentation/pages/simulator_page.dart';
 import 'package:hananote/features/timeline/presentation/bloc/timeline_bloc.dart';
 import 'package:hananote/features/timeline/presentation/bloc/timeline_event.dart';
 import 'package:hananote/features/timeline/presentation/pages/timeline_page.dart';
@@ -113,6 +114,11 @@ final GoRouter appRouter = GoRouter(
       path: '/journal/edit',
       parentNavigatorKey: _rootNavigatorKey,
       builder: (context, state) => const JournalEditPage(),
+    ),
+    GoRoute(
+      path: '/data/simulator',
+      parentNavigatorKey: _rootNavigatorKey,
+      builder: (context, state) => const SimulatorPage(),
     ),
   ],
 );

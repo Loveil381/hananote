@@ -1,6 +1,9 @@
 import 'dart:math' as math;
 
+import 'package:hananote/features/simulator/domain/entities/dosing_regimen.dart';
+import 'package:hananote/features/simulator/domain/entities/ester_type.dart';
 import 'package:hananote/features/simulator/domain/entities/hana_pk_params.dart';
+import 'package:hananote/features/simulator/domain/entities/pk_result.dart';
 import 'package:hananote/features/simulator/domain/entities/route_params.dart';
 import 'package:hananote/features/simulator/domain/services/pk_engine.dart';
 
@@ -213,4 +216,221 @@ class HanaPkEngine {
   }
 
   double _clamp(double v) => v.isFinite && v > 0 ? v : 0;
+
+  // ---------------------------------------------------------------------------
+  // Full Simulation Wrapper (Mirrors PkEngine)
+  // ---------------------------------------------------------------------------
+
+  /// Calculates plasma concentration (pg/mL) at [tH] hours.
+  double concentrationAt(
+    double tH,
+    DosingRegimen regimen, {
+    HanaPkParams? paramsOverride,
+    double vdPerKg = 2.0,
+  }) {
+    if (tH <= 0) return 0;
+    final params = paramsOverride ?? regimen.esterType.hanaPkDefaults;
+    if (params == null) {
+      // Fallback to PkEngine for patch/gel
+      return _pkEngine.concentrationAt(
+        tH,
+        regimen,
+        regimen.esterType.defaultParameters,
+        vdPerKg: vdPerKg,
+      );
+    }
+    final amountMg = _multiDoseAmount(tH, regimen, params);
+    return _amountToConcentrationPgMl(
+      amountMg,
+      bodyWeightKg: regimen.bodyWeightKg ?? 65,
+      vdPerKg: vdPerKg,
+    );
+  }
+
+  double _multiDoseAmount(
+    double tH,
+    DosingRegimen regimen,
+    HanaPkParams params,
+  ) {
+    if (tH <= 0) return 0;
+    final intervalHours = regimen.intervalDays * 24;
+    var total = 0.0;
+    for (var doseTime = 0.0; doseTime <= tH + 1e-6; doseTime += intervalHours) {
+      total += _singleDoseAmount(tH - doseTime, regimen.doseAmount, params);
+    }
+    return _clamp(total);
+  }
+
+  double _singleDoseAmount(double tH, double dose, HanaPkParams params) {
+    if (tH <= 0 || dose <= 0) return 0;
+    return switch (params) {
+      WeibullInjectionParams() => weibullInjection(tH, dose, params),
+      OralE1SParams() => oralWithE1SReservoir(tH, dose, params),
+      HanaSublingualParams() => sublingualHanaDualPath(tH, dose, params),
+    };
+  }
+
+  /// Runs a complete simulation using Hana-PK logic.
+  PkSimulationResult simulate(
+    DosingRegimen regimen, {
+    HanaPkParams? paramsOverride,
+    int durationDays = 90,
+    int pointsPerDay = 24,
+    double vdPerKg = 2,
+  }) {
+    final params = paramsOverride ?? regimen.esterType.hanaPkDefaults;
+    if (params == null) {
+      return _pkEngine.simulate(
+        regimen,
+        paramsOverride: regimen.esterType.defaultParameters,
+        durationDays: durationDays,
+        pointsPerDay: pointsPerDay,
+        vdPerKg: vdPerKg,
+      );
+    }
+
+    final intervalHours = regimen.intervalDays * 24;
+    final totalPoints = durationDays * pointsPerDay;
+    final pointStepHours = 24 / pointsPerDay;
+    final totalDurationHours = durationDays * 24.0;
+
+    final curvePoints = List<PkCurvePoint>.generate(totalPoints, (index) {
+      final timeHours = index * pointStepHours;
+      return PkCurvePoint(
+        time: timeHours,
+        concentration: concentrationAt(
+          timeHours,
+          regimen,
+          paramsOverride: params,
+          vdPerKg: vdPerKg,
+        ),
+        dateTime: regimen.startDate.add(
+          Duration(milliseconds: (timeHours * 3600 * 1000).round()),
+        ),
+      );
+    });
+
+    final steadySamples = math.max(240, pointsPerDay * 10);
+    final steadyCurve = _steadyStateProfile(
+      regimen,
+      params,
+      intervalHours: intervalHours,
+      totalDurationHours: totalDurationHours,
+      vdPerKg: vdPerKg,
+      samples: steadySamples,
+    );
+    final steadyStateStartHours =
+        math.max(0, totalDurationHours - intervalHours);
+    final troughTime = intervalHours - 0.5; // Probe trough just before next dose
+    
+    final steadyStateTrough = concentrationAt(
+      steadyStateStartHours + troughTime,
+      regimen,
+      paramsOverride: params,
+      vdPerKg: vdPerKg,
+    );
+    final steadyStatePeak = steadyCurve.fold<double>(
+      0,
+      (currentPeak, point) => math.max(currentPeak, point.concentration),
+    );
+    final aucPerInterval = _integrateAuc(steadyCurve);
+
+    return PkSimulationResult(
+      curvePoints: curvePoints,
+      steadyStateTrough: steadyStateTrough,
+      steadyStatePeak: steadyStatePeak,
+      steadyStateAverage: intervalHours <= 0
+          ? 0
+          : _clamp(aucPerInterval / intervalHours),
+      timeToSteadyState: _estimateTimeToSteadyState(
+        regimen,
+        params,
+        vdPerKg: vdPerKg,
+      ),
+      aucPerInterval: aucPerInterval,
+      regimen: regimen,
+    );
+  }
+
+  List<PkCurvePoint> _steadyStateProfile(
+    DosingRegimen regimen,
+    HanaPkParams params, {
+    required double intervalHours,
+    required double totalDurationHours,
+    required double vdPerKg,
+    required int samples,
+  }) {
+    final stepHours = intervalHours / samples;
+    final steadyStateStartHours =
+        math.max(0, totalDurationHours - intervalHours);
+
+    return List<PkCurvePoint>.generate(samples, (index) {
+      final phaseHours = index * stepHours;
+      final concentration = concentrationAt(
+        steadyStateStartHours + phaseHours,
+        regimen,
+        paramsOverride: params,
+        vdPerKg: vdPerKg,
+      );
+
+      return PkCurvePoint(
+        time: phaseHours,
+        concentration: concentration,
+        dateTime: regimen.startDate.add(
+          Duration(
+            milliseconds:
+                ((steadyStateStartHours + phaseHours) * 3600 * 1000).round(),
+          ),
+        ),
+      );
+    });
+  }
+
+  double _estimateTimeToSteadyState(
+    DosingRegimen regimen,
+    HanaPkParams params, {
+    required double vdPerKg,
+  }) {
+    final intervalHours = regimen.intervalDays * 24;
+    double? previousTrough;
+    for (var cycle = 1; cycle <= 20; cycle++) {
+      final troughTime = cycle * intervalHours - 0.5;
+      final currentTrough = concentrationAt(
+        troughTime,
+        regimen,
+        paramsOverride: params,
+        vdPerKg: vdPerKg,
+      );
+      if (previousTrough != null) {
+        final baseline = math.max(previousTrough.abs(), 1e-6);
+        final delta = (currentTrough - previousTrough).abs() / baseline;
+        if (delta < 0.05) {
+          return troughTime / 24;
+        }
+      }
+      previousTrough = currentTrough;
+    }
+    return 20 * regimen.intervalDays;
+  }
+
+  double _integrateAuc(List<PkCurvePoint> curve) {
+    if (curve.length < 2) return 0;
+    var auc = 0.0;
+    for (var i = 1; i < curve.length; i++) {
+      final prev = curve[i - 1];
+      final curr = curve[i];
+      final delta = curr.time - prev.time;
+      auc += (prev.concentration + curr.concentration) * 0.5 * delta;
+    }
+    return auc;
+  }
+
+  double _amountToConcentrationPgMl(
+    double amountMg, {
+    required double bodyWeightKg,
+    required double vdPerKg,
+  }) {
+    final volumeLiters = math.max(bodyWeightKg * vdPerKg, 1e-6);
+    return _clamp(amountMg * 1e9 / volumeLiters / 1000);
+  }
 }

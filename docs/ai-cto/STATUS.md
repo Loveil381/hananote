@@ -1,7 +1,7 @@
 # HanaNote 项目状态
-## 当前轮次: #22
-## 当前阶段: PK 模拟器 — Hana-PK 实验引擎 + 文档补全
-## 产品完成度: 92%
+## 当前轮次: #23
+## 当前阶段: PK 模拟器 — Simulator UI & Hana-PK
+## 产品完成度: 95%
 ## 数据绑定进度: 5/5 ✅
 
 ## 已完成功能
@@ -27,6 +27,8 @@
 | Today Tab 实时倒计时 | ✅ | CountdownCard 每分钟刷新剩余时间 |
 | blurOverlay 联动 | ✅ | SettingsBloc 全局复用，Profile 开关实时影响 AppBlurOverlay |
 | Simulator feature | ✅ | V2 双库全路由引擎 + MAP 校准 + 小时制参数统一 |
+| Hana-PK 实验引擎 | ✅ | Weibull 注射 + E1S 储库口服，与 V2 对比验证 |
+| PK 模拟器 UI | ✅ | 曲线可视化与参数编辑面板, SimulatorBloc, fl_chart |
 | 应用切换模糊遮罩 | ✅ | DEC-006 隐私增强已落地，修复上轮状态遗漏 |
 | CryptoEngine | ✅ | AES-256-GCM + AAD 支持, isolate 加密, 单元测试 |
 | KeyManager | ✅ | Argon2id (64MB/3iter/4par), 常量时间比较, 单元测试 |
@@ -36,9 +38,6 @@
 ## 待开发 (按优先级)
 | 模块 | 优先级 | 说明 |
 |------|------|------|
-| Record Tab 数据绑定（Phase 1 — Journal） | ✅ | RecordBloc 驱动 Journal streak + latest entry |
-| PK 模拟器 UI (Data Tab 集成) | 🟡 P2 | 曲线可视化与参数编辑面板 |
-| Hana-PK 实验引擎 | 🟢 P3 | Weibull 注射 + E1S 储库口服，与 V2 对比验证 |
 | AI 增强 PK | ⚪ P4 (探索) | LLM 参数顾问 / Neural-ODE，Phase 5 |
 
 ## 信息架构 (5-Tab)

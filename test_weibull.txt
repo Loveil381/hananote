@@ -1,0 +1,42 @@
+﻿00:00 +0: loading C:/projects/HanaNote/hananote/test/features/simulator/domain/services/hana_pk_engine_test.dart
+00:00 +0: weibullInjection EV Tmax is in [24, 72] h
+EV Tmax: 36.0h
+00:00 +1: weibullInjection EC Tmax is in [72, 168] h
+EC Tmax: 64.0h
+00:00 +1 -1: weibullInjection EC Tmax is in [72, 168] h [E]
+  Expected: a value greater than or equal to <72>
+    Actual: <64.0>
+     Which: is not a value greater than or equal to <72>
+  
+  package:matcher                                                        expect
+  package:flutter_test/src/widget_tester.dart 473:18                     expect
+  test\features\simulator\domain\services\hana_pk_engine_test.dart 67:7  main.<fn>.<fn>
+  
+00:00 +1 -1: weibullInjection EN Tmax is in [120, 240] h
+EN Tmax: 71.0h
+00:00 +1 -2: weibullInjection EN Tmax is in [120, 240] h [E]
+  Expected: a value greater than or equal to <120>
+    Actual: <71.0>
+     Which: is not a value greater than or equal to <120>
+  
+  package:matcher                                                        expect
+  package:flutter_test/src/widget_tester.dart 473:18                     expect
+  test\features\simulator\domain\services\hana_pk_engine_test.dart 75:7  main.<fn>.<fn>
+  
+00:00 +1 -2: weibullInjection t=0 returns 0
+00:00 +2 -2: weibullInjection negative time returns 0
+00:00 +3 -2: weibullInjection beta=1.0 gives a peak within 50% of V2 dualDepotInjection peak
+ﾎｲ=1 EV Tmax 窶・Hana: 31.0h  V2: 50.0h
+00:00 +4 -2: oralWithE1SReservoir E2 peaks between 2 and 8 hours
+E1S oral Tmax: 6.5h
+00:00 +5 -2: oralWithE1SReservoir concentration at 24h is positive (E1S reservoir sustains levels)
+00:00 +6 -2: oralWithE1SReservoir Hana 24h > PkEngine oralBateman at 24h (E1S tail)
+00:00 +7 -2: oralWithE1SReservoir F=0 (bioavailability=0) returns 0
+00:00 +8 -2: sublingualHanaDualPath theta=0 degenerates to E1S oral model
+00:00 +9 -2: sublingualHanaDualPath strict hold (theta=0.18) peak > oral peak
+00:00 +10 -2: comparison: Hana-PK vs V2 PkEngine EV 5mg: both engines produce a positive Tmax (structural check)
+EV Tmax 窶・Hana-PK: 36.0h, V2 PkEngine: 50.0h
+00:00 +11 -2: comparison: Hana-PK vs V2 PkEngine EV 5mg q7d 90d: record steady-state peak-trough difference (informational)
+EV q7d SS 窶・Hana peak: 0.0089 mg, trough: 0.0007 mg, swing: 0.0082 mg
+EV q7d SS 窶・V2 peak:   0.0603 mg, trough: 0.0133 mg, swing: 0.0470 mg
+00:00 +12 -2: Some tests failed.

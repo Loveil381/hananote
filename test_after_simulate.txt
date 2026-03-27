@@ -1,0 +1,150 @@
+﻿00:00 +0: loading C:/projects/HanaNote/hananote/test/features/simulator/domain/services/hana_pk_engine_test.dart
+flutter : lib/features
+/simulator/domain/serv
+ices/hana_pk_engine.da
+rt:231:56: Error: The 
+getter 'hanaPkDefaults
+' isn't defined for th
+e type 'EsterType'.
+発生場所 行:1 文字:1
++ flutter test test/fe
+atures/simulator/domai
+n/services/hana_pk_eng
+ine_t ...
++ ~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~
+    + CategoryInfo    
+          : NotSpeci  
+  fied: (lib/featur   
+ es/si...pe 'Ester    
+Type'.:String) []    ,
+ RemoteException
+    + FullyQualifiedE 
+   rrorId : NativeCo  
+  mmandError
+ 
+ - 'EsterType' is from
+ 'package:hananote/fea
+tures/simulator/domain
+/entities/ester_type.d
+art' ('lib/features/si
+mulator/domain/entitie
+s/ester_type.dart').
+Try correcting the nam
+e to the name of an ex
+isting getter, or defi
+ning a getter or field
+ named 'hanaPkDefaults
+'.
+    final params = par
+amsOverride ?? regimen
+.esterType.hanaPkDefau
+lts;
+                      
+                      
+           ^^^^^^^^^^^
+^^^
+lib/features/simulator
+/domain/services/hana_
+pk_engine.dart:237:27:
+ Error: The getter 'de
+faultParameters' isn't
+ defined for the type 
+'EsterType'.
+ - 'EsterType' is from
+ 'package:hananote/fea
+tures/simulator/domain
+/entities/ester_type.d
+art' ('lib/features/si
+mulator/domain/entitie
+s/ester_type.dart').
+Try correcting the nam
+e to the name of an ex
+isting getter, or defi
+ning a getter or field
+ named 'defaultParamet
+ers'.
+        regimen.esterT
+ype.defaultParameters,
+                      
+    ^^^^^^^^^^^^^^^^^
+lib/features/simulator
+/domain/services/hana_
+pk_engine.dart:280:56:
+ Error: The getter 'ha
+naPkDefaults' isn't de
+fined for the type 'Es
+terType'.
+ - 'EsterType' is from
+ 'package:hananote/fea
+tures/simulator/domain
+/entities/ester_type.d
+art' ('lib/features/si
+mulator/domain/entitie
+s/ester_type.dart').
+Try correcting the nam
+e to the name of an ex
+isting getter, or defi
+ning a getter or field
+ named 'hanaPkDefaults
+'.
+    final params = par
+amsOverride ?? regimen
+.esterType.hanaPkDefau
+lts;
+                      
+                      
+           ^^^^^^^^^^^
+^^^
+lib/features/simulator
+/domain/services/hana_
+pk_engine.dart:284:43:
+ Error: The getter 'de
+faultParameters' isn't
+ defined for the type 
+'EsterType'.
+ - 'EsterType' is from
+ 'package:hananote/fea
+tures/simulator/domain
+/entities/ester_type.d
+art' ('lib/features/si
+mulator/domain/entitie
+s/ester_type.dart').
+Try correcting the nam
+e to the name of an ex
+isting getter, or defi
+ning a getter or field
+ named 'defaultParamet
+ers'.
+        paramsOverride
+: regimen.esterType.de
+faultParameters,
+                      
+                    ^^
+^^^^^^^^^^^^^^^
+00:00 +0 -1: loading C:/projects/HanaNote/hananote/test/features/simulator/domain/services/hana_pk_engine_test.dart [E]
+  Failed to load "C:/projects/HanaNote/hananote/test/features/simulator/domain/services/hana_pk_engine_test.dart":
+  Compilation failed for testPath=C:/projects/HanaNote/hananote/test/features/simulator/domain/services/hana_pk_engine_test.dart: lib/features/simulator/domain/services/hana_pk_engine.dart:231:56: Error: The getter 'hanaPkDefaults' isn't defined for the type 'EsterType'.
+   - 'EsterType' is from 'package:hananote/features/simulator/domain/entities/ester_type.dart' ('lib/features/simulator/domain/entities/ester_type.dart').
+  Try correcting the name to the name of an existing getter, or defining a getter or field named 'hanaPkDefaults'.
+      final params = paramsOverride ?? regimen.esterType.hanaPkDefaults;
+                                                         ^^^^^^^^^^^^^^
+  lib/features/simulator/domain/services/hana_pk_engine.dart:237:27: Error: The getter 'defaultParameters' isn't defined for the type 'EsterType'.
+   - 'EsterType' is from 'package:hananote/features/simulator/domain/entities/ester_type.dart' ('lib/features/simulator/domain/entities/ester_type.dart').
+  Try correcting the name to the name of an existing getter, or defining a getter or field named 'defaultParameters'.
+          regimen.esterType.defaultParameters,
+                            ^^^^^^^^^^^^^^^^^
+  lib/features/simulator/domain/services/hana_pk_engine.dart:280:56: Error: The getter 'hanaPkDefaults' isn't defined for the type 'EsterType'.
+   - 'EsterType' is from 'package:hananote/features/simulator/domain/entities/ester_type.dart' ('lib/features/simulator/domain/entities/ester_type.dart').
+  Try correcting the name to the name of an existing getter, or defining a getter or field named 'hanaPkDefaults'.
+      final params = paramsOverride ?? regimen.esterType.hanaPkDefaults;
+                                                         ^^^^^^^^^^^^^^
+  lib/features/simulator/domain/services/hana_pk_engine.dart:284:43: Error: The getter 'defaultParameters' isn't defined for the type 'EsterType'.
+   - 'EsterType' is from 'package:hananote/features/simulator/domain/entities/ester_type.dart' ('lib/features/simulator/domain/entities/ester_type.dart').
+  Try correcting the name to the name of an existing getter, or defining a getter or field named 'defaultParameters'.
+          paramsOverride: regimen.esterType.defaultParameters,
+                                            ^^^^^^^^^^^^^^^^^
+  .
+00:00 +0 -1: Some tests failed.
