@@ -13,16 +13,17 @@ class DosingRegimen with _$DosingRegimen {
     'wearDurationDays == null || wearDurationDays > 0',
     'wearDurationDays must be positive when provided',
   )
+  @Assert(
+    'bodyWeightKg == null || bodyWeightKg > 0',
+    'bodyWeightKg must be positive when provided',
+  )
   const factory DosingRegimen({
     required EsterType esterType,
     required double doseAmount,
     required double intervalDays,
     required DateTime startDate,
     double? wearDurationDays,
+    SublingualHoldTime? sublingualHoldTime,
+    @Default(65) double? bodyWeightKg,
   }) = _DosingRegimen;
-
-  const DosingRegimen._();
-
-  /// Dose adjusted by preparation bioavailability.
-  double get effectiveDose => doseAmount * esterType.bioavailability;
 }

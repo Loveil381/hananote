@@ -1,4 +1,6 @@
-import 'package:hananote/features/simulator/domain/entities/pk_parameters.dart';
+// ignore_for_file: public_member_api_docs
+
+import 'package:hananote/features/simulator/domain/entities/route_params.dart';
 
 /// Supported estradiol preparations for the PK simulator.
 enum EsterType {
@@ -24,6 +26,22 @@ enum EsterType {
   transdermalGel,
 }
 
+/// Standard sublingual hold-time presets.
+enum SublingualHoldTime {
+  quick(minutes: 2, theta: 0.01),
+  casual(minutes: 5, theta: 0.04),
+  standard(minutes: 10, theta: 0.11),
+  strict(minutes: 15, theta: 0.18);
+
+  const SublingualHoldTime({
+    required this.minutes,
+    required this.theta,
+  });
+
+  final int minutes;
+  final double theta;
+}
+
 /// Presentation and model presets for [EsterType].
 extension EsterTypeX on EsterType {
   /// Localized label.
@@ -37,53 +55,40 @@ extension EsterTypeX on EsterType {
         EsterType.transdermalGel => '雌二醇凝胶',
       };
 
-  /// Default deterministic rate constants used by V1.
-  PkParameters get defaultParameters => switch (this) {
-        EsterType.estradiolValerate => const PkParameters(
-            k1: 0.4,
-            k2: 3,
-            k3: 0.35,
+  /// Default V2 route parameters in h^-1.
+  RouteParams get defaultParameters => switch (this) {
+        EsterType.estradiolValerate => const RouteParams.injection(
+            fracFast: 0.4,
+            k1Fast: 0.0216,
+            k1Slow: 0.0138,
+            k2: 0.07,
+            formationFraction: 0.0623,
           ),
-        EsterType.estradiolCypionate => const PkParameters(
-            k1: 0.15,
-            k2: 2,
-            k3: 0.08,
+        EsterType.estradiolCypionate => const RouteParams.injection(
+            fracFast: 0.229,
+            k1Fast: 0.00504,
+            k1Slow: 0.00451,
+            k2: 0.045,
+            formationFraction: 0.1173,
           ),
-        EsterType.estradiolEnanthate => const PkParameters(
-            k1: 0.2,
-            k2: 2.5,
-            k3: 0.12,
+        EsterType.estradiolEnanthate => const RouteParams.injection(
+            fracFast: 0.05,
+            k1Fast: 0.001,
+            k1Slow: 0.005,
+            k2: 0.015,
+            formationFraction: 0.12,
           ),
-        EsterType.oralEstradiol => const PkParameters(
-            k1: 4,
-            k2: 4.2,
-            k3: 0.7,
+        EsterType.oralEstradiol => const RouteParams.oral(
+            kAbs: 0.08,
           ),
-        EsterType.sublingualEstradiol => const PkParameters(
-            k1: 6,
-            k2: 6.3,
-            k3: 0.7,
+        EsterType.sublingualEstradiol => const RouteParams.sublingual(
+            theta: 0.11,
+            kAbsOral: 0.08,
           ),
-        EsterType.transdermalPatch => const PkParameters(
-            k1: 0.08,
-            k2: 1.2,
-            k3: 0.08,
+        EsterType.transdermalPatch => const RouteParams.patch(
+            releaseRateMcgPerDay: 100,
+            wearDurationH: 168,
           ),
-        EsterType.transdermalGel => const PkParameters(
-            k1: 0.12,
-            k2: 1.5,
-            k3: 0.1,
-          ),
+        EsterType.transdermalGel => const RouteParams.gel(),
       };
-
-  /// Dose fraction reaching systemic circulation.
-  double get bioavailability => switch (this) {
-        EsterType.oralEstradiol => 0.05,
-        EsterType.sublingualEstradiol => 0.25,
-        _ => 1.0,
-      };
-
-  /// Whether this preparation is better modeled as zero-order release.
-  bool get usesPatchModel =>
-      this == EsterType.transdermalPatch || this == EsterType.transdermalGel;
 }

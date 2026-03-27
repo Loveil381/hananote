@@ -21,6 +21,9 @@ mixin _$DosingRegimen {
   double get intervalDays => throw _privateConstructorUsedError;
   DateTime get startDate => throw _privateConstructorUsedError;
   double? get wearDurationDays => throw _privateConstructorUsedError;
+  SublingualHoldTime? get sublingualHoldTime =>
+      throw _privateConstructorUsedError;
+  double? get bodyWeightKg => throw _privateConstructorUsedError;
 
   /// Create a copy of DosingRegimen
   /// with the given fields replaced by the non-null parameter values.
@@ -40,7 +43,9 @@ abstract class $DosingRegimenCopyWith<$Res> {
       double doseAmount,
       double intervalDays,
       DateTime startDate,
-      double? wearDurationDays});
+      double? wearDurationDays,
+      SublingualHoldTime? sublingualHoldTime,
+      double? bodyWeightKg});
 }
 
 /// @nodoc
@@ -63,6 +68,8 @@ class _$DosingRegimenCopyWithImpl<$Res, $Val extends DosingRegimen>
     Object? intervalDays = null,
     Object? startDate = null,
     Object? wearDurationDays = freezed,
+    Object? sublingualHoldTime = freezed,
+    Object? bodyWeightKg = freezed,
   }) {
     return _then(_value.copyWith(
       esterType: null == esterType
@@ -85,6 +92,14 @@ class _$DosingRegimenCopyWithImpl<$Res, $Val extends DosingRegimen>
           ? _value.wearDurationDays
           : wearDurationDays // ignore: cast_nullable_to_non_nullable
               as double?,
+      sublingualHoldTime: freezed == sublingualHoldTime
+          ? _value.sublingualHoldTime
+          : sublingualHoldTime // ignore: cast_nullable_to_non_nullable
+              as SublingualHoldTime?,
+      bodyWeightKg: freezed == bodyWeightKg
+          ? _value.bodyWeightKg
+          : bodyWeightKg // ignore: cast_nullable_to_non_nullable
+              as double?,
     ) as $Val);
   }
 }
@@ -102,7 +117,9 @@ abstract class _$$DosingRegimenImplCopyWith<$Res>
       double doseAmount,
       double intervalDays,
       DateTime startDate,
-      double? wearDurationDays});
+      double? wearDurationDays,
+      SublingualHoldTime? sublingualHoldTime,
+      double? bodyWeightKg});
 }
 
 /// @nodoc
@@ -123,6 +140,8 @@ class __$$DosingRegimenImplCopyWithImpl<$Res>
     Object? intervalDays = null,
     Object? startDate = null,
     Object? wearDurationDays = freezed,
+    Object? sublingualHoldTime = freezed,
+    Object? bodyWeightKg = freezed,
   }) {
     return _then(_$DosingRegimenImpl(
       esterType: null == esterType
@@ -145,24 +164,35 @@ class __$$DosingRegimenImplCopyWithImpl<$Res>
           ? _value.wearDurationDays
           : wearDurationDays // ignore: cast_nullable_to_non_nullable
               as double?,
+      sublingualHoldTime: freezed == sublingualHoldTime
+          ? _value.sublingualHoldTime
+          : sublingualHoldTime // ignore: cast_nullable_to_non_nullable
+              as SublingualHoldTime?,
+      bodyWeightKg: freezed == bodyWeightKg
+          ? _value.bodyWeightKg
+          : bodyWeightKg // ignore: cast_nullable_to_non_nullable
+              as double?,
     ));
   }
 }
 
 /// @nodoc
 
-class _$DosingRegimenImpl extends _DosingRegimen {
+class _$DosingRegimenImpl implements _DosingRegimen {
   const _$DosingRegimenImpl(
       {required this.esterType,
       required this.doseAmount,
       required this.intervalDays,
       required this.startDate,
-      this.wearDurationDays})
+      this.wearDurationDays,
+      this.sublingualHoldTime,
+      this.bodyWeightKg = 65})
       : assert(doseAmount > 0, 'doseAmount must be positive'),
         assert(intervalDays > 0, 'intervalDays must be positive'),
         assert(wearDurationDays == null || wearDurationDays > 0,
             'wearDurationDays must be positive when provided'),
-        super._();
+        assert(bodyWeightKg == null || bodyWeightKg > 0,
+            'bodyWeightKg must be positive when provided');
 
   @override
   final EsterType esterType;
@@ -174,10 +204,15 @@ class _$DosingRegimenImpl extends _DosingRegimen {
   final DateTime startDate;
   @override
   final double? wearDurationDays;
+  @override
+  final SublingualHoldTime? sublingualHoldTime;
+  @override
+  @JsonKey()
+  final double? bodyWeightKg;
 
   @override
   String toString() {
-    return 'DosingRegimen(esterType: $esterType, doseAmount: $doseAmount, intervalDays: $intervalDays, startDate: $startDate, wearDurationDays: $wearDurationDays)';
+    return 'DosingRegimen(esterType: $esterType, doseAmount: $doseAmount, intervalDays: $intervalDays, startDate: $startDate, wearDurationDays: $wearDurationDays, sublingualHoldTime: $sublingualHoldTime, bodyWeightKg: $bodyWeightKg)';
   }
 
   @override
@@ -194,12 +229,23 @@ class _$DosingRegimenImpl extends _DosingRegimen {
             (identical(other.startDate, startDate) ||
                 other.startDate == startDate) &&
             (identical(other.wearDurationDays, wearDurationDays) ||
-                other.wearDurationDays == wearDurationDays));
+                other.wearDurationDays == wearDurationDays) &&
+            (identical(other.sublingualHoldTime, sublingualHoldTime) ||
+                other.sublingualHoldTime == sublingualHoldTime) &&
+            (identical(other.bodyWeightKg, bodyWeightKg) ||
+                other.bodyWeightKg == bodyWeightKg));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, esterType, doseAmount,
-      intervalDays, startDate, wearDurationDays);
+  int get hashCode => Object.hash(
+      runtimeType,
+      esterType,
+      doseAmount,
+      intervalDays,
+      startDate,
+      wearDurationDays,
+      sublingualHoldTime,
+      bodyWeightKg);
 
   /// Create a copy of DosingRegimen
   /// with the given fields replaced by the non-null parameter values.
@@ -210,14 +256,15 @@ class _$DosingRegimenImpl extends _DosingRegimen {
       __$$DosingRegimenImplCopyWithImpl<_$DosingRegimenImpl>(this, _$identity);
 }
 
-abstract class _DosingRegimen extends DosingRegimen {
+abstract class _DosingRegimen implements DosingRegimen {
   const factory _DosingRegimen(
       {required final EsterType esterType,
       required final double doseAmount,
       required final double intervalDays,
       required final DateTime startDate,
-      final double? wearDurationDays}) = _$DosingRegimenImpl;
-  const _DosingRegimen._() : super._();
+      final double? wearDurationDays,
+      final SublingualHoldTime? sublingualHoldTime,
+      final double? bodyWeightKg}) = _$DosingRegimenImpl;
 
   @override
   EsterType get esterType;
@@ -229,6 +276,10 @@ abstract class _DosingRegimen extends DosingRegimen {
   DateTime get startDate;
   @override
   double? get wearDurationDays;
+  @override
+  SublingualHoldTime? get sublingualHoldTime;
+  @override
+  double? get bodyWeightKg;
 
   /// Create a copy of DosingRegimen
   /// with the given fields replaced by the non-null parameter values.
