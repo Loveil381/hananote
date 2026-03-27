@@ -13,8 +13,8 @@ _$PhotoModelImpl _$$PhotoModelImplFromJson(Map<String, dynamic> json) =>
       encryptedPath: json['encrypted_path'] as String,
       encryptedThumbPath: json['encrypted_thumb_path'] as String,
       originalSizeBytes: (json['original_size_bytes'] as num).toInt(),
-      notes: json['notes'] as String?,
       createdAt: DateTime.parse(json['created_at'] as String),
+      notes: json['notes'] as String?,
       updatedAt: json['updated_at'] == null
           ? null
           : DateTime.parse(json['updated_at'] as String),
@@ -27,7 +27,7 @@ Map<String, dynamic> _$$PhotoModelImplToJson(_$PhotoModelImpl instance) =>
       'encrypted_path': instance.encryptedPath,
       'encrypted_thumb_path': instance.encryptedThumbPath,
       'original_size_bytes': instance.originalSizeBytes,
-      'notes': instance.notes,
       'created_at': instance.createdAt.toIso8601String(),
+      'notes': instance.notes,
       'updated_at': instance.updatedAt?.toIso8601String(),
     };

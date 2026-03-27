@@ -1,3 +1,5 @@
+// Release prep note: This internal page exposes app-only widgets, so full
+// dartdoc coverage is deferred to the documentation pass.
 // ignore_for_file: public_member_api_docs
 
 import 'dart:ui';
@@ -126,6 +128,7 @@ class RecordPage extends StatelessWidget {
                   tagBgColor: HanaColors.primaryContainer.withAlpha(77),
                   bgIcon: Icons.photo_library,
                   bgIconRotation: 12 * 3.14159 / 180,
+                  onTap: () => context.push('/photo'),
                 ),
                 const SizedBox(height: 24),
                 _RecordEntryCard(

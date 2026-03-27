@@ -1,3 +1,5 @@
+// Release prep note: Freezed/json_serializable require these file-level
+// suppressions for generated annotations and constructor ordering.
 // ignore_for_file: invalid_annotation_target, sort_unnamed_constructors_first
 
 import 'package:freezed_annotation/freezed_annotation.dart';

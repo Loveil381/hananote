@@ -53,5 +53,17 @@
   "active": "Active",
   "inactive": "Inactive",
   "today": "Today",
-  "medications": "Medications"
+  "medications": "Medications",
+  "photoGallery": "Encrypted Gallery",
+  "addPhoto": "Add Photo",
+  "takePhoto": "Take Photo",
+  "chooseFromLibrary": "Choose from Library",
+  "photoEmptyTitle": "No encrypted photos yet",
+  "photoEmptyDescription": "Your photos are end-to-end encrypted. Only you can see them.",
+  "photoDeleteTitle": "Delete photo",
+  "photoDeleteMessage": "This will delete the encrypted file and its record.",
+  "retry": "Retry",
+  "fileSize": "File size",
+  "errorFallbackTitle": "Something went wrong",
+  "errorFallbackDescription": "Please reopen the app. If the problem continues, contact support."
 }

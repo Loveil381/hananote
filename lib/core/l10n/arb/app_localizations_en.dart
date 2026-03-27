@@ -125,4 +125,43 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get medications => 'Medications';
+
+  @override
+  String get photoGallery => 'Encrypted Gallery';
+
+  @override
+  String get addPhoto => 'Add Photo';
+
+  @override
+  String get takePhoto => 'Take Photo';
+
+  @override
+  String get chooseFromLibrary => 'Choose from Library';
+
+  @override
+  String get photoEmptyTitle => 'No encrypted photos yet';
+
+  @override
+  String get photoEmptyDescription =>
+      'Your photos are end-to-end encrypted. Only you can see them.';
+
+  @override
+  String get photoDeleteTitle => 'Delete photo';
+
+  @override
+  String get photoDeleteMessage =>
+      'This will delete the encrypted file and its record.';
+
+  @override
+  String get retry => 'Retry';
+
+  @override
+  String get fileSize => 'File size';
+
+  @override
+  String get errorFallbackTitle => 'Something went wrong';
+
+  @override
+  String get errorFallbackDescription =>
+      'Please reopen the app. If the problem continues, contact support.';
 }

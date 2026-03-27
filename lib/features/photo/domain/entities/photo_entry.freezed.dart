@@ -21,8 +21,8 @@ mixin _$PhotoEntry {
   String get encryptedPath => throw _privateConstructorUsedError;
   String get encryptedThumbPath => throw _privateConstructorUsedError;
   int get originalSizeBytes => throw _privateConstructorUsedError;
-  String? get notes => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
+  String? get notes => throw _privateConstructorUsedError;
   DateTime? get updatedAt => throw _privateConstructorUsedError;
 
   /// Create a copy of PhotoEntry
@@ -44,8 +44,8 @@ abstract class $PhotoEntryCopyWith<$Res> {
       String encryptedPath,
       String encryptedThumbPath,
       int originalSizeBytes,
-      String? notes,
       DateTime createdAt,
+      String? notes,
       DateTime? updatedAt});
 }
 
@@ -69,8 +69,8 @@ class _$PhotoEntryCopyWithImpl<$Res, $Val extends PhotoEntry>
     Object? encryptedPath = null,
     Object? encryptedThumbPath = null,
     Object? originalSizeBytes = null,
-    Object? notes = freezed,
     Object? createdAt = null,
+    Object? notes = freezed,
     Object? updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
@@ -94,14 +94,14 @@ class _$PhotoEntryCopyWithImpl<$Res, $Val extends PhotoEntry>
           ? _value.originalSizeBytes
           : originalSizeBytes // ignore: cast_nullable_to_non_nullable
               as int,
-      notes: freezed == notes
-          ? _value.notes
-          : notes // ignore: cast_nullable_to_non_nullable
-              as String?,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      notes: freezed == notes
+          ? _value.notes
+          : notes // ignore: cast_nullable_to_non_nullable
+              as String?,
       updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
@@ -124,8 +124,8 @@ abstract class _$$PhotoEntryImplCopyWith<$Res>
       String encryptedPath,
       String encryptedThumbPath,
       int originalSizeBytes,
-      String? notes,
       DateTime createdAt,
+      String? notes,
       DateTime? updatedAt});
 }
 
@@ -147,8 +147,8 @@ class __$$PhotoEntryImplCopyWithImpl<$Res>
     Object? encryptedPath = null,
     Object? encryptedThumbPath = null,
     Object? originalSizeBytes = null,
-    Object? notes = freezed,
     Object? createdAt = null,
+    Object? notes = freezed,
     Object? updatedAt = freezed,
   }) {
     return _then(_$PhotoEntryImpl(
@@ -172,14 +172,14 @@ class __$$PhotoEntryImplCopyWithImpl<$Res>
           ? _value.originalSizeBytes
           : originalSizeBytes // ignore: cast_nullable_to_non_nullable
               as int,
-      notes: freezed == notes
-          ? _value.notes
-          : notes // ignore: cast_nullable_to_non_nullable
-              as String?,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      notes: freezed == notes
+          ? _value.notes
+          : notes // ignore: cast_nullable_to_non_nullable
+              as String?,
       updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
@@ -197,8 +197,8 @@ class _$PhotoEntryImpl implements _PhotoEntry {
       required this.encryptedPath,
       required this.encryptedThumbPath,
       required this.originalSizeBytes,
-      this.notes,
       required this.createdAt,
+      this.notes,
       this.updatedAt});
 
   @override
@@ -212,15 +212,15 @@ class _$PhotoEntryImpl implements _PhotoEntry {
   @override
   final int originalSizeBytes;
   @override
-  final String? notes;
-  @override
   final DateTime createdAt;
+  @override
+  final String? notes;
   @override
   final DateTime? updatedAt;
 
   @override
   String toString() {
-    return 'PhotoEntry(id: $id, date: $date, encryptedPath: $encryptedPath, encryptedThumbPath: $encryptedThumbPath, originalSizeBytes: $originalSizeBytes, notes: $notes, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'PhotoEntry(id: $id, date: $date, encryptedPath: $encryptedPath, encryptedThumbPath: $encryptedThumbPath, originalSizeBytes: $originalSizeBytes, createdAt: $createdAt, notes: $notes, updatedAt: $updatedAt)';
   }
 
   @override
@@ -236,16 +236,16 @@ class _$PhotoEntryImpl implements _PhotoEntry {
                 other.encryptedThumbPath == encryptedThumbPath) &&
             (identical(other.originalSizeBytes, originalSizeBytes) ||
                 other.originalSizeBytes == originalSizeBytes) &&
-            (identical(other.notes, notes) || other.notes == notes) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
+            (identical(other.notes, notes) || other.notes == notes) &&
             (identical(other.updatedAt, updatedAt) ||
                 other.updatedAt == updatedAt));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, id, date, encryptedPath,
-      encryptedThumbPath, originalSizeBytes, notes, createdAt, updatedAt);
+      encryptedThumbPath, originalSizeBytes, createdAt, notes, updatedAt);
 
   /// Create a copy of PhotoEntry
   /// with the given fields replaced by the non-null parameter values.
@@ -263,8 +263,8 @@ abstract class _PhotoEntry implements PhotoEntry {
       required final String encryptedPath,
       required final String encryptedThumbPath,
       required final int originalSizeBytes,
-      final String? notes,
       required final DateTime createdAt,
+      final String? notes,
       final DateTime? updatedAt}) = _$PhotoEntryImpl;
 
   @override
@@ -278,9 +278,9 @@ abstract class _PhotoEntry implements PhotoEntry {
   @override
   int get originalSizeBytes;
   @override
-  String? get notes;
-  @override
   DateTime get createdAt;
+  @override
+  String? get notes;
   @override
   DateTime? get updatedAt;
 

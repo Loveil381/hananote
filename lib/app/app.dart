@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hananote/app/di/injection.dart';
 import 'package:hananote/app/router.dart';
 import 'package:hananote/app/theme/app_theme.dart';
+import 'package:hananote/core/l10n/arb/app_localizations.dart';
 import 'package:hananote/core/privacy/app_blur_overlay.dart';
 import 'package:hananote/features/auth/presentation/bloc/auth_cubit.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_bloc.dart';
@@ -24,6 +25,8 @@ class HanaNote extends StatelessWidget {
           routerConfig: appRouter,
           title: 'HanaNote',
           theme: AppTheme.getTheme(AppThemeType.sakura),
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
           builder: (context, child) {
             final settingsState = context.watch<SettingsBloc>().state;
             final blurEnabled = settingsState is! SettingsLoaded ||

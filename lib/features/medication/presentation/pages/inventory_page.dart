@@ -1,3 +1,5 @@
+// Release prep note: InventoryPage still relies on a deprecated color API and
+// a few long medication labels until the post-release UI cleanup.
 // ignore_for_file: deprecated_member_use, lines_longer_than_80_chars
 
 import 'package:flutter/material.dart';

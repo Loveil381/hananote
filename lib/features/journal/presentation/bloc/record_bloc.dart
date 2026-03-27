@@ -6,6 +6,7 @@ import 'package:hananote/features/journal/presentation/bloc/record_state.dart';
 import 'package:hananote/features/measurement/domain/entities/measurement_entry.dart';
 import 'package:hananote/features/measurement/domain/entities/measurement_type.dart';
 import 'package:hananote/features/measurement/domain/repositories/measurement_repository.dart';
+import 'package:hananote/features/photo/domain/repositories/photo_repository.dart';
 import 'package:injectable/injectable.dart';
 
 /// Bloc for RecordPage to display dynamic streak and latest records
@@ -16,6 +17,7 @@ class RecordBloc extends Bloc<RecordEvent, RecordState> {
     this._getJournalStreak,
     this._repository,
     this._measurementRepository,
+    this._photoRepository,
   ) : super(const RecordState.initial()) {
     on<LoadRecordSummary>(_onLoadRecordSummary);
     on<RefreshRecordSummary>(_onRefreshRecordSummary);
@@ -24,6 +26,7 @@ class RecordBloc extends Bloc<RecordEvent, RecordState> {
   final GetJournalStreak _getJournalStreak;
   final JournalRepository _repository;
   final MeasurementRepository _measurementRepository;
+  final PhotoRepository _photoRepository;
 
   Future<void> _onLoadRecordSummary(
     LoadRecordSummary event,
@@ -59,11 +62,18 @@ class RecordBloc extends Bloc<RecordEvent, RecordState> {
       },
     );
 
+    final latestPhotoResult = await _photoRepository.getLatest();
+    DateTime? lastPhotoDate;
+    latestPhotoResult.fold(
+      (failure) => null,
+      (entry) => lastPhotoDate = entry?.date,
+    );
+
     emit(
       RecordState.loaded(
         journalStreak: streak,
         lastJournalDate: lastJournalDate,
-        lastPhotoDate: null,
+        lastPhotoDate: lastPhotoDate,
         lastMeasurementDate: lastMeasurementDate,
         lastMeasurementSummary: lastMeasurementSummary,
       ),

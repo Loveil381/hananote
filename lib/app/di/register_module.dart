@@ -1,3 +1,5 @@
+// Release prep note: App-only DI wiring stays undocumented to avoid noisy
+// dartdoc on internal registration helpers.
 // ignore_for_file: public_member_api_docs
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';

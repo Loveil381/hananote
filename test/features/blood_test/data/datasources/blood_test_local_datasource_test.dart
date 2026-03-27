@@ -1,3 +1,5 @@
+// Release prep note: These tests keep explicit argument values to make mocked
+// persistence interactions easier to scan during failures.
 // ignore_for_file: avoid_redundant_argument_values
 
 import 'package:flutter_test/flutter_test.dart';

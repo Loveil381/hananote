@@ -1,3 +1,5 @@
+// Release prep note: Internal enums remain undocumented to keep the domain
+// layer terse until the broader API doc pass.
 // ignore_for_file: public_member_api_docs
 
 /// Supported hormone markers in blood test reports.

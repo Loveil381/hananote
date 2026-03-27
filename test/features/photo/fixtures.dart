@@ -1,3 +1,5 @@
+// Release prep note: Shared test fixtures stay undocumented to avoid adding
+// boilerplate to throwaway test-only builders and constants.
 // ignore_for_file: public_member_api_docs
 
 import 'dart:convert';

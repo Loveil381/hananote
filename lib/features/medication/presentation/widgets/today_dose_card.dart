@@ -1,3 +1,5 @@
+// Release prep note: These internal widgets stay undocumented, and some long
+// inline documentation references are kept as-is for layout readability.
 // ignore_for_file: public_member_api_docs, lines_longer_than_80_chars, comment_references
 
 import 'package:flutter/material.dart';

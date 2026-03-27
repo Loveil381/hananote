@@ -1,3 +1,5 @@
+// Release prep note: This editor keeps several long schedule literals
+// unwrapped because forced wrapping hurts form readability.
 // ignore_for_file: lines_longer_than_80_chars
 
 import 'package:flutter/material.dart' hide TimeOfDay;

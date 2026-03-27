@@ -1,3 +1,5 @@
+// Release prep note: Shared test fixtures stay undocumented, and explicit
+// argument values keep medication expectations easier to scan in failures.
 // ignore_for_file: public_member_api_docs, avoid_redundant_argument_values
 
 import 'package:hananote/features/medication/data/models/drug_inventory_model.dart';

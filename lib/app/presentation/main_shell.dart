@@ -1,3 +1,6 @@
+// Release prep note: Main shell keeps file-level lint suppressions because the
+// internal app scaffold API is not user-facing and some route literals are
+// intentionally kept unwrapped for readability.
 // ignore_for_file: public_member_api_docs, lines_longer_than_80_chars
 
 import 'dart:ui';

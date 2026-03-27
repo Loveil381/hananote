@@ -1,3 +1,5 @@
+// Release prep note: This internal page exposes app-only widgets, so full
+// dartdoc coverage is deferred to the documentation pass.
 // ignore_for_file: public_member_api_docs
 
 import 'dart:ui';

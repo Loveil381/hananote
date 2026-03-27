@@ -113,6 +113,10 @@ import 'package:hananote/features/photo/domain/usecases/load_photo_thumbnail.dar
     as _i903;
 import 'package:hananote/features/photo/domain/usecases/save_photo.dart'
     as _i62;
+import 'package:hananote/features/photo/presentation/blocs/photo_bloc.dart'
+    as _i26;
+import 'package:hananote/features/photo/presentation/services/photo_picker_service.dart'
+    as _i95;
 import 'package:hananote/features/settings/data/datasources/settings_local_datasource.dart'
     as _i843;
 import 'package:hananote/features/settings/data/repositories/settings_repository_impl.dart'
@@ -160,6 +164,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i472.CryptoEngine>(() => _i472.CryptoEngine());
     gh.lazySingleton<_i163.FlutterLocalNotificationsPlugin>(
         () => notificationModule.flutterLocalNotificationsPlugin);
+    gh.lazySingleton<_i95.PhotoPickerService>(() => _i95.ImagePickerService());
     gh.lazySingleton<_i869.KeyManager>(
         () => _i869.KeyManager(gh<_i558.FlutterSecureStorage>()));
     gh.lazySingleton<_i260.AuthLocalDataSource>(
@@ -282,11 +287,6 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i712.GetAllBloodTestReports(gh<_i979.BloodTestRepository>()));
     gh.factory<_i341.GetHormoneTrend>(
         () => _i341.GetHormoneTrend(gh<_i979.BloodTestRepository>()));
-    gh.lazySingleton<_i697.RecordBloc>(() => _i697.RecordBloc(
-          gh<_i910.GetJournalStreak>(),
-          gh<_i1032.JournalRepository>(),
-          gh<_i502.MeasurementRepository>(),
-        ));
     gh.factory<_i445.SyncMedicationReminders>(
         () => _i445.SyncMedicationReminders(
               gh<_i160.MedicationRepository>(),
@@ -302,12 +302,25 @@ extension GetItInjectableX on _i174.GetIt {
           getAllReports: gh<_i712.GetAllBloodTestReports>(),
           getTrend: gh<_i341.GetHormoneTrend>(),
         ));
+    gh.factory<_i26.PhotoBloc>(() => _i26.PhotoBloc(
+          gh<_i937.GetPhotoHistory>(),
+          gh<_i62.SavePhoto>(),
+          gh<_i210.DeletePhoto>(),
+          gh<_i903.LoadPhotoThumbnail>(),
+          gh<_i95.PhotoPickerService>(),
+        ));
     gh.factory<_i287.GetProfileDashboard>(
         () => _i287.GetProfileDashboard(gh<_i755.SettingsRepository>()));
     gh.factory<_i695.UpdateAppSettings>(
         () => _i695.UpdateAppSettings(gh<_i755.SettingsRepository>()));
     gh.factory<_i135.WipeAllData>(
         () => _i135.WipeAllData(gh<_i755.SettingsRepository>()));
+    gh.lazySingleton<_i697.RecordBloc>(() => _i697.RecordBloc(
+          gh<_i910.GetJournalStreak>(),
+          gh<_i1032.JournalRepository>(),
+          gh<_i502.MeasurementRepository>(),
+          gh<_i203.PhotoRepository>(),
+        ));
     gh.factory<_i14.TodayScheduleBloc>(() => _i14.TodayScheduleBloc(
           gh<_i336.GetTodaySchedule>(),
           gh<_i1050.LogMedication>(),

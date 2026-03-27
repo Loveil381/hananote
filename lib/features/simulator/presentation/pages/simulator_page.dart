@@ -1,3 +1,5 @@
+// Release prep note: SimulatorPage is a dense experimental screen, so a small
+// set of file-level lint suppressions remains until the post-release refactor.
 // ignore_for_file: public_member_api_docs
 // ignore_for_file: require_trailing_commas
 // ignore_for_file: prefer_int_literals

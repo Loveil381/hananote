@@ -45,5 +45,9 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>HanaNote 需要相机权限来拍摄加密照片</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>HanaNote 需要相册权限来选择照片进行加密存储</string>
 </dict>
 </plist>

@@ -1,3 +1,5 @@
+// Release prep note: Internal enums remain undocumented to keep the domain
+// layer terse until the broader API doc pass.
 // ignore_for_file: public_member_api_docs
 
 import 'package:hananote/features/simulator/domain/entities/hana_pk_params.dart';

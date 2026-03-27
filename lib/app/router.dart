@@ -20,6 +20,10 @@ import 'package:hananote/features/medication/presentation/bloc/today_schedule_ev
 import 'package:hananote/features/medication/presentation/pages/add_drug_page.dart';
 import 'package:hananote/features/medication/presentation/pages/schedule_editor_page.dart';
 import 'package:hananote/features/medication/presentation/pages/today_page.dart';
+import 'package:hananote/features/photo/domain/entities/photo_entry.dart';
+import 'package:hananote/features/photo/presentation/blocs/photo_bloc.dart';
+import 'package:hananote/features/photo/presentation/pages/photo_page.dart';
+import 'package:hananote/features/photo/presentation/pages/photo_view_page.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_bloc.dart';
 import 'package:hananote/features/settings/presentation/pages/profile_page.dart';
 import 'package:hananote/features/simulator/presentation/pages/simulator_page.dart';
@@ -137,6 +141,33 @@ final GoRouter appRouter = GoRouter(
           existingEntry: state.extra as MeasurementEntry?,
         ),
       ),
+    ),
+    GoRoute(
+      path: '/photo',
+      parentNavigatorKey: _rootNavigatorKey,
+      builder: (context, state) => BlocProvider(
+        create: (_) => getIt<PhotoBloc>()..add(const PhotoEvent.loadHistory()),
+        child: const PhotoPage(),
+      ),
+    ),
+    GoRoute(
+      path: '/photo/view',
+      parentNavigatorKey: _rootNavigatorKey,
+      builder: (context, state) {
+        final extra = state.extra;
+        final routeExtra = switch (extra) {
+          final PhotoViewRouteExtra value => value,
+          final PhotoEntry value => PhotoViewRouteExtra(entry: value),
+          _ => throw ArgumentError(
+              'Photo view route requires a PhotoEntry or PhotoViewRouteExtra.',
+            ),
+        };
+
+        return PhotoViewPage(
+          entry: routeExtra.entry,
+          initialThumbnail: routeExtra.initialThumbnail,
+        );
+      },
     ),
     GoRoute(
       path: '/data/simulator',

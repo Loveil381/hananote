@@ -1,3 +1,5 @@
+// Release prep note: Bloc API is internal to the app, so public-member docs
+// are deferred until the broader documentation pass.
 // ignore_for_file: public_member_api_docs
 
 import 'package:flutter_bloc/flutter_bloc.dart';

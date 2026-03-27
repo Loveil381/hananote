@@ -1,3 +1,5 @@
+// Release prep note: This regression test keeps manual PK trace output and a
+// few long numeric expectation lines for debugging profile mismatches.
 // ignore_for_file: avoid_print
 // ignore_for_file: lines_longer_than_80_chars
 

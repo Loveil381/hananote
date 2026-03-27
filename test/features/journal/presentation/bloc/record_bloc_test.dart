@@ -7,9 +7,11 @@ import 'package:hananote/features/journal/presentation/bloc/record_bloc.dart';
 import 'package:hananote/features/journal/presentation/bloc/record_event.dart';
 import 'package:hananote/features/journal/presentation/bloc/record_state.dart';
 import 'package:hananote/features/measurement/domain/repositories/measurement_repository.dart';
+import 'package:hananote/features/photo/domain/repositories/photo_repository.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../../../measurement/fixtures.dart';
+import '../../../photo/fixtures.dart';
 import '../../fixtures.dart';
 
 class _MockGetJournalStreak extends Mock implements GetJournalStreak {}
@@ -19,10 +21,13 @@ class _MockJournalRepository extends Mock implements JournalRepository {}
 class _MockMeasurementRepository extends Mock
     implements MeasurementRepository {}
 
+class _MockPhotoRepository extends Mock implements PhotoRepository {}
+
 void main() {
   late _MockGetJournalStreak getJournalStreak;
   late _MockJournalRepository repository;
   late _MockMeasurementRepository measurementRepository;
+  late _MockPhotoRepository photoRepository;
 
   final latestEntry = buildJournalEntry(
     date: DateTime(2026, 3, 26, 21),
@@ -36,12 +41,14 @@ void main() {
         getJournalStreak,
         repository,
         measurementRepository,
+        photoRepository,
       );
 
   setUp(() {
     getJournalStreak = _MockGetJournalStreak();
     repository = _MockJournalRepository();
     measurementRepository = _MockMeasurementRepository();
+    photoRepository = _MockPhotoRepository();
   });
 
   test('initial state is RecordInitial', () {
@@ -56,6 +63,8 @@ void main() {
       when(() => repository.getLatestEntry())
           .thenAnswer((_) async => right(latestEntry));
       when(() => measurementRepository.getLatest())
+          .thenAnswer((_) async => right(null));
+      when(() => photoRepository.getLatest())
           .thenAnswer((_) async => right(null));
     },
     act: (bloc) => bloc.add(const RecordEvent.loadSummary()),
@@ -91,6 +100,8 @@ void main() {
           .thenAnswer((_) async => right(latestEntry));
       when(() => measurementRepository.getLatest())
           .thenAnswer((_) async => right(null));
+      when(() => photoRepository.getLatest())
+          .thenAnswer((_) async => right(null));
     },
     act: (bloc) => bloc.add(const RecordEvent.refresh()),
     wait: const Duration(milliseconds: 1),
@@ -119,6 +130,8 @@ void main() {
           .thenAnswer((_) async => right(latestEntry));
       when(() => measurementRepository.getLatest())
           .thenAnswer((_) async => right(latestMeasurement));
+      when(() => photoRepository.getLatest())
+          .thenAnswer((_) async => right(null));
     },
     act: (bloc) => bloc.add(const RecordEvent.loadSummary()),
     expect: () => [
@@ -129,6 +142,32 @@ void main() {
         lastPhotoDate: null,
         lastMeasurementDate: latestMeasurement.date,
         lastMeasurementSummary: '胸: 86cm · 腰: 72cm · 臀: 92cm',
+      ),
+    ],
+  );
+
+  blocTest<RecordBloc, RecordState>(
+    'LoadRecordSummary fills lastPhotoDate from latest photo',
+    build: buildBloc,
+    setUp: () {
+      final latestPhoto = buildPhotoEntry(date: DateTime(2026, 3, 24));
+      when(() => getJournalStreak()).thenAnswer((_) async => right(1));
+      when(() => repository.getLatestEntry())
+          .thenAnswer((_) async => right(latestEntry));
+      when(() => measurementRepository.getLatest())
+          .thenAnswer((_) async => right(null));
+      when(() => photoRepository.getLatest())
+          .thenAnswer((_) async => right(latestPhoto));
+    },
+    act: (bloc) => bloc.add(const RecordEvent.loadSummary()),
+    expect: () => [
+      const RecordState.loading(),
+      RecordState.loaded(
+        journalStreak: 1,
+        lastJournalDate: latestEntry.date,
+        lastPhotoDate: DateTime(2026, 3, 24),
+        lastMeasurementDate: null,
+        lastMeasurementSummary: null,
       ),
     ],
   );

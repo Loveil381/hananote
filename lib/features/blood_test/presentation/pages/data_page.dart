@@ -1,3 +1,6 @@
+// Release prep note: This page predates the release lint baseline and keeps a
+// few file-level suppressions because the dense widget tree is being stabilized
+// before a readability refactor.
 // ignore_for_file: public_member_api_docs
 // ignore_for_file: prefer_const_constructors
 // ignore_for_file: prefer_const_literals_to_create_immutables
@@ -222,7 +225,11 @@ class DataPage extends StatelessWidget {
                       ],
                     ),
                     const Spacer(),
-                    const Icon(Icons.arrow_forward_ios, color: Colors.white, size: 16),
+                    const Icon(
+                      Icons.arrow_forward_ios,
+                      color: Colors.white,
+                      size: 16,
+                    ),
                   ],
                 ),
               ),

@@ -28,9 +28,9 @@ mixin _$PhotoModel {
   String get encryptedThumbPath => throw _privateConstructorUsedError;
   @JsonKey(name: 'original_size_bytes')
   int get originalSizeBytes => throw _privateConstructorUsedError;
-  String? get notes => throw _privateConstructorUsedError;
   @JsonKey(name: 'created_at')
   DateTime get createdAt => throw _privateConstructorUsedError;
+  String? get notes => throw _privateConstructorUsedError;
   @JsonKey(name: 'updated_at')
   DateTime? get updatedAt => throw _privateConstructorUsedError;
 
@@ -56,8 +56,8 @@ abstract class $PhotoModelCopyWith<$Res> {
       @JsonKey(name: 'encrypted_path') String encryptedPath,
       @JsonKey(name: 'encrypted_thumb_path') String encryptedThumbPath,
       @JsonKey(name: 'original_size_bytes') int originalSizeBytes,
-      String? notes,
       @JsonKey(name: 'created_at') DateTime createdAt,
+      String? notes,
       @JsonKey(name: 'updated_at') DateTime? updatedAt});
 }
 
@@ -81,8 +81,8 @@ class _$PhotoModelCopyWithImpl<$Res, $Val extends PhotoModel>
     Object? encryptedPath = null,
     Object? encryptedThumbPath = null,
     Object? originalSizeBytes = null,
-    Object? notes = freezed,
     Object? createdAt = null,
+    Object? notes = freezed,
     Object? updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
@@ -106,14 +106,14 @@ class _$PhotoModelCopyWithImpl<$Res, $Val extends PhotoModel>
           ? _value.originalSizeBytes
           : originalSizeBytes // ignore: cast_nullable_to_non_nullable
               as int,
-      notes: freezed == notes
-          ? _value.notes
-          : notes // ignore: cast_nullable_to_non_nullable
-              as String?,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      notes: freezed == notes
+          ? _value.notes
+          : notes // ignore: cast_nullable_to_non_nullable
+              as String?,
       updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
@@ -136,8 +136,8 @@ abstract class _$$PhotoModelImplCopyWith<$Res>
       @JsonKey(name: 'encrypted_path') String encryptedPath,
       @JsonKey(name: 'encrypted_thumb_path') String encryptedThumbPath,
       @JsonKey(name: 'original_size_bytes') int originalSizeBytes,
-      String? notes,
       @JsonKey(name: 'created_at') DateTime createdAt,
+      String? notes,
       @JsonKey(name: 'updated_at') DateTime? updatedAt});
 }
 
@@ -159,8 +159,8 @@ class __$$PhotoModelImplCopyWithImpl<$Res>
     Object? encryptedPath = null,
     Object? encryptedThumbPath = null,
     Object? originalSizeBytes = null,
-    Object? notes = freezed,
     Object? createdAt = null,
+    Object? notes = freezed,
     Object? updatedAt = freezed,
   }) {
     return _then(_$PhotoModelImpl(
@@ -184,14 +184,14 @@ class __$$PhotoModelImplCopyWithImpl<$Res>
           ? _value.originalSizeBytes
           : originalSizeBytes // ignore: cast_nullable_to_non_nullable
               as int,
-      notes: freezed == notes
-          ? _value.notes
-          : notes // ignore: cast_nullable_to_non_nullable
-              as String?,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      notes: freezed == notes
+          ? _value.notes
+          : notes // ignore: cast_nullable_to_non_nullable
+              as String?,
       updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
@@ -209,8 +209,8 @@ class _$PhotoModelImpl implements _PhotoModel {
       @JsonKey(name: 'encrypted_path') required this.encryptedPath,
       @JsonKey(name: 'encrypted_thumb_path') required this.encryptedThumbPath,
       @JsonKey(name: 'original_size_bytes') required this.originalSizeBytes,
-      this.notes,
       @JsonKey(name: 'created_at') required this.createdAt,
+      this.notes,
       @JsonKey(name: 'updated_at') this.updatedAt});
 
   factory _$PhotoModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -230,17 +230,17 @@ class _$PhotoModelImpl implements _PhotoModel {
   @JsonKey(name: 'original_size_bytes')
   final int originalSizeBytes;
   @override
-  final String? notes;
-  @override
   @JsonKey(name: 'created_at')
   final DateTime createdAt;
+  @override
+  final String? notes;
   @override
   @JsonKey(name: 'updated_at')
   final DateTime? updatedAt;
 
   @override
   String toString() {
-    return 'PhotoModel(id: $id, date: $date, encryptedPath: $encryptedPath, encryptedThumbPath: $encryptedThumbPath, originalSizeBytes: $originalSizeBytes, notes: $notes, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'PhotoModel(id: $id, date: $date, encryptedPath: $encryptedPath, encryptedThumbPath: $encryptedThumbPath, originalSizeBytes: $originalSizeBytes, createdAt: $createdAt, notes: $notes, updatedAt: $updatedAt)';
   }
 
   @override
@@ -256,9 +256,9 @@ class _$PhotoModelImpl implements _PhotoModel {
                 other.encryptedThumbPath == encryptedThumbPath) &&
             (identical(other.originalSizeBytes, originalSizeBytes) ||
                 other.originalSizeBytes == originalSizeBytes) &&
-            (identical(other.notes, notes) || other.notes == notes) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
+            (identical(other.notes, notes) || other.notes == notes) &&
             (identical(other.updatedAt, updatedAt) ||
                 other.updatedAt == updatedAt));
   }
@@ -266,7 +266,7 @@ class _$PhotoModelImpl implements _PhotoModel {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, date, encryptedPath,
-      encryptedThumbPath, originalSizeBytes, notes, createdAt, updatedAt);
+      encryptedThumbPath, originalSizeBytes, createdAt, notes, updatedAt);
 
   /// Create a copy of PhotoModel
   /// with the given fields replaced by the non-null parameter values.
@@ -293,8 +293,8 @@ abstract class _PhotoModel implements PhotoModel {
           required final String encryptedThumbPath,
           @JsonKey(name: 'original_size_bytes')
           required final int originalSizeBytes,
-          final String? notes,
           @JsonKey(name: 'created_at') required final DateTime createdAt,
+          final String? notes,
           @JsonKey(name: 'updated_at') final DateTime? updatedAt}) =
       _$PhotoModelImpl;
 
@@ -315,10 +315,10 @@ abstract class _PhotoModel implements PhotoModel {
   @JsonKey(name: 'original_size_bytes')
   int get originalSizeBytes;
   @override
-  String? get notes;
-  @override
   @JsonKey(name: 'created_at')
   DateTime get createdAt;
+  @override
+  String? get notes;
   @override
   @JsonKey(name: 'updated_at')
   DateTime? get updatedAt;

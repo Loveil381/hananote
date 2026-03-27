@@ -24,6 +24,7 @@ dependencies:
   go_router: ^14.0.0
   hashlib: ^1.19.0
   image: ^4.2.0
+  image_picker: ^1.1.2
   injectable: ^2.5.0
   intl: any
   json_annotation: ^4.9.0
@@ -38,6 +39,7 @@ dependencies:
 dev_dependencies:
   bloc_test: any
   build_runner: ^2.4.0
+  flutter_launcher_icons: ^0.14.0
   flutter_test:
     sdk: flutter
   freezed: ^2.5.0
@@ -47,5 +49,14 @@ dev_dependencies:
   very_good_analysis: ^6.0.0
 
 flutter:
+  assets:
+    - assets/icon/
   uses-material-design: true
   generate: true
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon/app_icon.png"
+  adaptive_icon_background: "#FDF2F8"
+  adaptive_icon_foreground: "assets/icon/app_icon.png"

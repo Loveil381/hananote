@@ -45,8 +45,8 @@ class SavePhoto {
       if (originalResult.isLeft()) {
         return left(
           originalResult.swap().getOrElse(
-            (_) => throw StateError('unreachable'),
-          ),
+                (_) => throw StateError('unreachable'),
+              ),
         );
       }
 
@@ -58,8 +58,8 @@ class SavePhoto {
         await _photoCryptoService.deleteFiles([originalPath]);
         return left(
           thumbResult.swap().getOrElse(
-            (_) => throw StateError('unreachable'),
-          ),
+                (_) => throw StateError('unreachable'),
+              ),
         );
       }
 

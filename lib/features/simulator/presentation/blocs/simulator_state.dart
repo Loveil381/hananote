@@ -1,3 +1,5 @@
+// Release prep note: Freezed unions are app-internal and stay undocumented to
+// avoid repeating obvious variant docs across generated state types.
 // ignore_for_file: public_member_api_docs
 
 part of 'simulator_bloc.dart';

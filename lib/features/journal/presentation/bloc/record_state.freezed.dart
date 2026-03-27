@@ -451,10 +451,8 @@ class _$RecordLoadedImpl implements RecordLoaded {
   final DateTime? lastJournalDate;
   @override
   final DateTime? lastPhotoDate;
-// null for now (Phase 2)
   @override
   final DateTime? lastMeasurementDate;
-// null for now (Phase 2)
   @override
   final String? lastMeasurementSummary;
 
@@ -598,8 +596,8 @@ abstract class RecordLoaded implements RecordState {
 
   int get journalStreak;
   DateTime? get lastJournalDate;
-  DateTime? get lastPhotoDate; // null for now (Phase 2)
-  DateTime? get lastMeasurementDate; // null for now (Phase 2)
+  DateTime? get lastPhotoDate;
+  DateTime? get lastMeasurementDate;
   String? get lastMeasurementSummary;
 
   /// Create a copy of RecordState

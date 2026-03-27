@@ -1,3 +1,5 @@
+// Release prep note: This page keeps long medication copy and route literals
+// on one line because wrapping makes the card layout harder to scan.
 // ignore_for_file: lines_longer_than_80_chars
 
 import 'package:flutter/material.dart';

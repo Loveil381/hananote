@@ -8,6 +8,7 @@ import 'package:hananote/core/error/failures.dart';
 import 'package:hananote/features/photo/domain/services/photo_crypto_service.dart';
 import 'package:image/image.dart' as img;
 import 'package:mocktail/mocktail.dart';
+import 'package:path/path.dart' as p;
 
 import '../../fixtures.dart';
 
@@ -31,8 +32,8 @@ void main() {
     tempDirectory = await Directory.systemTemp.createTemp('photo_crypto_test');
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
         .setMockMethodCallHandler(channel, (methodCall) async {
-          return tempDirectory.path;
-        });
+      return tempDirectory.path;
+    });
 
     cryptoEngine = CryptoEngine();
     keyManager = _MockKeyManager();
@@ -70,8 +71,9 @@ void main() {
 
     await service.encryptAndSave(originalBytes, 'photos/encrypted.enc');
 
-    final writtenBytes =
-        await File('${tempDirectory.path}\\photos\\encrypted.enc').readAsBytes();
+    final writtenBytes = await File(
+      p.join(tempDirectory.path, 'photos', 'encrypted.enc'),
+    ).readAsBytes();
     expect(writtenBytes, isNot(originalBytes));
     expect(writtenBytes, isNot(equals(originalBytes)));
   });

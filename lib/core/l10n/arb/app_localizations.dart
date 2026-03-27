@@ -327,6 +327,78 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Medications'**
   String get medications;
+
+  /// No description provided for @photoGallery.
+  ///
+  /// In en, this message translates to:
+  /// **'Encrypted Gallery'**
+  String get photoGallery;
+
+  /// No description provided for @addPhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Photo'**
+  String get addPhoto;
+
+  /// No description provided for @takePhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Take Photo'**
+  String get takePhoto;
+
+  /// No description provided for @chooseFromLibrary.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose from Library'**
+  String get chooseFromLibrary;
+
+  /// No description provided for @photoEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No encrypted photos yet'**
+  String get photoEmptyTitle;
+
+  /// No description provided for @photoEmptyDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Your photos are end-to-end encrypted. Only you can see them.'**
+  String get photoEmptyDescription;
+
+  /// No description provided for @photoDeleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete photo'**
+  String get photoDeleteTitle;
+
+  /// No description provided for @photoDeleteMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'This will delete the encrypted file and its record.'**
+  String get photoDeleteMessage;
+
+  /// No description provided for @retry.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get retry;
+
+  /// No description provided for @fileSize.
+  ///
+  /// In en, this message translates to:
+  /// **'File size'**
+  String get fileSize;
+
+  /// No description provided for @errorFallbackTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong'**
+  String get errorFallbackTitle;
+
+  /// No description provided for @errorFallbackDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Please reopen the app. If the problem continues, contact support.'**
+  String get errorFallbackDescription;
 }
 
 class _AppLocalizationsDelegate
