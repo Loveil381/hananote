@@ -26,18 +26,14 @@ class SettingsRepositoryImpl implements SettingsRepository {
         return _defaultProfile();
       }
 
-      return storedProfile.copyWith(
-        hrtDayCount: _calculateHrtDayCount(storedProfile.hrtStartDate),
-      );
+      return storedProfile.normalized();
     });
   }
 
   @override
   Future<Either<Failure, UserProfile>> saveUserProfile(UserProfile profile) {
     return _guardStorage(() async {
-      final normalizedProfile = profile.copyWith(
-        hrtDayCount: _calculateHrtDayCount(profile.hrtStartDate),
-      );
+      final normalizedProfile = profile.normalized();
       await _localDataSource.saveUserProfile(normalizedProfile);
       return normalizedProfile;
     });
@@ -74,9 +70,8 @@ class SettingsRepositoryImpl implements SettingsRepository {
   }
 
   UserProfile _defaultProfile() {
-    return UserProfile(
+    return UserProfile.withCalculatedHrtDayCount(
       displayName: '小花',
-      hrtDayCount: _calculateHrtDayCount(_defaultHrtStartDate),
       hrtStartDate: _defaultHrtStartDate,
     );
   }
@@ -88,18 +83,6 @@ class SettingsRepositoryImpl implements SettingsRepository {
       blurOverlayEnabled: true,
       lastBackupDate: null,
     );
-  }
-
-  int _calculateHrtDayCount(DateTime hrtStartDate) {
-    final today = DateTime.now();
-    final startDate = DateTime(
-      hrtStartDate.year,
-      hrtStartDate.month,
-      hrtStartDate.day,
-    );
-    final normalizedToday = DateTime(today.year, today.month, today.day);
-    final difference = normalizedToday.difference(startDate).inDays;
-    return difference < 0 ? 0 : difference;
   }
 
   Future<Either<Failure, T>> _guardStorage<T>(
