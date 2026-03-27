@@ -423,6 +423,8 @@ class PkEngine {
     required double bodyWeightKg,
     required double vdPerKg,
   }) {
+    // amountMg × 1e6 ng/mg ÷ (volumeLiters × 1e3 mL/L) = ng/mL ≡ μg/L
+    // amountMg × 1e9 pg/mg ÷ (volumeLiters × 1e3 mL/L) = pg/mL
     final volumeLiters = math.max(bodyWeightKg * vdPerKg, _epsilon);
     return _clampNonNegative(amountMg * 1e9 / volumeLiters / 1000);
   }

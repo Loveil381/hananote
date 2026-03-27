@@ -186,13 +186,12 @@ class GetTimelineEvents {
     }).join(' · ');
     final normalCount = report.readings
         .where(
-          (reading) => reading.type.statusFor(reading.value) ==
-              HormoneStatus.normal,
+          (reading) =>
+              reading.type.statusFor(reading.value) == HormoneStatus.normal,
         )
         .length;
-    final targetRate = report.readings.isEmpty
-        ? 0.0
-        : normalCount / report.readings.length;
+    final targetRate =
+        report.readings.isEmpty ? 0.0 : normalCount / report.readings.length;
 
     return TimelineEvent(
       id: 'blood-test-${report.id}',

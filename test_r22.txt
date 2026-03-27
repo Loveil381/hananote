@@ -1,0 +1,294 @@
+﻿00:00 +0: loading C:/projects/HanaNote/hananote/test/core/crypto/crypto_engine_test.dart
+00:00 +0: C:/projects/HanaNote/hananote/test/core/crypto/crypto_engine_test.dart: CryptoEngine AES-256-GCM should encrypt and decrypt correctly
+00:00 +1: C:/projects/HanaNote/hananote/test/core/crypto/crypto_engine_test.dart: CryptoEngine AES-256-GCM should fail decryption with wrong key
+00:00 +2: C:/projects/HanaNote/hananote/test/core/crypto/crypto_engine_test.dart: CryptoEngine AES-256-GCM should encrypt and decrypt empty plaintext
+00:00 +3: C:/projects/HanaNote/hananote/test/core/crypto/key_manager_test.dart: KeyManager initializeKey then getKey should return a 32-byte key
+00:00 +4: C:/projects/HanaNote/hananote/test/core/crypto/key_manager_test.dart: KeyManager initializeKey then getKey should return a 32-byte key
+00:00 +5: C:/projects/HanaNote/hananote/test/core/crypto/key_manager_test.dart: KeyManager initializeKey then getKey should return a 32-byte key
+00:01 +6: C:/projects/HanaNote/hananote/test/core/crypto/key_manager_test.dart: KeyManager verifyPassword should return true for the correct password
+00:02 +7: C:/projects/HanaNote/hananote/test/core/crypto/key_manager_test.dart: KeyManager verifyPassword should return true for the correct password
+00:02 +8: C:/projects/HanaNote/hananote/test/core/crypto/key_manager_test.dart: KeyManager verifyPassword should return true for the correct password
+00:02 +9: C:/projects/HanaNote/hananote/test/core/crypto/key_manager_test.dart: KeyManager verifyPassword should return false for a wrong password
+00:03 +10: C:/projects/HanaNote/hananote/test/core/crypto/key_manager_test.dart: KeyManager deleteKey then getKey should return null
+00:04 +11: C:/projects/HanaNote/hananote/test/core/privacy/app_blur_overlay_test.dart: shows and hides the privacy overlay on lifecycle changes
+00:05 +12: C:/projects/HanaNote/hananote/test/core/privacy/app_blur_overlay_test.dart: shows and hides the privacy overlay on lifecycle changes
+00:05 +13: C:/projects/HanaNote/hananote/test/core/privacy/app_blur_overlay_test.dart: shows and hides the privacy overlay on lifecycle changes
+00:05 +14: C:/projects/HanaNote/hananote/test/core/privacy/app_blur_overlay_test.dart: shows and hides the privacy overlay on lifecycle changes
+00:05 +15: C:/projects/HanaNote/hananote/test/core/privacy/app_blur_overlay_test.dart: shows and hides the privacy overlay on lifecycle changes
+00:05 +16: C:/projects/HanaNote/hananote/test/core/privacy/app_blur_overlay_test.dart: shows and hides the privacy overlay on lifecycle changes
+00:05 +17: C:/projects/HanaNote/hananote/test/features/auth/domain/usecases/setup_app_test.dart: SetupApp validates PIN format before setup
+00:05 +18: C:/projects/HanaNote/hananote/test/features/auth/domain/usecases/setup_app_test.dart: SetupApp sets up password, saves settings, and opens database
+00:06 +19: C:/projects/HanaNote/hananote/test/features/auth/domain/usecases/unlock_app_test.dart: UnlockApp returns false when PIN format is invalid
+00:06 +20: C:/projects/HanaNote/hananote/test/features/auth/domain/usecases/unlock_app_test.dart: UnlockApp opens database when PIN is correct
+00:07 +21: C:/projects/HanaNote/hananote/test/features/auth/presentation/bloc/auth_cubit_test.dart: (setUpAll)
+00:07 +21: C:/projects/HanaNote/hananote/test/features/auth/presentation/bloc/auth_cubit_test.dart: emits needsSetup when app is not configured
+00:07 +22: C:/projects/HanaNote/hananote/test/features/auth/presentation/bloc/auth_cubit_test.dart: sets up PIN and unlocks on success
+00:07 +23: C:/projects/HanaNote/hananote/test/features/auth/presentation/bloc/auth_cubit_test.dart: emits locked state then error fallback on invalid PIN
+00:07 +24: C:/projects/HanaNote/hananote/test/features/auth/presentation/bloc/auth_cubit_test.dart: wipes data successfully
+00:07 +25: C:/projects/HanaNote/hananote/test/features/auth/presentation/bloc/auth_cubit_test.dart: (tearDownAll)
+00:09 +25: C:/projects/HanaNote/hananote/test/features/blood_test/data/datasources/blood_test_local_datasource_test.dart: BloodTestLocalDataSource groups joined report rows into reports with readings
+00:09 +26: C:/projects/HanaNote/hananote/test/features/blood_test/data/datasources/blood_test_local_datasource_test.dart: BloodTestLocalDataSource returns null when a report is not found
+00:09 +27: C:/projects/HanaNote/hananote/test/features/blood_test/data/datasources/blood_test_local_datasource_test.dart: BloodTestLocalDataSource filters hormone readings by type and date range
+00:09 +28: C:/projects/HanaNote/hananote/test/features/blood_test/data/datasources/blood_test_local_datasource_test.dart: BloodTestLocalDataSource returns the latest reading for a hormone type
+00:09 +29: C:/projects/HanaNote/hananote/test/features/blood_test/data/models/blood_test_report_model_test.dart: BloodTestReportModel round-trips between domain and json without serializing readings
+00:11 +30: C:/projects/HanaNote/hananote/test/features/blood_test/data/repositories/blood_test_repository_impl_test.dart: BloodTestRepositoryImpl maps getAllReports to domain entities
+00:11 +31: C:/projects/HanaNote/hananote/test/features/blood_test/data/repositories/blood_test_repository_impl_test.dart: BloodTestRepositoryImpl wraps datasource exceptions as database failures
+00:11 +32: C:/projects/HanaNote/hananote/test/features/blood_test/data/repositories/blood_test_repository_impl_test.dart: BloodTestRepositoryImpl adds reports using model mapping
+00:11 +33: C:/projects/HanaNote/hananote/test/features/blood_test/data/repositories/blood_test_repository_impl_test.dart: BloodTestRepositoryImpl returns the latest hormone reading when present
+00:12 +34: C:/projects/HanaNote/hananote/test/features/blood_test/domain/entities/enums_test.dart: HormoneTypeX.targetRange estradiol exposes the configured target range
+00:12 +35: C:/projects/HanaNote/hananote/test/features/blood_test/domain/entities/enums_test.dart: HormoneTypeX.targetRange testosterone exposes the configured target range
+00:12 +36: C:/projects/HanaNote/hananote/test/features/blood_test/domain/entities/enums_test.dart: HormoneTypeX.targetRange prolactin exposes the configured target range
+00:12 +37: C:/projects/HanaNote/hananote/test/features/blood_test/domain/entities/enums_test.dart: HormoneTypeX.targetRange progesterone exposes the configured target range
+00:12 +38: C:/projects/HanaNote/hananote/test/features/blood_test/domain/entities/enums_test.dart: HormoneTypeX.targetRange lh exposes the configured target range
+00:12 +39: C:/projects/HanaNote/hananote/test/features/blood_test/domain/entities/enums_test.dart: HormoneTypeX.targetRange fsh exposes the configured target range
+00:12 +40: C:/projects/HanaNote/hananote/test/features/blood_test/domain/entities/enums_test.dart: HormoneTypeX.targetRange shbg exposes the configured target range
+00:12 +41: C:/projects/HanaNote/hananote/test/features/blood_test/domain/entities/enums_test.dart: HormoneTypeX.statusFor estradiol returns normal, warning, and critical correctly
+00:12 +42: C:/projects/HanaNote/hananote/test/features/blood_test/domain/entities/enums_test.dart: HormoneTypeX.statusFor testosterone returns normal, warning, and critical correctly
+00:12 +43: C:/projects/HanaNote/hananote/test/features/blood_test/domain/entities/enums_test.dart: HormoneTypeX.statusFor prolactin returns normal, warning, and critical correctly
+00:12 +44: C:/projects/HanaNote/hananote/test/features/blood_test/domain/entities/enums_test.dart: HormoneTypeX.statusFor progesterone returns normal, warning, and critical correctly
+00:12 +45: C:/projects/HanaNote/hananote/test/features/blood_test/domain/entities/enums_test.dart: HormoneTypeX.statusFor lh returns normal, warning, and critical correctly
+00:12 +46: C:/projects/HanaNote/hananote/test/features/blood_test/domain/entities/enums_test.dart: HormoneTypeX.statusFor fsh returns normal, warning, and critical correctly
+00:12 +47: C:/projects/HanaNote/hananote/test/features/blood_test/domain/entities/enums_test.dart: HormoneTypeX.statusFor shbg returns normal, warning, and critical correctly
+00:13 +48: C:/projects/HanaNote/hananote/test/features/blood_test/domain/usecases/add_blood_test_report_test.dart: (setUpAll)
+00:13 +48: C:/projects/HanaNote/hananote/test/features/blood_test/domain/usecases/add_blood_test_report_test.dart: AddBloodTestReport returns validation failure when readings are empty
+00:14 +49: C:/projects/HanaNote/hananote/test/features/blood_test/domain/usecases/add_blood_test_report_test.dart: AddBloodTestReport stores the report when validation succeeds
+00:14 +50: C:/projects/HanaNote/hananote/test/features/blood_test/domain/usecases/add_blood_test_report_test.dart: (tearDownAll)
+00:14 +50: C:/projects/HanaNote/hananote/test/features/blood_test/domain/usecases/get_all_blood_test_reports_test.dart: GetAllBloodTestReports returns reports when repository succeeds
+00:14 +51: C:/projects/HanaNote/hananote/test/features/blood_test/domain/usecases/get_all_blood_test_reports_test.dart: GetAllBloodTestReports returns failure when repository fails
+00:15 +52: C:/projects/HanaNote/hananote/test/features/blood_test/domain/usecases/get_hormone_trend_test.dart: GetHormoneTrend returns readings ordered by test date for the requested range
+00:15 +53: C:/projects/HanaNote/hananote/test/features/blood_test/domain/usecases/get_hormone_trend_test.dart: GetHormoneTrend returns an empty list when no readings match the requested range
+00:15 +54: C:/projects/HanaNote/hananote/test/features/blood_test/domain/usecases/get_hormone_trend_test.dart: GetHormoneTrend returns failure when repository fails
+00:16 +55: C:/projects/HanaNote/hananote/test/features/blood_test/presentation/bloc/blood_test_bloc_test.dart: (setUpAll)
+00:16 +55: C:/projects/HanaNote/hananote/test/features/blood_test/presentation/bloc/blood_test_bloc_test.dart: initial state is BloodTestInitial
+00:16 +56: C:/projects/HanaNote/hananote/test/features/blood_test/presentation/bloc/blood_test_bloc_test.dart: LoadBloodTestDashboard emits [loading, loaded] with default hormone and range
+00:16 +57: C:/projects/HanaNote/hananote/test/features/blood_test/presentation/bloc/blood_test_bloc_test.dart: SelectHormoneForTrend updates the selected hormone and trend data
+00:16 +58: C:/projects/HanaNote/hananote/test/features/blood_test/presentation/bloc/blood_test_bloc_test.dart: SelectTrendRange updates the selected range and trend data
+00:16 +59: C:/projects/HanaNote/hananote/test/features/blood_test/presentation/bloc/blood_test_bloc_test.dart: (tearDownAll)
+00:17 +59: C:/projects/HanaNote/hananote/test/features/journal/data/datasources/journal_local_datasource_test.dart: JournalLocalDataSource returns filtered journal entries ordered by date
+00:17 +60: C:/projects/HanaNote/hananote/test/features/journal/data/datasources/journal_local_datasource_test.dart: JournalLocalDataSource returns null when an entry id is not found
+00:17 +61: C:/projects/HanaNote/hananote/test/features/journal/data/datasources/journal_local_datasource_test.dart: JournalLocalDataSource queries an entry by its normalized day value
+00:17 +62: C:/projects/HanaNote/hananote/test/features/journal/data/datasources/journal_local_datasource_test.dart: JournalLocalDataSource inserts an entry json payload
+00:17 +63: C:/projects/HanaNote/hananote/test/features/journal/data/datasources/journal_local_datasource_test.dart: JournalLocalDataSource updates an entry by id
+00:17 +64: C:/projects/HanaNote/hananote/test/features/journal/data/datasources/journal_local_datasource_test.dart: JournalLocalDataSource deletes an entry by id
+00:17 +65: C:/projects/HanaNote/hananote/test/features/journal/data/datasources/journal_local_datasource_test.dart: JournalLocalDataSource counts streak from yesterday when today has no entry
+00:17 +66: C:/projects/HanaNote/hananote/test/features/journal/data/datasources/journal_local_datasource_test.dart: JournalLocalDataSource returns the latest entry when present
+00:18 +67: C:/projects/HanaNote/hananote/test/features/journal/data/models/journal_entry_model_test.dart: JournalEntryModel round-trips between json and domain
+00:18 +68: C:/projects/HanaNote/hananote/test/features/journal/data/models/journal_entry_model_test.dart: JournalEntryModel normalizes the entry date and stores tags as a json string
+00:19 +69: C:/projects/HanaNote/hananote/test/features/journal/data/repositories/journal_repository_impl_test.dart: JournalRepositoryImpl maps getAllEntries to domain entities
+00:19 +70: C:/projects/HanaNote/hananote/test/features/journal/data/repositories/journal_repository_impl_test.dart: JournalRepositoryImpl maps getAllEntries to domain entities
+00:19 +71: C:/projects/HanaNote/hananote/test/features/journal/data/repositories/journal_repository_impl_test.dart: JournalRepositoryImpl maps getAllEntries to domain entities
+00:19 +72: C:/projects/HanaNote/hananote/test/features/journal/data/repositories/journal_repository_impl_test.dart: JournalRepositoryImpl maps getAllEntries to domain entities
+00:19 +73: C:/projects/HanaNote/hananote/test/features/journal/data/repositories/journal_repository_impl_test.dart: JournalRepositoryImpl maps getEntryByDate to a nullable domain entity
+00:19 +74: C:/projects/HanaNote/hananote/test/features/journal/data/repositories/journal_repository_impl_test.dart: JournalRepositoryImpl adds entries using model mapping
+00:19 +75: C:/projects/HanaNote/hananote/test/features/journal/data/repositories/journal_repository_impl_test.dart: JournalRepositoryImpl updates entries using model mapping
+00:19 +76: C:/projects/HanaNote/hananote/test/features/journal/data/repositories/journal_repository_impl_test.dart: JournalRepositoryImpl deletes entries through the datasource
+00:19 +77: C:/projects/HanaNote/hananote/test/features/journal/data/repositories/journal_repository_impl_test.dart: JournalRepositoryImpl returns the current streak
+00:19 +78: C:/projects/HanaNote/hananote/test/features/journal/data/repositories/journal_repository_impl_test.dart: JournalRepositoryImpl returns the latest entry when present
+00:19 +79: C:/projects/HanaNote/hananote/test/features/journal/data/repositories/journal_repository_impl_test.dart: JournalRepositoryImpl wraps datasource exceptions as database failures
+00:20 +80: C:/projects/HanaNote/hananote/test/features/journal/domain/usecases/add_journal_entry_test.dart: AddJournalEntry trims content before persisting
+00:20 +81: C:/projects/HanaNote/hananote/test/features/journal/domain/usecases/add_journal_entry_test.dart: AddJournalEntry rejects empty content after trimming
+00:20 +82: C:/projects/HanaNote/hananote/test/features/journal/domain/usecases/get_all_journal_entries_test.dart: GetAllJournalEntries forwards the optional date range to the repository
+00:21 +83: C:/projects/HanaNote/hananote/test/features/journal/domain/usecases/get_journal_streak_test.dart: GetJournalStreak returns the repository streak value
+00:22 +84: C:/projects/HanaNote/hananote/test/features/journal/domain/usecases/update_journal_entry_test.dart: UpdateJournalEntry trims content before updating
+00:22 +85: C:/projects/HanaNote/hananote/test/features/journal/domain/usecases/update_journal_entry_test.dart: UpdateJournalEntry rejects empty content after trimming
+00:23 +86: C:/projects/HanaNote/hananote/test/features/journal/presentation/bloc/record_bloc_test.dart: initial state is RecordInitial
+00:23 +87: C:/projects/HanaNote/hananote/test/features/journal/presentation/bloc/record_bloc_test.dart: LoadRecordSummary emits [loading, loaded] with journal metadata
+00:23 +88: C:/projects/HanaNote/hananote/test/features/journal/presentation/bloc/record_bloc_test.dart: RefreshRecordSummary re-loads record summary state
+00:24 +89: C:/projects/HanaNote/hananote/test/features/medication/data/datasources/medication_local_datasource_test.dart: MedicationLocalDataSource gets all drugs from the drugs table
+00:24 +90: C:/projects/HanaNote/hananote/test/features/medication/data/datasources/medication_local_datasource_test.dart: MedicationLocalDataSource loads the latest schedule for a drug
+00:24 +91: C:/projects/HanaNote/hananote/test/features/medication/data/datasources/medication_local_datasource_test.dart: MedicationLocalDataSource builds parameterized date queries for drug logs
+00:24 +92: C:/projects/HanaNote/hananote/test/features/medication/data/datasources/medication_local_datasource_test.dart: MedicationLocalDataSource upserts inventory with replace conflict strategy
+00:24 +93: C:/projects/HanaNote/hananote/test/features/medication/data/models/drug_model_test.dart: DrugModel round-trips between json and domain
+00:24 +94: C:/projects/HanaNote/hananote/test/features/medication/data/models/drug_model_test.dart: DrugModel serializes sqlite field names correctly
+00:25 +95: C:/projects/HanaNote/hananote/test/features/medication/data/models/medication_schedule_model_test.dart: MedicationScheduleModel serializes and deserializes daily frequency
+00:25 +96: C:/projects/HanaNote/hananote/test/features/medication/data/models/medication_schedule_model_test.dart: MedicationScheduleModel serializes and deserializes everyNDays frequency
+00:25 +97: C:/projects/HanaNote/hananote/test/features/medication/data/models/medication_schedule_model_test.dart: MedicationScheduleModel serializes and deserializes weekly frequency
+00:25 +98: C:/projects/HanaNote/hananote/test/features/medication/data/models/medication_schedule_model_test.dart: MedicationScheduleModel serializes and deserializes custom frequency and schedule times
+00:25 +99: C:/projects/HanaNote/hananote/test/features/medication/data/repositories/medication_repository_impl_test.dart: MedicationRepositoryImpl maps getAllDrugs to domain entities
+00:25 +100: C:/projects/HanaNote/hananote/test/features/medication/data/repositories/medication_repository_impl_test.dart: MedicationRepositoryImpl wraps datasource exceptions as failures
+00:25 +101: C:/projects/HanaNote/hananote/test/features/medication/data/repositories/medication_repository_impl_test.dart: MedicationRepositoryImpl adds drugs using model mapping
+00:25 +102: C:/projects/HanaNote/hananote/test/features/medication/data/repositories/medication_repository_impl_test.dart: MedicationRepositoryImpl calculates adherence rate from expected and actual doses
+00:25 +103: C:/projects/HanaNote/hananote/test/features/medication/data/repositories/medication_repository_impl_test.dart: MedicationRepositoryImpl calculates days until empty from inventory and schedule
+00:26 +104: C:/projects/HanaNote/hananote/test/features/medication/domain/usecases/add_drug_test.dart: AddDrug trims and persists a valid drug
+00:26 +105: C:/projects/HanaNote/hananote/test/features/medication/domain/usecases/add_drug_test.dart: AddDrug returns validation failure when name is empty
+00:26 +106: C:/projects/HanaNote/hananote/test/features/medication/domain/usecases/add_drug_test.dart: AddDrug returns validation failure when unit does not match route
+00:27 +107: C:/projects/HanaNote/hananote/test/features/medication/domain/usecases/calculate_next_dose_test.dart: CalculateNextDose calculates next time for a daily schedule
+00:27 +108: C:/projects/HanaNote/hananote/test/features/medication/domain/usecases/calculate_next_dose_test.dart: CalculateNextDose calculates next time for an every-N-days schedule
+00:27 +109: C:/projects/HanaNote/hananote/test/features/medication/domain/usecases/calculate_next_dose_test.dart: CalculateNextDose calculates next time for a weekly schedule
+00:27 +110: C:/projects/HanaNote/hananote/test/features/medication/domain/usecases/calculate_next_dose_test.dart: CalculateNextDose returns null for a custom schedule
+00:27 +111: C:/projects/HanaNote/hananote/test/features/medication/domain/usecases/calculate_next_dose_test.dart: CalculateNextDose returns failure when repository fails
+00:28 +112: C:/projects/HanaNote/hananote/test/features/medication/domain/usecases/check_inventory_test.dart: CheckInventory marks stock below 14 days as low and 14 days as normal
+00:28 +113: C:/projects/HanaNote/hananote/test/features/medication/domain/usecases/check_inventory_test.dart: CheckInventory returns failure when repository fails
+00:28 +114: C:/projects/HanaNote/hananote/test/features/medication/domain/usecases/delete_drug_test.dart: DeleteDrug returns success when repository deletes the drug
+00:29 +115: C:/projects/HanaNote/hananote/test/features/medication/domain/usecases/delete_drug_test.dart: DeleteDrug returns failure when repository fails
+00:29 +116: C:/projects/HanaNote/hananote/test/features/medication/domain/usecases/get_adherence_stats_test.dart: GetAdherenceStats returns adherence for active drugs
+00:29 +117: C:/projects/HanaNote/hananote/test/features/medication/domain/usecases/get_adherence_stats_test.dart: GetAdherenceStats returns failure when loading drugs fails
+00:30 +118: C:/projects/HanaNote/hananote/test/features/medication/domain/usecases/get_all_drugs_test.dart: GetAllDrugs returns drugs when repository succeeds
+00:30 +119: C:/projects/HanaNote/hananote/test/features/medication/domain/usecases/get_all_drugs_test.dart: GetAllDrugs returns failure when repository fails
+00:30 +120: C:/projects/HanaNote/hananote/test/features/medication/domain/usecases/get_medication_logs_test.dart: GetMedicationLogs returns logs in the requested range
+00:30 +121: C:/projects/HanaNote/hananote/test/features/medication/domain/usecases/get_medication_logs_test.dart: GetMedicationLogs returns failure when repository fails
+00:31 +122: C:/projects/HanaNote/hananote/test/features/medication/domain/usecases/get_today_schedule_test.dart: GetTodaySchedule returns due items and completion state for today
+00:31 +123: C:/projects/HanaNote/hananote/test/features/medication/domain/usecases/get_today_schedule_test.dart: GetTodaySchedule returns failure when loading drugs fails
+00:31 +124: C:/projects/HanaNote/hananote/test/features/medication/domain/usecases/log_medication_test.dart: LogMedication adds the log and deducts inventory
+00:31 +125: C:/projects/HanaNote/hananote/test/features/medication/domain/usecases/log_medication_test.dart: LogMedication returns validation failure when inventory would go negative
+00:31 +126: C:/projects/HanaNote/hananote/test/features/medication/domain/usecases/log_medication_test.dart: LogMedication returns validation failure when injection site is missing
+00:32 +127: C:/projects/HanaNote/hananote/test/features/medication/domain/usecases/sync_medication_reminders_test.dart: SyncMedicationReminders synchronizes 2 active drugs with 2 times each
+00:32 +128: C:/projects/HanaNote/hananote/test/features/medication/domain/usecases/sync_medication_reminders_test.dart: SyncMedicationReminders returns right(0) when there are no active drugs
+00:32 +129: C:/projects/HanaNote/hananote/test/features/medication/domain/usecases/sync_medication_reminders_test.dart: SyncMedicationReminders returns Failure.notification when the repository fails
+00:33 +130: C:/projects/HanaNote/hananote/test/features/medication/domain/usecases/update_drug_test.dart: UpdateDrug returns updated drug on success
+00:33 +131: C:/projects/HanaNote/hananote/test/features/medication/domain/usecases/update_drug_test.dart: UpdateDrug returns failure on repository error
+00:34 +132: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/adherence_cubit_test.dart: initial state is AdherenceInitial
+00:34 +133: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/adherence_cubit_test.dart: loadStats emits [loading, loaded] on success
+00:34 +134: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/adherence_cubit_test.dart: loadStats computes overallRate as mean across drugs
+00:34 +135: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/adherence_cubit_test.dart: loadStats overallRate is 0.0 when no drugs
+00:34 +136: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/adherence_cubit_test.dart: loadStats emits [loading, error] on failure
+00:35 +137: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/drug_list_cubit_test.dart: initial state is DrugListInitial
+00:35 +138: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/drug_list_cubit_test.dart: loadDrugs emits [loading, loaded] on success
+00:35 +139: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/drug_list_cubit_test.dart: loadDrugs emits [loading, error] on failure
+00:35 +140: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/drug_list_cubit_test.dart: loadDrugs emits loaded with empty list when no drugs exist
+00:35 +141: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/drug_list_cubit_test.dart: addDrug reloads list on success
+00:35 +142: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/drug_list_cubit_test.dart: addDrug emits error on failure
+00:35 +143: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/drug_list_cubit_test.dart: updateDrug reloads list on success
+00:35 +144: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/drug_list_cubit_test.dart: deleteDrug reloads list on success
+00:35 +145: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/drug_list_cubit_test.dart: toggleDrugActive flips isActive and reloads
+00:36 +146: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/inventory_cubit_test.dart: initial state is InventoryInitial
+00:36 +147: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/inventory_cubit_test.dart: loadInventory emits [loading, loaded] on success
+00:36 +148: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/inventory_cubit_test.dart: loadInventory computes lowStockCount correctly
+00:36 +149: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/inventory_cubit_test.dart: loadInventory emits [loading, error] on failure
+00:36 +150: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/inventory_cubit_test.dart: updateStock updates stock and reloads on success
+00:36 +151: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/inventory_cubit_test.dart: updateStock emits error when repository fails
+00:37 +152: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/schedule_editor_cubit_test.dart: initial state is ScheduleEditorIdle
+00:37 +153: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/schedule_editor_cubit_test.dart: initNew emits ScheduleEditorEditing with isNew=true
+00:37 +154: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/schedule_editor_cubit_test.dart: initEdit emits ScheduleEditorEditing populated from existing schedule
+00:37 +155: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/schedule_editor_cubit_test.dart: validate returns false when dosageAmount is null
+00:37 +156: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/schedule_editor_cubit_test.dart: validate returns true when all required fields are set
+00:37 +157: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/schedule_editor_cubit_test.dart: save emits [saving, saved] on success for new schedule
+00:37 +158: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/schedule_editor_cubit_test.dart: save emits [saving, error] on repository failure
+00:37 +159: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/schedule_editor_cubit_test.dart: save emits [saving, saved] when editing existing schedule
+00:38 +160: C:/projects/HanaNote/hananote/test/features/settings/domain/entities/user_profile_test.dart: UserProfile.withCalculatedHrtDayCount derives hrtDayCount from the start date
+00:38 +161: C:/projects/HanaNote/hananote/test/features/settings/domain/entities/user_profile_test.dart: UserProfile.withCalculatedHrtDayCount clamps hrtDayCount to zero for a future start date
+00:38 +162: C:/projects/HanaNote/hananote/test/features/settings/domain/entities/user_profile_test.dart: UserProfile.normalized recalculates hrtDayCount from hrtStartDate
+00:39 +163: C:/projects/HanaNote/hananote/test/features/settings/domain/usecases/get_profile_dashboard_test.dart: GetProfileDashboard returns the aggregated dashboard when all queries succeed
+00:39 +164: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/today_schedule_bloc_test.dart: initial state is TodayScheduleInitial
+00:39 +165: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/today_schedule_bloc_test.dart: initial state is TodayScheduleInitial
+00:39 +166: C:/projects/HanaNote/hananote/test/features/settings/presentation/bloc/settings_bloc_test.dart: initial state is SettingsInitial
+00:39 +167: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/today_schedule_bloc_test.dart: LoadTodaySchedule emits [loading, loaded] on success
+00:39 +168: C:/projects/HanaNote/hananote/test/features/settings/presentation/bloc/settings_bloc_test.dart: LoadSettingsDashboard emits [loading, loaded] when dashboard data loads successfully
+00:39 +169: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/today_schedule_bloc_test.dart: LoadTodaySchedule emits [loading, error] on failure
+00:39 +170: C:/projects/HanaNote/hananote/test/features/settings/presentation/bloc/settings_bloc_test.dart: ToggleAppLock updates settings when app lock toggle succeeds
+00:39 +171: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/today_schedule_bloc_test.dart: LoadTodaySchedule emits loaded with 0/0 counts for empty list
+00:39 +172: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/today_schedule_bloc_test.dart: LoadTodaySchedule emits loaded with 0/0 counts for empty list
+00:39 +173: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/today_schedule_bloc_test.dart: LoadTodaySchedule emits loaded with 0/0 counts for empty list
+00:39 +174: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/today_schedule_bloc_test.dart: LoadTodaySchedule emits loaded with 0/0 counts for empty list
+00:39 +175: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/today_schedule_bloc_test.dart: LoadTodaySchedule counts completed items correctly
+00:39 +176: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/today_schedule_bloc_test.dart: LogDoseTodaySchedule logs dose and reloads on success
+00:39 +177: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/today_schedule_bloc_test.dart: LogDoseTodaySchedule emits error when logMedication fails
+00:39 +178: C:/projects/HanaNote/hananote/test/features/medication/presentation/bloc/today_schedule_bloc_test.dart: SkipDoseTodaySchedule skips dose and reloads on success
+00:40 +179: C:/projects/HanaNote/hananote/test/features/simulator/domain/run_pk_simulation_test.dart: RunPkSimulation uses override regimen directly
+00:40 +180: C:/projects/HanaNote/hananote/test/features/simulator/domain/run_pk_simulation_test.dart: RunPkSimulation infers regimen from an active estrogen drug
+00:40 +181: C:/projects/HanaNote/hananote/test/features/simulator/domain/run_pk_simulation_test.dart: RunPkSimulation returns validation failure when no estrogen drugs are active
+00:40 +182: C:/projects/HanaNote/hananote/test/features/simulator/domain/run_pk_simulation_test.dart: RunPkSimulation returns repository failure when loading drugs fails
+00:40 +183: C:/projects/HanaNote/hananote/test/features/simulator/domain/services/hana_pk_engine_test.dart: weibullInjection EV Tmax is in [24, 72] h
+00:40 +183 -1: C:/projects/HanaNote/hananote/test/features/simulator/domain/services/hana_pk_engine_test.dart: weibullInjection EV Tmax is in [24, 72] h [E]
+  Expected: a value greater than or equal to <24>
+    Actual: <5.0>
+     Which: is not a value greater than or equal to <24>
+  
+  package:matcher                                                        expect
+  package:flutter_test/src/widget_tester.dart 473:18                     expect
+  test\features\simulator\domain\services\hana_pk_engine_test.dart 44:7  main.<fn>.<fn>
+  
+00:40 +183 -1: C:/projects/HanaNote/hananote/test/features/simulator/domain/services/hana_pk_engine_test.dart: weibullInjection EC Tmax is in [72, 168] h
+00:40 +183 -2: C:/projects/HanaNote/hananote/test/features/simulator/domain/services/hana_pk_engine_test.dart: weibullInjection EC Tmax is in [72, 168] h [E]
+  Expected: a value greater than or equal to <72>
+    Actual: <5.0>
+     Which: is not a value greater than or equal to <72>
+  
+  package:matcher                                                        expect
+  package:flutter_test/src/widget_tester.dart 473:18                     expect
+  test\features\simulator\domain\services\hana_pk_engine_test.dart 58:7  main.<fn>.<fn>
+  
+00:40 +183 -2: C:/projects/HanaNote/hananote/test/features/simulator/domain/services/hana_pk_engine_test.dart: weibullInjection EN Tmax is in [120, 240] h
+00:40 +183 -3: C:/projects/HanaNote/hananote/test/features/simulator/domain/services/hana_pk_engine_test.dart: weibullInjection EN Tmax is in [120, 240] h [E]
+  Expected: a value greater than or equal to <120>
+    Actual: <4.0>
+     Which: is not a value greater than or equal to <120>
+  
+  package:matcher                                                        expect
+  package:flutter_test/src/widget_tester.dart 473:18                     expect
+  test\features\simulator\domain\services\hana_pk_engine_test.dart 72:7  main.<fn>.<fn>
+  
+00:40 +183 -3: C:/projects/HanaNote/hananote/test/features/simulator/domain/services/hana_pk_engine_test.dart: weibullInjection t=0 returns 0
+00:40 +184 -3: C:/projects/HanaNote/hananote/test/features/simulator/domain/services/hana_pk_engine_test.dart: weibullInjection negative time returns 0
+00:40 +185 -3: C:/projects/HanaNote/hananote/test/features/simulator/domain/services/hana_pk_engine_test.dart: weibullInjection beta=1.0 approximates single-exponential Bateman within 20%
+00:40 +185 -4: C:/projects/HanaNote/hananote/test/features/simulator/domain/services/hana_pk_engine_test.dart: weibullInjection beta=1.0 approximates single-exponential Bateman within 20% [E]
+  Expected: a value less than <0.2>
+    Actual: <0.8780600608315527>
+     Which: is not a value less than <0.2>
+  
+  package:matcher                                                         expect
+  package:flutter_test/src/widget_tester.dart 473:18                      expect
+  test\features\simulator\domain\services\hana_pk_engine_test.dart 100:7  main.<fn>.<fn>
+  
+00:40 +185 -4: C:/projects/HanaNote/hananote/test/features/simulator/domain/services/hana_pk_engine_test.dart: oralWithE1SReservoir E2 peaks between 2 and 6 hours
+00:40 +185 -5: C:/projects/HanaNote/hananote/test/features/simulator/domain/services/hana_pk_engine_test.dart: oralWithE1SReservoir E2 peaks between 2 and 6 hours [E]
+  Expected: a value less than or equal to <6.0>
+    Actual: <6.5>
+     Which: is not a value less than or equal to <6.0>
+  
+  package:matcher                                                         expect
+  package:flutter_test/src/widget_tester.dart 473:18                      expect
+  test\features\simulator\domain\services\hana_pk_engine_test.dart 122:7  main.<fn>.<fn>
+  
+00:40 +185 -5: C:/projects/HanaNote/hananote/test/features/simulator/domain/services/hana_pk_engine_test.dart: oralWithE1SReservoir concentration at 24h is positive (E1S reservoir effect)
+00:40 +186 -5: C:/projects/HanaNote/hananote/test/features/simulator/domain/services/hana_pk_engine_test.dart: oralWithE1SReservoir Hana 24h > PkEngine oralBateman at 24h (E1S tail)
+00:40 +187 -5: C:/projects/HanaNote/hananote/test/features/simulator/domain/services/hana_pk_engine_test.dart: oralWithE1SReservoir F=0 (bioavailability=0) returns 0
+00:40 +188 -5: C:/projects/HanaNote/hananote/test/features/simulator/domain/services/hana_pk_engine_test.dart: sublingualHanaDualPath theta=0 degenerates to E1S oral model
+00:40 +189 -5: C:/projects/HanaNote/hananote/test/features/simulator/domain/services/hana_pk_engine_test.dart: sublingualHanaDualPath strict hold (theta=0.18) peak > oral peak
+00:40 +190 -5: C:/projects/HanaNote/hananote/test/features/simulator/domain/services/hana_pk_engine_test.dart: comparison: Hana-PK vs V2 PkEngine EV 5mg Tmax difference between Hana-PK and V2 is < 24h
+EV Tmax 窶・Hana-PK: 5.0h, V2 PkEngine: 50.0h
+00:40 +190 -6: C:/projects/HanaNote/hananote/test/features/simulator/domain/services/hana_pk_engine_test.dart: comparison: Hana-PK vs V2 PkEngine EV 5mg Tmax difference between Hana-PK and V2 is < 24h [E]
+  Expected: a value less than <24>
+    Actual: <45.0>
+     Which: is not a value less than <24>
+  
+  package:matcher                                                         expect
+  package:flutter_test/src/widget_tester.dart 473:18                      expect
+  test\features\simulator\domain\services\hana_pk_engine_test.dart 214:7  main.<fn>.<fn>
+  
+00:40 +190 -6: C:/projects/HanaNote/hananote/test/features/simulator/domain/services/hana_pk_engine_test.dart: comparison: Hana-PK vs V2 PkEngine EV 5mg q7d 90d: record steady-state peak-trough difference (informational)
+00:41 +191 -6: C:/projects/HanaNote/hananote/test/features/simulator/domain/services/hana_pk_engine_test.dart: comparison: Hana-PK vs V2 PkEngine EV 5mg q7d 90d: record steady-state peak-trough difference (informational)
+00:41 +192 -6: C:/projects/HanaNote/hananote/test/features/simulator/domain/services/hana_pk_engine_test.dart: comparison: Hana-PK vs V2 PkEngine EV 5mg q7d 90d: record steady-state peak-trough difference (informational)
+00:41 +193 -6: C:/projects/HanaNote/hananote/test/features/simulator/domain/services/hana_pk_engine_test.dart: comparison: Hana-PK vs V2 PkEngine EV 5mg q7d 90d: record steady-state peak-trough difference (informational)
+00:41 +194 -6: C:/projects/HanaNote/hananote/test/features/simulator/domain/services/hana_pk_engine_test.dart: comparison: Hana-PK vs V2 PkEngine EV 5mg q7d 90d: record steady-state peak-trough difference (informational)
+00:41 +195 -6: C:/projects/HanaNote/hananote/test/features/simulator/domain/services/hana_pk_engine_test.dart: comparison: Hana-PK vs V2 PkEngine EV 5mg q7d 90d: record steady-state peak-trough difference (informational)
+00:41 +196 -6: C:/projects/HanaNote/hananote/test/features/simulator/domain/services/hana_pk_engine_test.dart: comparison: Hana-PK vs V2 PkEngine EV 5mg q7d 90d: record steady-state peak-trough difference (informational)
+00:41 +197 -6: C:/projects/HanaNote/hananote/test/features/simulator/domain/services/hana_pk_engine_test.dart: comparison: Hana-PK vs V2 PkEngine EV 5mg q7d 90d: record steady-state peak-trough difference (informational)
+00:41 +198 -6: C:/projects/HanaNote/hananote/test/features/simulator/domain/services/hana_pk_engine_test.dart: comparison: Hana-PK vs V2 PkEngine EV 5mg q7d 90d: record steady-state peak-trough difference (informational)
+00:41 +199 -6: C:/projects/HanaNote/hananote/test/features/simulator/domain/services/hana_pk_engine_test.dart: comparison: Hana-PK vs V2 PkEngine EV 5mg q7d 90d: record steady-state peak-trough difference (informational)
+00:41 +200 -6: C:/projects/HanaNote/hananote/test/features/simulator/domain/services/hana_pk_engine_test.dart: comparison: Hana-PK vs V2 PkEngine EV 5mg q7d 90d: record steady-state peak-trough difference (informational)
+00:41 +201 -6: C:/projects/HanaNote/hananote/test/features/simulator/domain/services/hana_pk_engine_test.dart: comparison: Hana-PK vs V2 PkEngine EV 5mg q7d 90d: record steady-state peak-trough difference (informational)
+00:41 +202 -6: C:/projects/HanaNote/hananote/test/features/simulator/domain/services/hana_pk_engine_test.dart: comparison: Hana-PK vs V2 PkEngine EV 5mg q7d 90d: record steady-state peak-trough difference (informational)
+00:41 +203 -6: C:/projects/HanaNote/hananote/test/features/simulator/domain/services/hana_pk_engine_test.dart: comparison: Hana-PK vs V2 PkEngine EV 5mg q7d 90d: record steady-state peak-trough difference (informational)
+00:41 +204 -6: C:/projects/HanaNote/hananote/test/features/simulator/domain/services/hana_pk_engine_test.dart: comparison: Hana-PK vs V2 PkEngine EV 5mg q7d 90d: record steady-state peak-trough difference (informational)
+00:41 +205 -6: C:/projects/HanaNote/hananote/test/features/simulator/domain/services/hana_pk_engine_test.dart: comparison: Hana-PK vs V2 PkEngine EV 5mg q7d 90d: record steady-state peak-trough difference (informational)
+00:41 +206 -6: C:/projects/HanaNote/hananote/test/features/simulator/domain/services/hana_pk_engine_test.dart: comparison: Hana-PK vs V2 PkEngine EV 5mg q7d 90d: record steady-state peak-trough difference (informational)
+00:41 +207 -6: C:/projects/HanaNote/hananote/test/features/simulator/domain/services/hana_pk_engine_test.dart: comparison: Hana-PK vs V2 PkEngine EV 5mg q7d 90d: record steady-state peak-trough difference (informational)
+00:41 +208 -6: C:/projects/HanaNote/hananote/test/features/simulator/domain/services/hana_pk_engine_test.dart: comparison: Hana-PK vs V2 PkEngine EV 5mg q7d 90d: record steady-state peak-trough difference (informational)
+00:41 +209 -6: C:/projects/HanaNote/hananote/test/features/simulator/domain/services/hana_pk_engine_test.dart: comparison: Hana-PK vs V2 PkEngine EV 5mg q7d 90d: record steady-state peak-trough difference (informational)
+00:41 +210 -6: C:/projects/HanaNote/hananote/test/features/simulator/domain/services/hana_pk_engine_test.dart: comparison: Hana-PK vs V2 PkEngine EV 5mg q7d 90d: record steady-state peak-trough difference (informational)
+EV q7d SS 窶・Hana peak: 0.0191 mg, trough: 0.0010 mg, swing: 0.0181 mg
+EV q7d SS 窶・V2 peak:   0.0603 mg, trough: 0.0133 mg, swing: 0.0470 mg
+00:41 +211 -6: C:/projects/HanaNote/hananote/test/features/timeline/domain/entities/enums_test.dart: TimelineEventTypeX returns localized display names
+00:41 +212 -6: C:/projects/HanaNote/hananote/test/features/timeline/domain/entities/enums_test.dart: TimelineEventTypeX returns the expected icons
+00:41 +213 -6: C:/projects/HanaNote/hananote/test/features/timeline/domain/entities/enums_test.dart: TimelineRangeX returns null for the all range
+00:41 +214 -6: C:/projects/HanaNote/hananote/test/features/timeline/domain/entities/enums_test.dart: TimelineRangeX returns the expected day spans for bounded ranges
+00:42 +215 -6: C:/projects/HanaNote/hananote/test/features/timeline/domain/usecases/get_timeline_events_test.dart: GetTimelineEvents aggregates medication, blood test, and journal events
+00:42 +216 -6: C:/projects/HanaNote/hananote/test/features/timeline/domain/usecases/get_timeline_events_test.dart: GetTimelineEvents skips failed data sources and keeps other events
+00:42 +217 -6: C:/projects/HanaNote/hananote/test/features/timeline/domain/usecases/get_timeline_events_test.dart: GetTimelineEvents calculates milestone events at every 100-day interval
+00:42 +218 -6: C:/projects/HanaNote/hananote/test/features/timeline/domain/usecases/get_timeline_events_test.dart: GetTimelineEvents returns events sorted by descending date
+00:42 +219 -6: C:/projects/HanaNote/hananote/test/features/timeline/presentation/bloc/timeline_bloc_test.dart: initial state is TimelineInitial
+00:42 +220 -6: C:/projects/HanaNote/hananote/test/features/timeline/presentation/bloc/timeline_bloc_test.dart: LoadTimeline emits [loading, loaded] when data loads successfully
+00:42 +221 -6: C:/projects/HanaNote/hananote/test/features/timeline/presentation/bloc/timeline_bloc_test.dart: SelectTimelineRange reloads the timeline with the selected range
+00:42 +222 -6: C:/projects/HanaNote/hananote/test/features/timeline/presentation/bloc/timeline_bloc_test.dart: failure handling emits error when loading timeline data fails
+00:42 +223 -6: Some tests failed.

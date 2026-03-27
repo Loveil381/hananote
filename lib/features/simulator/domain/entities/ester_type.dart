@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs
 
+import 'package:hananote/features/simulator/domain/entities/hana_pk_params.dart';
 import 'package:hananote/features/simulator/domain/entities/route_params.dart';
 
 /// Supported estradiol preparations for the PK simulator.
@@ -90,5 +91,34 @@ extension EsterTypeX on EsterType {
             wearDurationH: 168,
           ),
         EsterType.transdermalGel => const RouteParams.gel(),
+      };
+
+  /// Default Hana-PK parameters for injectable and oral routes.
+  ///
+  /// Returns [WeibullInjectionParams] for IM esters and [OralE1SParams] /
+  /// [HanaSublingualParams] for oral/sublingual routes.
+  /// Returns `null` for patch and gel (those delegate to `PkEngine`).
+  HanaPkParams? get hanaPkDefaults => switch (this) {
+        EsterType.estradiolValerate => const HanaPkParams.weibullInjection(
+            tau: 52,
+            beta: 0.75,
+            formationFraction: 0.062,
+          ),
+        EsterType.estradiolCypionate => const HanaPkParams.weibullInjection(
+            tau: 110,
+            beta: 0.70,
+            formationFraction: 0.117,
+          ),
+        EsterType.estradiolEnanthate => const HanaPkParams.weibullInjection(
+            tau: 160,
+            beta: 0.65,
+            formationFraction: 0.12,
+          ),
+        EsterType.oralEstradiol => const HanaPkParams.oralE1S(),
+        EsterType.sublingualEstradiol => const HanaPkParams.hanaSublingual(
+            theta: 0.11,
+          ),
+        EsterType.transdermalPatch => null,
+        EsterType.transdermalGel => null,
       };
 }

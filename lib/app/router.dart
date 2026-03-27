@@ -68,8 +68,7 @@ final GoRouter appRouter = GoRouter(
             GoRoute(
               path: '/timeline',
               builder: (context, state) => BlocProvider(
-                create: (_) =>
-                    getIt<TimelineBloc>()..add(const LoadTimeline()),
+                create: (_) => getIt<TimelineBloc>()..add(const LoadTimeline()),
                 child: const TimelinePage(),
               ),
             ),

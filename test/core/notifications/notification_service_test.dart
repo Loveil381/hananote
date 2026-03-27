@@ -43,17 +43,15 @@ void main() {
   });
 
   test('init initializes the plugin', () async {
-    when(() => plugin.initialize(any()))
-        .thenAnswer((_) async => true);
+    when(() => plugin.initialize(any())).thenAnswer((_) async => true);
 
     await service.init();
 
     verify(() => plugin.initialize(any())).called(1);
   });
 
-  test(
-    'scheduleMedicationReminder schedules a daily repeating reminder',
-    () async {
+  test('scheduleMedicationReminder schedules a daily repeating reminder',
+      () async {
     when(
       () => plugin.zonedSchedule(
         any(),

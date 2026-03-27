@@ -1,0 +1,33 @@
+﻿00:00 +0: loading C:/projects/HanaNote/hananote/test/features/simulator/domain/services/hana_pk_engine_test.dart
+00:00 +0: weibullInjection EV produces a positive Tmax < 36h (ﾎｲ<1 front-loaded release)
+EV Tmax (Weibull ﾎｲ<1): 22.0h
+00:00 +1: weibullInjection EC Tmax 竕･ EV Tmax (longer ester, slower release)
+EV Tmax: 22.0h  EC Tmax: 24.0h
+00:00 +2: weibullInjection EN Tmax 竕･ EC Tmax (longest ester, slowest release)
+EC Tmax: 24.0h  EN Tmax: 22.0h
+00:00 +2 -1: weibullInjection EN Tmax 竕･ EC Tmax (longest ester, slowest release) [E]
+  Expected: a value greater than or equal to <24.0>
+    Actual: <22.0>
+     Which: is not a value greater than or equal to <24.0>
+  
+  package:matcher                                                        expect
+  package:flutter_test/src/widget_tester.dart 473:18                     expect
+  test\features\simulator\domain\services\hana_pk_engine_test.dart 80:7  main.<fn>.<fn>
+  
+00:00 +2 -1: weibullInjection t=0 returns 0
+00:00 +3 -1: weibullInjection negative time returns 0
+00:00 +4 -1: weibullInjection beta=1.0 gives a peak within 50% of V2 dualDepotInjection peak
+ﾎｲ=1 EV Tmax 窶・Hana: 31.0h  V2: 50.0h
+00:00 +5 -1: oralWithE1SReservoir E2 peaks between 2 and 8 hours
+E1S oral Tmax: 6.5h
+00:00 +6 -1: oralWithE1SReservoir concentration at 24h is positive (E1S reservoir sustains levels)
+00:00 +7 -1: oralWithE1SReservoir Hana 24h > PkEngine oralBateman at 24h (E1S tail)
+00:00 +8 -1: oralWithE1SReservoir F=0 (bioavailability=0) returns 0
+00:00 +9 -1: sublingualHanaDualPath theta=0 degenerates to E1S oral model
+00:00 +10 -1: sublingualHanaDualPath strict hold (theta=0.18) peak > oral peak
+00:00 +11 -1: comparison: Hana-PK vs V2 PkEngine EV 5mg: both engines produce a positive Tmax (structural check)
+EV Tmax 窶・Hana-PK: 22.0h, V2 PkEngine: 50.0h
+00:00 +12 -1: comparison: Hana-PK vs V2 PkEngine EV 5mg q7d 90d: record steady-state peak-trough difference (informational)
+EV q7d SS 窶・Hana peak: 0.0733 mg, trough: 0.0097 mg, swing: 0.0637 mg
+EV q7d SS 窶・V2 peak:   0.0603 mg, trough: 0.0133 mg, swing: 0.0470 mg
+00:00 +13 -1: Some tests failed.

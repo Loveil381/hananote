@@ -86,8 +86,10 @@ class RecordPage extends StatelessWidget {
                   ),
                   actions: [
                     IconButton(
-                      icon: const Icon(Icons.history_edu,
-                          color: HanaColors.primary,),
+                      icon: const Icon(
+                        Icons.history_edu,
+                        color: HanaColors.primary,
+                      ),
                       onPressed: () {},
                     ),
                   ],

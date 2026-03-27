@@ -1,0 +1,64 @@
+﻿00:00 +0: loading C:/projects/HanaNote/hananote/test/features/simulator/domain/services/hana_pk_engine_test.dart
+00:00 +0: weibullInjection EV Tmax is in [24, 72] h
+00:00 +0 -1: weibullInjection EV Tmax is in [24, 72] h [E]
+  Expected: a value greater than or equal to <24>
+    Actual: <22.0>
+     Which: is not a value greater than or equal to <24>
+  
+  package:matcher                                                        expect
+  package:flutter_test/src/widget_tester.dart 473:18                     expect
+  test\features\simulator\domain\services\hana_pk_engine_test.dart 44:7  main.<fn>.<fn>
+  
+00:00 +0 -1: weibullInjection EC Tmax is in [72, 168] h
+00:00 +0 -2: weibullInjection EC Tmax is in [72, 168] h [E]
+  Expected: a value greater than or equal to <72>
+    Actual: <24.0>
+     Which: is not a value greater than or equal to <72>
+  
+  package:matcher                                                        expect
+  package:flutter_test/src/widget_tester.dart 473:18                     expect
+  test\features\simulator\domain\services\hana_pk_engine_test.dart 58:7  main.<fn>.<fn>
+  
+00:00 +0 -2: weibullInjection EN Tmax is in [120, 240] h
+00:00 +0 -3: weibullInjection EN Tmax is in [120, 240] h [E]
+  Expected: a value greater than or equal to <120>
+    Actual: <22.0>
+     Which: is not a value greater than or equal to <120>
+  
+  package:matcher                                                        expect
+  package:flutter_test/src/widget_tester.dart 473:18                     expect
+  test\features\simulator\domain\services\hana_pk_engine_test.dart 72:7  main.<fn>.<fn>
+  
+00:00 +0 -3: weibullInjection t=0 returns 0
+00:00 +1 -3: weibullInjection negative time returns 0
+00:00 +2 -3: weibullInjection beta=1.0 approximates single-exponential Bateman within 20%
+00:00 +3 -3: oralWithE1SReservoir E2 peaks between 2 and 6 hours
+00:00 +3 -4: oralWithE1SReservoir E2 peaks between 2 and 6 hours [E]
+  Expected: a value less than or equal to <6.0>
+    Actual: <6.5>
+     Which: is not a value less than or equal to <6.0>
+  
+  package:matcher                                                         expect
+  package:flutter_test/src/widget_tester.dart 473:18                      expect
+  test\features\simulator\domain\services\hana_pk_engine_test.dart 122:7  main.<fn>.<fn>
+  
+00:00 +3 -4: oralWithE1SReservoir concentration at 24h is positive (E1S reservoir effect)
+00:00 +4 -4: oralWithE1SReservoir Hana 24h > PkEngine oralBateman at 24h (E1S tail)
+00:00 +5 -4: oralWithE1SReservoir F=0 (bioavailability=0) returns 0
+00:00 +6 -4: sublingualHanaDualPath theta=0 degenerates to E1S oral model
+00:00 +7 -4: sublingualHanaDualPath strict hold (theta=0.18) peak > oral peak
+00:00 +8 -4: comparison: Hana-PK vs V2 PkEngine EV 5mg Tmax difference between Hana-PK and V2 is < 24h
+EV Tmax 窶・Hana-PK: 22.0h, V2 PkEngine: 50.0h
+00:00 +8 -5: comparison: Hana-PK vs V2 PkEngine EV 5mg Tmax difference between Hana-PK and V2 is < 24h [E]
+  Expected: a value less than <24>
+    Actual: <28.0>
+     Which: is not a value less than <24>
+  
+  package:matcher                                                         expect
+  package:flutter_test/src/widget_tester.dart 473:18                      expect
+  test\features\simulator\domain\services\hana_pk_engine_test.dart 214:7  main.<fn>.<fn>
+  
+00:00 +8 -5: comparison: Hana-PK vs V2 PkEngine EV 5mg q7d 90d: record steady-state peak-trough difference (informational)
+EV q7d SS 窶・Hana peak: 0.0733 mg, trough: 0.0097 mg, swing: 0.0637 mg
+EV q7d SS 窶・V2 peak:   0.0603 mg, trough: 0.0133 mg, swing: 0.0470 mg
+00:00 +9 -5: Some tests failed.
