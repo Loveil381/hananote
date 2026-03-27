@@ -321,8 +321,9 @@ class HanaPkEngine {
     );
     final steadyStateStartHours =
         math.max(0, totalDurationHours - intervalHours);
-    final troughTime = intervalHours - 0.5; // Probe trough just before next dose
-    
+    final troughTime =
+        intervalHours - 0.5; // Probe trough just before next dose
+
     final steadyStateTrough = concentrationAt(
       steadyStateStartHours + troughTime,
       regimen,
@@ -339,9 +340,8 @@ class HanaPkEngine {
       curvePoints: curvePoints,
       steadyStateTrough: steadyStateTrough,
       steadyStatePeak: steadyStatePeak,
-      steadyStateAverage: intervalHours <= 0
-          ? 0
-          : _clamp(aucPerInterval / intervalHours),
+      steadyStateAverage:
+          intervalHours <= 0 ? 0 : _clamp(aucPerInterval / intervalHours),
       timeToSteadyState: _estimateTimeToSteadyState(
         regimen,
         params,

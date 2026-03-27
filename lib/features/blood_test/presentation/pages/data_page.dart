@@ -1,4 +1,7 @@
 // ignore_for_file: public_member_api_docs
+// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_literals_to_create_immutables
+// ignore_for_file: lines_longer_than_80_chars
 
 import 'dart:ui';
 

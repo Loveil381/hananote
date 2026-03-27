@@ -1,15 +1,24 @@
+// ignore_for_file: public_member_api_docs
+// ignore_for_file: require_trailing_commas
+// ignore_for_file: prefer_int_literals
+// ignore_for_file: avoid_redundant_argument_values
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: sized_box_for_whitespace
+// ignore_for_file: omit_local_variable_types
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'dart:math' as math;
+
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hananote/app/di/injection.dart';
 import 'package:hananote/app/theme/hana_colors.dart';
 import 'package:hananote/app/theme/hana_shadows.dart';
-import 'package:hananote/app/di/injection.dart';
 import 'package:hananote/features/simulator/domain/entities/dosing_regimen.dart';
 import 'package:hananote/features/simulator/domain/entities/ester_type.dart';
 import 'package:hananote/features/simulator/domain/entities/pk_result.dart';
 import 'package:hananote/features/simulator/presentation/blocs/simulator_bloc.dart';
-import 'package:intl/intl.dart';
 
 class SimulatorPage extends StatelessWidget {
   const SimulatorPage({super.key});
@@ -150,8 +159,8 @@ class _ParamsCardState extends State<_ParamsCard> {
   }
 
   @override
-  void didUpdateWidget(covariant _ParamsCard _) {
-    super.didUpdateWidget(_);
+  void didUpdateWidget(covariant _ParamsCard oldWidget) {
+    super.didUpdateWidget(oldWidget);
     // Don't auto-update text if user is typing, but do for ester switches
     if (widget.regimen.esterType != _esterType) {
       _initFromRegimen(widget.regimen);
@@ -161,7 +170,8 @@ class _ParamsCardState extends State<_ParamsCard> {
   void _initFromRegimen(DosingRegimen r) {
     _esterType = r.esterType;
     _doseCtrl = TextEditingController(text: r.doseAmount.toStringAsFixed(1));
-    _intervalCtrl = TextEditingController(text: r.intervalDays.toStringAsFixed(1));
+    _intervalCtrl =
+        TextEditingController(text: r.intervalDays.toStringAsFixed(1));
     _weightCtrl = TextEditingController(
         text: (r.bodyWeightKg ?? 65.0).toStringAsFixed(0));
     _wearCtrl = TextEditingController(
@@ -217,7 +227,8 @@ class _ParamsCardState extends State<_ParamsCard> {
         ),
         subtitle: Text(
           '${_esterType.displayName} · ${_doseCtrl.text}mg / ${_intervalCtrl.text}天',
-          style: const TextStyle(fontSize: 13, color: HanaColors.onSurfaceVariant),
+          style:
+              const TextStyle(fontSize: 13, color: HanaColors.onSurfaceVariant),
         ),
         initiallyExpanded: false,
         shape: const Border(),
@@ -228,7 +239,7 @@ class _ParamsCardState extends State<_ParamsCard> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 DropdownButtonFormField<EsterType>(
-                  value: _esterType,
+                  initialValue: _esterType,
                   decoration: const InputDecoration(
                     labelText: '药物类型',
                     border: OutlineInputBorder(),
@@ -310,14 +321,20 @@ class _ParamsCardState extends State<_ParamsCard> {
                 if (_esterType == EsterType.sublingualEstradiol) ...[
                   const SizedBox(height: 16),
                   const Text('舌下含服时间',
-                      style: TextStyle(fontSize: 12, color: HanaColors.outline)),
+                      style:
+                          TextStyle(fontSize: 12, color: HanaColors.outline)),
                   const SizedBox(height: 8),
                   SegmentedButton<SublingualHoldTime>(
                     segments: const [
-                      ButtonSegment(value: SublingualHoldTime.quick, label: Text('极快')),
-                      ButtonSegment(value: SublingualHoldTime.casual, label: Text('随意')),
-                      ButtonSegment(value: SublingualHoldTime.standard, label: Text('标准')),
-                      ButtonSegment(value: SublingualHoldTime.strict, label: Text('严格')),
+                      ButtonSegment(
+                          value: SublingualHoldTime.quick, label: Text('极快')),
+                      ButtonSegment(
+                          value: SublingualHoldTime.casual, label: Text('随意')),
+                      ButtonSegment(
+                          value: SublingualHoldTime.standard,
+                          label: Text('标准')),
+                      ButtonSegment(
+                          value: SublingualHoldTime.strict, label: Text('严格')),
                     ],
                     selected: {_holdTime ?? SublingualHoldTime.standard},
                     onSelectionChanged: (set) {
@@ -398,7 +415,8 @@ class _ChartCard extends StatelessWidget {
                   const SizedBox(width: 8),
                   if (hanaPkResult != null)
                     _LegendItem(
-                      color: isHanaPk ? HanaColors.primary : HanaColors.secondary,
+                      color:
+                          isHanaPk ? HanaColors.primary : HanaColors.secondary,
                       label: isHanaPk ? 'V2 标准' : 'Hana-PK',
                       isDashed: true,
                     ),
@@ -428,18 +446,14 @@ class _ChartCard extends StatelessWidget {
     final cmpCurve = hanaPkResult?.curvePoints;
 
     final maxX = mainCurve.isEmpty ? 90.0 : mainCurve.last.time / 24;
-    var maxY = 300.0;
-    
-    // Find absolute maximum
     double getPeak(Iterable<PkCurvePoint> points) =>
         points.fold<double>(0, (m, p) => math.max(m, p.concentration));
-
-    maxY = math.max(maxY, getPeak(mainCurve));
-    if (cmpCurve != null) {
-      maxY = math.max(maxY, getPeak(cmpCurve));
-    }
-    // Add 15% headroom
-    maxY = maxY * 1.15;
+    final rawMax = math.max(
+      getPeak(mainCurve),
+      cmpCurve != null ? getPeak(cmpCurve) : 0.0,
+    );
+    final maxY = math.max(rawMax * 1.25, 50.0).ceilToDouble();
+    final yInterval = math.max(25.0, (maxY / 6).ceilToDouble());
 
     final primaryColor = isHanaPk ? HanaColors.secondary : HanaColors.primary;
     final compareColor = isHanaPk ? HanaColors.primary : HanaColors.secondary;
@@ -448,7 +462,7 @@ class _ChartCard extends StatelessWidget {
       gridData: FlGridData(
         show: true,
         drawVerticalLine: false,
-        horizontalInterval: 100,
+        horizontalInterval: yInterval,
         getDrawingHorizontalLine: (value) {
           return FlLine(
             color: HanaColors.outlineVariant.withValues(alpha: 0.5),
@@ -481,7 +495,7 @@ class _ChartCard extends StatelessWidget {
           sideTitles: SideTitles(
             showTitles: true,
             reservedSize: 36,
-            interval: 100,
+            interval: yInterval,
             getTitlesWidget: (value, meta) {
               return Text(
                 value.toInt().toString(),
@@ -494,7 +508,8 @@ class _ChartCard extends StatelessWidget {
           ),
         ),
         topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-        rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+        rightTitles:
+            const AxisTitles(sideTitles: SideTitles(showTitles: false)),
       ),
       borderData: FlBorderData(show: false),
       minX: 0,
@@ -549,7 +564,7 @@ class _ChartCard extends StatelessWidget {
       lineBarsData: [
         // Target Range Guides (Top line)
         LineChartBarData(
-          spots: [FlSpot(0.0, 200.0), FlSpot(maxX, 200.0)],
+          spots: [const FlSpot(0, 200), FlSpot(maxX, 200)],
           isCurved: false,
           color: Colors.green.withValues(alpha: 0.3),
           barWidth: 1.0,
@@ -557,7 +572,7 @@ class _ChartCard extends StatelessWidget {
         ),
         // Target Range Guides (Bottom line)
         LineChartBarData(
-          spots: [FlSpot(0.0, 100.0), FlSpot(maxX, 100.0)],
+          spots: [const FlSpot(0, 100), FlSpot(maxX, 100)],
           isCurved: false,
           color: Colors.green.withValues(alpha: 0.3),
           barWidth: 1.0,
@@ -612,7 +627,7 @@ class _LegendItem extends StatelessWidget {
     required this.label,
     required this.isDashed,
   });
-  
+
   final Color color;
   final String label;
   final bool isDashed;
@@ -622,10 +637,23 @@ class _LegendItem extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Container(
+        SizedBox(
           width: 16,
           height: 2,
-          color: color,
+          child: isDashed
+              ? Row(
+                  children: List.generate(
+                    3,
+                    (index) => Expanded(
+                      child: Container(
+                        margin: EdgeInsets.only(right: index == 2 ? 0 : 2),
+                        height: 2,
+                        color: color,
+                      ),
+                    ),
+                  ),
+                )
+              : ColoredBox(color: color),
         ),
         const SizedBox(width: 4),
         Text(
@@ -648,7 +676,7 @@ class _SummaryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final avg = result.steadyStateAverage;
-    
+
     // Status color
     Color statusColor = HanaColors.error;
     IconData statusIcon = Icons.cancel;

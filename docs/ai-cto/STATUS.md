@@ -1,7 +1,7 @@
 # HanaNote 项目状态
-## 当前轮次: #23
-## 当前阶段: PK 模拟器 — Simulator UI & Hana-PK
-## 产品完成度: 95%
+## 当前轮次: #24
+## 当前阶段: 发布前集成打磨 — Simulator / 图表 / 边界测试
+## 产品完成度: 97%
 ## 数据绑定进度: 5/5 ✅
 
 ## 已完成功能
@@ -27,7 +27,7 @@
 | Today Tab 实时倒计时 | ✅ | CountdownCard 每分钟刷新剩余时间 |
 | blurOverlay 联动 | ✅ | SettingsBloc 全局复用，Profile 开关实时影响 AppBlurOverlay |
 | Simulator feature | ✅ | V2 双库全路由引擎 + MAP 校准 + 小时制参数统一 |
-| Hana-PK 实验引擎 | ✅ | Weibull 注射 + E1S 储库口服，与 V2 对比验证 |
+| Hana-PK 实验引擎 | ✅ | Weibull β>1 + kEl=0.05 修正，图表动态化，集成测试 |
 | PK 模拟器 UI | ✅ | 曲线可视化与参数编辑面板, SimulatorBloc, fl_chart |
 | 应用切换模糊遮罩 | ✅ | DEC-006 隐私增强已落地，修复上轮状态遗漏 |
 | CryptoEngine | ✅ | AES-256-GCM + AAD 支持, isolate 加密, 单元测试 |

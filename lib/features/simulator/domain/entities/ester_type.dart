@@ -100,18 +100,18 @@ extension EsterTypeX on EsterType {
   /// Returns `null` for patch and gel (those delegate to `PkEngine`).
   HanaPkParams? get hanaPkDefaults => switch (this) {
         EsterType.estradiolValerate => const HanaPkParams.weibullInjection(
-            tau: 52,
-            beta: 0.75,
+            tau: 36,
+            beta: 1.8,
             formationFraction: 0.062,
           ),
         EsterType.estradiolCypionate => const HanaPkParams.weibullInjection(
-            tau: 110,
-            beta: 0.70,
+            tau: 80,
+            beta: 1.6,
             formationFraction: 0.117,
           ),
         EsterType.estradiolEnanthate => const HanaPkParams.weibullInjection(
-            tau: 160,
-            beta: 0.65,
+            tau: 120,
+            beta: 1.4,
             formationFraction: 0.12,
           ),
         EsterType.oralEstradiol => const HanaPkParams.oralE1S(),
