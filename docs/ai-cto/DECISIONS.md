@@ -101,3 +101,13 @@
 ## DEC-019: RecordBloc 改为 lazySingleton 修复刷新链路
 - **决定**: RecordBloc 从 @injectable 改为 @lazySingleton，确保 JournalEditPage 保存后能正确触发 RecordPage 刷新。此为 Round 16 的 bug fix。
 - **日期**: round 17
+
+## DEC-020: Timeline 采用跨 Feature 只读聚合模式
+- **决定**: Timeline UseCase 直接注入 MedicationRepository、BloodTestRepository、JournalRepository 与 SettingsRepository 做只读聚合，不新增中间层。
+- **原因**: Timeline 本质是跨模块展示流，聚合逻辑集中在 UseCase 中最直接，也能让单一数据源失败时 graceful degradation，不阻塞整个时间线。
+- **日期**: round 18
+
+## DEC-021: TimelineEvent 使用统一实体与 metadata 扩展
+- **决定**: Timeline 统一使用 TimelineEvent 实体，而不是按 medication / blood test / journal 各自定义 union type；原始上下文通过 metadata Map 保留。
+- **原因**: 单一事件模型可以让 TimelineBloc 与 TimelinePage 共享一套渲染与排序逻辑，同时为后续详情页、交互扩展和新增事件类型预留弹性。
+- **日期**: round 18

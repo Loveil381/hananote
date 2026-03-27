@@ -19,6 +19,8 @@ import 'package:hananote/features/medication/presentation/pages/today_page.dart'
 import 'package:hananote/features/settings/presentation/bloc/settings_bloc.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_event.dart';
 import 'package:hananote/features/settings/presentation/pages/profile_page.dart';
+import 'package:hananote/features/timeline/presentation/bloc/timeline_bloc.dart';
+import 'package:hananote/features/timeline/presentation/bloc/timeline_event.dart';
 import 'package:hananote/features/timeline/presentation/pages/timeline_page.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey =
@@ -66,7 +68,11 @@ final GoRouter appRouter = GoRouter(
           routes: [
             GoRoute(
               path: '/timeline',
-              builder: (context, state) => const TimelinePage(),
+              builder: (context, state) => BlocProvider(
+                create: (_) =>
+                    getIt<TimelineBloc>()..add(const LoadTimeline()),
+                child: const TimelinePage(),
+              ),
             ),
           ],
         ),
