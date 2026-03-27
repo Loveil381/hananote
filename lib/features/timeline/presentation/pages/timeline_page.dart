@@ -100,7 +100,8 @@ class TimelinePage extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 24),
                       child: switch (state) {
-                        TimelineInitial() || TimelineLoading() =>
+                        TimelineInitial() ||
+                        TimelineLoading() =>
                           const _TimelineLoadingView(),
                         TimelineError(:final message) => _TimelineErrorView(
                             message: message,

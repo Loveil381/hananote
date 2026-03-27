@@ -81,8 +81,7 @@ void main() {
   late _MockLogMedication logMedication;
   late _MockSyncMedicationReminders syncMedicationReminders;
 
-  TodayScheduleBloc build() =>
-      TodayScheduleBloc(
+  TodayScheduleBloc build() => TodayScheduleBloc(
         getTodaySchedule,
         logMedication,
         syncMedicationReminders,

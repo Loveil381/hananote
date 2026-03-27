@@ -148,12 +148,11 @@ void main() {
       act: (bloc) => bloc.add(const TimelineBlocEvent.loadTimeline()),
       expect: () => [
         isA<TimelineLoading>(),
-        isA<TimelineError>()
-            .having(
-              (state) => state.message,
-              'message',
-              'timeline unavailable',
-            ),
+        isA<TimelineError>().having(
+          (state) => state.message,
+          'message',
+          'timeline unavailable',
+        ),
       ],
     );
   });

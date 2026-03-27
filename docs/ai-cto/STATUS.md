@@ -1,6 +1,6 @@
 # HanaNote 项目状态
-## 当前轮次: #21
-## 当前阶段: PK 模拟器 V2 — 双库全路由 + MAP 校准
+## 当前轮次: #22
+## 当前阶段: PK 模拟器 — Hana-PK 实验引擎 + 文档补全
 ## 产品完成度: 92%
 ## 数据绑定进度: 5/5 ✅
 
@@ -37,7 +37,9 @@
 | 模块 | 优先级 | 说明 |
 |------|------|------|
 | Record Tab 数据绑定（Phase 1 — Journal） | ✅ | RecordBloc 驱动 Journal streak + latest entry |
-| PK 模拟器 UI (Data Tab 集成) | 🟡 P2 | 曲线可视化、参数编辑面板与校准结果展示 |
+| PK 模拟器 UI (Data Tab 集成) | 🟡 P2 | 曲线可视化与参数编辑面板 |
+| Hana-PK 实验引擎 | 🟢 P3 | Weibull 注射 + E1S 储库口服，与 V2 对比验证 |
+| AI 增强 PK | ⚪ P4 (探索) | LLM 参数顾问 / Neural-ODE，Phase 5 |
 
 ## 信息架构 (5-Tab)
 | Tab | 路由 | Feature | UI状态 | 数据绑定 |

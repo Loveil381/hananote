@@ -92,10 +92,9 @@ void main() {
     test('returns right(0) when there are no active drugs', () async {
       when(() => notificationService.cancelAllReminders())
           .thenAnswer((_) async {});
-      when(() => repository.getAllDrugs())
-          .thenAnswer(
-            (_) async => right([buildDrug('drug-1', isActive: false)]),
-          );
+      when(() => repository.getAllDrugs()).thenAnswer(
+        (_) async => right([buildDrug('drug-1', isActive: false)]),
+      );
 
       final result = await useCase();
 

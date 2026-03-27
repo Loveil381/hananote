@@ -595,7 +595,3 @@ class _Observation {
   final double timeHours;
   final double observedPgMl;
 }
-
-extension<T> on Iterable<T> {
-  T? get firstOrNull => isEmpty ? null : first;
-}

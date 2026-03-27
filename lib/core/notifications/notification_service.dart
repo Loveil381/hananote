@@ -13,11 +13,11 @@ class NotificationService {
 
   static const AndroidNotificationChannel _medicationChannel =
       AndroidNotificationChannel(
-        'medication_reminders',
-        '服药提醒',
-        description: '每日服药提醒通知',
-        importance: Importance.high,
-      );
+    'medication_reminders',
+    '服药提醒',
+    description: '每日服药提醒通知',
+    importance: Importance.high,
+  );
 
   /// Initializes platform notification settings.
   Future<void> init() async {
@@ -28,9 +28,8 @@ class NotificationService {
 
     await _plugin.initialize(settings);
 
-    final androidImplementation =
-        _plugin.resolvePlatformSpecificImplementation<
-            AndroidFlutterLocalNotificationsPlugin>();
+    final androidImplementation = _plugin.resolvePlatformSpecificImplementation<
+        AndroidFlutterLocalNotificationsPlugin>();
     await androidImplementation?.createNotificationChannel(
       _medicationChannel,
     );

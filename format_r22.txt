@@ -1,0 +1,13 @@
+﻿Formatted lib\app\router.dart
+Formatted lib\core\notifications\notification_service.dart
+Formatted lib\features\journal\presentation\pages\record_page.dart
+Formatted lib\features\settings\presentation\pages\profile_page.dart
+Formatted lib\features\simulator\domain\entities\ester_type.dart
+Formatted lib\features\timeline\domain\usecases\get_timeline_events.dart
+Formatted lib\features\timeline\presentation\pages\timeline_page.dart
+Formatted test\core\notifications\notification_service_test.dart
+Formatted test\features\medication\domain\usecases\sync_medication_reminders_test.dart
+Formatted test\features\medication\presentation\bloc\today_schedule_bloc_test.dart
+Formatted test\features\simulator\domain\services\hana_pk_engine_test.dart
+Formatted test\features\timeline\presentation\bloc\timeline_bloc_test.dart
+Formatted 254 files (12 changed) in 1.15 seconds.

@@ -106,7 +106,9 @@ class ProfilePage extends StatelessWidget {
                               shape: BoxShape.circle,
                               color: HanaColors.primaryContainer,
                               border: Border.all(
-                                  color: HanaColors.surface, width: 4,),
+                                color: HanaColors.surface,
+                                width: 4,
+                              ),
                               boxShadow: const [
                                 BoxShadow(color: Colors.black12, blurRadius: 4),
                               ],
