@@ -121,3 +121,9 @@
 - **决定**: SettingsBloc 改为 @lazySingleton，让 app.dart 中的 AppBlurOverlay 和 ProfilePage 复用同一实例。
 - **原因**: blurOverlay 开关属于全局 UI 状态，如果 app 层和设置页分别持有不同 bloc 实例，会导致用户切换隐私开关后全局遮罩状态不同步。
 - **日期**: round 19
+
+## DEC-024: PK 模拟器 V1 使用确定性模型 + 文献参数预设
+- **决定**: V1 只实现确定性三室模型解析解，使用文献中发表的 k1/k2/k3 参数预设值，不做 MCMC 参数推断。
+- **原因**: MCMC 在纯 Dart 中计算量极大，而预设参数已能满足 95% 用户的参考需求；V2 可考虑加入个人血检数据校准。
+- **参考**: estrannaise.js (https://estrannai.se/docs/ingredients/)
+- **日期**: round 20
