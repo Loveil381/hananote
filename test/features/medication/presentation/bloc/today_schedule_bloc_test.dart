@@ -8,6 +8,7 @@ import 'package:hananote/features/medication/domain/entities/medication_log.dart
 import 'package:hananote/features/medication/domain/entities/medication_schedule.dart';
 import 'package:hananote/features/medication/domain/usecases/get_today_schedule.dart';
 import 'package:hananote/features/medication/domain/usecases/log_medication.dart';
+import 'package:hananote/features/medication/domain/usecases/sync_medication_reminders.dart';
 import 'package:hananote/features/medication/presentation/bloc/today_schedule_bloc.dart';
 import 'package:hananote/features/medication/presentation/bloc/today_schedule_event.dart';
 import 'package:hananote/features/medication/presentation/bloc/today_schedule_state.dart';
@@ -20,6 +21,9 @@ import 'package:mocktail/mocktail.dart';
 class _MockGetTodaySchedule extends Mock implements GetTodaySchedule {}
 
 class _MockLogMedication extends Mock implements LogMedication {}
+
+class _MockSyncMedicationReminders extends Mock
+    implements SyncMedicationReminders {}
 
 // ---------------------------------------------------------------------------
 // Fixtures
@@ -75,13 +79,19 @@ const _failure = Failure.database(message: 'DB error');
 void main() {
   late _MockGetTodaySchedule getTodaySchedule;
   late _MockLogMedication logMedication;
+  late _MockSyncMedicationReminders syncMedicationReminders;
 
   TodayScheduleBloc build() =>
-      TodayScheduleBloc(getTodaySchedule, logMedication);
+      TodayScheduleBloc(
+        getTodaySchedule,
+        logMedication,
+        syncMedicationReminders,
+      );
 
   setUp(() {
     getTodaySchedule = _MockGetTodaySchedule();
     logMedication = _MockLogMedication();
+    syncMedicationReminders = _MockSyncMedicationReminders();
 
     registerFallbackValue(
       MedicationLog(
@@ -95,6 +105,7 @@ void main() {
         status: LogStatus.skipped,
       ),
     );
+    when(() => syncMedicationReminders()).thenAnswer((_) async => right(0));
   });
 
   test('initial state is TodayScheduleInitial', () {

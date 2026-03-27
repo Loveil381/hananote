@@ -8,7 +8,7 @@ import 'package:hananote/features/settings/presentation/bloc/settings_state.dart
 import 'package:injectable/injectable.dart';
 
 /// BLoC for managing the settings dashboard state.
-@injectable
+@lazySingleton
 class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   /// Creates a [SettingsBloc].
   SettingsBloc(

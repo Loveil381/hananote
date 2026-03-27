@@ -9,12 +9,16 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:flutter_local_notifications/flutter_local_notifications.dart'
+    as _i163;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i558;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:hananote/app/di/register_module.dart' as _i622;
 import 'package:hananote/core/crypto/crypto_engine.dart' as _i472;
 import 'package:hananote/core/crypto/key_manager.dart' as _i869;
 import 'package:hananote/core/database/secure_database.dart' as _i59;
+import 'package:hananote/core/notifications/notification_module.dart' as _i868;
+import 'package:hananote/core/notifications/notification_service.dart' as _i287;
 import 'package:hananote/features/auth/data/datasources/auth_local_datasource.dart'
     as _i260;
 import 'package:hananote/features/auth/data/repositories/auth_repository_impl.dart'
@@ -69,6 +73,8 @@ import 'package:hananote/features/medication/domain/usecases/get_today_schedule.
     as _i336;
 import 'package:hananote/features/medication/domain/usecases/log_medication.dart'
     as _i1050;
+import 'package:hananote/features/medication/domain/usecases/sync_medication_reminders.dart'
+    as _i445;
 import 'package:hananote/features/medication/presentation/bloc/today_schedule_bloc.dart'
     as _i14;
 import 'package:hananote/features/settings/data/datasources/settings_local_datasource.dart'
@@ -104,15 +110,20 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     final registerModule = _$RegisterModule();
+    final notificationModule = _$NotificationModule();
     gh.lazySingleton<_i558.FlutterSecureStorage>(
         () => registerModule.secureStorage);
     gh.lazySingleton<_i152.LocalAuthentication>(
         () => registerModule.localAuthentication);
     gh.lazySingleton<_i472.CryptoEngine>(() => _i472.CryptoEngine());
+    gh.lazySingleton<_i163.FlutterLocalNotificationsPlugin>(
+        () => notificationModule.flutterLocalNotificationsPlugin);
     gh.lazySingleton<_i869.KeyManager>(
         () => _i869.KeyManager(gh<_i558.FlutterSecureStorage>()));
     gh.lazySingleton<_i260.AuthLocalDataSource>(
         () => _i260.AuthLocalDataSourceImpl(gh<_i558.FlutterSecureStorage>()));
+    gh.lazySingleton<_i287.NotificationService>(() =>
+        _i287.NotificationService(gh<_i163.FlutterLocalNotificationsPlugin>()));
     gh.lazySingleton<_i59.SecureDatabase>(
         () => _i59.SecureDatabase(gh<_i869.KeyManager>()));
     gh.lazySingleton<_i1072.AuthRepository>(() => _i735.AuthRepositoryImpl(
@@ -183,10 +194,11 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i712.GetAllBloodTestReports(gh<_i979.BloodTestRepository>()));
     gh.factory<_i341.GetHormoneTrend>(
         () => _i341.GetHormoneTrend(gh<_i979.BloodTestRepository>()));
-    gh.factory<_i14.TodayScheduleBloc>(() => _i14.TodayScheduleBloc(
-          gh<_i336.GetTodaySchedule>(),
-          gh<_i1050.LogMedication>(),
-        ));
+    gh.factory<_i445.SyncMedicationReminders>(
+        () => _i445.SyncMedicationReminders(
+              gh<_i160.MedicationRepository>(),
+              gh<_i287.NotificationService>(),
+            ));
     gh.factory<_i116.TimelineBloc>(() => _i116.TimelineBloc(
           gh<_i965.GetTimelineEvents>(),
           gh<_i755.SettingsRepository>(),
@@ -205,7 +217,12 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i910.GetJournalStreak>(),
           gh<_i1032.JournalRepository>(),
         ));
-    gh.factory<_i994.SettingsBloc>(() => _i994.SettingsBloc(
+    gh.factory<_i14.TodayScheduleBloc>(() => _i14.TodayScheduleBloc(
+          gh<_i336.GetTodaySchedule>(),
+          gh<_i1050.LogMedication>(),
+          gh<_i445.SyncMedicationReminders>(),
+        ));
+    gh.lazySingleton<_i994.SettingsBloc>(() => _i994.SettingsBloc(
           gh<_i287.GetProfileDashboard>(),
           gh<_i695.UpdateAppSettings>(),
           gh<_i135.WipeAllData>(),
@@ -215,3 +232,5 @@ extension GetItInjectableX on _i174.GetIt {
 }
 
 class _$RegisterModule extends _i622.RegisterModule {}
+
+class _$NotificationModule extends _i868.NotificationModule {}

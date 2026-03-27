@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -5,22 +6,16 @@ import 'package:hananote/app/theme/hana_colors.dart';
 import 'package:hananote/app/theme/hana_gradients.dart';
 
 /// A card displaying the countdown to the next medication dose.
-class CountdownCard extends StatelessWidget {
+class CountdownCard extends StatefulWidget {
   /// Creates a [CountdownCard].
   const CountdownCard({
-    required this.hours,
-    required this.minutes,
     required this.drugName,
     required this.dosage,
     required this.route,
+    this.nextScheduledTime,
+    this.isCompleteForToday = false,
     super.key,
   });
-
-  /// The remaining hours.
-  final int hours;
-
-  /// The remaining minutes.
-  final int minutes;
 
   /// The name of the drug.
   final String drugName;
@@ -31,9 +26,39 @@ class CountdownCard extends StatelessWidget {
   /// The route of administration.
   final String route;
 
+  /// The next due time for the reminder.
+  final DateTime? nextScheduledTime;
+
+  /// Whether all doses for today are already complete.
+  final bool isCompleteForToday;
+
+  @override
+  State<CountdownCard> createState() => _CountdownCardState();
+}
+
+class _CountdownCardState extends State<CountdownCard> {
+  Timer? _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _timer = Timer.periodic(const Duration(minutes: 1), (_) {
+      if (mounted) {
+        setState(() {});
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final remaining = _calculateRemaining();
 
     return Container(
       decoration: BoxDecoration(
@@ -106,43 +131,54 @@ class CountdownCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.baseline,
                     textBaseline: TextBaseline.alphabetic,
                     children: [
-                      Text(
-                        '$hours',
-                        style: const TextStyle(
-                          fontSize: 40,
-                          fontWeight: FontWeight.w800,
-                          color: HanaColors.onPrimaryContainer,
-                          fontFamily: 'PlusJakartaSans',
-                          height: 1,
+                      if (widget.isCompleteForToday)
+                        Text(
+                          '今日已完成 ✅',
+                          style: theme.textTheme.headlineSmall?.copyWith(
+                            color: HanaColors.onPrimaryContainer,
+                            fontWeight: FontWeight.w800,
+                            height: 1.1,
+                          ),
                         ),
-                      ),
-                      const SizedBox(width: 4),
-                      Text(
-                        '小时',
-                        style: theme.textTheme.bodyMedium?.copyWith(
-                          color: HanaColors.onPrimaryContainer,
-                          fontWeight: FontWeight.w600,
+                      if (!widget.isCompleteForToday) ...[
+                        Text(
+                          '${remaining.$1}',
+                          style: const TextStyle(
+                            fontSize: 40,
+                            fontWeight: FontWeight.w800,
+                            color: HanaColors.onPrimaryContainer,
+                            fontFamily: 'PlusJakartaSans',
+                            height: 1,
+                          ),
                         ),
-                      ),
-                      const SizedBox(width: 12),
-                      Text(
-                        '$minutes',
-                        style: const TextStyle(
-                          fontSize: 40,
-                          fontWeight: FontWeight.w800,
-                          color: HanaColors.onPrimaryContainer,
-                          fontFamily: 'PlusJakartaSans',
-                          height: 1,
+                        const SizedBox(width: 4),
+                        Text(
+                          '小时',
+                          style: theme.textTheme.bodyMedium?.copyWith(
+                            color: HanaColors.onPrimaryContainer,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
-                      ),
-                      const SizedBox(width: 4),
-                      Text(
-                        '分钟',
-                        style: theme.textTheme.bodyMedium?.copyWith(
-                          color: HanaColors.onPrimaryContainer,
-                          fontWeight: FontWeight.w600,
+                        const SizedBox(width: 12),
+                        Text(
+                          '${remaining.$2}',
+                          style: const TextStyle(
+                            fontSize: 40,
+                            fontWeight: FontWeight.w800,
+                            color: HanaColors.onPrimaryContainer,
+                            fontFamily: 'PlusJakartaSans',
+                            height: 1,
+                          ),
                         ),
-                      ),
+                        const SizedBox(width: 4),
+                        Text(
+                          '分钟',
+                          style: theme.textTheme.bodyMedium?.copyWith(
+                            color: HanaColors.onPrimaryContainer,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
                     ],
                   ),
                   const SizedBox(height: 24),
@@ -161,7 +197,8 @@ class CountdownCard extends StatelessWidget {
                           borderRadius: BorderRadius.circular(24),
                         ),
                         child: Text(
-                          '$drugName · $dosage · $route',
+                          '${widget.drugName} · ${widget.dosage} · '
+                          '${widget.route}',
                           style: theme.textTheme.bodySmall?.copyWith(
                             color: HanaColors.onPrimaryContainer,
                             fontWeight: FontWeight.bold,
@@ -177,5 +214,18 @@ class CountdownCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  (int, int) _calculateRemaining() {
+    if (widget.isCompleteForToday || widget.nextScheduledTime == null) {
+      return (0, 0);
+    }
+
+    final diff = widget.nextScheduledTime!.difference(DateTime.now());
+    if (diff.isNegative) {
+      return (0, 0);
+    }
+
+    return (diff.inHours, diff.inMinutes % 60);
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hananote/core/error/failures.dart';
 import 'package:hananote/core/utils/id_generator.dart';
@@ -6,6 +8,7 @@ import 'package:hananote/features/medication/domain/entities/medication_log.dart
 import 'package:hananote/features/medication/domain/entities/medication_schedule.dart';
 import 'package:hananote/features/medication/domain/usecases/get_today_schedule.dart';
 import 'package:hananote/features/medication/domain/usecases/log_medication.dart';
+import 'package:hananote/features/medication/domain/usecases/sync_medication_reminders.dart';
 import 'package:hananote/features/medication/presentation/bloc/today_schedule_event.dart';
 import 'package:hananote/features/medication/presentation/bloc/today_schedule_state.dart';
 import 'package:injectable/injectable.dart';
@@ -20,6 +23,7 @@ class TodayScheduleBloc extends Bloc<TodayScheduleEvent, TodayScheduleState> {
   TodayScheduleBloc(
     this._getTodaySchedule,
     this._logMedication,
+    this._syncMedicationReminders,
   ) : super(const TodayScheduleState.initial()) {
     on<LoadTodaySchedule>(_onLoad);
     on<LogDoseTodaySchedule>(_onLogDose);
@@ -28,6 +32,7 @@ class TodayScheduleBloc extends Bloc<TodayScheduleEvent, TodayScheduleState> {
 
   final GetTodaySchedule _getTodaySchedule;
   final LogMedication _logMedication;
+  final SyncMedicationReminders _syncMedicationReminders;
 
   /// The date currently displayed; used for reload after mutations.
   DateTime? _currentDate;
@@ -52,6 +57,7 @@ class TodayScheduleBloc extends Bloc<TodayScheduleEvent, TodayScheduleState> {
             totalCount: items.length,
           ),
         );
+        unawaited(_syncReminders());
       },
     );
   }
@@ -111,6 +117,10 @@ class TodayScheduleBloc extends Bloc<TodayScheduleEvent, TodayScheduleState> {
 
   Future<void> _reload(Emitter<TodayScheduleState> emit) =>
       _onLoad(LoadTodaySchedule(date: _currentDate), emit);
+
+  Future<void> _syncReminders() async {
+    await _syncMedicationReminders();
+  }
 
   /// Returns true when [now] is past all scheduled times for today.
   bool _isDoseLate(MedicationSchedule schedule, DateTime now) {

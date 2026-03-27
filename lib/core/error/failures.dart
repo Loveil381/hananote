@@ -18,6 +18,10 @@ sealed class Failure with _$Failure {
   /// Authentication failed (wrong PIN, biometric failure).
   const factory Failure.auth({required String message}) = AuthFailure;
 
+  /// Notification scheduling or permission request failed.
+  const factory Failure.notification({required String message}) =
+      NotificationFailure;
+
   /// Data validation failed.
   const factory Failure.validation({required String message}) =
       ValidationFailure;
@@ -33,6 +37,7 @@ String failureMessage(Failure failure) => switch (failure) {
       CryptoFailure(:final message) => message,
       StorageFailure(:final message) => message,
       AuthFailure(:final message) => message,
+      NotificationFailure(:final message) => message,
       ValidationFailure(:final message) => message,
       UnexpectedFailure(:final message) => message,
     };

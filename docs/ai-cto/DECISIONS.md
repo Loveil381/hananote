@@ -111,3 +111,13 @@
 - **决定**: Timeline 统一使用 TimelineEvent 实体，而不是按 medication / blood test / journal 各自定义 union type；原始上下文通过 metadata Map 保留。
 - **原因**: 单一事件模型可以让 TimelineBloc 与 TimelinePage 共享一套渲染与排序逻辑，同时为后续详情页、交互扩展和新增事件类型预留弹性。
 - **日期**: round 18
+
+## DEC-022: 通知系统采用 NotificationService + UseCase 双层架构
+- **决定**: 服药提醒通知系统拆为 core 层的 NotificationService 与 feature 层的 SyncMedicationReminders UseCase；core 负责平台通知封装，feature 负责从 MedicationRepository 编排同步逻辑。
+- **原因**: 通知能力属于跨 feature 基础设施，不应依赖 medication 领域；而提醒同步策略又明显属于 medication 业务规则，双层拆分可以同时保持复用性与边界清晰。
+- **日期**: round 19
+
+## DEC-023: SettingsBloc 改为 @lazySingleton 统一 blurOverlay 状态
+- **决定**: SettingsBloc 改为 @lazySingleton，让 app.dart 中的 AppBlurOverlay 和 ProfilePage 复用同一实例。
+- **原因**: blurOverlay 开关属于全局 UI 状态，如果 app 层和设置页分别持有不同 bloc 实例，会导致用户切换隐私开关后全局遮罩状态不同步。
+- **日期**: round 19

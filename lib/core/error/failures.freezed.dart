@@ -23,6 +23,7 @@ mixin _$Failure {
     required TResult Function(String message) crypto,
     required TResult Function(String message) storage,
     required TResult Function(String message) auth,
+    required TResult Function(String message) notification,
     required TResult Function(String message) validation,
     required TResult Function(String message) unexpected,
   }) =>
@@ -33,6 +34,7 @@ mixin _$Failure {
     TResult? Function(String message)? crypto,
     TResult? Function(String message)? storage,
     TResult? Function(String message)? auth,
+    TResult? Function(String message)? notification,
     TResult? Function(String message)? validation,
     TResult? Function(String message)? unexpected,
   }) =>
@@ -43,6 +45,7 @@ mixin _$Failure {
     TResult Function(String message)? crypto,
     TResult Function(String message)? storage,
     TResult Function(String message)? auth,
+    TResult Function(String message)? notification,
     TResult Function(String message)? validation,
     TResult Function(String message)? unexpected,
     required TResult orElse(),
@@ -54,6 +57,7 @@ mixin _$Failure {
     required TResult Function(CryptoFailure value) crypto,
     required TResult Function(StorageFailure value) storage,
     required TResult Function(AuthFailure value) auth,
+    required TResult Function(NotificationFailure value) notification,
     required TResult Function(ValidationFailure value) validation,
     required TResult Function(UnexpectedFailure value) unexpected,
   }) =>
@@ -64,6 +68,7 @@ mixin _$Failure {
     TResult? Function(CryptoFailure value)? crypto,
     TResult? Function(StorageFailure value)? storage,
     TResult? Function(AuthFailure value)? auth,
+    TResult? Function(NotificationFailure value)? notification,
     TResult? Function(ValidationFailure value)? validation,
     TResult? Function(UnexpectedFailure value)? unexpected,
   }) =>
@@ -74,6 +79,7 @@ mixin _$Failure {
     TResult Function(CryptoFailure value)? crypto,
     TResult Function(StorageFailure value)? storage,
     TResult Function(AuthFailure value)? auth,
+    TResult Function(NotificationFailure value)? notification,
     TResult Function(ValidationFailure value)? validation,
     TResult Function(UnexpectedFailure value)? unexpected,
     required TResult orElse(),
@@ -195,6 +201,7 @@ class _$DatabaseFailureImpl implements DatabaseFailure {
     required TResult Function(String message) crypto,
     required TResult Function(String message) storage,
     required TResult Function(String message) auth,
+    required TResult Function(String message) notification,
     required TResult Function(String message) validation,
     required TResult Function(String message) unexpected,
   }) {
@@ -208,6 +215,7 @@ class _$DatabaseFailureImpl implements DatabaseFailure {
     TResult? Function(String message)? crypto,
     TResult? Function(String message)? storage,
     TResult? Function(String message)? auth,
+    TResult? Function(String message)? notification,
     TResult? Function(String message)? validation,
     TResult? Function(String message)? unexpected,
   }) {
@@ -221,6 +229,7 @@ class _$DatabaseFailureImpl implements DatabaseFailure {
     TResult Function(String message)? crypto,
     TResult Function(String message)? storage,
     TResult Function(String message)? auth,
+    TResult Function(String message)? notification,
     TResult Function(String message)? validation,
     TResult Function(String message)? unexpected,
     required TResult orElse(),
@@ -238,6 +247,7 @@ class _$DatabaseFailureImpl implements DatabaseFailure {
     required TResult Function(CryptoFailure value) crypto,
     required TResult Function(StorageFailure value) storage,
     required TResult Function(AuthFailure value) auth,
+    required TResult Function(NotificationFailure value) notification,
     required TResult Function(ValidationFailure value) validation,
     required TResult Function(UnexpectedFailure value) unexpected,
   }) {
@@ -251,6 +261,7 @@ class _$DatabaseFailureImpl implements DatabaseFailure {
     TResult? Function(CryptoFailure value)? crypto,
     TResult? Function(StorageFailure value)? storage,
     TResult? Function(AuthFailure value)? auth,
+    TResult? Function(NotificationFailure value)? notification,
     TResult? Function(ValidationFailure value)? validation,
     TResult? Function(UnexpectedFailure value)? unexpected,
   }) {
@@ -264,6 +275,7 @@ class _$DatabaseFailureImpl implements DatabaseFailure {
     TResult Function(CryptoFailure value)? crypto,
     TResult Function(StorageFailure value)? storage,
     TResult Function(AuthFailure value)? auth,
+    TResult Function(NotificationFailure value)? notification,
     TResult Function(ValidationFailure value)? validation,
     TResult Function(UnexpectedFailure value)? unexpected,
     required TResult orElse(),
@@ -364,6 +376,7 @@ class _$CryptoFailureImpl implements CryptoFailure {
     required TResult Function(String message) crypto,
     required TResult Function(String message) storage,
     required TResult Function(String message) auth,
+    required TResult Function(String message) notification,
     required TResult Function(String message) validation,
     required TResult Function(String message) unexpected,
   }) {
@@ -377,6 +390,7 @@ class _$CryptoFailureImpl implements CryptoFailure {
     TResult? Function(String message)? crypto,
     TResult? Function(String message)? storage,
     TResult? Function(String message)? auth,
+    TResult? Function(String message)? notification,
     TResult? Function(String message)? validation,
     TResult? Function(String message)? unexpected,
   }) {
@@ -390,6 +404,7 @@ class _$CryptoFailureImpl implements CryptoFailure {
     TResult Function(String message)? crypto,
     TResult Function(String message)? storage,
     TResult Function(String message)? auth,
+    TResult Function(String message)? notification,
     TResult Function(String message)? validation,
     TResult Function(String message)? unexpected,
     required TResult orElse(),
@@ -407,6 +422,7 @@ class _$CryptoFailureImpl implements CryptoFailure {
     required TResult Function(CryptoFailure value) crypto,
     required TResult Function(StorageFailure value) storage,
     required TResult Function(AuthFailure value) auth,
+    required TResult Function(NotificationFailure value) notification,
     required TResult Function(ValidationFailure value) validation,
     required TResult Function(UnexpectedFailure value) unexpected,
   }) {
@@ -420,6 +436,7 @@ class _$CryptoFailureImpl implements CryptoFailure {
     TResult? Function(CryptoFailure value)? crypto,
     TResult? Function(StorageFailure value)? storage,
     TResult? Function(AuthFailure value)? auth,
+    TResult? Function(NotificationFailure value)? notification,
     TResult? Function(ValidationFailure value)? validation,
     TResult? Function(UnexpectedFailure value)? unexpected,
   }) {
@@ -433,6 +450,7 @@ class _$CryptoFailureImpl implements CryptoFailure {
     TResult Function(CryptoFailure value)? crypto,
     TResult Function(StorageFailure value)? storage,
     TResult Function(AuthFailure value)? auth,
+    TResult Function(NotificationFailure value)? notification,
     TResult Function(ValidationFailure value)? validation,
     TResult Function(UnexpectedFailure value)? unexpected,
     required TResult orElse(),
@@ -534,6 +552,7 @@ class _$StorageFailureImpl implements StorageFailure {
     required TResult Function(String message) crypto,
     required TResult Function(String message) storage,
     required TResult Function(String message) auth,
+    required TResult Function(String message) notification,
     required TResult Function(String message) validation,
     required TResult Function(String message) unexpected,
   }) {
@@ -547,6 +566,7 @@ class _$StorageFailureImpl implements StorageFailure {
     TResult? Function(String message)? crypto,
     TResult? Function(String message)? storage,
     TResult? Function(String message)? auth,
+    TResult? Function(String message)? notification,
     TResult? Function(String message)? validation,
     TResult? Function(String message)? unexpected,
   }) {
@@ -560,6 +580,7 @@ class _$StorageFailureImpl implements StorageFailure {
     TResult Function(String message)? crypto,
     TResult Function(String message)? storage,
     TResult Function(String message)? auth,
+    TResult Function(String message)? notification,
     TResult Function(String message)? validation,
     TResult Function(String message)? unexpected,
     required TResult orElse(),
@@ -577,6 +598,7 @@ class _$StorageFailureImpl implements StorageFailure {
     required TResult Function(CryptoFailure value) crypto,
     required TResult Function(StorageFailure value) storage,
     required TResult Function(AuthFailure value) auth,
+    required TResult Function(NotificationFailure value) notification,
     required TResult Function(ValidationFailure value) validation,
     required TResult Function(UnexpectedFailure value) unexpected,
   }) {
@@ -590,6 +612,7 @@ class _$StorageFailureImpl implements StorageFailure {
     TResult? Function(CryptoFailure value)? crypto,
     TResult? Function(StorageFailure value)? storage,
     TResult? Function(AuthFailure value)? auth,
+    TResult? Function(NotificationFailure value)? notification,
     TResult? Function(ValidationFailure value)? validation,
     TResult? Function(UnexpectedFailure value)? unexpected,
   }) {
@@ -603,6 +626,7 @@ class _$StorageFailureImpl implements StorageFailure {
     TResult Function(CryptoFailure value)? crypto,
     TResult Function(StorageFailure value)? storage,
     TResult Function(AuthFailure value)? auth,
+    TResult Function(NotificationFailure value)? notification,
     TResult Function(ValidationFailure value)? validation,
     TResult Function(UnexpectedFailure value)? unexpected,
     required TResult orElse(),
@@ -703,6 +727,7 @@ class _$AuthFailureImpl implements AuthFailure {
     required TResult Function(String message) crypto,
     required TResult Function(String message) storage,
     required TResult Function(String message) auth,
+    required TResult Function(String message) notification,
     required TResult Function(String message) validation,
     required TResult Function(String message) unexpected,
   }) {
@@ -716,6 +741,7 @@ class _$AuthFailureImpl implements AuthFailure {
     TResult? Function(String message)? crypto,
     TResult? Function(String message)? storage,
     TResult? Function(String message)? auth,
+    TResult? Function(String message)? notification,
     TResult? Function(String message)? validation,
     TResult? Function(String message)? unexpected,
   }) {
@@ -729,6 +755,7 @@ class _$AuthFailureImpl implements AuthFailure {
     TResult Function(String message)? crypto,
     TResult Function(String message)? storage,
     TResult Function(String message)? auth,
+    TResult Function(String message)? notification,
     TResult Function(String message)? validation,
     TResult Function(String message)? unexpected,
     required TResult orElse(),
@@ -746,6 +773,7 @@ class _$AuthFailureImpl implements AuthFailure {
     required TResult Function(CryptoFailure value) crypto,
     required TResult Function(StorageFailure value) storage,
     required TResult Function(AuthFailure value) auth,
+    required TResult Function(NotificationFailure value) notification,
     required TResult Function(ValidationFailure value) validation,
     required TResult Function(UnexpectedFailure value) unexpected,
   }) {
@@ -759,6 +787,7 @@ class _$AuthFailureImpl implements AuthFailure {
     TResult? Function(CryptoFailure value)? crypto,
     TResult? Function(StorageFailure value)? storage,
     TResult? Function(AuthFailure value)? auth,
+    TResult? Function(NotificationFailure value)? notification,
     TResult? Function(ValidationFailure value)? validation,
     TResult? Function(UnexpectedFailure value)? unexpected,
   }) {
@@ -772,6 +801,7 @@ class _$AuthFailureImpl implements AuthFailure {
     TResult Function(CryptoFailure value)? crypto,
     TResult Function(StorageFailure value)? storage,
     TResult Function(AuthFailure value)? auth,
+    TResult Function(NotificationFailure value)? notification,
     TResult Function(ValidationFailure value)? validation,
     TResult Function(UnexpectedFailure value)? unexpected,
     required TResult orElse(),
@@ -795,6 +825,182 @@ abstract class AuthFailure implements Failure {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AuthFailureImplCopyWith<_$AuthFailureImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$NotificationFailureImplCopyWith<$Res>
+    implements $FailureCopyWith<$Res> {
+  factory _$$NotificationFailureImplCopyWith(_$NotificationFailureImpl value,
+          $Res Function(_$NotificationFailureImpl) then) =
+      __$$NotificationFailureImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String message});
+}
+
+/// @nodoc
+class __$$NotificationFailureImplCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$NotificationFailureImpl>
+    implements _$$NotificationFailureImplCopyWith<$Res> {
+  __$$NotificationFailureImplCopyWithImpl(_$NotificationFailureImpl _value,
+      $Res Function(_$NotificationFailureImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of Failure
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(_$NotificationFailureImpl(
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$NotificationFailureImpl implements NotificationFailure {
+  const _$NotificationFailureImpl({required this.message});
+
+  @override
+  final String message;
+
+  @override
+  String toString() {
+    return 'Failure.notification(message: $message)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$NotificationFailureImpl &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  /// Create a copy of Failure
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$NotificationFailureImplCopyWith<_$NotificationFailureImpl> get copyWith =>
+      __$$NotificationFailureImplCopyWithImpl<_$NotificationFailureImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String message) database,
+    required TResult Function(String message) crypto,
+    required TResult Function(String message) storage,
+    required TResult Function(String message) auth,
+    required TResult Function(String message) notification,
+    required TResult Function(String message) validation,
+    required TResult Function(String message) unexpected,
+  }) {
+    return notification(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String message)? database,
+    TResult? Function(String message)? crypto,
+    TResult? Function(String message)? storage,
+    TResult? Function(String message)? auth,
+    TResult? Function(String message)? notification,
+    TResult? Function(String message)? validation,
+    TResult? Function(String message)? unexpected,
+  }) {
+    return notification?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String message)? database,
+    TResult Function(String message)? crypto,
+    TResult Function(String message)? storage,
+    TResult Function(String message)? auth,
+    TResult Function(String message)? notification,
+    TResult Function(String message)? validation,
+    TResult Function(String message)? unexpected,
+    required TResult orElse(),
+  }) {
+    if (notification != null) {
+      return notification(message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DatabaseFailure value) database,
+    required TResult Function(CryptoFailure value) crypto,
+    required TResult Function(StorageFailure value) storage,
+    required TResult Function(AuthFailure value) auth,
+    required TResult Function(NotificationFailure value) notification,
+    required TResult Function(ValidationFailure value) validation,
+    required TResult Function(UnexpectedFailure value) unexpected,
+  }) {
+    return notification(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DatabaseFailure value)? database,
+    TResult? Function(CryptoFailure value)? crypto,
+    TResult? Function(StorageFailure value)? storage,
+    TResult? Function(AuthFailure value)? auth,
+    TResult? Function(NotificationFailure value)? notification,
+    TResult? Function(ValidationFailure value)? validation,
+    TResult? Function(UnexpectedFailure value)? unexpected,
+  }) {
+    return notification?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DatabaseFailure value)? database,
+    TResult Function(CryptoFailure value)? crypto,
+    TResult Function(StorageFailure value)? storage,
+    TResult Function(AuthFailure value)? auth,
+    TResult Function(NotificationFailure value)? notification,
+    TResult Function(ValidationFailure value)? validation,
+    TResult Function(UnexpectedFailure value)? unexpected,
+    required TResult orElse(),
+  }) {
+    if (notification != null) {
+      return notification(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class NotificationFailure implements Failure {
+  const factory NotificationFailure({required final String message}) =
+      _$NotificationFailureImpl;
+
+  @override
+  String get message;
+
+  /// Create a copy of Failure
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$NotificationFailureImplCopyWith<_$NotificationFailureImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -873,6 +1079,7 @@ class _$ValidationFailureImpl implements ValidationFailure {
     required TResult Function(String message) crypto,
     required TResult Function(String message) storage,
     required TResult Function(String message) auth,
+    required TResult Function(String message) notification,
     required TResult Function(String message) validation,
     required TResult Function(String message) unexpected,
   }) {
@@ -886,6 +1093,7 @@ class _$ValidationFailureImpl implements ValidationFailure {
     TResult? Function(String message)? crypto,
     TResult? Function(String message)? storage,
     TResult? Function(String message)? auth,
+    TResult? Function(String message)? notification,
     TResult? Function(String message)? validation,
     TResult? Function(String message)? unexpected,
   }) {
@@ -899,6 +1107,7 @@ class _$ValidationFailureImpl implements ValidationFailure {
     TResult Function(String message)? crypto,
     TResult Function(String message)? storage,
     TResult Function(String message)? auth,
+    TResult Function(String message)? notification,
     TResult Function(String message)? validation,
     TResult Function(String message)? unexpected,
     required TResult orElse(),
@@ -916,6 +1125,7 @@ class _$ValidationFailureImpl implements ValidationFailure {
     required TResult Function(CryptoFailure value) crypto,
     required TResult Function(StorageFailure value) storage,
     required TResult Function(AuthFailure value) auth,
+    required TResult Function(NotificationFailure value) notification,
     required TResult Function(ValidationFailure value) validation,
     required TResult Function(UnexpectedFailure value) unexpected,
   }) {
@@ -929,6 +1139,7 @@ class _$ValidationFailureImpl implements ValidationFailure {
     TResult? Function(CryptoFailure value)? crypto,
     TResult? Function(StorageFailure value)? storage,
     TResult? Function(AuthFailure value)? auth,
+    TResult? Function(NotificationFailure value)? notification,
     TResult? Function(ValidationFailure value)? validation,
     TResult? Function(UnexpectedFailure value)? unexpected,
   }) {
@@ -942,6 +1153,7 @@ class _$ValidationFailureImpl implements ValidationFailure {
     TResult Function(CryptoFailure value)? crypto,
     TResult Function(StorageFailure value)? storage,
     TResult Function(AuthFailure value)? auth,
+    TResult Function(NotificationFailure value)? notification,
     TResult Function(ValidationFailure value)? validation,
     TResult Function(UnexpectedFailure value)? unexpected,
     required TResult orElse(),
@@ -1043,6 +1255,7 @@ class _$UnexpectedFailureImpl implements UnexpectedFailure {
     required TResult Function(String message) crypto,
     required TResult Function(String message) storage,
     required TResult Function(String message) auth,
+    required TResult Function(String message) notification,
     required TResult Function(String message) validation,
     required TResult Function(String message) unexpected,
   }) {
@@ -1056,6 +1269,7 @@ class _$UnexpectedFailureImpl implements UnexpectedFailure {
     TResult? Function(String message)? crypto,
     TResult? Function(String message)? storage,
     TResult? Function(String message)? auth,
+    TResult? Function(String message)? notification,
     TResult? Function(String message)? validation,
     TResult? Function(String message)? unexpected,
   }) {
@@ -1069,6 +1283,7 @@ class _$UnexpectedFailureImpl implements UnexpectedFailure {
     TResult Function(String message)? crypto,
     TResult Function(String message)? storage,
     TResult Function(String message)? auth,
+    TResult Function(String message)? notification,
     TResult Function(String message)? validation,
     TResult Function(String message)? unexpected,
     required TResult orElse(),
@@ -1086,6 +1301,7 @@ class _$UnexpectedFailureImpl implements UnexpectedFailure {
     required TResult Function(CryptoFailure value) crypto,
     required TResult Function(StorageFailure value) storage,
     required TResult Function(AuthFailure value) auth,
+    required TResult Function(NotificationFailure value) notification,
     required TResult Function(ValidationFailure value) validation,
     required TResult Function(UnexpectedFailure value) unexpected,
   }) {
@@ -1099,6 +1315,7 @@ class _$UnexpectedFailureImpl implements UnexpectedFailure {
     TResult? Function(CryptoFailure value)? crypto,
     TResult? Function(StorageFailure value)? storage,
     TResult? Function(AuthFailure value)? auth,
+    TResult? Function(NotificationFailure value)? notification,
     TResult? Function(ValidationFailure value)? validation,
     TResult? Function(UnexpectedFailure value)? unexpected,
   }) {
@@ -1112,6 +1329,7 @@ class _$UnexpectedFailureImpl implements UnexpectedFailure {
     TResult Function(CryptoFailure value)? crypto,
     TResult Function(StorageFailure value)? storage,
     TResult Function(AuthFailure value)? auth,
+    TResult Function(NotificationFailure value)? notification,
     TResult Function(ValidationFailure value)? validation,
     TResult Function(UnexpectedFailure value)? unexpected,
     required TResult orElse(),

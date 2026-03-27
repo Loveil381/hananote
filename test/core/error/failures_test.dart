@@ -11,6 +11,7 @@ void main() {
         CryptoFailure() => 'crypto',
         StorageFailure() => 'storage',
         AuthFailure() => 'auth',
+        NotificationFailure() => 'notification',
         ValidationFailure() => 'validation',
         UnexpectedFailure() => 'unexpected',
       };
@@ -26,6 +27,7 @@ void main() {
         CryptoFailure() => 'crypto',
         StorageFailure() => 'storage',
         AuthFailure() => 'auth',
+        NotificationFailure() => 'notification',
         ValidationFailure() => 'validation',
         UnexpectedFailure() => 'unexpected',
       };
