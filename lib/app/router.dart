@@ -16,6 +16,8 @@ import 'package:hananote/features/medication/presentation/bloc/today_schedule_ev
 import 'package:hananote/features/medication/presentation/pages/add_drug_page.dart';
 import 'package:hananote/features/medication/presentation/pages/schedule_editor_page.dart';
 import 'package:hananote/features/medication/presentation/pages/today_page.dart';
+import 'package:hananote/features/settings/presentation/bloc/settings_bloc.dart';
+import 'package:hananote/features/settings/presentation/bloc/settings_event.dart';
 import 'package:hananote/features/settings/presentation/pages/profile_page.dart';
 import 'package:hananote/features/timeline/presentation/pages/timeline_page.dart';
 
@@ -53,8 +55,8 @@ final GoRouter appRouter = GoRouter(
             GoRoute(
               path: '/record',
               builder: (context, state) => BlocProvider(
-                create: (_) => getIt<RecordBloc>()
-                  ..add(const LoadRecordSummary()),
+                create: (_) =>
+                    getIt<RecordBloc>()..add(const LoadRecordSummary()),
                 child: const RecordPage(),
               ),
             ),
@@ -84,7 +86,11 @@ final GoRouter appRouter = GoRouter(
           routes: [
             GoRoute(
               path: '/profile',
-              builder: (context, state) => const ProfilePage(),
+              builder: (context, state) => BlocProvider(
+                create: (_) =>
+                    getIt<SettingsBloc>()..add(const LoadSettingsDashboard()),
+                child: const ProfilePage(),
+              ),
             ),
           ],
         ),

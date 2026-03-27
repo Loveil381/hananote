@@ -83,6 +83,8 @@ import 'package:hananote/features/settings/domain/usecases/update_app_settings.d
     as _i695;
 import 'package:hananote/features/settings/domain/usecases/wipe_all_data.dart'
     as _i135;
+import 'package:hananote/features/settings/presentation/bloc/settings_bloc.dart'
+    as _i994;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:local_auth/local_auth.dart' as _i152;
 
@@ -188,6 +190,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i697.RecordBloc>(() => _i697.RecordBloc(
           gh<_i910.GetJournalStreak>(),
           gh<_i1032.JournalRepository>(),
+        ));
+    gh.factory<_i994.SettingsBloc>(() => _i994.SettingsBloc(
+          gh<_i287.GetProfileDashboard>(),
+          gh<_i695.UpdateAppSettings>(),
+          gh<_i135.WipeAllData>(),
         ));
     return this;
   }
