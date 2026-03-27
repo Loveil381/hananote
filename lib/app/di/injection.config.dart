@@ -91,6 +91,8 @@ import 'package:hananote/features/settings/domain/usecases/wipe_all_data.dart'
     as _i135;
 import 'package:hananote/features/settings/presentation/bloc/settings_bloc.dart'
     as _i994;
+import 'package:hananote/features/simulator/domain/usecases/calibrate_pk_params.dart'
+    as _i987;
 import 'package:hananote/features/simulator/domain/usecases/run_pk_simulation.dart'
     as _i691;
 import 'package:hananote/features/timeline/domain/usecases/get_timeline_events.dart'
@@ -159,6 +161,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i160.MedicationRepository>(() =>
         _i1024.MedicationRepositoryImpl(
             gh<_i1047.MedicationLocalDataSource>()));
+    gh.factory<_i987.CalibratePkParams>(
+        () => _i987.CalibratePkParams(gh<_i979.BloodTestRepository>()));
     gh.factory<_i336.GetTodaySchedule>(
         () => _i336.GetTodaySchedule(gh<_i160.MedicationRepository>()));
     gh.factory<_i1050.LogMedication>(

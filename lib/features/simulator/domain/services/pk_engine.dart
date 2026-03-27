@@ -2,10 +2,10 @@ import 'dart:math' as math;
 
 import 'package:hananote/features/simulator/domain/entities/dosing_regimen.dart';
 import 'package:hananote/features/simulator/domain/entities/ester_type.dart';
-import 'package:hananote/features/simulator/domain/entities/pk_parameters.dart';
 import 'package:hananote/features/simulator/domain/entities/pk_result.dart';
+import 'package:hananote/features/simulator/domain/entities/route_params.dart';
 
-/// Pure Dart pharmacokinetic engine for deterministic estradiol simulation.
+/// Pure Dart pharmacokinetic engine for the V2 estradiol simulator.
 class PkEngine {
   /// Creates a [PkEngine].
   const PkEngine();
@@ -14,139 +14,174 @@ class PkEngine {
   static const double _steadyStateTolerance = 0.05;
   static const double _troughProbeHours = 1 / 60;
 
-  /// Three-compartment single-dose estradiol concentration.
-  double singleDoseE2(double t, double dose, PkParameters params) {
-    if (t <= 0 || dose <= 0) {
+  /// Dual-depot injection model with parallel fast and slow depots.
+  double dualDepotInjection(double tH, double dose, InjectionParams p) {
+    if (tH <= 0 || dose <= 0) {
       return 0;
     }
 
-    final timeDays = t / 24;
-    final k1 = params.k1;
-    final k2 = params.k2;
-    final k3 = params.k3;
+    final fast = _analytic3C(tH, p.k1Fast, p.k2, p.k3);
+    final slow = _analytic3C(tH, p.k1Slow, p.k2, p.k3);
 
-    final a =
-        math.exp(-k1 * timeDays) / (_safeDelta(k1, k2) * _safeDelta(k1, k3));
-    final b =
-        math.exp(-k2 * timeDays) / (_safeDelta(k1, k2) * _safeDelta(k2, k3));
-    final c =
-        math.exp(-k3 * timeDays) / (_safeDelta(k1, k3) * _safeDelta(k2, k3));
-
-    return _clampNonNegative(dose * k1 * k2 * _heaviside(t) * (a - b + c));
+    return _clampNonNegative(
+      dose *
+          p.formationFraction *
+          (p.fracFast * fast + (1 - p.fracFast) * slow),
+    );
   }
 
-  /// Linear superposition of multiple doses.
-  double multiDoseE2(
-    double t,
-    List<(double time, double dose)> doses,
-    PkParameters params,
-  ) {
-    if (t <= 0 || doses.isEmpty) {
+  /// Oral Bateman model.
+  double oralBateman(double tH, double dose, OralParams p) {
+    if (tH <= 0 || dose <= 0) {
       return 0;
     }
 
     return _clampNonNegative(
-      doses.fold<double>(
-        0,
-        (sum, doseEvent) =>
-            sum + singleDoseE2(t - doseEvent.$1, doseEvent.$2, params),
-      ),
+      dose * p.bioavailability * _batemanUnit(tH, p.kAbs, p.kClear),
     );
   }
 
-  /// Closed-form steady-state concentration for repeated dosing.
+  /// Sublingual model with a fast mucosal path and a slower swallowed path.
+  double sublingualDualPath(double tH, double dose, SublingualParams p) {
+    if (tH <= 0 || dose <= 0) {
+      return 0;
+    }
+
+    final fast = p.k2Hydrolysis > 0
+        ? _analytic3C(tH, p.kSL, p.k2Hydrolysis, p.kClear)
+        : _batemanUnit(tH, p.kSL, p.kClear);
+    final slow = _batemanUnit(tH, p.kAbsOral, p.kClear);
+
+    return _clampNonNegative(
+      dose * p.theta * fast +
+          dose * (1 - p.theta) * p.bioavailabilityOral * slow,
+    );
+  }
+
+  /// Zero-order patch input during wear followed by exponential decay.
+  double patchZeroOrder(double tH, double dose, PatchParams p) {
+    if (tH <= 0 || dose <= 0) {
+      return 0;
+    }
+
+    final rateMgPerHour = p.releaseRateMcgPerDay / 24 / 1000 * dose;
+    if (tH <= p.wearDurationH) {
+      return _clampNonNegative(
+        rateMgPerHour / p.kClear * (1 - math.exp(-p.kClear * tH)),
+      );
+    }
+
+    final amountAtRemoval =
+        rateMgPerHour / p.kClear * (1 - math.exp(-p.kClear * p.wearDurationH));
+    return _clampNonNegative(
+      amountAtRemoval * math.exp(-p.kClear * (tH - p.wearDurationH)),
+    );
+  }
+
+  /// Gel Bateman model.
+  double gelBateman(double tH, double dose, GelParams p) {
+    if (tH <= 0 || dose <= 0) {
+      return 0;
+    }
+
+    return _clampNonNegative(
+      dose * p.bioavailability * _batemanUnit(tH, p.kAbs, p.kClear),
+    );
+  }
+
+  /// Closed-form steady-state solution for repeated injection dosing.
   double steadyStateE2(
-    double t,
+    double tH,
     double dose,
     double intervalHours,
-    PkParameters params,
+    InjectionParams p,
   ) {
-    if (t < 0 || dose <= 0 || intervalHours <= 0) {
+    if (tH < 0 || dose <= 0 || intervalHours <= 0) {
       return 0;
     }
 
-    final intervalDays = intervalHours / 24;
-    final phaseDays = _phaseHours(t, intervalHours) / 24;
-    final k1 = params.k1;
-    final k2 = params.k2;
-    final k3 = params.k3;
-
-    final a = math.exp(-k1 * phaseDays) /
-        (_steadyStateDenominator(k1, intervalDays) *
-            _safeDelta(k1, k2) *
-            _safeDelta(k1, k3));
-    final b = math.exp(-k2 * phaseDays) /
-        (_steadyStateDenominator(k2, intervalDays) *
-            _safeDelta(k1, k2) *
-            _safeDelta(k2, k3));
-    final c = math.exp(-k3 * phaseDays) /
-        (_steadyStateDenominator(k3, intervalDays) *
-            _safeDelta(k1, k3) *
-            _safeDelta(k2, k3));
-
-    return _clampNonNegative(dose * k1 * k2 * (a - b + c));
-  }
-
-  /// Steady-state approximation for transdermal patch-like dosing.
-  double steadyStatePatchE2(
-    double t,
-    double dose,
-    double intervalHours,
-    double wearHours,
-    PkParameters params,
-  ) {
-    if (t < 0 || dose <= 0 || intervalHours <= 0 || wearHours <= 0) {
-      return 0;
-    }
-
-    final phaseHours = _phaseHours(t, intervalHours);
-    final phaseDays = phaseHours / 24;
-    final intervalDays = intervalHours / 24;
-    final wearDays = math.min(wearHours, intervalHours) / 24;
-    final k = params.k3;
-    final rate = dose / wearDays;
-    final doseAtRemoval = rate / k * (1 - math.exp(-k * wearDays));
-    final decayFactor = _steadyStateDenominator(k, intervalDays);
-
-    if (phaseDays <= wearDays) {
-      final activeRelease = rate / k * (1 - math.exp(-k * phaseDays));
-      final residual = doseAtRemoval *
-          math.exp(-k * (phaseDays + intervalDays - wearDays)) /
-          decayFactor;
-      return _clampNonNegative(activeRelease + residual);
-    }
+    final phaseHours = _phaseHours(tH, intervalHours);
+    final fast = _steadyStateAnalytic3C(
+      phaseHours,
+      p.k1Fast,
+      p.k2,
+      p.k3,
+      intervalHours,
+    );
+    final slow = _steadyStateAnalytic3C(
+      phaseHours,
+      p.k1Slow,
+      p.k2,
+      p.k3,
+      intervalHours,
+    );
 
     return _clampNonNegative(
-      doseAtRemoval * math.exp(-k * (phaseDays - wearDays)) / decayFactor,
+      dose *
+          p.formationFraction *
+          (p.fracFast * fast + (1 - p.fracFast) * slow),
     );
   }
 
-  /// Runs a deterministic simulation and calculates steady-state metrics.
+  /// Returns the concentration for [regimen] at [tH] hours since first dose.
+  double concentrationAt(
+    double tH,
+    DosingRegimen regimen,
+    RouteParams params, {
+    double vdPerKg = 2,
+  }) {
+    final resolvedParams = resolveRouteParams(regimen, params);
+    final amountMg = _multiDoseAmount(tH, regimen, resolvedParams);
+    return _amountToConcentrationPgMl(
+      amountMg,
+      bodyWeightKg: regimen.bodyWeightKg ?? 65,
+      vdPerKg: vdPerKg,
+    );
+  }
+
+  /// Applies regimen-level overrides to route parameters.
+  RouteParams resolveRouteParams(DosingRegimen regimen, RouteParams params) {
+    final paramsWithHold = switch (params) {
+      final SublingualParams sublingual
+          when regimen.sublingualHoldTime != null =>
+        sublingual.copyWith(theta: regimen.sublingualHoldTime!.theta),
+      _ => params,
+    };
+
+    return switch (paramsWithHold) {
+      final PatchParams patch when regimen.wearDurationDays != null =>
+        patch.copyWith(wearDurationH: regimen.wearDurationDays! * 24),
+      _ => paramsWithHold,
+    };
+  }
+
+  /// Runs a complete simulation using route-specific V2 logic.
   PkSimulationResult simulate(
     DosingRegimen regimen, {
+    RouteParams? paramsOverride,
     int durationDays = 90,
     int pointsPerDay = 24,
+    double vdPerKg = 2,
   }) {
+    final intervalHours = regimen.intervalDays * 24;
     final totalPoints = durationDays * pointsPerDay;
     final pointStepHours = 24 / pointsPerDay;
-    final intervalHours = regimen.intervalDays * 24;
-    final params = regimen.esterType.defaultParameters;
-    final doses = _buildDoseEvents(regimen, durationDays.toDouble());
+    final totalDurationHours = durationDays * 24.0;
+    final params = resolveRouteParams(
+      regimen,
+      paramsOverride ?? regimen.esterType.defaultParameters,
+    );
 
     final curvePoints = List<PkCurvePoint>.generate(totalPoints, (index) {
       final timeHours = index * pointStepHours;
-      final concentration = regimen.esterType.usesPatchModel
-          ? _multiDosePatchE2(
-              timeHours,
-              doses,
-              params,
-              _resolvedWearHours(regimen),
-            )
-          : multiDoseE2(timeHours, doses, params);
-
       return PkCurvePoint(
         time: timeHours,
-        concentration: concentration,
+        concentration: concentrationAt(
+          timeHours,
+          regimen,
+          params,
+          vdPerKg: vdPerKg,
+        ),
         dateTime: regimen.startDate.add(
           Duration(milliseconds: (timeHours * 3600 * 1000).round()),
         ),
@@ -155,141 +190,134 @@ class PkEngine {
 
     final steadyCurve = _steadyStateProfile(
       regimen,
-      intervalHours,
+      params,
+      intervalHours: intervalHours,
+      totalDurationHours: totalDurationHours,
+      vdPerKg: vdPerKg,
       samples: math.max(240, pointsPerDay * 10),
     );
-    final trough = regimen.esterType.usesPatchModel
-        ? steadyStatePatchE2(
-            intervalHours - _troughProbeHours,
-            regimen.effectiveDose,
+    final steadyStateStartHours =
+        math.max(0, totalDurationHours - intervalHours);
+    final troughTime = intervalHours - _troughProbeHours;
+    final steadyStateTrough = switch (params) {
+      final InjectionParams injection => _amountToConcentrationPgMl(
+          steadyStateE2(
+            troughTime,
+            regimen.doseAmount,
             intervalHours,
-            _resolvedWearHours(regimen),
-            params,
-          )
-        : steadyStateE2(
-            intervalHours - _troughProbeHours,
-            regimen.effectiveDose,
-            intervalHours,
-            params,
-          );
-    final peak = steadyCurve.fold<double>(
+            injection,
+          ),
+          bodyWeightKg: regimen.bodyWeightKg ?? 65,
+          vdPerKg: vdPerKg,
+        ),
+      _ => concentrationAt(
+          steadyStateStartHours + troughTime,
+          regimen,
+          params,
+          vdPerKg: vdPerKg,
+        ),
+    };
+    final steadyStatePeak = steadyCurve.fold<double>(
       0,
       (currentPeak, point) => math.max(currentPeak, point.concentration),
     );
-    final auc = regimen.esterType.usesPatchModel
-        ? _integrateAuc(steadyCurve)
-        : regimen.effectiveDose / params.k3;
-    final average = auc / regimen.intervalDays;
+    final aucPerInterval = _integrateAuc(steadyCurve);
 
     return PkSimulationResult(
       curvePoints: curvePoints,
-      steadyStateTrough: trough,
-      steadyStatePeak: peak,
-      steadyStateAverage: average,
-      timeToSteadyState: _estimateTimeToSteadyState(regimen, intervalHours),
-      aucPerInterval: auc,
+      steadyStateTrough: steadyStateTrough,
+      steadyStatePeak: steadyStatePeak,
+      steadyStateAverage: intervalHours <= 0
+          ? 0
+          : _clampNonNegative(aucPerInterval / intervalHours),
+      timeToSteadyState: _estimateTimeToSteadyState(
+        regimen,
+        params,
+        vdPerKg: vdPerKg,
+      ),
+      aucPerInterval: aucPerInterval,
       regimen: regimen,
     );
   }
 
-  List<(double time, double dose)> _buildDoseEvents(
+  double _multiDoseAmount(
+    double tH,
     DosingRegimen regimen,
-    double durationDays,
+    RouteParams params,
   ) {
+    if (tH <= 0) {
+      return 0;
+    }
+
     final intervalHours = regimen.intervalDays * 24;
-    final totalHours = durationDays * 24;
-    final doses = <(double, double)>[];
+    var total = 0.0;
 
-    for (var time = 0.0; time < totalHours + _epsilon; time += intervalHours) {
-      doses.add((time, regimen.effectiveDose));
+    for (var doseTime = 0.0;
+        doseTime <= tH + _epsilon;
+        doseTime += intervalHours) {
+      total += _singleDoseAmount(tH - doseTime, regimen.doseAmount, params);
     }
 
-    return doses;
+    return _clampNonNegative(total);
   }
 
-  double _multiDosePatchE2(
-    double t,
-    List<(double time, double dose)> doses,
-    PkParameters params,
-    double wearHours,
-  ) {
-    if (t <= 0 || doses.isEmpty) {
+  double _singleDoseAmount(double tH, double dose, RouteParams params) {
+    if (tH <= 0 || dose <= 0) {
       return 0;
     }
 
-    return _clampNonNegative(
-      doses.fold<double>(
-        0,
-        (sum, doseEvent) =>
-            sum +
-            _singlePatchDoseE2(
-              t - doseEvent.$1,
-              doseEvent.$2,
-              wearHours,
-              params,
-            ),
-      ),
-    );
-  }
-
-  double _singlePatchDoseE2(
-    double t,
-    double dose,
-    double wearHours,
-    PkParameters params,
-  ) {
-    if (t <= 0 || dose <= 0 || wearHours <= 0) {
-      return 0;
-    }
-
-    final timeDays = t / 24;
-    final wearDays = wearHours / 24;
-    final k = params.k3;
-    final releaseRate = dose / wearDays;
-    final doseAtRemoval = releaseRate / k * (1 - math.exp(-k * wearDays));
-
-    if (timeDays <= wearDays) {
-      return _clampNonNegative(
-        releaseRate / k * (1 - math.exp(-k * timeDays)),
-      );
-    }
-
-    return _clampNonNegative(
-      doseAtRemoval * math.exp(-k * (timeDays - wearDays)),
-    );
+    return switch (params) {
+      final InjectionParams injection =>
+        dualDepotInjection(tH, dose, injection),
+      final OralParams oral => oralBateman(tH, dose, oral),
+      final SublingualParams sublingual =>
+        sublingualDualPath(tH, dose, sublingual),
+      final PatchParams patch => patchZeroOrder(tH, dose, patch),
+      final GelParams gel => gelBateman(tH, dose, gel),
+    };
   }
 
   List<PkCurvePoint> _steadyStateProfile(
     DosingRegimen regimen,
-    double intervalHours, {
+    RouteParams params, {
+    required double intervalHours,
+    required double totalDurationHours,
+    required double vdPerKg,
     required int samples,
   }) {
-    final params = regimen.esterType.defaultParameters;
-    final wearHours = _resolvedWearHours(regimen);
     final stepHours = intervalHours / samples;
+    final steadyStateStartHours =
+        math.max(0, totalDurationHours - intervalHours);
 
     return List<PkCurvePoint>.generate(samples, (index) {
-      final timeHours = index * stepHours;
-      final concentration = regimen.esterType.usesPatchModel
-          ? steadyStatePatchE2(
-              timeHours,
-              regimen.effectiveDose,
+      final phaseHours = index * stepHours;
+      final concentration = switch (params) {
+        final InjectionParams injection => _amountToConcentrationPgMl(
+            steadyStateE2(
+              phaseHours,
+              regimen.doseAmount,
               intervalHours,
-              wearHours,
-              params,
-            )
-          : steadyStateE2(
-              timeHours,
-              regimen.effectiveDose,
-              intervalHours,
-              params,
-            );
+              injection,
+            ),
+            bodyWeightKg: regimen.bodyWeightKg ?? 65,
+            vdPerKg: vdPerKg,
+          ),
+        _ => concentrationAt(
+            steadyStateStartHours + phaseHours,
+            regimen,
+            params,
+            vdPerKg: vdPerKg,
+          ),
+      };
 
       return PkCurvePoint(
-        time: timeHours,
+        time: phaseHours,
         concentration: concentration,
         dateTime: regimen.startDate.add(
-          Duration(milliseconds: (timeHours * 3600 * 1000).round()),
+          Duration(
+            milliseconds:
+                ((steadyStateStartHours + phaseHours) * 3600 * 1000).round(),
+          ),
         ),
       );
     });
@@ -297,26 +325,20 @@ class PkEngine {
 
   double _estimateTimeToSteadyState(
     DosingRegimen regimen,
-    double intervalHours,
-  ) {
-    final params = regimen.esterType.defaultParameters;
-    final wearHours = _resolvedWearHours(regimen);
+    RouteParams params, {
+    required double vdPerKg,
+  }) {
+    final intervalHours = regimen.intervalDays * 24;
     double? previousTrough;
 
     for (var cycle = 1; cycle <= 20; cycle++) {
       final troughTime = cycle * intervalHours - _troughProbeHours;
-      final currentTrough = regimen.esterType.usesPatchModel
-          ? _multiDosePatchE2(
-              troughTime,
-              _buildDoseEvents(regimen, regimen.intervalDays * (cycle + 1)),
-              params,
-              wearHours,
-            )
-          : multiDoseE2(
-              troughTime,
-              _buildDoseEvents(regimen, regimen.intervalDays * (cycle + 1)),
-              params,
-            );
+      final currentTrough = concentrationAt(
+        troughTime,
+        regimen,
+        params,
+        vdPerKg: vdPerKg,
+      );
 
       if (previousTrough != null) {
         final baseline = math.max(previousTrough.abs(), _epsilon);
@@ -332,6 +354,53 @@ class PkEngine {
     return 20 * regimen.intervalDays;
   }
 
+  double _analytic3C(double tH, double ka, double kb, double kc) {
+    if (tH <= 0) {
+      return 0;
+    }
+
+    final a = math.exp(-ka * tH) / (_safeDelta(ka, kb) * _safeDelta(ka, kc));
+    final b = math.exp(-kb * tH) / (_safeDelta(ka, kb) * _safeDelta(kb, kc));
+    final c = math.exp(-kc * tH) / (_safeDelta(ka, kc) * _safeDelta(kb, kc));
+
+    return _clampNonNegative(ka * kb * _heaviside(tH) * (a - b + c));
+  }
+
+  double _steadyStateAnalytic3C(
+    double phaseHours,
+    double ka,
+    double kb,
+    double kc,
+    double intervalHours,
+  ) {
+    final a = math.exp(-ka * phaseHours) /
+        (_steadyStateDenominator(ka, intervalHours) *
+            _safeDelta(ka, kb) *
+            _safeDelta(ka, kc));
+    final b = math.exp(-kb * phaseHours) /
+        (_steadyStateDenominator(kb, intervalHours) *
+            _safeDelta(ka, kb) *
+            _safeDelta(kb, kc));
+    final c = math.exp(-kc * phaseHours) /
+        (_steadyStateDenominator(kc, intervalHours) *
+            _safeDelta(ka, kc) *
+            _safeDelta(kb, kc));
+
+    return _clampNonNegative(ka * kb * (a - b + c));
+  }
+
+  double _batemanUnit(double tH, double kAbs, double kClear) {
+    if (tH <= 0) {
+      return 0;
+    }
+
+    return _clampNonNegative(
+      kAbs /
+          _safeDelta(kAbs, kClear) *
+          (math.exp(-kClear * tH) - math.exp(-kAbs * tH)),
+    );
+  }
+
   double _integrateAuc(List<PkCurvePoint> curve) {
     if (curve.length < 2) {
       return 0;
@@ -341,11 +410,21 @@ class PkEngine {
     for (var i = 1; i < curve.length; i++) {
       final previous = curve[i - 1];
       final current = curve[i];
-      final deltaDays = (current.time - previous.time) / 24;
-      auc += (previous.concentration + current.concentration) * 0.5 * deltaDays;
+      final deltaHours = current.time - previous.time;
+      auc +=
+          (previous.concentration + current.concentration) * 0.5 * deltaHours;
     }
 
     return auc;
+  }
+
+  double _amountToConcentrationPgMl(
+    double amountMg, {
+    required double bodyWeightKg,
+    required double vdPerKg,
+  }) {
+    final volumeLiters = math.max(bodyWeightKg * vdPerKg, _epsilon);
+    return _clampNonNegative(amountMg * 1e9 / volumeLiters / 1000);
   }
 
   double _phaseHours(double timeHours, double intervalHours) {
@@ -353,20 +432,8 @@ class PkEngine {
     return timeHours - intervalHours * cycles;
   }
 
-  double _resolvedWearHours(DosingRegimen regimen) {
-    if (regimen.esterType == EsterType.transdermalPatch) {
-      return (regimen.wearDurationDays ?? regimen.intervalDays) * 24;
-    }
-
-    if (regimen.esterType == EsterType.transdermalGel) {
-      return math.min(regimen.intervalDays, 1) * 24;
-    }
-
-    return regimen.intervalDays * 24;
-  }
-
-  double _steadyStateDenominator(double k, double intervalDays) {
-    final value = 1 - math.exp(-k * intervalDays);
+  double _steadyStateDenominator(double k, double intervalHours) {
+    final value = 1 - math.exp(-k * intervalHours);
     return value.abs() < _epsilon ? _epsilon : value;
   }
 

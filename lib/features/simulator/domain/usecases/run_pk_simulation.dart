@@ -24,13 +24,23 @@ class RunPkSimulation {
     DosingRegimen? overrideRegimen,
   }) async {
     if (overrideRegimen != null) {
-      return right(_engine.simulate(overrideRegimen));
+      return right(
+        _engine.simulate(
+          overrideRegimen,
+          paramsOverride: overrideRegimen.esterType.defaultParameters,
+        ),
+      );
     }
 
     final regimenOrFailure = await _inferRegimenFromActiveMedication();
     return regimenOrFailure.fold(
       left,
-      (regimen) => right(_engine.simulate(regimen)),
+      (regimen) => right(
+        _engine.simulate(
+          regimen,
+          paramsOverride: regimen.esterType.defaultParameters,
+        ),
+      ),
     );
   }
 
@@ -80,7 +90,10 @@ class RunPkSimulation {
       intervalDays: _inferIntervalDays(schedule),
       startDate: schedule.startDate,
       wearDurationDays: esterType == EsterType.transdermalPatch
-          ? (schedule.intervalDays?.toDouble() ?? 3.5)
+          ? (schedule.intervalDays?.toDouble() ?? 7)
+          : null,
+      sublingualHoldTime: esterType == EsterType.sublingualEstradiol
+          ? SublingualHoldTime.standard
           : null,
     );
   }
@@ -102,11 +115,18 @@ class RunPkSimulation {
     if (drug.administrationRoute == AdministrationRoute.transdermalGel) {
       return EsterType.transdermalGel;
     }
-    if (haystack.contains('cypionate') || haystack.contains(' ec ')) {
+    if (haystack.contains('环戊丙酸') ||
+        haystack.contains('cypionate') ||
+        haystack.contains(' ec ')) {
       return EsterType.estradiolCypionate;
     }
-    if (haystack.contains('enanthate') || haystack.contains('een')) {
+    if (haystack.contains('庚酸') ||
+        haystack.contains('enanthate') ||
+        haystack.contains('een')) {
       return EsterType.estradiolEnanthate;
+    }
+    if (haystack.contains('戊酸') || haystack.contains('valerate')) {
+      return EsterType.estradiolValerate;
     }
 
     return EsterType.estradiolValerate;
