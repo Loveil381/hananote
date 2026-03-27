@@ -9,6 +9,11 @@ import 'package:hananote/features/simulator/domain/services/pk_engine.dart';
 // ---------------------------------------------------------------------------
 // NOTE on Weibull Tmax expectations
 // ---------------------------------------------------------------------------
+// EXPERIMENT OPTION A RESULT: We attempted β>1 (EV:1.5, EC:1.4, EN:1.3) with
+// kEl=0.38, but it produced Tmax values (EV:36h, EC:64h, EN:71h) that failed
+// to reach the later clinical ranges for EC (72-168h) and EN (120-240h).
+// Reverting to the original β<1 + kEl=0.05 configuration per instructions.
+// 
 // The Hana-PK Weibull model with β < 1 produces a monotonically decreasing
 // absorption rate (front-loaded).  With the default kEl=0.05 h⁻¹ the plasma
 // Tmax is earlier than classic literature Tmax values derived from β>1 curves.
@@ -97,6 +102,7 @@ void main() {
         tau: 52,
         beta: 1,
         formationFraction: 0.062,
+        kEl: 0.05,
       );
       final v2Params =
           EsterType.estradiolValerate.defaultParameters as InjectionParams;

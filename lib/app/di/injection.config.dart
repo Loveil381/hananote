@@ -95,6 +95,8 @@ import 'package:hananote/features/simulator/domain/usecases/calibrate_pk_params.
     as _i987;
 import 'package:hananote/features/simulator/domain/usecases/run_pk_simulation.dart'
     as _i691;
+import 'package:hananote/features/simulator/presentation/blocs/simulator_bloc.dart'
+    as _i622;
 import 'package:hananote/features/timeline/domain/usecases/get_timeline_events.dart'
     as _i965;
 import 'package:hananote/features/timeline/presentation/bloc/timeline_bloc.dart'
@@ -207,6 +209,8 @@ extension GetItInjectableX on _i174.GetIt {
               gh<_i160.MedicationRepository>(),
               gh<_i287.NotificationService>(),
             ));
+    gh.factory<_i622.SimulatorBloc>(
+        () => _i622.SimulatorBloc(gh<_i691.RunPkSimulation>()));
     gh.factory<_i116.TimelineBloc>(() => _i116.TimelineBloc(
           gh<_i965.GetTimelineEvents>(),
           gh<_i755.SettingsRepository>(),
