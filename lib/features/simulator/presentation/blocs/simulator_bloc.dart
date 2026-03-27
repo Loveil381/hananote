@@ -1,3 +1,5 @@
+// ignore_for_file: public_member_api_docs
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hananote/features/simulator/domain/entities/dosing_regimen.dart';
@@ -34,13 +36,13 @@ class SimulatorBloc extends Bloc<SimulatorEvent, SimulatorState> {
     // This usecase will either use the override regimen (null here) or
     // infer it from the active medication.
     final resultOrFailure = await _runPkSimulation();
-    
+
     resultOrFailure.fold(
       (failure) => emit(SimulatorState.error(message: failure.message)),
       (v2Result) {
         // Also run the Hana-PK engine so we have both results in memory
         final hanaResult = _hanaEngine.simulate(v2Result.regimen);
-        
+
         emit(
           SimulatorState.loaded(
             result: v2Result, // Default to V2 results
@@ -62,16 +64,19 @@ class SimulatorBloc extends Bloc<SimulatorEvent, SimulatorState> {
 
     emit(const SimulatorState.loading());
 
-    // We pass the updated regimen to the usecase (which uses V2 engine by default)
+    // We pass the updated regimen to the usecase,
+    // which uses the V2 engine by default.
     final resultOrFailure = await _runPkSimulation(
       overrideRegimen: event.regimen,
     );
-    
+
     resultOrFailure.fold(
       (failure) => emit(SimulatorState.error(message: failure.message)),
       (v2Result) {
-        final hanaResult = _hanaEngine.simulate(event.regimen);
-        
+        final hanaResult = _hanaEngine.simulate(
+          event.regimen,
+        );
+
         // Preserve engine toggle state
         final isHanaPk = currentState.isHanaPk;
         emit(
@@ -79,7 +84,8 @@ class SimulatorBloc extends Bloc<SimulatorEvent, SimulatorState> {
             result: isHanaPk ? hanaResult : v2Result,
             regimen: event.regimen,
             isHanaPk: isHanaPk,
-            hanaPkResult: isHanaPk ? v2Result : hanaResult, // Store the "other" result
+            hanaPkResult:
+                isHanaPk ? v2Result : hanaResult, // Store the "other" result
           ),
         );
       },
