@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -14,12 +15,14 @@ void main() {
   late bool Function(Object, StackTrace)? originalPlatformOnError;
 
   setUp(() {
+    ErrorBoundary.resetForTest();
     originalFlutterError = FlutterError.onError;
     originalErrorWidgetBuilder = ErrorWidget.builder;
     originalPlatformOnError = PlatformDispatcher.instance.onError;
   });
 
   tearDown(() {
+    ErrorBoundary.resetForTest();
     FlutterError.onError = originalFlutterError;
     ErrorWidget.builder = originalErrorWidgetBuilder;
     PlatformDispatcher.instance.onError = originalPlatformOnError;
@@ -42,6 +45,14 @@ void main() {
 
     expect(onError, isNotNull);
     expect(onError!(StateError('boom'), StackTrace.empty), isTrue);
+  });
+
+  test('ErrorBoundary.markAppStarted flips the started flag', () {
+    expect(ErrorBoundary.appStarted, isFalse);
+
+    ErrorBoundary.markAppStarted();
+
+    expect(ErrorBoundary.appStarted, isTrue);
   });
 
   testWidgets('ErrorFallbackPage renders localized fallback copy',
@@ -73,5 +84,30 @@ void main() {
     await tester.pumpWidget(widget);
 
     expect(find.byType(ErrorFallbackPage), findsOneWidget);
+  });
+
+  testWidgets('ErrorBoundary.init shows fallback UI when appRunner throws',
+      (tester) async {
+    Widget? fallbackWidget;
+    final fallbackShown = Completer<void>();
+    ErrorBoundary.setAppLauncherForTest((app) {
+      fallbackWidget = app;
+      if (!fallbackShown.isCompleted) {
+        fallbackShown.complete();
+      }
+    });
+
+    unawaited(ErrorBoundary.init(() async {
+      throw StateError('init failed');
+    }));
+
+    await fallbackShown.future.timeout(const Duration(seconds: 5));
+
+    expect(fallbackWidget, isNotNull);
+
+    await tester.pumpWidget(fallbackWidget!);
+
+    expect(find.byType(ErrorFallbackPage), findsOneWidget);
+    expect(ErrorBoundary.appStarted, isFalse);
   });
 }

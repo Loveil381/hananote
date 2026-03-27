@@ -10,7 +10,7 @@
   "goodEvening": "こんばんは",
   "addDrug": "薬を追加",
   "editDrug": "薬を編集",
-  "drugName": "薬の名前",
+  "drugName": "薬名",
   "genericName": "一般名",
   "dosage": "用量",
   "frequency": "頻度",
@@ -23,14 +23,28 @@
   "remaining": "残り",
   "lowStock": "在庫が少ないです",
   "daysLeft": "残り {days} 日",
-  "@daysLeft": {},
-  "nextTime": "次回: {time}",
-  "@nextTime": {},
+  "@daysLeft": {
+    "placeholders": {
+      "days": {
+        "type": "String",
+        "example": "5"
+      }
+    }
+  },
+  "nextTime": "次回：{time}",
+  "@nextTime": {
+    "placeholders": {
+      "time": {
+        "type": "String",
+        "example": "08:00"
+      }
+    }
+  },
   "completedDose": "完了",
   "noActiveDrugs": "有効な薬がありません",
-  "addFirstDrug": "最初の薬を追加する",
+  "addFirstDrug": "最初の薬を追加",
   "category": "カテゴリ",
-  "route": "投与経路",
+  "route": "投与方法",
   "unit": "単位",
   "notes": "メモ",
   "injectionSite": "注射部位",
@@ -43,13 +57,13 @@
   "photoGallery": "暗号化アルバム",
   "addPhoto": "写真を追加",
   "takePhoto": "撮影する",
-  "chooseFromLibrary": "アルバムから選ぶ",
+  "chooseFromLibrary": "ライブラリから選択",
   "photoEmptyTitle": "まだ暗号化写真がありません",
-  "photoEmptyDescription": "写真はエンドツーエンドで暗号化され、あなた以外は閲覧できません。",
+  "photoEmptyDescription": "写真はエンドツーエンドで暗号化され、あなただけが閲覧できます。",
   "photoDeleteTitle": "写真を削除",
-  "photoDeleteMessage": "暗号化ファイルと記録をまとめて削除します。",
+  "photoDeleteMessage": "暗号化ファイルと記録を削除します。",
   "retry": "再試行",
   "fileSize": "ファイルサイズ",
   "errorFallbackTitle": "問題が発生しました",
-  "errorFallbackDescription": "アプリを再度開いてください。問題が続く場合はサポートに連絡してください。"
+  "errorFallbackDescription": "アプリを再起動してください。問題が続く場合はサポートに連絡してください。"
 }

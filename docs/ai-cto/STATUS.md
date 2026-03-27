@@ -1,8 +1,8 @@
-﻿# HanaNote STATUS
+# HanaNote STATUS
 
-## 当前轮次: Round 28
-## 当前阶段: 发布准备第一阶段 — 错误边界 / Lint 清理 / 记忆同步
-## 产品完成度: 98%
+## 当前轮次: Round 29
+## 当前阶段: 发布准备第二阶段 — i18n / dartdoc / 错误兜底 / icon 修复
+## 产品完成度: 99%
 ## 数据绑定完成度: 5/5
 
 ## 已完成功能
@@ -22,6 +22,8 @@
 | 5-Tab shell | ✅ | MainShell + 路由导航 |
 | SecureDatabase | ✅ | SQLCipher + feature tables + migration |
 | CryptoEngine / KeyManager | ✅ | AES-256-GCM + Argon2id + 会话密钥缓存 |
+| Error Boundary | ✅ | 三层全局错误兜底 + fallback UI |
+| App Icon | ✅ | 占位 icon + flutter_launcher_icons 配置 |
 
 ## 待开发
 | 功能 | 优先级 | 说明 |
@@ -40,7 +42,8 @@
 ## 本轮交付
 | 项目 | 状态 | 说明 |
 |------|------|------|
-| 记忆文件同步 | 🔄 | STATUS.md / DECISIONS.md 更新至 Round 28 |
-| 全局错误边界 | 🔄 | FlutterError + PlatformDispatcher 兜底 |
-| Lint 清理 | 🔄 | 移除所有 lint-ignore 注释 |
-| App icon placeholder | 🔄 | 临时 icon 用于打包测试 |
+| DEC-032 去重 | 🔄 | DECISIONS.md 英文重复条目移除 |
+| ErrorBoundary 兜底增强 | 🔄 | 初始化失败时自动显示 fallback UI |
+| i18n 完整性检查 | 🔄 | 所有 l10n key 对齐 arb 文件 |
+| Core dartdoc | 🔄 | failures / crypto / database 公开 API 注释 |
+| iOS icon alpha 修复 | 🔄 | remove_alpha_ios: true |

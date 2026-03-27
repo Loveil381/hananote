@@ -13,9 +13,9 @@ class ErrorFallbackPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final title = l10n?.errorFallbackTitle ?? '出了点问题';
-    final description =
-        l10n?.errorFallbackDescription ?? '请重新打开应用。如果问题持续，请联系支持。';
+    final title = l10n?.errorFallbackTitle ?? 'Something went wrong';
+    final description = l10n?.errorFallbackDescription ??
+        'Please reopen the app. If the problem continues, contact support.';
 
     return Scaffold(
       backgroundColor: HanaColors.background,

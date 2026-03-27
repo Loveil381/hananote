@@ -40,7 +40,7 @@ class SecureDatabase {
     return db;
   }
 
-  /// Open the encrypted database.
+  /// Opens the encrypted SQLCipher database and runs pending migrations.
   Future<Either<Failure, Database>> open(String password) async {
     try {
       if (_db != null && _db!.isOpen) return right(_db!);
@@ -77,7 +77,7 @@ class SecureDatabase {
     }
   }
 
-  /// Close the database.
+  /// Closes the current database connection when it is open.
   Future<Either<Failure, void>> close() async {
     try {
       if (_db != null && _db!.isOpen) {
@@ -90,7 +90,7 @@ class SecureDatabase {
     }
   }
 
-  /// Run database migrations explicitly.
+  /// Runs database migrations explicitly against the current open connection.
   Future<Either<Failure, void>> runMigrations() async {
     try {
       // Migration logic will be implemented here.

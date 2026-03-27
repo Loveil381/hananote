@@ -39,7 +39,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get editDrug => '薬を編集';
 
   @override
-  String get drugName => '薬の名前';
+  String get drugName => '薬名';
 
   @override
   String get genericName => '一般名';
@@ -81,7 +81,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String nextTime(String time) {
-    return '次回: $time';
+    return '次回：$time';
   }
 
   @override
@@ -91,13 +91,13 @@ class AppLocalizationsJa extends AppLocalizations {
   String get noActiveDrugs => '有効な薬がありません';
 
   @override
-  String get addFirstDrug => '最初の薬を追加する';
+  String get addFirstDrug => '最初の薬を追加';
 
   @override
   String get category => 'カテゴリ';
 
   @override
-  String get route => '投与経路';
+  String get route => '投与方法';
 
   @override
   String get unit => '単位';
@@ -136,19 +136,19 @@ class AppLocalizationsJa extends AppLocalizations {
   String get takePhoto => '撮影する';
 
   @override
-  String get chooseFromLibrary => 'アルバムから選ぶ';
+  String get chooseFromLibrary => 'ライブラリから選択';
 
   @override
   String get photoEmptyTitle => 'まだ暗号化写真がありません';
 
   @override
-  String get photoEmptyDescription => '写真はエンドツーエンドで暗号化され、あなた以外は閲覧できません。';
+  String get photoEmptyDescription => '写真はエンドツーエンドで暗号化され、あなただけが閲覧できます。';
 
   @override
   String get photoDeleteTitle => '写真を削除';
 
   @override
-  String get photoDeleteMessage => '暗号化ファイルと記録をまとめて削除します。';
+  String get photoDeleteMessage => '暗号化ファイルと記録を削除します。';
 
   @override
   String get retry => '再試行';
@@ -160,5 +160,5 @@ class AppLocalizationsJa extends AppLocalizations {
   String get errorFallbackTitle => '問題が発生しました';
 
   @override
-  String get errorFallbackDescription => 'アプリを再度開いてください。問題が続く場合はサポートに連絡してください。';
+  String get errorFallbackDescription => 'アプリを再起動してください。問題が続く場合はサポートに連絡してください。';
 }

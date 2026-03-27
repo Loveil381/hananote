@@ -23,8 +23,10 @@ class CryptoEngine {
     return iv;
   }
 
-  /// Returns `Either<CryptoFailure, Uint8List>` containing
-  /// [IV + Ciphertext + MAC tag].
+  /// Encrypts [plaintext] with AES-256-GCM using [key].
+  ///
+  /// Returns a payload containing `[IV + ciphertext + MAC tag]`. When [aad] is
+  /// provided it is authenticated alongside the ciphertext.
   Future<Either<Failure, Uint8List>> encrypt(
     Uint8List plaintext,
     Uint8List key, {
@@ -43,7 +45,10 @@ class CryptoEngine {
     }
   }
 
-  /// Decrypt given payload (IV + Ciphertext + MAC tag) using AES-256-GCM.
+  /// Decrypts an AES-256-GCM payload produced by [encrypt].
+  ///
+  /// The [encrypted] bytes must contain `[IV + ciphertext + MAC tag]`. When
+  /// [aad] is provided it must match the value used during encryption.
   Future<Either<Failure, Uint8List>> decrypt(
     Uint8List encrypted,
     Uint8List key, {

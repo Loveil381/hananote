@@ -24,7 +24,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get cancel => '取消';
 
   @override
-  String get goodMorning => '早安';
+  String get goodMorning => '早上好';
 
   @override
   String get goodAfternoon => '下午好';
@@ -51,7 +51,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get frequency => '频率';
 
   @override
-  String get takeDose => '记录用药';
+  String get takeDose => '记录服药';
 
   @override
   String get skipDose => '跳过';
@@ -94,7 +94,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get addFirstDrug => '添加你的第一种药物';
 
   @override
-  String get category => '类别';
+  String get category => '分类';
 
   @override
   String get route => '给药方式';
@@ -148,7 +148,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get photoDeleteTitle => '删除照片';
 
   @override
-  String get photoDeleteMessage => '这将同时删除加密文件和数据库记录。';
+  String get photoDeleteMessage => '这将删除加密文件及其记录。';
 
   @override
   String get retry => '重试';

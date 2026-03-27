@@ -168,12 +168,6 @@
 - **逅・罰**: 髫千ｧ∫ｬｬ荳・・EC-002 蟒ｶ扈ｭ・会ｼ帷ｼｩ逡･蝗ｾ迢ｬ遶句刈蟇・∩蜈榊・陦ｨ鬘ｵ隗｣蟇・次蝗ｾ逧・ｧ閭ｽ髣ｮ鬚假ｼ帶枚莉ｶ蜷咲畑 UUID 荳榊性蜿ｯ隸・悪菫｡諱ｯ
 - **蜈ｳ髞ｮ郤ｦ譚・*: 荳堺ｽｿ逕ｨ邉ｻ扈溽嶌蜀鯉ｼ・GENTS.md 體∝ｾ具ｼ会ｼ帛ｯ・徴譚･閾ｪ KeyManager 莨夊ｯ晉ｼ灘ｭ・
 - **譌･譛・*: Round 26
-
-## DEC-032: Photo UI adopts thumbnail cache plus lazy decryption
-- **Decision**: PhotoBloc keeps a thumbnailCache (Map<String, Uint8List>). The grid decrypts thumbnails on demand, and the full-resolution image is decrypted independently in PhotoViewPage.
-- **Rationale**: Avoid decrypting every photo up front and exhausting memory. Thumbnails are small and fast to decrypt, so users get immediate visual feedback without paying the cost of full-image decode.
-- **Date**: Round 27
-
 ## DEC-032: Photo UI 缩略图缓存 + 懒解密策略
 - **决定**: PhotoBloc 维护内存 thumbnailCache (Map<String, Uint8List>)；列表页仅解密缩略图 (.enc_thumb)，查看页才解密原图；查看页过渡期先显示缩略图再切换全尺寸图
 - **理由**: 避免列表页触发大量原图解密导致卡顿；缩略图 ≤50KB 解密极快；内存缓存避免重复解密
@@ -183,3 +177,8 @@
 - **决定**: Round 28 完成错误边界/lint/icon/记忆同步，Round 29 完成真机测试/profiling/i18n/打包
 - **理由**: 将发布准备拆为两轮降低单轮复杂度，R28 聚焦可自动化的代码质量，R29 聚焦需要真机的手动验证
 - **日期**: Round 28
+
+## DEC-034: ErrorBoundary 初始化失败兜底
+- **决定**: 当 main 初始化链（DI / NotificationService / timezone）抛出异常时，ErrorBoundary 自动调用 runApp 显示 ErrorFallbackPage，而不是让 app 无 UI 崩溃
+- **理由**: 用户在没有开发者工具的情况下遇到初始化错误，需要看到友好界面而不是黑屏或闪退
+- **日期**: Round 29

@@ -5,7 +5,7 @@
   "error": "错误",
   "ok": "确定",
   "cancel": "取消",
-  "goodMorning": "早安",
+  "goodMorning": "早上好",
   "goodAfternoon": "下午好",
   "goodEvening": "晚上好",
   "addDrug": "添加药物",
@@ -14,7 +14,7 @@
   "genericName": "通用名",
   "dosage": "剂量",
   "frequency": "频率",
-  "takeDose": "记录用药",
+  "takeDose": "记录服药",
   "skipDose": "跳过",
   "save": "保存",
   "delete": "删除",
@@ -23,13 +23,27 @@
   "remaining": "剩余",
   "lowStock": "库存不足",
   "daysLeft": "剩余 {days} 天",
-  "@daysLeft": {},
+  "@daysLeft": {
+    "placeholders": {
+      "days": {
+        "type": "String",
+        "example": "5"
+      }
+    }
+  },
   "nextTime": "下次：{time}",
-  "@nextTime": {},
+  "@nextTime": {
+    "placeholders": {
+      "time": {
+        "type": "String",
+        "example": "08:00"
+      }
+    }
+  },
   "completedDose": "已完成",
   "noActiveDrugs": "暂无启用药物",
   "addFirstDrug": "添加你的第一种药物",
-  "category": "类别",
+  "category": "分类",
   "route": "给药方式",
   "unit": "单位",
   "notes": "备注",
@@ -47,7 +61,7 @@
   "photoEmptyTitle": "还没有加密照片",
   "photoEmptyDescription": "你的照片经过端到端加密，只有你能看到。",
   "photoDeleteTitle": "删除照片",
-  "photoDeleteMessage": "这将同时删除加密文件和数据库记录。",
+  "photoDeleteMessage": "这将删除加密文件及其记录。",
   "retry": "重试",
   "fileSize": "文件大小",
   "errorFallbackTitle": "出了点问题",

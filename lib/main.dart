@@ -12,6 +12,7 @@ void main() async {
     configureDependencies();
     await getIt<NotificationService>().init();
     await getIt<NotificationService>().requestPermissions();
+    ErrorBoundary.markAppStarted();
     runApp(const HanaNote());
   });
 }

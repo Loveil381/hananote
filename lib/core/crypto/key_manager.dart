@@ -33,7 +33,7 @@ class KeyManager {
     _cachedKey = key;
   }
 
-  /// Retrieve the symmetric key from secure storage.
+  /// Retrieves the symmetric key from secure storage or the in-memory cache.
   Future<Uint8List?> getKey() async {
     final cachedKey = _cachedKey;
     if (cachedKey != null) {
@@ -46,13 +46,13 @@ class KeyManager {
     return key;
   }
 
-  /// Returns the current in-memory session key when available, otherwise
-  /// lazily hydrates it from secure storage.
+  /// Returns the current session key, hydrating it from secure storage when the
+  /// in-memory cache is empty.
   Future<Uint8List?> getCurrentKey() {
     return getKey();
   }
 
-  /// Verify if the given password matches the stored key.
+  /// Verifies whether [password] derives the same master key as the stored one.
   Future<bool> verifyPassword(String password) async {
     final encodedSalt = await _secureStorage.read(key: _saltStorageKey);
     final encodedStoredKey = await _secureStorage.read(key: _keyStorageKey);
@@ -67,7 +67,7 @@ class KeyManager {
     return _constantTimeEquals(testKey, storedKey);
   }
 
-  /// Delete the key for emergency or logout purposes.
+  /// Deletes the persisted key material and clears the in-memory cache.
   Future<void> deleteKey() async {
     await _secureStorage.delete(key: _keyStorageKey);
     await _secureStorage.delete(key: _saltStorageKey);
