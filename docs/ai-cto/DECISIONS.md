@@ -162,3 +162,9 @@
 - **决定**: Measurement 独立 feature 目录，domain 零 Flutter 依赖，icon 映射放在 Presentation 层
 - **理由**: 保持 feature 间结构一致（DEC-016 延续），RecordBloc 聚合扩展模式已验证
 - **日期**: Round 25
+
+## DEC-031: Photo 加密存储管线设计
+- **决定**: 照片在内存中加密后写入应用沙盒 `photos/{uuid}.enc`，元数据存 SQLite，缩略图独立加密存储；明文永不落盘
+- **理由**: 隐私第一（DEC-002 延续）；缩略图独立加密避免列表页解密原图的性能问题；文件名用 UUID 不含可识别信息
+- **关键约束**: 不使用系统相册（AGENTS.md 铁律）；密钥来自 KeyManager 会话缓存
+- **日期**: Round 26
