@@ -11,6 +11,10 @@ import 'package:hananote/features/journal/presentation/bloc/record_bloc.dart';
 import 'package:hananote/features/journal/presentation/bloc/record_event.dart';
 import 'package:hananote/features/journal/presentation/pages/journal_edit_page.dart';
 import 'package:hananote/features/journal/presentation/pages/record_page.dart';
+import 'package:hananote/features/measurement/domain/entities/measurement_entry.dart';
+import 'package:hananote/features/measurement/presentation/blocs/measurement_bloc.dart';
+import 'package:hananote/features/measurement/presentation/pages/measurement_edit_page.dart';
+import 'package:hananote/features/measurement/presentation/pages/measurement_page.dart';
 import 'package:hananote/features/medication/presentation/bloc/today_schedule_bloc.dart';
 import 'package:hananote/features/medication/presentation/bloc/today_schedule_event.dart';
 import 'package:hananote/features/medication/presentation/pages/add_drug_page.dart';
@@ -114,6 +118,25 @@ final GoRouter appRouter = GoRouter(
       path: '/journal/edit',
       parentNavigatorKey: _rootNavigatorKey,
       builder: (context, state) => const JournalEditPage(),
+    ),
+    GoRoute(
+      path: '/measurement',
+      parentNavigatorKey: _rootNavigatorKey,
+      builder: (context, state) => BlocProvider(
+        create: (_) =>
+            getIt<MeasurementBloc>()..add(const MeasurementEvent.loadHistory()),
+        child: const MeasurementPage(),
+      ),
+    ),
+    GoRoute(
+      path: '/measurement/edit',
+      parentNavigatorKey: _rootNavigatorKey,
+      builder: (context, state) => BlocProvider(
+        create: (_) => getIt<MeasurementBloc>(),
+        child: MeasurementEditPage(
+          existingEntry: state.extra as MeasurementEntry?,
+        ),
+      ),
     ),
     GoRoute(
       path: '/data/simulator',

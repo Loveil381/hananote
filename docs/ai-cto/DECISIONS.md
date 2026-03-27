@@ -158,3 +158,7 @@
 - **理由**: β>1 更符合油库释放的 lag → peak → tail 物理过程，kEl=0.05 则与注射 E2 的实际消除半衰期（约 14h）一致
 - **参考**: V2 PkEngine k3=0.05; Kalicharan oil-depot release study
 - **日期**: Round 24
+## DEC-030: Measurement feature 采用与 Journal 同款 Clean Architecture 分层
+- **决定**: Measurement 独立 feature 目录，domain 零 Flutter 依赖，icon 映射放在 Presentation 层
+- **理由**: 保持 feature 间结构一致（DEC-016 延续），RecordBloc 聚合扩展模式已验证
+- **日期**: Round 25
