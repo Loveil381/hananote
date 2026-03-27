@@ -6,7 +6,7 @@ import 'package:hananote/features/journal/presentation/bloc/record_state.dart';
 import 'package:injectable/injectable.dart';
 
 /// Bloc for RecordPage to display dynamic streak and latest records
-@injectable
+@lazySingleton
 class RecordBloc extends Bloc<RecordEvent, RecordState> {
   /// Creates a [RecordBloc]
   RecordBloc(this._getJournalStreak, this._repository)
@@ -23,7 +23,7 @@ class RecordBloc extends Bloc<RecordEvent, RecordState> {
     Emitter<RecordState> emit,
   ) async {
     emit(const RecordState.loading());
-    
+
     // Fetch streak
     final streakResult = await _getJournalStreak();
     var streak = 0;

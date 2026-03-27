@@ -82,6 +82,7 @@ class _JournalEditPageState extends State<JournalEditPage> {
     }
 
     if (mounted) {
+      // RecordBloc is a lazy singleton, so this refresh reaches RecordPage.
       getIt<RecordBloc>().add(const RecordEvent.refresh());
       context.pop();
     }

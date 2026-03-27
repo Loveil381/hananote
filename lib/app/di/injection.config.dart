@@ -156,7 +156,7 @@ extension GetItInjectableX on _i174.GetIt {
           getAllReports: gh<_i712.GetAllBloodTestReports>(),
           getTrend: gh<_i341.GetHormoneTrend>(),
         ));
-    gh.factory<_i697.RecordBloc>(() => _i697.RecordBloc(
+    gh.lazySingleton<_i697.RecordBloc>(() => _i697.RecordBloc(
           gh<_i910.GetJournalStreak>(),
           gh<_i1032.JournalRepository>(),
         ));
