@@ -48,14 +48,14 @@
 | 中文化 | ✅ | auth/error/notification 字符串统一中文 |
 | SecureDatabase.open 清理 | ✅ | 去掉无用 password 参数 |
 | Profile 版本号 | ✅ | v0.1.0 → v1.0.0 |
-| Simulator Dropdown 修正 | ✅ | DropdownButtonFormField 参数已核对 |
+| Simulator Dropdown 修正 | ✅ | DropdownButtonFormField 参数修正 |
 | 记忆文件补全 | ✅ | 创建 PRODUCT-VISION.md + REVIEW-BACKLOG.md |
 
 ## R34 本轮交付
 | 项目 | 状态 | 说明 |
 |------|------|------|
-| DropdownButtonFormField 参数修正 | 🔄 | simulator_page + schedule_editor_page 改为 value |
-| schedule_editor_page 全中文 | 🔄 | 时间/频率/日期相关文案全部中文化 |
-| add_drug_page 全中文 + 枚举 displayName | 🔄 | category/route/unit 不再暴露 enum.name |
-| _isDoseLate 逻辑修正 | 🔄 | 支持按具体 scheduledDateTime 判断 late |
-| Measurement ID 统一 UUID | 🔄 | measurement_edit_page 改为 IdGenerator.generate() |
+| DropdownButtonFormField 参数修正 | ✅ | simulator_page + schedule_editor_page 改为 value |
+| schedule_editor_page 全中文 | 🔄 | 空字符串二次修正后待确认 |
+| add_drug_page 全中文 + 枚举 displayName | ✅ | category/route/unit 不再暴露 enum.name |
+| _isDoseLate 逻辑修正 | ✅ | 支持按具体 scheduledDateTime 判断 late |
+| Measurement ID 统一 UUID | ✅ | measurement_edit_page 改为 IdGenerator.generate() |
