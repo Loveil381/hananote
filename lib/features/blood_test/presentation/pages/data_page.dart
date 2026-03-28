@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hananote/app/theme/hana_colors.dart';
+import 'package:hananote/core/l10n/arb/app_localizations.dart';
 import 'package:hananote/features/blood_test/domain/entities/enums.dart';
 import 'package:hananote/features/blood_test/presentation/bloc/blood_test_bloc.dart';
 import 'package:hananote/features/blood_test/presentation/bloc/blood_test_event.dart';
@@ -19,6 +20,8 @@ class DataPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return Scaffold(
       backgroundColor: HanaColors.background,
       extendBodyBehindAppBar: true,
@@ -34,9 +37,9 @@ class DataPage extends StatelessWidget {
               scrolledUnderElevation: 0,
               centerTitle: false,
               titleSpacing: 0,
-              title: const Text(
-                '数据',
-                style: TextStyle(
+              title: Text(
+                l10n.data,
+                style: const TextStyle(
                   fontFamily: 'Plus Jakarta Sans',
                   fontWeight: FontWeight.w600,
                   fontSize: 18,
@@ -50,9 +53,9 @@ class DataPage extends StatelessWidget {
                   child: ElevatedButton.icon(
                     onPressed: () => context.push('/data/add_report'),
                     icon: const Icon(Icons.add, size: 16, color: Colors.white),
-                    label: const Text(
-                      '添加报告',
-                      style: TextStyle(color: Colors.white, fontSize: 14),
+                    label: Text(
+                      l10n.addReport,
+                      style: const TextStyle(color: Colors.white, fontSize: 14),
                     ),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: HanaColors.primary,
@@ -97,10 +100,12 @@ class _LoadedView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final localeName = Localizations.localeOf(context).toLanguageTag();
     final dateFormat = DateFormat('yyyy.MM.dd');
     final lastUpdatedText = state.lastUpdated == null
-        ? '暂无更新'
-        : '最近更新：${dateFormat.format(state.lastUpdated!)}';
+        ? l10n.noUpdatesYet
+        : l10n.lastUpdated(dateFormat.format(state.lastUpdated!));
 
     return SingleChildScrollView(
       padding: const EdgeInsets.fromLTRB(16, 100, 16, 120),
@@ -112,7 +117,7 @@ class _LoadedView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Text(
-                '激素概览',
+                l10n.hormoneOverview,
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                       fontWeight: FontWeight.bold,
                       color: HanaColors.primary,
@@ -163,21 +168,21 @@ class _LoadedView extends StatelessWidget {
                 ),
                 borderRadius: BorderRadius.circular(24),
               ),
-              child: const Row(
+              child: Row(
                 children: [
-                  Icon(Icons.science, color: Colors.white),
-                  SizedBox(width: 12),
+                  const Icon(Icons.science, color: Colors.white),
+                  const SizedBox(width: 12),
                   Expanded(
                     child: Text(
-                      'PK 模拟器',
-                      style: TextStyle(
+                      l10n.pkSimulator,
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
-                  Icon(
+                  const Icon(
                     Icons.arrow_forward_ios,
                     color: Colors.white,
                     size: 16,
@@ -188,7 +193,7 @@ class _LoadedView extends StatelessWidget {
           ),
           const SizedBox(height: 32),
           Text(
-            '历史记录',
+            l10n.history,
             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: HanaColors.primary,
@@ -196,7 +201,7 @@ class _LoadedView extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           if (state.reports.isEmpty)
-            const _EmptyHistoryCard()
+            _EmptyHistoryCard(label: l10n.noBloodTestHistory)
           else
             ...state.reports.map((report) {
               final summary = report.readings
@@ -209,7 +214,7 @@ class _LoadedView extends StatelessWidget {
               return Padding(
                 padding: const EdgeInsets.only(bottom: 12),
                 child: _HistoryCard(
-                  date: dateFormat.format(report.testDate),
+                  date: DateFormat.yMMMd(localeName).format(report.testDate),
                   summary: summary,
                   onTap: () => context.push(
                     '/data/add_report?id=${report.id}',
@@ -346,7 +351,9 @@ class _HistoryCard extends StatelessWidget {
 }
 
 class _EmptyHistoryCard extends StatelessWidget {
-  const _EmptyHistoryCard();
+  const _EmptyHistoryCard({required this.label});
+
+  final String label;
 
   @override
   Widget build(BuildContext context) {
@@ -358,7 +365,7 @@ class _EmptyHistoryCard extends StatelessWidget {
         border: Border.all(color: HanaColors.outlineVariant.withAlpha(26)),
       ),
       child: Text(
-        '暂无血检历史记录',
+        label,
         textAlign: TextAlign.center,
         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
               color: HanaColors.onSurfaceVariant,

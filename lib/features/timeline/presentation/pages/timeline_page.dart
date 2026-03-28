@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hananote/app/theme/hana_colors.dart';
-import 'package:hananote/features/timeline/domain/entities/enums.dart';
+import 'package:hananote/core/l10n/arb/app_localizations.dart';
 import 'package:hananote/features/timeline/domain/entities/timeline_event.dart';
 import 'package:hananote/features/timeline/presentation/bloc/timeline_bloc.dart';
 import 'package:hananote/features/timeline/presentation/bloc/timeline_state.dart';
@@ -17,6 +17,8 @@ class TimelinePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return Scaffold(
       backgroundColor: HanaColors.background,
       extendBodyBehindAppBar: true,
@@ -31,9 +33,9 @@ class TimelinePage extends StatelessWidget {
               elevation: 0,
               scrolledUnderElevation: 0,
               centerTitle: true,
-              title: const Text(
-                '时间线',
-                style: TextStyle(
+              title: Text(
+                l10n.timeline,
+                style: const TextStyle(
                   fontFamily: 'Plus Jakarta Sans',
                   fontWeight: FontWeight.w600,
                   fontSize: 18,
@@ -46,7 +48,7 @@ class TimelinePage extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => _showCreateSheet(context),
+        onPressed: () => _showCreateSheet(context, l10n),
         backgroundColor: HanaColors.primary,
         child: const Icon(Icons.add, color: Colors.white),
       ),
@@ -57,15 +59,20 @@ class TimelinePage extends StatelessWidget {
                 child: CircularProgressIndicator(color: HanaColors.primary),
               ),
             TimelineError(:final message) => Center(child: Text(message)),
-            TimelineLoaded(:final events) =>
-              _TimelineLoadedView(events: events),
+            TimelineLoaded(:final events) => _TimelineLoadedView(
+                events: events,
+                emptyLabel: l10n.noTimelineEvents,
+              ),
           };
         },
       ),
     );
   }
 
-  Future<void> _showCreateSheet(BuildContext context) {
+  Future<void> _showCreateSheet(
+    BuildContext context,
+    AppLocalizations l10n,
+  ) {
     return showModalBottomSheet<void>(
       context: context,
       builder: (sheetContext) {
@@ -75,7 +82,7 @@ class TimelinePage extends StatelessWidget {
             children: [
               ListTile(
                 leading: const Icon(Icons.medication_outlined),
-                title: const Text('记录服药'),
+                title: Text(l10n.logMedication),
                 onTap: () {
                   Navigator.of(sheetContext).pop();
                   context.push('/today');
@@ -83,7 +90,7 @@ class TimelinePage extends StatelessWidget {
               ),
               ListTile(
                 leading: const Icon(Icons.edit_note),
-                title: const Text('写日记'),
+                title: Text(l10n.writeJournal),
                 onTap: () {
                   Navigator.of(sheetContext).pop();
                   context.push('/record/journal/new');
@@ -91,7 +98,7 @@ class TimelinePage extends StatelessWidget {
               ),
               ListTile(
                 leading: const Icon(Icons.science_outlined),
-                title: const Text('添加血检'),
+                title: Text(l10n.addBloodTest),
                 onTap: () {
                   Navigator.of(sheetContext).pop();
                   context.push('/data/add_report');
@@ -106,14 +113,18 @@ class TimelinePage extends StatelessWidget {
 }
 
 class _TimelineLoadedView extends StatelessWidget {
-  const _TimelineLoadedView({required this.events});
+  const _TimelineLoadedView({
+    required this.events,
+    required this.emptyLabel,
+  });
 
   final List<TimelineEvent> events;
+  final String emptyLabel;
 
   @override
   Widget build(BuildContext context) {
     if (events.isEmpty) {
-      return const Center(child: Text('暂无可展示的时间线记录'));
+      return Center(child: Text(emptyLabel));
     }
 
     return ListView.separated(
