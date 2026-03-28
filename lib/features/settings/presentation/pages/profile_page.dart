@@ -34,8 +34,9 @@ class ProfilePage extends StatelessWidget {
         }
       },
       builder: (context, state) {
+        final l10n = AppLocalizations.of(context)!;
+
         if (state is SettingsError) {
-          final l10n = AppLocalizations.of(context);
           return Scaffold(
             backgroundColor: HanaColors.background,
             body: Center(
@@ -55,7 +56,7 @@ class ProfilePage extends StatelessWidget {
                             .read<SettingsBloc>()
                             .add(const LoadSettingsDashboard());
                       },
-                      child: Text(l10n?.retry ?? '重试'),
+                      child: Text(l10n.retry),
                     ),
                   ],
                 ),
@@ -72,12 +73,14 @@ class ProfilePage extends StatelessWidget {
         }
 
         final theme = Theme.of(context);
+        final localeName = Localizations.localeOf(context).toLanguageTag();
         final inventoryText = state.inventoryDaysRemaining != null
-            ? '还可使用 ${state.inventoryDaysRemaining} 天'
-            : '库存数据即将支持';
+            ? l10n.inventoryDaysRemaining(state.inventoryDaysRemaining!)
+            : l10n.inventoryDataUnavailable;
         final lastBackupText = state.settings.lastBackupDate != null
-            ? DateFormat('M月d日').format(state.settings.lastBackupDate!)
-            : '尚未备份';
+            ? DateFormat.yMMMd(localeName)
+                .format(state.settings.lastBackupDate!)
+            : l10n.noUpdatesYet;
 
         return Scaffold(
           backgroundColor: HanaColors.background,
@@ -95,11 +98,12 @@ class ProfilePage extends StatelessWidget {
                   centerTitle: true,
                   leading: IconButton(
                     icon: const Icon(Icons.settings, color: HanaColors.primary),
-                    onPressed: () => _showSnackBar(context, '更多设置即将上线'),
+                    onPressed: () =>
+                        _showSnackBar(context, l10n.settingsComingSoon),
                   ),
-                  title: const Text(
-                    '我的',
-                    style: TextStyle(
+                  title: Text(
+                    l10n.profile,
+                    style: const TextStyle(
                       fontFamily: 'Plus Jakarta Sans',
                       fontWeight: FontWeight.w600,
                       fontSize: 18,
@@ -113,7 +117,8 @@ class ProfilePage extends StatelessWidget {
                         Icons.notifications,
                         color: HanaColors.primary,
                       ),
-                      onPressed: () => _showSnackBar(context, '通知中心即将上线'),
+                      onPressed: () =>
+                          _showSnackBar(context, l10n.notificationsComingSoon),
                     ),
                   ],
                 ),
@@ -147,7 +152,7 @@ class ProfilePage extends StatelessWidget {
                       ),
                       const SizedBox(height: 6),
                       Text(
-                        'HRT 第 ${state.profile.hrtDayCount} 天',
+                        l10n.hrtDay(state.profile.hrtDayCount),
                         style: theme.textTheme.bodyMedium?.copyWith(
                           color: HanaColors.onSurfaceVariant,
                         ),
@@ -156,7 +161,7 @@ class ProfilePage extends StatelessWidget {
                   ),
                   const SizedBox(height: 32),
                   Text(
-                    '用药中心',
+                    l10n.medications,
                     style: theme.textTheme.labelMedium?.copyWith(
                       fontWeight: FontWeight.w700,
                       color: HanaColors.onSurfaceVariant,
@@ -196,14 +201,14 @@ class ProfilePage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  '我的用药',
+                                  l10n.myMedications,
                                   style: theme.textTheme.titleMedium?.copyWith(
                                     fontWeight: FontWeight.w700,
                                   ),
                                 ),
                                 const SizedBox(height: 4),
                                 Text(
-                                  '${state.activeDrugCount} 种正在使用',
+                                  l10n.drugCount(state.activeDrugCount),
                                   style: theme.textTheme.bodySmall?.copyWith(
                                     color: HanaColors.onSurfaceVariant,
                                   ),
@@ -227,10 +232,11 @@ class ProfilePage extends StatelessWidget {
                           icon: Icons.inventory_2,
                           iconColor: HanaColors.secondary,
                           iconBgColor: HanaColors.secondaryContainer,
-                          title: '库存',
+                          title: l10n.inventory,
                           subtitle: inventoryText,
                           subtitleColor: HanaColors.secondary,
-                          onTap: () => _showSnackBar(context, '库存功能即将上线'),
+                          onTap: () =>
+                              _showSnackBar(context, l10n.inventoryComingSoon),
                         ),
                       ),
                       const SizedBox(width: 16),
@@ -239,8 +245,8 @@ class ProfilePage extends StatelessWidget {
                           icon: Icons.view_quilt,
                           iconColor: HanaColors.primary,
                           iconBgColor: HanaColors.primaryContainer,
-                          title: '用药方案',
-                          subtitle: '查看并编辑计划',
+                          title: l10n.medicationPlan,
+                          subtitle: l10n.manageEditSchedules,
                           subtitleColor: HanaColors.onSurfaceVariant,
                           onTap: () => context.push('/drugs'),
                         ),
@@ -249,7 +255,7 @@ class ProfilePage extends StatelessWidget {
                   ),
                   const SizedBox(height: 32),
                   Text(
-                    '隐私与安全',
+                    l10n.privacySecurity,
                     style: theme.textTheme.labelMedium?.copyWith(
                       fontWeight: FontWeight.w700,
                       color: HanaColors.onSurfaceVariant,
@@ -270,7 +276,7 @@ class ProfilePage extends StatelessWidget {
                         _ListTileItem(
                           icon: Icons.lock,
                           iconColor: HanaColors.primary,
-                          title: '应用锁',
+                          title: l10n.appLock,
                           trailing: Switch(
                             value: state.settings.appLockEnabled,
                             onChanged: (enabled) {
@@ -287,10 +293,10 @@ class ProfilePage extends StatelessWidget {
                         _ListTileItem(
                           icon: Icons.visibility_off,
                           iconColor: HanaColors.primary,
-                          title: '隐私模式',
+                          title: l10n.privacyMode,
                           subtitle: state.settings.privacyModeEnabled
-                              ? '当前已开启'
-                              : '点击后立即开启',
+                              ? l10n.privacyModeEnabled
+                              : l10n.privacyModeDisabled,
                           isChevron: true,
                           onTap: () {
                             context.read<SettingsBloc>().add(
@@ -307,7 +313,7 @@ class ProfilePage extends StatelessWidget {
                         _ListTileItem(
                           icon: Icons.warning,
                           iconColor: HanaColors.error,
-                          title: '清除全部数据',
+                          title: l10n.wipeAllData,
                           titleColor: HanaColors.error,
                           isChevron: true,
                           chevronColor: HanaColors.error,
@@ -315,22 +321,21 @@ class ProfilePage extends StatelessWidget {
                             final confirm = await showDialog<bool>(
                               context: context,
                               builder: (dialogContext) => AlertDialog(
-                                title: const Text('清除全部数据'),
-                                content: const Text(
-                                  '此操作会删除应用中的所有记录，并且无法恢复。',
-                                ),
+                                title: Text(l10n.wipeAllDataTitle),
+                                content: Text(l10n.wipeAllDataMessage),
                                 actions: [
                                   TextButton(
                                     onPressed: () =>
                                         Navigator.of(dialogContext).pop(false),
-                                    child: const Text('取消'),
+                                    child: Text(l10n.cancel),
                                   ),
                                   TextButton(
                                     onPressed: () =>
                                         Navigator.of(dialogContext).pop(true),
-                                    child: const Text(
-                                      '清除',
-                                      style: TextStyle(color: HanaColors.error),
+                                    child: Text(
+                                      l10n.delete,
+                                      style: const TextStyle(
+                                          color: HanaColors.error),
                                     ),
                                   ),
                                 ],
@@ -349,7 +354,7 @@ class ProfilePage extends StatelessWidget {
                   ),
                   const SizedBox(height: 32),
                   Text(
-                    '数据工具',
+                    l10n.dataBackup,
                     style: theme.textTheme.labelMedium?.copyWith(
                       fontWeight: FontWeight.w700,
                       color: HanaColors.onSurfaceVariant,
@@ -359,27 +364,30 @@ class ProfilePage extends StatelessWidget {
                   const SizedBox(height: 16),
                   _ButtonRowItem(
                     icon: Icons.cloud_upload,
-                    title: '导出备份',
+                    title: l10n.exportBackup,
                     trailingText: lastBackupText,
-                    onTap: () => _showSnackBar(context, '功能开发中，敬请期待'),
+                    onTap: () =>
+                        _showSnackBar(context, l10n.backupToolsComingSoon),
                   ),
                   const SizedBox(height: 12),
                   _ButtonRowItem(
                     icon: Icons.cloud_download,
-                    title: '导入恢复',
+                    title: l10n.importBackup,
                     isChevron: true,
-                    onTap: () => _showSnackBar(context, '功能开发中，敬请期待'),
+                    onTap: () =>
+                        _showSnackBar(context, l10n.backupToolsComingSoon),
                   ),
                   const SizedBox(height: 12),
                   _ButtonRowItem(
                     icon: Icons.description,
-                    title: '生成 PDF',
+                    title: l10n.generatePdf,
                     isChevron: true,
-                    onTap: () => _showSnackBar(context, '功能开发中，敬请期待'),
+                    onTap: () =>
+                        _showSnackBar(context, l10n.backupToolsComingSoon),
                   ),
                   const SizedBox(height: 32),
                   Text(
-                    '关于',
+                    l10n.about,
                     style: theme.textTheme.labelMedium?.copyWith(
                       fontWeight: FontWeight.w700,
                       color: HanaColors.onSurfaceVariant,
@@ -397,21 +405,23 @@ class ProfilePage extends StatelessWidget {
                     ),
                     child: Column(
                       children: [
-                        const _ListTileItem(
-                          title: '版本',
+                        _ListTileItem(
+                          title: l10n.version,
                           trailingText: 'v1.0.0',
                         ),
                         const Divider(height: 1),
                         _ListTileItem(
-                          title: '隐私政策',
+                          title: l10n.privacyPolicy,
                           isChevron: true,
-                          onTap: () => _showSnackBar(context, '隐私政策将在发布前上线'),
+                          onTap: () =>
+                              _showSnackBar(context, l10n.privacyPolicyPending),
                         ),
                         const Divider(height: 1),
                         _ListTileItem(
-                          title: '使用条款',
+                          title: l10n.termsOfUse,
                           isChevron: true,
-                          onTap: () => _showSnackBar(context, '使用条款将在发布前上线'),
+                          onTap: () =>
+                              _showSnackBar(context, l10n.termsPending),
                         ),
                       ],
                     ),
