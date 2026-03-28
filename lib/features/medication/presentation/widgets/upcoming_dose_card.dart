@@ -9,6 +9,7 @@ class UpcomingDoseCard extends StatelessWidget {
     required this.dosage,
     required this.time,
     required this.period,
+    required this.takeLabel,
     this.onTake,
     super.key,
   });
@@ -22,8 +23,11 @@ class UpcomingDoseCard extends StatelessWidget {
   /// The exact time of the dose.
   final String time;
 
-  /// The period of the dose (e.g. "Morning", "Evening").
+  /// The period label of the dose.
   final String period;
+
+  /// The localized action label shown on the button.
+  final String takeLabel;
 
   /// Callback when the take action is pressed.
   final VoidCallback? onTake;
@@ -146,9 +150,9 @@ class UpcomingDoseCard extends StatelessWidget {
                           borderRadius: BorderRadius.circular(20),
                         ),
                       ),
-                      child: const Text(
-                        '服药',
-                        style: TextStyle(
+                      child: Text(
+                        takeLabel,
+                        style: const TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),

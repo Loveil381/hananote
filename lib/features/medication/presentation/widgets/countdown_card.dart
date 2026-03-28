@@ -12,6 +12,10 @@ class CountdownCard extends StatefulWidget {
     required this.drugName,
     required this.dosage,
     required this.route,
+    required this.nextDoseLabel,
+    required this.completedLabel,
+    required this.hourUnitLabel,
+    required this.minuteUnitLabel,
     this.nextScheduledTime,
     this.isCompleteForToday = false,
     super.key,
@@ -25,6 +29,18 @@ class CountdownCard extends StatefulWidget {
 
   /// The route of administration.
   final String route;
+
+  /// Localized heading above the countdown.
+  final String nextDoseLabel;
+
+  /// Localized completion label shown when today's schedule is finished.
+  final String completedLabel;
+
+  /// Localized hour unit label.
+  final String hourUnitLabel;
+
+  /// Localized minute unit label.
+  final String minuteUnitLabel;
 
   /// The next due time for the reminder.
   final DateTime? nextScheduledTime;
@@ -64,10 +80,10 @@ class _CountdownCardState extends State<CountdownCard> {
       decoration: BoxDecoration(
         gradient: HanaGradients.countdownGradient,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.white.withAlpha(51)), // white/20
+        border: Border.all(color: Colors.white.withAlpha(51)),
         boxShadow: [
           BoxShadow(
-            color: HanaColors.primary.withAlpha(31), // 0.12 opacity
+            color: HanaColors.primary.withAlpha(31),
             blurRadius: 32,
             offset: const Offset(0, 8),
           ),
@@ -77,7 +93,6 @@ class _CountdownCardState extends State<CountdownCard> {
         borderRadius: BorderRadius.circular(16),
         child: Stack(
           children: [
-            // Bottom Right White Blur Circle
             Positioned(
               bottom: -40,
               right: -40,
@@ -86,11 +101,10 @@ class _CountdownCardState extends State<CountdownCard> {
                 height: 140,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: Colors.white.withAlpha(76), // ~30%
+                  color: Colors.white.withAlpha(76),
                 ),
               ),
             ),
-            // Top Right Translucent Rotated Icon
             Positioned(
               top: -16,
               right: -16,
@@ -99,11 +113,10 @@ class _CountdownCardState extends State<CountdownCard> {
                 child: Icon(
                   Icons.medication,
                   size: 100,
-                  color: Colors.white.withAlpha(51), // 20%
+                  color: Colors.white.withAlpha(51),
                 ),
               ),
             ),
-            // Foreground Content
             Padding(
               padding: const EdgeInsets.all(24),
               child: Column(
@@ -118,7 +131,7 @@ class _CountdownCardState extends State<CountdownCard> {
                       ),
                       const SizedBox(width: 8),
                       Text(
-                        '下次用药',
+                        widget.nextDoseLabel,
                         style: theme.textTheme.bodyMedium?.copyWith(
                           color: HanaColors.onPrimaryContainer,
                           fontWeight: FontWeight.w600,
@@ -133,7 +146,7 @@ class _CountdownCardState extends State<CountdownCard> {
                     children: [
                       if (widget.isCompleteForToday)
                         Text(
-                          '今日已完成 ✅',
+                          widget.completedLabel,
                           style: theme.textTheme.headlineSmall?.copyWith(
                             color: HanaColors.onPrimaryContainer,
                             fontWeight: FontWeight.w800,
@@ -153,7 +166,7 @@ class _CountdownCardState extends State<CountdownCard> {
                         ),
                         const SizedBox(width: 4),
                         Text(
-                          '小时',
+                          widget.hourUnitLabel,
                           style: theme.textTheme.bodyMedium?.copyWith(
                             color: HanaColors.onPrimaryContainer,
                             fontWeight: FontWeight.w600,
@@ -172,7 +185,7 @@ class _CountdownCardState extends State<CountdownCard> {
                         ),
                         const SizedBox(width: 4),
                         Text(
-                          '分钟',
+                          widget.minuteUnitLabel,
                           style: theme.textTheme.bodyMedium?.copyWith(
                             color: HanaColors.onPrimaryContainer,
                             fontWeight: FontWeight.w600,
@@ -182,7 +195,6 @@ class _CountdownCardState extends State<CountdownCard> {
                     ],
                   ),
                   const SizedBox(height: 24),
-                  // Glassmorphism Pill string
                   ClipRRect(
                     borderRadius: BorderRadius.circular(24),
                     child: BackdropFilter(
@@ -193,12 +205,11 @@ class _CountdownCardState extends State<CountdownCard> {
                           vertical: 6,
                         ),
                         decoration: BoxDecoration(
-                          color: Colors.white.withAlpha(102), // 40%
+                          color: Colors.white.withAlpha(102),
                           borderRadius: BorderRadius.circular(24),
                         ),
                         child: Text(
-                          '${widget.drugName} · ${widget.dosage} · '
-                          '${widget.route}',
+                          '${widget.drugName} · ${widget.dosage} · ${widget.route}',
                           style: theme.textTheme.bodySmall?.copyWith(
                             color: HanaColors.onPrimaryContainer,
                             fontWeight: FontWeight.bold,

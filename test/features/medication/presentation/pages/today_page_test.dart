@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hananote/core/l10n/arb/app_localizations.dart';
 import 'package:hananote/features/medication/domain/entities/drug.dart';
 import 'package:hananote/features/medication/domain/entities/enums.dart';
 import 'package:hananote/features/medication/domain/entities/medication_schedule.dart'
@@ -30,18 +31,18 @@ void main() {
   late _MockSettingsBloc settingsBloc;
   late _MockTodayScheduleBloc todayScheduleBloc;
   final quotes = [
-    '你照顾自己的每一步，都会在未来开花。',
-    '慢一点没有关系，稳定前进就很好。',
-    '今天也值得为身体的变化感到期待。',
-    '温柔对待自己，就是最长期有效的计划。',
-    '记录不是负担，它会帮你看见自己的成长。',
-    '哪怕只有一点点进步，也值得认真庆祝。',
-    '身体在用自己的节奏回应你，给它一点时间。',
-    '你已经走了很远，今天也继续向前。',
-    '科学记录和温柔陪伴，可以同时存在。',
-    '每一次坚持，都会让明天更安心。',
-    '不必急着证明什么，你正在慢慢成为自己。',
-    '今天的你，也值得被认真照顾。',
+    '你的每一次坚持，都会在未来悄悄开花。',
+    '今天也请温柔地照顾自己，变化正在发生。',
+    '身体的每一点回应，都是你认真生活的证据。',
+    '慢一点没有关系，稳定前进本身就是力量。',
+    '服药和记录不是任务，是你对自己的承诺。',
+    '允许自己按节奏成长，不必和任何人比较。',
+    '你正在成为想成为的人，这件事值得庆祝。',
+    '再普通的一天，也可以因为认真对待自己而闪光。',
+    '照顾身体不是负担，是你给未来写下的情书。',
+    '你今天的耐心，会变成明天的安心。',
+    '每一次记录都不是重复，而是在看见真实的自己。',
+    '今天也别忘了夸夸自己，你已经做得很好。',
   ];
 
   final loadedSettings = SettingsState.loaded(
@@ -77,6 +78,15 @@ void main() {
         .thenAnswer((_) => const Stream.empty());
   });
 
+  MaterialApp buildLocalizedApp(Widget child) {
+    return MaterialApp(
+      locale: const Locale('zh'),
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      home: child,
+    );
+  }
+
   testWidgets('renders greeting and HRT day count from settings state', (
     tester,
   ) async {
@@ -88,8 +98,8 @@ void main() {
             : '晚上好';
 
     await tester.pumpWidget(
-      MaterialApp(
-        home: MultiBlocProvider(
+      buildLocalizedApp(
+        MultiBlocProvider(
           providers: [
             BlocProvider<SettingsBloc>.value(value: settingsBloc),
             BlocProvider<TodayScheduleBloc>.value(value: todayScheduleBloc),
@@ -144,8 +154,8 @@ void main() {
     );
 
     await tester.pumpWidget(
-      MaterialApp(
-        home: MultiBlocProvider(
+      buildLocalizedApp(
+        MultiBlocProvider(
           providers: [
             BlocProvider<SettingsBloc>.value(value: settingsBloc),
             BlocProvider<TodayScheduleBloc>.value(value: todayScheduleBloc),
@@ -178,7 +188,14 @@ void main() {
       ],
     );
 
-    await tester.pumpWidget(MaterialApp.router(routerConfig: router));
+    await tester.pumpWidget(
+      MaterialApp.router(
+        routerConfig: router,
+        locale: const Locale('zh'),
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+      ),
+    );
 
     await tester.tap(find.byIcon(Icons.person));
     await tester.pumpAndSettle();

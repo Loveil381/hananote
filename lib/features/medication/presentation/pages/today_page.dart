@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hananote/app/theme/hana_colors.dart';
+import 'package:hananote/core/l10n/arb/app_localizations.dart';
+import 'package:hananote/features/medication/domain/entities/enums.dart';
 import 'package:hananote/features/medication/domain/usecases/get_today_schedule.dart';
 import 'package:hananote/features/medication/presentation/bloc/today_schedule_bloc.dart';
 import 'package:hananote/features/medication/presentation/bloc/today_schedule_event.dart';
@@ -12,6 +14,7 @@ import 'package:hananote/features/medication/presentation/widgets/quote_card.dar
 import 'package:hananote/features/medication/presentation/widgets/upcoming_dose_card.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_bloc.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_state.dart';
+import 'package:intl/intl.dart';
 
 /// The main dashboard page for the current day's health tracking.
 class TodayPage extends StatelessWidget {
@@ -19,30 +22,31 @@ class TodayPage extends StatelessWidget {
   const TodayPage({super.key});
 
   static const _dailyQuotes = [
-    '你照顾自己的每一步，都会在未来开花。',
-    '慢一点没有关系，稳定前进就很好。',
-    '今天也值得为身体的变化感到期待。',
-    '温柔对待自己，就是最长期有效的计划。',
-    '记录不是负担，它会帮你看见自己的成长。',
-    '哪怕只有一点点进步，也值得认真庆祝。',
-    '身体在用自己的节奏回应你，给它一点时间。',
-    '你已经走了很远，今天也继续向前。',
-    '科学记录和温柔陪伴，可以同时存在。',
-    '每一次坚持，都会让明天更安心。',
-    '不必急着证明什么，你正在慢慢成为自己。',
-    '今天的你，也值得被认真照顾。',
+    '你的每一次坚持，都会在未来悄悄开花。',
+    '今天也请温柔地照顾自己，变化正在发生。',
+    '身体的每一点回应，都是你认真生活的证据。',
+    '慢一点没有关系，稳定前进本身就是力量。',
+    '服药和记录不是任务，是你对自己的承诺。',
+    '允许自己按节奏成长，不必和任何人比较。',
+    '你正在成为想成为的人，这件事值得庆祝。',
+    '再普通的一天，也可以因为认真对待自己而闪光。',
+    '照顾身体不是负担，是你给未来写下的情书。',
+    '你今天的耐心，会变成明天的安心。',
+    '每一次记录都不是重复，而是在看见真实的自己。',
+    '今天也别忘了夸夸自己，你已经做得很好。',
   ];
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final settingsState = context.watch<SettingsBloc>().state;
     final displayName = settingsState is SettingsLoaded
         ? settingsState.profile.displayName
         : 'HanaNote 用户';
     final hrtDays =
         settingsState is SettingsLoaded ? settingsState.profile.hrtDayCount : 0;
-    final greeting = _greetingForHour(DateTime.now().hour);
+    final greeting = _greetingForHour(DateTime.now().hour, l10n);
 
     return Scaffold(
       backgroundColor: HanaColors.background,
@@ -77,7 +81,7 @@ class TodayPage extends StatelessWidget {
                             borderRadius: BorderRadius.circular(999),
                           ),
                           child: Text(
-                            _todayLabel(),
+                            l10n.today,
                             style: theme.textTheme.labelMedium?.copyWith(
                               color: HanaColors.onSurfaceVariant,
                               fontWeight: FontWeight.w600,
@@ -106,7 +110,7 @@ class TodayPage extends StatelessWidget {
                             ),
                             const SizedBox(height: 4),
                             Text(
-                              'HRT 第 $hrtDays 天',
+                              l10n.hrtDay(hrtDays),
                               style: theme.textTheme.bodyMedium?.copyWith(
                                 color: HanaColors.onSurfaceVariant,
                               ),
@@ -133,7 +137,7 @@ class TodayPage extends StatelessWidget {
                   ),
                 ),
                 const SliverToBoxAdapter(child: SizedBox(height: 32)),
-                ..._buildStateContent(context, state, theme),
+                ..._buildStateContent(context, state, theme, l10n),
                 const SliverPadding(padding: EdgeInsets.only(bottom: 120)),
               ],
             );
@@ -147,6 +151,7 @@ class TodayPage extends StatelessWidget {
     BuildContext context,
     TodayScheduleState state,
     ThemeData theme,
+    AppLocalizations l10n,
   ) {
     return state.when(
       initial: () => [
@@ -174,7 +179,7 @@ class TodayPage extends StatelessWidget {
                   onPressed: () => context
                       .read<TodayScheduleBloc>()
                       .add(const LoadTodaySchedule()),
-                  child: const Text('重试'),
+                  child: Text(l10n.retry),
                 ),
               ],
             ),
@@ -184,16 +189,17 @@ class TodayPage extends StatelessWidget {
       loaded: (items, date, completedCount, totalCount) {
         if (items.isEmpty) {
           return [
-            const SliverFillRemaining(
+            SliverFillRemaining(
               hasScrollBody: false,
               child: Center(
-                child: Text('暂无用药记录'),
+                child: Text(l10n.noMedicationRecords),
               ),
             ),
           ];
         }
 
         final now = DateTime.now();
+        final localeName = Localizations.localeOf(context).toLanguageTag();
         TodayScheduleItem? upcoming;
         DateTime? upcomingTime;
 
@@ -219,7 +225,7 @@ class TodayPage extends StatelessWidget {
         final widgets = <Widget>[];
         final countdownDrug = upcoming ?? items.first;
         final countdownDosage = '${countdownDrug.schedule.dosageAmount}'
-            '${countdownDrug.schedule.dosageUnit.name}';
+            '${countdownDrug.schedule.dosageUnit.displayName}';
 
         widgets.addAll([
           SliverToBoxAdapter(
@@ -230,7 +236,11 @@ class TodayPage extends StatelessWidget {
                 isCompleteForToday: uncompletedItems.isEmpty,
                 drugName: countdownDrug.drug.name,
                 dosage: countdownDosage,
-                route: countdownDrug.schedule.administrationRoute.name,
+                route: countdownDrug.schedule.administrationRoute.displayName,
+                nextDoseLabel: l10n.nextDose,
+                completedLabel: l10n.todayCompleted,
+                hourUnitLabel: l10n.hourUnit,
+                minuteUnitLabel: l10n.minuteUnit,
               ),
             ),
           ),
@@ -239,15 +249,14 @@ class TodayPage extends StatelessWidget {
 
         String dosageLabel(TodayScheduleItem item) {
           return '${item.schedule.dosageAmount}'
-              '${item.schedule.dosageUnit.name}';
+              '${item.schedule.dosageUnit.displayName}';
         }
 
         String timeLabel(DateTime? dateTime) {
           if (dateTime == null) {
-            return '全天';
+            return l10n.allDay;
           }
-          return '${dateTime.hour.toString().padLeft(2, '0')}:'
-              '${dateTime.minute.toString().padLeft(2, '0')}';
+          return DateFormat.Hm(localeName).format(dateTime);
         }
 
         final completedItems = items.where((item) => item.isCompleted).toList();
@@ -257,7 +266,7 @@ class TodayPage extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Text(
-                  '已服药',
+                  l10n.takenDoses,
                   style: theme.textTheme.titleMedium?.copyWith(
                     color: HanaColors.onSurface,
                     fontWeight: FontWeight.bold,
@@ -296,7 +305,7 @@ class TodayPage extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Text(
-                  '待服药',
+                  l10n.pendingDoses,
                   style: theme.textTheme.titleMedium?.copyWith(
                     color: HanaColors.onSurface,
                     fontWeight: FontWeight.bold,
@@ -317,7 +326,8 @@ class TodayPage extends StatelessWidget {
                         name: item.drug.name,
                         dosage: dosageLabel(item),
                         time: timeLabel(firstTime),
-                        period: '今天',
+                        period: l10n.allDay,
+                        takeLabel: l10n.takeDose,
                         onTake: () {
                           context.read<TodayScheduleBloc>().add(
                                 LogDoseTodaySchedule(
@@ -353,19 +363,14 @@ class TodayPage extends StatelessWidget {
     );
   }
 
-  String _greetingForHour(int hour) {
+  String _greetingForHour(int hour, AppLocalizations l10n) {
     if (hour < 12) {
-      return '早安';
+      return l10n.goodMorning;
     }
     if (hour < 18) {
-      return '午安';
+      return l10n.goodAfternoon;
     }
-    return '晚上好';
-  }
-
-  String _todayLabel() {
-    final now = DateTime.now();
-    return '${now.month}月${now.day}日';
+    return l10n.goodEvening;
   }
 
   String _quoteForToday() {
