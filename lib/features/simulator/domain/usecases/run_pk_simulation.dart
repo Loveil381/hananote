@@ -77,7 +77,7 @@ class RunPkSimulation {
 
     return left(
       const Failure.validation(
-        message: 'No active estrogen medication found for PK simulation.',
+        message: '暂无活跃的雌激素用药，无法进行 PK 模拟。',
       ),
     );
   }

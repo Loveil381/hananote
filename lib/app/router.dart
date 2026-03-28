@@ -25,6 +25,7 @@ import 'package:hananote/features/photo/presentation/blocs/photo_bloc.dart';
 import 'package:hananote/features/photo/presentation/pages/photo_page.dart';
 import 'package:hananote/features/photo/presentation/pages/photo_view_page.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_bloc.dart';
+import 'package:hananote/features/settings/presentation/bloc/settings_event.dart';
 import 'package:hananote/features/settings/presentation/pages/profile_page.dart';
 import 'package:hananote/features/simulator/presentation/pages/simulator_page.dart';
 import 'package:hananote/features/timeline/presentation/bloc/timeline_bloc.dart';
@@ -100,7 +101,8 @@ final GoRouter appRouter = GoRouter(
             GoRoute(
               path: '/profile',
               builder: (context, state) => BlocProvider.value(
-                value: getIt<SettingsBloc>(),
+                value: getIt<SettingsBloc>()
+                  ..add(const LoadSettingsDashboard()),
                 child: const ProfilePage(),
               ),
             ),

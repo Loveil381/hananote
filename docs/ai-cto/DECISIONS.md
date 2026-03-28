@@ -187,3 +187,7 @@
 - **决定**: 将 applicationId / bundleIdentifier 从 com.example.hananote 改为正式域名反转 ID；配置 Android release signing；统一品牌名为 HanaNote
 - **理由**: com.example.* 被 App Store 和 Play Store 拒绝；debug keystore 无法生成可发布的 AAB；品牌名一致性影响用户信任
 - **日期**: 第30轮
+## DEC-036: SettingsBloc 延迟加载
+- **决定**: SettingsBloc 保持为全局 singleton，但不再在 app 启动时立即 dispatch LoadSettingsDashboard；改为进入 /profile 时再加载。
+- **理由**: dashboard 聚合会访问 medication / inventory 数据，而这些查询依赖 SQLCipher 数据库已经 open。认证完成前触发查询会命中 Database is not open.，导致 Profile Tab 无限 loading。
+- **日期**: 第32轮

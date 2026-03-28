@@ -1,7 +1,7 @@
 # HanaNote STATUS
 
-## 当前轮次: Round 30
-## 当前阶段: 打包配置修正 + 记忆文件修复
+## 当前轮次: Round 32
+## 当前阶段: 真机运行问题修复 — Settings 延迟加载 / Photo 保存兜底 / PK 文案修正
 ## 产品完成度: 99%
 ## 数据绑定完成度: 5/5
 
@@ -22,7 +22,7 @@
 | 5-Tab shell | ✅ | MainShell + 路由导航 |
 | SecureDatabase | ✅ | SQLCipher + feature tables + migration |
 | CryptoEngine / KeyManager | ✅ | AES-256-GCM + Argon2id + 会话密钥缓存 |
-| Error Boundary | ✅ | 三层全局错误兜底 + fallback UI |
+| Error Boundary | ✅ | FlutterError + ErrorWidget fallback |
 | App Icon | ✅ | 占位 icon + flutter_launcher_icons 配置 |
 
 ## 待开发
@@ -42,9 +42,8 @@
 ## 本轮交付
 | 项目 | 状态 | 说明 |
 |------|------|------|
-| DECISIONS.md UTF-8 重写 | 🔄 | 修复 DEC-001~031 编码损坏 |
-| Application ID 正式化 | 🔄 | com.example.hananote → com.hananote.app |
-| App 显示名称统一 | 🔄 | Android + iOS → HanaNote |
-| Version bump | 🔄 | 0.1.0+1 → 1.0.0+1 |
-| 移除 camera 依赖 | 🔄 | 未使用的残留依赖 |
-| 精确闹钟权限清理 | 🔄 | 移除 USE_EXACT_ALARM |
+| Settings 延迟加载 | 🔄 | Profile Tab 打开时再加载 dashboard，避免数据库未 open 时查询 |
+| Profile 错误态 | 🔄 | SettingsError 显示错误信息与重试按钮 |
+| Photo 保存兜底 | 🔄 | 大图预缩放 + 失败后回退上一 loaded 状态 |
+| Photo transient error | 🔄 | error → fallback 改为微任务切换，避免连续 emit 覆盖 |
+| PK 文案修正 | 🔄 | 无活跃雌激素药物时显示中文错误信息 |

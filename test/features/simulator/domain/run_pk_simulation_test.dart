@@ -115,7 +115,7 @@ void main() {
       expect(
         result.swap().getOrElse((_) => throw StateError('expected failure')),
         const Failure.validation(
-          message: 'No active estrogen medication found for PK simulation.',
+          message: '暂无活跃的雌激素用药，无法进行 PK 模拟。',
         ),
       );
     });

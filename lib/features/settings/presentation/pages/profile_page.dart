@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hananote/app/theme/hana_colors.dart';
+import 'package:hananote/core/l10n/arb/app_localizations.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_bloc.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_event.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_state.dart';
@@ -29,6 +30,36 @@ class ProfilePage extends StatelessWidget {
         }
       },
       builder: (context, state) {
+        if (state is SettingsError) {
+          final l10n = AppLocalizations.of(context);
+          return Scaffold(
+            backgroundColor: HanaColors.background,
+            body: Center(
+              child: Padding(
+                padding: const EdgeInsets.all(24),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      state.message,
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 16),
+                    ElevatedButton(
+                      onPressed: () {
+                        context
+                            .read<SettingsBloc>()
+                            .add(const LoadSettingsDashboard());
+                      },
+                      child: Text(l10n?.retry ?? 'Retry'),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        }
+
         if (state is! SettingsLoaded) {
           return const Scaffold(
             backgroundColor: HanaColors.background,

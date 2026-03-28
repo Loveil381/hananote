@@ -1,5 +1,4 @@
-import 'dart:typed_data';
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hananote/core/error/failures.dart';
@@ -9,6 +8,7 @@ import 'package:hananote/features/photo/domain/usecases/get_photo_history.dart';
 import 'package:hananote/features/photo/domain/usecases/load_photo_thumbnail.dart';
 import 'package:hananote/features/photo/domain/usecases/save_photo.dart';
 import 'package:hananote/features/photo/presentation/services/photo_picker_service.dart';
+import 'package:image/image.dart' as img;
 import 'package:injectable/injectable.dart';
 
 part 'photo_bloc.freezed.dart';
@@ -146,28 +146,28 @@ class PhotoBloc extends Bloc<PhotoEvent, PhotoState> {
       return;
     }
 
+    final processedBytes = imageBytes.length > 10 * 1024 * 1024
+        ? await compute(_resizeForEncryption, imageBytes)
+        : imageBytes;
+
     emit(const PhotoState.loading());
 
     final result = await _savePhoto(
-      imageBytes: imageBytes,
+      imageBytes: processedBytes,
       date: DateTime.now(),
     );
 
-    await result.fold(
-      (failure) async {
-        if (previousLoadedState != null) {
-          await _emitTransientError(
-            emit,
-            failureMessage(failure),
-            fallbackState: previousLoadedState,
-          );
-          return;
-        }
-
+    final failure = result.fold<Failure?>((value) => value, (_) => null);
+    if (failure != null) {
+      if (previousLoadedState != null) {
+        emit(previousLoadedState);
+      } else {
         emit(PhotoState.error(failureMessage(failure)));
-      },
-      (_) => _reloadHistory(emit),
-    );
+      }
+      return;
+    }
+
+    await _reloadHistory(emit);
   }
 
   Future<void> _reloadHistory(Emitter<PhotoState> emit) async {
@@ -189,6 +189,26 @@ class PhotoBloc extends Bloc<PhotoEvent, PhotoState> {
     required _Loaded fallbackState,
   }) async {
     emit(PhotoState.error(message));
+    await Future.microtask(() {});
     emit(fallbackState);
   }
+}
+
+Uint8List _resizeForEncryption(Uint8List imageBytes) {
+  final decoded = img.decodeImage(imageBytes);
+  if (decoded == null) {
+    return imageBytes;
+  }
+  if (decoded.width <= 2048 && decoded.height <= 2048) {
+    return imageBytes;
+  }
+
+  final resized = img.copyResize(
+    decoded,
+    width: decoded.width >= decoded.height ? 2048 : null,
+    height: decoded.height > decoded.width ? 2048 : null,
+    interpolation: img.Interpolation.linear,
+  );
+
+  return Uint8List.fromList(img.encodeJpg(resized, quality: 85));
 }

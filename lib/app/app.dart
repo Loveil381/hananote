@@ -7,7 +7,6 @@ import 'package:hananote/core/l10n/arb/app_localizations.dart';
 import 'package:hananote/core/privacy/app_blur_overlay.dart';
 import 'package:hananote/features/auth/presentation/bloc/auth_cubit.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_bloc.dart';
-import 'package:hananote/features/settings/presentation/bloc/settings_event.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_state.dart';
 
 /// Main application widget.
@@ -18,7 +17,7 @@ class HanaNote extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => getIt<SettingsBloc>()..add(const LoadSettingsDashboard()),
+      create: (_) => getIt<SettingsBloc>(),
       child: BlocProvider(
         create: (_) => getIt<AuthCubit>()..checkAuthStatus(),
         child: MaterialApp.router(

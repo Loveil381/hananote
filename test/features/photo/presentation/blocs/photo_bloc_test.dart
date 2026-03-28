@@ -186,6 +186,36 @@ void main() {
   );
 
   blocTest<PhotoBloc, PhotoState>(
+    'capturePhoto failure restores the previous loaded state',
+    build: buildBloc,
+    seed: () => PhotoState.loaded(
+      entries: [entry],
+      thumbnailCache: <String, Uint8List>{entry.id: thumbnailBytes},
+    ),
+    setUp: () {
+      when(() => photoPickerService.pickImage(PhotoPickerSource.camera))
+          .thenAnswer((_) async => imageBytes);
+      when(
+        () => savePhoto(
+          imageBytes: imageBytes,
+          date: any(named: 'date'),
+          notes: any(named: 'notes'),
+        ),
+      ).thenAnswer(
+        (_) async => left(const Failure.auth(message: 'key unavailable')),
+      );
+    },
+    act: (bloc) => bloc.add(const PhotoEvent.capturePhoto()),
+    expect: () => [
+      const PhotoState.loading(),
+      PhotoState.loaded(
+        entries: [entry],
+        thumbnailCache: <String, Uint8List>{entry.id: thumbnailBytes},
+      ),
+    ],
+  );
+
+  blocTest<PhotoBloc, PhotoState>(
     'pickFromGallery success saves and reloads history',
     build: buildBloc,
     seed: () => const PhotoState.loaded(
