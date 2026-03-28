@@ -112,9 +112,9 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
                         ),
                         items: state.administrationRoute!.supportedUnits
                             .map(
-                              (u) => DropdownMenuItem(
-                                value: u,
-                                child: Text(u.name),
+                              (unit) => DropdownMenuItem(
+                                value: unit,
+                                child: Text(unit.displayName),
                               ),
                             )
                             .toList(),
@@ -137,7 +137,7 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
                   style: TextStyle(color: errorColor),
                 ),
               const SizedBox(height: 8),
-              _buildFrequencySelector(context, state, l10n),
+              _buildFrequencySelector(context, state),
               const SizedBox(height: 24),
               Text('开始日期', style: theme.textTheme.titleMedium),
               if (state.validation?.startDateError != null)
@@ -212,7 +212,7 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
                   state.validation!.scheduleTimesError!,
                   style: TextStyle(color: errorColor),
                 ),
-              _buildTimeSelectors(context, state, l10n),
+              _buildTimeSelectors(context, state),
               const SizedBox(height: 48),
               FilledButton(
                 onPressed: () => context.read<ScheduleEditorCubit>().save(),
@@ -231,7 +231,6 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
   Widget _buildFrequencySelector(
     BuildContext context,
     ScheduleEditorEditing state,
-    AppLocalizations l10n,
   ) {
     var typeIndex = 0;
     if (state.frequency is EveryNDaysMedicationFrequency) typeIndex = 1;
@@ -328,7 +327,6 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
   Widget _buildTimeSelectors(
     BuildContext context,
     ScheduleEditorEditing state,
-    AppLocalizations l10n,
   ) {
     if (state.administrationRoute != null &&
         !state.administrationRoute!.supportsScheduleTimes) {
