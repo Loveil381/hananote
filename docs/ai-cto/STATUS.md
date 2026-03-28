@@ -1,7 +1,7 @@
 # HanaNote STATUS
 
-## 当前轮次: Round 34
-## 当前阶段: 真机前 polish + i18n 全中文
+## 当前轮次: Round 35
+## 当前阶段: 发布前收尾 + 记忆同步
 ## 产品完成度: 99%
 ## 数据绑定完成度: 5/5
 
@@ -55,7 +55,16 @@
 | 项目 | 状态 | 说明 |
 |------|------|------|
 | DropdownButtonFormField 参数修正 | ✅ | simulator_page + schedule_editor_page 改为 value |
-| schedule_editor_page 全中文 | 🔄 | 空字符串二次修正后待确认 |
+| schedule_editor_page 全中文 | ✅ | 中文标签和空字符串占位已清理 |
 | add_drug_page 全中文 + 枚举 displayName | ✅ | category/route/unit 不再暴露 enum.name |
 | _isDoseLate 逻辑修正 | ✅ | 支持按具体 scheduledDateTime 判断 late |
 | Measurement ID 统一 UUID | ✅ | measurement_edit_page 改为 IdGenerator.generate() |
+
+## R35 本轮交付
+| 项目 | 状态 | 说明 |
+|------|------|------|
+| 记忆文件同步 | 🔄 | STATUS.md / REVIEW-BACKLOG.md / DECISIONS.md 更新至 Round 35 |
+| SetupPage PIN 校验 UX | 🔄 | 错误提示改为输入框下方红字，不再依赖 SnackBar |
+| Profile 清除按钮颜色 | 🔄 | tertiary → error |
+| localizedReason 中文化 | 🔄 | 生物识别提示改为中文文案 |
+| QuoteCard 每日语录 | 🔄 | TodayPage 改为按日期切换语录 |

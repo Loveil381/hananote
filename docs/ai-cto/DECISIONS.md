@@ -196,7 +196,7 @@
 - **理由**: DEC-036 将加载延迟到 /profile，但 AppBlurOverlay 和 TodayPage 的问候语都依赖 SettingsLoaded 状态。不加载会导致 blur overlay 行为异常和显示硬编码假数据
 - **替代方案**: 在 app.dart 创建时加载——但此时数据库可能未 open，会触发 DEC-036 描述的问题
 - **日期**: 第33轮
-## DEC-038: 枚举 displayName 扩展
-- 决定: 为 DrugCategory、AdministrationRoute、DosageUnit 添加 displayName 中文扩展
-- 理由: UI 层不应直接暴露 Dart 枚举内部名称给用户
-- 日期: 第34轮
+## DEC-038: enum displayName 中文化
+- **决定**: 为 DrugCategory、AdministrationRoute、DosageUnit 各增加 `displayName` extension
+- **理由**: 避免 UI 直接暴露 Dart enum 内部 `name`，提升中文用户体验
+- **日期**: 第34轮
