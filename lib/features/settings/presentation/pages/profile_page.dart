@@ -316,7 +316,7 @@ class ProfilePage extends StatelessWidget {
                           Expanded(
                             child: _SquareCard(
                               icon: Icons.view_quilt,
-                              iconColor: HanaColors.tertiary,
+                              iconColor: HanaColors.error,
                               iconBgColor: HanaColors.tertiaryContainer
                                   .withAlpha(102), // 40%
                               title: '用药方案',
@@ -407,9 +407,9 @@ class ProfilePage extends StatelessWidget {
                               icon: Icons.warning,
                               iconColor: HanaColors.tertiary,
                               title: '清除所有数据',
-                              titleColor: HanaColors.tertiary,
+                              titleColor: HanaColors.error,
                               isChevron: true,
-                              chevronColor: HanaColors.tertiary,
+                              chevronColor: HanaColors.error,
                               onTap: () async {
                                 final confirm = await showDialog<bool>(
                                   context: context,
