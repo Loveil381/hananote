@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hananote/app/theme/hana_colors.dart';
+import 'package:hananote/core/utils/id_generator.dart';
 import 'package:hananote/features/measurement/domain/entities/measurement_entry.dart';
 import 'package:hananote/features/measurement/domain/entities/measurement_type.dart';
 import 'package:hananote/features/measurement/presentation/blocs/measurement_bloc.dart';
@@ -157,7 +158,7 @@ class _MeasurementEditPageState extends State<MeasurementEditPage> {
     final existing = widget.existingEntry;
     final trimmedNotes = _notesController.text.trim();
     final entry = MeasurementEntry(
-      id: existing?.id ?? now.millisecondsSinceEpoch.toString(),
+      id: existing?.id ?? IdGenerator.generate(),
       date: DateTime(
         _selectedDate.year,
         _selectedDate.month,
