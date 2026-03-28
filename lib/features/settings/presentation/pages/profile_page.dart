@@ -55,7 +55,7 @@ class ProfilePage extends StatelessWidget {
                             .read<SettingsBloc>()
                             .add(const LoadSettingsDashboard());
                       },
-                      child: Text(l10n?.retry ?? 'Retry'),
+                      child: Text(l10n?.retry ?? '重试'),
                     ),
                   ],
                 ),
@@ -73,8 +73,11 @@ class ProfilePage extends StatelessWidget {
 
         final theme = Theme.of(context);
         final inventoryText = state.inventoryDaysRemaining != null
-            ? '约剩 ${state.inventoryDaysRemaining} 天'
-            : '暂无库存数据';
+            ? '还可使用 ${state.inventoryDaysRemaining} 天'
+            : '库存数据即将支持';
+        final lastBackupText = state.settings.lastBackupDate != null
+            ? DateFormat('M月d日').format(state.settings.lastBackupDate!)
+            : '尚未备份';
 
         return Scaffold(
           backgroundColor: HanaColors.background,
@@ -92,7 +95,7 @@ class ProfilePage extends StatelessWidget {
                   centerTitle: true,
                   leading: IconButton(
                     icon: const Icon(Icons.settings, color: HanaColors.primary),
-                    onPressed: () {},
+                    onPressed: () => _showSnackBar(context, '更多设置即将上线'),
                   ),
                   title: const Text(
                     '我的',
@@ -110,7 +113,7 @@ class ProfilePage extends StatelessWidget {
                         Icons.notifications,
                         color: HanaColors.primary,
                       ),
-                      onPressed: () {},
+                      onPressed: () => _showSnackBar(context, '通知中心即将上线'),
                     ),
                   ],
                 ),
@@ -144,7 +147,7 @@ class ProfilePage extends StatelessWidget {
                       ),
                       const SizedBox(height: 6),
                       Text(
-                        'HRT ${state.profile.hrtDayCount} 天',
+                        'HRT 第 ${state.profile.hrtDayCount} 天',
                         style: theme.textTheme.bodyMedium?.copyWith(
                           color: HanaColors.onSurfaceVariant,
                         ),
@@ -153,7 +156,7 @@ class ProfilePage extends StatelessWidget {
                   ),
                   const SizedBox(height: 32),
                   Text(
-                    '用药管理',
+                    '用药中心',
                     style: theme.textTheme.labelMedium?.copyWith(
                       fontWeight: FontWeight.w700,
                       color: HanaColors.onSurfaceVariant,
@@ -178,7 +181,7 @@ class ProfilePage extends StatelessWidget {
                           Container(
                             width: 48,
                             height: 48,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                               color: HanaColors.primaryContainer,
                             ),
@@ -200,7 +203,7 @@ class ProfilePage extends StatelessWidget {
                                 ),
                                 const SizedBox(height: 4),
                                 Text(
-                                  '${state.activeDrugCount} 项',
+                                  '${state.activeDrugCount} 种正在使用',
                                   style: theme.textTheme.bodySmall?.copyWith(
                                     color: HanaColors.onSurfaceVariant,
                                   ),
@@ -227,8 +230,7 @@ class ProfilePage extends StatelessWidget {
                           title: '库存',
                           subtitle: inventoryText,
                           subtitleColor: HanaColors.secondary,
-                          onTap: () =>
-                              _showSnackBar(context, '库存功能即将上线'),
+                          onTap: () => _showSnackBar(context, '库存功能即将上线'),
                         ),
                       ),
                       const SizedBox(width: 16),
@@ -238,7 +240,7 @@ class ProfilePage extends StatelessWidget {
                           iconColor: HanaColors.primary,
                           iconBgColor: HanaColors.primaryContainer,
                           title: '用药方案',
-                          subtitle: '查看和编辑',
+                          subtitle: '查看并编辑计划',
                           subtitleColor: HanaColors.onSurfaceVariant,
                           onTap: () => context.push('/drugs'),
                         ),
@@ -288,13 +290,12 @@ class ProfilePage extends StatelessWidget {
                           title: '隐私模式',
                           subtitle: state.settings.privacyModeEnabled
                               ? '当前已开启'
-                              : '隐藏敏感内容',
+                              : '点击后立即开启',
                           isChevron: true,
                           onTap: () {
                             context.read<SettingsBloc>().add(
                                   TogglePrivacyMode(
-                                    enabled:
-                                        !state.settings.privacyModeEnabled,
+                                    enabled: !state.settings.privacyModeEnabled,
                                   ),
                                 );
                           },
@@ -314,9 +315,9 @@ class ProfilePage extends StatelessWidget {
                             final confirm = await showDialog<bool>(
                               context: context,
                               builder: (dialogContext) => AlertDialog(
-                                title: const Text('清除数据'),
+                                title: const Text('清除全部数据'),
                                 content: const Text(
-                                  '此操作会删除所有本地数据，且无法恢复。',
+                                  '此操作会删除应用中的所有记录，并且无法恢复。',
                                 ),
                                 actions: [
                                   TextButton(
@@ -329,7 +330,7 @@ class ProfilePage extends StatelessWidget {
                                         Navigator.of(dialogContext).pop(true),
                                     child: const Text(
                                       '清除',
-                                      style: TextStyle(color: Colors.red),
+                                      style: TextStyle(color: HanaColors.error),
                                     ),
                                   ),
                                 ],
@@ -348,7 +349,7 @@ class ProfilePage extends StatelessWidget {
                   ),
                   const SizedBox(height: 32),
                   Text(
-                    '数据',
+                    '数据工具',
                     style: theme.textTheme.labelMedium?.copyWith(
                       fontWeight: FontWeight.w700,
                       color: HanaColors.onSurfaceVariant,
@@ -359,21 +360,22 @@ class ProfilePage extends StatelessWidget {
                   _ButtonRowItem(
                     icon: Icons.cloud_upload,
                     title: '导出备份',
-                    trailingText: state.settings.lastBackupDate != null
-                        ? DateFormat('M月d日').format(state.settings.lastBackupDate!)
-                        : '尚未备份',
+                    trailingText: lastBackupText,
+                    onTap: () => _showSnackBar(context, '功能开发中，敬请期待'),
                   ),
                   const SizedBox(height: 12),
-                  const _ButtonRowItem(
+                  _ButtonRowItem(
                     icon: Icons.cloud_download,
                     title: '导入恢复',
                     isChevron: true,
+                    onTap: () => _showSnackBar(context, '功能开发中，敬请期待'),
                   ),
                   const SizedBox(height: 12),
-                  const _ButtonRowItem(
+                  _ButtonRowItem(
                     icon: Icons.description,
                     title: '生成 PDF',
                     isChevron: true,
+                    onTap: () => _showSnackBar(context, '功能开发中，敬请期待'),
                   ),
                   const SizedBox(height: 32),
                   Text(
@@ -394,20 +396,22 @@ class ProfilePage extends StatelessWidget {
                       ),
                     ),
                     child: Column(
-                      children: const [
-                        _ListTileItem(
+                      children: [
+                        const _ListTileItem(
                           title: '版本',
                           trailingText: 'v1.0.0',
                         ),
-                        Divider(height: 1),
+                        const Divider(height: 1),
                         _ListTileItem(
                           title: '隐私政策',
                           isChevron: true,
+                          onTap: () => _showSnackBar(context, '隐私政策将在发布前上线'),
                         ),
-                        Divider(height: 1),
+                        const Divider(height: 1),
                         _ListTileItem(
                           title: '使用条款',
                           isChevron: true,
+                          onTap: () => _showSnackBar(context, '使用条款将在发布前上线'),
                         ),
                       ],
                     ),
@@ -590,48 +594,57 @@ class _ButtonRowItem extends StatelessWidget {
     required this.title,
     this.trailingText,
     this.isChevron = false,
+    this.onTap,
   });
 
   final IconData icon;
   final String title;
   final String? trailingText;
   final bool isChevron;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: HanaColors.surfaceContainerLow,
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
         borderRadius: BorderRadius.circular(16),
-      ),
-      child: Row(
-        children: [
-          Icon(icon, color: HanaColors.primary),
-          const SizedBox(width: 16),
-          Expanded(
-            child: Text(
-              title,
-              style: const TextStyle(
-                fontWeight: FontWeight.w500,
-                color: HanaColors.onSurface,
-              ),
-            ),
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: HanaColors.surfaceContainerLow,
+            borderRadius: BorderRadius.circular(16),
           ),
-          if (trailingText != null)
-            Text(
-              trailingText!,
-              style: TextStyle(
-                fontSize: 12,
-                color: HanaColors.onSurfaceVariant.withAlpha(179),
+          child: Row(
+            children: [
+              Icon(icon, color: HanaColors.primary),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Text(
+                  title,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w500,
+                    color: HanaColors.onSurface,
+                  ),
+                ),
               ),
-            ),
-          if (isChevron)
-            Icon(
-              Icons.chevron_right,
-              color: HanaColors.onSurfaceVariant.withAlpha(102),
-            ),
-        ],
+              if (trailingText != null)
+                Text(
+                  trailingText!,
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: HanaColors.onSurfaceVariant.withAlpha(179),
+                  ),
+                ),
+              if (isChevron)
+                Icon(
+                  Icons.chevron_right,
+                  color: HanaColors.onSurfaceVariant.withAlpha(102),
+                ),
+            ],
+          ),
+        ),
       ),
     );
   }

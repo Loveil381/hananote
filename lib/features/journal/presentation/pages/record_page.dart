@@ -55,10 +55,6 @@ class RecordPage extends StatelessWidget {
                   elevation: 0,
                   scrolledUnderElevation: 0,
                   centerTitle: true,
-                  leading: IconButton(
-                    icon: const Icon(Icons.notes, color: HanaColors.primary),
-                    onPressed: () {},
-                  ),
                   title: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -86,15 +82,7 @@ class RecordPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  actions: [
-                    IconButton(
-                      icon: const Icon(
-                        Icons.history_edu,
-                        color: HanaColors.primary,
-                      ),
-                      onPressed: () {},
-                    ),
-                  ],
+                  actions: const [],
                 ),
               ),
             ),

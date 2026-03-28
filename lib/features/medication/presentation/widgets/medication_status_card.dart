@@ -35,71 +35,64 @@ class MedicationStatusCard extends StatelessWidget {
     return Material(
       color: HanaColors.surfaceContainerLowest,
       borderRadius: BorderRadius.circular(16),
-      child: InkWell(
-        onTap: () {},
-        borderRadius: BorderRadius.circular(16),
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Row(
-            children: [
-              // Left Icon
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Row(
+          children: [
+            Container(
+              width: 48,
+              height: 48,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: accentColor.withAlpha(77),
+              ),
+              child: Center(
+                child: Icon(
+                  Icons.medication,
+                  color: accentColor,
+                  size: 24,
+                ),
+              ),
+            ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    name,
+                    style: theme.textTheme.bodyLarge?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: HanaColors.onSurface,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    '$dosage • $time',
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      color: HanaColors.onSurfaceVariant,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            if (isTaken)
               Container(
-                width: 48,
-                height: 48,
-                decoration: BoxDecoration(
+                width: 24,
+                height: 24,
+                decoration: const BoxDecoration(
                   shape: BoxShape.circle,
-                  color: accentColor.withAlpha(77), // ~30%
+                  color: HanaColors.primary,
                 ),
-                child: Center(
+                child: const Center(
                   child: Icon(
-                    Icons.medication,
-                    color: accentColor,
-                    size: 24,
+                    Icons.check,
+                    color: HanaColors.onPrimary,
+                    size: 16,
                   ),
                 ),
               ),
-              const SizedBox(width: 16),
-              // Middle Info
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      name,
-                      style: theme.textTheme.bodyLarge?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: HanaColors.onSurface,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      '$dosage · $time',
-                      style: theme.textTheme.bodyMedium?.copyWith(
-                        color: HanaColors.onSurfaceVariant,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              // Right Status
-              if (isTaken)
-                Container(
-                  width: 24,
-                  height: 24,
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: HanaColors.primary,
-                  ),
-                  child: const Center(
-                    child: Icon(
-                      Icons.check,
-                      color: HanaColors.onPrimary,
-                      size: 16,
-                    ),
-                  ),
-                ),
-            ],
-          ),
+          ],
         ),
       ),
     );

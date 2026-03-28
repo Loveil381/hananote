@@ -34,10 +34,6 @@ class DataPage extends StatelessWidget {
               scrolledUnderElevation: 0,
               centerTitle: false,
               titleSpacing: 0,
-              leading: IconButton(
-                icon: const Icon(Icons.arrow_back, color: HanaColors.primary),
-                onPressed: () {},
-              ),
               title: const Text(
                 '数据',
                 style: TextStyle(
@@ -204,15 +200,15 @@ class _LoadedView extends StatelessWidget {
             ...state.reports.map((report) {
               final summary = report.readings
                   .take(3)
-                  .map((reading) => '${reading.type.displayName}: ${reading.value}')
+                  .map((reading) =>
+                      '${reading.type.displayName}: ${reading.value}')
                   .join(' / ');
               return Padding(
                 padding: const EdgeInsets.only(bottom: 12),
                 child: _HistoryCard(
                   date: dateFormat.format(report.testDate),
                   summary: summary,
-                  onTap: () =>
-                      context.push('/data/add_report?id=${report.id}'),
+                  onTap: () => context.push('/data/add_report?id=${report.id}'),
                 ),
               );
             }),

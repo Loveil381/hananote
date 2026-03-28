@@ -31,10 +31,6 @@ class TimelinePage extends StatelessWidget {
               elevation: 0,
               scrolledUnderElevation: 0,
               centerTitle: true,
-              leading: IconButton(
-                icon: const Icon(Icons.settings, color: HanaColors.primary),
-                onPressed: () {},
-              ),
               title: const Text(
                 '时间线',
                 style: TextStyle(
@@ -45,15 +41,6 @@ class TimelinePage extends StatelessWidget {
                   letterSpacing: -0.5,
                 ),
               ),
-              actions: [
-                IconButton(
-                  icon: const Icon(
-                    Icons.calendar_today,
-                    color: HanaColors.primary,
-                  ),
-                  onPressed: () {},
-                ),
-              ],
             ),
           ),
         ),
@@ -70,7 +57,8 @@ class TimelinePage extends StatelessWidget {
                 child: CircularProgressIndicator(color: HanaColors.primary),
               ),
             TimelineError(:final message) => Center(child: Text(message)),
-            TimelineLoaded(:final events) => _TimelineLoadedView(events: events),
+            TimelineLoaded(:final events) =>
+              _TimelineLoadedView(events: events),
           };
         },
       ),
@@ -125,7 +113,7 @@ class _TimelineLoadedView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (events.isEmpty) {
-      return const Center(child: Text('还没有可展示的时间线事件'));
+      return const Center(child: Text('暂无可展示的时间线记录'));
     }
 
     return ListView.separated(
