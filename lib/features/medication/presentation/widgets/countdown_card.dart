@@ -209,7 +209,9 @@ class _CountdownCardState extends State<CountdownCard> {
                           borderRadius: BorderRadius.circular(24),
                         ),
                         child: Text(
-                          '${widget.drugName} · ${widget.dosage} · ${widget.route}',
+                          '${widget.drugName} · '
+                          '${widget.dosage} · '
+                          '${widget.route}',
                           style: theme.textTheme.bodySmall?.copyWith(
                             color: HanaColors.onPrimaryContainer,
                             fontWeight: FontWeight.bold,

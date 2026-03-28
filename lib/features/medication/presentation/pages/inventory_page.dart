@@ -107,7 +107,7 @@ class _InventoryPageState extends State<InventoryPage> {
                     const SizedBox(height: 4),
                     if (status.daysRemaining != null)
                       Text(
-                        l10n.daysLeft(status.daysRemaining!.toString()),
+                        l10n.daysLeft(status.daysRemaining!),
                         style: theme.textTheme.bodyMedium?.copyWith(
                           color: isLowStock
                               ? theme.colorScheme.error
@@ -117,7 +117,7 @@ class _InventoryPageState extends State<InventoryPage> {
                       )
                     else
                       Text(
-                        'No stock info',
+                        l10n.inventoryDataUnavailable,
                         style: theme.textTheme.bodyMedium?.copyWith(
                           color: theme.colorScheme.onSurface.withAlpha(128),
                         ),

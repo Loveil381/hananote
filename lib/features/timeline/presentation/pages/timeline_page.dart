@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hananote/app/theme/hana_colors.dart';
 import 'package:hananote/core/l10n/arb/app_localizations.dart';
+import 'package:hananote/features/timeline/domain/entities/enums.dart';
 import 'package:hananote/features/timeline/domain/entities/timeline_event.dart';
 import 'package:hananote/features/timeline/presentation/bloc/timeline_bloc.dart';
 import 'package:hananote/features/timeline/presentation/bloc/timeline_state.dart';

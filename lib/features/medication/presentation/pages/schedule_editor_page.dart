@@ -352,8 +352,10 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(l10n.scheduleTimes,
-            style: Theme.of(context).textTheme.titleMedium),
+        Text(
+          l10n.scheduleTimes,
+          style: Theme.of(context).textTheme.titleMedium,
+        ),
         const SizedBox(height: 8),
         for (int i = 0; i < currentTimes.length; i++)
           Padding(

@@ -335,7 +335,8 @@ class ProfilePage extends StatelessWidget {
                                     child: Text(
                                       l10n.delete,
                                       style: const TextStyle(
-                                          color: HanaColors.error),
+                                        color: HanaColors.error,
+                                      ),
                                     ),
                                   ),
                                 ],
