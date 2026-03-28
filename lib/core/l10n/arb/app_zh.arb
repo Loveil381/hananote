@@ -5,8 +5,8 @@
   "error": "错误",
   "ok": "确定",
   "cancel": "取消",
-  "goodMorning": "早上好",
-  "goodAfternoon": "下午好",
+  "goodMorning": "早安",
+  "goodAfternoon": "午安",
   "goodEvening": "晚上好",
   "addDrug": "添加药物",
   "editDrug": "编辑药物",
@@ -14,19 +14,19 @@
   "genericName": "通用名",
   "dosage": "剂量",
   "frequency": "频率",
-  "takeDose": "记录服药",
+  "takeDose": "服药",
   "skipDose": "跳过",
   "save": "保存",
   "delete": "删除",
   "confirm": "确认",
   "inventory": "库存",
   "remaining": "剩余",
-  "lowStock": "库存不足",
+  "lowStock": "库存偏低",
   "daysLeft": "剩余 {days} 天",
   "@daysLeft": {
     "placeholders": {
       "days": {
-        "type": "String",
+        "type": "int",
         "example": "5"
       }
     }
@@ -43,7 +43,7 @@
   "completedDose": "已完成",
   "noActiveDrugs": "暂无启用药物",
   "addFirstDrug": "添加你的第一种药物",
-  "category": "分类",
+  "category": "类别",
   "route": "给药方式",
   "unit": "单位",
   "notes": "备注",
@@ -53,7 +53,7 @@
   "active": "启用中",
   "inactive": "未启用",
   "today": "今天",
-  "medications": "药物",
+  "medications": "用药",
   "photoGallery": "加密相册",
   "addPhoto": "添加照片",
   "takePhoto": "拍照",
@@ -61,9 +61,101 @@
   "photoEmptyTitle": "还没有加密照片",
   "photoEmptyDescription": "你的照片经过端到端加密，只有你能看到。",
   "photoDeleteTitle": "删除照片",
-  "photoDeleteMessage": "这将删除加密文件及其记录。",
+  "photoDeleteMessage": "这将同时删除加密文件和记录。",
   "retry": "重试",
   "fileSize": "文件大小",
   "errorFallbackTitle": "出了点问题",
-  "errorFallbackDescription": "请重新打开应用。如果问题持续，请联系支持。"
+  "errorFallbackDescription": "请重新打开应用。如果问题持续存在，请联系支持。",
+  "nextDose": "下次用药",
+  "todayCompleted": "今日已完成 ✅",
+  "hourUnit": "小时",
+  "minuteUnit": "分钟",
+  "hrtDay": "HRT 第 {days} 天",
+  "@hrtDay": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "takenDoses": "已服药",
+  "pendingDoses": "待服药",
+  "allDay": "全天",
+  "noMedicationRecords": "暂无用药记录",
+  "profile": "我的",
+  "myMedications": "我的用药",
+  "drugCount": "{count} 种在用",
+  "@drugCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "inventoryDaysRemaining": "剩余 {days} 天",
+  "@inventoryDaysRemaining": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "inventoryDataUnavailable": "库存数据暂不可用",
+  "medicationPlan": "用药方案",
+  "manageEditSchedules": "管理与编辑方案",
+  "privacySecurity": "隐私与安全",
+  "appLock": "应用锁",
+  "privacyMode": "隐私模式",
+  "privacyModeEnabled": "最近任务中隐藏应用内容",
+  "privacyModeDisabled": "最近任务中显示应用内容",
+  "wipeAllData": "清除全部数据",
+  "wipeAllDataTitle": "清除全部数据",
+  "wipeAllDataMessage": "此操作会永久删除应用中的所有加密数据，且无法恢复。",
+  "dataBackup": "数据备份",
+  "exportBackup": "导出备份",
+  "importBackup": "导入恢复",
+  "generatePdf": "生成 PDF",
+  "backupToolsComingSoon": "备份工具仍在开发中",
+  "settingsComingSoon": "设置功能即将上线",
+  "notificationsComingSoon": "通知功能即将上线",
+  "inventoryComingSoon": "库存功能即将上线",
+  "about": "关于",
+  "version": "版本",
+  "privacyPolicy": "隐私政策",
+  "termsOfUse": "使用条款",
+  "privacyPolicyPending": "隐私政策将在发布前上线",
+  "termsPending": "使用条款将在发布前上线",
+  "timeline": "时间线",
+  "noTimelineEvents": "暂无时间线事件",
+  "logMedication": "记录服药",
+  "writeJournal": "写日记",
+  "addBloodTest": "添加血检",
+  "data": "数据",
+  "hormoneOverview": "激素概览",
+  "addReport": "添加报告",
+  "history": "历史记录",
+  "pkSimulator": "PK 模拟器",
+  "noUpdatesYet": "暂无更新",
+  "lastUpdated": "最后更新：{date}",
+  "@lastUpdated": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "noBloodTestHistory": "暂无血检历史记录",
+  "startDate": "开始日期",
+  "selectDate": "选择日期",
+  "endDateOptional": "结束日期（可选）",
+  "noEndDate": "无结束日期",
+  "daily": "每天",
+  "everyNDays": "每隔 N 天",
+  "weekly": "每周",
+  "timesPerDay": "每日次数：",
+  "everyPrefix": "每隔 ",
+  "daySuffix": " 天",
+  "dayOfWeek": "星期几：",
+  "scheduleTimes": "服药时间",
+  "required": "必填"
 }

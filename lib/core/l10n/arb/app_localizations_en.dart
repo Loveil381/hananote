@@ -75,8 +75,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get lowStock => 'Low Stock';
 
   @override
-  String daysLeft(String days) {
-    return '$days Days Left';
+  String daysLeft(int days) {
+    return '$days days left';
   }
 
   @override
@@ -164,4 +164,206 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get errorFallbackDescription =>
       'Please reopen the app. If the problem continues, contact support.';
+
+  @override
+  String get nextDose => 'Next dose';
+
+  @override
+  String get todayCompleted => 'Completed for today ✅';
+
+  @override
+  String get hourUnit => 'hours';
+
+  @override
+  String get minuteUnit => 'minutes';
+
+  @override
+  String hrtDay(int days) {
+    return 'HRT Day $days';
+  }
+
+  @override
+  String get takenDoses => 'Taken doses';
+
+  @override
+  String get pendingDoses => 'Pending doses';
+
+  @override
+  String get allDay => 'All day';
+
+  @override
+  String get noMedicationRecords => 'No medication records yet';
+
+  @override
+  String get profile => 'Profile';
+
+  @override
+  String get myMedications => 'My Medications';
+
+  @override
+  String drugCount(int count) {
+    return '$count active';
+  }
+
+  @override
+  String inventoryDaysRemaining(int days) {
+    return '$days days left';
+  }
+
+  @override
+  String get inventoryDataUnavailable => 'Inventory data unavailable';
+
+  @override
+  String get medicationPlan => 'Medication Plan';
+
+  @override
+  String get manageEditSchedules => 'Manage and edit schedules';
+
+  @override
+  String get privacySecurity => 'Privacy & Security';
+
+  @override
+  String get appLock => 'App lock';
+
+  @override
+  String get privacyMode => 'Privacy mode';
+
+  @override
+  String get privacyModeEnabled => 'Hide app content in recents';
+
+  @override
+  String get privacyModeDisabled => 'Show app content in recents';
+
+  @override
+  String get wipeAllData => 'Wipe all data';
+
+  @override
+  String get wipeAllDataTitle => 'Wipe all data';
+
+  @override
+  String get wipeAllDataMessage =>
+      'This will permanently delete all encrypted app data and cannot be undone.';
+
+  @override
+  String get dataBackup => 'Data backup';
+
+  @override
+  String get exportBackup => 'Export backup';
+
+  @override
+  String get importBackup => 'Import backup';
+
+  @override
+  String get generatePdf => 'Generate PDF';
+
+  @override
+  String get backupToolsComingSoon => 'Backup tools are still in development';
+
+  @override
+  String get settingsComingSoon => 'Settings are coming soon';
+
+  @override
+  String get notificationsComingSoon => 'Notifications are coming soon';
+
+  @override
+  String get inventoryComingSoon => 'Inventory management is coming soon';
+
+  @override
+  String get about => 'About';
+
+  @override
+  String get version => 'Version';
+
+  @override
+  String get privacyPolicy => 'Privacy Policy';
+
+  @override
+  String get termsOfUse => 'Terms of Use';
+
+  @override
+  String get privacyPolicyPending =>
+      'Privacy policy will be available before release';
+
+  @override
+  String get termsPending => 'Terms of use will be available before release';
+
+  @override
+  String get timeline => 'Timeline';
+
+  @override
+  String get noTimelineEvents => 'No timeline events yet';
+
+  @override
+  String get logMedication => 'Log medication';
+
+  @override
+  String get writeJournal => 'Write journal';
+
+  @override
+  String get addBloodTest => 'Add blood test';
+
+  @override
+  String get data => 'Data';
+
+  @override
+  String get hormoneOverview => 'Hormone overview';
+
+  @override
+  String get addReport => 'Add report';
+
+  @override
+  String get history => 'History';
+
+  @override
+  String get pkSimulator => 'PK Simulator';
+
+  @override
+  String get noUpdatesYet => 'No updates yet';
+
+  @override
+  String lastUpdated(String date) {
+    return 'Last updated: $date';
+  }
+
+  @override
+  String get noBloodTestHistory => 'No blood test history yet';
+
+  @override
+  String get startDate => 'Start date';
+
+  @override
+  String get selectDate => 'Select date';
+
+  @override
+  String get endDateOptional => 'End date (optional)';
+
+  @override
+  String get noEndDate => 'No end date';
+
+  @override
+  String get daily => 'Daily';
+
+  @override
+  String get everyNDays => 'Every N days';
+
+  @override
+  String get weekly => 'Weekly';
+
+  @override
+  String get timesPerDay => 'Times per day:';
+
+  @override
+  String get everyPrefix => 'Every ';
+
+  @override
+  String get daySuffix => ' days';
+
+  @override
+  String get dayOfWeek => 'Day of week:';
+
+  @override
+  String get scheduleTimes => 'Schedule times';
+
+  @override
+  String get required => 'Required';
 }

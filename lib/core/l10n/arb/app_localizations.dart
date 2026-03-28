@@ -235,8 +235,8 @@ abstract class AppLocalizations {
   /// No description provided for @daysLeft.
   ///
   /// In en, this message translates to:
-  /// **'{days} Days Left'**
-  String daysLeft(String days);
+  /// **'{days} days left'**
+  String daysLeft(int days);
 
   /// No description provided for @nextTime.
   ///
@@ -399,6 +399,390 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Please reopen the app. If the problem continues, contact support.'**
   String get errorFallbackDescription;
+
+  /// No description provided for @nextDose.
+  ///
+  /// In en, this message translates to:
+  /// **'Next dose'**
+  String get nextDose;
+
+  /// No description provided for @todayCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed for today ✅'**
+  String get todayCompleted;
+
+  /// No description provided for @hourUnit.
+  ///
+  /// In en, this message translates to:
+  /// **'hours'**
+  String get hourUnit;
+
+  /// No description provided for @minuteUnit.
+  ///
+  /// In en, this message translates to:
+  /// **'minutes'**
+  String get minuteUnit;
+
+  /// No description provided for @hrtDay.
+  ///
+  /// In en, this message translates to:
+  /// **'HRT Day {days}'**
+  String hrtDay(int days);
+
+  /// No description provided for @takenDoses.
+  ///
+  /// In en, this message translates to:
+  /// **'Taken doses'**
+  String get takenDoses;
+
+  /// No description provided for @pendingDoses.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending doses'**
+  String get pendingDoses;
+
+  /// No description provided for @allDay.
+  ///
+  /// In en, this message translates to:
+  /// **'All day'**
+  String get allDay;
+
+  /// No description provided for @noMedicationRecords.
+  ///
+  /// In en, this message translates to:
+  /// **'No medication records yet'**
+  String get noMedicationRecords;
+
+  /// No description provided for @profile.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get profile;
+
+  /// No description provided for @myMedications.
+  ///
+  /// In en, this message translates to:
+  /// **'My Medications'**
+  String get myMedications;
+
+  /// No description provided for @drugCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} active'**
+  String drugCount(int count);
+
+  /// No description provided for @inventoryDaysRemaining.
+  ///
+  /// In en, this message translates to:
+  /// **'{days} days left'**
+  String inventoryDaysRemaining(int days);
+
+  /// No description provided for @inventoryDataUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Inventory data unavailable'**
+  String get inventoryDataUnavailable;
+
+  /// No description provided for @medicationPlan.
+  ///
+  /// In en, this message translates to:
+  /// **'Medication Plan'**
+  String get medicationPlan;
+
+  /// No description provided for @manageEditSchedules.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage and edit schedules'**
+  String get manageEditSchedules;
+
+  /// No description provided for @privacySecurity.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy & Security'**
+  String get privacySecurity;
+
+  /// No description provided for @appLock.
+  ///
+  /// In en, this message translates to:
+  /// **'App lock'**
+  String get appLock;
+
+  /// No description provided for @privacyMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy mode'**
+  String get privacyMode;
+
+  /// No description provided for @privacyModeEnabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide app content in recents'**
+  String get privacyModeEnabled;
+
+  /// No description provided for @privacyModeDisabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Show app content in recents'**
+  String get privacyModeDisabled;
+
+  /// No description provided for @wipeAllData.
+  ///
+  /// In en, this message translates to:
+  /// **'Wipe all data'**
+  String get wipeAllData;
+
+  /// No description provided for @wipeAllDataTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Wipe all data'**
+  String get wipeAllDataTitle;
+
+  /// No description provided for @wipeAllDataMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'This will permanently delete all encrypted app data and cannot be undone.'**
+  String get wipeAllDataMessage;
+
+  /// No description provided for @dataBackup.
+  ///
+  /// In en, this message translates to:
+  /// **'Data backup'**
+  String get dataBackup;
+
+  /// No description provided for @exportBackup.
+  ///
+  /// In en, this message translates to:
+  /// **'Export backup'**
+  String get exportBackup;
+
+  /// No description provided for @importBackup.
+  ///
+  /// In en, this message translates to:
+  /// **'Import backup'**
+  String get importBackup;
+
+  /// No description provided for @generatePdf.
+  ///
+  /// In en, this message translates to:
+  /// **'Generate PDF'**
+  String get generatePdf;
+
+  /// No description provided for @backupToolsComingSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Backup tools are still in development'**
+  String get backupToolsComingSoon;
+
+  /// No description provided for @settingsComingSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings are coming soon'**
+  String get settingsComingSoon;
+
+  /// No description provided for @notificationsComingSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications are coming soon'**
+  String get notificationsComingSoon;
+
+  /// No description provided for @inventoryComingSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Inventory management is coming soon'**
+  String get inventoryComingSoon;
+
+  /// No description provided for @about.
+  ///
+  /// In en, this message translates to:
+  /// **'About'**
+  String get about;
+
+  /// No description provided for @version.
+  ///
+  /// In en, this message translates to:
+  /// **'Version'**
+  String get version;
+
+  /// No description provided for @privacyPolicy.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy Policy'**
+  String get privacyPolicy;
+
+  /// No description provided for @termsOfUse.
+  ///
+  /// In en, this message translates to:
+  /// **'Terms of Use'**
+  String get termsOfUse;
+
+  /// No description provided for @privacyPolicyPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy policy will be available before release'**
+  String get privacyPolicyPending;
+
+  /// No description provided for @termsPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Terms of use will be available before release'**
+  String get termsPending;
+
+  /// No description provided for @timeline.
+  ///
+  /// In en, this message translates to:
+  /// **'Timeline'**
+  String get timeline;
+
+  /// No description provided for @noTimelineEvents.
+  ///
+  /// In en, this message translates to:
+  /// **'No timeline events yet'**
+  String get noTimelineEvents;
+
+  /// No description provided for @logMedication.
+  ///
+  /// In en, this message translates to:
+  /// **'Log medication'**
+  String get logMedication;
+
+  /// No description provided for @writeJournal.
+  ///
+  /// In en, this message translates to:
+  /// **'Write journal'**
+  String get writeJournal;
+
+  /// No description provided for @addBloodTest.
+  ///
+  /// In en, this message translates to:
+  /// **'Add blood test'**
+  String get addBloodTest;
+
+  /// No description provided for @data.
+  ///
+  /// In en, this message translates to:
+  /// **'Data'**
+  String get data;
+
+  /// No description provided for @hormoneOverview.
+  ///
+  /// In en, this message translates to:
+  /// **'Hormone overview'**
+  String get hormoneOverview;
+
+  /// No description provided for @addReport.
+  ///
+  /// In en, this message translates to:
+  /// **'Add report'**
+  String get addReport;
+
+  /// No description provided for @history.
+  ///
+  /// In en, this message translates to:
+  /// **'History'**
+  String get history;
+
+  /// No description provided for @pkSimulator.
+  ///
+  /// In en, this message translates to:
+  /// **'PK Simulator'**
+  String get pkSimulator;
+
+  /// No description provided for @noUpdatesYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No updates yet'**
+  String get noUpdatesYet;
+
+  /// No description provided for @lastUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Last updated: {date}'**
+  String lastUpdated(String date);
+
+  /// No description provided for @noBloodTestHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'No blood test history yet'**
+  String get noBloodTestHistory;
+
+  /// No description provided for @startDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Start date'**
+  String get startDate;
+
+  /// No description provided for @selectDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Select date'**
+  String get selectDate;
+
+  /// No description provided for @endDateOptional.
+  ///
+  /// In en, this message translates to:
+  /// **'End date (optional)'**
+  String get endDateOptional;
+
+  /// No description provided for @noEndDate.
+  ///
+  /// In en, this message translates to:
+  /// **'No end date'**
+  String get noEndDate;
+
+  /// No description provided for @daily.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily'**
+  String get daily;
+
+  /// No description provided for @everyNDays.
+  ///
+  /// In en, this message translates to:
+  /// **'Every N days'**
+  String get everyNDays;
+
+  /// No description provided for @weekly.
+  ///
+  /// In en, this message translates to:
+  /// **'Weekly'**
+  String get weekly;
+
+  /// No description provided for @timesPerDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Times per day:'**
+  String get timesPerDay;
+
+  /// No description provided for @everyPrefix.
+  ///
+  /// In en, this message translates to:
+  /// **'Every '**
+  String get everyPrefix;
+
+  /// No description provided for @daySuffix.
+  ///
+  /// In en, this message translates to:
+  /// **' days'**
+  String get daySuffix;
+
+  /// No description provided for @dayOfWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'Day of week:'**
+  String get dayOfWeek;
+
+  /// No description provided for @scheduleTimes.
+  ///
+  /// In en, this message translates to:
+  /// **'Schedule times'**
+  String get scheduleTimes;
+
+  /// No description provided for @required.
+  ///
+  /// In en, this message translates to:
+  /// **'Required'**
+  String get required;
 }
 
 class _AppLocalizationsDelegate

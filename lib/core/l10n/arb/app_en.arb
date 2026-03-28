@@ -22,11 +22,11 @@
   "inventory": "Inventory",
   "remaining": "Remaining",
   "lowStock": "Low Stock",
-  "daysLeft": "{days} Days Left",
+  "daysLeft": "{days} days left",
   "@daysLeft": {
     "placeholders": {
       "days": {
-        "type": "String",
+        "type": "int",
         "example": "5"
       }
     }
@@ -65,5 +65,97 @@
   "retry": "Retry",
   "fileSize": "File size",
   "errorFallbackTitle": "Something went wrong",
-  "errorFallbackDescription": "Please reopen the app. If the problem continues, contact support."
+  "errorFallbackDescription": "Please reopen the app. If the problem continues, contact support.",
+  "nextDose": "Next dose",
+  "todayCompleted": "Completed for today ✅",
+  "hourUnit": "hours",
+  "minuteUnit": "minutes",
+  "hrtDay": "HRT Day {days}",
+  "@hrtDay": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "takenDoses": "Taken doses",
+  "pendingDoses": "Pending doses",
+  "allDay": "All day",
+  "noMedicationRecords": "No medication records yet",
+  "profile": "Profile",
+  "myMedications": "My Medications",
+  "drugCount": "{count} active",
+  "@drugCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "inventoryDaysRemaining": "{days} days left",
+  "@inventoryDaysRemaining": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "inventoryDataUnavailable": "Inventory data unavailable",
+  "medicationPlan": "Medication Plan",
+  "manageEditSchedules": "Manage and edit schedules",
+  "privacySecurity": "Privacy & Security",
+  "appLock": "App lock",
+  "privacyMode": "Privacy mode",
+  "privacyModeEnabled": "Hide app content in recents",
+  "privacyModeDisabled": "Show app content in recents",
+  "wipeAllData": "Wipe all data",
+  "wipeAllDataTitle": "Wipe all data",
+  "wipeAllDataMessage": "This will permanently delete all encrypted app data and cannot be undone.",
+  "dataBackup": "Data backup",
+  "exportBackup": "Export backup",
+  "importBackup": "Import backup",
+  "generatePdf": "Generate PDF",
+  "backupToolsComingSoon": "Backup tools are still in development",
+  "settingsComingSoon": "Settings are coming soon",
+  "notificationsComingSoon": "Notifications are coming soon",
+  "inventoryComingSoon": "Inventory management is coming soon",
+  "about": "About",
+  "version": "Version",
+  "privacyPolicy": "Privacy Policy",
+  "termsOfUse": "Terms of Use",
+  "privacyPolicyPending": "Privacy policy will be available before release",
+  "termsPending": "Terms of use will be available before release",
+  "timeline": "Timeline",
+  "noTimelineEvents": "No timeline events yet",
+  "logMedication": "Log medication",
+  "writeJournal": "Write journal",
+  "addBloodTest": "Add blood test",
+  "data": "Data",
+  "hormoneOverview": "Hormone overview",
+  "addReport": "Add report",
+  "history": "History",
+  "pkSimulator": "PK Simulator",
+  "noUpdatesYet": "No updates yet",
+  "lastUpdated": "Last updated: {date}",
+  "@lastUpdated": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "noBloodTestHistory": "No blood test history yet",
+  "startDate": "Start date",
+  "selectDate": "Select date",
+  "endDateOptional": "End date (optional)",
+  "noEndDate": "No end date",
+  "daily": "Daily",
+  "everyNDays": "Every N days",
+  "weekly": "Weekly",
+  "timesPerDay": "Times per day:",
+  "everyPrefix": "Every ",
+  "daySuffix": " days",
+  "dayOfWeek": "Day of week:",
+  "scheduleTimes": "Schedule times",
+  "required": "Required"
 }
