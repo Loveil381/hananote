@@ -21,6 +21,21 @@ class TodayPage extends StatelessWidget {
   /// Creates a [TodayPage].
   const TodayPage({super.key});
 
+  static const _dailyQuotes = [
+    '你的每一点坚持，都在悄悄靠近更自在的自己。',
+    '身体的变化需要时间，温柔地陪自己走下去。',
+    '记录今天，也是为了更清楚地看见未来的你。',
+    '稳定和耐心，本身就是一种很强大的力量。',
+    '你认真照顾自己的样子，值得被温柔对待。',
+    '哪怕只是小小一步，也是在向想成为的自己前进。',
+    '请相信，今天的努力会在未来慢慢发光。',
+    '允许自己慢一点，但不要否认已经走过的路。',
+    '你的感受和变化都真实而重要，值得被认真记录。',
+    '愿你在每一次回看时，都能看见自己的勇敢。',
+    '今天也请把关心留给自己一点点。',
+    '你不是在追赶谁，你是在稳稳地成为自己。',
+  ];
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -36,6 +51,7 @@ class TodayPage extends StatelessWidget {
         : hour < 18
             ? '\u5348\u5B89'
             : '\u665A\u4E0A\u597D';
+    final dailyQuote = _dailyQuotes[DateTime.now().day % _dailyQuotes.length];
 
     return Scaffold(
       backgroundColor: HanaColors.background,
@@ -323,8 +339,7 @@ class TodayPage extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 24),
               child: QuoteCard(
-                quote:
-                    '\u6BCF\u4E00\u5929\u90FD\u5728\u9760\u8FD1\u66F4\u81EA\u5728\u7684\u81EA\u5DF1\u3002',
+                quote: dailyQuote,
               ),
             ),
           ),
