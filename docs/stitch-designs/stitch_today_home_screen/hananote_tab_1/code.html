@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>花笺 HanaNote - 记录</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Be+Vietnam+Pro:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary-fixed": "#ffd6fe",
+              "surface-container-highest": "#e8e1da",
+              "primary-container": "#ffb7c5",
+              "on-tertiary": "#ffffff",
+              "tertiary": "#ac332a",
+              "secondary": "#745475",
+              "on-error": "#ffffff",
+              "surface-container": "#f4ede5",
+              "primary-fixed": "#ffd9df",
+              "surface-container-low": "#f9f3eb",
+              "on-tertiary-container": "#9f2922",
+              "tertiary-fixed-dim": "#ffb4aa",
+              "background": "#fff8f1",
+              "outline": "#837375",
+              "on-primary": "#ffffff",
+              "surface-tint": "#864e5a",
+              "on-surface-variant": "#514345",
+              "inverse-primary": "#fbb3c1",
+              "error": "#ba1a1a",
+              "error-container": "#ffdad6",
+              "outline-variant": "#d6c2c4",
+              "primary": "#864e5a",
+              "surface-dim": "#dfd9d1",
+              "tertiary-container": "#ffb9b0",
+              "on-error-container": "#93000a",
+              "on-tertiary-fixed-variant": "#8b1a16",
+              "secondary-fixed-dim": "#e2bae1",
+              "on-secondary-fixed-variant": "#5a3c5d",
+              "surface-bright": "#fff8f1",
+              "on-surface": "#1e1b17",
+              "on-secondary": "#ffffff",
+              "tertiary-fixed": "#ffdad5",
+              "on-background": "#1e1b17",
+              "inverse-on-surface": "#f7f0e8",
+              "surface-variant": "#e8e1da",
+              "on-secondary-fixed": "#2b112f",
+              "on-primary-fixed": "#360c19",
+              "on-tertiary-fixed": "#410001",
+              "inverse-surface": "#33302b",
+              "primary-fixed-dim": "#fbb3c1",
+              "surface": "#fff8f1",
+              "surface-container-high": "#eee7df",
+              "on-primary-fixed-variant": "#6b3743",
+              "surface-container-lowest": "#ffffff",
+              "secondary-container": "#fcd3fb",
+              "on-primary-container": "#7b4551",
+              "on-secondary-container": "#78587a"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Be Vietnam Pro"],
+              "label": ["Be Vietnam Pro"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #fff8f1;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .hana-glass {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body text-on-surface min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#FFF8F1]/80 dark:bg-slate-900/80 backdrop-blur-xl flex items-center justify-between px-6 h-16 w-full shadow-sm shadow-[#864E5A]/5">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#864E5A] dark:text-[#FFB7C5] hover:opacity-80 transition-opacity active:scale-95 duration-200 ease-out cursor-pointer" data-icon="notes">notes</span>
+</div>
+<div class="flex flex-col items-center">
+<h1 class="text-[#864E5A] dark:text-[#FFB7C5] font-['Plus_Jakarta_Sans'] font-semibold text-lg tracking-tight">今日记录</h1>
+<span class="text-[10px] text-[#864E5A]/60 font-medium tracking-widest uppercase">3月25日</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#864E5A] dark:text-[#FFB7C5] hover:opacity-80 transition-opacity active:scale-95 duration-200 ease-out cursor-pointer" data-icon="history_edu">history_edu</span>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-24 px-6 max-w-2xl mx-auto space-y-6">
+<!-- Welcome Section -->
+<section class="mb-8 px-2">
+<h2 class="text-3xl font-headline font-extrabold text-primary tracking-tight leading-tight">
+                你好，<br/>今天想留下什么回忆？
+            </h2>
+</section>
+<!-- Card 1: Photo Record -->
+<div class="group relative overflow-hidden rounded-lg bg-surface-container-lowest p-6 shadow-sm border border-primary-container/10 active:scale-[0.98] transition-all cursor-pointer">
+<div class="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 bg-primary-container/10 rounded-full blur-3xl"></div>
+<div class="flex items-start justify-between relative z-10">
+<div class="space-y-3">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-2xl bg-primary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="camera">camera</span>
+</div>
+<div>
+<h3 class="text-xl font-bold text-on-surface">拍照记录</h3>
+<p class="text-sm text-on-surface-variant/70">加密存储，只有你能看到</p>
+</div>
+</div>
+<div class="pt-4 flex items-center gap-2">
+<span class="px-3 py-1 bg-primary-container/30 text-primary text-xs font-semibold rounded-full">上次：3月22日</span>
+</div>
+</div>
+<div class="h-16 w-16 opacity-20 transform rotate-12 group-hover:rotate-0 transition-transform">
+<span class="material-symbols-outlined text-5xl text-primary" data-icon="photo_library">photo_library</span>
+</div>
+</div>
+</div>
+<!-- Card 2: Body Measurement -->
+<div class="group relative overflow-hidden rounded-lg bg-surface-container-lowest p-6 shadow-sm border border-secondary-container/10 active:scale-[0.98] transition-all cursor-pointer">
+<div class="absolute bottom-0 left-0 -ml-8 -mb-8 w-32 h-32 bg-secondary-container/20 rounded-full blur-3xl"></div>
+<div class="flex items-start justify-between relative z-10">
+<div class="space-y-3">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-2xl bg-secondary-container/40 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-2xl" data-icon="straighten">straighten</span>
+</div>
+<div>
+<h3 class="text-xl font-bold text-on-surface">身体测量</h3>
+<p class="text-sm text-on-surface-variant/70">记录身体的每一点变化</p>
+</div>
+</div>
+<div class="pt-4 flex items-center gap-2">
+<span class="px-3 py-1 bg-secondary-container/50 text-secondary text-xs font-semibold rounded-full">胸围 86.2cm · 3月20日</span>
+</div>
+</div>
+<div class="h-16 w-16 opacity-20 transform -rotate-12 group-hover:rotate-0 transition-transform">
+<span class="material-symbols-outlined text-5xl text-secondary" data-icon="monitoring">monitoring</span>
+</div>
+</div>
+</div>
+<!-- Card 3: Mood Diary -->
+<div class="group relative overflow-hidden rounded-lg bg-surface-container-lowest p-6 shadow-sm border border-surface-variant/20 active:scale-[0.98] transition-all cursor-pointer">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-[#FCD3FB]/10 rounded-full blur-[60px]"></div>
+<div class="flex items-start justify-between relative z-10">
+<div class="space-y-3">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-2xl bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="menu_book">menu_book</span>
+</div>
+<div>
+<h3 class="text-xl font-bold text-on-surface">心情日记</h3>
+<p class="text-sm text-on-surface-variant/70">今天想说点什么</p>
+</div>
+</div>
+<div class="pt-4 flex items-center gap-2">
+<span class="px-3 py-1 bg-surface-container-high text-on-surface-variant text-xs font-semibold rounded-full">已连续记录 7 天</span>
+</div>
+</div>
+<div class="h-16 w-16 opacity-20 transform rotate-6 group-hover:rotate-0 transition-transform">
+<span class="material-symbols-outlined text-5xl text-on-surface-variant" data-icon="auto_stories">auto_stories</span>
+</div>
+</div>
+</div>
+<!-- Decorative Illustration Area -->
+<div class="pt-8 text-center opacity-40">
+<div class="inline-block relative">
+<span class="material-symbols-outlined text-6xl text-primary/30" data-icon="spa">spa</span>
+<div class="absolute -top-1 -right-1 w-3 h-3 bg-primary-container rounded-full animate-pulse"></div>
+</div>
+<p class="mt-4 text-xs tracking-widest text-primary/60 font-medium">每一次记录都是对未来的温柔期许</p>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-[#FFF8F1]/90 dark:bg-slate-900/90 backdrop-blur-xl rounded-t-[2rem] z-50 shadow-[0_-4px_24px_rgba(134,78,90,0.06)] border-t border-[#864E5A]/10 dark:border-[#FFB7C5]/10">
+<!-- Today Tab -->
+<div class="flex flex-col items-center justify-center text-[#864E5A]/50 dark:text-[#FFB7C5]/40 px-3 py-1.5 hover:bg-[#FFB7C5]/10 dark:hover:bg-[#FFB7C5]/5 transition-all active:scale-90 duration-300 cubic-bezier(0.34, 1.56, 0.64, 1) cursor-pointer">
+<span class="material-symbols-outlined mb-1" data-icon="today">today</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-medium tracking-wide">今日</span>
+</div>
+<!-- Record Tab (Active) -->
+<div class="flex flex-col items-center justify-center bg-gradient-to-br from-[#FFB7C5]/20 to-[#FCD3FB]/20 text-[#864E5A] dark:text-[#FFB7C5] rounded-2xl px-3 py-1.5 active:scale-90 duration-300 cubic-bezier(0.34, 1.56, 0.64, 1) cursor-default">
+<span class="material-symbols-outlined mb-1" data-icon="edit_note" style="font-variation-settings: 'FILL' 1;">edit_note</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-medium tracking-wide">记录</span>
+</div>
+<!-- Trace Tab -->
+<div class="flex flex-col items-center justify-center text-[#864E5A]/50 dark:text-[#FFB7C5]/40 px-3 py-1.5 hover:bg-[#FFB7C5]/10 dark:hover:bg-[#FFB7C5]/5 transition-all active:scale-90 duration-300 cubic-bezier(0.34, 1.56, 0.64, 1) cursor-pointer">
+<span class="material-symbols-outlined mb-1" data-icon="auto_graph">auto_graph</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-medium tracking-wide">轨迹</span>
+</div>
+<!-- Data Tab -->
+<div class="flex flex-col items-center justify-center text-[#864E5A]/50 dark:text-[#FFB7C5]/40 px-3 py-1.5 hover:bg-[#FFB7C5]/10 dark:hover:bg-[#FFB7C5]/5 transition-all active:scale-90 duration-300 cubic-bezier(0.34, 1.56, 0.64, 1) cursor-pointer">
+<span class="material-symbols-outlined mb-1" data-icon="analytics">analytics</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-medium tracking-wide">数据</span>
+</div>
+<!-- Profile Tab -->
+<div class="flex flex-col items-center justify-center text-[#864E5A]/50 dark:text-[#FFB7C5]/40 px-3 py-1.5 hover:bg-[#FFB7C5]/10 dark:hover:bg-[#FFB7C5]/5 transition-all active:scale-90 duration-300 cubic-bezier(0.34, 1.56, 0.64, 1) cursor-pointer">
+<span class="material-symbols-outlined mb-1" data-icon="person">person</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-medium tracking-wide">我的</span>
+</div>
+</nav>
+</body></html>

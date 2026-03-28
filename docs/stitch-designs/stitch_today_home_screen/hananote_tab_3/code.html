@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>花笺 (HanaNote) - 数据</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Be+Vietnam+Pro:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary-fixed": "#410001",
+              "surface-tint": "#864e5a",
+              "primary-fixed": "#ffd9df",
+              "outline-variant": "#d6c2c4",
+              "error": "#ba1a1a",
+              "on-secondary": "#ffffff",
+              "inverse-surface": "#33302b",
+              "inverse-on-surface": "#f7f0e8",
+              "primary-fixed-dim": "#fbb3c1",
+              "background": "#fff8f1",
+              "secondary-container": "#fcd3fb",
+              "primary-container": "#ffb7c5",
+              "tertiary": "#ac332a",
+              "outline": "#837375",
+              "secondary-fixed": "#ffd6fe",
+              "tertiary-fixed-dim": "#ffb4aa",
+              "tertiary-container": "#ffb9b0",
+              "on-tertiary-fixed-variant": "#8b1a16",
+              "on-primary": "#ffffff",
+              "secondary-fixed-dim": "#e2bae1",
+              "surface-variant": "#e8e1da",
+              "on-primary-fixed-variant": "#6b3743",
+              "surface-dim": "#dfd9d1",
+              "error-container": "#ffdad6",
+              "surface-container-lowest": "#ffffff",
+              "on-secondary-fixed-variant": "#5a3c5d",
+              "on-tertiary": "#ffffff",
+              "surface-container-highest": "#e8e1da",
+              "surface-bright": "#fff8f1",
+              "on-primary-fixed": "#360c19",
+              "on-error-container": "#93000a",
+              "on-error": "#ffffff",
+              "on-surface": "#1e1b17",
+              "inverse-primary": "#fbb3c1",
+              "surface": "#fff8f1",
+              "primary": "#864e5a",
+              "on-secondary-fixed": "#2b112f",
+              "on-secondary-container": "#78587a",
+              "surface-container-low": "#f9f3eb",
+              "surface-container": "#f4ede5",
+              "on-background": "#1e1b17",
+              "tertiary-fixed": "#ffdad5",
+              "secondary": "#745475",
+              "surface-container-high": "#eee7df",
+              "on-tertiary-container": "#9f2922",
+              "on-surface-variant": "#514345",
+              "on-primary-container": "#7b4551"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Be Vietnam Pro"],
+              "label": ["Be Vietnam Pro"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      body {
+        background-color: #fff8f1;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .glass-nav {
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+      .custom-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .chart-area {
+        background: linear-gradient(180deg, rgba(134, 78, 90, 0.03) 0%, rgba(134, 78, 90, 0) 100%);
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body text-on-surface antialiased pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#FFF8F1]/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm shadow-[#864E5A]/5">
+<div class="flex justify-between items-center px-6 h-16 w-full">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#864E5A]" data-icon="arrow_back">arrow_back</span>
+<h1 class="font-headline text-lg font-semibold tracking-tight text-[#864E5A]">我的检查</h1>
+</div>
+<button class="flex items-center gap-1 bg-primary text-white px-4 py-1.5 rounded-full text-sm font-medium active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+                添加报告
+            </button>
+</div>
+</header>
+<main class="mt-20 px-4 space-y-8">
+<!-- Hormone Indicator Cards (Horizontal Scroll) -->
+<section>
+<div class="flex items-end justify-between px-2 mb-4">
+<h2 class="font-headline text-xl font-bold text-primary tracking-tight">激素指标</h2>
+<span class="text-xs text-on-surface-variant/60">最近更新：2026.03.15</span>
+</div>
+<div class="flex overflow-x-auto gap-4 custom-scrollbar pb-2 px-2">
+<!-- Estradiol Card -->
+<div class="min-w-[160px] bg-surface-container-lowest p-5 rounded-3xl shadow-[0_4px_20px_rgba(134,78,90,0.04)] border border-primary/5">
+<div class="flex justify-between items-start mb-4">
+<span class="text-xs font-medium text-on-surface-variant/70">雌二醇</span>
+<div class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.4)]"></div>
+</div>
+<div class="space-y-1">
+<div class="text-2xl font-headline font-bold text-primary">156</div>
+<div class="text-[10px] text-on-surface-variant/60 uppercase tracking-wider">pg/mL</div>
+</div>
+<div class="mt-4 pt-4 border-t border-primary/5 flex flex-col">
+<span class="text-[10px] text-on-surface-variant/40">目标范围</span>
+<span class="text-xs font-medium text-on-surface">100 - 200</span>
+</div>
+</div>
+<!-- Testosterone Card -->
+<div class="min-w-[160px] bg-surface-container-lowest p-5 rounded-3xl shadow-[0_4px_20px_rgba(134,78,90,0.04)] border border-primary/5">
+<div class="flex justify-between items-start mb-4">
+<span class="text-xs font-medium text-on-surface-variant/70">睾酮</span>
+<div class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.4)]"></div>
+</div>
+<div class="space-y-1">
+<div class="text-2xl font-headline font-bold text-primary">32</div>
+<div class="text-[10px] text-on-surface-variant/60 uppercase tracking-wider">ng/dL</div>
+</div>
+<div class="mt-4 pt-4 border-t border-primary/5 flex flex-col">
+<span class="text-[10px] text-on-surface-variant/40">目标范围</span>
+<span class="text-xs font-medium text-on-surface">&lt; 50</span>
+</div>
+</div>
+<!-- Prolactin Card (Warning State) -->
+<div class="min-w-[160px] bg-surface-container-lowest p-5 rounded-3xl shadow-[0_4px_20px_rgba(134,78,90,0.04)] border border-tertiary-container/30">
+<div class="flex justify-between items-start mb-4">
+<span class="text-xs font-medium text-on-surface-variant/70">泌乳素</span>
+<div class="w-2 h-2 rounded-full bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.4)]"></div>
+</div>
+<div class="space-y-1">
+<div class="text-2xl font-headline font-bold text-tertiary">28</div>
+<div class="text-[10px] text-on-surface-variant/60 uppercase tracking-wider">ng/mL</div>
+</div>
+<div class="mt-4 pt-4 border-t border-primary/5 flex flex-col">
+<span class="text-[10px] text-on-surface-variant/40">阈值</span>
+<span class="text-xs font-medium text-on-surface">≥ 25</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Trend Chart Section -->
+<section class="bg-surface-container-low rounded-[2rem] p-6 mx-2">
+<div class="flex items-center justify-between mb-8">
+<h2 class="font-headline text-lg font-bold text-primary">雌二醇趋势</h2>
+<div class="flex bg-surface-container-high rounded-full p-1">
+<button class="px-3 py-1 text-[10px] font-medium text-on-surface-variant/60">1月</button>
+<button class="px-3 py-1 text-[10px] font-bold text-primary bg-surface-container-lowest rounded-full shadow-sm">3月</button>
+<button class="px-3 py-1 text-[10px] font-medium text-on-surface-variant/60">6月</button>
+<button class="px-3 py-1 text-[10px] font-medium text-on-surface-variant/60">1年</button>
+</div>
+</div>
+<!-- Visual Chart Simulation -->
+<div class="relative h-48 w-full">
+<!-- Target Range Shaded Area -->
+<div class="absolute inset-x-0 top-12 bottom-12 bg-emerald-500/5 border-y border-emerald-500/10 flex items-center justify-end pr-2">
+<span class="text-[8px] text-emerald-600/50 font-bold uppercase tracking-widest -rotate-90">Target</span>
+</div>
+<!-- Grid Lines -->
+<div class="absolute inset-0 flex flex-col justify-between py-2">
+<div class="w-full border-b border-on-surface-variant/5"></div>
+<div class="w-full border-b border-on-surface-variant/5"></div>
+<div class="w-full border-b border-on-surface-variant/5"></div>
+<div class="w-full border-b border-on-surface-variant/5"></div>
+</div>
+<!-- Line & Points SVG -->
+<svg class="absolute inset-0 h-full w-full overflow-visible" preserveaspectratio="none" viewbox="0 0 300 100">
+<path d="M0,80 Q75,60 150,40 T300,45" fill="none" stroke="#FFB7C5" stroke-linecap="round" stroke-width="3"></path>
+<circle cx="0" cy="80" fill="#864E5A" r="4" stroke="white" stroke-width="2"></circle>
+<circle cx="150" cy="40" fill="#864E5A" r="4" stroke="white" stroke-width="2"></circle>
+<circle cx="300" cy="45" fill="#864E5A" r="4" stroke="white" stroke-width="2"></circle>
+</svg>
+<!-- X Axis Labels -->
+<div class="absolute -bottom-6 inset-x-0 flex justify-between text-[10px] text-on-surface-variant/40 font-medium">
+<span>1月</span>
+<span>2月</span>
+<span>3月</span>
+</div>
+</div>
+<div class="mt-10 flex items-center justify-center gap-4">
+<div class="flex items-center gap-1.5">
+<div class="w-2 h-2 rounded-full bg-primary-container"></div>
+<span class="text-[10px] text-on-surface-variant/60">实测数值</span>
+</div>
+<div class="flex items-center gap-1.5">
+<div class="w-2 h-2 rounded-sm bg-emerald-500/10 border border-emerald-500/20"></div>
+<span class="text-[10px] text-on-surface-variant/60">目标健康域</span>
+</div>
+</div>
+</section>
+<!-- Recent Records List -->
+<section class="space-y-4 pb-8">
+<h2 class="font-headline text-xl font-bold text-primary tracking-tight px-2">历史记录</h2>
+<div class="space-y-3">
+<!-- Record Card 1 -->
+<div class="bg-surface-container-lowest rounded-2xl p-4 flex items-center justify-between border-l-4 border-emerald-400 shadow-[0_2px_12px_rgba(134,78,90,0.03)] active:scale-[0.98] transition-all">
+<div class="space-y-1">
+<div class="text-sm font-bold text-on-surface">2026.03.15</div>
+<div class="text-xs text-on-surface-variant/70">雌二醇: 156 / 睾酮: 32</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant/30" data-icon="chevron_right">chevron_right</span>
+</div>
+<!-- Record Card 2 -->
+<div class="bg-surface-container-lowest rounded-2xl p-4 flex items-center justify-between border-l-4 border-emerald-400 shadow-[0_2px_12px_rgba(134,78,90,0.03)] active:scale-[0.98] transition-all">
+<div class="space-y-1">
+<div class="text-sm font-bold text-on-surface">2026.02.12</div>
+<div class="text-xs text-on-surface-variant/70">雌二醇: 142 / 睾酮: 35</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant/30" data-icon="chevron_right">chevron_right</span>
+</div>
+<!-- Record Card 3 (Warning) -->
+<div class="bg-surface-container-lowest rounded-2xl p-4 flex items-center justify-between border-l-4 border-amber-400 shadow-[0_2px_12px_rgba(134,78,90,0.03)] active:scale-[0.98] transition-all">
+<div class="space-y-1">
+<div class="text-sm font-bold text-on-surface">2026.01.10</div>
+<div class="text-xs text-on-surface-variant/70">雌二醇: 98 / 睾酮: 31</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant/30" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-[#FFF8F1]/80 dark:bg-slate-900/80 backdrop-blur-lg rounded-t-[32px] border-t border-[#FFB7C5]/10 shadow-[0_-4px_24px_rgba(134,78,90,0.06)]">
+<a class="flex flex-col items-center justify-center text-[#864E5A]/40 dark:text-slate-400 active:scale-90 transition-all duration-300 ease-out" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="today">today</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-medium tracking-wide">今日</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#864E5A]/40 dark:text-slate-400 active:scale-90 transition-all duration-300 ease-out" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="edit_note">edit_note</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-medium tracking-wide">记录</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#864E5A]/40 dark:text-slate-400 active:scale-90 transition-all duration-300 ease-out" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="auto_graph">auto_graph</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-medium tracking-wide">轨迹</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#864E5A] dark:text-[#FFB7C5] bg-[#FFB7C5]/20 rounded-2xl px-4 py-1 active:scale-90 transition-all duration-300 ease-out" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="analytics" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-medium tracking-wide">数据</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#864E5A]/40 dark:text-slate-400 active:scale-90 transition-all duration-300 ease-out" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="person">person</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-medium tracking-wide">我的</span>
+</a>
+</nav>
+</body></html>
