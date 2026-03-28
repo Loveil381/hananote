@@ -90,7 +90,7 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<Either<Failure, bool>> authenticateBiometric() {
     return _guard(() async {
       return _localAuthentication.authenticate(
-        localizedReason: '\u89E3\u9501 HanaNote',
+        localizedReason: '请验证身份以访问 HanaNote',
         options: const AuthenticationOptions(
           biometricOnly: true,
           stickyAuth: true,
