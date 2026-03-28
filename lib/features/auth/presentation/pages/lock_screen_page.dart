@@ -149,7 +149,11 @@ class _LockScreenPageState extends State<LockScreenPage> {
   void _handleNumberTap(String digit) {
     if (_pin.length >= 6) return;
     clearError();
-    setState(() => _pin += digit);
+    final newPin = _pin + digit;
+    setState(() => _pin = newPin);
+    if (newPin.length == 6) {
+      Future.microtask(_handleConfirm);
+    }
   }
 
   void _handleBackspace() {

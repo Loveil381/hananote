@@ -179,6 +179,6 @@ class AuthCubit extends Cubit<AuthState> {
 
   void _emitErrorWithFallback(String message, AuthState fallback) {
     emit(AuthState.error(message: message));
-    emit(fallback);
+    Future.microtask(() => emit(fallback));
   }
 }
