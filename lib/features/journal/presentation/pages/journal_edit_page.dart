@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hananote/app/di/injection.dart';
 import 'package:hananote/app/theme/hana_colors.dart';
+import 'package:hananote/core/utils/id_generator.dart';
 import 'package:hananote/features/journal/domain/entities/enums.dart';
 import 'package:hananote/features/journal/domain/entities/journal_entry.dart';
 import 'package:hananote/features/journal/domain/usecases/add_journal_entry.dart';
@@ -61,7 +62,7 @@ class _JournalEditPageState extends State<JournalEditPage> {
 
     if (widget.existingEntry == null) {
       final newEntry = JournalEntry(
-        id: now.millisecondsSinceEpoch.toString(),
+        id: IdGenerator.generate(),
         date: now,
         content: content,
         mood: _selectedMood,

@@ -2,6 +2,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hananote/features/medication/domain/entities/drug.dart';
 import 'package:hananote/features/medication/domain/entities/enums.dart';
 import 'package:hananote/features/medication/domain/entities/medication_schedule.dart'
@@ -29,23 +30,23 @@ void main() {
   late _MockSettingsBloc settingsBloc;
   late _MockTodayScheduleBloc todayScheduleBloc;
   final quotes = [
-    '你的每一点坚持，都在悄悄靠近更自在的自己。',
-    '身体的变化需要时间，温柔地陪自己走下去。',
-    '记录今天，也是为了更清楚地看见未来的你。',
-    '稳定和耐心，本身就是一种很强大的力量。',
-    '你认真照顾自己的样子，值得被温柔对待。',
-    '哪怕只是小小一步，也是在向想成为的自己前进。',
-    '请相信，今天的努力会在未来慢慢发光。',
-    '允许自己慢一点，但不要否认已经走过的路。',
-    '你的感受和变化都真实而重要，值得被认真记录。',
-    '愿你在每一次回看时，都能看见自己的勇敢。',
-    '今天也请把关心留给自己一点点。',
-    '你不是在追赶谁，你是在稳稳地成为自己。',
+    '你照顾自己的每一步，都会在未来开花。',
+    '慢一点没有关系，稳定前进就很好。',
+    '今天也值得为身体的变化感到期待。',
+    '温柔对待自己，就是最长期有效的计划。',
+    '记录不是负担，它会帮你看见自己的成长。',
+    '哪怕只有一点点进步，也值得认真庆祝。',
+    '身体在用自己的节奏回应你，给它一点时间。',
+    '你已经走了很远，今天也继续向前。',
+    '科学记录和温柔陪伴，可以同时存在。',
+    '每一次坚持，都会让明天更安心。',
+    '不必急着证明什么，你正在慢慢成为自己。',
+    '今天的你，也值得被认真照顾。',
   ];
 
   final loadedSettings = SettingsState.loaded(
     profile: UserProfile(
-      displayName: '\u5C0F\u82B1',
+      displayName: '小花',
       hrtDayCount: 123,
       hrtStartDate: DateTime(2025, 11, 26),
     ),
@@ -81,10 +82,10 @@ void main() {
   ) async {
     final hour = DateTime.now().hour;
     final greeting = hour < 12
-        ? '\u65E9\u5B89'
+        ? '早安'
         : hour < 18
-            ? '\u5348\u5B89'
-            : '\u665A\u4E0A\u597D';
+            ? '午安'
+            : '晚上好';
 
     await tester.pumpWidget(
       MaterialApp(
@@ -98,11 +99,8 @@ void main() {
       ),
     );
 
-    expect(
-      find.text('$greeting\uFF0C\u5C0F\u82B1'),
-      findsOneWidget,
-    );
-    expect(find.text('HRT \u7B2C 123 \u5929'), findsOneWidget);
+    expect(find.text('$greeting，小花'), findsOneWidget);
+    expect(find.text('HRT 第 123 天'), findsOneWidget);
   });
 
   testWidgets('renders the daily quote selected from the rotation list', (
@@ -158,5 +156,33 @@ void main() {
     );
 
     expect(find.text(expectedQuote), findsOneWidget);
+  });
+
+  testWidgets('avatar navigates to the profile page', (tester) async {
+    final router = GoRouter(
+      routes: [
+        GoRoute(
+          path: '/',
+          builder: (context, state) => MultiBlocProvider(
+            providers: [
+              BlocProvider<SettingsBloc>.value(value: settingsBloc),
+              BlocProvider<TodayScheduleBloc>.value(value: todayScheduleBloc),
+            ],
+            child: const TodayPage(),
+          ),
+        ),
+        GoRoute(
+          path: '/profile',
+          builder: (context, state) => const Scaffold(body: Text('profile')),
+        ),
+      ],
+    );
+
+    await tester.pumpWidget(MaterialApp.router(routerConfig: router));
+
+    await tester.tap(find.byIcon(Icons.person));
+    await tester.pumpAndSettle();
+
+    expect(find.text('profile'), findsOneWidget);
   });
 }

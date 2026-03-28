@@ -1,9 +1,6 @@
-// Release prep note: This page keeps long medication copy and route literals
-// on one line because wrapping makes the card layout harder to scan.
-// ignore_for_file: lines_longer_than_80_chars
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hananote/app/theme/hana_colors.dart';
 import 'package:hananote/features/medication/domain/usecases/get_today_schedule.dart';
 import 'package:hananote/features/medication/presentation/bloc/today_schedule_bloc.dart';
@@ -22,18 +19,18 @@ class TodayPage extends StatelessWidget {
   const TodayPage({super.key});
 
   static const _dailyQuotes = [
-    '你的每一点坚持，都在悄悄靠近更自在的自己。',
-    '身体的变化需要时间，温柔地陪自己走下去。',
-    '记录今天，也是为了更清楚地看见未来的你。',
-    '稳定和耐心，本身就是一种很强大的力量。',
-    '你认真照顾自己的样子，值得被温柔对待。',
-    '哪怕只是小小一步，也是在向想成为的自己前进。',
-    '请相信，今天的努力会在未来慢慢发光。',
-    '允许自己慢一点，但不要否认已经走过的路。',
-    '你的感受和变化都真实而重要，值得被认真记录。',
-    '愿你在每一次回看时，都能看见自己的勇敢。',
-    '今天也请把关心留给自己一点点。',
-    '你不是在追赶谁，你是在稳稳地成为自己。',
+    '你照顾自己的每一步，都会在未来开花。',
+    '慢一点没有关系，稳定前进就很好。',
+    '今天也值得为身体的变化感到期待。',
+    '温柔对待自己，就是最长期有效的计划。',
+    '记录不是负担，它会帮你看见自己的成长。',
+    '哪怕只有一点点进步，也值得认真庆祝。',
+    '身体在用自己的节奏回应你，给它一点时间。',
+    '你已经走了很远，今天也继续向前。',
+    '科学记录和温柔陪伴，可以同时存在。',
+    '每一次坚持，都会让明天更安心。',
+    '不必急着证明什么，你正在慢慢成为自己。',
+    '今天的你，也值得被认真照顾。',
   ];
 
   @override
@@ -42,15 +39,11 @@ class TodayPage extends StatelessWidget {
     final settingsState = context.watch<SettingsBloc>().state;
     final displayName = settingsState is SettingsLoaded
         ? settingsState.profile.displayName
-        : 'HanaNote \u7528\u6237';
+        : 'HanaNote 用户';
     final hrtDays =
         settingsState is SettingsLoaded ? settingsState.profile.hrtDayCount : 0;
-    final hour = DateTime.now().hour;
-    final greeting = hour < 12
-        ? '\u65E9\u5B89'
-        : hour < 18
-            ? '\u5348\u5B89'
-            : '\u665A\u4E0A\u597D';
+    final greeting = _greetingForHour(DateTime.now().hour);
+
     return Scaffold(
       backgroundColor: HanaColors.background,
       body: SafeArea(
@@ -75,17 +68,19 @@ class TodayPage extends StatelessWidget {
                           size: 28,
                         ),
                         Container(
-                          width: 40,
-                          height: 40,
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: HanaColors.surfaceContainerHigh,
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 8,
                           ),
-                          child: const Center(
-                            child: Icon(
-                              Icons.calendar_today,
+                          decoration: BoxDecoration(
+                            color: HanaColors.surfaceContainerHigh,
+                            borderRadius: BorderRadius.circular(999),
+                          ),
+                          child: Text(
+                            _todayLabel(),
+                            style: theme.textTheme.labelMedium?.copyWith(
                               color: HanaColors.onSurfaceVariant,
-                              size: 20,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                         ),
@@ -104,27 +99,33 @@ class TodayPage extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              [greeting, displayName].join('\uFF0C'),
+                              '$greeting，$displayName',
                               style: theme.textTheme.headlineLarge?.copyWith(
                                 color: HanaColors.onSurface,
                               ),
                             ),
                             const SizedBox(height: 4),
                             Text(
-                              ['HRT \u7B2C ', hrtDays.toString(), ' \u5929']
-                                  .join(),
+                              'HRT 第 $hrtDays 天',
                               style: theme.textTheme.bodyMedium?.copyWith(
                                 color: HanaColors.onSurfaceVariant,
                               ),
                             ),
                           ],
                         ),
-                        const CircleAvatar(
-                          radius: 28,
-                          backgroundColor: HanaColors.primaryContainer,
-                          child: Icon(
-                            Icons.person,
-                            color: HanaColors.onPrimaryContainer,
+                        Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            borderRadius: BorderRadius.circular(28),
+                            onTap: () => context.push('/profile'),
+                            child: const CircleAvatar(
+                              radius: 28,
+                              backgroundColor: HanaColors.primaryContainer,
+                              child: Icon(
+                                Icons.person,
+                                color: HanaColors.onPrimaryContainer,
+                              ),
+                            ),
                           ),
                         ),
                       ],
@@ -167,13 +168,13 @@ class TodayPage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(message, style: const TextStyle(color: Colors.red)),
+                Text(message, style: const TextStyle(color: HanaColors.error)),
                 const SizedBox(height: 16),
                 ElevatedButton(
                   onPressed: () => context
                       .read<TodayScheduleBloc>()
                       .add(const LoadTodaySchedule()),
-                  child: const Text('\u91CD\u8BD5'),
+                  child: const Text('重试'),
                 ),
               ],
             ),
@@ -186,7 +187,7 @@ class TodayPage extends StatelessWidget {
             const SliverFillRemaining(
               hasScrollBody: false,
               child: Center(
-                child: Text('\u6682\u65E0\u7528\u836F\u8BB0\u5F55'),
+                child: Text('暂无用药记录'),
               ),
             ),
           ];
@@ -242,7 +243,7 @@ class TodayPage extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Text(
-                  '\u5DF2\u670D\u836F',
+                  '已服药',
                   style: theme.textTheme.titleMedium?.copyWith(
                     color: HanaColors.onSurface,
                     fontWeight: FontWeight.bold,
@@ -259,7 +260,7 @@ class TodayPage extends StatelessWidget {
                     final firstTime = item.scheduledDateTimes.firstOrNull;
                     final timeText = firstTime != null
                         ? '${firstTime.hour.toString().padLeft(2, '0')}:${firstTime.minute.toString().padLeft(2, '0')}'
-                        : '\u5168\u5929';
+                        : '全天';
 
                     return Padding(
                       padding: const EdgeInsets.only(bottom: 12),
@@ -286,7 +287,7 @@ class TodayPage extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Text(
-                  '\u5F85\u670D\u836F',
+                  '待服药',
                   style: theme.textTheme.titleMedium?.copyWith(
                     color: HanaColors.onSurface,
                     fontWeight: FontWeight.bold,
@@ -303,7 +304,7 @@ class TodayPage extends StatelessWidget {
                     final firstTime = item.scheduledDateTimes.firstOrNull;
                     final timeText = firstTime != null
                         ? '${firstTime.hour.toString().padLeft(2, '0')}:${firstTime.minute.toString().padLeft(2, '0')}'
-                        : '\u5168\u5929';
+                        : '全天';
 
                     return Padding(
                       padding: const EdgeInsets.only(bottom: 12),
@@ -312,7 +313,7 @@ class TodayPage extends StatelessWidget {
                         dosage:
                             '${item.schedule.dosageAmount}${item.schedule.dosageUnit.name}',
                         time: timeText,
-                        period: '\u4ECA\u5929',
+                        period: '今天',
                         onTake: () {
                           context.read<TodayScheduleBloc>().add(
                                 LogDoseTodaySchedule(
@@ -346,6 +347,21 @@ class TodayPage extends StatelessWidget {
         return widgets;
       },
     );
+  }
+
+  String _greetingForHour(int hour) {
+    if (hour < 12) {
+      return '早安';
+    }
+    if (hour < 18) {
+      return '午安';
+    }
+    return '晚上好';
+  }
+
+  String _todayLabel() {
+    final now = DateTime.now();
+    return '${now.month}月${now.day}日';
   }
 
   String _quoteForToday() {
