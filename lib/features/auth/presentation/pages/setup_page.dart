@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hananote/app/theme/hana_colors.dart';
 import 'package:hananote/features/auth/presentation/bloc/auth_cubit.dart';
@@ -15,7 +16,9 @@ class SetupPage extends StatefulWidget {
 class _SetupPageState extends State<SetupPage> {
   final _pinController = TextEditingController();
   final _confirmController = TextEditingController();
+
   var _biometricEnabled = false;
+  String? _errorText;
 
   @override
   void dispose() {
@@ -24,9 +27,42 @@ class _SetupPageState extends State<SetupPage> {
     super.dispose();
   }
 
+  void _clearError() {
+    if (_errorText == null) {
+      return;
+    }
+    setState(() => _errorText = null);
+  }
+
+  String? _validatePin() {
+    if (_pinController.text.length != 6 ||
+        _confirmController.text.length != 6) {
+      return '请输入 6 位 PIN';
+    }
+    if (_pinController.text != _confirmController.text) {
+      return '两次输入的密码不一致';
+    }
+    return null;
+  }
+
+  void _submit() {
+    final errorText = _validatePin();
+    if (errorText != null) {
+      setState(() => _errorText = errorText);
+      return;
+    }
+
+    context.read<AuthCubit>().setupPin(
+          _pinController.text,
+          _confirmController.text,
+          biometricEnabled: _biometricEnabled,
+        );
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -64,7 +100,7 @@ class _SetupPageState extends State<SetupPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text(
-                          '守护你的空间',
+                          '创建安全密码',
                           style: TextStyle(
                             fontSize: 28,
                             fontWeight: FontWeight.w700,
@@ -73,7 +109,7 @@ class _SetupPageState extends State<SetupPage> {
                         ),
                         const SizedBox(height: 10),
                         Text(
-                          '设置密码来保护你的数据。',
+                          '设置 6 位 PIN 以保护你的私密健康数据。',
                           style: theme.textTheme.bodyLarge?.copyWith(
                             color: HanaColors.onSurfaceVariant,
                           ),
@@ -84,6 +120,10 @@ class _SetupPageState extends State<SetupPage> {
                           obscureText: true,
                           keyboardType: TextInputType.number,
                           maxLength: 6,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly,
+                          ],
+                          onChanged: (_) => _clearError(),
                           decoration: const InputDecoration(
                             labelText: '密码',
                             prefixIcon: Icon(Icons.lock_outline_rounded),
@@ -101,10 +141,16 @@ class _SetupPageState extends State<SetupPage> {
                           obscureText: true,
                           keyboardType: TextInputType.number,
                           maxLength: 6,
-                          decoration: const InputDecoration(
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly,
+                          ],
+                          onChanged: (_) => _clearError(),
+                          decoration: InputDecoration(
                             labelText: '确认密码',
-                            prefixIcon: Icon(Icons.verified_user_outlined),
-                            focusedBorder: UnderlineInputBorder(
+                            prefixIcon:
+                                const Icon(Icons.verified_user_outlined),
+                            errorText: _errorText,
+                            focusedBorder: const UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: HanaColors.primary,
                                 width: 2,
@@ -118,26 +164,20 @@ class _SetupPageState extends State<SetupPage> {
                           value: _biometricEnabled,
                           onChanged: (value) =>
                               setState(() => _biometricEnabled = value),
-                          title: const Text('可用时使用生物识别'),
+                          title: const Text('启用后使用生物识别'),
                         ),
                         const SizedBox(height: 12),
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
-                            onPressed: () {
-                              context.read<AuthCubit>().setupPin(
-                                    _pinController.text,
-                                    _confirmController.text,
-                                    biometricEnabled: _biometricEnabled,
-                                  );
-                            },
+                            onPressed: _submit,
                             style: ElevatedButton.styleFrom(
                               backgroundColor: HanaColors.primary,
                               foregroundColor: HanaColors.onPrimary,
                             ),
                             child: const Padding(
                               padding: EdgeInsets.symmetric(vertical: 14),
-                              child: Text('继续'),
+                              child: Text('保存'),
                             ),
                           ),
                         ),
