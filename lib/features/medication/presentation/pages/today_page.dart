@@ -13,6 +13,8 @@ import 'package:hananote/features/medication/presentation/widgets/countdown_card
 import 'package:hananote/features/medication/presentation/widgets/medication_status_card.dart';
 import 'package:hananote/features/medication/presentation/widgets/quote_card.dart';
 import 'package:hananote/features/medication/presentation/widgets/upcoming_dose_card.dart';
+import 'package:hananote/features/settings/presentation/bloc/settings_bloc.dart';
+import 'package:hananote/features/settings/presentation/bloc/settings_state.dart';
 
 /// The main dashboard page for the current day's health tracking.
 class TodayPage extends StatelessWidget {
@@ -22,6 +24,18 @@ class TodayPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final settingsState = context.watch<SettingsBloc>().state;
+    final displayName = settingsState is SettingsLoaded
+        ? settingsState.profile.displayName
+        : 'HanaNote \u7528\u6237';
+    final hrtDays =
+        settingsState is SettingsLoaded ? settingsState.profile.hrtDayCount : 0;
+    final hour = DateTime.now().hour;
+    final greeting = hour < 12
+        ? '\u65E9\u5B89'
+        : hour < 18
+            ? '\u5348\u5B89'
+            : '\u665A\u4E0A\u597D';
 
     return Scaffold(
       backgroundColor: HanaColors.background,
@@ -32,7 +46,6 @@ class TodayPage extends StatelessWidget {
             return CustomScrollView(
               physics: const BouncingScrollPhysics(),
               slivers: [
-                // Top App Bar Area
                 SliverToBoxAdapter(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
@@ -67,8 +80,6 @@ class TodayPage extends StatelessWidget {
                   ),
                 ),
                 const SliverToBoxAdapter(child: SizedBox(height: 16)),
-
-                // Greeting Section
                 SliverToBoxAdapter(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -79,14 +90,15 @@ class TodayPage extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              '早安，小花',
+                              [greeting, displayName].join('\uFF0C'),
                               style: theme.textTheme.headlineLarge?.copyWith(
                                 color: HanaColors.onSurface,
                               ),
                             ),
                             const SizedBox(height: 4),
                             Text(
-                              'HRT 第 325 天',
+                              ['HRT \u7B2C ', hrtDays.toString(), ' \u5929']
+                                  .join(),
                               style: theme.textTheme.bodyMedium?.copyWith(
                                 color: HanaColors.onSurfaceVariant,
                               ),
@@ -106,11 +118,7 @@ class TodayPage extends StatelessWidget {
                   ),
                 ),
                 const SliverToBoxAdapter(child: SizedBox(height: 32)),
-
-                // Determine inner content based on state
                 ..._buildStateContent(context, state, theme),
-
-                // Bottom Safe Padding (Avoid tab bar clipping)
                 const SliverPadding(padding: EdgeInsets.only(bottom: 120)),
               ],
             );
@@ -151,7 +159,7 @@ class TodayPage extends StatelessWidget {
                   onPressed: () => context
                       .read<TodayScheduleBloc>()
                       .add(const LoadTodaySchedule()),
-                  child: const Text('重试'),
+                  child: const Text('\u91CD\u8BD5'),
                 ),
               ],
             ),
@@ -164,7 +172,7 @@ class TodayPage extends StatelessWidget {
             const SliverFillRemaining(
               hasScrollBody: false,
               child: Center(
-                child: Text('暂无用药记录'),
+                child: Text('\u6682\u65E0\u7528\u836F\u8BB0\u5F55'),
               ),
             ),
           ];
@@ -174,14 +182,16 @@ class TodayPage extends StatelessWidget {
         TodayScheduleItem? upcoming;
         DateTime? upcomingTime;
 
-        final uncompletedItems = items.where((i) => !i.isCompleted).toList();
+        final uncompletedItems =
+            items.where((item) => !item.isCompleted).toList();
         for (final item in uncompletedItems) {
-          for (final dt in item.scheduledDateTimes) {
-            if (dt.isAfter(now)) {
-              if (upcomingTime == null || dt.isBefore(upcomingTime)) {
-                upcomingTime = dt;
-                upcoming = item;
-              }
+          for (final dateTime in item.scheduledDateTimes) {
+            if (!dateTime.isAfter(now)) {
+              continue;
+            }
+            if (upcomingTime == null || dateTime.isBefore(upcomingTime)) {
+              upcomingTime = dateTime;
+              upcoming = item;
             }
           }
         }
@@ -192,8 +202,8 @@ class TodayPage extends StatelessWidget {
             DateTime.now().add(const Duration(hours: 1));
 
         final widgets = <Widget>[];
-
         final countdownDrug = upcoming ?? items.first;
+
         widgets.addAll([
           SliverToBoxAdapter(
             child: Padding(
@@ -202,8 +212,8 @@ class TodayPage extends StatelessWidget {
                 nextScheduledTime: upcomingTime,
                 isCompleteForToday: uncompletedItems.isEmpty,
                 drugName: countdownDrug.drug.name,
-                dosage: '${countdownDrug.schedule.dosageAmount}'
-                    '${countdownDrug.schedule.dosageUnit.name}',
+                dosage:
+                    '${countdownDrug.schedule.dosageAmount}${countdownDrug.schedule.dosageUnit.name}',
                 route: countdownDrug.schedule.administrationRoute.name,
               ),
             ),
@@ -211,15 +221,14 @@ class TodayPage extends StatelessWidget {
           const SliverToBoxAdapter(child: SizedBox(height: 32)),
         ]);
 
-        // Completed Section
-        final completedItems = items.where((i) => i.isCompleted).toList();
+        final completedItems = items.where((item) => item.isCompleted).toList();
         if (completedItems.isNotEmpty) {
           widgets.addAll([
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Text(
-                  '已完成',
+                  '\u5DF2\u670D\u836F',
                   style: theme.textTheme.titleMedium?.copyWith(
                     color: HanaColors.onSurface,
                     fontWeight: FontWeight.bold,
@@ -234,17 +243,17 @@ class TodayPage extends StatelessWidget {
                 child: Column(
                   children: completedItems.map((item) {
                     final firstTime = item.scheduledDateTimes.firstOrNull;
-                    final timeStr = firstTime != null
+                    final timeText = firstTime != null
                         ? '${firstTime.hour.toString().padLeft(2, '0')}:${firstTime.minute.toString().padLeft(2, '0')}'
-                        : '全天';
+                        : '\u5168\u5929';
 
                     return Padding(
                       padding: const EdgeInsets.only(bottom: 12),
                       child: MedicationStatusCard(
                         name: item.drug.name,
-                        dosage: '${item.schedule.dosageAmount}'
-                            '${item.schedule.dosageUnit.name}',
-                        time: timeStr,
+                        dosage:
+                            '${item.schedule.dosageAmount}${item.schedule.dosageUnit.name}',
+                        time: timeText,
                         isTaken: true,
                         accentColor: HanaColors.primaryFixed,
                       ),
@@ -257,14 +266,13 @@ class TodayPage extends StatelessWidget {
           ]);
         }
 
-        // Upcoming / Uncompleted Section List
         if (uncompletedItems.isNotEmpty) {
           widgets.addAll([
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Text(
-                  '剩余',
+                  '\u5F85\u670D\u836F',
                   style: theme.textTheme.titleMedium?.copyWith(
                     color: HanaColors.onSurface,
                     fontWeight: FontWeight.bold,
@@ -279,18 +287,18 @@ class TodayPage extends StatelessWidget {
                 child: Column(
                   children: uncompletedItems.map((item) {
                     final firstTime = item.scheduledDateTimes.firstOrNull;
-                    final timeStr = firstTime != null
+                    final timeText = firstTime != null
                         ? '${firstTime.hour.toString().padLeft(2, '0')}:${firstTime.minute.toString().padLeft(2, '0')}'
-                        : '全天';
+                        : '\u5168\u5929';
 
                     return Padding(
                       padding: const EdgeInsets.only(bottom: 12),
                       child: UpcomingDoseCard(
                         name: item.drug.name,
-                        dosage: '${item.schedule.dosageAmount}'
-                            '${item.schedule.dosageUnit.name}',
-                        time: timeStr,
-                        period: '预计',
+                        dosage:
+                            '${item.schedule.dosageAmount}${item.schedule.dosageUnit.name}',
+                        time: timeText,
+                        period: '\u4ECA\u5929',
                         onTake: () {
                           context.read<TodayScheduleBloc>().add(
                                 LogDoseTodaySchedule(
@@ -309,13 +317,13 @@ class TodayPage extends StatelessWidget {
           ]);
         }
 
-        // Quote Section
         widgets.add(
           const SliverToBoxAdapter(
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 24),
               child: QuoteCard(
-                quote: '每一天的坚持，都是对自己灵魂负责。',
+                quote:
+                    '\u6BCF\u4E00\u5929\u90FD\u5728\u9760\u8FD1\u66F4\u81EA\u5728\u7684\u81EA\u5DF1\u3002',
               ),
             ),
           ),

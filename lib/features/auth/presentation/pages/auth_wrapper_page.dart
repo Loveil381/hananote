@@ -5,6 +5,8 @@ import 'package:hananote/features/auth/presentation/bloc/auth_cubit.dart';
 import 'package:hananote/features/auth/presentation/bloc/auth_state.dart';
 import 'package:hananote/features/auth/presentation/pages/lock_screen_page.dart';
 import 'package:hananote/features/auth/presentation/pages/setup_page.dart';
+import 'package:hananote/features/settings/presentation/bloc/settings_bloc.dart';
+import 'package:hananote/features/settings/presentation/bloc/settings_event.dart';
 
 /// Root page that switches between setup, lock, and home flows.
 class AuthWrapperPage extends StatelessWidget {
@@ -20,6 +22,7 @@ class AuthWrapperPage extends StatelessWidget {
             ..hideCurrentSnackBar()
             ..showSnackBar(SnackBar(content: Text(state.message)));
         } else if (state is AuthUnlocked) {
+          context.read<SettingsBloc>().add(const LoadSettingsDashboard());
           context.go('/today');
         }
       },

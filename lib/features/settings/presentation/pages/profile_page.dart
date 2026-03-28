@@ -525,7 +525,7 @@ class ProfilePage extends StatelessWidget {
                           children: [
                             const _ListTileItem(
                               title: '版本',
-                              trailingText: 'v0.1.0',
+                              trailingText: 'v1.0.0',
                             ),
                             Divider(
                               height: 1,

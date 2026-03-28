@@ -55,7 +55,7 @@ class AuthCubit extends Cubit<AuthState> {
   }) async {
     if (pin != confirmPin) {
       _emitErrorWithFallback(
-        'PIN confirmation does not match.',
+        '\u4E24\u6B21\u8F93\u5165\u7684\u5BC6\u7801\u4E0D\u4E00\u81F4',
         const AuthState.needsSetup(),
       );
       return;
@@ -115,7 +115,7 @@ class AuthCubit extends Cubit<AuthState> {
         }
 
         _emitErrorWithFallback(
-          'Incorrect PIN.',
+          '\u5BC6\u7801\u9519\u8BEF',
           await _buildLockedState(),
         );
       },

@@ -28,7 +28,7 @@ class HanaNote extends StatelessWidget {
           supportedLocales: AppLocalizations.supportedLocales,
           builder: (context, child) {
             final settingsState = context.watch<SettingsBloc>().state;
-            final blurEnabled = settingsState is! SettingsLoaded ||
+            final blurEnabled = settingsState is SettingsLoaded &&
                 settingsState.settings.blurOverlayEnabled;
 
             return AppBlurOverlay(

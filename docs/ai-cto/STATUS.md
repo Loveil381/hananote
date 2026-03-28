@@ -1,7 +1,7 @@
 # HanaNote STATUS
 
-## 当前轮次: Round 32
-## 当前阶段: 真机运行问题修复 — Settings 延迟加载 / Photo 保存兜底 / PK 文案修正
+## 当前轮次: Round 33
+## 当前阶段: 运行时稳定性 + 数据真实性 + i18n 修正
 ## 产品完成度: 99%
 ## 数据绑定完成度: 5/5
 
@@ -22,7 +22,7 @@
 | 5-Tab shell | ✅ | MainShell + 路由导航 |
 | SecureDatabase | ✅ | SQLCipher + feature tables + migration |
 | CryptoEngine / KeyManager | ✅ | AES-256-GCM + Argon2id + 会话密钥缓存 |
-| Error Boundary | ✅ | FlutterError + ErrorWidget fallback |
+| Error Boundary | ✅ | FlutterError + ErrorWidget fallback UI |
 | App Icon | ✅ | 占位 icon + flutter_launcher_icons 配置 |
 
 ## 待开发
@@ -42,8 +42,11 @@
 ## 本轮交付
 | 项目 | 状态 | 说明 |
 |------|------|------|
-| Settings 延迟加载 | 🔄 | Profile Tab 打开时再加载 dashboard，避免数据库未 open 时查询 |
-| Profile 错误态 | 🔄 | SettingsError 显示错误信息与重试按钮 |
-| Photo 保存兜底 | 🔄 | 大图预缩放 + 失败后回退上一 loaded 状态 |
-| Photo transient error | 🔄 | error → fallback 改为微任务切换，避免连续 emit 覆盖 |
-| PK 文案修正 | 🔄 | 无活跃雌激素药物时显示中文错误信息 |
+| SettingsBloc auth 后加载 | 🔄 | auth 通过后立即 dispatch LoadSettingsDashboard |
+| AppBlurOverlay 逻辑修正 | 🔄 | SettingsInitial 不触发 blur |
+| TodayPage 真实数据 | 🔄 | 问候语 + HRT 天数从 SettingsBloc 获取 |
+| 中文化 | 🔄 | auth/error/notification 字符串统一中文 |
+| SecureDatabase.open 清理 | 🔄 | 去掉无用 password 参数 |
+| Profile 版本号 | 🔄 | v0.1.0 → v1.0.0 |
+| Simulator Dropdown 修正 | 🔄 | initialValue → value |
+| 记忆文件补全 | 🔄 | 创建 PRODUCT-VISION.md + REVIEW-BACKLOG.md |

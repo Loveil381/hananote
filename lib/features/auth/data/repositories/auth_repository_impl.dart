@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:hananote/core/crypto/key_manager.dart';
@@ -62,7 +60,7 @@ class AuthRepositoryImpl implements AuthRepository {
       final verified = await _keyManager.verifyPassword(oldPin);
       if (!verified) {
         throw const _AuthRepositoryException(
-          Failure.auth(message: 'Current PIN is incorrect.'),
+          Failure.auth(message: '\u5F53\u524D\u5BC6\u7801\u4E0D\u6B63\u786E'),
         );
       }
       await _keyManager.initializeKey(newPin);
@@ -92,7 +90,7 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<Either<Failure, bool>> authenticateBiometric() {
     return _guard(() async {
       return _localAuthentication.authenticate(
-        localizedReason: 'Unlock the app',
+        localizedReason: '\u89E3\u9501 HanaNote',
         options: const AuthenticationOptions(
           biometricOnly: true,
           stickyAuth: true,
@@ -104,14 +102,7 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<Either<Failure, void>> openDatabase() {
     return _guard(() async {
-      final key = await _keyManager.getKey();
-      if (key == null) {
-        throw const _AuthRepositoryException(
-          Failure.auth(message: 'Security key is not initialized.'),
-        );
-      }
-
-      final result = await _secureDatabase.open(base64Encode(key));
+      final result = await _secureDatabase.open();
       if (result.isLeft()) {
         throw _AuthRepositoryException(result.getLeft().toNullable()!);
       }

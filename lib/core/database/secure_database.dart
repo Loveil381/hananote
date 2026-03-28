@@ -41,7 +41,7 @@ class SecureDatabase {
   }
 
   /// Opens the encrypted SQLCipher database and runs pending migrations.
-  Future<Either<Failure, Database>> open(String password) async {
+  Future<Either<Failure, Database>> open() async {
     try {
       if (_db != null && _db!.isOpen) return right(_db!);
 

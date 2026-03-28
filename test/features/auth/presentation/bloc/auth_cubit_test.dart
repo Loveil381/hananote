@@ -109,7 +109,7 @@ void main() {
     expect: () => const [
       AuthState.locked(biometricAvailable: true),
       AuthState.unlocking(),
-      AuthState.error(message: 'Incorrect PIN.'),
+      AuthState.error(message: '\u5BC6\u7801\u9519\u8BEF'),
       AuthState.locked(biometricAvailable: true),
     ],
   );

@@ -191,3 +191,8 @@
 - **决定**: SettingsBloc 保持为全局 singleton，但不再在 app 启动时立即 dispatch LoadSettingsDashboard；改为进入 /profile 时再加载。
 - **理由**: dashboard 聚合会访问 medication / inventory 数据，而这些查询依赖 SQLCipher 数据库已经 open。认证完成前触发查询会命中 Database is not open.，导致 Profile Tab 无限 loading。
 - **日期**: 第32轮
+## DEC-037: SettingsBloc 在 auth 通过后立即加载
+- **决定**: AuthWrapperPage 在 AuthUnlocked 时先 dispatch LoadSettingsDashboard 再导航
+- **理由**: DEC-036 将加载延迟到 /profile，但 AppBlurOverlay 和 TodayPage 的问候语都依赖 SettingsLoaded 状态。不加载会导致 blur overlay 行为异常和显示硬编码假数据
+- **替代方案**: 在 app.dart 创建时加载——但此时数据库可能未 open，会触发 DEC-036 描述的问题
+- **日期**: 第33轮
