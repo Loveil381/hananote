@@ -16,6 +16,16 @@ enum HormoneType {
 /// Indicates how close a reading is to the expected target range.
 enum HormoneStatus { normal, warning, critical }
 
+/// Helpers for presenting [HormoneStatus] values in the UI.
+extension HormoneStatusX on HormoneStatus {
+  /// Localized display name.
+  String get displayName => switch (this) {
+        HormoneStatus.normal => '正常',
+        HormoneStatus.warning => '偏离目标',
+        HormoneStatus.critical => '需要关注',
+      };
+}
+
 /// Helpers for presenting and evaluating [HormoneType] values.
 extension HormoneTypeX on HormoneType {
   /// Localized display name used in the UI.

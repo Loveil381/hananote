@@ -27,13 +27,13 @@ void main() {
     when(() => settingsBloc.stream).thenAnswer((_) => const Stream.empty());
   });
 
-  const loadedState = SettingsState.loaded(
+  final loadedState = SettingsState.loaded(
     profile: UserProfile(
       displayName: '小花',
       hrtDayCount: 120,
-      hrtStartDate: DateTime(2025, 1, 1),
+      hrtStartDate: DateTime(2025),
     ),
-    settings: AppSettings(
+    settings: const AppSettings(
       appLockEnabled: true,
       privacyModeEnabled: false,
       blurOverlayEnabled: false,
@@ -76,6 +76,7 @@ void main() {
       ),
     );
 
+    await tester.ensureVisible(find.text('导出备份'));
     await tester.tap(find.text('导出备份'));
     await tester.pump();
 

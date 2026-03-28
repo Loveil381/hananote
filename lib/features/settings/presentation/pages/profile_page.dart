@@ -128,10 +128,10 @@ class ProfilePage extends StatelessWidget {
                 children: [
                   Column(
                     children: [
-                      CircleAvatar(
+                      const CircleAvatar(
                         radius: 48,
                         backgroundColor: HanaColors.primaryContainer,
-                        child: const Icon(
+                        child: Icon(
                           Icons.person,
                           size: 48,
                           color: HanaColors.primary,

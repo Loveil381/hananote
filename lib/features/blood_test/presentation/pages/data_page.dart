@@ -100,7 +100,7 @@ class _LoadedView extends StatelessWidget {
     final dateFormat = DateFormat('yyyy.MM.dd');
     final lastUpdatedText = state.lastUpdated == null
         ? '暂无更新'
-        : '最后更新：${dateFormat.format(state.lastUpdated!)}';
+        : '最近更新：${dateFormat.format(state.lastUpdated!)}';
 
     return SingleChildScrollView(
       padding: const EdgeInsets.fromLTRB(16, 100, 16, 120),
@@ -112,7 +112,7 @@ class _LoadedView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Text(
-                '激素指标',
+                '激素概览',
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                       fontWeight: FontWeight.bold,
                       color: HanaColors.primary,
@@ -132,10 +132,11 @@ class _LoadedView extends StatelessWidget {
             runSpacing: 12,
             children: state.latestReadings.values.map((reading) {
               final status = reading.type.statusFor(reading.value);
+              final valueNumber = reading.value.toStringAsFixed(1);
+              final valueText = '$valueNumber ${reading.type.defaultUnit}';
               return _HormoneCard(
                 name: reading.type.displayName,
-                value:
-                    '${reading.value.toStringAsFixed(1)} ${reading.type.defaultUnit}',
+                value: valueText,
                 subtitle: status.displayName,
                 borderColor: switch (status) {
                   HormoneStatus.normal => const Color(0xFF34D399),
@@ -200,15 +201,19 @@ class _LoadedView extends StatelessWidget {
             ...state.reports.map((report) {
               final summary = report.readings
                   .take(3)
-                  .map((reading) =>
-                      '${reading.type.displayName}: ${reading.value}')
+                  .map(
+                    (reading) =>
+                        '${reading.type.displayName}: ${reading.value}',
+                  )
                   .join(' / ');
               return Padding(
                 padding: const EdgeInsets.only(bottom: 12),
                 child: _HistoryCard(
                   date: dateFormat.format(report.testDate),
                   summary: summary,
-                  onTap: () => context.push('/data/add_report?id=${report.id}'),
+                  onTap: () => context.push(
+                    '/data/add_report?id=${report.id}',
+                  ),
                 ),
               );
             }),
@@ -353,7 +358,7 @@ class _EmptyHistoryCard extends StatelessWidget {
         border: Border.all(color: HanaColors.outlineVariant.withAlpha(26)),
       ),
       child: Text(
-        '暂无血检记录',
+        '暂无血检历史记录',
         textAlign: TextAlign.center,
         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
               color: HanaColors.onSurfaceVariant,

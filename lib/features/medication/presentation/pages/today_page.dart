@@ -218,6 +218,8 @@ class TodayPage extends StatelessWidget {
 
         final widgets = <Widget>[];
         final countdownDrug = upcoming ?? items.first;
+        final countdownDosage = '${countdownDrug.schedule.dosageAmount}'
+            '${countdownDrug.schedule.dosageUnit.name}';
 
         widgets.addAll([
           SliverToBoxAdapter(
@@ -227,14 +229,26 @@ class TodayPage extends StatelessWidget {
                 nextScheduledTime: upcomingTime,
                 isCompleteForToday: uncompletedItems.isEmpty,
                 drugName: countdownDrug.drug.name,
-                dosage:
-                    '${countdownDrug.schedule.dosageAmount}${countdownDrug.schedule.dosageUnit.name}',
+                dosage: countdownDosage,
                 route: countdownDrug.schedule.administrationRoute.name,
               ),
             ),
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 32)),
         ]);
+
+        String dosageLabel(TodayScheduleItem item) {
+          return '${item.schedule.dosageAmount}'
+              '${item.schedule.dosageUnit.name}';
+        }
+
+        String timeLabel(DateTime? dateTime) {
+          if (dateTime == null) {
+            return '全天';
+          }
+          return '${dateTime.hour.toString().padLeft(2, '0')}:'
+              '${dateTime.minute.toString().padLeft(2, '0')}';
+        }
 
         final completedItems = items.where((item) => item.isCompleted).toList();
         if (completedItems.isNotEmpty) {
@@ -258,17 +272,12 @@ class TodayPage extends StatelessWidget {
                 child: Column(
                   children: completedItems.map((item) {
                     final firstTime = item.scheduledDateTimes.firstOrNull;
-                    final timeText = firstTime != null
-                        ? '${firstTime.hour.toString().padLeft(2, '0')}:${firstTime.minute.toString().padLeft(2, '0')}'
-                        : '全天';
-
                     return Padding(
                       padding: const EdgeInsets.only(bottom: 12),
                       child: MedicationStatusCard(
                         name: item.drug.name,
-                        dosage:
-                            '${item.schedule.dosageAmount}${item.schedule.dosageUnit.name}',
-                        time: timeText,
+                        dosage: dosageLabel(item),
+                        time: timeLabel(firstTime),
                         isTaken: true,
                         accentColor: HanaColors.primaryFixed,
                       ),
@@ -302,17 +311,12 @@ class TodayPage extends StatelessWidget {
                 child: Column(
                   children: uncompletedItems.map((item) {
                     final firstTime = item.scheduledDateTimes.firstOrNull;
-                    final timeText = firstTime != null
-                        ? '${firstTime.hour.toString().padLeft(2, '0')}:${firstTime.minute.toString().padLeft(2, '0')}'
-                        : '全天';
-
                     return Padding(
                       padding: const EdgeInsets.only(bottom: 12),
                       child: UpcomingDoseCard(
                         name: item.drug.name,
-                        dosage:
-                            '${item.schedule.dosageAmount}${item.schedule.dosageUnit.name}',
-                        time: timeText,
+                        dosage: dosageLabel(item),
+                        time: timeLabel(firstTime),
                         period: '今天',
                         onTake: () {
                           context.read<TodayScheduleBloc>().add(
