@@ -51,8 +51,6 @@ class TodayPage extends StatelessWidget {
         : hour < 18
             ? '\u5348\u5B89'
             : '\u665A\u4E0A\u597D';
-    final dailyQuote = _dailyQuotes[DateTime.now().day % _dailyQuotes.length];
-
     return Scaffold(
       backgroundColor: HanaColors.background,
       body: SafeArea(
@@ -335,11 +333,11 @@ class TodayPage extends StatelessWidget {
         }
 
         widgets.add(
-          const SliverToBoxAdapter(
+          SliverToBoxAdapter(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24),
+              padding: const EdgeInsets.symmetric(horizontal: 24),
               child: QuoteCard(
-                quote: dailyQuote,
+                quote: _quoteForToday(),
               ),
             ),
           ),
@@ -348,5 +346,9 @@ class TodayPage extends StatelessWidget {
         return widgets;
       },
     );
+  }
+
+  String _quoteForToday() {
+    return _dailyQuotes[DateTime.now().day % _dailyQuotes.length];
   }
 }

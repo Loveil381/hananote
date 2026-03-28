@@ -4,12 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hananote/features/medication/domain/entities/drug.dart';
 import 'package:hananote/features/medication/domain/entities/enums.dart';
-import 'package:hananote/features/medication/domain/entities/medication_schedule.dart';
+import 'package:hananote/features/medication/domain/entities/medication_schedule.dart'
+    as medication;
+import 'package:hananote/features/medication/domain/usecases/get_today_schedule.dart';
 import 'package:hananote/features/medication/presentation/bloc/today_schedule_bloc.dart';
 import 'package:hananote/features/medication/presentation/bloc/today_schedule_event.dart';
 import 'package:hananote/features/medication/presentation/bloc/today_schedule_state.dart';
 import 'package:hananote/features/medication/presentation/pages/today_page.dart';
-import 'package:hananote/features/medication/domain/usecases/get_today_schedule.dart';
 import 'package:hananote/features/settings/domain/entities/app_settings.dart';
 import 'package:hananote/features/settings/domain/entities/user_profile.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_bloc.dart';
@@ -117,18 +118,18 @@ void main() {
         administrationRoute: AdministrationRoute.oral,
         defaultDosageUnit: DosageUnit.mg,
         isActive: true,
-        createdAt: DateTime(2026, 1, 1),
+        createdAt: DateTime(2026),
       ),
-      schedule: MedicationSchedule(
+      schedule: medication.MedicationSchedule(
         id: 'schedule-1',
         drugId: 'drug-1',
         dosageAmount: 2,
         dosageUnit: DosageUnit.mg,
-        frequency: const MedicationFrequency.daily(timesPerDay: 1),
+        frequency: const medication.MedicationFrequency.daily(timesPerDay: 1),
         administrationRoute: AdministrationRoute.oral,
-        startDate: DateTime(2026, 1, 1),
+        startDate: DateTime(2026),
         isActive: true,
-        scheduleTimes: const [TimeOfDay(hour: 8, minute: 0)],
+        scheduleTimes: const [medication.TimeOfDay(hour: 8, minute: 0)],
       ),
       logs: const [],
       scheduledDateTimes: [DateTime.now().add(const Duration(hours: 1))],
