@@ -101,7 +101,7 @@ class _AddDrugPageState extends State<AddDrugPage> {
               ),
               validator: (val) {
                 if (val == null || val.trim().isEmpty) {
-                  return 'Required';
+                  return '必填';
                 }
                 return null;
               },
@@ -121,7 +121,7 @@ class _AddDrugPageState extends State<AddDrugPage> {
               segments: DrugCategory.values.map((cat) {
                 return ButtonSegment(
                   value: cat,
-                  label: Text(cat.name.toUpperCase()),
+                  label: Text(cat.displayName),
                 );
               }).toList(),
               selected: {_category},
@@ -137,7 +137,7 @@ class _AddDrugPageState extends State<AddDrugPage> {
               runSpacing: 8,
               children: AdministrationRoute.values.map((route) {
                 return ChoiceChip(
-                  label: Text(route.name),
+                  label: Text(route.displayName),
                   selected: _route == route,
                   onSelected: (val) {
                     if (val) _onRouteChanged(route);
@@ -153,7 +153,7 @@ class _AddDrugPageState extends State<AddDrugPage> {
               runSpacing: 8,
               children: _route.supportedUnits.map((unit) {
                 return ChoiceChip(
-                  label: Text(unit.name),
+                  label: Text(unit.displayName),
                   selected: _unit == unit,
                   onSelected: (val) {
                     if (val) setState(() => _unit = unit);

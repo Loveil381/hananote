@@ -58,6 +58,43 @@ enum DosageUnit {
   ml,
 }
 
+/// Localized labels for medication categories shown in the UI.
+extension DrugCategoryX on DrugCategory {
+  /// Human-readable display name.
+  String get displayName => switch (this) {
+        DrugCategory.estrogen => '雌激素',
+        DrugCategory.antiAndrogen => '抗雄',
+        DrugCategory.progestogen => '孕激素',
+        DrugCategory.auxiliary => '辅助药物',
+      };
+}
+
+/// Localized labels for administration routes shown in the UI.
+extension AdministrationRouteDisplayX on AdministrationRoute {
+  /// Human-readable display name.
+  String get displayName => switch (this) {
+        AdministrationRoute.oral => '口服',
+        AdministrationRoute.sublingual => '舌下含服',
+        AdministrationRoute.transdermalPatch => '贴片',
+        AdministrationRoute.transdermalGel => '凝胶',
+        AdministrationRoute.intramuscularInjection => '肌肉注射',
+        AdministrationRoute.subcutaneousInjection => '皮下注射',
+        AdministrationRoute.rectal => '直肠给药',
+      };
+}
+
+/// Localized labels for dosage units shown in the UI.
+extension DosageUnitX on DosageUnit {
+  /// Human-readable display name.
+  String get displayName => switch (this) {
+        DosageUnit.mg => 'mg',
+        DosageUnit.mcg => 'mcg',
+        DosageUnit.pump => '泵',
+        DosageUnit.patch => '贴',
+        DosageUnit.ml => 'ml',
+      };
+}
+
 /// Frequency type markers for medication schedules.
 enum MedicationFrequencyType {
   /// A medication taken every day.
