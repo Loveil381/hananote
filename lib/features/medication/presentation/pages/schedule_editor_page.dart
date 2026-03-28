@@ -137,9 +137,9 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
                   style: TextStyle(color: errorColor),
                 ),
               const SizedBox(height: 8),
-              _buildFrequencySelector(context, state),
+              _buildFrequencySelector(context, state, l10n),
               const SizedBox(height: 24),
-              Text('开始日期', style: theme.textTheme.titleMedium),
+              Text(l10n.startDate, style: theme.textTheme.titleMedium),
               if (state.validation?.startDateError != null)
                 Text(
                   state.validation!.startDateError!,
@@ -155,8 +155,8 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
                 ),
                 title: Text(
                   state.startDate == null
-                      ? '选择日期'
-                      : '${state.startDate!.year}-${state.startDate!.month}-${state.startDate!.day}',
+                      ? l10n.selectDate
+                      : _formatDate(state.startDate!),
                 ),
                 trailing: const Icon(Icons.calendar_today),
                 onTap: () async {
@@ -172,7 +172,7 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
                 },
               ),
               const SizedBox(height: 16),
-              Text('结束日期（可选）', style: theme.textTheme.titleMedium),
+              Text(l10n.endDateOptional, style: theme.textTheme.titleMedium),
               const SizedBox(height: 8),
               ListTile(
                 shape: RoundedRectangleBorder(
@@ -183,8 +183,8 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
                 ),
                 title: Text(
                   state.endDate == null
-                      ? '无结束日期'
-                      : '${state.endDate!.year}-${state.endDate!.month}-${state.endDate!.day}',
+                      ? l10n.noEndDate
+                      : _formatDate(state.endDate!),
                 ),
                 trailing: state.endDate == null
                     ? const Icon(Icons.calendar_today)
@@ -212,7 +212,7 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
                   state.validation!.scheduleTimesError!,
                   style: TextStyle(color: errorColor),
                 ),
-              _buildTimeSelectors(context, state),
+              _buildTimeSelectors(context, state, l10n),
               const SizedBox(height: 48),
               FilledButton(
                 onPressed: () => context.read<ScheduleEditorCubit>().save(),
@@ -231,6 +231,7 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
   Widget _buildFrequencySelector(
     BuildContext context,
     ScheduleEditorEditing state,
+    AppLocalizations l10n,
   ) {
     var typeIndex = 0;
     if (state.frequency is EveryNDaysMedicationFrequency) typeIndex = 1;
@@ -239,10 +240,10 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
     return Column(
       children: [
         SegmentedButton<int>(
-          segments: const [
-            ButtonSegment(value: 0, label: Text('每天')),
-            ButtonSegment(value: 1, label: Text('每隔 N 天')),
-            ButtonSegment(value: 2, label: Text('每周')),
+          segments: [
+            ButtonSegment(value: 0, label: Text(l10n.daily)),
+            ButtonSegment(value: 1, label: Text(l10n.everyNDays)),
+            ButtonSegment(value: 2, label: Text(l10n.weekly)),
           ],
           selected: {typeIndex},
           onSelectionChanged: (set) {
@@ -260,7 +261,7 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
         if (state.frequency is DailyMedicationFrequency) ...[
           Row(
             children: [
-              const Text('每日次数：'),
+              Text(l10n.timesPerDay),
               DropdownButton<int>(
                 value:
                     (state.frequency! as DailyMedicationFrequency).timesPerDay,
@@ -281,7 +282,7 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
         if (state.frequency is EveryNDaysMedicationFrequency) ...[
           Row(
             children: [
-              const Text('每隔 '),
+              Text(l10n.everyPrefix),
               DropdownButton<int>(
                 value: (state.frequency! as EveryNDaysMedicationFrequency).days,
                 items: List.generate(14, (i) => i + 2)
@@ -295,14 +296,14 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
                   }
                 },
               ),
-              const Text(' 天'),
+              Text(l10n.daySuffix),
             ],
           ),
         ],
         if (state.frequency is WeeklyMedicationFrequency) ...[
           Row(
             children: [
-              const Text('星期几：'),
+              Text(l10n.dayOfWeek),
               DropdownButton<int>(
                 value:
                     (state.frequency! as WeeklyMedicationFrequency).dayOfWeek,
@@ -327,6 +328,7 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
   Widget _buildTimeSelectors(
     BuildContext context,
     ScheduleEditorEditing state,
+    AppLocalizations l10n,
   ) {
     if (state.administrationRoute != null &&
         !state.administrationRoute!.supportsScheduleTimes) {
@@ -350,7 +352,8 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('服药时间', style: Theme.of(context).textTheme.titleMedium),
+        Text(l10n.scheduleTimes,
+            style: Theme.of(context).textTheme.titleMedium),
         const SizedBox(height: 8),
         for (int i = 0; i < currentTimes.length; i++)
           Padding(
@@ -389,5 +392,9 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
           ),
       ],
     );
+  }
+
+  String _formatDate(DateTime date) {
+    return '${date.year}-${date.month}-${date.day}';
   }
 }

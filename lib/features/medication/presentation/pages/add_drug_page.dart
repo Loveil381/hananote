@@ -43,7 +43,6 @@ class _AddDrugPageState extends State<AddDrugPage> {
   void _onRouteChanged(AdministrationRoute route) {
     setState(() {
       _route = route;
-      // Adjust unit if it's no longer supported by the new route
       if (!route.supportedUnits.contains(_unit)) {
         _unit = route.supportedUnits.first;
       }
@@ -101,7 +100,7 @@ class _AddDrugPageState extends State<AddDrugPage> {
               ),
               validator: (val) {
                 if (val == null || val.trim().isEmpty) {
-                  return '必填';
+                  return l10n.required;
                 }
                 return null;
               },
