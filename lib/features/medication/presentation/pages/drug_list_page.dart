@@ -85,7 +85,7 @@ class _DrugListPageState extends State<DrugListPage> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          context.push('/add_drug');
+          context.push('/add_drug', extra: context.read<DrugListCubit>());
         },
         icon: const Icon(Icons.add),
         label: Text(l10n.addDrug),
@@ -163,7 +163,7 @@ class _DrugListPageState extends State<DrugListPage> {
       child: DrugCard(
         drug: drug,
         onTap: () {
-          context.push('/edit_schedule');
+          context.push('/edit_schedule/${drug.id}');
         },
         onToggleActive: (_) {
           context.read<DrugListCubit>().toggleDrugActive(drug);
