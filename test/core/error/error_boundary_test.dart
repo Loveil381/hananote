@@ -97,9 +97,11 @@ void main() {
       }
     });
 
-    unawaited(ErrorBoundary.init(() async {
-      throw StateError('init failed');
-    }));
+    unawaited(
+      ErrorBoundary.init(() async {
+        throw StateError('init failed');
+      }),
+    );
 
     await fallbackShown.future.timeout(const Duration(seconds: 5));
 

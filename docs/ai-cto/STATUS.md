@@ -1,7 +1,7 @@
 # HanaNote STATUS
 
-## 当前轮次: Round 29
-## 当前阶段: 发布准备第二阶段 — i18n / dartdoc / 错误兜底 / icon 修复
+## 当前轮次: Round 30
+## 当前阶段: 打包配置修正 + 记忆文件修复
 ## 产品完成度: 99%
 ## 数据绑定完成度: 5/5
 
@@ -42,8 +42,9 @@
 ## 本轮交付
 | 项目 | 状态 | 说明 |
 |------|------|------|
-| DEC-032 去重 | 🔄 | DECISIONS.md 英文重复条目移除 |
-| ErrorBoundary 兜底增强 | 🔄 | 初始化失败时自动显示 fallback UI |
-| i18n 完整性检查 | 🔄 | 所有 l10n key 对齐 arb 文件 |
-| Core dartdoc | 🔄 | failures / crypto / database 公开 API 注释 |
-| iOS icon alpha 修复 | 🔄 | remove_alpha_ios: true |
+| DECISIONS.md UTF-8 重写 | 🔄 | 修复 DEC-001~031 编码损坏 |
+| Application ID 正式化 | 🔄 | com.example.hananote → com.hananote.app |
+| App 显示名称统一 | 🔄 | Android + iOS → HanaNote |
+| Version bump | 🔄 | 0.1.0+1 → 1.0.0+1 |
+| 移除 camera 依赖 | 🔄 | 未使用的残留依赖 |
+| 精确闹钟权限清理 | 🔄 | 移除 USE_EXACT_ALARM |
