@@ -104,7 +104,8 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
                   if (state.administrationRoute != null)
                     Expanded(
                       child: DropdownButtonFormField<DosageUnit>(
-                        initialValue: state.dosageUnit,
+                        // ignore: deprecated_member_use
+                        value: state.dosageUnit,
                         decoration: InputDecoration(
                           labelText: l10n.unit,
                           border: const OutlineInputBorder(),

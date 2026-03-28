@@ -241,7 +241,8 @@ class _ParamsCardState extends State<_ParamsCard> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 DropdownButtonFormField<EsterType>(
-                  initialValue: _esterType,
+                  // ignore: deprecated_member_use
+                  value: _esterType,
                   decoration: const InputDecoration(
                     labelText: '药物类型',
                     border: OutlineInputBorder(),
