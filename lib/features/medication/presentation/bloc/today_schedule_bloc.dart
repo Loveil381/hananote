@@ -67,7 +67,11 @@ class TodayScheduleBloc extends Bloc<TodayScheduleEvent, TodayScheduleState> {
     Emitter<TodayScheduleState> emit,
   ) async {
     final now = DateTime.now();
-    final isLate = _isDoseLate(event.schedule, now);
+    final isLate = _isDoseLate(
+      event.schedule,
+      now,
+      scheduledAt: event.scheduledDateTime,
+    );
     final log = MedicationLog(
       id: IdGenerator.generate(),
       scheduleId: event.schedule.id,
@@ -122,8 +126,16 @@ class TodayScheduleBloc extends Bloc<TodayScheduleEvent, TodayScheduleState> {
     await _syncMedicationReminders();
   }
 
-  /// Returns true when [now] is past all scheduled times for today.
-  bool _isDoseLate(MedicationSchedule schedule, DateTime now) {
+  /// Returns true when [now] is past the scheduled dose time.
+  bool _isDoseLate(
+    MedicationSchedule schedule,
+    DateTime now, {
+    DateTime? scheduledAt,
+  }) {
+    if (scheduledAt != null) {
+      return now.isAfter(scheduledAt);
+    }
+
     if (schedule.scheduleTimes.isEmpty) return false;
     final last = schedule.scheduleTimes.reduce(
       (a, b) => (a.hour * 60 + a.minute) > (b.hour * 60 + b.minute) ? a : b,

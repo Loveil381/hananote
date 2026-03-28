@@ -22,6 +22,7 @@ mixin _$TodayScheduleEvent {
     required TResult Function(
             MedicationSchedule schedule,
             Drug drug,
+            DateTime? scheduledDateTime,
             InjectionSite? injectionSite,
             PatchSite? patchSite,
             int? patchCount,
@@ -40,6 +41,7 @@ mixin _$TodayScheduleEvent {
     TResult? Function(
             MedicationSchedule schedule,
             Drug drug,
+            DateTime? scheduledDateTime,
             InjectionSite? injectionSite,
             PatchSite? patchSite,
             int? patchCount,
@@ -57,6 +59,7 @@ mixin _$TodayScheduleEvent {
     TResult Function(
             MedicationSchedule schedule,
             Drug drug,
+            DateTime? scheduledDateTime,
             InjectionSite? injectionSite,
             PatchSite? patchSite,
             int? patchCount,
@@ -187,6 +190,7 @@ class _$LoadTodayScheduleImpl implements LoadTodaySchedule {
     required TResult Function(
             MedicationSchedule schedule,
             Drug drug,
+            DateTime? scheduledDateTime,
             InjectionSite? injectionSite,
             PatchSite? patchSite,
             int? patchCount,
@@ -208,6 +212,7 @@ class _$LoadTodayScheduleImpl implements LoadTodaySchedule {
     TResult? Function(
             MedicationSchedule schedule,
             Drug drug,
+            DateTime? scheduledDateTime,
             InjectionSite? injectionSite,
             PatchSite? patchSite,
             int? patchCount,
@@ -228,6 +233,7 @@ class _$LoadTodayScheduleImpl implements LoadTodaySchedule {
     TResult Function(
             MedicationSchedule schedule,
             Drug drug,
+            DateTime? scheduledDateTime,
             InjectionSite? injectionSite,
             PatchSite? patchSite,
             int? patchCount,
@@ -302,6 +308,7 @@ abstract class _$$LogDoseTodayScheduleImplCopyWith<$Res> {
   $Res call(
       {MedicationSchedule schedule,
       Drug drug,
+      DateTime? scheduledDateTime,
       InjectionSite? injectionSite,
       PatchSite? patchSite,
       int? patchCount,
@@ -328,6 +335,7 @@ class __$$LogDoseTodayScheduleImplCopyWithImpl<$Res>
   $Res call({
     Object? schedule = null,
     Object? drug = null,
+    Object? scheduledDateTime = freezed,
     Object? injectionSite = freezed,
     Object? patchSite = freezed,
     Object? patchCount = freezed,
@@ -344,6 +352,10 @@ class __$$LogDoseTodayScheduleImplCopyWithImpl<$Res>
           ? _value.drug
           : drug // ignore: cast_nullable_to_non_nullable
               as Drug,
+      scheduledDateTime: freezed == scheduledDateTime
+          ? _value.scheduledDateTime
+          : scheduledDateTime // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       injectionSite: freezed == injectionSite
           ? _value.injectionSite
           : injectionSite // ignore: cast_nullable_to_non_nullable
@@ -398,6 +410,7 @@ class _$LogDoseTodayScheduleImpl implements LogDoseTodaySchedule {
   const _$LogDoseTodayScheduleImpl(
       {required this.schedule,
       required this.drug,
+      this.scheduledDateTime,
       this.injectionSite,
       this.patchSite,
       this.patchCount,
@@ -409,6 +422,8 @@ class _$LogDoseTodayScheduleImpl implements LogDoseTodaySchedule {
   final MedicationSchedule schedule;
   @override
   final Drug drug;
+  @override
+  final DateTime? scheduledDateTime;
   @override
   final InjectionSite? injectionSite;
   @override
@@ -424,7 +439,7 @@ class _$LogDoseTodayScheduleImpl implements LogDoseTodaySchedule {
 
   @override
   String toString() {
-    return 'TodayScheduleEvent.logDose(schedule: $schedule, drug: $drug, injectionSite: $injectionSite, patchSite: $patchSite, patchCount: $patchCount, gelPumps: $gelPumps, skinReaction: $skinReaction, notes: $notes)';
+    return 'TodayScheduleEvent.logDose(schedule: $schedule, drug: $drug, scheduledDateTime: $scheduledDateTime, injectionSite: $injectionSite, patchSite: $patchSite, patchCount: $patchCount, gelPumps: $gelPumps, skinReaction: $skinReaction, notes: $notes)';
   }
 
   @override
@@ -435,6 +450,8 @@ class _$LogDoseTodayScheduleImpl implements LogDoseTodaySchedule {
             (identical(other.schedule, schedule) ||
                 other.schedule == schedule) &&
             (identical(other.drug, drug) || other.drug == drug) &&
+            (identical(other.scheduledDateTime, scheduledDateTime) ||
+                other.scheduledDateTime == scheduledDateTime) &&
             (identical(other.injectionSite, injectionSite) ||
                 other.injectionSite == injectionSite) &&
             (identical(other.patchSite, patchSite) ||
@@ -449,8 +466,17 @@ class _$LogDoseTodayScheduleImpl implements LogDoseTodaySchedule {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, schedule, drug, injectionSite,
-      patchSite, patchCount, gelPumps, skinReaction, notes);
+  int get hashCode => Object.hash(
+      runtimeType,
+      schedule,
+      drug,
+      scheduledDateTime,
+      injectionSite,
+      patchSite,
+      patchCount,
+      gelPumps,
+      skinReaction,
+      notes);
 
   /// Create a copy of TodayScheduleEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -469,6 +495,7 @@ class _$LogDoseTodayScheduleImpl implements LogDoseTodaySchedule {
     required TResult Function(
             MedicationSchedule schedule,
             Drug drug,
+            DateTime? scheduledDateTime,
             InjectionSite? injectionSite,
             PatchSite? patchSite,
             int? patchCount,
@@ -480,8 +507,8 @@ class _$LogDoseTodayScheduleImpl implements LogDoseTodaySchedule {
             MedicationSchedule schedule, Drug drug, String? notes)
         skipDose,
   }) {
-    return logDose(schedule, drug, injectionSite, patchSite, patchCount,
-        gelPumps, skinReaction, notes);
+    return logDose(schedule, drug, scheduledDateTime, injectionSite, patchSite,
+        patchCount, gelPumps, skinReaction, notes);
   }
 
   @override
@@ -491,6 +518,7 @@ class _$LogDoseTodayScheduleImpl implements LogDoseTodaySchedule {
     TResult? Function(
             MedicationSchedule schedule,
             Drug drug,
+            DateTime? scheduledDateTime,
             InjectionSite? injectionSite,
             PatchSite? patchSite,
             int? patchCount,
@@ -501,8 +529,8 @@ class _$LogDoseTodayScheduleImpl implements LogDoseTodaySchedule {
     TResult? Function(MedicationSchedule schedule, Drug drug, String? notes)?
         skipDose,
   }) {
-    return logDose?.call(schedule, drug, injectionSite, patchSite, patchCount,
-        gelPumps, skinReaction, notes);
+    return logDose?.call(schedule, drug, scheduledDateTime, injectionSite,
+        patchSite, patchCount, gelPumps, skinReaction, notes);
   }
 
   @override
@@ -512,6 +540,7 @@ class _$LogDoseTodayScheduleImpl implements LogDoseTodaySchedule {
     TResult Function(
             MedicationSchedule schedule,
             Drug drug,
+            DateTime? scheduledDateTime,
             InjectionSite? injectionSite,
             PatchSite? patchSite,
             int? patchCount,
@@ -524,8 +553,8 @@ class _$LogDoseTodayScheduleImpl implements LogDoseTodaySchedule {
     required TResult orElse(),
   }) {
     if (logDose != null) {
-      return logDose(schedule, drug, injectionSite, patchSite, patchCount,
-          gelPumps, skinReaction, notes);
+      return logDose(schedule, drug, scheduledDateTime, injectionSite,
+          patchSite, patchCount, gelPumps, skinReaction, notes);
     }
     return orElse();
   }
@@ -569,6 +598,7 @@ abstract class LogDoseTodaySchedule implements TodayScheduleEvent {
   const factory LogDoseTodaySchedule(
       {required final MedicationSchedule schedule,
       required final Drug drug,
+      final DateTime? scheduledDateTime,
       final InjectionSite? injectionSite,
       final PatchSite? patchSite,
       final int? patchCount,
@@ -578,6 +608,7 @@ abstract class LogDoseTodaySchedule implements TodayScheduleEvent {
 
   MedicationSchedule get schedule;
   Drug get drug;
+  DateTime? get scheduledDateTime;
   InjectionSite? get injectionSite;
   PatchSite? get patchSite;
   int? get patchCount;
@@ -707,6 +738,7 @@ class _$SkipDoseTodayScheduleImpl implements SkipDoseTodaySchedule {
     required TResult Function(
             MedicationSchedule schedule,
             Drug drug,
+            DateTime? scheduledDateTime,
             InjectionSite? injectionSite,
             PatchSite? patchSite,
             int? patchCount,
@@ -728,6 +760,7 @@ class _$SkipDoseTodayScheduleImpl implements SkipDoseTodaySchedule {
     TResult? Function(
             MedicationSchedule schedule,
             Drug drug,
+            DateTime? scheduledDateTime,
             InjectionSite? injectionSite,
             PatchSite? patchSite,
             int? patchCount,
@@ -748,6 +781,7 @@ class _$SkipDoseTodayScheduleImpl implements SkipDoseTodaySchedule {
     TResult Function(
             MedicationSchedule schedule,
             Drug drug,
+            DateTime? scheduledDateTime,
             InjectionSite? injectionSite,
             PatchSite? patchSite,
             int? patchCount,

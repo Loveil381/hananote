@@ -304,6 +304,7 @@ class TodayPage extends StatelessWidget {
                                 LogDoseTodaySchedule(
                                   drug: item.drug,
                                   schedule: item.schedule,
+                                  scheduledDateTime: firstTime,
                                 ),
                               );
                         },

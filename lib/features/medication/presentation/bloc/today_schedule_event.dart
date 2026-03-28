@@ -17,6 +17,7 @@ sealed class TodayScheduleEvent with _$TodayScheduleEvent {
   const factory TodayScheduleEvent.logDose({
     required MedicationSchedule schedule,
     required Drug drug,
+    DateTime? scheduledDateTime,
     InjectionSite? injectionSite,
     PatchSite? patchSite,
     int? patchCount,

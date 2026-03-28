@@ -204,6 +204,33 @@ void main() {
       ),
       expect: () => [isA<TodayScheduleError>()],
     );
+
+    blocTest<TodayScheduleBloc, TodayScheduleState>(
+      'marks a logged dose as late when the scheduled time has passed',
+      build: build,
+      setUp: () {
+        when(() => logMedication(any())).thenAnswer((_) async => right(_log()));
+        when(() => getTodaySchedule(date: any(named: 'date')))
+            .thenAnswer((_) async => right([_item(isCompleted: true)]));
+      },
+      act: (b) => b.add(
+        TodayScheduleEvent.logDose(
+          schedule: _schedule(),
+          drug: _drug(),
+          scheduledDateTime: DateTime.now().subtract(const Duration(hours: 1)),
+        ),
+      ),
+      verify: (_) {
+        final captured = verify(() => logMedication(captureAny()))
+            .captured
+            .single as MedicationLog;
+        expect(captured.status, LogStatus.late);
+      },
+      expect: () => [
+        isA<TodayScheduleLoading>(),
+        isA<TodayScheduleLoaded>(),
+      ],
+    );
   });
 
   group('SkipDoseTodaySchedule', () {
