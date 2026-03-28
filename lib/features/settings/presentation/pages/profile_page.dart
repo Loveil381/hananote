@@ -17,6 +17,12 @@ import 'package:intl/intl.dart';
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
+  void _showSnackBar(BuildContext context, String message) {
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(SnackBar(content: Text(message)));
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<SettingsBloc, SettingsState>(
@@ -24,9 +30,7 @@ class ProfilePage extends StatelessWidget {
         if (state is SettingsWiped) {
           context.go('/');
         } else if (state is SettingsError) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(state.message)),
-          );
+          _showSnackBar(context, state.message);
         }
       },
       builder: (context, state) {
@@ -66,6 +70,11 @@ class ProfilePage extends StatelessWidget {
             body: Center(child: CircularProgressIndicator()),
           );
         }
+
+        final theme = Theme.of(context);
+        final inventoryText = state.inventoryDaysRemaining != null
+            ? '约剩 ${state.inventoryDaysRemaining} 天'
+            : '暂无库存数据';
 
         return Scaffold(
           backgroundColor: HanaColors.background,
@@ -109,483 +118,302 @@ class ProfilePage extends StatelessWidget {
             ),
           ),
           body: SingleChildScrollView(
-            child: Column(
-              children: [
-                const SizedBox(height: 100), // Space for AppBar
-
-                // Header Section
-                Column(
-                  children: [
-                    Stack(
-                      alignment: Alignment.bottomRight,
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.all(6),
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            gradient: LinearGradient(
-                              begin: Alignment.topRight,
-                              end: Alignment.bottomLeft,
-                              colors: [
-                                HanaColors.primary,
-                                HanaColors.secondaryContainer,
-                              ],
-                            ),
-                          ),
-                          child: Container(
-                            width: 96,
-                            height: 96,
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(20, 100, 20, 120),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Column(
+                    children: [
+                      CircleAvatar(
+                        radius: 48,
+                        backgroundColor: HanaColors.primaryContainer,
+                        child: const Icon(
+                          Icons.person,
+                          size: 48,
+                          color: HanaColors.primary,
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      Text(
+                        state.profile.displayName,
+                        style: theme.textTheme.headlineMedium?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: HanaColors.onSurface,
+                        ),
+                      ),
+                      const SizedBox(height: 6),
+                      Text(
+                        'HRT ${state.profile.hrtDayCount} 天',
+                        style: theme.textTheme.bodyMedium?.copyWith(
+                          color: HanaColors.onSurfaceVariant,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 32),
+                  Text(
+                    '用药管理',
+                    style: theme.textTheme.labelMedium?.copyWith(
+                      fontWeight: FontWeight.w700,
+                      color: HanaColors.onSurfaceVariant,
+                      letterSpacing: 1.2,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  InkWell(
+                    borderRadius: BorderRadius.circular(16),
+                    onTap: () => context.push('/drugs'),
+                    child: Container(
+                      padding: const EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                        color: HanaColors.surfaceContainerLowest,
+                        borderRadius: BorderRadius.circular(16),
+                        border: Border.all(
+                          color: HanaColors.outlineVariant.withAlpha(26),
+                        ),
+                      ),
+                      child: Row(
+                        children: [
+                          Container(
+                            width: 48,
+                            height: 48,
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               color: HanaColors.primaryContainer,
-                              border: Border.all(
-                                color: HanaColors.surface,
-                                width: 4,
-                              ),
-                              boxShadow: const [
-                                BoxShadow(color: Colors.black12, blurRadius: 4),
-                              ],
                             ),
                             child: const Icon(
-                              Icons.person,
-                              size: 48,
+                              Icons.medication,
                               color: HanaColors.primary,
-                            ),
-                          ),
-                        ),
-                        Container(
-                          transform: Matrix4.translationValues(-4, 4, 0),
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 8,
-                            vertical: 4,
-                          ),
-                          decoration: BoxDecoration(
-                            color: HanaColors.primary,
-                            borderRadius: BorderRadius.circular(9999),
-                            border:
-                                Border.all(color: HanaColors.surface, width: 2),
-                            boxShadow: const [
-                              BoxShadow(color: Colors.black26, blurRadius: 8),
-                            ],
-                          ),
-                          child: Text(
-                            '${state.profile.hrtDayCount}d',
-                            style: const TextStyle(
-                              fontFamily: 'Be Vietnam Pro',
-                              fontSize: 10,
-                              fontWeight: FontWeight.bold,
-                              color: HanaColors.onPrimary,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 16),
-                    Text(
-                      state.profile.displayName,
-                      style:
-                          Theme.of(context).textTheme.headlineMedium?.copyWith(
-                                fontWeight: FontWeight.bold,
-                                color: HanaColors.onSurface,
-                              ),
-                    ),
-                    const SizedBox(height: 4),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Icon(
-                          Icons.favorite,
-                          size: 14,
-                          color: HanaColors.primary,
-                        ),
-                        const SizedBox(width: 6),
-                        Text(
-                          'HRT ${state.profile.hrtDayCount} 天',
-                          style:
-                              Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                    color: HanaColors.onSurfaceVariant,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-
-                const SizedBox(height: 32),
-
-                // Medication Management
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Text(
-                        '药物管理',
-                        style:
-                            Theme.of(context).textTheme.labelMedium?.copyWith(
-                                  fontWeight: FontWeight.w600,
-                                  color: HanaColors.onSurfaceVariant,
-                                  letterSpacing: 1.5,
-                                ),
-                      ),
-                      const SizedBox(height: 16),
-
-                      // Top wide card
-                      Container(
-                        padding: const EdgeInsets.all(20),
-                        decoration: BoxDecoration(
-                          color: HanaColors.surfaceContainerLowest,
-                          borderRadius: BorderRadius.circular(16),
-                          border: Border.all(
-                            color: HanaColors.outlineVariant.withAlpha(26),
-                          ),
-                          boxShadow: const [
-                            BoxShadow(color: Color(0x05000000), blurRadius: 4),
-                          ],
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                Container(
-                                  width: 48,
-                                  height: 48,
-                                  decoration: BoxDecoration(
-                                    color: HanaColors.primaryContainer
-                                        .withAlpha(77),
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: const Icon(
-                                    Icons.medication,
-                                    color: HanaColors.primary,
-                                  ),
-                                ),
-                                const SizedBox(width: 16),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    const Text(
-                                      '我的用药',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w600,
-                                        color: HanaColors.onSurface,
-                                      ),
-                                    ),
-                                    const SizedBox(height: 4),
-                                    Text(
-                                      '${state.activeDrugCount} 种',
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        color: HanaColors.onSurfaceVariant
-                                            .withAlpha(179),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            Icon(
-                              Icons.chevron_right,
-                              color: HanaColors.onSurfaceVariant.withAlpha(128),
-                            ),
-                          ],
-                        ),
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      // Grid cards
-                      Row(
-                        children: [
-                          Expanded(
-                            child: _SquareCard(
-                              icon: Icons.inventory_2,
-                              iconColor: HanaColors.secondary,
-                              iconBgColor: HanaColors.secondaryContainer
-                                  .withAlpha(128), // 50%
-                              title: '库存',
-                              subtitle: state.inventoryDaysRemaining != null
-                                  ? '剩余 ${state.inventoryDaysRemaining} 天'
-                                  : '暂无数据',
-                              subtitleColor: HanaColors.secondary,
                             ),
                           ),
                           const SizedBox(width: 16),
                           Expanded(
-                            child: _SquareCard(
-                              icon: Icons.view_quilt,
-                              iconColor: HanaColors.error,
-                              iconBgColor: HanaColors.tertiaryContainer
-                                  .withAlpha(102), // 40%
-                              title: '用药方案',
-                              subtitle: '查看详情',
-                              subtitleColor:
-                                  HanaColors.onSurfaceVariant.withAlpha(179),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '我的用药',
+                                  style: theme.textTheme.titleMedium?.copyWith(
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                                const SizedBox(height: 4),
+                                Text(
+                                  '${state.activeDrugCount} 项',
+                                  style: theme.textTheme.bodySmall?.copyWith(
+                                    color: HanaColors.onSurfaceVariant,
+                                  ),
+                                ),
+                              ],
                             ),
+                          ),
+                          const Icon(
+                            Icons.chevron_right,
+                            color: HanaColors.onSurfaceVariant,
                           ),
                         ],
                       ),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: _SquareCard(
+                          icon: Icons.inventory_2,
+                          iconColor: HanaColors.secondary,
+                          iconBgColor: HanaColors.secondaryContainer,
+                          title: '库存',
+                          subtitle: inventoryText,
+                          subtitleColor: HanaColors.secondary,
+                          onTap: () =>
+                              _showSnackBar(context, '库存功能即将上线'),
+                        ),
+                      ),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: _SquareCard(
+                          icon: Icons.view_quilt,
+                          iconColor: HanaColors.primary,
+                          iconBgColor: HanaColors.primaryContainer,
+                          title: '用药方案',
+                          subtitle: '查看和编辑',
+                          subtitleColor: HanaColors.onSurfaceVariant,
+                          onTap: () => context.push('/drugs'),
+                        ),
+                      ),
                     ],
                   ),
-                ),
-
-                const SizedBox(height: 32),
-
-                // Privacy & Security
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Text(
-                        '隐私与安全',
-                        style:
-                            Theme.of(context).textTheme.labelMedium?.copyWith(
-                                  fontWeight: FontWeight.w600,
-                                  color: HanaColors.onSurfaceVariant,
-                                  letterSpacing: 1.5,
-                                ),
+                  const SizedBox(height: 32),
+                  Text(
+                    '隐私与安全',
+                    style: theme.textTheme.labelMedium?.copyWith(
+                      fontWeight: FontWeight.w700,
+                      color: HanaColors.onSurfaceVariant,
+                      letterSpacing: 1.2,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: HanaColors.surfaceContainerLowest,
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(
+                        color: HanaColors.outlineVariant.withAlpha(26),
                       ),
-                      const SizedBox(height: 16),
-                      Container(
-                        decoration: BoxDecoration(
-                          color: HanaColors.surfaceContainerLowest,
-                          borderRadius: BorderRadius.circular(16),
-                          border: Border.all(
-                            color: HanaColors.outlineVariant.withAlpha(26),
+                    ),
+                    child: Column(
+                      children: [
+                        _ListTileItem(
+                          icon: Icons.lock,
+                          iconColor: HanaColors.primary,
+                          title: '应用锁',
+                          trailing: Switch(
+                            value: state.settings.appLockEnabled,
+                            onChanged: (enabled) {
+                              context
+                                  .read<SettingsBloc>()
+                                  .add(ToggleAppLock(enabled: enabled));
+                            },
                           ),
                         ),
-                        clipBehavior: Clip.antiAlias,
-                        child: Column(
-                          children: [
-                            _ListTileItem(
-                              icon: Icons.lock,
-                              iconColor: HanaColors.primary,
-                              title: '应用锁',
-                              trailing: Switch(
-                                value: state.settings.appLockEnabled,
-                                onChanged: (val) {
-                                  context
-                                      .read<SettingsBloc>()
-                                      .add(ToggleAppLock(enabled: val));
-                                },
-                                activeThumbColor: HanaColors.onPrimary,
-                                activeTrackColor: HanaColors.primary,
-                              ),
-                            ),
-                            // Divider inside container
-                            Divider(
-                              height: 1,
-                              thickness: 1,
-                              color: HanaColors.surfaceVariant.withAlpha(51),
-                            ),
-                            _ListTileItem(
-                              icon: Icons.visibility_off,
-                              iconColor: HanaColors.primary,
-                              title: '隐私模式',
-                              subtitle: state.settings.privacyModeEnabled
-                                  ? '已开启'
-                                  : '自动隐藏敏感内容',
-                              isChevron: true,
-                              onTap: () {
-                                context.read<SettingsBloc>().add(
-                                      TogglePrivacyMode(
-                                        enabled:
-                                            !state.settings.privacyModeEnabled,
-                                      ),
-                                    );
-                              },
-                            ),
-                            Divider(
-                              height: 1,
-                              thickness: 1,
-                              color: HanaColors.surfaceVariant.withAlpha(51),
-                            ),
-                            _ListTileItem(
-                              icon: Icons.warning,
-                              iconColor: HanaColors.tertiary,
-                              title: '清除所有数据',
-                              titleColor: HanaColors.error,
-                              isChevron: true,
-                              chevronColor: HanaColors.error,
-                              onTap: () async {
-                                final confirm = await showDialog<bool>(
-                                  context: context,
-                                  builder: (context) => AlertDialog(
-                                    title: const Text('清除数据'),
-                                    content: const Text('确定要清除所有本地数据吗？此操作不可逆。'),
-                                    actions: [
-                                      TextButton(
-                                        onPressed: () =>
-                                            Navigator.of(context).pop(false),
-                                        child: const Text('取消'),
-                                      ),
-                                      TextButton(
-                                        onPressed: () =>
-                                            Navigator.of(context).pop(true),
-                                        child: const Text(
-                                          '清除',
-                                          style: TextStyle(color: Colors.red),
-                                        ),
-                                      ),
-                                    ],
+                        Divider(
+                          height: 1,
+                          color: HanaColors.surfaceVariant.withAlpha(51),
+                        ),
+                        _ListTileItem(
+                          icon: Icons.visibility_off,
+                          iconColor: HanaColors.primary,
+                          title: '隐私模式',
+                          subtitle: state.settings.privacyModeEnabled
+                              ? '当前已开启'
+                              : '隐藏敏感内容',
+                          isChevron: true,
+                          onTap: () {
+                            context.read<SettingsBloc>().add(
+                                  TogglePrivacyMode(
+                                    enabled:
+                                        !state.settings.privacyModeEnabled,
                                   ),
                                 );
-
-                                if ((confirm ?? false) && context.mounted) {
-                                  context
-                                      .read<SettingsBloc>()
-                                      .add(const WipeSettingsData());
-                                }
-                              },
-                            ),
-                          ],
+                          },
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-
-                const SizedBox(height: 32),
-
-                // Data Section
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Text(
-                        '数据',
-                        style:
-                            Theme.of(context).textTheme.labelMedium?.copyWith(
-                                  fontWeight: FontWeight.w600,
-                                  color: HanaColors.onSurfaceVariant,
-                                  letterSpacing: 1.5,
+                        Divider(
+                          height: 1,
+                          color: HanaColors.surfaceVariant.withAlpha(51),
+                        ),
+                        _ListTileItem(
+                          icon: Icons.warning,
+                          iconColor: HanaColors.error,
+                          title: '清除全部数据',
+                          titleColor: HanaColors.error,
+                          isChevron: true,
+                          chevronColor: HanaColors.error,
+                          onTap: () async {
+                            final confirm = await showDialog<bool>(
+                              context: context,
+                              builder: (dialogContext) => AlertDialog(
+                                title: const Text('清除数据'),
+                                content: const Text(
+                                  '此操作会删除所有本地数据，且无法恢复。',
                                 ),
-                      ),
-                      const SizedBox(height: 16),
-                      Column(
-                        children: [
-                          _ButtonRowItem(
-                            icon: Icons.cloud_upload,
-                            title: '导出备份',
-                            trailingText: state.settings.lastBackupDate != null
-                                ? DateFormat('M月d日')
-                                    .format(state.settings.lastBackupDate!)
-                                : '从未备份',
-                          ),
-                          const SizedBox(height: 12),
-                          const _ButtonRowItem(
-                            icon: Icons.cloud_download,
-                            title: '导入恢复',
-                            isChevron: true,
-                          ),
-                          const SizedBox(height: 12),
-                          const _ButtonRowItem(
-                            icon: Icons.description,
-                            title: '生成 PDF 报告',
-                            isChevron: true,
-                          ),
-                        ],
-                      ),
-                    ],
+                                actions: [
+                                  TextButton(
+                                    onPressed: () =>
+                                        Navigator.of(dialogContext).pop(false),
+                                    child: const Text('取消'),
+                                  ),
+                                  TextButton(
+                                    onPressed: () =>
+                                        Navigator.of(dialogContext).pop(true),
+                                    child: const Text(
+                                      '清除',
+                                      style: TextStyle(color: Colors.red),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+
+                            if ((confirm ?? false) && context.mounted) {
+                              context
+                                  .read<SettingsBloc>()
+                                  .add(const WipeSettingsData());
+                            }
+                          },
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-
-                const SizedBox(height: 32),
-
-                // About Section
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Text(
-                        '关于',
-                        style:
-                            Theme.of(context).textTheme.labelMedium?.copyWith(
-                                  fontWeight: FontWeight.w600,
-                                  color: HanaColors.onSurfaceVariant,
-                                  letterSpacing: 1.5,
-                                ),
-                      ),
-                      const SizedBox(height: 16),
-                      Container(
-                        decoration: BoxDecoration(
-                          color: HanaColors.surfaceContainerLowest,
-                          borderRadius: BorderRadius.circular(16),
-                          border: Border.all(
-                            color: HanaColors.outlineVariant.withAlpha(26),
-                          ),
-                        ),
-                        clipBehavior: Clip.antiAlias,
-                        child: Column(
-                          children: [
-                            const _ListTileItem(
-                              title: '版本',
-                              trailingText: 'v1.0.0',
-                            ),
-                            Divider(
-                              height: 1,
-                              thickness: 1,
-                              color: HanaColors.surfaceVariant.withAlpha(51),
-                            ),
-                            const _ListTileItem(
-                              title: '隐私政策',
-                              isChevron: true,
-                            ),
-                            Divider(
-                              height: 1,
-                              thickness: 1,
-                              color: HanaColors.surfaceVariant.withAlpha(51),
-                            ),
-                            const _ListTileItem(
-                              title: '使用条款',
-                              isChevron: true,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                  const SizedBox(height: 32),
+                  Text(
+                    '数据',
+                    style: theme.textTheme.labelMedium?.copyWith(
+                      fontWeight: FontWeight.w700,
+                      color: HanaColors.onSurfaceVariant,
+                      letterSpacing: 1.2,
+                    ),
                   ),
-                ),
-
-                const SizedBox(height: 32),
-
-                // Footer Logo
-                const Opacity(
-                  opacity: 0.2,
-                  child: Column(
-                    children: [
-                      Text(
-                        'HanaNote',
-                        style: TextStyle(
-                          fontFamily: 'Plus Jakarta Sans',
-                          fontWeight: FontWeight.w800,
-                          fontSize: 18,
-                          letterSpacing: 2,
-                          color: HanaColors.primary,
-                          fontStyle: FontStyle.italic,
-                        ),
-                      ),
-                      SizedBox(height: 4),
-                      Text(
-                        '与你同行',
-                        style: TextStyle(
-                          fontFamily: 'Be Vietnam Pro',
-                          fontSize: 10,
-                          fontWeight: FontWeight.w500,
-                          letterSpacing: 2,
-                        ),
-                      ),
-                    ],
+                  const SizedBox(height: 16),
+                  _ButtonRowItem(
+                    icon: Icons.cloud_upload,
+                    title: '导出备份',
+                    trailingText: state.settings.lastBackupDate != null
+                        ? DateFormat('M月d日').format(state.settings.lastBackupDate!)
+                        : '尚未备份',
                   ),
-                ),
-
-                const SizedBox(height: 120),
-              ],
+                  const SizedBox(height: 12),
+                  const _ButtonRowItem(
+                    icon: Icons.cloud_download,
+                    title: '导入恢复',
+                    isChevron: true,
+                  ),
+                  const SizedBox(height: 12),
+                  const _ButtonRowItem(
+                    icon: Icons.description,
+                    title: '生成 PDF',
+                    isChevron: true,
+                  ),
+                  const SizedBox(height: 32),
+                  Text(
+                    '关于',
+                    style: theme.textTheme.labelMedium?.copyWith(
+                      fontWeight: FontWeight.w700,
+                      color: HanaColors.onSurfaceVariant,
+                      letterSpacing: 1.2,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: HanaColors.surfaceContainerLowest,
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(
+                        color: HanaColors.outlineVariant.withAlpha(26),
+                      ),
+                    ),
+                    child: Column(
+                      children: const [
+                        _ListTileItem(
+                          title: '版本',
+                          trailingText: 'v1.0.0',
+                        ),
+                        Divider(height: 1),
+                        _ListTileItem(
+                          title: '隐私政策',
+                          isChevron: true,
+                        ),
+                        Divider(height: 1),
+                        _ListTileItem(
+                          title: '使用条款',
+                          isChevron: true,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         );
@@ -602,6 +430,7 @@ class _SquareCard extends StatelessWidget {
     required this.title,
     required this.subtitle,
     required this.subtitleColor,
+    this.onTap,
   });
 
   final IconData icon;
@@ -610,54 +439,63 @@ class _SquareCard extends StatelessWidget {
   final String title;
   final String subtitle;
   final Color subtitleColor;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
       aspectRatio: 1,
-      child: Container(
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          color: HanaColors.surfaceContainerLowest,
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: HanaColors.outlineVariant.withAlpha(26)),
-          boxShadow: const [BoxShadow(color: Color(0x05000000), blurRadius: 4)],
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(
-                color: iconBgColor,
-                shape: BoxShape.circle,
+          onTap: onTap,
+          child: Container(
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: HanaColors.surfaceContainerLowest,
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(
+                color: HanaColors.outlineVariant.withAlpha(26),
               ),
-              child: Icon(icon, color: iconColor),
             ),
-            Column(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  title,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w600,
-                    color: HanaColors.onSurface,
+                Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: iconBgColor,
+                    shape: BoxShape.circle,
                   ),
+                  child: Icon(icon, color: iconColor),
                 ),
-                const SizedBox(height: 4),
-                Text(
-                  subtitle,
-                  style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
-                    color: subtitleColor,
-                  ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w600,
+                        color: HanaColors.onSurface,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      subtitle,
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                        color: subtitleColor,
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
-          ],
+          ),
         ),
       ),
     );
@@ -696,37 +534,34 @@ class _ListTileItem extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-              children: [
-                if (icon != null) ...[
-                  Icon(icon, color: iconColor, size: 24),
-                  const SizedBox(width: 16),
-                ],
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+            if (icon != null) ...[
+              Icon(icon, color: iconColor, size: 24),
+              const SizedBox(width: 16),
+            ],
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      color: titleColor ?? HanaColors.onSurface,
+                    ),
+                  ),
+                  if (subtitle != null) ...[
+                    const SizedBox(height: 2),
                     Text(
-                      title,
+                      subtitle!,
                       style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        color: titleColor ?? HanaColors.onSurface,
+                        fontSize: 12,
+                        color: HanaColors.onSurfaceVariant.withAlpha(179),
                       ),
                     ),
-                    if (subtitle != null) ...[
-                      const SizedBox(height: 2),
-                      Text(
-                        subtitle!,
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: HanaColors.onSurfaceVariant.withAlpha(179),
-                        ),
-                      ),
-                    ],
                   ],
-                ),
-              ],
+                ],
+              ),
             ),
             if (trailing != null) trailing!,
             if (trailingText != null)
@@ -771,23 +606,17 @@ class _ButtonRowItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-            children: [
-              Icon(
-                icon,
-                color: HanaColors.primary,
-              ), // primary-fixed-variant equivalent approx
-              const SizedBox(width: 16),
-              Text(
-                title,
-                style: const TextStyle(
-                  fontWeight: FontWeight.w500,
-                  color: HanaColors.onSurface,
-                ),
+          Icon(icon, color: HanaColors.primary),
+          const SizedBox(width: 16),
+          Expanded(
+            child: Text(
+              title,
+              style: const TextStyle(
+                fontWeight: FontWeight.w500,
+                color: HanaColors.onSurface,
               ),
-            ],
+            ),
           ),
           if (trailingText != null)
             Text(

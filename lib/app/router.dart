@@ -6,6 +6,7 @@ import 'package:hananote/app/presentation/main_shell.dart';
 import 'package:hananote/features/auth/presentation/pages/auth_wrapper_page.dart';
 import 'package:hananote/features/blood_test/presentation/bloc/blood_test_bloc.dart';
 import 'package:hananote/features/blood_test/presentation/bloc/blood_test_event.dart';
+import 'package:hananote/features/blood_test/presentation/pages/blood_test_edit_page.dart';
 import 'package:hananote/features/blood_test/presentation/pages/data_page.dart';
 import 'package:hananote/features/journal/presentation/bloc/record_bloc.dart';
 import 'package:hananote/features/journal/presentation/bloc/record_event.dart';
@@ -15,9 +16,17 @@ import 'package:hananote/features/measurement/domain/entities/measurement_entry.
 import 'package:hananote/features/measurement/presentation/blocs/measurement_bloc.dart';
 import 'package:hananote/features/measurement/presentation/pages/measurement_edit_page.dart';
 import 'package:hananote/features/measurement/presentation/pages/measurement_page.dart';
+import 'package:hananote/features/medication/domain/repositories/medication_repository.dart';
+import 'package:hananote/features/medication/domain/usecases/add_drug.dart';
+import 'package:hananote/features/medication/domain/usecases/delete_drug.dart';
+import 'package:hananote/features/medication/domain/usecases/get_all_drugs.dart';
+import 'package:hananote/features/medication/domain/usecases/update_drug.dart';
+import 'package:hananote/features/medication/presentation/bloc/drug_list_cubit.dart';
+import 'package:hananote/features/medication/presentation/bloc/schedule_editor_cubit.dart';
 import 'package:hananote/features/medication/presentation/bloc/today_schedule_bloc.dart';
 import 'package:hananote/features/medication/presentation/bloc/today_schedule_event.dart';
 import 'package:hananote/features/medication/presentation/pages/add_drug_page.dart';
+import 'package:hananote/features/medication/presentation/pages/drug_list_page.dart';
 import 'package:hananote/features/medication/presentation/pages/schedule_editor_page.dart';
 import 'package:hananote/features/medication/presentation/pages/today_page.dart';
 import 'package:hananote/features/photo/domain/entities/photo_entry.dart';
@@ -34,6 +43,15 @@ import 'package:hananote/features/timeline/presentation/pages/timeline_page.dart
 
 final GlobalKey<NavigatorState> _rootNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'root');
+
+DrugListCubit _createDrugListCubit() {
+  return DrugListCubit(
+    getIt<GetAllDrugs>(),
+    getIt<AddDrug>(),
+    getIt<UpdateDrug>(),
+    getIt<DeleteDrug>(),
+  );
+}
 
 /// The main application router configuration.
 final GoRouter appRouter = GoRouter(
@@ -111,17 +129,43 @@ final GoRouter appRouter = GoRouter(
       ],
     ),
     GoRoute(
-      path: '/add_drug',
+      path: '/drugs',
       parentNavigatorKey: _rootNavigatorKey,
-      builder: (context, state) => const AddDrugPage(),
+      builder: (context, state) => BlocProvider(
+        create: (_) => _createDrugListCubit(),
+        child: const DrugListPage(),
+      ),
     ),
     GoRoute(
-      path: '/edit_schedule',
+      path: '/add_drug',
       parentNavigatorKey: _rootNavigatorKey,
-      builder: (context, state) => const ScheduleEditorPage(),
+      builder: (context, state) {
+        final existingCubit = state.extra;
+        final drugListCubit = existingCubit is DrugListCubit
+            ? existingCubit
+            : _createDrugListCubit();
+        return BlocProvider.value(
+          value: drugListCubit,
+          child: const AddDrugPage(),
+        );
+      },
+    ),
+    GoRoute(
+      path: '/edit_schedule/:drugId',
+      parentNavigatorKey: _rootNavigatorKey,
+      builder: (context, state) => BlocProvider(
+        create: (_) => ScheduleEditorCubit(getIt<MedicationRepository>())
+          ..initNew(state.pathParameters['drugId']!),
+        child: const ScheduleEditorPage(),
+      ),
     ),
     GoRoute(
       path: '/journal/edit',
+      parentNavigatorKey: _rootNavigatorKey,
+      builder: (context, state) => const JournalEditPage(),
+    ),
+    GoRoute(
+      path: '/record/journal/new',
       parentNavigatorKey: _rootNavigatorKey,
       builder: (context, state) => const JournalEditPage(),
     ),
@@ -170,6 +214,13 @@ final GoRouter appRouter = GoRouter(
           initialThumbnail: routeExtra.initialThumbnail,
         );
       },
+    ),
+    GoRoute(
+      path: '/data/add_report',
+      parentNavigatorKey: _rootNavigatorKey,
+      builder: (context, state) => BloodTestEditPage(
+        reportId: state.uri.queryParameters['id'],
+      ),
     ),
     GoRoute(
       path: '/data/simulator',
