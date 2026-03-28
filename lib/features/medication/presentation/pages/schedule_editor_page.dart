@@ -61,7 +61,7 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
 
         return Scaffold(
           appBar: AppBar(
-            title: Text(l10n.editDrug), // usually editing schedule
+            title: Text(l10n.editDrug),
             actions: [
               IconButton(
                 icon: const Icon(Icons.check),
@@ -233,7 +233,6 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
     ScheduleEditorEditing state,
     AppLocalizations l10n,
   ) {
-    // simplified form for selecting frequency logic
     var typeIndex = 0;
     if (state.frequency is EveryNDaysMedicationFrequency) typeIndex = 1;
     if (state.frequency is WeeklyMedicationFrequency) typeIndex = 2;
