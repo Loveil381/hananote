@@ -9,7 +9,7 @@
 
 ## DEC-002: 安全第一架构
 - **决定**: CryptoEngine 是第一个实现的模块
-- **理由**: 隐私是产品第一卖点，不存在"先明文开发后面加密"的路径
+- **理由**: 隐私是产品第一卖点，不存在“先明文开发后面加密”的路径
 - **风险**: 开发初期增加复杂度，但避免了后期全面重构
 - **日期**: 第零轮
 
@@ -38,7 +38,7 @@
 
 ## DEC-007: 5-Tab 信息架构
 - **决定**: 底部导航从 3 Tab 改为 5 Tab (今日/记录/轨迹/数据/我的)
-- **理由**: "记录"聚合日常录入动作使其突出，"轨迹"作为核心叙事线提升留存，"我的"收纳低频操作
+- **理由**: “记录”聚合日常录入动作使其突出，“轨迹”作为核心叙事线提升留存，“我的”收纳低频操作
 - **替代方案**: 原 3 Tab 方案将太多功能挤在一个 Tab 下
 - **日期**: 第8轮
 
@@ -187,16 +187,24 @@
 - **决定**: 将 applicationId / bundleIdentifier 从 com.example.hananote 改为正式域名反转 ID；配置 Android release signing；统一品牌名为 HanaNote
 - **理由**: com.example.* 被 App Store 和 Play Store 拒绝；debug keystore 无法生成可发布的 AAB；品牌名一致性影响用户信任
 - **日期**: 第30轮
+
 ## DEC-036: SettingsBloc 延迟加载
-- **决定**: SettingsBloc 保持为全局 singleton，但不再在 app 启动时立即 dispatch LoadSettingsDashboard；改为进入 /profile 时再加载。
-- **理由**: dashboard 聚合会访问 medication / inventory 数据，而这些查询依赖 SQLCipher 数据库已经 open。认证完成前触发查询会命中 Database is not open.，导致 Profile Tab 无限 loading。
+- **决定**: SettingsBloc 不再在 app 启动时立即查询 dashboard，而是等数据库可用后再加载
+- **理由**: Settings dashboard 依赖 medication / inventory 数据；如果 SQLCipher 数据库尚未 open，就会触发 `Database is not open.` 并让 Profile 页面长期停留在 loading
 - **日期**: 第32轮
+
 ## DEC-037: SettingsBloc 在 auth 通过后立即加载
 - **决定**: AuthWrapperPage 在 AuthUnlocked 时先 dispatch LoadSettingsDashboard 再导航
 - **理由**: DEC-036 将加载延迟到 /profile，但 AppBlurOverlay 和 TodayPage 的问候语都依赖 SettingsLoaded 状态。不加载会导致 blur overlay 行为异常和显示硬编码假数据
 - **替代方案**: 在 app.dart 创建时加载——但此时数据库可能未 open，会触发 DEC-036 描述的问题
 - **日期**: 第33轮
-## DEC-038: enum displayName 中文化
-- **决定**: 为 DrugCategory、AdministrationRoute、DosageUnit 各增加 `displayName` extension
-- **理由**: 避免 UI 直接暴露 Dart enum 内部 `name`，提升中文用户体验
+
+## DEC-038: 枚举 displayName 中文化
+- **决定**: 为 DrugCategory、AdministrationRoute、DosageUnit 添加 displayName extension
+- **理由**: 避免 UI 暴露 Dart enum 内部 name，提升中文用户体验
 - **日期**: 第34轮
+
+## DEC-039: 发布前优先接通真实功能入口
+- **决定**: 在发布前收尾阶段，优先修复 Profile / Data / Timeline / Today 中“看起来可点击但没有实际行为”的入口，路由可达性优先于装饰完整度
+- **理由**: 核心入口不可达会直接损害首次试用体验；相比继续堆叠视觉细节，先让用户能进入药物列表、血检录入、日记和个人页更重要
+- **日期**: 第36轮
