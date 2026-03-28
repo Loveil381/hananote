@@ -139,7 +139,7 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
               const SizedBox(height: 8),
               _buildFrequencySelector(context, state, l10n),
               const SizedBox(height: 24),
-              Text('Start Date', style: theme.textTheme.titleMedium),
+              Text('开始日期', style: theme.textTheme.titleMedium),
               if (state.validation?.startDateError != null)
                 Text(
                   state.validation!.startDateError!,
@@ -155,7 +155,7 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
                 ),
                 title: Text(
                   state.startDate == null
-                      ? 'Select Date'
+                      ? '选择日期'
                       : '${state.startDate!.year}-${state.startDate!.month}-${state.startDate!.day}',
                 ),
                 trailing: const Icon(Icons.calendar_today),
@@ -172,7 +172,7 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
                 },
               ),
               const SizedBox(height: 16),
-              Text('End Date (Optional)', style: theme.textTheme.titleMedium),
+              Text('结束日期（可选）', style: theme.textTheme.titleMedium),
               const SizedBox(height: 8),
               ListTile(
                 shape: RoundedRectangleBorder(
@@ -183,7 +183,7 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
                 ),
                 title: Text(
                   state.endDate == null
-                      ? 'No End Date'
+                      ? '无结束日期'
                       : '${state.endDate!.year}-${state.endDate!.month}-${state.endDate!.day}',
                 ),
                 trailing: state.endDate == null
@@ -242,9 +242,9 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
       children: [
         SegmentedButton<int>(
           segments: const [
-            ButtonSegment(value: 0, label: Text('Daily')),
-            ButtonSegment(value: 1, label: Text('Every N Days')),
-            ButtonSegment(value: 2, label: Text('Weekly')),
+            ButtonSegment(value: 0, label: Text('每天')),
+            ButtonSegment(value: 1, label: Text('每隔 N 天')),
+            ButtonSegment(value: 2, label: Text('每周')),
           ],
           selected: {typeIndex},
           onSelectionChanged: (set) {
@@ -262,7 +262,7 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
         if (state.frequency is DailyMedicationFrequency) ...[
           Row(
             children: [
-              const Text('Times Per Day: '),
+              const Text('每日次数：'),
               DropdownButton<int>(
                 value:
                     (state.frequency! as DailyMedicationFrequency).timesPerDay,
@@ -283,7 +283,7 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
         if (state.frequency is EveryNDaysMedicationFrequency) ...[
           Row(
             children: [
-              const Text('Every '),
+              const Text('每隔 '),
               DropdownButton<int>(
                 value: (state.frequency! as EveryNDaysMedicationFrequency).days,
                 items: List.generate(14, (i) => i + 2)
@@ -297,14 +297,14 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
                   }
                 },
               ),
-              const Text(' Days'),
+              const Text(' 天'),
             ],
           ),
         ],
         if (state.frequency is WeeklyMedicationFrequency) ...[
           Row(
             children: [
-              const Text('Day of Week: '),
+              const Text('星期几：'),
               DropdownButton<int>(
                 value:
                     (state.frequency! as WeeklyMedicationFrequency).dayOfWeek,
@@ -353,7 +353,7 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Schedule Times', style: Theme.of(context).textTheme.titleMedium),
+        Text('服药时间', style: Theme.of(context).textTheme.titleMedium),
         const SizedBox(height: 8),
         for (int i = 0; i < currentTimes.length; i++)
           Padding(
