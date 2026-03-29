@@ -86,7 +86,7 @@ class TodayPage extends StatelessWidget {
                       Icons.calendar_today,
                       color: HanaColors.primary,
                     ),
-                    onPressed: () => showComingSoon(l10n.settingsComingSoon),
+                    onPressed: () => context.go('/timeline'),
                   ),
                   const SizedBox(width: 8),
                 ],
@@ -99,29 +99,33 @@ class TodayPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            '$greeting，$displayName',
-                            style: const TextStyle(
-                              fontSize: 30,
-                              fontWeight: FontWeight.w800,
-                              fontFamily: 'PlusJakartaSans',
-                              color: HanaColors.primary,
-                              letterSpacing: -0.5,
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              '$greeting，$displayName',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                fontSize: 30,
+                                fontWeight: FontWeight.w800,
+                                fontFamily: 'PlusJakartaSans',
+                                color: HanaColors.primary,
+                                letterSpacing: -0.5,
+                              ),
                             ),
-                          ),
-                          const SizedBox(height: 4),
-                          Text(
-                            l10n.hrtDay(hrtDays),
-                            style: const TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                              color: HanaColors.onSurfaceVariant,
+                            const SizedBox(height: 4),
+                            Text(
+                              l10n.hrtDay(hrtDays),
+                              style: const TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                                color: HanaColors.onSurfaceVariant,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                       Material(
                         color: Colors.transparent,
