@@ -10,6 +10,7 @@ import 'package:hananote/core/l10n/enum_l10n.dart';
 import 'package:hananote/features/timeline/domain/entities/enums.dart';
 import 'package:hananote/features/timeline/domain/entities/timeline_event.dart';
 import 'package:hananote/features/timeline/presentation/bloc/timeline_bloc.dart';
+import 'package:hananote/features/timeline/presentation/bloc/timeline_event.dart';
 import 'package:hananote/features/timeline/presentation/bloc/timeline_state.dart';
 import 'package:intl/intl.dart';
 
@@ -21,11 +22,6 @@ class TimelinePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    void showComingSoon() {
-      ScaffoldMessenger.of(context)
-        ..hideCurrentSnackBar()
-        ..showSnackBar(SnackBar(content: Text(l10n.settingsComingSoon)));
-    }
 
     return Scaffold(
       backgroundColor: HanaColors.background,
@@ -41,10 +37,6 @@ class TimelinePage extends StatelessWidget {
               elevation: 0,
               scrolledUnderElevation: 0,
               centerTitle: true,
-              leading: IconButton(
-                icon: const Icon(Icons.settings, color: HanaColors.primary),
-                onPressed: showComingSoon,
-              ),
               title: Text(
                 l10n.myGrowthTrajectory,
                 style: const TextStyle(
@@ -55,15 +47,6 @@ class TimelinePage extends StatelessWidget {
                   letterSpacing: -0.5,
                 ),
               ),
-              actions: [
-                IconButton(
-                  icon: const Icon(
-                    Icons.calendar_today,
-                    color: HanaColors.primary,
-                  ),
-                  onPressed: showComingSoon,
-                ),
-              ],
             ),
           ),
         ),
@@ -271,60 +254,72 @@ class _TimelineLoadedView extends StatelessWidget {
   }
 }
 
-class _FilterPills extends StatefulWidget {
-  @override
-  State<_FilterPills> createState() => _FilterPillsState();
-}
-
-class _FilterPillsState extends State<_FilterPills> {
-  int _selectedIndex = 4;
-
+class _FilterPills extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    final filters = [
-      l10n.filterOneMonth,
-      l10n.filterThreeMonths,
-      l10n.filterSixMonths,
-      l10n.filterOneYear,
-      l10n.filterAll,
-    ];
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: Row(
-        children: filters.asMap().entries.map((entry) {
-          final isSelected = entry.key == _selectedIndex;
-          return Padding(
-            padding: const EdgeInsets.only(right: 8),
-            child: GestureDetector(
-              onTap: () => setState(() => _selectedIndex = entry.key),
-              behavior: HitTestBehavior.opaque,
-              child: Chip(
-                label: Text(
-                  entry.value,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 12,
-                    color: isSelected
-                        ? HanaColors.onPrimaryContainer
-                        : HanaColors.onSurfaceVariant,
+    
+    return BlocBuilder<TimelineBloc, TimelineState>(
+      builder: (context, state) {
+        final currentFilter = state is TimelineLoaded 
+            ? state.selectedRange 
+            : TimelineFilterRange.all;
+            
+        final filters = [
+          (TimelineFilterRange.oneMonth, l10n.filterOneMonth),
+          (TimelineFilterRange.threeMonths, l10n.filterThreeMonths),
+          (TimelineFilterRange.sixMonths, l10n.filterSixMonths),
+          (TimelineFilterRange.oneYear, l10n.filterOneYear),
+          (TimelineFilterRange.all, l10n.filterAll),
+        ];
+
+        return SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: Row(
+            children: filters.map((entry) {
+              final range = entry.$1;
+              final label = entry.$2;
+              final isSelected = range == currentFilter;
+              
+              return Padding(
+                padding: const EdgeInsets.only(right: 8),
+                child: GestureDetector(
+                  onTap: () {
+                    if (!isSelected) {
+                      context.read<TimelineBloc>().add(
+                        FilterTimelineEvents(range: range),
+                      );
+                    }
+                  },
+                  behavior: HitTestBehavior.opaque,
+                  child: Chip(
+                    label: Text(
+                      label,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 12,
+                        color: isSelected
+                            ? HanaColors.onPrimaryContainer
+                            : HanaColors.onSurfaceVariant,
+                      ),
+                    ),
+                    backgroundColor: isSelected
+                        ? HanaColors.primaryContainer
+                        : HanaColors.surfaceContainerHigh,
+                    side: BorderSide.none,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(9999),
+                    ),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                   ),
                 ),
-                backgroundColor: isSelected
-                    ? HanaColors.primaryContainer
-                    : HanaColors.surfaceContainerHigh,
-                side: BorderSide.none,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(9999),
-                ),
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-              ),
-            ),
-          );
-        }).toList(),
-      ),
+              );
+            }).toList(),
+          ),
+        );
+      },
     );
   }
 }

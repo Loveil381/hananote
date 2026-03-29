@@ -19,38 +19,38 @@ mixin _$TimelineBlocEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadTimeline,
-    required TResult Function(TimelineRange range) selectRange,
+    required TResult Function(TimelineFilterRange range) filterTimelineEvents,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadTimeline,
-    TResult? Function(TimelineRange range)? selectRange,
+    TResult? Function(TimelineFilterRange range)? filterTimelineEvents,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadTimeline,
-    TResult Function(TimelineRange range)? selectRange,
+    TResult Function(TimelineFilterRange range)? filterTimelineEvents,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(LoadTimeline value) loadTimeline,
-    required TResult Function(SelectTimelineRange value) selectRange,
+    required TResult Function(FilterTimelineEvents value) filterTimelineEvents,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(LoadTimeline value)? loadTimeline,
-    TResult? Function(SelectTimelineRange value)? selectRange,
+    TResult? Function(FilterTimelineEvents value)? filterTimelineEvents,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadTimeline value)? loadTimeline,
-    TResult Function(SelectTimelineRange value)? selectRange,
+    TResult Function(FilterTimelineEvents value)? filterTimelineEvents,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -119,7 +119,7 @@ class _$LoadTimelineImpl implements LoadTimeline {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadTimeline,
-    required TResult Function(TimelineRange range) selectRange,
+    required TResult Function(TimelineFilterRange range) filterTimelineEvents,
   }) {
     return loadTimeline();
   }
@@ -128,7 +128,7 @@ class _$LoadTimelineImpl implements LoadTimeline {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadTimeline,
-    TResult? Function(TimelineRange range)? selectRange,
+    TResult? Function(TimelineFilterRange range)? filterTimelineEvents,
   }) {
     return loadTimeline?.call();
   }
@@ -137,7 +137,7 @@ class _$LoadTimelineImpl implements LoadTimeline {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadTimeline,
-    TResult Function(TimelineRange range)? selectRange,
+    TResult Function(TimelineFilterRange range)? filterTimelineEvents,
     required TResult orElse(),
   }) {
     if (loadTimeline != null) {
@@ -150,7 +150,7 @@ class _$LoadTimelineImpl implements LoadTimeline {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(LoadTimeline value) loadTimeline,
-    required TResult Function(SelectTimelineRange value) selectRange,
+    required TResult Function(FilterTimelineEvents value) filterTimelineEvents,
   }) {
     return loadTimeline(this);
   }
@@ -159,7 +159,7 @@ class _$LoadTimelineImpl implements LoadTimeline {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(LoadTimeline value)? loadTimeline,
-    TResult? Function(SelectTimelineRange value)? selectRange,
+    TResult? Function(FilterTimelineEvents value)? filterTimelineEvents,
   }) {
     return loadTimeline?.call(this);
   }
@@ -168,7 +168,7 @@ class _$LoadTimelineImpl implements LoadTimeline {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadTimeline value)? loadTimeline,
-    TResult Function(SelectTimelineRange value)? selectRange,
+    TResult Function(FilterTimelineEvents value)? filterTimelineEvents,
     required TResult orElse(),
   }) {
     if (loadTimeline != null) {
@@ -183,20 +183,20 @@ abstract class LoadTimeline implements TimelineBlocEvent {
 }
 
 /// @nodoc
-abstract class _$$SelectTimelineRangeImplCopyWith<$Res> {
-  factory _$$SelectTimelineRangeImplCopyWith(_$SelectTimelineRangeImpl value,
-          $Res Function(_$SelectTimelineRangeImpl) then) =
-      __$$SelectTimelineRangeImplCopyWithImpl<$Res>;
+abstract class _$$FilterTimelineEventsImplCopyWith<$Res> {
+  factory _$$FilterTimelineEventsImplCopyWith(_$FilterTimelineEventsImpl value,
+          $Res Function(_$FilterTimelineEventsImpl) then) =
+      __$$FilterTimelineEventsImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({TimelineRange range});
+  $Res call({TimelineFilterRange range});
 }
 
 /// @nodoc
-class __$$SelectTimelineRangeImplCopyWithImpl<$Res>
-    extends _$TimelineBlocEventCopyWithImpl<$Res, _$SelectTimelineRangeImpl>
-    implements _$$SelectTimelineRangeImplCopyWith<$Res> {
-  __$$SelectTimelineRangeImplCopyWithImpl(_$SelectTimelineRangeImpl _value,
-      $Res Function(_$SelectTimelineRangeImpl) _then)
+class __$$FilterTimelineEventsImplCopyWithImpl<$Res>
+    extends _$TimelineBlocEventCopyWithImpl<$Res, _$FilterTimelineEventsImpl>
+    implements _$$FilterTimelineEventsImplCopyWith<$Res> {
+  __$$FilterTimelineEventsImplCopyWithImpl(_$FilterTimelineEventsImpl _value,
+      $Res Function(_$FilterTimelineEventsImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of TimelineBlocEvent
@@ -206,33 +206,33 @@ class __$$SelectTimelineRangeImplCopyWithImpl<$Res>
   $Res call({
     Object? range = null,
   }) {
-    return _then(_$SelectTimelineRangeImpl(
-      null == range
+    return _then(_$FilterTimelineEventsImpl(
+      range: null == range
           ? _value.range
           : range // ignore: cast_nullable_to_non_nullable
-              as TimelineRange,
+              as TimelineFilterRange,
     ));
   }
 }
 
 /// @nodoc
 
-class _$SelectTimelineRangeImpl implements SelectTimelineRange {
-  const _$SelectTimelineRangeImpl(this.range);
+class _$FilterTimelineEventsImpl implements FilterTimelineEvents {
+  const _$FilterTimelineEventsImpl({required this.range});
 
   @override
-  final TimelineRange range;
+  final TimelineFilterRange range;
 
   @override
   String toString() {
-    return 'TimelineBlocEvent.selectRange(range: $range)';
+    return 'TimelineBlocEvent.filterTimelineEvents(range: $range)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SelectTimelineRangeImpl &&
+            other is _$FilterTimelineEventsImpl &&
             (identical(other.range, range) || other.range == range));
   }
 
@@ -244,37 +244,38 @@ class _$SelectTimelineRangeImpl implements SelectTimelineRange {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$SelectTimelineRangeImplCopyWith<_$SelectTimelineRangeImpl> get copyWith =>
-      __$$SelectTimelineRangeImplCopyWithImpl<_$SelectTimelineRangeImpl>(
-          this, _$identity);
+  _$$FilterTimelineEventsImplCopyWith<_$FilterTimelineEventsImpl>
+      get copyWith =>
+          __$$FilterTimelineEventsImplCopyWithImpl<_$FilterTimelineEventsImpl>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadTimeline,
-    required TResult Function(TimelineRange range) selectRange,
+    required TResult Function(TimelineFilterRange range) filterTimelineEvents,
   }) {
-    return selectRange(range);
+    return filterTimelineEvents(range);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadTimeline,
-    TResult? Function(TimelineRange range)? selectRange,
+    TResult? Function(TimelineFilterRange range)? filterTimelineEvents,
   }) {
-    return selectRange?.call(range);
+    return filterTimelineEvents?.call(range);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadTimeline,
-    TResult Function(TimelineRange range)? selectRange,
+    TResult Function(TimelineFilterRange range)? filterTimelineEvents,
     required TResult orElse(),
   }) {
-    if (selectRange != null) {
-      return selectRange(range);
+    if (filterTimelineEvents != null) {
+      return filterTimelineEvents(range);
     }
     return orElse();
   }
@@ -283,43 +284,43 @@ class _$SelectTimelineRangeImpl implements SelectTimelineRange {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(LoadTimeline value) loadTimeline,
-    required TResult Function(SelectTimelineRange value) selectRange,
+    required TResult Function(FilterTimelineEvents value) filterTimelineEvents,
   }) {
-    return selectRange(this);
+    return filterTimelineEvents(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(LoadTimeline value)? loadTimeline,
-    TResult? Function(SelectTimelineRange value)? selectRange,
+    TResult? Function(FilterTimelineEvents value)? filterTimelineEvents,
   }) {
-    return selectRange?.call(this);
+    return filterTimelineEvents?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadTimeline value)? loadTimeline,
-    TResult Function(SelectTimelineRange value)? selectRange,
+    TResult Function(FilterTimelineEvents value)? filterTimelineEvents,
     required TResult orElse(),
   }) {
-    if (selectRange != null) {
-      return selectRange(this);
+    if (filterTimelineEvents != null) {
+      return filterTimelineEvents(this);
     }
     return orElse();
   }
 }
 
-abstract class SelectTimelineRange implements TimelineBlocEvent {
-  const factory SelectTimelineRange(final TimelineRange range) =
-      _$SelectTimelineRangeImpl;
+abstract class FilterTimelineEvents implements TimelineBlocEvent {
+  const factory FilterTimelineEvents(
+      {required final TimelineFilterRange range}) = _$FilterTimelineEventsImpl;
 
-  TimelineRange get range;
+  TimelineFilterRange get range;
 
   /// Create a copy of TimelineBlocEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SelectTimelineRangeImplCopyWith<_$SelectTimelineRangeImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$FilterTimelineEventsImplCopyWith<_$FilterTimelineEventsImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

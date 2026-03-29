@@ -21,7 +21,7 @@ mixin _$TimelineState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<TimelineEvent> events,
-            TimelineRange selectedRange, DateTime? hrtStartDate)
+            TimelineFilterRange selectedRange, DateTime? hrtStartDate)
         loaded,
     required TResult Function(String message) error,
   }) =>
@@ -30,8 +30,8 @@ mixin _$TimelineState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<TimelineEvent> events, TimelineRange selectedRange,
-            DateTime? hrtStartDate)?
+    TResult? Function(List<TimelineEvent> events,
+            TimelineFilterRange selectedRange, DateTime? hrtStartDate)?
         loaded,
     TResult? Function(String message)? error,
   }) =>
@@ -40,8 +40,8 @@ mixin _$TimelineState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<TimelineEvent> events, TimelineRange selectedRange,
-            DateTime? hrtStartDate)?
+    TResult Function(List<TimelineEvent> events,
+            TimelineFilterRange selectedRange, DateTime? hrtStartDate)?
         loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
@@ -139,7 +139,7 @@ class _$TimelineInitialImpl implements TimelineInitial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<TimelineEvent> events,
-            TimelineRange selectedRange, DateTime? hrtStartDate)
+            TimelineFilterRange selectedRange, DateTime? hrtStartDate)
         loaded,
     required TResult Function(String message) error,
   }) {
@@ -151,8 +151,8 @@ class _$TimelineInitialImpl implements TimelineInitial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<TimelineEvent> events, TimelineRange selectedRange,
-            DateTime? hrtStartDate)?
+    TResult? Function(List<TimelineEvent> events,
+            TimelineFilterRange selectedRange, DateTime? hrtStartDate)?
         loaded,
     TResult? Function(String message)? error,
   }) {
@@ -164,8 +164,8 @@ class _$TimelineInitialImpl implements TimelineInitial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<TimelineEvent> events, TimelineRange selectedRange,
-            DateTime? hrtStartDate)?
+    TResult Function(List<TimelineEvent> events,
+            TimelineFilterRange selectedRange, DateTime? hrtStartDate)?
         loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
@@ -262,7 +262,7 @@ class _$TimelineLoadingImpl implements TimelineLoading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<TimelineEvent> events,
-            TimelineRange selectedRange, DateTime? hrtStartDate)
+            TimelineFilterRange selectedRange, DateTime? hrtStartDate)
         loaded,
     required TResult Function(String message) error,
   }) {
@@ -274,8 +274,8 @@ class _$TimelineLoadingImpl implements TimelineLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<TimelineEvent> events, TimelineRange selectedRange,
-            DateTime? hrtStartDate)?
+    TResult? Function(List<TimelineEvent> events,
+            TimelineFilterRange selectedRange, DateTime? hrtStartDate)?
         loaded,
     TResult? Function(String message)? error,
   }) {
@@ -287,8 +287,8 @@ class _$TimelineLoadingImpl implements TimelineLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<TimelineEvent> events, TimelineRange selectedRange,
-            DateTime? hrtStartDate)?
+    TResult Function(List<TimelineEvent> events,
+            TimelineFilterRange selectedRange, DateTime? hrtStartDate)?
         loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
@@ -349,7 +349,7 @@ abstract class _$$TimelineLoadedImplCopyWith<$Res> {
   @useResult
   $Res call(
       {List<TimelineEvent> events,
-      TimelineRange selectedRange,
+      TimelineFilterRange selectedRange,
       DateTime? hrtStartDate});
 }
 
@@ -378,7 +378,7 @@ class __$$TimelineLoadedImplCopyWithImpl<$Res>
       selectedRange: null == selectedRange
           ? _value.selectedRange
           : selectedRange // ignore: cast_nullable_to_non_nullable
-              as TimelineRange,
+              as TimelineFilterRange,
       hrtStartDate: freezed == hrtStartDate
           ? _value.hrtStartDate
           : hrtStartDate // ignore: cast_nullable_to_non_nullable
@@ -393,7 +393,7 @@ class _$TimelineLoadedImpl implements TimelineLoaded {
   const _$TimelineLoadedImpl(
       {required final List<TimelineEvent> events,
       required this.selectedRange,
-      required this.hrtStartDate})
+      this.hrtStartDate})
       : _events = events;
 
   final List<TimelineEvent> _events;
@@ -405,7 +405,7 @@ class _$TimelineLoadedImpl implements TimelineLoaded {
   }
 
   @override
-  final TimelineRange selectedRange;
+  final TimelineFilterRange selectedRange;
   @override
   final DateTime? hrtStartDate;
 
@@ -448,7 +448,7 @@ class _$TimelineLoadedImpl implements TimelineLoaded {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<TimelineEvent> events,
-            TimelineRange selectedRange, DateTime? hrtStartDate)
+            TimelineFilterRange selectedRange, DateTime? hrtStartDate)
         loaded,
     required TResult Function(String message) error,
   }) {
@@ -460,8 +460,8 @@ class _$TimelineLoadedImpl implements TimelineLoaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<TimelineEvent> events, TimelineRange selectedRange,
-            DateTime? hrtStartDate)?
+    TResult? Function(List<TimelineEvent> events,
+            TimelineFilterRange selectedRange, DateTime? hrtStartDate)?
         loaded,
     TResult? Function(String message)? error,
   }) {
@@ -473,8 +473,8 @@ class _$TimelineLoadedImpl implements TimelineLoaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<TimelineEvent> events, TimelineRange selectedRange,
-            DateTime? hrtStartDate)?
+    TResult Function(List<TimelineEvent> events,
+            TimelineFilterRange selectedRange, DateTime? hrtStartDate)?
         loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
@@ -526,11 +526,11 @@ class _$TimelineLoadedImpl implements TimelineLoaded {
 abstract class TimelineLoaded implements TimelineState {
   const factory TimelineLoaded(
       {required final List<TimelineEvent> events,
-      required final TimelineRange selectedRange,
-      required final DateTime? hrtStartDate}) = _$TimelineLoadedImpl;
+      required final TimelineFilterRange selectedRange,
+      final DateTime? hrtStartDate}) = _$TimelineLoadedImpl;
 
   List<TimelineEvent> get events;
-  TimelineRange get selectedRange;
+  TimelineFilterRange get selectedRange;
   DateTime? get hrtStartDate;
 
   /// Create a copy of TimelineState
@@ -611,7 +611,7 @@ class _$TimelineErrorImpl implements TimelineError {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<TimelineEvent> events,
-            TimelineRange selectedRange, DateTime? hrtStartDate)
+            TimelineFilterRange selectedRange, DateTime? hrtStartDate)
         loaded,
     required TResult Function(String message) error,
   }) {
@@ -623,8 +623,8 @@ class _$TimelineErrorImpl implements TimelineError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<TimelineEvent> events, TimelineRange selectedRange,
-            DateTime? hrtStartDate)?
+    TResult? Function(List<TimelineEvent> events,
+            TimelineFilterRange selectedRange, DateTime? hrtStartDate)?
         loaded,
     TResult? Function(String message)? error,
   }) {
@@ -636,8 +636,8 @@ class _$TimelineErrorImpl implements TimelineError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<TimelineEvent> events, TimelineRange selectedRange,
-            DateTime? hrtStartDate)?
+    TResult Function(List<TimelineEvent> events,
+            TimelineFilterRange selectedRange, DateTime? hrtStartDate)?
         loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
