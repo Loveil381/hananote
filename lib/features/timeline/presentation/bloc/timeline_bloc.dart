@@ -1,7 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hananote/core/error/failures.dart';
 import 'package:hananote/features/settings/domain/repositories/settings_repository.dart';
-import 'package:hananote/features/timeline/domain/entities/timeline_event.dart';
 import 'package:hananote/features/timeline/domain/usecases/get_timeline_events.dart';
 import 'package:hananote/features/timeline/presentation/bloc/timeline_event.dart';
 import 'package:hananote/features/timeline/presentation/bloc/timeline_state.dart';
@@ -14,14 +13,13 @@ class TimelineBloc extends Bloc<TimelineBlocEvent, TimelineState> {
   TimelineBloc(this._getTimelineEvents, this._settingsRepository)
       : super(const TimelineInitial()) {
     on<LoadTimeline>(_onLoadTimeline);
-    on<FilterTimelineEvents>(_onFilterTimelineEvents);
+    on<SelectTimelineRange>(_onSelectTimelineRange);
   }
 
   final GetTimelineEvents _getTimelineEvents;
   final SettingsRepository _settingsRepository;
 
-  TimelineFilterRange _selectedRange = TimelineFilterRange.all;
-  List<TimelineEvent>? _allEvents;
+  TimelineRange _selectedRange = TimelineRange.oneMonth;
 
   Future<void> _onLoadTimeline(
     LoadTimeline event,
@@ -30,51 +28,34 @@ class TimelineBloc extends Bloc<TimelineBlocEvent, TimelineState> {
     emit(const TimelineLoading());
 
     final hrtStartDate = await _loadHrtStartDate();
-    final timelineResult = await _getTimelineEvents();
+    final dateRange = _selectedRange.dateRange;
+    final timelineResult = await _getTimelineEvents(
+      from: dateRange?.from,
+      to: dateRange?.to,
+    );
 
     timelineResult.fold(
       (failure) => emit(TimelineError(failureMessage(failure))),
-      (events) {
-        _allEvents = events;
-        _emitFiltered(emit, hrtStartDate);
-      },
+      (events) => emit(
+        TimelineLoaded(
+          events: events,
+          selectedRange: _selectedRange,
+          hrtStartDate: hrtStartDate,
+        ),
+      ),
     );
   }
 
-  void _onFilterTimelineEvents(
-    FilterTimelineEvents event,
+  Future<void> _onSelectTimelineRange(
+    SelectTimelineRange event,
     Emitter<TimelineState> emit,
-  ) {
-    if (event.range == _selectedRange && _allEvents != null) {
+  ) async {
+    if (event.range == _selectedRange) {
       return;
     }
 
     _selectedRange = event.range;
-    
-    DateTime? hrtStartDate;
-    if (state is TimelineLoaded) {
-      hrtStartDate = (state as TimelineLoaded).hrtStartDate;
-    }
-    _emitFiltered(emit, hrtStartDate);
-  }
-
-  void _emitFiltered(Emitter<TimelineState> emit, DateTime? hrtStartDate) {
-    if (_allEvents == null) return;
-    final dateRange = _selectedRange.dateRange;
-    final filteredEvents = dateRange == null
-        ? _allEvents!
-        : _allEvents!.where((e) {
-            return e.date.isAfter(dateRange.from) ||
-                e.date.isAtSameMomentAs(dateRange.from);
-          }).toList();
-
-    emit(
-      TimelineLoaded(
-        events: filteredEvents,
-        selectedRange: _selectedRange,
-        hrtStartDate: hrtStartDate,
-      ),
-    );
+    await _onLoadTimeline(const LoadTimeline(), emit);
   }
 
   Future<DateTime?> _loadHrtStartDate() async {

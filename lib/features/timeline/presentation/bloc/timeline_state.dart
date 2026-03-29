@@ -16,8 +16,8 @@ sealed class TimelineState with _$TimelineState {
   /// Loaded state containing timeline data.
   const factory TimelineState.loaded({
     required List<TimelineEvent> events,
-    required TimelineFilterRange selectedRange,
-    DateTime? hrtStartDate,
+    required TimelineRange selectedRange,
+    required DateTime? hrtStartDate,
   }) = TimelineLoaded;
 
   /// Error state.

@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'timeline_event.freezed.dart';
 
 /// Available date ranges for the timeline filter.
-enum TimelineFilterRange {
+enum TimelineRange {
   /// Events from the last month.
   oneMonth,
 
@@ -20,31 +20,31 @@ enum TimelineFilterRange {
   all,
 }
 
-/// Presentation helpers for [TimelineFilterRange].
-extension TimelineFilterRangeX on TimelineFilterRange {
+/// Presentation helpers for [TimelineRange].
+extension TimelineRangeX on TimelineRange {
   /// Localized label.
   String get displayName => switch (this) {
-        TimelineFilterRange.oneMonth => '1月',
-        TimelineFilterRange.threeMonths => '3月',
-        TimelineFilterRange.sixMonths => '6月',
-        TimelineFilterRange.oneYear => '1年',
-        TimelineFilterRange.all => '全部',
+        TimelineRange.oneMonth => '1月',
+        TimelineRange.threeMonths => '3月',
+        TimelineRange.sixMonths => '6月',
+        TimelineRange.oneYear => '1年',
+        TimelineRange.all => '全部',
       };
 
   /// Date range represented by the selected filter.
   ({DateTime from, DateTime to})? get dateRange {
-    if (this == TimelineFilterRange.all) {
+    if (this == TimelineRange.all) {
       return null;
     }
 
     final now = DateTime.now();
-    final to = DateTime(now.year, now.month, now.day, 23, 59, 59);
+    final to = DateTime(now.year, now.month, now.day);
     final from = switch (this) {
-      TimelineFilterRange.oneMonth => to.subtract(const Duration(days: 30)),
-      TimelineFilterRange.threeMonths => to.subtract(const Duration(days: 90)),
-      TimelineFilterRange.sixMonths => to.subtract(const Duration(days: 180)),
-      TimelineFilterRange.oneYear => to.subtract(const Duration(days: 365)),
-      TimelineFilterRange.all => to,
+      TimelineRange.oneMonth => to.subtract(const Duration(days: 30)),
+      TimelineRange.threeMonths => to.subtract(const Duration(days: 90)),
+      TimelineRange.sixMonths => to.subtract(const Duration(days: 180)),
+      TimelineRange.oneYear => to.subtract(const Duration(days: 365)),
+      TimelineRange.all => to,
     };
 
     return (from: from, to: to);
@@ -57,8 +57,7 @@ sealed class TimelineBlocEvent with _$TimelineBlocEvent {
   /// Loads the selected timeline range.
   const factory TimelineBlocEvent.loadTimeline() = LoadTimeline;
 
-  /// Changes the selected filter range and filters events locally.
-  const factory TimelineBlocEvent.filterTimelineEvents({
-    required TimelineFilterRange range,
-  }) = FilterTimelineEvents;
+  /// Changes the selected range and reloads the timeline.
+  const factory TimelineBlocEvent.selectRange(TimelineRange range) =
+      SelectTimelineRange;
 }

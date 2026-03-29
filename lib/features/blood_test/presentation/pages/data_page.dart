@@ -25,6 +25,12 @@ class DataPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final topPadding = MediaQuery.of(context).padding.top + kToolbarHeight + 16;
+    void showComingSoon(String message) {
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(SnackBar(content: Text(message)));
+    }
+
     return Scaffold(
       backgroundColor: HanaColors.background,
       extendBodyBehindAppBar: true,
@@ -39,6 +45,13 @@ class DataPage extends StatelessWidget {
               elevation: 0,
               scrolledUnderElevation: 0,
               centerTitle: true,
+              leading: IconButton(
+                icon: const Icon(
+                  Icons.notifications_none,
+                  color: HanaColors.primary,
+                ),
+                onPressed: () => showComingSoon(l10n.notificationsComingSoon),
+              ),
               title: Text(
                 l10n.dataAndTrends,
                 style: const TextStyle(
