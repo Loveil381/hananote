@@ -270,5 +270,6 @@
   "tabRecord": "记录",
   "tabTimeline": "轨迹",
   "tabData": "数据",
-  "tabProfile": "我的"
+  "tabProfile": "我的",
+  "featurePlanned": "功能开发中"
 }

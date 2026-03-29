@@ -643,4 +643,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get tabProfile => 'マイページ';
+
+  @override
+  String get featurePlanned => '開発中';
 }

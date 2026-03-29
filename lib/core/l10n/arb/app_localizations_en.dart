@@ -664,4 +664,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tabProfile => 'Profile';
+
+  @override
+  String get featurePlanned => 'Coming Soon';
 }

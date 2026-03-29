@@ -125,11 +125,6 @@ class ProfilePage extends StatelessWidget {
                   elevation: 0,
                   scrolledUnderElevation: 0,
                   centerTitle: true,
-                  leading: IconButton(
-                    icon: const Icon(Icons.settings, color: HanaColors.primary),
-                    onPressed: () =>
-                        _showSnackBar(context, l10n.settingsComingSoon),
-                  ),
                   title: Text(
                     l10n.profile,
                     style: const TextStyle(
@@ -140,16 +135,6 @@ class ProfilePage extends StatelessWidget {
                       letterSpacing: -0.5,
                     ),
                   ),
-                  actions: [
-                    IconButton(
-                      icon: const Icon(
-                        Icons.notifications,
-                        color: HanaColors.primary,
-                      ),
-                      onPressed: () =>
-                          _showSnackBar(context, l10n.notificationsComingSoon),
-                    ),
-                  ],
                 ),
               ),
             ),
@@ -409,28 +394,23 @@ class ProfilePage extends StatelessWidget {
                   _ButtonRowItem(
                     icon: Icons.cloud_upload,
                     title: l10n.exportBackup,
+                    subtitle: l10n.featurePlanned,
                     trailingText: lastBackupText,
                     decoration: _bentoDecoration(),
-                    onTap: () =>
-                        _showSnackBar(context, l10n.backupToolsComingSoon),
                   ),
                   const SizedBox(height: 12),
                   _ButtonRowItem(
                     icon: Icons.cloud_download,
                     title: l10n.importBackup,
-                    isChevron: true,
+                    subtitle: l10n.featurePlanned,
                     decoration: _bentoDecoration(),
-                    onTap: () =>
-                        _showSnackBar(context, l10n.backupToolsComingSoon),
                   ),
                   const SizedBox(height: 12),
                   _ButtonRowItem(
                     icon: Icons.description,
                     title: l10n.generatePdf,
-                    isChevron: true,
+                    subtitle: l10n.featurePlanned,
                     decoration: _bentoDecoration(),
-                    onTap: () =>
-                        _showSnackBar(context, l10n.backupToolsComingSoon),
                   ),
                   const SizedBox(height: 40),
                   Text(
@@ -455,14 +435,14 @@ class ProfilePage extends StatelessWidget {
                           title: l10n.privacyPolicy,
                           isChevron: true,
                           onTap: () =>
-                              _showSnackBar(context, l10n.privacyPolicyPending),
+                              _showSnackBar(context, l10n.featurePlanned),
                         ),
                         _bentoSeparator(),
                         _ListTileItem(
                           title: l10n.termsOfUse,
                           isChevron: true,
                           onTap: () =>
-                              _showSnackBar(context, l10n.termsPending),
+                              _showSnackBar(context, l10n.featurePlanned),
                         ),
                       ],
                     ),
@@ -653,6 +633,7 @@ class _ButtonRowItem extends StatelessWidget {
     required this.icon,
     required this.title,
     required this.decoration,
+    this.subtitle,
     this.trailingText,
     this.isChevron = false,
     this.onTap,
@@ -660,6 +641,7 @@ class _ButtonRowItem extends StatelessWidget {
 
   final IconData icon;
   final String title;
+  final String? subtitle;
   final String? trailingText;
   final bool isChevron;
   final BoxDecoration decoration;
@@ -687,13 +669,29 @@ class _ButtonRowItem extends StatelessWidget {
               ),
               const SizedBox(width: 16),
               Expanded(
-                child: Text(
-                  title,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15,
-                    color: HanaColors.onSurface,
-                  ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      title,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15,
+                        color: HanaColors.onSurface,
+                      ),
+                    ),
+                    if (subtitle != null) ...[
+                      const SizedBox(height: 4),
+                      Text(
+                        subtitle!,
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: HanaColors.onSurfaceVariant.withAlpha(179),
+                        ),
+                      ),
+                    ],
+                  ],
                 ),
               ),
               if (trailingText != null) ...[

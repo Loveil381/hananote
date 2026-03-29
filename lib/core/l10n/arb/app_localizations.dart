@@ -1335,6 +1335,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Profile'**
   String get tabProfile;
+
+  /// No description provided for @featurePlanned.
+  ///
+  /// In en, this message translates to:
+  /// **'Coming Soon'**
+  String get featurePlanned;
 }
 
 class _AppLocalizationsDelegate

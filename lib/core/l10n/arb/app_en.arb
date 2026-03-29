@@ -270,5 +270,6 @@
   "tabRecord": "Record",
   "tabTimeline": "Timeline",
   "tabData": "Data",
-  "tabProfile": "Profile"
+  "tabProfile": "Profile",
+  "featurePlanned": "Coming Soon"
 }

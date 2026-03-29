@@ -643,4 +643,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get tabProfile => '我的';
+
+  @override
+  String get featurePlanned => '功能开发中';
 }
