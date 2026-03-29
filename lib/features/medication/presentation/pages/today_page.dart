@@ -3,8 +3,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hananote/app/presentation/main_shell.dart'
-    show kNavBarContentHeight;
 import 'package:hananote/app/theme/hana_colors.dart';
 import 'package:hananote/core/l10n/arb/app_localizations.dart';
 import 'package:hananote/features/medication/domain/entities/enums.dart';
@@ -44,8 +42,6 @@ class TodayPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final l10n = AppLocalizations.of(context)!;
-    final bottomContentPadding =
-        kNavBarContentHeight + MediaQuery.of(context).padding.bottom + 16;
     final settingsState = context.watch<SettingsBloc>().state;
     final displayName = settingsState is SettingsLoaded
         ? settingsState.profile.displayName
@@ -174,9 +170,7 @@ class TodayPage extends StatelessWidget {
                 child: SizedBox(height: 16),
               ), // Additional gap
               ..._buildStateContent(context, state, theme, l10n),
-              SliverPadding(
-                padding: EdgeInsets.only(bottom: bottomContentPadding),
-              ),
+              const SliverPadding(padding: EdgeInsets.only(bottom: 24)),
             ],
           );
         },

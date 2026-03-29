@@ -7,8 +7,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hananote/app/presentation/main_shell.dart'
-    show kNavBarContentHeight;
 import 'package:hananote/app/theme/hana_colors.dart';
 import 'package:hananote/features/journal/presentation/bloc/record_bloc.dart';
 import 'package:hananote/features/journal/presentation/bloc/record_state.dart';
@@ -21,8 +19,6 @@ class RecordPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<RecordBloc, RecordState>(
       builder: (context, state) {
-        final bottomContentPadding =
-            kNavBarContentHeight + MediaQuery.of(context).padding.bottom + 16;
         final todayStr = DateFormat('M月d日').format(DateTime.now());
 
         var moodTag = '开始你的第一篇日记';
@@ -213,7 +209,7 @@ class RecordPage extends StatelessWidget {
                         ),
                   ),
                 ),
-                SizedBox(height: bottomContentPadding),
+                const SizedBox(height: 24),
               ],
             ),
           ),

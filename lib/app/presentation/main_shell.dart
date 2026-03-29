@@ -28,7 +28,6 @@ class MainShell extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: navigationShell,
-      extendBody: true, // Needed for transparent/blur bottom nav
       bottomNavigationBar: _StitchNavigationBar(
         currentIndex: navigationShell.currentIndex,
         onTap: _onTap,

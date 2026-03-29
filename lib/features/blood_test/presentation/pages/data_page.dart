@@ -7,8 +7,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hananote/app/presentation/main_shell.dart'
-    show kNavBarContentHeight;
 import 'package:hananote/app/theme/hana_colors.dart';
 import 'package:hananote/core/l10n/arb/app_localizations.dart';
 import 'package:hananote/features/blood_test/domain/entities/blood_test_report.dart';
@@ -90,8 +88,6 @@ class _LoadedView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    final bottomContentPadding =
-        kNavBarContentHeight + MediaQuery.of(context).padding.bottom + 16;
     final localeName = Localizations.localeOf(context).toLanguageTag();
     final dateFormat = DateFormat('yyyy.MM.dd');
     final lastUpdatedText = state.lastUpdated == null
@@ -99,7 +95,7 @@ class _LoadedView extends StatelessWidget {
         : l10n.lastUpdated(dateFormat.format(state.lastUpdated!));
 
     return SingleChildScrollView(
-      padding: EdgeInsets.fromLTRB(24, 100, 24, bottomContentPadding),
+      padding: const EdgeInsets.fromLTRB(24, 100, 24, 24),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [

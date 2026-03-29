@@ -3,8 +3,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hananote/app/presentation/main_shell.dart'
-    show kNavBarContentHeight;
 import 'package:hananote/app/theme/hana_colors.dart';
 import 'package:hananote/core/l10n/arb/app_localizations.dart';
 import 'package:hananote/features/timeline/domain/entities/enums.dart';
@@ -191,8 +189,6 @@ class _TimelineLoadedView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bottomContentPadding =
-        kNavBarContentHeight + MediaQuery.of(context).padding.bottom + 16;
     if (events.isEmpty) {
       return Center(
         child: Text(
@@ -253,7 +249,7 @@ class _TimelineLoadedView extends StatelessWidget {
               ),
             ),
             SliverPadding(
-              padding: EdgeInsets.only(bottom: bottomContentPadding),
+              padding: const EdgeInsets.only(bottom: 24),
               sliver: const SliverToBoxAdapter(
                 child: _TimelineStartPoint(),
               ),
