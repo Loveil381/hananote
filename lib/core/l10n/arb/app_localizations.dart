@@ -484,6 +484,12 @@ abstract class AppLocalizations {
   /// **'Inventory data unavailable'**
   String get inventoryDataUnavailable;
 
+  /// No description provided for @inventoryUpdateHint.
+  ///
+  /// In en, this message translates to:
+  /// **'New amount ({unit})'**
+  String inventoryUpdateHint(String unit);
+
   /// No description provided for @medicationPlan.
   ///
   /// In en, this message translates to:

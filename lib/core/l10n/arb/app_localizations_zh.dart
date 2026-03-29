@@ -211,6 +211,11 @@ class AppLocalizationsZh extends AppLocalizations {
   String get inventoryDataUnavailable => '库存数据暂不可用';
 
   @override
+  String inventoryUpdateHint(String unit) {
+    return '新数量 ($unit)';
+  }
+
+  @override
   String get medicationPlan => '用药方案';
 
   @override

@@ -101,6 +101,14 @@
     }
   },
   "inventoryDataUnavailable": "Inventory data unavailable",
+  "inventoryUpdateHint": "New amount ({unit})",
+  "@inventoryUpdateHint": {
+    "placeholders": {
+      "unit": {
+        "type": "String"
+      }
+    }
+  },
   "medicationPlan": "Medication Plan",
   "manageEditSchedules": "Manage and edit schedules",
   "privacySecurity": "Privacy & Security",

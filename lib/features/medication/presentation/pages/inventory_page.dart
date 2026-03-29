@@ -5,6 +5,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hananote/core/l10n/arb/app_localizations.dart';
+import 'package:hananote/core/l10n/enum_l10n.dart';
 import 'package:hananote/features/medication/domain/usecases/check_inventory.dart';
 import 'package:hananote/features/medication/presentation/bloc/inventory_cubit.dart';
 import 'package:hananote/features/medication/presentation/bloc/inventory_state.dart';
@@ -176,7 +177,9 @@ class _InventoryPageState extends State<InventoryPage> {
             controller: controller,
             keyboardType: const TextInputType.numberWithOptions(decimal: true),
             decoration: InputDecoration(
-              hintText: 'New Amount (${status.drug.defaultDosageUnit.name})',
+              hintText: l10n.inventoryUpdateHint(
+                status.drug.defaultDosageUnit.localizedName(l10n),
+              ),
               border: const OutlineInputBorder(),
             ),
           ),

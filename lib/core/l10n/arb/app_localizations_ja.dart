@@ -211,6 +211,11 @@ class AppLocalizationsJa extends AppLocalizations {
   String get inventoryDataUnavailable => '在庫データを取得できません';
 
   @override
+  String inventoryUpdateHint(String unit) {
+    return '新しい数量 ($unit)';
+  }
+
+  @override
   String get medicationPlan => '服薬プラン';
 
   @override

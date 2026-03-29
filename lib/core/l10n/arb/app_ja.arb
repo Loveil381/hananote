@@ -101,6 +101,14 @@
     }
   },
   "inventoryDataUnavailable": "在庫データを取得できません",
+  "inventoryUpdateHint": "新しい数量 ({unit})",
+  "@inventoryUpdateHint": {
+    "placeholders": {
+      "unit": {
+        "type": "String"
+      }
+    }
+  },
   "medicationPlan": "服薬プラン",
   "manageEditSchedules": "スケジュールを管理・編集",
   "privacySecurity": "プライバシーとセキュリティ",

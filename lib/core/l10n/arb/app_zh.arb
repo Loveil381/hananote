@@ -101,6 +101,14 @@
     }
   },
   "inventoryDataUnavailable": "库存数据暂不可用",
+  "inventoryUpdateHint": "新数量 ({unit})",
+  "@inventoryUpdateHint": {
+    "placeholders": {
+      "unit": {
+        "type": "String"
+      }
+    }
+  },
   "medicationPlan": "用药方案",
   "manageEditSchedules": "管理与编辑方案",
   "privacySecurity": "隐私与安全",

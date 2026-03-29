@@ -214,6 +214,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get inventoryDataUnavailable => 'Inventory data unavailable';
 
   @override
+  String inventoryUpdateHint(String unit) {
+    return 'New amount ($unit)';
+  }
+
+  @override
   String get medicationPlan => 'Medication Plan';
 
   @override
