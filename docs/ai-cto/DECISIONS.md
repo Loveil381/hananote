@@ -229,3 +229,13 @@
 - **理由**: 新建或编辑方案都需要药物实体里的 `administrationRoute` 与 `defaultDosageUnit`；仅传 `drugId` 会导致单位下拉框缺失、编辑态初始化不完整
 - **结果**: 编辑页现在优先读取现有 schedule；若不存在，再以 drug 默认 route / unit 进入新建态
 - **日期**: 第40轮
+
+## DEC-045: 底部导航栏毛玻璃效果通过 bottomNavigationBar 自身实现
+- **决定**: 保持 `Scaffold.extendBody = false`，将 `BackdropFilter + 半透明背景 + 顶部边框` 放在 `bottomNavigationBar` 容器自身实现毛玻璃效果
+- **理由**: `extendBody = true` 会让页面内容延伸到导航栏下方，导致底部内容遮挡；把模糊效果收口到导航栏自身，可以同时保留视觉质感和布局稳定性
+- **日期**: 第41轮
+
+## DEC-046: 顶部留白统一使用 SafeArea + AppBar 动态计算
+- **决定**: 所有 `extendBodyBehindAppBar: true` 的页面，顶部内容留白统一使用 `MediaQuery.padding.top + kToolbarHeight + 16`
+- **理由**: 硬编码 `100` 在不同设备、刘海屏和系统字体缩放下都不稳定；动态计算能让首屏内容始终落在导航栏下方的安全区域内
+- **日期**: 第41轮
