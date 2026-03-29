@@ -223,3 +223,9 @@
 - **理由**: Presentation 状态管理层没有 `BuildContext`，直接返回硬编码文案会把 i18n 逻辑错误地下沉到状态层
 - **适用范围**: `ScheduleEditorCubit` 及后续所有需要在无 context 环境下产出用户可见校验消息的状态管理类
 - **日期**: 第39轮
+
+## DEC-044: ScheduleEditor 路由进入时先拉取 drug 默认值
+- **决定**: `/edit_schedule/:drugId` 不再直接 `initNew(drugId)`，而是统一调用 `ScheduleEditorCubit.loadForDrug(drugId)`
+- **理由**: 新建或编辑方案都需要药物实体里的 `administrationRoute` 与 `defaultDosageUnit`；仅传 `drugId` 会导致单位下拉框缺失、编辑态初始化不完整
+- **结果**: 编辑页现在优先读取现有 schedule；若不存在，再以 drug 默认 route / unit 进入新建态
+- **日期**: 第40轮

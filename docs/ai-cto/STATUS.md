@@ -1,7 +1,7 @@
 # HanaNote STATUS
 
-## 当前轮次: Round 39
-## 当前阶段: 运行时稳定性与国际化收尾
+## 当前轮次: Round 40
+## 当前阶段: Medication 编辑链路修复 + i18n 一致性收尾
 ## 产品完成度: 99%
 ## 数据绑定完成度: 5/5
 
@@ -11,7 +11,7 @@
 | Medication feature | ✅ | Clean Architecture + Today Tab 数据绑定 |
 | Journal feature | ✅ | Clean Architecture + RecordBloc 聚合 |
 | BloodTest feature | ✅ | Clean Architecture + Data Tab 数据绑定 |
-| Settings feature | ✅ | UserProfile/AppSettings + Profile Tab 数据绑定 |
+| Settings feature | ✅ | UserProfile / AppSettings + Profile Tab 数据绑定 |
 | Timeline feature | ✅ | 跨 feature 聚合 + TimelineBloc |
 | Notification system | ✅ | Medication reminders + Today countdown |
 | Simulator feature | ✅ | V2 PK engine + MAP calibration + Simulator UI |
@@ -40,13 +40,6 @@
 | Data | /data | blood_test + simulator | ✅ |
 | Profile | /profile | settings | ✅ |
 
-## R38 已完成交付
-| 项目 | 状态 | 说明 |
-|------|------|------|
-| DrugListCubit DI 注册 | ✅ | GetAllDrugs / AddDrug / UpdateDrug / DeleteDrug 已注入 GetIt |
-| 底部导航遮挡修复 | ✅ | 去掉 extendBody，内容不再被导航栏覆盖 |
-| DataPage / TimelinePage ARB 迁移 | ✅ | 血检与时间线主要文案全部切换到 AppLocalizations |
-
 ## R39 已完成交付
 | 项目 | 状态 | 说明 |
 |------|------|------|
@@ -56,3 +49,11 @@
 | Enum locale-aware displayName | ✅ | UI 层改用 localizedName(l10n) |
 | 空回调按钮修复 | ✅ | 空 onPressed 替换为 coming-soon 反馈或移除 |
 | ai-cto 记忆文件同步 | ✅ | STATUS / REVIEW-BACKLOG / DECISIONS 更新至 Round 39 |
+
+## R40 已完成交付
+| 项目 | 状态 | 说明 |
+|------|------|------|
+| ScheduleEditor `loadForDrug` | ✅ | 编辑页打开时预填 route / unit / 现有 schedule |
+| `/edit_schedule/:drugId` 路由修复 | ✅ | Router 改为调用 `loadForDrug` |
+| DrugCard locale-aware enum 文案 | ✅ | category / route 改用 localizedName(l10n) |
+| ai-cto 记忆文件同步 | ✅ | STATUS / REVIEW-BACKLOG / DECISIONS 更新至 Round 40 |
