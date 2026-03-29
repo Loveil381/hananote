@@ -1,7 +1,7 @@
 import 'package:fpdart/fpdart.dart';
-import 'package:injectable/injectable.dart';
 import 'package:hananote/core/error/failures.dart';
 import 'package:hananote/features/medication/domain/repositories/medication_repository.dart';
+import 'package:injectable/injectable.dart';
 
 /// Deletes a drug definition.
 @injectable

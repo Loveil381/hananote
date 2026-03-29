@@ -286,6 +286,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get timeline => '时间线';
 
   @override
+  String get myGrowthTrajectory => '我的成长轨迹';
+
+  @override
   String get noTimelineEvents => '暂无时间线事件';
 
   @override
@@ -301,6 +304,15 @@ class AppLocalizationsZh extends AppLocalizations {
   String get data => '数据';
 
   @override
+  String get dataAndTrends => '数据与趋势';
+
+  @override
+  String get myStatus => '我的状态';
+
+  @override
+  String get bodyChanging => '身体正在产生奇妙的变化...';
+
+  @override
   String get hormoneOverview => '激素概览';
 
   @override
@@ -310,7 +322,43 @@ class AppLocalizationsZh extends AppLocalizations {
   String get history => '历史记录';
 
   @override
+  String get historyReports => '历史报告';
+
+  @override
   String get pkSimulator => 'PK 模拟器';
+
+  @override
+  String get pkSimulatorTitle => '药代动力学模拟';
+
+  @override
+  String get pkSimulatorSubtitle => '预测体内有效血药浓度...';
+
+  @override
+  String get trendSection => '指标趋势';
+
+  @override
+  String get trendStable => '近期走势平稳';
+
+  @override
+  String get lastHalfYear => '近半年';
+
+  @override
+  String get filterOneMonth => '1月';
+
+  @override
+  String get filterThreeMonths => '3月';
+
+  @override
+  String get filterSixMonths => '6月';
+
+  @override
+  String get filterOneYear => '1年';
+
+  @override
+  String get filterAll => '全部';
+
+  @override
+  String get journeyStart => '旅程开始';
 
   @override
   String get noUpdatesYet => '暂无更新';
@@ -355,6 +403,9 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get dayOfWeek => '星期几：';
+
+  @override
+  String get scheduleTimes => '服药时间';
 
   @override
   String get required => '必填';

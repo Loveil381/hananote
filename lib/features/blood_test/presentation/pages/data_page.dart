@@ -21,6 +21,8 @@ class DataPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return Scaffold(
       backgroundColor: HanaColors.background,
       extendBodyBehindAppBar: true,
@@ -36,13 +38,15 @@ class DataPage extends StatelessWidget {
               scrolledUnderElevation: 0,
               centerTitle: true,
               leading: IconButton(
-                icon: const Icon(Icons.notifications_none,
-                    color: HanaColors.primary,),
+                icon: const Icon(
+                  Icons.notifications_none,
+                  color: HanaColors.primary,
+                ),
                 onPressed: () {},
               ),
-              title: const Text(
-                '数据与趋势',
-                style: TextStyle(
+              title: Text(
+                l10n.dataAndTrends,
+                style: const TextStyle(
                   fontFamily: 'Plus Jakarta Sans',
                   fontWeight: FontWeight.w600,
                   fontSize: 18,
@@ -100,7 +104,7 @@ class _LoadedView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Text(
-                '我的状态', // Replace generic l10n.hormoneOverview with Stitch text
+                l10n.myStatus,
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
                       fontWeight: FontWeight.w800,
                       color: HanaColors.primary,
@@ -118,7 +122,7 @@ class _LoadedView extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            '身体正在产生奇妙的变化...',
+            l10n.bodyChanging,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: HanaColors.primary.withAlpha(204), // 80%
                 ),
@@ -167,7 +171,7 @@ class _LoadedView extends StatelessWidget {
           const SizedBox(height: 32),
           // Trends Section Placeholder
           Text(
-            '指标趋势',
+            l10n.trendSection,
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.w800,
                   color: HanaColors.primary,
@@ -182,7 +186,7 @@ class _LoadedView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                '历史报告',
+                l10n.historyReports,
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
                       fontWeight: FontWeight.w800,
                       color: HanaColors.primary,
@@ -248,7 +252,9 @@ class _StitchHormoneCardState extends State<_StitchHormoneCard>
   void initState() {
     super.initState();
     _controller = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 150),);
+      vsync: this,
+      duration: const Duration(milliseconds: 150),
+    );
     _scaleAnimation = Tween<double>(begin: 1, end: 0.95).animate(
       CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
     );
@@ -326,7 +332,9 @@ class _StitchHormoneCardState extends State<_StitchHormoneCard>
                         ),
                         Container(
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 8, vertical: 4,),
+                            horizontal: 8,
+                            vertical: 4,
+                          ),
                           decoration: BoxDecoration(
                             color: widget.statusColor.withAlpha(26), // 10%
                             borderRadius: BorderRadius.circular(9999),
@@ -386,6 +394,8 @@ class _StitchSimulatorCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return Material(
       color: Colors.transparent,
       child: InkWell(
@@ -426,9 +436,9 @@ class _StitchSimulatorCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      '药代动力学模拟',
-                      style: TextStyle(
+                    Text(
+                      l10n.pkSimulatorTitle,
+                      style: const TextStyle(
                         color: HanaColors.primary,
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
@@ -436,7 +446,7 @@ class _StitchSimulatorCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      '预测体内有效血药浓度...',
+                      l10n.pkSimulatorSubtitle,
                       style: TextStyle(
                         color: HanaColors.primary.withAlpha(153), // 60%
                         fontSize: 12,
@@ -451,8 +461,11 @@ class _StitchSimulatorCard extends StatelessWidget {
                   color: Colors.white.withAlpha(128), // 50%
                   shape: BoxShape.circle,
                 ),
-                child: const Icon(Icons.arrow_forward_ios,
-                    color: HanaColors.primary, size: 14,),
+                child: const Icon(
+                  Icons.arrow_forward_ios,
+                  color: HanaColors.primary,
+                  size: 14,
+                ),
               ),
             ],
           ),
@@ -465,6 +478,8 @@ class _StitchSimulatorCard extends StatelessWidget {
 class _StitchTrendPlaceholder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return Container(
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
@@ -492,13 +507,16 @@ class _StitchTrendPlaceholder extends StatelessWidget {
                       color: HanaColors.primaryContainer.withAlpha(128), // 50%
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    child: const Icon(Icons.trending_up,
-                        color: HanaColors.primary, size: 20,),
+                    child: const Icon(
+                      Icons.trending_up,
+                      color: HanaColors.primary,
+                      size: 20,
+                    ),
                   ),
                   const SizedBox(width: 12),
-                  const Text(
-                    '近期走势平稳',
-                    style: TextStyle(
+                  Text(
+                    l10n.trendStable,
+                    style: const TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
                       color: HanaColors.onSurface,
@@ -517,7 +535,7 @@ class _StitchTrendPlaceholder extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      '近半年',
+                      l10n.lastHalfYear,
                       style: TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.w500,
@@ -599,7 +617,9 @@ class _StitchHistoryCardState extends State<_StitchHistoryCard>
   void initState() {
     super.initState();
     _controller = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 150),);
+      vsync: this,
+      duration: const Duration(milliseconds: 150),
+    );
     _scaleAnimation = Tween<double>(begin: 1, end: 0.98).animate(
       CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
     );
@@ -668,7 +688,9 @@ class _StitchHistoryCardState extends State<_StitchHistoryCard>
                       children: widget.report.readings.take(2).map((reading) {
                         return Container(
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 8, vertical: 2,),
+                            horizontal: 8,
+                            vertical: 2,
+                          ),
                           decoration: BoxDecoration(
                             color: HanaColors.surfaceContainerHighest,
                             borderRadius: BorderRadius.circular(4),

@@ -291,6 +291,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get timeline => 'Timeline';
 
   @override
+  String get myGrowthTrajectory => 'My Growth Journey';
+
+  @override
   String get noTimelineEvents => 'No timeline events yet';
 
   @override
@@ -306,6 +309,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get data => 'Data';
 
   @override
+  String get dataAndTrends => 'Data & Trends';
+
+  @override
+  String get myStatus => 'My Status';
+
+  @override
+  String get bodyChanging => 'Amazing changes are happening…';
+
+  @override
   String get hormoneOverview => 'Hormone overview';
 
   @override
@@ -315,7 +327,43 @@ class AppLocalizationsEn extends AppLocalizations {
   String get history => 'History';
 
   @override
+  String get historyReports => 'History Reports';
+
+  @override
   String get pkSimulator => 'PK Simulator';
+
+  @override
+  String get pkSimulatorTitle => 'PK Simulation';
+
+  @override
+  String get pkSimulatorSubtitle => 'Predict blood drug levels…';
+
+  @override
+  String get trendSection => 'Indicator Trends';
+
+  @override
+  String get trendStable => 'Recent trend is stable';
+
+  @override
+  String get lastHalfYear => 'Last 6 months';
+
+  @override
+  String get filterOneMonth => '1 month';
+
+  @override
+  String get filterThreeMonths => '3 months';
+
+  @override
+  String get filterSixMonths => '6 months';
+
+  @override
+  String get filterOneYear => '1 year';
+
+  @override
+  String get filterAll => 'All';
+
+  @override
+  String get journeyStart => 'Journey start';
 
   @override
   String get noUpdatesYet => 'No updates yet';
@@ -360,6 +408,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get dayOfWeek => 'Day of week:';
+
+  @override
+  String get scheduleTimes => 'Schedule times';
 
   @override
   String get required => 'Required';

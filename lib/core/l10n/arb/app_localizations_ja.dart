@@ -286,6 +286,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String get timeline => 'タイムライン';
 
   @override
+  String get myGrowthTrajectory => '私の成長記録';
+
+  @override
   String get noTimelineEvents => 'タイムラインの記録がありません';
 
   @override
@@ -301,6 +304,15 @@ class AppLocalizationsJa extends AppLocalizations {
   String get data => 'データ';
 
   @override
+  String get dataAndTrends => 'データとトレンド';
+
+  @override
+  String get myStatus => 'マイステータス';
+
+  @override
+  String get bodyChanging => '素敵な変化が起きています…';
+
+  @override
   String get hormoneOverview => 'ホルモン概要';
 
   @override
@@ -310,7 +322,43 @@ class AppLocalizationsJa extends AppLocalizations {
   String get history => '履歴';
 
   @override
+  String get historyReports => '過去のレポート';
+
+  @override
   String get pkSimulator => 'PK シミュレーター';
+
+  @override
+  String get pkSimulatorTitle => 'PK シミュレーション';
+
+  @override
+  String get pkSimulatorSubtitle => '血中薬物濃度を予測…';
+
+  @override
+  String get trendSection => '指標トレンド';
+
+  @override
+  String get trendStable => '最近のトレンドは安定';
+
+  @override
+  String get lastHalfYear => '過去半年';
+
+  @override
+  String get filterOneMonth => '1か月';
+
+  @override
+  String get filterThreeMonths => '3か月';
+
+  @override
+  String get filterSixMonths => '6か月';
+
+  @override
+  String get filterOneYear => '1年';
+
+  @override
+  String get filterAll => 'すべて';
+
+  @override
+  String get journeyStart => '旅の始まり';
 
   @override
   String get noUpdatesYet => 'まだ更新がありません';
@@ -355,6 +403,9 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get dayOfWeek => '曜日:';
+
+  @override
+  String get scheduleTimes => '服薬時間';
 
   @override
   String get required => '必須';

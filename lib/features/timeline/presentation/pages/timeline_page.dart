@@ -38,9 +38,9 @@ class TimelinePage extends StatelessWidget {
                 icon: const Icon(Icons.settings, color: HanaColors.primary),
                 onPressed: () {},
               ),
-              title: const Text(
-                '我的成长轨迹',
-                style: TextStyle(
+              title: Text(
+                l10n.myGrowthTrajectory,
+                style: const TextStyle(
                   fontFamily: 'Plus Jakarta Sans',
                   fontWeight: FontWeight.w600,
                   fontSize: 18,
@@ -50,8 +50,10 @@ class TimelinePage extends StatelessWidget {
               ),
               actions: [
                 IconButton(
-                  icon: const Icon(Icons.calendar_today,
-                      color: HanaColors.primary,),
+                  icon: const Icon(
+                    Icons.calendar_today,
+                    color: HanaColors.primary,
+                  ),
                   onPressed: () {},
                 ),
               ],
@@ -61,7 +63,9 @@ class TimelinePage extends StatelessWidget {
       ),
       floatingActionButton: Container(
         margin: const EdgeInsets.only(
-            bottom: 80, right: 8,), // Lifted above bottom nav
+          bottom: 80,
+          right: 8,
+        ), // Lifted above bottom nav
         child: FloatingActionButton(
           onPressed: () => _showCreateSheet(context, l10n),
           backgroundColor: Colors.transparent,
@@ -126,10 +130,14 @@ class TimelinePage extends StatelessWidget {
                   ),
                 ),
                 ListTile(
-                  leading: const Icon(Icons.medication_outlined,
-                      color: HanaColors.primary,),
-                  title: Text(l10n.logMedication,
-                      style: const TextStyle(fontWeight: FontWeight.w600),),
+                  leading: const Icon(
+                    Icons.medication_outlined,
+                    color: HanaColors.primary,
+                  ),
+                  title: Text(
+                    l10n.logMedication,
+                    style: const TextStyle(fontWeight: FontWeight.w600),
+                  ),
                   onTap: () {
                     Navigator.of(sheetContext).pop();
                     context.push('/today');
@@ -138,18 +146,24 @@ class TimelinePage extends StatelessWidget {
                 ListTile(
                   leading:
                       const Icon(Icons.edit_note, color: HanaColors.primary),
-                  title: Text(l10n.writeJournal,
-                      style: const TextStyle(fontWeight: FontWeight.w600),),
+                  title: Text(
+                    l10n.writeJournal,
+                    style: const TextStyle(fontWeight: FontWeight.w600),
+                  ),
                   onTap: () {
                     Navigator.of(sheetContext).pop();
                     context.push('/record/journal/new');
                   },
                 ),
                 ListTile(
-                  leading: const Icon(Icons.science_outlined,
-                      color: HanaColors.primary,),
-                  title: Text(l10n.addBloodTest,
-                      style: const TextStyle(fontWeight: FontWeight.w600),),
+                  leading: const Icon(
+                    Icons.science_outlined,
+                    color: HanaColors.primary,
+                  ),
+                  title: Text(
+                    l10n.addBloodTest,
+                    style: const TextStyle(fontWeight: FontWeight.w600),
+                  ),
                   onTap: () {
                     Navigator.of(sheetContext).pop();
                     context.push('/data/add_report');
@@ -250,7 +264,14 @@ class _TimelineLoadedView extends StatelessWidget {
 class _FilterPills extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final filters = ['1月', '3月', '6月', '1年', '全部'];
+    final l10n = AppLocalizations.of(context)!;
+    final filters = [
+      l10n.filterOneMonth,
+      l10n.filterThreeMonths,
+      l10n.filterSixMonths,
+      l10n.filterOneYear,
+      l10n.filterAll,
+    ];
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -390,9 +411,11 @@ class _EventCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
             border: isAlignedRight
                 ? Border(
-                    left: BorderSide(color: event.type.borderColor, width: 4),)
+                    left: BorderSide(color: event.type.borderColor, width: 4),
+                  )
                 : Border(
-                    right: BorderSide(color: event.type.borderColor, width: 4),),
+                    right: BorderSide(color: event.type.borderColor, width: 4),
+                  ),
             boxShadow: [
               BoxShadow(
                 color: HanaColors.primary.withAlpha(10), // 4%
@@ -414,8 +437,11 @@ class _EventCard extends StatelessWidget {
                     : MainAxisAlignment.end,
                 children: isAlignedRight
                     ? [
-                        Icon(Icons.stars,
-                            size: 14, color: event.type.borderColor,),
+                        Icon(
+                          Icons.stars,
+                          size: 14,
+                          color: event.type.borderColor,
+                        ),
                         const SizedBox(width: 4),
                         Text(
                           event.type.displayName,
@@ -436,8 +462,11 @@ class _EventCard extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(width: 4),
-                        Icon(Icons.stars,
-                            size: 14, color: event.type.borderColor,),
+                        Icon(
+                          Icons.stars,
+                          size: 14,
+                          color: event.type.borderColor,
+                        ),
                       ],
               ),
               const SizedBox(height: 4),
@@ -474,6 +503,8 @@ class _TimelineStartPoint extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return Column(
       children: [
         Container(
@@ -488,9 +519,9 @@ class _TimelineStartPoint extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 12),
-        const Text(
-          '旅程开始',
-          style: TextStyle(
+        Text(
+          l10n.journeyStart,
+          style: const TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.w500,
             color: HanaColors.onSurfaceVariant,

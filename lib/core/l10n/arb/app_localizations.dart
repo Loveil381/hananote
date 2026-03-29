@@ -634,6 +634,12 @@ abstract class AppLocalizations {
   /// **'Timeline'**
   String get timeline;
 
+  /// No description provided for @myGrowthTrajectory.
+  ///
+  /// In en, this message translates to:
+  /// **'My Growth Journey'**
+  String get myGrowthTrajectory;
+
   /// No description provided for @noTimelineEvents.
   ///
   /// In en, this message translates to:
@@ -664,6 +670,24 @@ abstract class AppLocalizations {
   /// **'Data'**
   String get data;
 
+  /// No description provided for @dataAndTrends.
+  ///
+  /// In en, this message translates to:
+  /// **'Data & Trends'**
+  String get dataAndTrends;
+
+  /// No description provided for @myStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'My Status'**
+  String get myStatus;
+
+  /// No description provided for @bodyChanging.
+  ///
+  /// In en, this message translates to:
+  /// **'Amazing changes are happening…'**
+  String get bodyChanging;
+
   /// No description provided for @hormoneOverview.
   ///
   /// In en, this message translates to:
@@ -682,11 +706,83 @@ abstract class AppLocalizations {
   /// **'History'**
   String get history;
 
+  /// No description provided for @historyReports.
+  ///
+  /// In en, this message translates to:
+  /// **'History Reports'**
+  String get historyReports;
+
   /// No description provided for @pkSimulator.
   ///
   /// In en, this message translates to:
   /// **'PK Simulator'**
   String get pkSimulator;
+
+  /// No description provided for @pkSimulatorTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'PK Simulation'**
+  String get pkSimulatorTitle;
+
+  /// No description provided for @pkSimulatorSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Predict blood drug levels…'**
+  String get pkSimulatorSubtitle;
+
+  /// No description provided for @trendSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Indicator Trends'**
+  String get trendSection;
+
+  /// No description provided for @trendStable.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent trend is stable'**
+  String get trendStable;
+
+  /// No description provided for @lastHalfYear.
+  ///
+  /// In en, this message translates to:
+  /// **'Last 6 months'**
+  String get lastHalfYear;
+
+  /// No description provided for @filterOneMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'1 month'**
+  String get filterOneMonth;
+
+  /// No description provided for @filterThreeMonths.
+  ///
+  /// In en, this message translates to:
+  /// **'3 months'**
+  String get filterThreeMonths;
+
+  /// No description provided for @filterSixMonths.
+  ///
+  /// In en, this message translates to:
+  /// **'6 months'**
+  String get filterSixMonths;
+
+  /// No description provided for @filterOneYear.
+  ///
+  /// In en, this message translates to:
+  /// **'1 year'**
+  String get filterOneYear;
+
+  /// No description provided for @filterAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get filterAll;
+
+  /// No description provided for @journeyStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Journey start'**
+  String get journeyStart;
 
   /// No description provided for @noUpdatesYet.
   ///
@@ -771,6 +867,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Day of week:'**
   String get dayOfWeek;
+
+  /// No description provided for @scheduleTimes.
+  ///
+  /// In en, this message translates to:
+  /// **'Schedule times'**
+  String get scheduleTimes;
 
   /// No description provided for @required.
   ///
