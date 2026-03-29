@@ -586,6 +586,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get enumTimelineMilestone => '里程碑';
 
   @override
+  String get featureComingSoon => '该功能即将上线';
+
+  @override
   String get tabToday => '今日';
 
   @override

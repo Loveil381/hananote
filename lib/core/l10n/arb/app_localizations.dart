@@ -1222,6 +1222,12 @@ abstract class AppLocalizations {
   /// **'Milestone'**
   String get enumTimelineMilestone;
 
+  /// No description provided for @featureComingSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'This feature is coming soon'**
+  String get featureComingSoon;
+
   /// No description provided for @tabToday.
   ///
   /// In en, this message translates to:

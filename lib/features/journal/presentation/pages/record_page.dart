@@ -20,6 +20,11 @@ class RecordPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final localeTag = Localizations.localeOf(context).toLanguageTag();
+    void showComingSoon() {
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(SnackBar(content: Text(l10n.featureComingSoon)));
+    }
 
     return BlocBuilder<RecordBloc, RecordState>(
       builder: (context, state) {
@@ -62,7 +67,7 @@ class RecordPage extends StatelessWidget {
                   centerTitle: true,
                   leading: IconButton(
                     icon: const Icon(Icons.notes, color: HanaColors.primary),
-                    onPressed: () {},
+                    onPressed: showComingSoon,
                   ),
                   title: Column(
                     mainAxisSize: MainAxisSize.min,
@@ -97,7 +102,7 @@ class RecordPage extends StatelessWidget {
                         Icons.history_edu,
                         color: HanaColors.primary,
                       ),
-                      onPressed: () {},
+                      onPressed: showComingSoon,
                     ),
                   ],
                 ),

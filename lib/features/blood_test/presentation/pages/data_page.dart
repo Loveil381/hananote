@@ -23,6 +23,11 @@ class DataPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+    void showComingSoon(String message) {
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(SnackBar(content: Text(message)));
+    }
 
     return Scaffold(
       backgroundColor: HanaColors.background,
@@ -43,7 +48,7 @@ class DataPage extends StatelessWidget {
                   Icons.notifications_none,
                   color: HanaColors.primary,
                 ),
-                onPressed: () {},
+                onPressed: () => showComingSoon(l10n.notificationsComingSoon),
               ),
               title: Text(
                 l10n.dataAndTrends,
@@ -193,11 +198,6 @@ class _LoadedView extends StatelessWidget {
                       color: HanaColors.primary,
                       fontFamily: 'Plus Jakarta Sans',
                     ),
-              ),
-              IconButton(
-                icon: const Icon(Icons.arrow_forward, size: 20),
-                color: HanaColors.primary,
-                onPressed: () {},
               ),
             ],
           ),

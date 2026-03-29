@@ -20,6 +20,11 @@ class TimelinePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+    void showComingSoon() {
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(SnackBar(content: Text(l10n.settingsComingSoon)));
+    }
 
     return Scaffold(
       backgroundColor: HanaColors.background,
@@ -37,7 +42,7 @@ class TimelinePage extends StatelessWidget {
               centerTitle: true,
               leading: IconButton(
                 icon: const Icon(Icons.settings, color: HanaColors.primary),
-                onPressed: () {},
+                onPressed: showComingSoon,
               ),
               title: Text(
                 l10n.myGrowthTrajectory,
@@ -55,7 +60,7 @@ class TimelinePage extends StatelessWidget {
                     Icons.calendar_today,
                     color: HanaColors.primary,
                   ),
-                  onPressed: () {},
+                  onPressed: showComingSoon,
                 ),
               ],
             ),

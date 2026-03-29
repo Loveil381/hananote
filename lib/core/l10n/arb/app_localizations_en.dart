@@ -606,6 +606,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get enumTimelineMilestone => 'Milestone';
 
   @override
+  String get featureComingSoon => 'This feature is coming soon';
+
+  @override
   String get tabToday => 'Today';
 
   @override
