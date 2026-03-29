@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math' as math;
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -71,49 +72,73 @@ class _CountdownCardState extends State<CountdownCard> {
     super.dispose();
   }
 
+  (int, int) _calculateRemaining() {
+    if (widget.isCompleteForToday || widget.nextScheduledTime == null) {
+      return (0, 0);
+    }
+
+    final diff = widget.nextScheduledTime!.difference(DateTime.now());
+    if (diff.isNegative) {
+      return (0, 0);
+    }
+
+    return (diff.inHours, diff.inMinutes % 60);
+  }
+
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     final remaining = _calculateRemaining();
 
     return Container(
       decoration: BoxDecoration(
         gradient: HanaGradients.countdownGradient,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.white.withAlpha(51)),
-        boxShadow: [
+        border: Border.all(color: Colors.white.withAlpha((255 * 0.2).round())),
+        boxShadow: const [
           BoxShadow(
-            color: HanaColors.primary.withAlpha(31),
+            color: Color.fromRGBO(134, 78, 90, 0.12),
             blurRadius: 32,
-            offset: const Offset(0, 8),
+            offset: Offset(0, 8),
           ),
         ],
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(15),
         child: Stack(
           children: [
+            // Decorative 128px blur circle at bottom right
             Positioned(
-              bottom: -40,
-              right: -40,
+              right: -32,
+              bottom: -32,
               child: Container(
-                width: 140,
-                height: 140,
+                width: 128,
+                height: 128,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: Colors.white.withAlpha(76),
+                  color: Colors.white.withAlpha((255 * 0.2).round()),
+                ),
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(
+                    sigmaX: 24,
+                    sigmaY: 24,
+                  ), // mapped to blur-2xl
+                  child: Container(color: Colors.transparent),
                 ),
               ),
             ),
+            // Medication icon rotated 12 degrees upper right
             Positioned(
-              top: -16,
-              right: -16,
+              right: 24,
+              top: 24,
               child: Transform.rotate(
-                angle: 12 * 3.1415926 / 180,
-                child: Icon(
-                  Icons.medication,
-                  size: 100,
-                  color: Colors.white.withAlpha(51),
+                angle: 12 * math.pi / 180,
+                child: Opacity(
+                  opacity: 0.2,
+                  child: Icon(
+                    Icons.medication,
+                    size: 96,
+                    color: Colors.white.withAlpha((255 * 0.4).round()),
+                  ),
                 ),
               ),
             ),
@@ -127,94 +152,102 @@ class _CountdownCardState extends State<CountdownCard> {
                       const Icon(
                         Icons.schedule,
                         color: HanaColors.onPrimaryContainer,
-                        size: 20,
+                        size: 14, // text-sm is usually 14px
                       ),
                       const SizedBox(width: 8),
                       Text(
                         widget.nextDoseLabel,
-                        style: theme.textTheme.bodyMedium?.copyWith(
-                          color: HanaColors.onPrimaryContainer,
-                          fontWeight: FontWeight.w600,
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1.2, // tracking-widest roughly
+                          color: HanaColors.onPrimaryContainer
+                              .withAlpha((255 * 0.7).round()),
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 12),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.baseline,
-                    textBaseline: TextBaseline.alphabetic,
-                    children: [
-                      if (widget.isCompleteForToday)
-                        Text(
-                          widget.completedLabel,
-                          style: theme.textTheme.headlineSmall?.copyWith(
-                            color: HanaColors.onPrimaryContainer,
-                            fontWeight: FontWeight.w800,
-                            height: 1.1,
-                          ),
-                        ),
-                      if (!widget.isCompleteForToday) ...[
+                  const SizedBox(height: 16),
+                  if (widget.isCompleteForToday)
+                    Text(
+                      widget.completedLabel,
+                      style: const TextStyle(
+                        fontFamily: 'PlusJakartaSans',
+                        fontSize: 32,
+                        fontWeight: FontWeight.w800,
+                        color: HanaColors.onPrimaryContainer,
+                      ),
+                    )
+                  else
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.baseline,
+                      textBaseline: TextBaseline.alphabetic,
+                      children: [
                         Text(
                           '${remaining.$1}',
                           style: const TextStyle(
+                            fontFamily: 'PlusJakartaSans',
                             fontSize: 40,
                             fontWeight: FontWeight.w800,
                             color: HanaColors.onPrimaryContainer,
-                            fontFamily: 'PlusJakartaSans',
-                            height: 1,
                           ),
                         ),
                         const SizedBox(width: 4),
                         Text(
                           widget.hourUnitLabel,
-                          style: theme.textTheme.bodyMedium?.copyWith(
+                          style: const TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
                             color: HanaColors.onPrimaryContainer,
-                            fontWeight: FontWeight.w600,
                           ),
                         ),
-                        const SizedBox(width: 12),
+                        const SizedBox(
+                          width: 12,
+                        ), // Let the spacing match a bit
                         Text(
                           '${remaining.$2}',
                           style: const TextStyle(
+                            fontFamily: 'PlusJakartaSans',
                             fontSize: 40,
                             fontWeight: FontWeight.w800,
                             color: HanaColors.onPrimaryContainer,
-                            fontFamily: 'PlusJakartaSans',
-                            height: 1,
                           ),
                         ),
                         const SizedBox(width: 4),
                         Text(
                           widget.minuteUnitLabel,
-                          style: theme.textTheme.bodyMedium?.copyWith(
+                          style: const TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
                             color: HanaColors.onPrimaryContainer,
-                            fontWeight: FontWeight.w600,
                           ),
                         ),
                       ],
-                    ],
-                  ),
-                  const SizedBox(height: 24),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(24),
-                    child: BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 12,
-                          vertical: 6,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.white.withAlpha(102),
-                          borderRadius: BorderRadius.circular(24),
-                        ),
+                    ),
+                  const SizedBox(height: 20),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 6,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.white.withAlpha((255 * 0.4).round()),
+                      borderRadius: BorderRadius.circular(24),
+                      border: Border.all(
+                        color: Colors.white.withAlpha((255 * 0.3).round()),
+                      ),
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(24),
+                      child: BackdropFilter(
+                        filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
                         child: Text(
-                          '${widget.drugName} · '
-                          '${widget.dosage} · '
+                          '${widget.drugName} ${widget.dosage} · '
                           '${widget.route}',
-                          style: theme.textTheme.bodySmall?.copyWith(
+                          style: const TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
                             color: HanaColors.onPrimaryContainer,
-                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
@@ -227,18 +260,5 @@ class _CountdownCardState extends State<CountdownCard> {
         ),
       ),
     );
-  }
-
-  (int, int) _calculateRemaining() {
-    if (widget.isCompleteForToday || widget.nextScheduledTime == null) {
-      return (0, 0);
-    }
-
-    final diff = widget.nextScheduledTime!.difference(DateTime.now());
-    if (diff.isNegative) {
-      return (0, 0);
-    }
-
-    return (diff.inHours, diff.inMinutes % 60);
   }
 }

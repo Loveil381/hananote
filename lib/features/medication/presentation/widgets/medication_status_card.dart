@@ -30,70 +30,74 @@ class MedicationStatusCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
-    return Material(
-      color: HanaColors.surfaceContainerLowest,
-      borderRadius: BorderRadius.circular(16),
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Row(
-          children: [
-            Container(
-              width: 48,
-              height: 48,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: accentColor.withAlpha(77),
-              ),
-              child: Center(
-                child: Icon(
-                  Icons.medication,
-                  color: accentColor,
-                  size: 24,
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: HanaColors.surfaceContainerLowest,
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              Container(
+                width: 48,
+                height: 48,
+                decoration: BoxDecoration(
+                  color: HanaColors.primaryFixed.withAlpha((255 * 0.3).round()),
+                  shape: BoxShape.circle,
+                ),
+                child: const Center(
+                  child: Icon(
+                    Icons.medication,
+                    color: HanaColors.primary,
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(width: 16),
-            Expanded(
-              child: Column(
+              const SizedBox(width: 16),
+              Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    name,
-                    style: theme.textTheme.bodyLarge?.copyWith(
+                    '$name $dosage',
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
+                      fontSize: 16,
                       color: HanaColors.onSurface,
                     ),
                   ),
-                  const SizedBox(height: 4),
                   Text(
-                    '$dosage • $time',
-                    style: theme.textTheme.bodyMedium?.copyWith(
-                      color: HanaColors.onSurfaceVariant,
+                    time,
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: HanaColors.onSurfaceVariant
+                          .withAlpha((255 * 0.7).round()),
                     ),
                   ),
                 ],
               ),
-            ),
-            if (isTaken)
-              Container(
-                width: 24,
-                height: 24,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: HanaColors.primary,
-                ),
-                child: const Center(
-                  child: Icon(
-                    Icons.check,
-                    color: HanaColors.onPrimary,
-                    size: 16,
-                  ),
+            ],
+          ),
+          if (isTaken)
+            Container(
+              width: 32,
+              height: 32,
+              decoration: BoxDecoration(
+                color: HanaColors.secondaryContainer
+                    .withAlpha((255 * 0.5).round()),
+                shape: BoxShape.circle,
+              ),
+              child: const Center(
+                child: Icon(
+                  Icons.check,
+                  color: HanaColors.secondary,
+                  size: 18,
+                  weight: 700,
                 ),
               ),
-          ],
-        ),
+            ),
+        ],
       ),
     );
   }

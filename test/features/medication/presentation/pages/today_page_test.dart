@@ -165,6 +165,10 @@ void main() {
       ),
     );
 
+    // Scroll down to make QuoteCard visible in the new UI layout
+    await tester.drag(find.byType(CustomScrollView), const Offset(0, -500));
+    await tester.pumpAndSettle();
+
     expect(find.text(expectedQuote), findsOneWidget);
   });
 

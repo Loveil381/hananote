@@ -1,5 +1,4 @@
-import 'dart:ui';
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hananote/app/theme/hana_colors.dart';
@@ -23,18 +22,18 @@ class TodayPage extends StatelessWidget {
   const TodayPage({super.key});
 
   static const _dailyQuotes = [
-    '你的每一次坚持，都会在未来悄悄开花。',
-    '今天也请温柔地照顾自己，变化正在发生。',
-    '身体的每一点回应，都是你认真生活的证据。',
-    '慢一点没有关系，稳定前进本身就是力量。',
-    '服药和记录不是任务，是你对自己的承诺。',
-    '允许自己按节奏成长，不必和任何人比较。',
-    '你正在成为想成为的人，这件事值得庆祝。',
-    '再普通的一天，也可以因为认真对待自己而闪光。',
-    '照顾身体不是负担，是你给未来写下的情书。',
-    '你今天的耐心，会变成明天的安心。',
-    '每一次记录都不是重复，而是在看见真实的自己。',
-    '今天也别忘了夸夸自己，你已经做得很好。',
+    '菴逧・ｯ丈ｸ谺｡蝮壽戟・碁・莨壼惠譛ｪ譚･謔・ｄ蠑闃ｱ縲・,
+    '莉雁､ｩ荵溯ｯｷ貂ｩ譟泌慍辣ｧ鬘ｾ閾ｪ蟾ｱ・悟序蛹匁ｭ｣蝨ｨ蜿醍函縲・,
+    '霄ｫ菴鍋噪豈丈ｸ轤ｹ蝗槫ｺ費ｼ碁・譏ｯ菴隶､逵溽函豢ｻ逧・ｯ∵紺縲・,
+    '諷｢荳轤ｹ豐｡譛牙・邉ｻ・檎ｨｳ螳壼燕霑帶悽霄ｫ蟆ｱ譏ｯ蜉幃㍼縲・,
+    '譛崎艮蜥瑚ｮｰ蠖穂ｸ肴弍莉ｻ蜉｡・梧弍菴蟇ｹ閾ｪ蟾ｱ逧・価隸ｺ縲・,
+    '蜈∬ｮｸ閾ｪ蟾ｱ謖芽鰍螂乗・髟ｿ・御ｸ榊ｿ・柱莉ｻ菴穂ｺｺ豈碑ｾ・・,
+    '菴豁｣蝨ｨ謌蝉ｸｺ諠ｳ謌蝉ｸｺ逧・ｺｺ・瑚ｿ吩ｻｶ莠句ｼ蠕怜ｺ・･昴・,
+    '蜀肴勸騾夂噪荳螟ｩ・御ｹ溷庄莉･蝗荳ｺ隶､逵溷ｯｹ蠕・・蟾ｱ閠碁略蜈峨・,
+    '辣ｧ鬘ｾ霄ｫ菴謎ｸ肴弍雍滓球・梧弍菴扈呎悴譚･蜀吩ｸ狗噪諠・ｹｦ縲・,
+    '菴莉雁､ｩ逧・仙ｿ・ｼ御ｼ壼序謌先・螟ｩ逧・ｮ牙ｿ・・,
+    '豈丈ｸ谺｡隶ｰ蠖暮・荳肴弍驥榊､搾ｼ瑚梧弍蝨ｨ逵玖ｧ∫悄螳樒噪閾ｪ蟾ｱ縲・,
+    '莉雁､ｩ荵溷悪蠢倅ｺ・､ｸ螟ｸ閾ｪ蟾ｱ・御ｽ蟾ｲ扈丞★蠕怜ｾ亥･ｽ縲・,
   ];
 
   @override
@@ -44,114 +43,87 @@ class TodayPage extends StatelessWidget {
     final settingsState = context.watch<SettingsBloc>().state;
     final displayName = settingsState is SettingsLoaded
         ? settingsState.profile.displayName
-        : 'HanaNote 用户'; // Kept fallback exactly as it was
+        : 'HanaNote 逕ｨ謌ｷ';
     final hrtDays =
         settingsState is SettingsLoaded ? settingsState.profile.hrtDayCount : 0;
     final greeting = _greetingForHour(DateTime.now().hour, l10n);
 
     return Scaffold(
       backgroundColor: HanaColors.background,
-      body: BlocBuilder<TodayScheduleBloc, TodayScheduleState>(
-        builder: (context, state) {
-          return CustomScrollView(
-            physics: const BouncingScrollPhysics(),
-            slivers: [
-              SliverAppBar(
-                backgroundColor:
-                    HanaColors.background.withAlpha((255 * 0.8).round()),
-                pinned: true,
-                elevation: 0,
-                scrolledUnderElevation: 0,
-                flexibleSpace: ClipRect(
-                  child: BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
-                    child: Container(
-                      color: Colors.transparent,
+      body: SafeArea(
+        bottom: false,
+        child: BlocBuilder<TodayScheduleBloc, TodayScheduleState>(
+          builder: (context, state) {
+            return CustomScrollView(
+              physics: const BouncingScrollPhysics(),
+              slivers: [
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 24,
+                      vertical: 16,
                     ),
-                  ),
-                ),
-                title: Row(
-                  children: [
-                    const Icon(
-                      Icons.auto_awesome,
-                      color: HanaColors.primary,
-                      size: 24,
-                    ),
-                    const SizedBox(width: 8),
-                    Text(
-                      l10n.appTitle, // HanaNote
-                      style: const TextStyle(
-                        fontFamily: 'PlusJakartaSans',
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: HanaColors.primary,
-                      ),
-                    ),
-                  ],
-                ),
-                actions: [
-                  IconButton(
-                    icon: const Icon(
-                      Icons.calendar_today,
-                      color: HanaColors.primary,
-                    ),
-                    onPressed: () {},
-                  ),
-                  const SizedBox(
-                    width: 8,
-                  ), // Standard padding for action right side
-                ],
-              ),
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            '$greeting，$displayName',
-                            style: const TextStyle(
-                              fontSize: 30, // 3xl roughly
-                              fontWeight: FontWeight.w800,
-                              fontFamily: 'PlusJakartaSans',
-                              color: HanaColors.primary,
-                              letterSpacing: -0.5,
-                            ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Icon(
+                          Icons.auto_awesome,
+                          color: HanaColors.primary,
+                          size: 28,
+                        ),
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 8,
                           ),
-                          const SizedBox(height: 4),
-                          Text(
-                            l10n.hrtDay(hrtDays),
-                            style: const TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
+                          decoration: BoxDecoration(
+                            color: HanaColors.surfaceContainerHigh,
+                            borderRadius: BorderRadius.circular(999),
+                          ),
+                          child: Text(
+                            l10n.today,
+                            style: theme.textTheme.labelMedium?.copyWith(
                               color: HanaColors.onSurfaceVariant,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
-                        ],
-                      ),
-                      Material(
-                        color: Colors.transparent,
-                        child: InkWell(
-                          borderRadius: BorderRadius.circular(28),
-                          onTap: () => context.push('/profile'),
-                          child: Container(
-                            width: 56,
-                            height: 56,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                color: HanaColors.primaryContainer
-                                    .withAlpha((255 * 0.3).round()),
-                                width: 2,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SliverToBoxAdapter(child: SizedBox(height: 16)),
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              '$greeting・・displayName',
+                              style: theme.textTheme.headlineLarge?.copyWith(
+                                color: HanaColors.onSurface,
                               ),
                             ),
+                            const SizedBox(height: 4),
+                            Text(
+                              l10n.hrtDay(hrtDays),
+                              style: theme.textTheme.bodyMedium?.copyWith(
+                                color: HanaColors.onSurfaceVariant,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            borderRadius: BorderRadius.circular(28),
+                            onTap: () => context.push('/profile'),
                             child: const CircleAvatar(
-                              radius: 26, // accounts for the border inside 56
+                              radius: 28,
                               backgroundColor: HanaColors.primaryContainer,
                               child: Icon(
                                 Icons.person,
@@ -160,19 +132,17 @@ class TodayPage extends StatelessWidget {
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              const SliverToBoxAdapter(
-                child: SizedBox(height: 16),
-              ), // Additional gap
-              ..._buildStateContent(context, state, theme, l10n),
-              const SliverPadding(padding: EdgeInsets.only(bottom: 120)),
-            ],
-          );
-        },
+                const SliverToBoxAdapter(child: SizedBox(height: 32)),
+                ..._buildStateContent(context, state, theme, l10n),
+                const SliverPadding(padding: EdgeInsets.only(bottom: 120)),
+              ],
+            );
+          },
+        ),
       ),
     );
   }
@@ -222,10 +192,7 @@ class TodayPage extends StatelessWidget {
             SliverFillRemaining(
               hasScrollBody: false,
               child: Center(
-                child: Text(
-                  l10n.noMedicationRecords,
-                  style: const TextStyle(color: HanaColors.onSurfaceVariant),
-                ),
+                child: Text(l10n.noMedicationRecords),
               ),
             ),
           ];
@@ -298,46 +265,16 @@ class TodayPage extends StatelessWidget {
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        Text(
-                          l10n.takenDoses,
-                          style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: HanaColors.onSurface,
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-                        Container(
-                          width: 6,
-                          height: 6,
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: HanaColors.secondary,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Text(
-                      l10n.completedDose.toUpperCase(), // "已达成" / "COMPLETED"
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                        color: HanaColors.onSurfaceVariant
-                            .withAlpha((255 * 0.6).round()),
-                        letterSpacing: 1.2,
-                      ),
-                    ),
-                  ],
+                child: Text(
+                  l10n.takenDoses,
+                  style: theme.textTheme.titleMedium?.copyWith(
+                    color: HanaColors.onSurface,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
             const SliverToBoxAdapter(child: SizedBox(height: 16)),
-            // Use column as elements don't wrap neatly.
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -367,26 +304,12 @@ class TodayPage extends StatelessWidget {
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: Row(
-                  children: [
-                    Text(
-                      l10n.pendingDoses,
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: HanaColors.onSurface,
-                      ),
-                    ),
-                    const SizedBox(width: 8),
-                    Container(
-                      width: 6,
-                      height: 6,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: HanaColors.tertiary,
-                      ),
-                    ),
-                  ],
+                child: Text(
+                  l10n.pendingDoses,
+                  style: theme.textTheme.titleMedium?.copyWith(
+                    color: HanaColors.onSurface,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),

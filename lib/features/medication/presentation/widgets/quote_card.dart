@@ -14,43 +14,33 @@ class QuoteCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
+    // bg-surface-container-low p-8 rounded-lg text-center
     return Container(
       clipBehavior: Clip.antiAlias,
+      padding: const EdgeInsets.all(32),
       decoration: BoxDecoration(
         color: HanaColors.surfaceContainerLow,
         borderRadius: BorderRadius.circular(16),
       ),
-      child: Stack(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          // Background Placeholder for future cherry blossom image
-          Positioned.fill(
-            child: Container(
-              color: HanaColors.primaryContainer.withAlpha(26), // ~10%
-            ),
+          Icon(
+            Icons.format_quote,
+            color: HanaColors.primary.withAlpha(102), // primary/40%
+            size: 32,
           ),
-          Padding(
-            padding: const EdgeInsets.all(32),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const Icon(
-                  Icons.format_quote,
-                  color: HanaColors.primary,
-                  size: 32,
-                ),
-                const SizedBox(height: 16),
-                Text(
-                  quote,
-                  textAlign: TextAlign.center,
-                  style: theme.textTheme.bodyLarge?.copyWith(
-                    fontStyle: FontStyle.italic,
-                    color: HanaColors.onSurface,
-                    letterSpacing: 1.2,
-                  ),
-                ),
-              ],
+          const SizedBox(height: 12), // mb-3 from icon equivalent
+          Text(
+            quote,
+            textAlign: TextAlign.center,
+            // text-lg font-medium text-on-surface tracking-wide italic
+            style: const TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w500,
+              fontStyle: FontStyle.italic,
+              color: HanaColors.onSurface,
+              letterSpacing: 0.5, // tracking-wide roughly matches this
             ),
           ),
         ],

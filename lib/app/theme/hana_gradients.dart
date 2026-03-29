@@ -14,4 +14,8 @@ class HanaGradients {
     end: Alignment.bottomRight,
     colors: [Color(0xFFFFB7C5), Color(0xFFFCD3FB)],
   );
+
+  static const takeDoseButtonGradient = LinearGradient(
+    colors: [Color(0xFFFFB7C5), Color(0xFFC8A2C8)],
+  );
 }

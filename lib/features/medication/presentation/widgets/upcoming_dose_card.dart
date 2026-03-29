@@ -1,5 +1,7 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:hananote/app/theme/hana_colors.dart';
+import 'package:hananote/app/theme/hana_gradients.dart';
 
 /// A card for the next immediately upcoming medication dose.
 class UpcomingDoseCard extends StatelessWidget {
@@ -34,14 +36,12 @@ class UpcomingDoseCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return Container(
       decoration: BoxDecoration(
         color: HanaColors.surfaceContainerLowest,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: HanaColors.tertiaryContainer.withAlpha(77),
+          color: HanaColors.tertiaryContainer.withAlpha((255 * 0.3).round()),
           width: 2,
         ),
       ),
@@ -49,112 +49,143 @@ class UpcomingDoseCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(14),
         child: Stack(
           children: [
+            // Animated-like background shape (tertiary/5%, blur-xl)
             Positioned(
-              top: -30,
-              left: -30,
+              left: -16,
+              top: -16,
               child: Container(
-                width: 100,
-                height: 100,
+                width: 48,
+                height: 48,
                 decoration: BoxDecoration(
+                  color: HanaColors.tertiary.withAlpha((255 * 0.05).round()),
                   shape: BoxShape.circle,
-                  color: HanaColors.tertiary.withAlpha(15),
+                ),
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 24, sigmaY: 24),
+                  child: Container(color: Colors.transparent),
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(16),
-              child: Row(
+              padding: const EdgeInsets.all(20),
+              child: Column(
                 children: [
-                  Container(
-                    width: 56,
-                    height: 56,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: HanaColors.tertiaryContainer.withAlpha(51),
-                    ),
-                    child: const Center(
-                      child: Icon(
-                        Icons.calendar_month,
-                        color: HanaColors.tertiary,
-                        size: 28,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          '$name $dosage',
-                          style: theme.textTheme.bodyLarge?.copyWith(
-                            fontWeight: FontWeight.bold,
-                            color: HanaColors.onSurface,
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment
+                        .start, // sm:items-center generally align
+                    children: [
+                      // Circular icon
+                      Container(
+                        width: 56,
+                        height: 56,
+                        decoration: BoxDecoration(
+                          color: HanaColors.tertiaryContainer
+                              .withAlpha((255 * 0.2).round()),
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Center(
+                          child: Icon(
+                            Icons.calendar_month,
+                            color: HanaColors.tertiary,
+                            size: 30,
                           ),
                         ),
-                        const SizedBox(height: 8),
-                        Row(
+                      ),
+                      const SizedBox(width: 16),
+                      // Text info
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 8,
-                                vertical: 4,
-                              ),
-                              decoration: BoxDecoration(
-                                color: HanaColors.surfaceContainerHigh,
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              child: Text(
-                                period,
-                                style: theme.textTheme.bodySmall?.copyWith(
-                                  color: HanaColors.onSurfaceVariant,
-                                  fontWeight: FontWeight.w600,
+                            Wrap(
+                              crossAxisAlignment: WrapCrossAlignment.center,
+                              spacing: 8,
+                              runSpacing: 4,
+                              children: [
+                                Text(
+                                  '$name $dosage',
+                                  style: const TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: HanaColors.onSurface,
+                                  ),
                                 ),
-                              ),
+                                Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 8,
+                                    vertical: 2,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: HanaColors.tertiaryContainer
+                                        .withAlpha((255 * 0.4).round()),
+                                    borderRadius: BorderRadius.circular(999),
+                                  ),
+                                  child: Text(
+                                    period.toUpperCase(),
+                                    style: const TextStyle(
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.bold,
+                                      color: HanaColors.onTertiaryContainer,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
-                            const SizedBox(width: 8),
+                            const SizedBox(height: 2), // small visual gap
                             Text(
                               time,
-                              style: theme.textTheme.bodyMedium?.copyWith(
+                              style: const TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
                                 color: HanaColors.onSurfaceVariant,
-                                fontWeight: FontWeight.w600,
                               ),
                             ),
                           ],
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                  Container(
-                    height: 40,
-                    decoration: BoxDecoration(
-                      gradient: const LinearGradient(
-                        colors: [Color(0xFFFFB7C5), Color(0xFFC8A2C8)],
-                      ),
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
-                        BoxShadow(
-                          color: const Color(0xFFFFB7C5).withAlpha(77),
-                          blurRadius: 12,
-                          offset: const Offset(0, 4),
+                  const SizedBox(height: 16),
+                  SizedBox(
+                    width: double.infinity,
+                    // Wrapper child
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          gradient: HanaGradients.takeDoseButtonGradient,
+                          borderRadius: BorderRadius.circular(999),
+                          boxShadow: [
+                            BoxShadow(
+                              color: HanaColors.tertiary
+                                  .withAlpha((255 * 0.2).round()),
+                              blurRadius: 16,
+                              offset: const Offset(
+                                0,
+                                4,
+                              ), // roughly matches shadow-lg
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                    child: ElevatedButton(
-                      onPressed: onTake,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.transparent,
-                        shadowColor: Colors.transparent,
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                      ),
-                      child: Text(
-                        takeLabel,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
+                        child: Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            onTap: onTake,
+                            borderRadius: BorderRadius.circular(999),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 32,
+                                vertical: 12,
+                              ),
+                              child: Text(
+                                takeLabel,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                     ),
