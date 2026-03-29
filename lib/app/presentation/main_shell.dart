@@ -49,31 +49,22 @@ class _StitchNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
 
-    return Container(
-      decoration: BoxDecoration(
-        color: HanaColors.background.withAlpha((255 * 0.8).round()),
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(32)),
-        // Top border: #FFB7C5/10%
-        border: Border(
-          top: BorderSide(
-            color: HanaColors.primaryContainer.withAlpha(26),
+    return ClipRect(
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
+        child: Container(
+          decoration: BoxDecoration(
+            color: HanaColors.background.withAlpha((255 * 0.85).round()),
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(32)),
+            border: Border(
+              top: BorderSide(
+                color: HanaColors.primaryContainer.withAlpha(26),
+              ),
+            ),
           ),
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: HanaColors.primary.withAlpha(15), // 0.06 opacity
-            blurRadius: 24,
-            offset: const Offset(0, -4),
-          ),
-        ],
-      ),
-      child: ClipRRect(
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(32)),
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
           child: SafeArea(
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(16, 12, 16, 24), // pb-6 pt-3
+              padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
