@@ -1,5 +1,5 @@
+// ignore_for_file: lines_longer_than_80_chars
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -34,9 +34,13 @@ class TimelinePage extends StatelessWidget {
               elevation: 0,
               scrolledUnderElevation: 0,
               centerTitle: true,
-              title: Text(
-                l10n.timeline,
-                style: const TextStyle(
+              leading: IconButton(
+                icon: const Icon(Icons.settings, color: HanaColors.primary),
+                onPressed: () {},
+              ),
+              title: const Text(
+                '我的成长轨迹',
+                style: TextStyle(
                   fontFamily: 'Plus Jakarta Sans',
                   fontWeight: FontWeight.w600,
                   fontSize: 18,
@@ -44,14 +48,39 @@ class TimelinePage extends StatelessWidget {
                   letterSpacing: -0.5,
                 ),
               ),
+              actions: [
+                IconButton(
+                  icon: const Icon(Icons.calendar_today,
+                      color: HanaColors.primary,),
+                  onPressed: () {},
+                ),
+              ],
             ),
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => _showCreateSheet(context, l10n),
-        backgroundColor: HanaColors.primary,
-        child: const Icon(Icons.add, color: Colors.white),
+      floatingActionButton: Container(
+        margin: const EdgeInsets.only(
+            bottom: 80, right: 8,), // Lifted above bottom nav
+        child: FloatingActionButton(
+          onPressed: () => _showCreateSheet(context, l10n),
+          backgroundColor: Colors.transparent,
+          elevation: 8,
+          shape: const CircleBorder(),
+          clipBehavior: Clip.antiAlias,
+          child: Container(
+            width: 56,
+            height: 56,
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [HanaColors.primary, HanaColors.secondary],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+            ),
+            child: const Icon(Icons.add, color: Colors.white, size: 32),
+          ),
+        ),
       ),
       body: BlocBuilder<TimelineBloc, TimelineState>(
         builder: (context, state) {
@@ -76,36 +105,58 @@ class TimelinePage extends StatelessWidget {
   ) {
     return showModalBottomSheet<void>(
       context: context,
+      backgroundColor: HanaColors.surfaceContainerLowest,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
+      ),
       builder: (sheetContext) {
         return SafeArea(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              ListTile(
-                leading: const Icon(Icons.medication_outlined),
-                title: Text(l10n.logMedication),
-                onTap: () {
-                  Navigator.of(sheetContext).pop();
-                  context.push('/today');
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.edit_note),
-                title: Text(l10n.writeJournal),
-                onTap: () {
-                  Navigator.of(sheetContext).pop();
-                  context.push('/record/journal/new');
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.science_outlined),
-                title: Text(l10n.addBloodTest),
-                onTap: () {
-                  Navigator.of(sheetContext).pop();
-                  context.push('/data/add_report');
-                },
-              ),
-            ],
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 24),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  width: 40,
+                  height: 4,
+                  margin: const EdgeInsets.only(bottom: 24),
+                  decoration: BoxDecoration(
+                    color: HanaColors.outlineVariant.withAlpha(128),
+                    borderRadius: BorderRadius.circular(2),
+                  ),
+                ),
+                ListTile(
+                  leading: const Icon(Icons.medication_outlined,
+                      color: HanaColors.primary,),
+                  title: Text(l10n.logMedication,
+                      style: const TextStyle(fontWeight: FontWeight.w600),),
+                  onTap: () {
+                    Navigator.of(sheetContext).pop();
+                    context.push('/today');
+                  },
+                ),
+                ListTile(
+                  leading:
+                      const Icon(Icons.edit_note, color: HanaColors.primary),
+                  title: Text(l10n.writeJournal,
+                      style: const TextStyle(fontWeight: FontWeight.w600),),
+                  onTap: () {
+                    Navigator.of(sheetContext).pop();
+                    context.push('/record/journal/new');
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.science_outlined,
+                      color: HanaColors.primary,),
+                  title: Text(l10n.addBloodTest,
+                      style: const TextStyle(fontWeight: FontWeight.w600),),
+                  onTap: () {
+                    Navigator.of(sheetContext).pop();
+                    context.push('/data/add_report');
+                  },
+                ),
+              ],
+            ),
           ),
         );
       },
@@ -125,59 +176,336 @@ class _TimelineLoadedView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (events.isEmpty) {
-      return Center(child: Text(emptyLabel));
+      return Center(
+        child: Text(
+          emptyLabel,
+          style: TextStyle(color: HanaColors.onSurfaceVariant.withAlpha(153)),
+        ),
+      );
     }
 
-    return ListView.separated(
-      padding: const EdgeInsets.fromLTRB(24, 100, 24, 120),
-      itemCount: events.length,
-      separatorBuilder: (_, __) => const SizedBox(height: 12),
-      itemBuilder: (context, index) {
-        final event = events[index];
-        return Container(
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: HanaColors.surfaceContainerLowest,
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: event.type.borderColor),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                event.type.displayName,
-                style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                      color: event.type.borderColor,
-                      fontWeight: FontWeight.bold,
-                    ),
-              ),
-              const SizedBox(height: 6),
-              Text(
-                event.title,
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.w700,
-                    ),
-              ),
-              if (event.subtitle != null) ...[
-                const SizedBox(height: 6),
-                Text(
-                  event.subtitle!,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: HanaColors.onSurfaceVariant,
-                      ),
+    return Stack(
+      children: [
+        // Central Gradient Line Fixed
+        Positioned.fill(
+          child: Align(
+            alignment: Alignment.topCenter,
+            child: Container(
+              width: 2,
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    HanaColors.primaryContainer,
+                    HanaColors.secondaryContainer,
+                  ],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
                 ),
-              ],
-              const SizedBox(height: 8),
-              Text(
-                DateFormat('yyyy.MM.dd HH:mm').format(event.date),
-                style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                      color: HanaColors.onSurfaceVariant,
+              ),
+            ),
+          ),
+        ),
+        // Content list
+        CustomScrollView(
+          slivers: [
+            SliverPadding(
+              padding: const EdgeInsets.only(top: 100, bottom: 24),
+              sliver: SliverToBoxAdapter(
+                child: _FilterPills(),
+              ),
+            ),
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context, index) {
+                  final event = events[index];
+                  // Right card at even index (0, 2), Left card at odd index (1, 3)
+                  // Wait, index 0 -> left column card is false (right card style).
+                  // Because in HTML Card 1 was Right aligned.
+                  final isCardRight = index.isEven;
+
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 24),
+                    child: _TimelineEventRow(
+                      event: event,
+                      isCardRight: isCardRight,
                     ),
+                  );
+                },
+                childCount: events.length,
+              ),
+            ),
+            const SliverPadding(
+              padding: EdgeInsets.only(bottom: 120),
+              sliver: SliverToBoxAdapter(
+                child: _TimelineStartPoint(),
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+class _FilterPills extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final filters = ['1月', '3月', '6月', '1年', '全部'];
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      child: Row(
+        children: filters.asMap().entries.map((entry) {
+          final isSelected = entry.key == 0;
+          return Padding(
+            padding: const EdgeInsets.only(right: 8),
+            child: Chip(
+              label: Text(
+                entry.value,
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 12,
+                  color: isSelected
+                      ? HanaColors.onPrimaryContainer
+                      : HanaColors.onSurfaceVariant,
+                ),
+              ),
+              backgroundColor: isSelected
+                  ? HanaColors.primaryContainer
+                  : HanaColors.surfaceContainerHigh,
+              side: BorderSide.none,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(9999),
+              ),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            ),
+          );
+        }).toList(),
+      ),
+    );
+  }
+}
+
+class _TimelineEventRow extends StatelessWidget {
+  const _TimelineEventRow({
+    required this.event,
+    required this.isCardRight,
+  });
+
+  final TimelineEvent event;
+  final bool isCardRight;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        // Left Column
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 24, right: 32),
+            child: isCardRight
+                ? Align(
+                    alignment: Alignment.centerRight,
+                    child: _DateText(date: event.date),
+                  )
+                : _EventCard(event: event, isAlignedRight: false),
+          ),
+        ),
+        // Center Dot
+        Container(
+          width: 16,
+          height: 16,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            shape: BoxShape.circle,
+            border: Border.all(
+              color: event.type.borderColor,
+              width: 4,
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: event.type.borderColor.withAlpha(51), // 20%
+                blurRadius: 4,
               ),
             ],
           ),
-        );
-      },
+        ),
+        // Right Column
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 32, right: 24),
+            child: isCardRight
+                ? _EventCard(event: event, isAlignedRight: true)
+                : Align(
+                    alignment: Alignment.centerLeft,
+                    child: _DateText(date: event.date),
+                  ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _DateText extends StatelessWidget {
+  const _DateText({required this.date});
+  final DateTime date;
+
+  @override
+  Widget build(BuildContext context) {
+    return Opacity(
+      opacity: 0.4,
+      child: Text(
+        DateFormat('yyyy.MM.dd').format(date),
+        style: const TextStyle(
+          fontSize: 12,
+          fontWeight: FontWeight.w500,
+          fontFamily: 'Be Vietnam Pro',
+        ),
+      ),
+    );
+  }
+}
+
+class _EventCard extends StatelessWidget {
+  const _EventCard({
+    required this.event,
+    required this.isAlignedRight,
+  });
+
+  final TimelineEvent event;
+  final bool isAlignedRight;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: () {},
+        borderRadius: BorderRadius.circular(16),
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: HanaColors.surfaceContainerLowest,
+            borderRadius: BorderRadius.circular(12),
+            border: isAlignedRight
+                ? Border(
+                    left: BorderSide(color: event.type.borderColor, width: 4),)
+                : Border(
+                    right: BorderSide(color: event.type.borderColor, width: 4),),
+            boxShadow: [
+              BoxShadow(
+                color: HanaColors.primary.withAlpha(10), // 4%
+                blurRadius: 20,
+                offset: const Offset(0, 4),
+              ),
+            ],
+          ),
+          child: Column(
+            crossAxisAlignment: isAlignedRight
+                ? CrossAxisAlignment.start
+                : CrossAxisAlignment.end,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: isAlignedRight
+                    ? MainAxisAlignment.start
+                    : MainAxisAlignment.end,
+                children: isAlignedRight
+                    ? [
+                        Icon(Icons.stars,
+                            size: 14, color: event.type.borderColor,),
+                        const SizedBox(width: 4),
+                        Text(
+                          event.type.displayName,
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                            color: event.type.borderColor.withAlpha(153), // 60%
+                          ),
+                        ),
+                      ]
+                    : [
+                        Text(
+                          event.type.displayName,
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                            color: event.type.borderColor.withAlpha(153), // 60%
+                          ),
+                        ),
+                        const SizedBox(width: 4),
+                        Icon(Icons.stars,
+                            size: 14, color: event.type.borderColor,),
+                      ],
+              ),
+              const SizedBox(height: 4),
+              Text(
+                event.title,
+                textAlign: isAlignedRight ? TextAlign.left : TextAlign.right,
+                style: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  color: HanaColors.onSurface,
+                ),
+              ),
+              if (event.subtitle != null) ...[
+                const SizedBox(height: 4),
+                Text(
+                  event.subtitle!,
+                  textAlign: isAlignedRight ? TextAlign.left : TextAlign.right,
+                  style: TextStyle(
+                    fontSize: 10,
+                    color: HanaColors.onSurfaceVariant.withAlpha(204), // 80%
+                  ),
+                ),
+              ],
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _TimelineStartPoint extends StatelessWidget {
+  const _TimelineStartPoint();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          width: 40,
+          height: 40,
+          decoration: const BoxDecoration(
+            color: HanaColors.surfaceContainerHigh,
+            shape: BoxShape.circle,
+          ),
+          child: const Center(
+            child: Icon(Icons.psychology, color: HanaColors.primary),
+          ),
+        ),
+        const SizedBox(height: 12),
+        const Text(
+          '旅程开始',
+          style: TextStyle(
+            fontSize: 12,
+            fontWeight: FontWeight.w500,
+            color: HanaColors.onSurfaceVariant,
+          ),
+        ),
+        const SizedBox(height: 16),
+        Container(
+          width: 8,
+          height: 8,
+          decoration: const BoxDecoration(
+            color: HanaColors.primary,
+            shape: BoxShape.circle,
+          ),
+        ),
+      ],
     );
   }
 }
