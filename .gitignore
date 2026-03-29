@@ -49,3 +49,4 @@ analyze*.txt
 *_stat.txt
 branches*.txt
 commits*.txt
+fix_lints.ps1
