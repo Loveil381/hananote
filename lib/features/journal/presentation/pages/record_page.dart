@@ -90,8 +90,10 @@ class RecordPage extends StatelessWidget {
                   actions: [
                     IconButton(
                       // Note: history_edu might not be in all older Flutter SDKs, fallback to history
-                      icon: const Icon(Icons.history_edu,
-                          color: HanaColors.primary,),
+                      icon: const Icon(
+                        Icons.history_edu,
+                        color: HanaColors.primary,
+                      ),
                       onPressed: () {},
                     ),
                   ],
@@ -262,7 +264,9 @@ class _StitchRecordCardState extends State<_StitchRecordCard>
   void initState() {
     super.initState();
     _controller = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 150),);
+      vsync: this,
+      duration: const Duration(milliseconds: 150),
+    );
     _scaleAnimation = Tween<double>(begin: 1, end: 0.98).animate(
       CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
     );

@@ -28,7 +28,8 @@ class ProfilePage extends StatelessWidget {
       color: HanaColors.surfaceContainerLowest,
       borderRadius: BorderRadius.circular(24),
       border: Border.all(
-          color: HanaColors.primaryContainer.withAlpha(77),), // 30% border
+        color: HanaColors.primaryContainer.withAlpha(77),
+      ), // 30% border
       boxShadow: [
         BoxShadow(
           color: HanaColors.primary.withAlpha(10), // 4% shadow
@@ -93,7 +94,8 @@ class ProfilePage extends StatelessWidget {
           return const Scaffold(
             backgroundColor: HanaColors.background,
             body: Center(
-                child: CircularProgressIndicator(color: HanaColors.primary),),
+              child: CircularProgressIndicator(color: HanaColors.primary),
+            ),
           );
         }
 
@@ -179,7 +181,9 @@ class ProfilePage extends StatelessWidget {
                       const SizedBox(height: 6),
                       Container(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 16, vertical: 6,),
+                          horizontal: 16,
+                          vertical: 6,
+                        ),
                         decoration: BoxDecoration(
                           color: HanaColors.surfaceContainerHigh,
                           borderRadius: BorderRadius.circular(9999),
@@ -351,17 +355,20 @@ class ProfilePage extends StatelessWidget {
                                 backgroundColor:
                                     HanaColors.surfaceContainerLowest,
                                 shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(24),),
+                                  borderRadius: BorderRadius.circular(24),
+                                ),
                                 title: Text(l10n.wipeAllDataTitle),
                                 content: Text(l10n.wipeAllDataMessage),
                                 actions: [
                                   TextButton(
                                     onPressed: () =>
                                         Navigator.of(dialogContext).pop(false),
-                                    child: Text(l10n.cancel,
-                                        style: const TextStyle(
-                                            color:
-                                                HanaColors.onSurfaceVariant,),),
+                                    child: Text(
+                                      l10n.cancel,
+                                      style: const TextStyle(
+                                        color: HanaColors.onSurfaceVariant,
+                                      ),
+                                    ),
                                   ),
                                   TextButton(
                                     onPressed: () =>
@@ -586,8 +593,11 @@ class _ListTileItem extends StatelessWidget {
                   color: (iconColor ?? HanaColors.primary).withAlpha(26), // 10%
                   shape: BoxShape.circle,
                 ),
-                child: Icon(icon,
-                    color: iconColor ?? HanaColors.primary, size: 20,),
+                child: Icon(
+                  icon,
+                  color: iconColor ?? HanaColors.primary,
+                  size: 20,
+                ),
               ),
               const SizedBox(width: 16),
             ],
@@ -641,7 +651,8 @@ class _ButtonRowItem extends StatelessWidget {
   const _ButtonRowItem({
     required this.icon,
     required this.title,
-    required this.decoration, this.trailingText,
+    required this.decoration,
+    this.trailingText,
     this.isChevron = false,
     this.onTap,
   });

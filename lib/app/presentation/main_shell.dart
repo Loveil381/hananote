@@ -172,7 +172,8 @@ class _NavItem extends StatelessWidget {
                 color: isSelected
                     ? HanaColors.primary
                     : HanaColors.primary.withAlpha(
-                        102,), // 40% opacity = 102 alpha as per HTML text-[#864E5A]/40
+                        102,
+                      ), // 40% opacity = 102 alpha as per HTML text-[#864E5A]/40
                 size: 24,
               ),
               const SizedBox(height: 2),
