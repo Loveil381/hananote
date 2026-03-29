@@ -66,6 +66,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get confirm => 'Confirm';
 
   @override
+  String get confirmDeleteDrug =>
+      'Delete this medication? This cannot be undone.';
+
+  @override
   String get inventory => 'Inventory';
 
   @override
@@ -612,6 +616,27 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get featureComingSoon => 'This feature is coming soon';
+
+  @override
+  String get weekdayMonday => 'Mon';
+
+  @override
+  String get weekdayTuesday => 'Tue';
+
+  @override
+  String get weekdayWednesday => 'Wed';
+
+  @override
+  String get weekdayThursday => 'Thu';
+
+  @override
+  String get weekdayFriday => 'Fri';
+
+  @override
+  String get weekdaySaturday => 'Sat';
+
+  @override
+  String get weekdaySunday => 'Sun';
 
   @override
   String get tabToday => 'Today';

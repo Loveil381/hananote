@@ -66,6 +66,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String get confirm => '確認';
 
   @override
+  String get confirmDeleteDrug => 'この薬を削除しますか？この操作は取り消せません。';
+
+  @override
   String get inventory => '在庫';
 
   @override
@@ -592,6 +595,27 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get featureComingSoon => 'この機能は近日公開です';
+
+  @override
+  String get weekdayMonday => '月';
+
+  @override
+  String get weekdayTuesday => '火';
+
+  @override
+  String get weekdayWednesday => '水';
+
+  @override
+  String get weekdayThursday => '木';
+
+  @override
+  String get weekdayFriday => '金';
+
+  @override
+  String get weekdaySaturday => '土';
+
+  @override
+  String get weekdaySunday => '日';
 
   @override
   String get tabToday => '今日';

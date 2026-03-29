@@ -66,6 +66,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get confirm => '确认';
 
   @override
+  String get confirmDeleteDrug => '确定删除这种药物吗？此操作不可撤销。';
+
+  @override
   String get inventory => '库存';
 
   @override
@@ -592,6 +595,27 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get featureComingSoon => '该功能即将上线';
+
+  @override
+  String get weekdayMonday => '周一';
+
+  @override
+  String get weekdayTuesday => '周二';
+
+  @override
+  String get weekdayWednesday => '周三';
+
+  @override
+  String get weekdayThursday => '周四';
+
+  @override
+  String get weekdayFriday => '周五';
+
+  @override
+  String get weekdaySaturday => '周六';
+
+  @override
+  String get weekdaySunday => '周日';
 
   @override
   String get tabToday => '今日';

@@ -130,7 +130,7 @@ class _DrugListPageState extends State<DrugListPage> {
           context: context,
           builder: (ctx) => AlertDialog(
             title: Text(l10n.delete),
-            content: Text('${l10n.confirm} ${l10n.delete}?'),
+            content: Text(l10n.confirmDeleteDrug),
             actions: [
               TextButton(
                 onPressed: () => Navigator.of(ctx).pop(false),

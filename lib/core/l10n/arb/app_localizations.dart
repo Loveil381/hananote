@@ -214,6 +214,12 @@ abstract class AppLocalizations {
   /// **'Confirm'**
   String get confirm;
 
+  /// No description provided for @confirmDeleteDrug.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this medication? This cannot be undone.'**
+  String get confirmDeleteDrug;
+
   /// No description provided for @inventory.
   ///
   /// In en, this message translates to:
@@ -1233,6 +1239,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'This feature is coming soon'**
   String get featureComingSoon;
+
+  /// No description provided for @weekdayMonday.
+  ///
+  /// In en, this message translates to:
+  /// **'Mon'**
+  String get weekdayMonday;
+
+  /// No description provided for @weekdayTuesday.
+  ///
+  /// In en, this message translates to:
+  /// **'Tue'**
+  String get weekdayTuesday;
+
+  /// No description provided for @weekdayWednesday.
+  ///
+  /// In en, this message translates to:
+  /// **'Wed'**
+  String get weekdayWednesday;
+
+  /// No description provided for @weekdayThursday.
+  ///
+  /// In en, this message translates to:
+  /// **'Thu'**
+  String get weekdayThursday;
+
+  /// No description provided for @weekdayFriday.
+  ///
+  /// In en, this message translates to:
+  /// **'Fri'**
+  String get weekdayFriday;
+
+  /// No description provided for @weekdaySaturday.
+  ///
+  /// In en, this message translates to:
+  /// **'Sat'**
+  String get weekdaySaturday;
+
+  /// No description provided for @weekdaySunday.
+  ///
+  /// In en, this message translates to:
+  /// **'Sun'**
+  String get weekdaySunday;
 
   /// No description provided for @tabToday.
   ///

@@ -11,6 +11,7 @@ import 'package:hananote/features/medication/domain/entities/enums.dart';
 import 'package:hananote/features/medication/domain/entities/medication_schedule.dart';
 import 'package:hananote/features/medication/presentation/bloc/schedule_editor_cubit.dart';
 import 'package:hananote/features/medication/presentation/bloc/schedule_editor_state.dart';
+import 'package:intl/intl.dart';
 
 /// Editing page for medication schedules.
 class ScheduleEditorPage extends StatefulWidget {
@@ -158,7 +159,7 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
                 title: Text(
                   state.startDate == null
                       ? l10n.selectDate
-                      : _formatDate(state.startDate!),
+                      : _formatDate(context, state.startDate!),
                 ),
                 trailing: const Icon(Icons.calendar_today),
                 onTap: () async {
@@ -186,7 +187,7 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
                 title: Text(
                   state.endDate == null
                       ? l10n.noEndDate
-                      : _formatDate(state.endDate!),
+                      : _formatDate(context, state.endDate!),
                 ),
                 trailing: state.endDate == null
                     ? const Icon(Icons.calendar_today)
@@ -313,7 +314,12 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
                 value:
                     (state.frequency! as WeeklyMedicationFrequency).dayOfWeek,
                 items: [1, 2, 3, 4, 5, 6, 7]
-                    .map((e) => DropdownMenuItem(value: e, child: Text('$e')))
+                    .map(
+                      (e) => DropdownMenuItem(
+                        value: e,
+                        child: Text(_weekdayLabel(e, l10n)),
+                      ),
+                    )
                     .toList(),
                 onChanged: (val) {
                   if (val != null) {
@@ -401,8 +407,23 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
     );
   }
 
-  String _formatDate(DateTime date) {
-    return '${date.year}-${date.month}-${date.day}';
+  String _formatDate(BuildContext context, DateTime date) {
+    return DateFormat.yMd(
+      Localizations.localeOf(context).toLanguageTag(),
+    ).format(date);
+  }
+
+  String _weekdayLabel(int day, AppLocalizations l10n) {
+    return switch (day) {
+      1 => l10n.weekdayMonday,
+      2 => l10n.weekdayTuesday,
+      3 => l10n.weekdayWednesday,
+      4 => l10n.weekdayThursday,
+      5 => l10n.weekdayFriday,
+      6 => l10n.weekdaySaturday,
+      7 => l10n.weekdaySunday,
+      _ => '$day',
+    };
   }
 
   String _localizeValidation(String key, AppLocalizations l10n) {
