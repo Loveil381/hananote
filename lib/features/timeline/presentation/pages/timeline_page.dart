@@ -267,7 +267,14 @@ class _TimelineLoadedView extends StatelessWidget {
   }
 }
 
-class _FilterPills extends StatelessWidget {
+class _FilterPills extends StatefulWidget {
+  @override
+  State<_FilterPills> createState() => _FilterPillsState();
+}
+
+class _FilterPillsState extends State<_FilterPills> {
+  int _selectedIndex = 4;
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
@@ -283,28 +290,33 @@ class _FilterPills extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Row(
         children: filters.asMap().entries.map((entry) {
-          final isSelected = entry.key == 0;
+          final isSelected = entry.key == _selectedIndex;
           return Padding(
             padding: const EdgeInsets.only(right: 8),
-            child: Chip(
-              label: Text(
-                entry.value,
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 12,
-                  color: isSelected
-                      ? HanaColors.onPrimaryContainer
-                      : HanaColors.onSurfaceVariant,
+            child: GestureDetector(
+              onTap: () => setState(() => _selectedIndex = entry.key),
+              behavior: HitTestBehavior.opaque,
+              child: Chip(
+                label: Text(
+                  entry.value,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 12,
+                    color: isSelected
+                        ? HanaColors.onPrimaryContainer
+                        : HanaColors.onSurfaceVariant,
+                  ),
                 ),
+                backgroundColor: isSelected
+                    ? HanaColors.primaryContainer
+                    : HanaColors.surfaceContainerHigh,
+                side: BorderSide.none,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(9999),
+                ),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
               ),
-              backgroundColor: isSelected
-                  ? HanaColors.primaryContainer
-                  : HanaColors.surfaceContainerHigh,
-              side: BorderSide.none,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(9999),
-              ),
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
             ),
           );
         }).toList(),
