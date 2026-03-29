@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hananote/app/theme/hana_colors.dart';
 import 'package:hananote/core/l10n/arb/app_localizations.dart';
-import 'package:hananote/features/medication/domain/entities/enums.dart';
+import 'package:hananote/core/l10n/enum_l10n.dart';
 import 'package:hananote/features/medication/domain/usecases/get_today_schedule.dart';
 import 'package:hananote/features/medication/presentation/bloc/today_schedule_bloc.dart';
 import 'package:hananote/features/medication/presentation/bloc/today_schedule_event.dart';
@@ -242,7 +242,7 @@ class TodayPage extends StatelessWidget {
         final widgets = <Widget>[];
         final countdownDrug = upcoming ?? items.first;
         final countdownDosage = '${countdownDrug.schedule.dosageAmount}'
-            '${countdownDrug.schedule.dosageUnit.displayName}';
+            '${countdownDrug.schedule.dosageUnit.localizedName(l10n)}';
 
         widgets.addAll([
           SliverToBoxAdapter(
@@ -253,7 +253,9 @@ class TodayPage extends StatelessWidget {
                 isCompleteForToday: uncompletedItems.isEmpty,
                 drugName: countdownDrug.drug.name,
                 dosage: countdownDosage,
-                route: countdownDrug.schedule.administrationRoute.displayName,
+                route: countdownDrug.schedule.administrationRoute.localizedName(
+                  l10n,
+                ),
                 nextDoseLabel: l10n.nextDose,
                 completedLabel: l10n.todayCompleted,
                 hourUnitLabel: l10n.hourUnit,
@@ -266,7 +268,7 @@ class TodayPage extends StatelessWidget {
 
         String dosageLabel(TodayScheduleItem item) {
           return '${item.schedule.dosageAmount}'
-              '${item.schedule.dosageUnit.displayName}';
+              '${item.schedule.dosageUnit.localizedName(l10n)}';
         }
 
         String timeLabel(DateTime? dateTime) {

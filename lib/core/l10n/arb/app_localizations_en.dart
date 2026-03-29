@@ -534,6 +534,78 @@ class AppLocalizationsEn extends AppLocalizations {
       'Don\'t forget to be proud of yourself. You\'re doing great.';
 
   @override
+  String get enumCatEstrogen => 'Estrogen';
+
+  @override
+  String get enumCatAntiAndrogen => 'Anti-androgen';
+
+  @override
+  String get enumCatProgestogen => 'Progestogen';
+
+  @override
+  String get enumCatAuxiliary => 'Auxiliary';
+
+  @override
+  String get enumRouteOral => 'Oral';
+
+  @override
+  String get enumRouteSublingual => 'Sublingual';
+
+  @override
+  String get enumRoutePatch => 'Patch';
+
+  @override
+  String get enumRouteGel => 'Gel';
+
+  @override
+  String get enumRouteIM => 'Intramuscular';
+
+  @override
+  String get enumRouteSC => 'Subcutaneous';
+
+  @override
+  String get enumRouteRectal => 'Rectal';
+
+  @override
+  String get enumUnitPump => 'pump';
+
+  @override
+  String get enumUnitPatch => 'patch';
+
+  @override
+  String get enumHormoneEstradiol => 'Estradiol';
+
+  @override
+  String get enumHormoneTestosterone => 'Testosterone';
+
+  @override
+  String get enumHormoneProlactin => 'Prolactin';
+
+  @override
+  String get enumHormoneProgesterone => 'Progesterone';
+
+  @override
+  String get enumStatusNormal => 'Normal';
+
+  @override
+  String get enumStatusWarning => 'Off target';
+
+  @override
+  String get enumStatusCritical => 'Needs attention';
+
+  @override
+  String get enumTimelineMedication => 'Medication';
+
+  @override
+  String get enumTimelineBloodTest => 'Blood Test';
+
+  @override
+  String get enumTimelineJournal => 'Journal';
+
+  @override
+  String get enumTimelineMilestone => 'Milestone';
+
+  @override
   String get tabToday => 'Today';
 
   @override

@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hananote/app/theme/hana_colors.dart';
 import 'package:hananote/core/l10n/arb/app_localizations.dart';
+import 'package:hananote/core/l10n/enum_l10n.dart';
 import 'package:hananote/features/blood_test/domain/entities/blood_test_report.dart';
 import 'package:hananote/features/blood_test/domain/entities/enums.dart';
 import 'package:hananote/features/blood_test/presentation/bloc/blood_test_bloc.dart';
@@ -144,10 +145,10 @@ class _LoadedView extends StatelessWidget {
               final isWarning = status != HormoneStatus.normal;
 
               return _StitchHormoneCard(
-                name: reading.type.displayName,
+                name: reading.type.localizedName(l10n),
                 value: valueNumber,
                 unit: unitText,
-                subtitle: status.displayName,
+                subtitle: status.localizedName(l10n),
                 statusColor: switch (status) {
                   HormoneStatus.normal => const Color(0xFF34D399),
                   HormoneStatus.warning => HanaColors.tertiary,
@@ -633,6 +634,8 @@ class _StitchHistoryCardState extends State<_StitchHistoryCard>
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return GestureDetector(
       onTapDown: (_) => _controller.forward(),
       onTapUp: (_) {
@@ -696,7 +699,7 @@ class _StitchHistoryCardState extends State<_StitchHistoryCard>
                             borderRadius: BorderRadius.circular(4),
                           ),
                           child: Text(
-                            '${reading.type.displayName} ${reading.value}',
+                            '${reading.type.localizedName(l10n)} ${reading.value}',
                             style: TextStyle(
                               fontSize: 10,
                               fontWeight: FontWeight.bold,

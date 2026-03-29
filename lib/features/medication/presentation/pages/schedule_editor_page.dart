@@ -6,6 +6,7 @@ import 'package:flutter/material.dart' hide TimeOfDay;
 import 'package:flutter/material.dart' as material show TimeOfDay;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hananote/core/l10n/arb/app_localizations.dart';
+import 'package:hananote/core/l10n/enum_l10n.dart';
 import 'package:hananote/features/medication/domain/entities/enums.dart';
 import 'package:hananote/features/medication/domain/entities/medication_schedule.dart';
 import 'package:hananote/features/medication/presentation/bloc/schedule_editor_cubit.dart';
@@ -115,7 +116,7 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
                             .map(
                               (unit) => DropdownMenuItem(
                                 value: unit,
-                                child: Text(unit.displayName),
+                                child: Text(unit.localizedName(l10n)),
                               ),
                             )
                             .toList(),

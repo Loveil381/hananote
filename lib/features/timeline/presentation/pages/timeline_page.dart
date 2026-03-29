@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hananote/app/theme/hana_colors.dart';
 import 'package:hananote/core/l10n/arb/app_localizations.dart';
+import 'package:hananote/core/l10n/enum_l10n.dart';
 import 'package:hananote/features/timeline/domain/entities/enums.dart';
 import 'package:hananote/features/timeline/domain/entities/timeline_event.dart';
 import 'package:hananote/features/timeline/presentation/bloc/timeline_bloc.dart';
@@ -399,6 +400,8 @@ class _EventCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return Material(
       color: Colors.transparent,
       child: InkWell(
@@ -444,7 +447,7 @@ class _EventCard extends StatelessWidget {
                         ),
                         const SizedBox(width: 4),
                         Text(
-                          event.type.displayName,
+                          event.type.localizedName(l10n),
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.bold,
@@ -454,7 +457,7 @@ class _EventCard extends StatelessWidget {
                       ]
                     : [
                         Text(
-                          event.type.displayName,
+                          event.type.localizedName(l10n),
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.bold,

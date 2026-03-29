@@ -514,6 +514,78 @@ class AppLocalizationsJa extends AppLocalizations {
   String get dailyQuote11 => '今日も自分を褒めてあげてね。よくがんばっています。';
 
   @override
+  String get enumCatEstrogen => 'エストロゲン';
+
+  @override
+  String get enumCatAntiAndrogen => '抗アンドロゲン';
+
+  @override
+  String get enumCatProgestogen => 'プロゲストーゲン';
+
+  @override
+  String get enumCatAuxiliary => '補助薬';
+
+  @override
+  String get enumRouteOral => '経口';
+
+  @override
+  String get enumRouteSublingual => '舌下';
+
+  @override
+  String get enumRoutePatch => 'パッチ';
+
+  @override
+  String get enumRouteGel => 'ジェル';
+
+  @override
+  String get enumRouteIM => '筋肉注射';
+
+  @override
+  String get enumRouteSC => '皮下注射';
+
+  @override
+  String get enumRouteRectal => '直腸';
+
+  @override
+  String get enumUnitPump => 'プッシュ';
+
+  @override
+  String get enumUnitPatch => '枚';
+
+  @override
+  String get enumHormoneEstradiol => 'エストラジオール';
+
+  @override
+  String get enumHormoneTestosterone => 'テストステロン';
+
+  @override
+  String get enumHormoneProlactin => 'プロラクチン';
+
+  @override
+  String get enumHormoneProgesterone => 'プロゲステロン';
+
+  @override
+  String get enumStatusNormal => '正常';
+
+  @override
+  String get enumStatusWarning => '目標から逸脱';
+
+  @override
+  String get enumStatusCritical => '要注意';
+
+  @override
+  String get enumTimelineMedication => '服薬記録';
+
+  @override
+  String get enumTimelineBloodTest => '血液検査';
+
+  @override
+  String get enumTimelineJournal => '日記';
+
+  @override
+  String get enumTimelineMilestone => 'マイルストーン';
+
+  @override
   String get tabToday => '今日';
 
   @override

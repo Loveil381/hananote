@@ -514,6 +514,78 @@ class AppLocalizationsZh extends AppLocalizations {
   String get dailyQuote11 => '今天也别忘了夸夸自己，你已经做得很好。';
 
   @override
+  String get enumCatEstrogen => '雌激素';
+
+  @override
+  String get enumCatAntiAndrogen => '抗雄';
+
+  @override
+  String get enumCatProgestogen => '孕激素';
+
+  @override
+  String get enumCatAuxiliary => '辅助药物';
+
+  @override
+  String get enumRouteOral => '口服';
+
+  @override
+  String get enumRouteSublingual => '舌下含服';
+
+  @override
+  String get enumRoutePatch => '贴片';
+
+  @override
+  String get enumRouteGel => '凝胶';
+
+  @override
+  String get enumRouteIM => '肌肉注射';
+
+  @override
+  String get enumRouteSC => '皮下注射';
+
+  @override
+  String get enumRouteRectal => '直肠给药';
+
+  @override
+  String get enumUnitPump => '泵';
+
+  @override
+  String get enumUnitPatch => '贴';
+
+  @override
+  String get enumHormoneEstradiol => '雌二醇';
+
+  @override
+  String get enumHormoneTestosterone => '睾酮';
+
+  @override
+  String get enumHormoneProlactin => '泌乳素';
+
+  @override
+  String get enumHormoneProgesterone => '黄体酮';
+
+  @override
+  String get enumStatusNormal => '正常';
+
+  @override
+  String get enumStatusWarning => '偏离目标';
+
+  @override
+  String get enumStatusCritical => '需要关注';
+
+  @override
+  String get enumTimelineMedication => '服药记录';
+
+  @override
+  String get enumTimelineBloodTest => '血液检测';
+
+  @override
+  String get enumTimelineJournal => '日记';
+
+  @override
+  String get enumTimelineMilestone => '里程碑';
+
+  @override
   String get tabToday => '今日';
 
   @override

@@ -1078,6 +1078,150 @@ abstract class AppLocalizations {
   /// **'Don\'t forget to be proud of yourself. You\'re doing great.'**
   String get dailyQuote11;
 
+  /// No description provided for @enumCatEstrogen.
+  ///
+  /// In en, this message translates to:
+  /// **'Estrogen'**
+  String get enumCatEstrogen;
+
+  /// No description provided for @enumCatAntiAndrogen.
+  ///
+  /// In en, this message translates to:
+  /// **'Anti-androgen'**
+  String get enumCatAntiAndrogen;
+
+  /// No description provided for @enumCatProgestogen.
+  ///
+  /// In en, this message translates to:
+  /// **'Progestogen'**
+  String get enumCatProgestogen;
+
+  /// No description provided for @enumCatAuxiliary.
+  ///
+  /// In en, this message translates to:
+  /// **'Auxiliary'**
+  String get enumCatAuxiliary;
+
+  /// No description provided for @enumRouteOral.
+  ///
+  /// In en, this message translates to:
+  /// **'Oral'**
+  String get enumRouteOral;
+
+  /// No description provided for @enumRouteSublingual.
+  ///
+  /// In en, this message translates to:
+  /// **'Sublingual'**
+  String get enumRouteSublingual;
+
+  /// No description provided for @enumRoutePatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Patch'**
+  String get enumRoutePatch;
+
+  /// No description provided for @enumRouteGel.
+  ///
+  /// In en, this message translates to:
+  /// **'Gel'**
+  String get enumRouteGel;
+
+  /// No description provided for @enumRouteIM.
+  ///
+  /// In en, this message translates to:
+  /// **'Intramuscular'**
+  String get enumRouteIM;
+
+  /// No description provided for @enumRouteSC.
+  ///
+  /// In en, this message translates to:
+  /// **'Subcutaneous'**
+  String get enumRouteSC;
+
+  /// No description provided for @enumRouteRectal.
+  ///
+  /// In en, this message translates to:
+  /// **'Rectal'**
+  String get enumRouteRectal;
+
+  /// No description provided for @enumUnitPump.
+  ///
+  /// In en, this message translates to:
+  /// **'pump'**
+  String get enumUnitPump;
+
+  /// No description provided for @enumUnitPatch.
+  ///
+  /// In en, this message translates to:
+  /// **'patch'**
+  String get enumUnitPatch;
+
+  /// No description provided for @enumHormoneEstradiol.
+  ///
+  /// In en, this message translates to:
+  /// **'Estradiol'**
+  String get enumHormoneEstradiol;
+
+  /// No description provided for @enumHormoneTestosterone.
+  ///
+  /// In en, this message translates to:
+  /// **'Testosterone'**
+  String get enumHormoneTestosterone;
+
+  /// No description provided for @enumHormoneProlactin.
+  ///
+  /// In en, this message translates to:
+  /// **'Prolactin'**
+  String get enumHormoneProlactin;
+
+  /// No description provided for @enumHormoneProgesterone.
+  ///
+  /// In en, this message translates to:
+  /// **'Progesterone'**
+  String get enumHormoneProgesterone;
+
+  /// No description provided for @enumStatusNormal.
+  ///
+  /// In en, this message translates to:
+  /// **'Normal'**
+  String get enumStatusNormal;
+
+  /// No description provided for @enumStatusWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'Off target'**
+  String get enumStatusWarning;
+
+  /// No description provided for @enumStatusCritical.
+  ///
+  /// In en, this message translates to:
+  /// **'Needs attention'**
+  String get enumStatusCritical;
+
+  /// No description provided for @enumTimelineMedication.
+  ///
+  /// In en, this message translates to:
+  /// **'Medication'**
+  String get enumTimelineMedication;
+
+  /// No description provided for @enumTimelineBloodTest.
+  ///
+  /// In en, this message translates to:
+  /// **'Blood Test'**
+  String get enumTimelineBloodTest;
+
+  /// No description provided for @enumTimelineJournal.
+  ///
+  /// In en, this message translates to:
+  /// **'Journal'**
+  String get enumTimelineJournal;
+
+  /// No description provided for @enumTimelineMilestone.
+  ///
+  /// In en, this message translates to:
+  /// **'Milestone'**
+  String get enumTimelineMilestone;
+
   /// No description provided for @tabToday.
   ///
   /// In en, this message translates to:

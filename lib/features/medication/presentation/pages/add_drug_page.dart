@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hananote/core/l10n/arb/app_localizations.dart';
+import 'package:hananote/core/l10n/enum_l10n.dart';
 import 'package:hananote/core/utils/id_generator.dart';
 import 'package:hananote/features/medication/domain/entities/drug.dart';
 import 'package:hananote/features/medication/domain/entities/enums.dart';
@@ -120,7 +121,7 @@ class _AddDrugPageState extends State<AddDrugPage> {
               segments: DrugCategory.values.map((cat) {
                 return ButtonSegment(
                   value: cat,
-                  label: Text(cat.displayName),
+                  label: Text(cat.localizedName(l10n)),
                 );
               }).toList(),
               selected: {_category},
@@ -136,7 +137,7 @@ class _AddDrugPageState extends State<AddDrugPage> {
               runSpacing: 8,
               children: AdministrationRoute.values.map((route) {
                 return ChoiceChip(
-                  label: Text(route.displayName),
+                  label: Text(route.localizedName(l10n)),
                   selected: _route == route,
                   onSelected: (val) {
                     if (val) _onRouteChanged(route);
@@ -152,7 +153,7 @@ class _AddDrugPageState extends State<AddDrugPage> {
               runSpacing: 8,
               children: _route.supportedUnits.map((unit) {
                 return ChoiceChip(
-                  label: Text(unit.displayName),
+                  label: Text(unit.localizedName(l10n)),
                   selected: _unit == unit,
                   onSelected: (val) {
                     if (val) setState(() => _unit = unit);
