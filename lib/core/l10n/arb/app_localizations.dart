@@ -130,6 +130,12 @@ abstract class AppLocalizations {
   /// **'Cancel'**
   String get cancel;
 
+  /// No description provided for @closeAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get closeAction;
+
   /// No description provided for @goodMorning.
   ///
   /// In en, this message translates to:

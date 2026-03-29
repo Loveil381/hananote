@@ -24,6 +24,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get cancel => '取消';
 
   @override
+  String get closeAction => '关闭';
+
+  @override
   String get goodMorning => '早安';
 
   @override

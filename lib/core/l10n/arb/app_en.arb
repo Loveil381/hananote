@@ -5,6 +5,7 @@
   "error": "Error",
   "ok": "OK",
   "cancel": "Cancel",
+  "closeAction": "Close",
   "goodMorning": "Good morning",
   "goodAfternoon": "Good afternoon",
   "goodEvening": "Good evening",

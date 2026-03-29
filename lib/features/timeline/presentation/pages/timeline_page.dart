@@ -508,7 +508,7 @@ class _EventCard extends StatelessWidget {
                       width: double.infinity,
                       child: FilledButton(
                         onPressed: () => Navigator.of(sheetContext).pop(),
-                        child: Text(l10n.cancel),
+                        child: Text(l10n.closeAction),
                       ),
                     ),
                   ],
