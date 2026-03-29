@@ -7,6 +7,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hananote/app/presentation/main_shell.dart'
+    show kNavBarContentHeight;
 import 'package:hananote/app/theme/hana_colors.dart';
 import 'package:hananote/core/l10n/arb/app_localizations.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_bloc.dart';
@@ -101,6 +103,8 @@ class ProfilePage extends StatelessWidget {
 
         final theme = Theme.of(context);
         final localeName = Localizations.localeOf(context).toLanguageTag();
+        final bottomContentPadding =
+            kNavBarContentHeight + MediaQuery.of(context).padding.bottom + 16;
         final inventoryText = state.inventoryDaysRemaining != null
             ? l10n.inventoryDaysRemaining(state.inventoryDaysRemaining!)
             : l10n.inventoryDataUnavailable;
@@ -154,7 +158,7 @@ class ProfilePage extends StatelessWidget {
           ),
           body: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(24, 100, 24, 24),
+              padding: EdgeInsets.fromLTRB(24, 100, 24, bottomContentPadding),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [

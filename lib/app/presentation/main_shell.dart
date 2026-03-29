@@ -9,6 +9,9 @@ import 'package:go_router/go_router.dart';
 import 'package:hananote/app/theme/hana_colors.dart';
 import 'package:hananote/core/l10n/arb/app_localizations.dart';
 
+/// Navigation bar content height, excluding the bottom safe area inset.
+const double kNavBarContentHeight = 72;
+
 class MainShell extends StatelessWidget {
   const MainShell({required this.navigationShell, super.key});
 
