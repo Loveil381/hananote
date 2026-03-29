@@ -2,6 +2,7 @@ import 'package:fpdart/fpdart.dart';
 import 'package:hananote/core/error/failures.dart';
 import 'package:hananote/features/medication/domain/entities/drug.dart';
 import 'package:hananote/features/medication/domain/repositories/medication_repository.dart';
+import 'package:injectable/injectable.dart';
 
 /// Inventory health information for a drug.
 class InventoryStatus {
@@ -23,6 +24,7 @@ class InventoryStatus {
 }
 
 /// Checks inventory health across all drugs.
+@injectable
 class CheckInventory {
   /// Creates a [CheckInventory] use case.
   CheckInventory(this._repository);

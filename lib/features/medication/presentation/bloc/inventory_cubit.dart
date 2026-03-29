@@ -5,11 +5,13 @@ import 'package:hananote/features/medication/domain/entities/enums.dart';
 import 'package:hananote/features/medication/domain/repositories/medication_repository.dart';
 import 'package:hananote/features/medication/domain/usecases/check_inventory.dart';
 import 'package:hananote/features/medication/presentation/bloc/inventory_state.dart';
+import 'package:injectable/injectable.dart';
 
 /// Manages medication inventory state.
 ///
 /// Provides `loadInventory` and `updateStock`.
 /// The `lowStockCount` in the loaded state drives any alert badges in the UI.
+@injectable
 class InventoryCubit extends Cubit<InventoryState> {
   /// Creates an [InventoryCubit].
   InventoryCubit(this._checkInventory, this._repository)

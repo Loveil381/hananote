@@ -87,6 +87,8 @@ import 'package:hananote/features/medication/domain/repositories/medication_repo
     as _i160;
 import 'package:hananote/features/medication/domain/usecases/add_drug.dart'
     as _i769;
+import 'package:hananote/features/medication/domain/usecases/check_inventory.dart'
+    as _i136;
 import 'package:hananote/features/medication/domain/usecases/delete_drug.dart'
     as _i234;
 import 'package:hananote/features/medication/domain/usecases/get_all_drugs.dart'
@@ -99,6 +101,8 @@ import 'package:hananote/features/medication/domain/usecases/sync_medication_rem
     as _i445;
 import 'package:hananote/features/medication/domain/usecases/update_drug.dart'
     as _i246;
+import 'package:hananote/features/medication/presentation/bloc/inventory_cubit.dart'
+    as _i848;
 import 'package:hananote/features/medication/presentation/bloc/today_schedule_bloc.dart'
     as _i14;
 import 'package:hananote/features/photo/data/datasources/photo_local_data_source.dart'
@@ -233,6 +237,8 @@ extension GetItInjectableX on _i174.GetIt {
             gh<_i708.MeasurementLocalDataSource>()));
     gh.factory<_i769.AddDrug>(
         () => _i769.AddDrug(gh<_i160.MedicationRepository>()));
+    gh.factory<_i136.CheckInventory>(
+        () => _i136.CheckInventory(gh<_i160.MedicationRepository>()));
     gh.factory<_i234.DeleteDrug>(
         () => _i234.DeleteDrug(gh<_i160.MedicationRepository>()));
     gh.factory<_i288.GetAllDrugs>(
@@ -266,6 +272,10 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i62.SavePhoto>(() => _i62.SavePhoto(
           gh<_i203.PhotoRepository>(),
           gh<_i484.PhotoCryptoService>(),
+        ));
+    gh.factory<_i848.InventoryCubit>(() => _i848.InventoryCubit(
+          gh<_i136.CheckInventory>(),
+          gh<_i160.MedicationRepository>(),
         ));
     gh.factory<_i590.MeasurementBloc>(() => _i590.MeasurementBloc(
           gh<_i255.GetMeasurementHistory>(),
