@@ -1,9 +1,11 @@
 import 'package:fpdart/fpdart.dart';
+import 'package:injectable/injectable.dart';
 import 'package:hananote/core/error/failures.dart';
 import 'package:hananote/features/medication/domain/entities/drug.dart';
 import 'package:hananote/features/medication/domain/repositories/medication_repository.dart';
 
 /// Returns all known drugs.
+@injectable
 class GetAllDrugs {
   /// Creates a [GetAllDrugs] use case.
   GetAllDrugs(this._repository);

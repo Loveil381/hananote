@@ -116,12 +116,18 @@ class __$$LoadHistoryImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadHistoryImpl implements _LoadHistory {
+class _$LoadHistoryImpl with DiagnosticableTreeMixin implements _LoadHistory {
   const _$LoadHistoryImpl();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'PhotoEvent.loadHistory()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties..add(DiagnosticsProperty('type', 'PhotoEvent.loadHistory'));
   }
 
   @override
@@ -239,12 +245,18 @@ class __$$CapturePhotoImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$CapturePhotoImpl implements _CapturePhoto {
+class _$CapturePhotoImpl with DiagnosticableTreeMixin implements _CapturePhoto {
   const _$CapturePhotoImpl();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'PhotoEvent.capturePhoto()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties..add(DiagnosticsProperty('type', 'PhotoEvent.capturePhoto'));
   }
 
   @override
@@ -362,12 +374,20 @@ class __$$PickFromGalleryImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$PickFromGalleryImpl implements _PickFromGallery {
+class _$PickFromGalleryImpl
+    with DiagnosticableTreeMixin
+    implements _PickFromGallery {
   const _$PickFromGalleryImpl();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'PhotoEvent.pickFromGallery()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties..add(DiagnosticsProperty('type', 'PhotoEvent.pickFromGallery'));
   }
 
   @override
@@ -511,15 +531,23 @@ class __$$DeletePhotoImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DeletePhotoImpl implements _DeletePhoto {
+class _$DeletePhotoImpl with DiagnosticableTreeMixin implements _DeletePhoto {
   const _$DeletePhotoImpl(this.entry);
 
   @override
   final PhotoEntry entry;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'PhotoEvent.deletePhoto(entry: $entry)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'PhotoEvent.deletePhoto'))
+      ..add(DiagnosticsProperty('entry', entry));
   }
 
   @override
@@ -681,15 +709,25 @@ class __$$LoadThumbnailImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadThumbnailImpl implements _LoadThumbnail {
+class _$LoadThumbnailImpl
+    with DiagnosticableTreeMixin
+    implements _LoadThumbnail {
   const _$LoadThumbnailImpl(this.entry);
 
   @override
   final PhotoEntry entry;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'PhotoEvent.loadThumbnail(entry: $entry)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'PhotoEvent.loadThumbnail'))
+      ..add(DiagnosticsProperty('entry', entry));
   }
 
   @override
@@ -906,12 +944,18 @@ class __$$InitialImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$InitialImpl implements _Initial {
+class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
   const _$InitialImpl();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'PhotoState.initial()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties..add(DiagnosticsProperty('type', 'PhotoState.initial'));
   }
 
   @override
@@ -1029,12 +1073,18 @@ class __$$LoadingImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadingImpl implements _Loading {
+class _$LoadingImpl with DiagnosticableTreeMixin implements _Loading {
   const _$LoadingImpl();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'PhotoState.loading()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties..add(DiagnosticsProperty('type', 'PhotoState.loading'));
   }
 
   @override
@@ -1171,7 +1221,7 @@ class __$$LoadedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadedImpl implements _Loaded {
+class _$LoadedImpl with DiagnosticableTreeMixin implements _Loaded {
   const _$LoadedImpl(
       {required final List<PhotoEntry> entries,
       required final Map<String, Uint8List> thumbnailCache})
@@ -1195,8 +1245,17 @@ class _$LoadedImpl implements _Loaded {
   }
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'PhotoState.loaded(entries: $entries, thumbnailCache: $thumbnailCache)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'PhotoState.loaded'))
+      ..add(DiagnosticsProperty('entries', entries))
+      ..add(DiagnosticsProperty('thumbnailCache', thumbnailCache));
   }
 
   @override
@@ -1354,15 +1413,23 @@ class __$$ErrorImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ErrorImpl implements _Error {
+class _$ErrorImpl with DiagnosticableTreeMixin implements _Error {
   const _$ErrorImpl(this.message);
 
   @override
   final String message;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'PhotoState.error(message: $message)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'PhotoState.error'))
+      ..add(DiagnosticsProperty('message', message));
   }
 
   @override

@@ -1,8 +1,10 @@
 import 'package:fpdart/fpdart.dart';
+import 'package:injectable/injectable.dart';
 import 'package:hananote/core/error/failures.dart';
 import 'package:hananote/features/medication/domain/repositories/medication_repository.dart';
 
 /// Deletes a drug definition.
+@injectable
 class DeleteDrug {
   /// Creates a [DeleteDrug] use case.
   DeleteDrug(this._repository);

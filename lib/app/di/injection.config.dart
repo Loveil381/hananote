@@ -85,12 +85,20 @@ import 'package:hananote/features/medication/data/repositories/medication_reposi
     as _i1024;
 import 'package:hananote/features/medication/domain/repositories/medication_repository.dart'
     as _i160;
+import 'package:hananote/features/medication/domain/usecases/add_drug.dart'
+    as _i769;
+import 'package:hananote/features/medication/domain/usecases/delete_drug.dart'
+    as _i234;
+import 'package:hananote/features/medication/domain/usecases/get_all_drugs.dart'
+    as _i288;
 import 'package:hananote/features/medication/domain/usecases/get_today_schedule.dart'
     as _i336;
 import 'package:hananote/features/medication/domain/usecases/log_medication.dart'
     as _i1050;
 import 'package:hananote/features/medication/domain/usecases/sync_medication_reminders.dart'
     as _i445;
+import 'package:hananote/features/medication/domain/usecases/update_drug.dart'
+    as _i246;
 import 'package:hananote/features/medication/presentation/bloc/today_schedule_bloc.dart'
     as _i14;
 import 'package:hananote/features/photo/data/datasources/photo_local_data_source.dart'
@@ -223,10 +231,18 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i502.MeasurementRepository>(() =>
         _i771.MeasurementRepositoryImpl(
             gh<_i708.MeasurementLocalDataSource>()));
+    gh.factory<_i769.AddDrug>(
+        () => _i769.AddDrug(gh<_i160.MedicationRepository>()));
+    gh.factory<_i234.DeleteDrug>(
+        () => _i234.DeleteDrug(gh<_i160.MedicationRepository>()));
+    gh.factory<_i288.GetAllDrugs>(
+        () => _i288.GetAllDrugs(gh<_i160.MedicationRepository>()));
     gh.factory<_i336.GetTodaySchedule>(
         () => _i336.GetTodaySchedule(gh<_i160.MedicationRepository>()));
     gh.factory<_i1050.LogMedication>(
         () => _i1050.LogMedication(gh<_i160.MedicationRepository>()));
+    gh.factory<_i246.UpdateDrug>(
+        () => _i246.UpdateDrug(gh<_i160.MedicationRepository>()));
     gh.factory<_i691.RunPkSimulation>(
         () => _i691.RunPkSimulation(gh<_i160.MedicationRepository>()));
     gh.lazySingleton<_i843.SettingsLocalDataSource>(

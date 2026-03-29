@@ -1,10 +1,12 @@
 import 'package:fpdart/fpdart.dart';
+import 'package:injectable/injectable.dart';
 import 'package:hananote/core/error/failures.dart';
 import 'package:hananote/features/medication/domain/entities/drug.dart';
 import 'package:hananote/features/medication/domain/entities/enums.dart';
 import 'package:hananote/features/medication/domain/repositories/medication_repository.dart';
 
 /// Validates and stores a new drug definition.
+@injectable
 class AddDrug {
   /// Creates an [AddDrug] use case.
   AddDrug(this._repository);
