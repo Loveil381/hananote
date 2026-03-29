@@ -7,7 +7,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hananote/app/theme/hana_colors.dart';
-import 'package:hananote/app/theme/hana_shadows.dart';
+import 'package:hananote/core/l10n/arb/app_localizations.dart';
 
 class MainShell extends StatelessWidget {
   const MainShell({required this.navigationShell, super.key});
@@ -26,7 +26,7 @@ class MainShell extends StatelessWidget {
     return Scaffold(
       body: navigationShell,
       extendBody: true, // Needed for transparent/blur bottom nav
-      bottomNavigationBar: _GlassNavigationBar(
+      bottomNavigationBar: _StitchNavigationBar(
         currentIndex: navigationShell.currentIndex,
         onTap: _onTap,
       ),
@@ -34,8 +34,8 @@ class MainShell extends StatelessWidget {
   }
 }
 
-class _GlassNavigationBar extends StatelessWidget {
-  const _GlassNavigationBar({
+class _StitchNavigationBar extends StatelessWidget {
+  const _StitchNavigationBar({
     required this.currentIndex,
     required this.onTap,
   });
@@ -45,11 +45,25 @@ class _GlassNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return Container(
       decoration: BoxDecoration(
-        color: HanaColors.surface.withAlpha(204),
+        color: HanaColors.background.withAlpha((255 * 0.8).round()),
         borderRadius: const BorderRadius.vertical(top: Radius.circular(32)),
-        boxShadow: HanaShadows.navBarShadow,
+        // Top border: #FFB7C5/10%
+        border: Border(
+          top: BorderSide(
+            color: HanaColors.primaryContainer.withAlpha(26),
+          ),
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: HanaColors.primary.withAlpha(15), // 0.06 opacity
+            blurRadius: 24,
+            offset: const Offset(0, -4),
+          ),
+        ],
       ),
       child: ClipRRect(
         borderRadius: const BorderRadius.vertical(top: Radius.circular(32)),
@@ -57,37 +71,37 @@ class _GlassNavigationBar extends StatelessWidget {
           filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
           child: SafeArea(
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
+              padding: const EdgeInsets.fromLTRB(16, 12, 16, 24), // pb-6 pt-3
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   _NavItem(
                     icon: Icons.auto_awesome,
-                    label: '今日',
+                    label: l10n.tabToday,
                     isSelected: currentIndex == 0,
                     onTap: () => onTap(0),
                   ),
                   _NavItem(
                     icon: Icons.edit_note,
-                    label: '记录',
+                    label: l10n.tabRecord,
                     isSelected: currentIndex == 1,
                     onTap: () => onTap(1),
                   ),
                   _NavItem(
-                    icon: Icons.auto_graph,
-                    label: '轨迹',
+                    icon: Icons.timeline,
+                    label: l10n.tabTimeline,
                     isSelected: currentIndex == 2,
                     onTap: () => onTap(2),
                   ),
                   _NavItem(
                     icon: Icons.analytics,
-                    label: '数据',
+                    label: l10n.tabData,
                     isSelected: currentIndex == 3,
                     onTap: () => onTap(3),
                   ),
                   _NavItem(
-                    icon: Icons.person_outline,
-                    label: '我的',
+                    icon: Icons.person,
+                    label: l10n.tabProfile,
                     isSelected: currentIndex == 4,
                     onTap: () => onTap(4),
                   ),
@@ -116,46 +130,66 @@ class _NavItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Normal style: text-[#864E5A]/50 (0.5 opacity = 128 alpha)
+    // Active style: #864E5A on #FFB7C5/20 for normal active, OR the gradient one!
+    // The design states the Active tab gets gradient-to-br from #FFB7C5 to #FCD3FB
+
+    const activeGradient = LinearGradient(
+      colors: [
+        HanaColors.primaryContainer,
+        HanaColors.secondaryContainer,
+      ],
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+    );
+
     return GestureDetector(
       onTap: onTap,
       behavior: HitTestBehavior.opaque,
-      child: AnimatedContainer(
+      child: AnimatedScale(
+        scale: isSelected ? 1.1 : 1.0, // scale-110 for active
         duration: const Duration(milliseconds: 300),
-        curve: Curves.easeOut,
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-        decoration: isSelected
-            ? BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    const Color(0xFFFFB7C5).withAlpha(51),
-                    const Color(0xFFFCD3FB).withAlpha(51),
-                  ],
+        curve: Curves.easeOutCubic,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeOutCubic,
+          padding: isSelected
+              ? const EdgeInsets.symmetric(horizontal: 20, vertical: 8)
+              : const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          decoration: isSelected
+              ? BoxDecoration(
+                  gradient: activeGradient,
+                  borderRadius: BorderRadius.circular(9999),
+                )
+              : const BoxDecoration(
+                  color: Colors.transparent,
                 ),
-                borderRadius: BorderRadius.circular(9999),
-              )
-            : const BoxDecoration(),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(
-              icon,
-              color: isSelected
-                  ? HanaColors.primary
-                  : HanaColors.primary.withAlpha(128),
-            ),
-            const SizedBox(height: 2),
-            Text(
-              label,
-              style: TextStyle(
-                fontFamily: 'PlusJakartaSans',
-                fontSize: 10,
-                fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                icon,
                 color: isSelected
                     ? HanaColors.primary
-                    : HanaColors.primary.withAlpha(128),
+                    : HanaColors.primary.withAlpha(
+                        102,), // 40% opacity = 102 alpha as per HTML text-[#864E5A]/40
+                size: 24,
               ),
-            ),
-          ],
+              const SizedBox(height: 2),
+              Text(
+                label,
+                style: TextStyle(
+                  fontFamily: 'Plus Jakarta Sans',
+                  fontSize: 10,
+                  fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
+                  letterSpacing: isSelected ? 0.5 : 0.2, // tracking-wide
+                  color: isSelected
+                      ? HanaColors.primary
+                      : HanaColors.primary.withAlpha(102),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
