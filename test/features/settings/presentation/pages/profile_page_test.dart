@@ -86,9 +86,19 @@ void main() {
       ),
     );
 
-    await tester.ensureVisible(find.text('导出备份'));
-    await tester.tap(find.text('导出备份'));
-    await tester.pump();
+    final scrollable = find.byType(Scrollable);
+    await tester.drag(scrollable, const Offset(0, -1000));
+    await tester.pump(const Duration(milliseconds: 500));
+
+    // Tap the center of the InkWell that contains the text
+    final inkWell = find
+        .ancestor(
+          of: find.text('导出备份'),
+          matching: find.byType(InkWell),
+        )
+        .first;
+    await tester.tap(inkWell, warnIfMissed: false);
+    await tester.pump(const Duration(milliseconds: 500));
 
     expect(find.text('备份工具仍在开发中'), findsOneWidget);
   });
