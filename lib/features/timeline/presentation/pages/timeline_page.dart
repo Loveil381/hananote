@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hananote/app/presentation/main_shell.dart' show kNavBarContentHeight;
 import 'package:hananote/app/theme/hana_colors.dart';
 import 'package:hananote/core/l10n/arb/app_localizations.dart';
 import 'package:hananote/core/l10n/enum_l10n.dart';
@@ -68,10 +69,11 @@ class TimelinePage extends StatelessWidget {
         ),
       ),
       floatingActionButton: Container(
-        margin: const EdgeInsets.only(
-          bottom: 80,
+        margin: EdgeInsets.only(
+          bottom:
+              MediaQuery.of(context).padding.bottom + kNavBarContentHeight + 16,
           right: 8,
-        ), // Lifted above bottom nav
+        ),
         child: FloatingActionButton(
           onPressed: () => _showCreateSheet(context, l10n),
           backgroundColor: Colors.transparent,
