@@ -406,11 +406,103 @@ class _EventCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+    final localeName = Localizations.localeOf(context).toLanguageTag();
 
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        onTap: () {},
+        onTap: () => showModalBottomSheet<void>(
+          context: context,
+          backgroundColor: HanaColors.surfaceContainerLowest,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
+          ),
+          builder: (sheetContext) {
+            return SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(24, 20, 24, 24),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Center(
+                      child: Container(
+                        width: 40,
+                        height: 4,
+                        margin: const EdgeInsets.only(bottom: 24),
+                        decoration: BoxDecoration(
+                          color: HanaColors.outlineVariant.withAlpha(128),
+                          borderRadius: BorderRadius.circular(999),
+                        ),
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                          width: 44,
+                          height: 44,
+                          decoration: BoxDecoration(
+                            color: event.type.borderColor.withAlpha(26),
+                            shape: BoxShape.circle,
+                          ),
+                          child: Icon(
+                            event.type.icon,
+                            color: event.type.iconColor,
+                          ),
+                        ),
+                        const SizedBox(width: 12),
+                        Text(
+                          event.type.localizedName(l10n),
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                            color: HanaColors.onSurface,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 20),
+                    Text(
+                      event.title,
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700,
+                        color: HanaColors.onSurface,
+                      ),
+                    ),
+                    if (event.subtitle != null) ...[
+                      const SizedBox(height: 8),
+                      Text(
+                        event.subtitle!,
+                        style: const TextStyle(
+                          fontSize: 14,
+                          color: HanaColors.onSurfaceVariant,
+                        ),
+                      ),
+                    ],
+                    const SizedBox(height: 16),
+                    Text(
+                      DateFormat.yMMMd(localeName).format(event.date),
+                      style: const TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w500,
+                        color: HanaColors.onSurfaceVariant,
+                      ),
+                    ),
+                    const SizedBox(height: 24),
+                    SizedBox(
+                      width: double.infinity,
+                      child: FilledButton(
+                        onPressed: () => Navigator.of(sheetContext).pop(),
+                        child: Text(l10n.cancel),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        ),
         borderRadius: BorderRadius.circular(16),
         child: Container(
           padding: const EdgeInsets.all(16),
