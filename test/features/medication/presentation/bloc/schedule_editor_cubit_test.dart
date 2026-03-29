@@ -2,6 +2,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:hananote/core/error/failures.dart';
+import 'package:hananote/features/medication/domain/entities/drug.dart';
 import 'package:hananote/features/medication/domain/entities/enums.dart';
 import 'package:hananote/features/medication/domain/entities/medication_schedule.dart';
 import 'package:hananote/features/medication/domain/repositories/medication_repository.dart';
@@ -29,6 +30,17 @@ MedicationSchedule _schedule({String id = 'schedule-1'}) => MedicationSchedule(
       startDate: DateTime(2026, 3),
       isActive: true,
       scheduleTimes: const [TimeOfDay(hour: 8, minute: 0)],
+    );
+
+Drug _drug() => Drug(
+      id: 'drug-1',
+      name: 'Estradiol Valerate',
+      genericName: 'Estradiol',
+      category: DrugCategory.estrogen,
+      administrationRoute: AdministrationRoute.oral,
+      defaultDosageUnit: DosageUnit.mg,
+      isActive: true,
+      createdAt: DateTime(2026, 3),
     );
 
 const _failure = Failure.database(message: 'DB error');
@@ -75,6 +87,48 @@ void main() {
             .having((s) => s.isNew, 'isNew', isFalse)
             .having((s) => s.existingId, 'existingId', 'schedule-1')
             .having((s) => s.dosageAmount, 'dosageAmount', 2.0),
+      ],
+    );
+  });
+
+  group('loadForDrug', () {
+    blocTest<ScheduleEditorCubit, ScheduleEditorState>(
+      'emits editing state with drug defaults when no schedule exists',
+      build: build,
+      setUp: () {
+        when(() => repository.getDrugById('drug-1'))
+            .thenAnswer((_) async => right(_drug()));
+        when(() => repository.getScheduleForDrug('drug-1'))
+            .thenAnswer((_) async => const Right(null));
+      },
+      act: (c) => c.loadForDrug('drug-1'),
+      expect: () => [
+        isA<ScheduleEditorEditing>()
+            .having((s) => s.isNew, 'isNew', isTrue)
+            .having(
+              (s) => s.administrationRoute,
+              'administrationRoute',
+              AdministrationRoute.oral,
+            )
+            .having((s) => s.dosageUnit, 'dosageUnit', DosageUnit.mg),
+      ],
+    );
+
+    blocTest<ScheduleEditorCubit, ScheduleEditorState>(
+      'emits editing state from existing schedule when one exists',
+      build: build,
+      setUp: () {
+        when(() => repository.getDrugById('drug-1'))
+            .thenAnswer((_) async => right(_drug()));
+        when(() => repository.getScheduleForDrug('drug-1'))
+            .thenAnswer((_) async => right(_schedule()));
+      },
+      act: (c) => c.loadForDrug('drug-1'),
+      expect: () => [
+        isA<ScheduleEditorEditing>()
+            .having((s) => s.isNew, 'isNew', isFalse)
+            .having((s) => s.existingId, 'existingId', 'schedule-1')
+            .having((s) => s.dosageUnit, 'dosageUnit', DosageUnit.mg),
       ],
     );
   });

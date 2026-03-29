@@ -27,6 +27,55 @@ class ScheduleEditorCubit extends Cubit<ScheduleEditorState> {
     );
   }
 
+  /// Loads the existing schedule for [drugId] from the repository.
+  ///
+  /// If a schedule exists, enters edit mode with all fields pre-filled.
+  /// Otherwise enters new mode with the drug's route and default unit pre-set.
+  Future<void> loadForDrug(String drugId) async {
+    final drugResult = await _repository.getDrugById(drugId);
+    final scheduleResult = await _repository.getScheduleForDrug(drugId);
+
+    AdministrationRoute? drugRoute;
+    DosageUnit? drugUnit;
+    drugResult.fold(
+      (_) {},
+      (drug) {
+        drugRoute = drug.administrationRoute;
+        drugUnit = drug.defaultDosageUnit;
+      },
+    );
+
+    scheduleResult.fold(
+      (_) {
+        emit(
+          ScheduleEditorEditing(
+            drugId: drugId,
+            isNew: true,
+            startDate: DateTime.now(),
+            administrationRoute: drugRoute,
+            dosageUnit: drugUnit,
+          ),
+        );
+      },
+      (schedule) {
+        if (schedule != null) {
+          initEdit(schedule);
+          return;
+        }
+
+        emit(
+          ScheduleEditorEditing(
+            drugId: drugId,
+            isNew: true,
+            startDate: DateTime.now(),
+            administrationRoute: drugRoute,
+            dosageUnit: drugUnit,
+          ),
+        );
+      },
+    );
+  }
+
   /// Initialises the editor from [schedule] for editing.
   void initEdit(MedicationSchedule schedule) {
     emit(
