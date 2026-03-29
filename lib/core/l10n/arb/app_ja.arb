@@ -164,6 +164,34 @@
   "validationStartDateRequired": "開始日を選択してください",
   "validationScheduleTimeRequired": "少なくとも1つの服薬時間が必要です",
   "validationFieldsIncomplete": "すべての必須項目を入力してください",
+  "recordTitle": "今日の記録",
+  "recordGreeting": "こんにちは、\n今日はどんな思い出を残しますか？",
+  "recordPhoto": "写真記録",
+  "recordPhotoSub": "暗号化保存、あなただけが見られます",
+  "recordMeasurement": "ボディ測定",
+  "recordMeasurementSub": "からだの変化を記録しよう",
+  "recordDiary": "気持ち日記",
+  "recordDiarySub": "今日は何を書きたい？",
+  "recordDiaryEmpty": "最初の日記を書こう",
+  "recordPhotoEmpty": "写真記録はまだありません",
+  "recordMeasureEmpty": "測定記録はまだありません",
+  "recordStreak": "{days}日連続記録中",
+  "@recordStreak": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "recordLastPhoto": "前回：{date}",
+  "@recordLastPhoto": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "recordFooter": "一つ一つの記録が未来への優しい約束",
   "myGrowthTrajectory": "私の成長記録",
   "dataAndTrends": "データとトレンド",
   "myStatus": "マイステータス",

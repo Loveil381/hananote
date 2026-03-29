@@ -429,6 +429,52 @@ class AppLocalizationsJa extends AppLocalizations {
   String get validationFieldsIncomplete => 'すべての必須項目を入力してください';
 
   @override
+  String get recordTitle => '今日の記録';
+
+  @override
+  String get recordGreeting => 'こんにちは、\n今日はどんな思い出を残しますか？';
+
+  @override
+  String get recordPhoto => '写真記録';
+
+  @override
+  String get recordPhotoSub => '暗号化保存、あなただけが見られます';
+
+  @override
+  String get recordMeasurement => 'ボディ測定';
+
+  @override
+  String get recordMeasurementSub => 'からだの変化を記録しよう';
+
+  @override
+  String get recordDiary => '気持ち日記';
+
+  @override
+  String get recordDiarySub => '今日は何を書きたい？';
+
+  @override
+  String get recordDiaryEmpty => '最初の日記を書こう';
+
+  @override
+  String get recordPhotoEmpty => '写真記録はまだありません';
+
+  @override
+  String get recordMeasureEmpty => '測定記録はまだありません';
+
+  @override
+  String recordStreak(int days) {
+    return '$days日連続記録中';
+  }
+
+  @override
+  String recordLastPhoto(String date) {
+    return '前回：$date';
+  }
+
+  @override
+  String get recordFooter => '一つ一つの記録が未来への優しい約束';
+
+  @override
   String get tabToday => '今日';
 
   @override

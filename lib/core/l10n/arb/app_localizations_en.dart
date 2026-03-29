@@ -435,6 +435,54 @@ class AppLocalizationsEn extends AppLocalizations {
   String get validationFieldsIncomplete => 'All required fields must be set';
 
   @override
+  String get recordTitle => 'Today\'s Record';
+
+  @override
+  String get recordGreeting =>
+      'Hello,\nWhat memory would you like to keep today?';
+
+  @override
+  String get recordPhoto => 'Photo Record';
+
+  @override
+  String get recordPhotoSub => 'Encrypted storage, only you can see';
+
+  @override
+  String get recordMeasurement => 'Body Measurements';
+
+  @override
+  String get recordMeasurementSub => 'Track every little change';
+
+  @override
+  String get recordDiary => 'Mood Diary';
+
+  @override
+  String get recordDiarySub => 'What\'s on your mind today?';
+
+  @override
+  String get recordDiaryEmpty => 'Start your first diary entry';
+
+  @override
+  String get recordPhotoEmpty => 'No photo records yet';
+
+  @override
+  String get recordMeasureEmpty => 'No measurement records yet';
+
+  @override
+  String recordStreak(int days) {
+    return '$days-day streak';
+  }
+
+  @override
+  String recordLastPhoto(String date) {
+    return 'Last: $date';
+  }
+
+  @override
+  String get recordFooter =>
+      'Every record is a gentle promise to your future self';
+
+  @override
   String get tabToday => 'Today';
 
   @override

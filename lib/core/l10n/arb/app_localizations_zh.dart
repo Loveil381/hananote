@@ -429,6 +429,52 @@ class AppLocalizationsZh extends AppLocalizations {
   String get validationFieldsIncomplete => '请填写所有必填项';
 
   @override
+  String get recordTitle => '今日记录';
+
+  @override
+  String get recordGreeting => '你好，\n今天想留下什么回忆？';
+
+  @override
+  String get recordPhoto => '拍照记录';
+
+  @override
+  String get recordPhotoSub => '加密存储，只有你能看到';
+
+  @override
+  String get recordMeasurement => '身体测量';
+
+  @override
+  String get recordMeasurementSub => '记录身体的每一点变化';
+
+  @override
+  String get recordDiary => '心情日记';
+
+  @override
+  String get recordDiarySub => '今天想说点什么';
+
+  @override
+  String get recordDiaryEmpty => '开始你的第一篇日记';
+
+  @override
+  String get recordPhotoEmpty => '还没有拍照记录';
+
+  @override
+  String get recordMeasureEmpty => '还没有测量记录';
+
+  @override
+  String recordStreak(int days) {
+    return '已连续记录 $days 天';
+  }
+
+  @override
+  String recordLastPhoto(String date) {
+    return '上次：$date';
+  }
+
+  @override
+  String get recordFooter => '每一次记录都是对未来的温柔期许';
+
+  @override
   String get tabToday => '今日';
 
   @override

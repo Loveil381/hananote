@@ -916,6 +916,90 @@ abstract class AppLocalizations {
   /// **'All required fields must be set'**
   String get validationFieldsIncomplete;
 
+  /// No description provided for @recordTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'s Record'**
+  String get recordTitle;
+
+  /// No description provided for @recordGreeting.
+  ///
+  /// In en, this message translates to:
+  /// **'Hello,\nWhat memory would you like to keep today?'**
+  String get recordGreeting;
+
+  /// No description provided for @recordPhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Photo Record'**
+  String get recordPhoto;
+
+  /// No description provided for @recordPhotoSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Encrypted storage, only you can see'**
+  String get recordPhotoSub;
+
+  /// No description provided for @recordMeasurement.
+  ///
+  /// In en, this message translates to:
+  /// **'Body Measurements'**
+  String get recordMeasurement;
+
+  /// No description provided for @recordMeasurementSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Track every little change'**
+  String get recordMeasurementSub;
+
+  /// No description provided for @recordDiary.
+  ///
+  /// In en, this message translates to:
+  /// **'Mood Diary'**
+  String get recordDiary;
+
+  /// No description provided for @recordDiarySub.
+  ///
+  /// In en, this message translates to:
+  /// **'What\'s on your mind today?'**
+  String get recordDiarySub;
+
+  /// No description provided for @recordDiaryEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Start your first diary entry'**
+  String get recordDiaryEmpty;
+
+  /// No description provided for @recordPhotoEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No photo records yet'**
+  String get recordPhotoEmpty;
+
+  /// No description provided for @recordMeasureEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No measurement records yet'**
+  String get recordMeasureEmpty;
+
+  /// No description provided for @recordStreak.
+  ///
+  /// In en, this message translates to:
+  /// **'{days}-day streak'**
+  String recordStreak(int days);
+
+  /// No description provided for @recordLastPhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Last: {date}'**
+  String recordLastPhoto(String date);
+
+  /// No description provided for @recordFooter.
+  ///
+  /// In en, this message translates to:
+  /// **'Every record is a gentle promise to your future self'**
+  String get recordFooter;
+
   /// No description provided for @tabToday.
   ///
   /// In en, this message translates to:

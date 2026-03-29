@@ -164,6 +164,34 @@
   "validationStartDateRequired": "请选择开始日期",
   "validationScheduleTimeRequired": "至少需要一个服药时间",
   "validationFieldsIncomplete": "请填写所有必填项",
+  "recordTitle": "今日记录",
+  "recordGreeting": "你好，\n今天想留下什么回忆？",
+  "recordPhoto": "拍照记录",
+  "recordPhotoSub": "加密存储，只有你能看到",
+  "recordMeasurement": "身体测量",
+  "recordMeasurementSub": "记录身体的每一点变化",
+  "recordDiary": "心情日记",
+  "recordDiarySub": "今天想说点什么",
+  "recordDiaryEmpty": "开始你的第一篇日记",
+  "recordPhotoEmpty": "还没有拍照记录",
+  "recordMeasureEmpty": "还没有测量记录",
+  "recordStreak": "已连续记录 {days} 天",
+  "@recordStreak": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "recordLastPhoto": "上次：{date}",
+  "@recordLastPhoto": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "recordFooter": "每一次记录都是对未来的温柔期许",
   "myGrowthTrajectory": "我的成长轨迹",
   "dataAndTrends": "数据与趋势",
   "myStatus": "我的状态",

@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hananote/app/theme/hana_colors.dart';
+import 'package:hananote/core/l10n/arb/app_localizations.dart';
 import 'package:hananote/features/journal/presentation/bloc/record_bloc.dart';
 import 'package:hananote/features/journal/presentation/bloc/record_state.dart';
 import 'package:intl/intl.dart';
@@ -17,23 +18,26 @@ class RecordPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final localeTag = Localizations.localeOf(context).toLanguageTag();
+
     return BlocBuilder<RecordBloc, RecordState>(
       builder: (context, state) {
-        final todayStr = DateFormat('M月d日').format(DateTime.now());
+        final todayStr = DateFormat.MMMd(localeTag).format(DateTime.now());
 
-        var moodTag = '开始你的第一篇日记';
-        var photoTag = '还没有拍照记录';
-        var measureTag = '还没有测量记录';
+        var moodTag = l10n.recordDiaryEmpty;
+        var photoTag = l10n.recordPhotoEmpty;
+        var measureTag = l10n.recordMeasureEmpty;
 
         state.mapOrNull(
           loaded: (loadedState) {
             if (loadedState.journalStreak > 0) {
-              moodTag = '已连续记录 ${loadedState.journalStreak} 天';
+              moodTag = l10n.recordStreak(loadedState.journalStreak);
             }
             if (loadedState.lastPhotoDate != null) {
               final dateStr =
-                  DateFormat('M月d日').format(loadedState.lastPhotoDate!);
-              photoTag = '上次：$dateStr';
+                  DateFormat.MMMd(localeTag).format(loadedState.lastPhotoDate!);
+              photoTag = l10n.recordLastPhoto(dateStr);
             }
             if (loadedState.lastMeasurementSummary != null) {
               measureTag = loadedState.lastMeasurementSummary!;
@@ -63,9 +67,9 @@ class RecordPage extends StatelessWidget {
                   title: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Text(
-                        '今日记录',
-                        style: TextStyle(
+                      Text(
+                        l10n.recordTitle,
+                        style: const TextStyle(
                           fontFamily: 'Plus Jakarta Sans',
                           fontWeight: FontWeight.w600,
                           fontSize: 18,
@@ -89,7 +93,6 @@ class RecordPage extends StatelessWidget {
                   ),
                   actions: [
                     IconButton(
-                      // Note: history_edu might not be in all older Flutter SDKs, fallback to history
                       icon: const Icon(
                         Icons.history_edu,
                         color: HanaColors.primary,
@@ -110,7 +113,7 @@ class RecordPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: Text(
-                    '你好，\n今天想留下什么回忆？',
+                    l10n.recordGreeting,
                     style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                           fontFamily: 'Plus Jakarta Sans',
                           fontWeight: FontWeight.w800,
@@ -121,16 +124,14 @@ class RecordPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 32),
-                // Card 1: Photo
                 _StitchRecordCard(
                   icon: Icons.camera_alt,
-                  title: '拍照记录',
-                  subtitle: '加密存储，只有你能看到',
+                  title: l10n.recordPhoto,
+                  subtitle: l10n.recordPhotoSub,
                   tag: photoTag,
                   accentColor: HanaColors.primaryContainer,
-                  bgShapeColor:
-                      HanaColors.primaryContainer.withAlpha(26), // 10%
-                  tagBgColor: HanaColors.primaryContainer.withAlpha(77), // 30%
+                  bgShapeColor: HanaColors.primaryContainer.withAlpha(26),
+                  tagBgColor: HanaColors.primaryContainer.withAlpha(77),
                   tagTextColor: HanaColors.primary,
                   bgIcon: Icons.photo_library,
                   bgIconRotation: 12 * 3.14159 / 180,
@@ -138,17 +139,14 @@ class RecordPage extends StatelessWidget {
                   onTap: () => context.push('/photo'),
                 ),
                 const SizedBox(height: 24),
-                // Card 2: Measurement
                 _StitchRecordCard(
                   icon: Icons.straighten,
-                  title: '身体测量',
-                  subtitle: '记录身体的每一点变化',
+                  title: l10n.recordMeasurement,
+                  subtitle: l10n.recordMeasurementSub,
                   tag: measureTag,
                   accentColor: HanaColors.secondary,
-                  bgShapeColor:
-                      HanaColors.secondaryContainer.withAlpha(51), // 20%
-                  tagBgColor:
-                      HanaColors.secondaryContainer.withAlpha(128), // 50%
+                  bgShapeColor: HanaColors.secondaryContainer.withAlpha(51),
+                  tagBgColor: HanaColors.secondaryContainer.withAlpha(128),
                   tagTextColor: HanaColors.secondary,
                   bgIcon: Icons.monitor_weight_outlined,
                   bgIconRotation: -12 * 3.14159 / 180,
@@ -156,16 +154,13 @@ class RecordPage extends StatelessWidget {
                   onTap: () => context.push('/measurement'),
                 ),
                 const SizedBox(height: 24),
-                // Card 3: Mood Diary
                 _StitchRecordCard(
                   icon: Icons.menu_book,
-                  title: '心情日记',
-                  subtitle: '今天想说点什么',
+                  title: l10n.recordDiary,
+                  subtitle: l10n.recordDiarySub,
                   tag: moodTag,
-                  accentColor:
-                      HanaColors.primary, // Using primary for icon in this card
-                  bgShapeColor:
-                      HanaColors.secondaryContainer.withAlpha(26), // FCD3FB/10
+                  accentColor: HanaColors.primary,
+                  bgShapeColor: HanaColors.secondaryContainer.withAlpha(26),
                   tagBgColor: HanaColors.surfaceContainerHigh,
                   tagTextColor: HanaColors.onSurfaceVariant,
                   iconContainerColor: HanaColors.surfaceContainerHigh,
@@ -182,7 +177,7 @@ class RecordPage extends StatelessWidget {
                       Icon(
                         Icons.spa,
                         size: 64,
-                        color: HanaColors.primary.withAlpha(77), // 30%
+                        color: HanaColors.primary.withAlpha(77),
                       ),
                       Positioned(
                         top: 0,
@@ -202,9 +197,9 @@ class RecordPage extends StatelessWidget {
                 const SizedBox(height: 16),
                 Center(
                   child: Text(
-                    '每一次记录都是对未来的温柔期许',
+                    l10n.recordFooter,
                     style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                          color: HanaColors.primary.withAlpha(153), // 60%
+                          color: HanaColors.primary.withAlpha(153),
                           letterSpacing: 2,
                         ),
                   ),
@@ -244,7 +239,7 @@ class _StitchRecordCard extends StatefulWidget {
   final Color bgShapeColor;
   final Color tagBgColor;
   final Color tagTextColor;
-  final Color? iconContainerColor; // Overrides default accentColor withAlpha
+  final Color? iconContainerColor;
   final IconData bgIcon;
   final double bgIconRotation;
   final Alignment bgShapeAlignment;
@@ -317,7 +312,6 @@ class _StitchRecordCardState extends State<_StitchRecordCard>
             child: Stack(
               clipBehavior: Clip.none,
               children: [
-                // Decorative Blurred Shape
                 Positioned.fill(
                   child: Align(
                     alignment: widget.bgShapeAlignment,
@@ -331,7 +325,7 @@ class _StitchRecordCardState extends State<_StitchRecordCard>
                         imageFilter: ImageFilter.blur(sigmaX: 24, sigmaY: 24),
                         child: Container(
                           width: widget.bgShapeAlignment == Alignment.center
-                              ? 192 // 48 * 4
+                              ? 192
                               : 128,
                           height: widget.bgShapeAlignment == Alignment.center
                               ? 192
@@ -345,7 +339,6 @@ class _StitchRecordCardState extends State<_StitchRecordCard>
                     ),
                   ),
                 ),
-                // Card Content Foreground
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -354,7 +347,7 @@ class _StitchRecordCardState extends State<_StitchRecordCard>
                       height: 48,
                       decoration: BoxDecoration(
                         color: widget.iconContainerColor ??
-                            widget.accentColor.withAlpha(51), // 20%
+                            widget.accentColor.withAlpha(51),
                         borderRadius: BorderRadius.circular(16),
                       ),
                       child: Icon(
@@ -385,7 +378,7 @@ class _StitchRecordCardState extends State<_StitchRecordCard>
                                 .bodySmall
                                 ?.copyWith(
                                   color: HanaColors.onSurfaceVariant
-                                      .withAlpha((255 * 0.7).round()), // 70%
+                                      .withAlpha((255 * 0.7).round()),
                                 ),
                           ),
                           const SizedBox(height: 16),
@@ -419,7 +412,7 @@ class _StitchRecordCardState extends State<_StitchRecordCard>
                       child: Icon(
                         widget.bgIcon,
                         size: 64,
-                        color: widget.tagTextColor.withAlpha(51), // 20%
+                        color: widget.tagTextColor.withAlpha(51),
                       ),
                     ),
                   ],

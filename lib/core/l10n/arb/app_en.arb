@@ -180,6 +180,34 @@
   "validationStartDateRequired": "Start date is required",
   "validationScheduleTimeRequired": "At least one schedule time is required",
   "validationFieldsIncomplete": "All required fields must be set",
+  "recordTitle": "Today's Record",
+  "recordGreeting": "Hello,\nWhat memory would you like to keep today?",
+  "recordPhoto": "Photo Record",
+  "recordPhotoSub": "Encrypted storage, only you can see",
+  "recordMeasurement": "Body Measurements",
+  "recordMeasurementSub": "Track every little change",
+  "recordDiary": "Mood Diary",
+  "recordDiarySub": "What's on your mind today?",
+  "recordDiaryEmpty": "Start your first diary entry",
+  "recordPhotoEmpty": "No photo records yet",
+  "recordMeasureEmpty": "No measurement records yet",
+  "recordStreak": "{days}-day streak",
+  "@recordStreak": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "recordLastPhoto": "Last: {date}",
+  "@recordLastPhoto": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "recordFooter": "Every record is a gentle promise to your future self",
   "tabToday": "Today",
   "tabRecord": "Record",
   "tabTimeline": "Timeline",
