@@ -155,7 +155,7 @@ final GoRouter appRouter = GoRouter(
       parentNavigatorKey: _rootNavigatorKey,
       builder: (context, state) => BlocProvider(
         create: (_) => ScheduleEditorCubit(getIt<MedicationRepository>())
-          ..initNew(state.pathParameters['drugId']!),
+          ..loadForDrug(state.pathParameters['drugId']!),
         child: const ScheduleEditorPage(),
       ),
     ),
