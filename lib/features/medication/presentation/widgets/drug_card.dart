@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hananote/core/l10n/arb/app_localizations.dart';
+import 'package:hananote/core/l10n/enum_l10n.dart';
 import 'package:hananote/features/medication/domain/entities/drug.dart';
 import 'package:hananote/features/medication/domain/entities/enums.dart';
 
@@ -143,8 +144,8 @@ class DrugCard extends StatelessWidget {
   }
 
   String _getCategoryName(BuildContext context, DrugCategory category) {
-    // Ideally this would come from ARB, but for simplicity:
-    return category.name.toUpperCase();
+    final l10n = AppLocalizations.of(context)!;
+    return category.localizedName(l10n);
   }
 
   Color _getCategoryColor(DrugCategory category) {
@@ -157,7 +158,8 @@ class DrugCard extends StatelessWidget {
   }
 
   String _getRouteName(BuildContext context, AdministrationRoute route) {
-    return route.name; // In a real app this uses l10n
+    final l10n = AppLocalizations.of(context)!;
+    return route.localizedName(l10n);
   }
 
   IconData _getRouteIcon(AdministrationRoute route) {
