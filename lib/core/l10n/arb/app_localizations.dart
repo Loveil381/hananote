@@ -766,11 +766,23 @@ abstract class AppLocalizations {
   /// **'Recent trend is stable'**
   String get trendStable;
 
+  /// No description provided for @trendDecreasing.
+  ///
+  /// In en, this message translates to:
+  /// **'Decreasing trend'**
+  String get trendDecreasing;
+
   /// No description provided for @lastHalfYear.
   ///
   /// In en, this message translates to:
   /// **'Last 6 months'**
   String get lastHalfYear;
+
+  /// No description provided for @noTrendData.
+  ///
+  /// In en, this message translates to:
+  /// **'No trend data yet'**
+  String get noTrendData;
 
   /// No description provided for @filterOneMonth.
   ///

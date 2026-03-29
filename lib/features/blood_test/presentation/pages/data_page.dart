@@ -4,6 +4,7 @@
 // ignore_for_file: public_member_api_docs
 
 import 'dart:ui';
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -193,7 +194,10 @@ class _LoadedView extends StatelessWidget {
                 ),
           ),
           const SizedBox(height: 16),
-          _StitchTrendPlaceholder(),
+          _TrendChart(
+            reports: state.reports,
+            selectedHormone: state.selectedTrendHormone,
+          ),
 
           const SizedBox(height: 32),
           Row(
@@ -484,10 +488,59 @@ class _StitchSimulatorCard extends StatelessWidget {
   }
 }
 
-class _StitchTrendPlaceholder extends StatelessWidget {
+class _TrendChart extends StatelessWidget {
+  const _TrendChart({
+    required this.reports,
+    required this.selectedHormone,
+  });
+
+  final List<BloodTestReport> reports;
+  final HormoneType selectedHormone;
+
+  List<({DateTime date, double value})> _extractPoints() {
+    final points = <({DateTime date, double value})>[];
+    for (final report in reports) {
+      for (final reading in report.readings) {
+        if (reading.type == selectedHormone) {
+          points.add((date: report.testDate, value: reading.value));
+          break;
+        }
+      }
+    }
+    points.sort((a, b) => a.date.compareTo(b.date));
+    return points;
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+    final localeName = Localizations.localeOf(context).toLanguageTag();
+    final points = _extractPoints();
+    final hasTrendData = points.length >= 2;
+    final currentUnit = selectedHormone.defaultUnit;
+    final trendLabel = hasTrendData && points.last.value < points[points.length - 2].value
+        ? l10n.trendDecreasing
+        : l10n.trendStable;
+
+    final spots = [
+      for (var i = 0; i < points.length; i++)
+        FlSpot(i.toDouble(), points[i].value),
+    ];
+    final minValue = hasTrendData
+        ? points.map((point) => point.value).reduce((a, b) => a < b ? a : b)
+        : 0.0;
+    final maxValue = hasTrendData
+        ? points.map((point) => point.value).reduce((a, b) => a > b ? a : b)
+        : 0.0;
+    final chartMinY = hasTrendData
+        ? (minValue * 0.9).clamp(0, double.infinity).toDouble()
+        : 0.0;
+    final chartMaxY = hasTrendData
+        ? (maxValue * 1.1).clamp(10, double.infinity).toDouble()
+        : 100.0;
+    final yInterval = hasTrendData
+        ? ((chartMaxY - chartMinY) / 3).clamp(1, double.infinity).toDouble()
+        : 1.0;
 
     return Container(
       padding: const EdgeInsets.all(24),
@@ -524,7 +577,7 @@ class _StitchTrendPlaceholder extends StatelessWidget {
                   ),
                   const SizedBox(width: 12),
                   Text(
-                    l10n.trendStable,
+                    trendLabel,
                     style: const TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
@@ -565,36 +618,121 @@ class _StitchTrendPlaceholder extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 32),
-          // Placeholder Chart Area using Gradient line and dots
           SizedBox(
-            height: 120,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: List.generate(6, (index) {
-                final heights = <double>[40, 60, 50, 80, 70, 90];
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Container(
-                      width: 8,
-                      height: heights[index],
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            HanaColors.primary,
-                            HanaColors.primary.withAlpha(51),
-                          ],
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
+            height: 180,
+            child: hasTrendData
+                ? LineChart(
+                    LineChartData(
+                      minX: 0,
+                      maxX: (points.length - 1).toDouble(),
+                      minY: chartMinY,
+                      maxY: chartMaxY,
+                      borderData: FlBorderData(show: false),
+                      gridData: FlGridData(
+                        drawVerticalLine: false,
+                        getDrawingHorizontalLine: (_) => FlLine(
+                          color: HanaColors.outlineVariant.withAlpha(90),
+                          strokeWidth: 1,
+                          dashArray: const [4, 4],
                         ),
-                        borderRadius: BorderRadius.circular(4),
                       ),
+                      titlesData: FlTitlesData(
+                        leftTitles: AxisTitles(
+                          sideTitles: SideTitles(
+                            showTitles: true,
+                            reservedSize: 56,
+                            interval: yInterval,
+                            getTitlesWidget: (value, meta) => SideTitleWidget(
+                              meta: meta,
+                              child: Text(
+                                '${value.toStringAsFixed(0)} $currentUnit',
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  color: HanaColors.onSurfaceVariant
+                                      .withAlpha((255 * 0.8).round()),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        bottomTitles: AxisTitles(
+                          sideTitles: SideTitles(
+                            showTitles: true,
+                            reservedSize: 28,
+                            interval: 1,
+                            getTitlesWidget: (value, meta) {
+                              final index = value.toInt();
+                              if (index < 0 || index >= points.length) {
+                                return const SizedBox.shrink();
+                              }
+                              return SideTitleWidget(
+                                meta: meta,
+                                child: Text(
+                                  DateFormat('MM/dd', localeName)
+                                      .format(points[index].date),
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    color: HanaColors.onSurfaceVariant
+                                        .withAlpha((255 * 0.8).round()),
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ),
+                      lineBarsData: [
+                        LineChartBarData(
+                          spots: spots,
+                          isCurved: true,
+                          color: HanaColors.primary,
+                          barWidth: 3,
+                          belowBarData: BarAreaData(
+                            show: true,
+                            gradient: LinearGradient(
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                              colors: [
+                                HanaColors.primary.withAlpha(51),
+                                HanaColors.primary.withAlpha(0),
+                              ],
+                            ),
+                          ),
+                          dotData: FlDotData(
+                            getDotPainter: (_, __, ___, ____) =>
+                                FlDotCirclePainter(
+                              radius: 4,
+                              color: HanaColors.primary,
+                              strokeWidth: 1.5,
+                              strokeColor: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                );
-              }),
-            ),
+                  )
+                : Center(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          Icons.show_chart_outlined,
+                          size: 48,
+                          color: HanaColors.onSurfaceVariant.withAlpha(128),
+                        ),
+                        const SizedBox(height: 12),
+                        Text(
+                          l10n.noTrendData,
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                            color:
+                                HanaColors.onSurfaceVariant.withAlpha(204),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
           ),
         ],
       ),

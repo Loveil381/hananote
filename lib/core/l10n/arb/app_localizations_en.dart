@@ -360,7 +360,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get trendStable => 'Recent trend is stable';
 
   @override
+  String get trendDecreasing => 'Decreasing trend';
+
+  @override
   String get lastHalfYear => 'Last 6 months';
+
+  @override
+  String get noTrendData => 'No trend data yet';
 
   @override
   String get filterOneMonth => '1 month';

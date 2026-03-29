@@ -354,7 +354,13 @@ class AppLocalizationsJa extends AppLocalizations {
   String get trendStable => '最近のトレンドは安定';
 
   @override
+  String get trendDecreasing => '低下傾向';
+
+  @override
   String get lastHalfYear => '過去半年';
+
+  @override
+  String get noTrendData => 'トレンドデータなし';
 
   @override
   String get filterOneMonth => '1か月';

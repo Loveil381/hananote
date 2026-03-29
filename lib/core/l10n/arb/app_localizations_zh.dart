@@ -354,7 +354,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get trendStable => '近期走势平稳';
 
   @override
+  String get trendDecreasing => '呈下降趋势';
+
+  @override
   String get lastHalfYear => '近半年';
+
+  @override
+  String get noTrendData => '暂无趋势数据';
 
   @override
   String get filterOneMonth => '1月';
