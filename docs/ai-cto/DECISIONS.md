@@ -239,3 +239,9 @@
 - **决定**: 所有 `extendBodyBehindAppBar: true` 的页面，顶部内容留白统一使用 `MediaQuery.padding.top + kToolbarHeight + 16`
 - **理由**: 硬编码 `100` 在不同设备、刘海屏和系统字体缩放下都不稳定；动态计算能让首屏内容始终落在导航栏下方的安全区域内
 - **日期**: 第41轮
+
+## DEC-047: 路由依赖必须先完成 Injectable 注册
+- **决定**: 所有通过 `getIt<T>()` 在路由层直接获取的 Cubit / UseCase，必须先在源文件上标注 `@injectable` 或等效注册方式，再生成 DI 配置。
+- **理由**: `/inventory` 在 R41 接入后因为 `InventoryCubit` 和 `CheckInventory` 未注册而运行时 crash。路由可达即代表依赖图必须完整，不能把 DI 验证留到真机阶段。
+- **执行约束**: Agent 在新增路由时必须同步检查 `router.dart` 中的每个 `getIt<T>()` 是否已在 `injection.config.dart` 中生成注册；禁止手改生成文件。
+- **日期**: 第42轮
