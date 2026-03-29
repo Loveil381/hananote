@@ -23,21 +23,6 @@ class TodayPage extends StatelessWidget {
   /// Creates a [TodayPage].
   const TodayPage({super.key});
 
-  static const _dailyQuotes = [
-    '你的每一次坚持，都会在未来悄悄开花。',
-    '今天也请温柔地照顾自己，变化正在发生。',
-    '身体的每一点回应，都是你认真生活的证据。',
-    '慢一点没有关系，稳定前进本身就是力量。',
-    '服药和记录不是任务，是你对自己的承诺。',
-    '允许自己按节奏成长，不必和任何人比较。',
-    '你正在成为想成为的人，这件事值得庆祝。',
-    '再普通的一天，也可以因为认真对待自己而闪光。',
-    '照顾身体不是负担，是你给未来写下的情书。',
-    '你今天的耐心，会变成明天的安心。',
-    '每一次记录都不是重复，而是在看见真实的自己。',
-    '今天也别忘了夸夸自己，你已经做得很好。',
-  ];
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -45,7 +30,7 @@ class TodayPage extends StatelessWidget {
     final settingsState = context.watch<SettingsBloc>().state;
     final displayName = settingsState is SettingsLoaded
         ? settingsState.profile.displayName
-        : 'HanaNote 用户'; // Kept fallback exactly as it was
+        : l10n.defaultUserName;
     final hrtDays =
         settingsState is SettingsLoaded ? settingsState.profile.hrtDayCount : 0;
     final greeting = _greetingForHour(DateTime.now().hour, l10n);
@@ -80,7 +65,7 @@ class TodayPage extends StatelessWidget {
                     ),
                     const SizedBox(width: 8),
                     Text(
-                      l10n.appTitle, // HanaNote
+                      l10n.appTitle,
                       style: const TextStyle(
                         fontFamily: 'PlusJakartaSans',
                         fontSize: 20,
@@ -98,9 +83,7 @@ class TodayPage extends StatelessWidget {
                     ),
                     onPressed: () {},
                   ),
-                  const SizedBox(
-                    width: 8,
-                  ), // Standard padding for action right side
+                  const SizedBox(width: 8),
                 ],
               ),
               SliverToBoxAdapter(
@@ -117,7 +100,7 @@ class TodayPage extends StatelessWidget {
                           Text(
                             '$greeting，$displayName',
                             style: const TextStyle(
-                              fontSize: 30, // 3xl roughly
+                              fontSize: 30,
                               fontWeight: FontWeight.w800,
                               fontFamily: 'PlusJakartaSans',
                               color: HanaColors.primary,
@@ -152,7 +135,7 @@ class TodayPage extends StatelessWidget {
                               ),
                             ),
                             child: const CircleAvatar(
-                              radius: 26, // accounts for the border inside 56
+                              radius: 26,
                               backgroundColor: HanaColors.primaryContainer,
                               child: Icon(
                                 Icons.person,
@@ -168,7 +151,7 @@ class TodayPage extends StatelessWidget {
               ),
               const SliverToBoxAdapter(
                 child: SizedBox(height: 16),
-              ), // Additional gap
+              ),
               ..._buildStateContent(context, state, theme, l10n),
               const SliverPadding(padding: EdgeInsets.only(bottom: 24)),
             ],
@@ -324,7 +307,7 @@ class TodayPage extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      l10n.completedDose.toUpperCase(), // "已达成" / "COMPLETED"
+                      l10n.completedDose.toUpperCase(),
                       style: TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.bold,
@@ -338,7 +321,6 @@ class TodayPage extends StatelessWidget {
               ),
             ),
             const SliverToBoxAdapter(child: SizedBox(height: 16)),
-            // Use column as elements don't wrap neatly.
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -430,7 +412,7 @@ class TodayPage extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: QuoteCard(
-                quote: _quoteForToday(),
+                quote: _quoteForToday(l10n),
               ),
             ),
           ),
@@ -451,7 +433,21 @@ class TodayPage extends StatelessWidget {
     return l10n.goodEvening;
   }
 
-  String _quoteForToday() {
-    return _dailyQuotes[DateTime.now().day % _dailyQuotes.length];
+  String _quoteForToday(AppLocalizations l10n) {
+    final quotes = [
+      l10n.dailyQuote0,
+      l10n.dailyQuote1,
+      l10n.dailyQuote2,
+      l10n.dailyQuote3,
+      l10n.dailyQuote4,
+      l10n.dailyQuote5,
+      l10n.dailyQuote6,
+      l10n.dailyQuote7,
+      l10n.dailyQuote8,
+      l10n.dailyQuote9,
+      l10n.dailyQuote10,
+      l10n.dailyQuote11,
+    ];
+    return quotes[DateTime.now().day % quotes.length];
   }
 }

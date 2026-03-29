@@ -475,6 +475,45 @@ class AppLocalizationsJa extends AppLocalizations {
   String get recordFooter => '一つ一つの記録が未来への優しい約束';
 
   @override
+  String get defaultUserName => 'HanaNote ユーザー';
+
+  @override
+  String get dailyQuote0 => 'あなたの一歩一歩が、未来にそっと花を咲かせます。';
+
+  @override
+  String get dailyQuote1 => '今日も自分を優しく労ってね。変化は起きています。';
+
+  @override
+  String get dailyQuote2 => 'からだの小さな反応は、あなたが丁寧に生きている証です。';
+
+  @override
+  String get dailyQuote3 => 'ゆっくりでも大丈夫。着実に進むことが力になります。';
+
+  @override
+  String get dailyQuote4 => '服薬と記録はタスクじゃなく、自分への約束です。';
+
+  @override
+  String get dailyQuote5 => '自分のリズムで成長していい。誰とも比べなくていい。';
+
+  @override
+  String get dailyQuote6 => 'なりたい自分に近づいている。それはお祝いに値します。';
+
+  @override
+  String get dailyQuote7 => '普通の一日も、自分を大切にすることで輝きます。';
+
+  @override
+  String get dailyQuote8 => 'からだを大切にすることは、未来への手紙です。';
+
+  @override
+  String get dailyQuote9 => '今日の忍耐は、明日の安心になります。';
+
+  @override
+  String get dailyQuote10 => '記録を重ねることは、本当の自分を見つめること。';
+
+  @override
+  String get dailyQuote11 => '今日も自分を褒めてあげてね。よくがんばっています。';
+
+  @override
   String get tabToday => '今日';
 
   @override

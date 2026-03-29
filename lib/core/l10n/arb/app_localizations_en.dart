@@ -483,6 +483,57 @@ class AppLocalizationsEn extends AppLocalizations {
       'Every record is a gentle promise to your future self';
 
   @override
+  String get defaultUserName => 'HanaNote User';
+
+  @override
+  String get dailyQuote0 =>
+      'Every step you take will bloom quietly in the future.';
+
+  @override
+  String get dailyQuote1 =>
+      'Be gentle with yourself today - change is happening.';
+
+  @override
+  String get dailyQuote2 =>
+      'Every response from your body is proof you\'re living with intention.';
+
+  @override
+  String get dailyQuote3 =>
+      'It\'s okay to go slow. Steady progress is strength.';
+
+  @override
+  String get dailyQuote4 =>
+      'Taking meds and keeping records isn\'t a chore - it\'s a promise to yourself.';
+
+  @override
+  String get dailyQuote5 =>
+      'Grow at your own pace. No need to compare with anyone.';
+
+  @override
+  String get dailyQuote6 =>
+      'You\'re becoming the person you want to be - that\'s worth celebrating.';
+
+  @override
+  String get dailyQuote7 =>
+      'Even an ordinary day can shine when you take care of yourself.';
+
+  @override
+  String get dailyQuote8 =>
+      'Caring for your body isn\'t a burden - it\'s a love letter to your future.';
+
+  @override
+  String get dailyQuote9 =>
+      'Today\'s patience becomes tomorrow\'s peace of mind.';
+
+  @override
+  String get dailyQuote10 =>
+      'Every record isn\'t repetition - it\'s seeing your true self.';
+
+  @override
+  String get dailyQuote11 =>
+      'Don\'t forget to be proud of yourself. You\'re doing great.';
+
+  @override
   String get tabToday => 'Today';
 
   @override

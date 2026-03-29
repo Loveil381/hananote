@@ -1000,6 +1000,84 @@ abstract class AppLocalizations {
   /// **'Every record is a gentle promise to your future self'**
   String get recordFooter;
 
+  /// No description provided for @defaultUserName.
+  ///
+  /// In en, this message translates to:
+  /// **'HanaNote User'**
+  String get defaultUserName;
+
+  /// No description provided for @dailyQuote0.
+  ///
+  /// In en, this message translates to:
+  /// **'Every step you take will bloom quietly in the future.'**
+  String get dailyQuote0;
+
+  /// No description provided for @dailyQuote1.
+  ///
+  /// In en, this message translates to:
+  /// **'Be gentle with yourself today - change is happening.'**
+  String get dailyQuote1;
+
+  /// No description provided for @dailyQuote2.
+  ///
+  /// In en, this message translates to:
+  /// **'Every response from your body is proof you\'re living with intention.'**
+  String get dailyQuote2;
+
+  /// No description provided for @dailyQuote3.
+  ///
+  /// In en, this message translates to:
+  /// **'It\'s okay to go slow. Steady progress is strength.'**
+  String get dailyQuote3;
+
+  /// No description provided for @dailyQuote4.
+  ///
+  /// In en, this message translates to:
+  /// **'Taking meds and keeping records isn\'t a chore - it\'s a promise to yourself.'**
+  String get dailyQuote4;
+
+  /// No description provided for @dailyQuote5.
+  ///
+  /// In en, this message translates to:
+  /// **'Grow at your own pace. No need to compare with anyone.'**
+  String get dailyQuote5;
+
+  /// No description provided for @dailyQuote6.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re becoming the person you want to be - that\'s worth celebrating.'**
+  String get dailyQuote6;
+
+  /// No description provided for @dailyQuote7.
+  ///
+  /// In en, this message translates to:
+  /// **'Even an ordinary day can shine when you take care of yourself.'**
+  String get dailyQuote7;
+
+  /// No description provided for @dailyQuote8.
+  ///
+  /// In en, this message translates to:
+  /// **'Caring for your body isn\'t a burden - it\'s a love letter to your future.'**
+  String get dailyQuote8;
+
+  /// No description provided for @dailyQuote9.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'s patience becomes tomorrow\'s peace of mind.'**
+  String get dailyQuote9;
+
+  /// No description provided for @dailyQuote10.
+  ///
+  /// In en, this message translates to:
+  /// **'Every record isn\'t repetition - it\'s seeing your true self.'**
+  String get dailyQuote10;
+
+  /// No description provided for @dailyQuote11.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t forget to be proud of yourself. You\'re doing great.'**
+  String get dailyQuote11;
+
   /// No description provided for @tabToday.
   ///
   /// In en, this message translates to:

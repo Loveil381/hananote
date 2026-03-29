@@ -475,6 +475,45 @@ class AppLocalizationsZh extends AppLocalizations {
   String get recordFooter => '每一次记录都是对未来的温柔期许';
 
   @override
+  String get defaultUserName => 'HanaNote 用户';
+
+  @override
+  String get dailyQuote0 => '你的每一次坚持，都会在未来悄悄开花。';
+
+  @override
+  String get dailyQuote1 => '今天也请温柔地照顾自己，变化正在发生。';
+
+  @override
+  String get dailyQuote2 => '身体的每一点回应，都是你认真生活的证据。';
+
+  @override
+  String get dailyQuote3 => '慢一点没有关系，稳定前进本身就是力量。';
+
+  @override
+  String get dailyQuote4 => '服药和记录不是任务，是你对自己的承诺。';
+
+  @override
+  String get dailyQuote5 => '允许自己按节奏成长，不必和任何人比较。';
+
+  @override
+  String get dailyQuote6 => '你正在成为想成为的人，这件事值得庆祝。';
+
+  @override
+  String get dailyQuote7 => '再普通的一天，也可以因为认真对待自己而闪光。';
+
+  @override
+  String get dailyQuote8 => '照顾身体不是负担，是你给未来写下的情书。';
+
+  @override
+  String get dailyQuote9 => '你今天的耐心，会变成明天的安心。';
+
+  @override
+  String get dailyQuote10 => '每一次记录都不是重复，而是在看见真实的自己。';
+
+  @override
+  String get dailyQuote11 => '今天也别忘了夸夸自己，你已经做得很好。';
+
+  @override
   String get tabToday => '今日';
 
   @override
