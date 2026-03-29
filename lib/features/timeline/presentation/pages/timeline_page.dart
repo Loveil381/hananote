@@ -204,6 +204,8 @@ class _TimelineLoadedView extends StatelessWidget {
       );
     }
 
+    final topPadding = MediaQuery.of(context).padding.top + kToolbarHeight + 16;
+
     return Stack(
       children: [
         // Central Gradient Line Fixed
@@ -229,7 +231,7 @@ class _TimelineLoadedView extends StatelessWidget {
         CustomScrollView(
           slivers: [
             SliverPadding(
-              padding: const EdgeInsets.only(top: 100, bottom: 24),
+              padding: EdgeInsets.only(top: topPadding, bottom: 24),
               sliver: SliverToBoxAdapter(
                 child: _FilterPills(),
               ),

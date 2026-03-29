@@ -104,6 +104,8 @@ class ProfilePage extends StatelessWidget {
         final inventoryText = state.inventoryDaysRemaining != null
             ? l10n.inventoryDaysRemaining(state.inventoryDaysRemaining!)
             : l10n.inventoryDataUnavailable;
+        final topPadding =
+            MediaQuery.of(context).padding.top + kToolbarHeight + 16;
         final lastBackupText = state.settings.lastBackupDate != null
             ? DateFormat.yMMMd(localeName)
                 .format(state.settings.lastBackupDate!)
@@ -154,7 +156,7 @@ class ProfilePage extends StatelessWidget {
           ),
           body: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(24, 100, 24, 24),
+              padding: EdgeInsets.fromLTRB(24, topPadding, 24, 24),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [

@@ -23,6 +23,7 @@ class DataPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+    final topPadding = MediaQuery.of(context).padding.top + kToolbarHeight + 16;
     void showComingSoon(String message) {
       ScaffoldMessenger.of(context)
         ..hideCurrentSnackBar()
@@ -78,7 +79,10 @@ class DataPage extends StatelessWidget {
               child: CircularProgressIndicator(color: HanaColors.primary),
             ),
             error: (error) => Center(child: Text(error.message)),
-            loaded: (loaded) => _LoadedView(state: loaded),
+            loaded: (loaded) => _LoadedView(
+                state: loaded,
+                topPadding: topPadding,
+              ),
           );
         },
       ),
@@ -87,9 +91,13 @@ class DataPage extends StatelessWidget {
 }
 
 class _LoadedView extends StatelessWidget {
-  const _LoadedView({required this.state});
+  const _LoadedView({
+    required this.state,
+    required this.topPadding,
+  });
 
   final BloodTestLoaded state;
+  final double topPadding;
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +109,7 @@ class _LoadedView extends StatelessWidget {
         : l10n.lastUpdated(dateFormat.format(state.lastUpdated!));
 
     return SingleChildScrollView(
-      padding: const EdgeInsets.fromLTRB(24, 100, 24, 24),
+      padding: EdgeInsets.fromLTRB(24, topPadding, 24, 24),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [

@@ -20,6 +20,7 @@ class RecordPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final localeTag = Localizations.localeOf(context).toLanguageTag();
+    final topPadding = MediaQuery.of(context).padding.top + kToolbarHeight + 16;
     void showComingSoon() {
       ScaffoldMessenger.of(context)
         ..hideCurrentSnackBar()
@@ -114,7 +115,7 @@ class RecordPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const SizedBox(height: 100),
+                SizedBox(height: topPadding),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: Text(
