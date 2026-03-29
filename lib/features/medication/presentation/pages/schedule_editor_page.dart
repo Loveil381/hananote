@@ -30,11 +30,12 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
   }
 
   void _onStateChange(BuildContext context, ScheduleEditorState state) {
+    final l10n = AppLocalizations.of(context)!;
     if (state is ScheduleEditorSaved) {
       Navigator.of(context).pop();
     } else if (state is ScheduleEditorError) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(state.message)),
+        SnackBar(content: Text(_localizeValidation(state.message, l10n))),
       );
     } else if (state is ScheduleEditorEditing) {
       if (state.dosageAmount != null && _dosageController.text.isEmpty) {
@@ -75,7 +76,7 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
             children: [
               if (state.validation?.dosageError != null)
                 Text(
-                  state.validation!.dosageError!,
+                  _localizeValidation(state.validation!.dosageError!, l10n),
                   style: TextStyle(color: errorColor),
                 ),
               Row(
@@ -133,7 +134,7 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
               Text(l10n.frequency, style: theme.textTheme.titleMedium),
               if (state.validation?.frequencyError != null)
                 Text(
-                  state.validation!.frequencyError!,
+                  _localizeValidation(state.validation!.frequencyError!, l10n),
                   style: TextStyle(color: errorColor),
                 ),
               const SizedBox(height: 8),
@@ -142,7 +143,7 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
               Text(l10n.startDate, style: theme.textTheme.titleMedium),
               if (state.validation?.startDateError != null)
                 Text(
-                  state.validation!.startDateError!,
+                  _localizeValidation(state.validation!.startDateError!, l10n),
                   style: TextStyle(color: errorColor),
                 ),
               const SizedBox(height: 8),
@@ -209,7 +210,10 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
               const SizedBox(height: 24),
               if (state.validation?.scheduleTimesError != null)
                 Text(
-                  state.validation!.scheduleTimesError!,
+                  _localizeValidation(
+                    state.validation!.scheduleTimesError!,
+                    l10n,
+                  ),
                   style: TextStyle(color: errorColor),
                 ),
               _buildTimeSelectors(context, state, l10n),
@@ -398,5 +402,17 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
 
   String _formatDate(DateTime date) {
     return '${date.year}-${date.month}-${date.day}';
+  }
+
+  String _localizeValidation(String key, AppLocalizations l10n) {
+    return switch (key) {
+      'validationDosageRequired' => l10n.validationDosageRequired,
+      'validationUnitRequired' => l10n.validationUnitRequired,
+      'validationFrequencyRequired' => l10n.validationFrequencyRequired,
+      'validationStartDateRequired' => l10n.validationStartDateRequired,
+      'validationScheduleTimeRequired' => l10n.validationScheduleTimeRequired,
+      'validationFieldsIncomplete' => l10n.validationFieldsIncomplete,
+      _ => key,
+    };
   }
 }

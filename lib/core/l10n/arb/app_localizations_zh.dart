@@ -411,6 +411,24 @@ class AppLocalizationsZh extends AppLocalizations {
   String get required => '必填';
 
   @override
+  String get validationDosageRequired => '剂量必须大于零';
+
+  @override
+  String get validationUnitRequired => '请选择剂量单位';
+
+  @override
+  String get validationFrequencyRequired => '请选择服药频率';
+
+  @override
+  String get validationStartDateRequired => '请选择开始日期';
+
+  @override
+  String get validationScheduleTimeRequired => '至少需要一个服药时间';
+
+  @override
+  String get validationFieldsIncomplete => '请填写所有必填项';
+
+  @override
   String get tabToday => '今日';
 
   @override

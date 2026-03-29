@@ -101,7 +101,7 @@ class ScheduleEditorCubit extends Cubit<ScheduleEditorState> {
     if (schedule == null) {
       emit(
         const ScheduleEditorError(
-          message: 'All required fields must be set.',
+          message: 'validationFieldsIncomplete',
         ),
       );
       return;
@@ -142,17 +142,19 @@ class ScheduleEditorCubit extends Cubit<ScheduleEditorState> {
   ScheduleValidationResult _buildValidation(ScheduleEditorEditing s) {
     return ScheduleValidationResult(
       dosageError: _validateDosage(s),
-      frequencyError: s.frequency == null ? 'Frequency is required.' : null,
-      startDateError: s.startDate == null ? 'Start date is required.' : null,
+      frequencyError:
+          s.frequency == null ? 'validationFrequencyRequired' : null,
+      startDateError:
+          s.startDate == null ? 'validationStartDateRequired' : null,
       scheduleTimesError: _validateScheduleTimes(s),
     );
   }
 
   String? _validateDosage(ScheduleEditorEditing s) {
     if (s.dosageAmount == null || s.dosageAmount! <= 0) {
-      return 'Dosage must be greater than zero.';
+      return 'validationDosageRequired';
     }
-    if (s.dosageUnit == null) return 'Dosage unit is required.';
+    if (s.dosageUnit == null) return 'validationUnitRequired';
     return null;
   }
 
@@ -160,7 +162,7 @@ class ScheduleEditorCubit extends Cubit<ScheduleEditorState> {
     final route = s.administrationRoute;
     if (route == null) return null;
     if (route.supportsScheduleTimes && s.scheduleTimes.isEmpty) {
-      return 'At least one schedule time is required.';
+      return 'validationScheduleTimeRequired';
     }
     return null;
   }

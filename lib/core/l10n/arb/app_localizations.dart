@@ -880,6 +880,42 @@ abstract class AppLocalizations {
   /// **'Required'**
   String get required;
 
+  /// No description provided for @validationDosageRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Dosage must be greater than zero'**
+  String get validationDosageRequired;
+
+  /// No description provided for @validationUnitRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Dosage unit is required'**
+  String get validationUnitRequired;
+
+  /// No description provided for @validationFrequencyRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Frequency is required'**
+  String get validationFrequencyRequired;
+
+  /// No description provided for @validationStartDateRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Start date is required'**
+  String get validationStartDateRequired;
+
+  /// No description provided for @validationScheduleTimeRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'At least one schedule time is required'**
+  String get validationScheduleTimeRequired;
+
+  /// No description provided for @validationFieldsIncomplete.
+  ///
+  /// In en, this message translates to:
+  /// **'All required fields must be set'**
+  String get validationFieldsIncomplete;
+
   /// No description provided for @tabToday.
   ///
   /// In en, this message translates to:

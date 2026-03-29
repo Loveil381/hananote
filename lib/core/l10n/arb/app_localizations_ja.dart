@@ -411,6 +411,24 @@ class AppLocalizationsJa extends AppLocalizations {
   String get required => '必須';
 
   @override
+  String get validationDosageRequired => '用量は0より大きくしてください';
+
+  @override
+  String get validationUnitRequired => '単位を選択してください';
+
+  @override
+  String get validationFrequencyRequired => '頻度を選択してください';
+
+  @override
+  String get validationStartDateRequired => '開始日を選択してください';
+
+  @override
+  String get validationScheduleTimeRequired => '少なくとも1つの服薬時間が必要です';
+
+  @override
+  String get validationFieldsIncomplete => 'すべての必須項目を入力してください';
+
+  @override
   String get tabToday => '今日';
 
   @override

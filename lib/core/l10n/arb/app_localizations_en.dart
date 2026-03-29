@@ -416,6 +416,25 @@ class AppLocalizationsEn extends AppLocalizations {
   String get required => 'Required';
 
   @override
+  String get validationDosageRequired => 'Dosage must be greater than zero';
+
+  @override
+  String get validationUnitRequired => 'Dosage unit is required';
+
+  @override
+  String get validationFrequencyRequired => 'Frequency is required';
+
+  @override
+  String get validationStartDateRequired => 'Start date is required';
+
+  @override
+  String get validationScheduleTimeRequired =>
+      'At least one schedule time is required';
+
+  @override
+  String get validationFieldsIncomplete => 'All required fields must be set';
+
+  @override
   String get tabToday => 'Today';
 
   @override
