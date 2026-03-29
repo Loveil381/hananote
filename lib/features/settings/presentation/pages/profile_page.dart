@@ -152,7 +152,7 @@ class ProfilePage extends StatelessWidget {
           ),
           body: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(24, 100, 24, 120),
+              padding: const EdgeInsets.fromLTRB(24, 100, 24, 24),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [

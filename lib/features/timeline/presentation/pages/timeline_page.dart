@@ -235,7 +235,7 @@ class _TimelineLoadedView extends StatelessWidget {
               ),
             ),
             const SliverPadding(
-              padding: EdgeInsets.only(bottom: 120),
+              padding: EdgeInsets.only(bottom: 24),
               sliver: SliverToBoxAdapter(
                 child: _TimelineStartPoint(),
               ),

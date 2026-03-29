@@ -207,7 +207,7 @@ class RecordPage extends StatelessWidget {
                         ),
                   ),
                 ),
-                const SizedBox(height: 120),
+                const SizedBox(height: 24),
               ],
             ),
           ),

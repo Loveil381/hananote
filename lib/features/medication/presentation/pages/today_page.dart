@@ -170,7 +170,7 @@ class TodayPage extends StatelessWidget {
                 child: SizedBox(height: 16),
               ), // Additional gap
               ..._buildStateContent(context, state, theme, l10n),
-              const SliverPadding(padding: EdgeInsets.only(bottom: 120)),
+              const SliverPadding(padding: EdgeInsets.only(bottom: 24)),
             ],
           );
         },

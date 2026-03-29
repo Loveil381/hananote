@@ -91,7 +91,7 @@ class _LoadedView extends StatelessWidget {
         : l10n.lastUpdated(dateFormat.format(state.lastUpdated!));
 
     return SingleChildScrollView(
-      padding: const EdgeInsets.fromLTRB(24, 100, 24, 120),
+      padding: const EdgeInsets.fromLTRB(24, 100, 24, 24),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
