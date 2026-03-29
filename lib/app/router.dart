@@ -22,11 +22,13 @@ import 'package:hananote/features/medication/domain/usecases/delete_drug.dart';
 import 'package:hananote/features/medication/domain/usecases/get_all_drugs.dart';
 import 'package:hananote/features/medication/domain/usecases/update_drug.dart';
 import 'package:hananote/features/medication/presentation/bloc/drug_list_cubit.dart';
+import 'package:hananote/features/medication/presentation/bloc/inventory_cubit.dart';
 import 'package:hananote/features/medication/presentation/bloc/schedule_editor_cubit.dart';
 import 'package:hananote/features/medication/presentation/bloc/today_schedule_bloc.dart';
 import 'package:hananote/features/medication/presentation/bloc/today_schedule_event.dart';
 import 'package:hananote/features/medication/presentation/pages/add_drug_page.dart';
 import 'package:hananote/features/medication/presentation/pages/drug_list_page.dart';
+import 'package:hananote/features/medication/presentation/pages/inventory_page.dart';
 import 'package:hananote/features/medication/presentation/pages/schedule_editor_page.dart';
 import 'package:hananote/features/medication/presentation/pages/today_page.dart';
 import 'package:hananote/features/photo/domain/entities/photo_entry.dart';
@@ -134,6 +136,14 @@ final GoRouter appRouter = GoRouter(
       builder: (context, state) => BlocProvider(
         create: (_) => _createDrugListCubit(),
         child: const DrugListPage(),
+      ),
+    ),
+    GoRoute(
+      path: '/inventory',
+      parentNavigatorKey: _rootNavigatorKey,
+      builder: (context, state) => BlocProvider(
+        create: (_) => getIt<InventoryCubit>(),
+        child: const InventoryPage(),
       ),
     ),
     GoRoute(

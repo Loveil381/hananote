@@ -274,8 +274,7 @@ class ProfilePage extends StatelessWidget {
                           subtitle: inventoryText,
                           subtitleColor: HanaColors.secondary,
                           bentoDecoration: _bentoDecoration(),
-                          onTap: () =>
-                              _showSnackBar(context, l10n.inventoryComingSoon),
+                          onTap: () => context.push('/inventory'),
                         ),
                       ),
                       const SizedBox(width: 16),
