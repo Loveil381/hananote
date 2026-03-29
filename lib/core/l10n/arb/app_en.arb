@@ -83,6 +83,7 @@
   "pendingDoses": "Pending doses",
   "allDay": "All day",
   "noMedicationRecords": "No medication records yet",
+  "addFirstDrugCta": "Add your first medication",
   "profile": "Profile",
   "myMedications": "My Medications",
   "drugCount": "{count} active",

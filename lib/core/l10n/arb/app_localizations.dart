@@ -460,6 +460,12 @@ abstract class AppLocalizations {
   /// **'No medication records yet'**
   String get noMedicationRecords;
 
+  /// No description provided for @addFirstDrugCta.
+  ///
+  /// In en, this message translates to:
+  /// **'Add your first medication'**
+  String get addFirstDrugCta;
+
   /// No description provided for @profile.
   ///
   /// In en, this message translates to:

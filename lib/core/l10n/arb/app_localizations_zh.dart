@@ -195,6 +195,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get noMedicationRecords => '暂无用药记录';
 
   @override
+  String get addFirstDrugCta => '添加你的第一种药物';
+
+  @override
   String get profile => '我的';
 
   @override

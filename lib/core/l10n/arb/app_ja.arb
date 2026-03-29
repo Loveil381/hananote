@@ -83,6 +83,7 @@
   "pendingDoses": "未服薬",
   "allDay": "終日",
   "noMedicationRecords": "服薬記録がありません",
+  "addFirstDrugCta": "最初の薬を追加",
   "profile": "マイページ",
   "myMedications": "私の薬",
   "drugCount": "{count} 件を使用中",

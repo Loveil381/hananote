@@ -199,6 +199,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get noMedicationRecords => 'No medication records yet';
 
   @override
+  String get addFirstDrugCta => 'Add your first medication';
+
+  @override
   String get profile => 'Profile';
 
   @override

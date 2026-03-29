@@ -211,9 +211,29 @@ class TodayPage extends StatelessWidget {
             SliverFillRemaining(
               hasScrollBody: false,
               child: Center(
-                child: Text(
-                  l10n.noMedicationRecords,
-                  style: const TextStyle(color: HanaColors.onSurfaceVariant),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.medication_outlined,
+                      size: 64,
+                      color: HanaColors.primary.withAlpha(77),
+                    ),
+                    const SizedBox(height: 16),
+                    Text(
+                      l10n.noMedicationRecords,
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        color: HanaColors.onSurfaceVariant,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const SizedBox(height: 24),
+                    FilledButton.icon(
+                      onPressed: () => context.push('/drugs'),
+                      icon: const Icon(Icons.add),
+                      label: Text(l10n.addFirstDrugCta),
+                    ),
+                  ],
                 ),
               ),
             ),

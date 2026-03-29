@@ -195,6 +195,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String get noMedicationRecords => '服薬記録がありません';
 
   @override
+  String get addFirstDrugCta => '最初の薬を追加';
+
+  @override
   String get profile => 'マイページ';
 
   @override

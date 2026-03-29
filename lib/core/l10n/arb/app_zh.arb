@@ -83,6 +83,7 @@
   "pendingDoses": "待服药",
   "allDay": "全天",
   "noMedicationRecords": "暂无用药记录",
+  "addFirstDrugCta": "添加你的第一种药物",
   "profile": "我的",
   "myMedications": "我的用药",
   "drugCount": "{count} 种在用",
