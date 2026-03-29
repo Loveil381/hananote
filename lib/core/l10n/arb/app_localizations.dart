@@ -772,17 +772,41 @@ abstract class AppLocalizations {
   /// **'Day of week:'**
   String get dayOfWeek;
 
-  /// No description provided for @scheduleTimes.
-  ///
-  /// In en, this message translates to:
-  /// **'Schedule times'**
-  String get scheduleTimes;
-
   /// No description provided for @required.
   ///
   /// In en, this message translates to:
   /// **'Required'**
   String get required;
+
+  /// No description provided for @tabToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get tabToday;
+
+  /// No description provided for @tabRecord.
+  ///
+  /// In en, this message translates to:
+  /// **'Record'**
+  String get tabRecord;
+
+  /// No description provided for @tabTimeline.
+  ///
+  /// In en, this message translates to:
+  /// **'Timeline'**
+  String get tabTimeline;
+
+  /// No description provided for @tabData.
+  ///
+  /// In en, this message translates to:
+  /// **'Data'**
+  String get tabData;
+
+  /// No description provided for @tabProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get tabProfile;
 }
 
 class _AppLocalizationsDelegate

@@ -362,8 +362,20 @@ class AppLocalizationsEn extends AppLocalizations {
   String get dayOfWeek => 'Day of week:';
 
   @override
-  String get scheduleTimes => 'Schedule times';
+  String get required => 'Required';
 
   @override
-  String get required => 'Required';
+  String get tabToday => 'Today';
+
+  @override
+  String get tabRecord => 'Record';
+
+  @override
+  String get tabTimeline => 'Timeline';
+
+  @override
+  String get tabData => 'Data';
+
+  @override
+  String get tabProfile => 'Profile';
 }

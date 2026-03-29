@@ -157,5 +157,10 @@
   "daySuffix": " 日",
   "dayOfWeek": "曜日:",
   "scheduleTimes": "服薬時間",
-  "required": "必須"
+  "required": "必須",
+  "tabToday": "今日",
+  "tabRecord": "記録",
+  "tabTimeline": "軌跡",
+  "tabData": "データ",
+  "tabProfile": "マイページ"
 }

@@ -157,5 +157,10 @@
   "daySuffix": " 天",
   "dayOfWeek": "星期几：",
   "scheduleTimes": "服药时间",
-  "required": "必填"
+  "required": "必填",
+  "tabToday": "今日",
+  "tabRecord": "记录",
+  "tabTimeline": "轨迹",
+  "tabData": "数据",
+  "tabProfile": "我的"
 }

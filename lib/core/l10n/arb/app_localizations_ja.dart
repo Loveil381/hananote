@@ -357,8 +357,20 @@ class AppLocalizationsJa extends AppLocalizations {
   String get dayOfWeek => '曜日:';
 
   @override
-  String get scheduleTimes => '服薬時間';
+  String get required => '必須';
 
   @override
-  String get required => '必須';
+  String get tabToday => '今日';
+
+  @override
+  String get tabRecord => '記録';
+
+  @override
+  String get tabTimeline => '軌跡';
+
+  @override
+  String get tabData => 'データ';
+
+  @override
+  String get tabProfile => 'マイページ';
 }

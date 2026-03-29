@@ -357,8 +357,20 @@ class AppLocalizationsZh extends AppLocalizations {
   String get dayOfWeek => '星期几：';
 
   @override
-  String get scheduleTimes => '服药时间';
+  String get required => '必填';
 
   @override
-  String get required => '必填';
+  String get tabToday => '今日';
+
+  @override
+  String get tabRecord => '记录';
+
+  @override
+  String get tabTimeline => '轨迹';
+
+  @override
+  String get tabData => '数据';
+
+  @override
+  String get tabProfile => '我的';
 }

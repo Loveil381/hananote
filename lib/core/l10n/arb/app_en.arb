@@ -157,5 +157,10 @@
   "daySuffix": " days",
   "dayOfWeek": "Day of week:",
   "scheduleTimes": "Schedule times",
-  "required": "Required"
+  "required": "Required",
+  "tabToday": "Today",
+  "tabRecord": "Record",
+  "tabTimeline": "Timeline",
+  "tabData": "Data",
+  "tabProfile": "Profile"
 }
