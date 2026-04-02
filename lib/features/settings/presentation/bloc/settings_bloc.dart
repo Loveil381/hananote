@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hananote/core/error/failures.dart';
 import 'package:hananote/features/settings/domain/usecases/get_profile_dashboard.dart';
 import 'package:hananote/features/settings/domain/usecases/update_app_settings.dart';
+import 'package:hananote/features/settings/domain/usecases/update_user_profile.dart';
 import 'package:hananote/features/settings/domain/usecases/wipe_all_data.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_event.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_state.dart';
@@ -14,17 +15,21 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   SettingsBloc(
     this._getProfileDashboard,
     this._updateAppSettings,
+    this._updateUserProfile,
     this._wipeAllData,
   ) : super(const SettingsInitial()) {
     on<LoadSettingsDashboard>(_onLoadDashboard);
     on<ToggleAppLock>(_onToggleAppLock);
     on<TogglePrivacyMode>(_onTogglePrivacyMode);
     on<ToggleBlurOverlay>(_onToggleBlurOverlay);
+    on<UpdateDisplayName>(_onUpdateDisplayName);
+    on<UpdateHrtStartDate>(_onUpdateHrtStartDate);
     on<WipeSettingsData>(_onWipeData);
   }
 
   final GetProfileDashboard _getProfileDashboard;
   final UpdateAppSettings _updateAppSettings;
+  final UpdateUserProfile _updateUserProfile;
   final WipeAllData _wipeAllData;
 
   Future<void> _onLoadDashboard(
@@ -106,6 +111,48 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
         (failure) => emit(SettingsError(failureMessage(failure))),
         (updatedSettings) => emit(
           currentState.copyWith(settings: updatedSettings),
+        ),
+      );
+    }
+  }
+
+  Future<void> _onUpdateDisplayName(
+    UpdateDisplayName event,
+    Emitter<SettingsState> emit,
+  ) async {
+    if (state is SettingsLoaded) {
+      final currentState = state as SettingsLoaded;
+      final newProfile = currentState.profile.copyWith(
+        displayName: event.name,
+      );
+
+      final failureOrProfile = await _updateUserProfile(newProfile);
+
+      failureOrProfile.fold(
+        (failure) => emit(SettingsError(failureMessage(failure))),
+        (updatedProfile) => emit(
+          currentState.copyWith(profile: updatedProfile),
+        ),
+      );
+    }
+  }
+
+  Future<void> _onUpdateHrtStartDate(
+    UpdateHrtStartDate event,
+    Emitter<SettingsState> emit,
+  ) async {
+    if (state is SettingsLoaded) {
+      final currentState = state as SettingsLoaded;
+      final newProfile = currentState.profile.copyWith(
+        hrtStartDate: event.date,
+      );
+
+      final failureOrProfile = await _updateUserProfile(newProfile);
+
+      failureOrProfile.fold(
+        (failure) => emit(SettingsError(failureMessage(failure))),
+        (updatedProfile) => emit(
+          currentState.copyWith(profile: updatedProfile),
         ),
       );
     }

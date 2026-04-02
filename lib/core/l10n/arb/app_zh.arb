@@ -270,5 +270,19 @@
   "tabRecord": "记录",
   "tabTimeline": "轨迹",
   "tabData": "数据",
-  "tabProfile": "我的"
+  "tabProfile": "我的",
+
+  "settingsTitle": "设置",
+  "notificationSettings": "通知设置",
+  "globalNotification": "全局通知",
+  "medicationReminders": "服药提醒",
+  "reminderEnabled": "已启用",
+  "reminderDisabled": "已禁用",
+  "personalInfo": "个人信息",
+  "editDisplayName": "修改昵称",
+  "editHrtStartDate": "修改HRT开始日期",
+  "appearance": "外观",
+  "languageSetting": "语言",
+  "darkMode": "深色模式",
+  "darkModeComingSoon": "深色模式敬请期待"
 }

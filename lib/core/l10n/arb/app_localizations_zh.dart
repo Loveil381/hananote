@@ -645,5 +645,41 @@ class AppLocalizationsZh extends AppLocalizations {
   String get tabProfile => '我的';
 
   @override
-  String get featurePlanned => '功能开发中';
+  String get settingsTitle => '设置';
+
+  @override
+  String get notificationSettings => '通知设置';
+
+  @override
+  String get globalNotification => '全局通知';
+
+  @override
+  String get medicationReminders => '服药提醒';
+
+  @override
+  String get reminderEnabled => '已启用';
+
+  @override
+  String get reminderDisabled => '已禁用';
+
+  @override
+  String get personalInfo => '个人信息';
+
+  @override
+  String get editDisplayName => '修改昵称';
+
+  @override
+  String get editHrtStartDate => '修改HRT开始日期';
+
+  @override
+  String get appearance => '外观';
+
+  @override
+  String get languageSetting => '语言';
+
+  @override
+  String get darkMode => '深色模式';
+
+  @override
+  String get darkModeComingSoon => '深色模式敬请期待';
 }

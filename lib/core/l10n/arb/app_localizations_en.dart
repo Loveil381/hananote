@@ -666,5 +666,41 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tabProfile => 'Profile';
 
   @override
-  String get featurePlanned => 'Coming Soon';
+  String get settingsTitle => 'Settings';
+
+  @override
+  String get notificationSettings => 'Notification Settings';
+
+  @override
+  String get globalNotification => 'Global Notifications';
+
+  @override
+  String get medicationReminders => 'Medication Reminders';
+
+  @override
+  String get reminderEnabled => 'Enabled';
+
+  @override
+  String get reminderDisabled => 'Disabled';
+
+  @override
+  String get personalInfo => 'Personal Info';
+
+  @override
+  String get editDisplayName => 'Edit Display Name';
+
+  @override
+  String get editHrtStartDate => 'Edit HRT Start Date';
+
+  @override
+  String get appearance => 'Appearance';
+
+  @override
+  String get languageSetting => 'Language';
+
+  @override
+  String get darkMode => 'Dark Mode';
+
+  @override
+  String get darkModeComingSoon => 'Dark Mode coming soon';
 }

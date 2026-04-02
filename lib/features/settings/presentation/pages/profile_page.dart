@@ -127,8 +127,7 @@ class ProfilePage extends StatelessWidget {
                   centerTitle: true,
                   leading: IconButton(
                     icon: const Icon(Icons.settings, color: HanaColors.primary),
-                    onPressed: () =>
-                        _showSnackBar(context, l10n.settingsComingSoon),
+                    onPressed: () => context.push('/settings'),
                   ),
                   title: Text(
                     l10n.profile,

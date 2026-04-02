@@ -270,5 +270,19 @@
   "tabRecord": "Record",
   "tabTimeline": "Timeline",
   "tabData": "Data",
-  "tabProfile": "Profile"
+  "tabProfile": "Profile",
+
+  "settingsTitle": "Settings",
+  "notificationSettings": "Notification Settings",
+  "globalNotification": "Global Notifications",
+  "medicationReminders": "Medication Reminders",
+  "reminderEnabled": "Enabled",
+  "reminderDisabled": "Disabled",
+  "personalInfo": "Personal Info",
+  "editDisplayName": "Edit Display Name",
+  "editHrtStartDate": "Edit HRT Start Date",
+  "appearance": "Appearance",
+  "languageSetting": "Language",
+  "darkMode": "Dark Mode",
+  "darkModeComingSoon": "Dark Mode coming soon"
 }

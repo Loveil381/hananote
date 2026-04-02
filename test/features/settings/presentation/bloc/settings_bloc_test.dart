@@ -6,6 +6,7 @@ import 'package:hananote/features/settings/domain/entities/app_settings.dart';
 import 'package:hananote/features/settings/domain/entities/user_profile.dart';
 import 'package:hananote/features/settings/domain/usecases/get_profile_dashboard.dart';
 import 'package:hananote/features/settings/domain/usecases/update_app_settings.dart';
+import 'package:hananote/features/settings/domain/usecases/update_user_profile.dart';
 import 'package:hananote/features/settings/domain/usecases/wipe_all_data.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_bloc.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_event.dart';
@@ -16,11 +17,14 @@ class _MockGetProfileDashboard extends Mock implements GetProfileDashboard {}
 
 class _MockUpdateAppSettings extends Mock implements UpdateAppSettings {}
 
+class _MockUpdateUserProfile extends Mock implements UpdateUserProfile {}
+
 class _MockWipeAllData extends Mock implements WipeAllData {}
 
 void main() {
   late _MockGetProfileDashboard getProfileDashboard;
   late _MockUpdateAppSettings updateAppSettings;
+  late _MockUpdateUserProfile updateUserProfile;
   late _MockWipeAllData wipeAllData;
 
   final profile = UserProfile.withCalculatedHrtDayCount(
@@ -38,6 +42,7 @@ void main() {
   SettingsBloc buildBloc() => SettingsBloc(
         getProfileDashboard,
         updateAppSettings,
+        updateUserProfile,
         wipeAllData,
       );
 
@@ -52,11 +57,13 @@ void main() {
 
   setUpAll(() {
     registerFallbackValue(settings);
+    registerFallbackValue(profile);
   });
 
   setUp(() {
     getProfileDashboard = _MockGetProfileDashboard();
     updateAppSettings = _MockUpdateAppSettings();
+    updateUserProfile = _MockUpdateUserProfile();
     wipeAllData = _MockWipeAllData();
   });
 
@@ -129,6 +136,65 @@ void main() {
             settings.copyWith(appLockEnabled: false),
           ),
         ).called(1);
+      },
+    );
+  });
+
+  group('UpdateDisplayName', () {
+    final updatedProfile = profile.copyWith(displayName: 'NewName');
+
+    blocTest<SettingsBloc, SettingsState>(
+      'updates profile when name update succeeds',
+      build: buildBloc,
+      seed: buildLoadedState,
+      setUp: () {
+        when(() => updateUserProfile(any())).thenAnswer(
+          (_) async => right(updatedProfile),
+        );
+      },
+      act: (bloc) =>
+          bloc.add(const SettingsEvent.updateDisplayName(name: 'NewName')),
+      expect: () => [
+        isA<SettingsLoaded>()
+            .having(
+              (state) => state.profile.displayName,
+              'displayName',
+              'NewName',
+            )
+            .having((state) => state.settings, 'settings', settings),
+      ],
+      verify: (_) {
+        verify(() => updateUserProfile(updatedProfile)).called(1);
+      },
+    );
+  });
+
+  group('UpdateHrtStartDate', () {
+    final newDate = DateTime(2025);
+    final updatedProfile = profile.copyWith(hrtStartDate: newDate);
+
+    blocTest<SettingsBloc, SettingsState>(
+      'updates profile when HRT start date update succeeds',
+      build: buildBloc,
+      seed: buildLoadedState,
+      setUp: () {
+        when(() => updateUserProfile(any())).thenAnswer(
+          (_) async => right(updatedProfile),
+        );
+      },
+      act: (bloc) =>
+          bloc.add(SettingsEvent.updateHrtStartDate(date: newDate)),
+      expect: () => [
+        isA<SettingsLoaded>()
+            .having(
+              (state) => state.profile.hrtStartDate,
+              'hrtStartDate',
+              newDate,
+            )
+            .having((state) => state.settings, 'settings', settings),
+      ],
+      verify: (_) {
+        verify(() => updateUserProfile(updatedProfile)).called(1);
       },
     );
   });

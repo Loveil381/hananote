@@ -20,6 +20,14 @@ sealed class SettingsEvent with _$SettingsEvent {
   const factory SettingsEvent.toggleBlurOverlay({required bool enabled}) =
       ToggleBlurOverlay;
 
+  /// Updates the user's display name.
+  const factory SettingsEvent.updateDisplayName({required String name}) =
+      UpdateDisplayName;
+
+  /// Updates the user's HRT start date.
+  const factory SettingsEvent.updateHrtStartDate({required DateTime date}) =
+      UpdateHrtStartDate;
+
   /// Wipes all protected application data.
   const factory SettingsEvent.wipeData() = WipeSettingsData;
 }

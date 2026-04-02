@@ -1,0 +1,2 @@
+﻿stash@{0}: WIP on codex/feature/ui-redesign-r37: b4600f5 chore(i18n): 豺ｻ蜉 Tab 譬・ｭｾ ARB key
+stash@{1}: WIP on feature/auth: 57e2fdb feat(auth): implement app lock, PIN setup, biometric, wipe data, and startup flow

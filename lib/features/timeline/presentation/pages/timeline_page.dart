@@ -10,6 +10,7 @@ import 'package:hananote/core/l10n/enum_l10n.dart';
 import 'package:hananote/features/timeline/domain/entities/enums.dart';
 import 'package:hananote/features/timeline/domain/entities/timeline_event.dart';
 import 'package:hananote/features/timeline/presentation/bloc/timeline_bloc.dart';
+import 'package:hananote/features/timeline/presentation/bloc/timeline_event.dart';
 import 'package:hananote/features/timeline/presentation/bloc/timeline_state.dart';
 import 'package:intl/intl.dart';
 
@@ -101,8 +102,9 @@ class TimelinePage extends StatelessWidget {
                 child: CircularProgressIndicator(color: HanaColors.primary),
               ),
             TimelineError(:final message) => Center(child: Text(message)),
-            TimelineLoaded(:final events) => _TimelineLoadedView(
+            TimelineLoaded(:final events, :final selectedRange) => _TimelineLoadedView(
                 events: events,
+                selectedRange: selectedRange,
                 emptyLabel: l10n.noTimelineEvents,
               ),
           };
@@ -189,10 +191,12 @@ class TimelinePage extends StatelessWidget {
 class _TimelineLoadedView extends StatelessWidget {
   const _TimelineLoadedView({
     required this.events,
+    required this.selectedRange,
     required this.emptyLabel,
   });
 
   final List<TimelineEvent> events;
+  final TimelineRange selectedRange;
   final String emptyLabel;
 
   @override
@@ -235,7 +239,12 @@ class _TimelineLoadedView extends StatelessWidget {
             SliverPadding(
               padding: EdgeInsets.only(top: topPadding, bottom: 24),
               sliver: SliverToBoxAdapter(
-                child: _FilterPills(),
+                child: _FilterPills(
+                  selectedRange: selectedRange,
+                  onRangeSelected: (range) {
+                    context.read<TimelineBloc>().add(TimelineBlocEvent.selectRange(range));
+                  },
+                ),
               ),
             ),
             SliverList(
@@ -271,38 +280,34 @@ class _TimelineLoadedView extends StatelessWidget {
   }
 }
 
-class _FilterPills extends StatefulWidget {
-  @override
-  State<_FilterPills> createState() => _FilterPillsState();
-}
+class _FilterPills extends StatelessWidget {
+  const _FilterPills({
+    required this.selectedRange,
+    required this.onRangeSelected,
+  });
 
-class _FilterPillsState extends State<_FilterPills> {
-  int _selectedIndex = 4;
+  final TimelineRange selectedRange;
+  final ValueChanged<TimelineRange> onRangeSelected;
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    final filters = [
-      l10n.filterOneMonth,
-      l10n.filterThreeMonths,
-      l10n.filterSixMonths,
-      l10n.filterOneYear,
-      l10n.filterAll,
-    ];
+    const filters = TimelineRange.values;
+
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Row(
-        children: filters.asMap().entries.map((entry) {
-          final isSelected = entry.key == _selectedIndex;
+        children: filters.map((range) {
+          final isSelected = range == selectedRange;
           return Padding(
             padding: const EdgeInsets.only(right: 8),
             child: GestureDetector(
-              onTap: () => setState(() => _selectedIndex = entry.key),
+              onTap: () => onRangeSelected(range),
               behavior: HitTestBehavior.opaque,
               child: Chip(
                 label: Text(
-                  entry.value,
+                  range.localizedName(l10n),
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 12,

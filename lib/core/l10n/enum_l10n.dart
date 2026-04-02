@@ -2,6 +2,7 @@ import 'package:hananote/core/l10n/arb/app_localizations.dart';
 import 'package:hananote/features/blood_test/domain/entities/enums.dart';
 import 'package:hananote/features/medication/domain/entities/enums.dart';
 import 'package:hananote/features/timeline/domain/entities/enums.dart';
+import 'package:hananote/features/timeline/presentation/bloc/timeline_event.dart';
 
 /// Localized labels for [DrugCategory].
 extension DrugCategoryL10n on DrugCategory {
@@ -72,5 +73,17 @@ extension TimelineEventTypeL10n on TimelineEventType {
         TimelineEventType.bloodTest => l10n.enumTimelineBloodTest,
         TimelineEventType.journal => l10n.enumTimelineJournal,
         TimelineEventType.milestone => l10n.enumTimelineMilestone,
+      };
+}
+
+/// Localized labels for [TimelineRange].
+extension TimelineRangeL10n on TimelineRange {
+  /// Returns the localized range label for the current locale.
+  String localizedName(AppLocalizations l10n) => switch (this) {
+        TimelineRange.oneMonth => l10n.filterOneMonth,
+        TimelineRange.threeMonths => l10n.filterThreeMonths,
+        TimelineRange.sixMonths => l10n.filterSixMonths,
+        TimelineRange.oneYear => l10n.filterOneYear,
+        TimelineRange.all => l10n.filterAll,
       };
 }

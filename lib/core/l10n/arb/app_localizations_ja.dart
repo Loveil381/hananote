@@ -645,5 +645,41 @@ class AppLocalizationsJa extends AppLocalizations {
   String get tabProfile => 'マイページ';
 
   @override
-  String get featurePlanned => '開発中';
+  String get settingsTitle => '設定';
+
+  @override
+  String get notificationSettings => '通知設定';
+
+  @override
+  String get globalNotification => 'グローバル通知';
+
+  @override
+  String get medicationReminders => '服薬リマインダー';
+
+  @override
+  String get reminderEnabled => '有効';
+
+  @override
+  String get reminderDisabled => '無効';
+
+  @override
+  String get personalInfo => '個人情報';
+
+  @override
+  String get editDisplayName => '表示名を編集';
+
+  @override
+  String get editHrtStartDate => 'HRT開始日を編集';
+
+  @override
+  String get appearance => '外観';
+
+  @override
+  String get languageSetting => '言語';
+
+  @override
+  String get darkMode => 'ダークモード';
+
+  @override
+  String get darkModeComingSoon => 'ダークモードは近日公開';
 }

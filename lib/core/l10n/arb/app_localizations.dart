@@ -1336,11 +1336,83 @@ abstract class AppLocalizations {
   /// **'Profile'**
   String get tabProfile;
 
-  /// No description provided for @featurePlanned.
+  /// No description provided for @settingsTitle.
   ///
   /// In en, this message translates to:
-  /// **'Coming Soon'**
-  String get featurePlanned;
+  /// **'Settings'**
+  String get settingsTitle;
+
+  /// No description provided for @notificationSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Notification Settings'**
+  String get notificationSettings;
+
+  /// No description provided for @globalNotification.
+  ///
+  /// In en, this message translates to:
+  /// **'Global Notifications'**
+  String get globalNotification;
+
+  /// No description provided for @medicationReminders.
+  ///
+  /// In en, this message translates to:
+  /// **'Medication Reminders'**
+  String get medicationReminders;
+
+  /// No description provided for @reminderEnabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Enabled'**
+  String get reminderEnabled;
+
+  /// No description provided for @reminderDisabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Disabled'**
+  String get reminderDisabled;
+
+  /// No description provided for @personalInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Personal Info'**
+  String get personalInfo;
+
+  /// No description provided for @editDisplayName.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Display Name'**
+  String get editDisplayName;
+
+  /// No description provided for @editHrtStartDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit HRT Start Date'**
+  String get editHrtStartDate;
+
+  /// No description provided for @appearance.
+  ///
+  /// In en, this message translates to:
+  /// **'Appearance'**
+  String get appearance;
+
+  /// No description provided for @languageSetting.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get languageSetting;
+
+  /// No description provided for @darkMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Dark Mode'**
+  String get darkMode;
+
+  /// No description provided for @darkModeComingSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Dark Mode coming soon'**
+  String get darkModeComingSoon;
 }
 
 class _AppLocalizationsDelegate

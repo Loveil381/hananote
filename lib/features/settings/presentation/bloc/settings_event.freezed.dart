@@ -22,6 +22,8 @@ mixin _$SettingsEvent {
     required TResult Function(bool enabled) toggleAppLock,
     required TResult Function(bool enabled) togglePrivacyMode,
     required TResult Function(bool enabled) toggleBlurOverlay,
+    required TResult Function(String name) updateDisplayName,
+    required TResult Function(DateTime date) updateHrtStartDate,
     required TResult Function() wipeData,
   }) =>
       throw _privateConstructorUsedError;
@@ -31,6 +33,8 @@ mixin _$SettingsEvent {
     TResult? Function(bool enabled)? toggleAppLock,
     TResult? Function(bool enabled)? togglePrivacyMode,
     TResult? Function(bool enabled)? toggleBlurOverlay,
+    TResult? Function(String name)? updateDisplayName,
+    TResult? Function(DateTime date)? updateHrtStartDate,
     TResult? Function()? wipeData,
   }) =>
       throw _privateConstructorUsedError;
@@ -40,6 +44,8 @@ mixin _$SettingsEvent {
     TResult Function(bool enabled)? toggleAppLock,
     TResult Function(bool enabled)? togglePrivacyMode,
     TResult Function(bool enabled)? toggleBlurOverlay,
+    TResult Function(String name)? updateDisplayName,
+    TResult Function(DateTime date)? updateHrtStartDate,
     TResult Function()? wipeData,
     required TResult orElse(),
   }) =>
@@ -50,6 +56,8 @@ mixin _$SettingsEvent {
     required TResult Function(ToggleAppLock value) toggleAppLock,
     required TResult Function(TogglePrivacyMode value) togglePrivacyMode,
     required TResult Function(ToggleBlurOverlay value) toggleBlurOverlay,
+    required TResult Function(UpdateDisplayName value) updateDisplayName,
+    required TResult Function(UpdateHrtStartDate value) updateHrtStartDate,
     required TResult Function(WipeSettingsData value) wipeData,
   }) =>
       throw _privateConstructorUsedError;
@@ -59,6 +67,8 @@ mixin _$SettingsEvent {
     TResult? Function(ToggleAppLock value)? toggleAppLock,
     TResult? Function(TogglePrivacyMode value)? togglePrivacyMode,
     TResult? Function(ToggleBlurOverlay value)? toggleBlurOverlay,
+    TResult? Function(UpdateDisplayName value)? updateDisplayName,
+    TResult? Function(UpdateHrtStartDate value)? updateHrtStartDate,
     TResult? Function(WipeSettingsData value)? wipeData,
   }) =>
       throw _privateConstructorUsedError;
@@ -68,6 +78,8 @@ mixin _$SettingsEvent {
     TResult Function(ToggleAppLock value)? toggleAppLock,
     TResult Function(TogglePrivacyMode value)? togglePrivacyMode,
     TResult Function(ToggleBlurOverlay value)? toggleBlurOverlay,
+    TResult Function(UpdateDisplayName value)? updateDisplayName,
+    TResult Function(UpdateHrtStartDate value)? updateHrtStartDate,
     TResult Function(WipeSettingsData value)? wipeData,
     required TResult orElse(),
   }) =>
@@ -142,6 +154,8 @@ class _$LoadSettingsDashboardImpl implements LoadSettingsDashboard {
     required TResult Function(bool enabled) toggleAppLock,
     required TResult Function(bool enabled) togglePrivacyMode,
     required TResult Function(bool enabled) toggleBlurOverlay,
+    required TResult Function(String name) updateDisplayName,
+    required TResult Function(DateTime date) updateHrtStartDate,
     required TResult Function() wipeData,
   }) {
     return loadDashboard();
@@ -154,6 +168,8 @@ class _$LoadSettingsDashboardImpl implements LoadSettingsDashboard {
     TResult? Function(bool enabled)? toggleAppLock,
     TResult? Function(bool enabled)? togglePrivacyMode,
     TResult? Function(bool enabled)? toggleBlurOverlay,
+    TResult? Function(String name)? updateDisplayName,
+    TResult? Function(DateTime date)? updateHrtStartDate,
     TResult? Function()? wipeData,
   }) {
     return loadDashboard?.call();
@@ -166,6 +182,8 @@ class _$LoadSettingsDashboardImpl implements LoadSettingsDashboard {
     TResult Function(bool enabled)? toggleAppLock,
     TResult Function(bool enabled)? togglePrivacyMode,
     TResult Function(bool enabled)? toggleBlurOverlay,
+    TResult Function(String name)? updateDisplayName,
+    TResult Function(DateTime date)? updateHrtStartDate,
     TResult Function()? wipeData,
     required TResult orElse(),
   }) {
@@ -182,6 +200,8 @@ class _$LoadSettingsDashboardImpl implements LoadSettingsDashboard {
     required TResult Function(ToggleAppLock value) toggleAppLock,
     required TResult Function(TogglePrivacyMode value) togglePrivacyMode,
     required TResult Function(ToggleBlurOverlay value) toggleBlurOverlay,
+    required TResult Function(UpdateDisplayName value) updateDisplayName,
+    required TResult Function(UpdateHrtStartDate value) updateHrtStartDate,
     required TResult Function(WipeSettingsData value) wipeData,
   }) {
     return loadDashboard(this);
@@ -194,6 +214,8 @@ class _$LoadSettingsDashboardImpl implements LoadSettingsDashboard {
     TResult? Function(ToggleAppLock value)? toggleAppLock,
     TResult? Function(TogglePrivacyMode value)? togglePrivacyMode,
     TResult? Function(ToggleBlurOverlay value)? toggleBlurOverlay,
+    TResult? Function(UpdateDisplayName value)? updateDisplayName,
+    TResult? Function(UpdateHrtStartDate value)? updateHrtStartDate,
     TResult? Function(WipeSettingsData value)? wipeData,
   }) {
     return loadDashboard?.call(this);
@@ -206,6 +228,8 @@ class _$LoadSettingsDashboardImpl implements LoadSettingsDashboard {
     TResult Function(ToggleAppLock value)? toggleAppLock,
     TResult Function(TogglePrivacyMode value)? togglePrivacyMode,
     TResult Function(ToggleBlurOverlay value)? toggleBlurOverlay,
+    TResult Function(UpdateDisplayName value)? updateDisplayName,
+    TResult Function(UpdateHrtStartDate value)? updateHrtStartDate,
     TResult Function(WipeSettingsData value)? wipeData,
     required TResult orElse(),
   }) {
@@ -292,6 +316,8 @@ class _$ToggleAppLockImpl implements ToggleAppLock {
     required TResult Function(bool enabled) toggleAppLock,
     required TResult Function(bool enabled) togglePrivacyMode,
     required TResult Function(bool enabled) toggleBlurOverlay,
+    required TResult Function(String name) updateDisplayName,
+    required TResult Function(DateTime date) updateHrtStartDate,
     required TResult Function() wipeData,
   }) {
     return toggleAppLock(enabled);
@@ -304,6 +330,8 @@ class _$ToggleAppLockImpl implements ToggleAppLock {
     TResult? Function(bool enabled)? toggleAppLock,
     TResult? Function(bool enabled)? togglePrivacyMode,
     TResult? Function(bool enabled)? toggleBlurOverlay,
+    TResult? Function(String name)? updateDisplayName,
+    TResult? Function(DateTime date)? updateHrtStartDate,
     TResult? Function()? wipeData,
   }) {
     return toggleAppLock?.call(enabled);
@@ -316,6 +344,8 @@ class _$ToggleAppLockImpl implements ToggleAppLock {
     TResult Function(bool enabled)? toggleAppLock,
     TResult Function(bool enabled)? togglePrivacyMode,
     TResult Function(bool enabled)? toggleBlurOverlay,
+    TResult Function(String name)? updateDisplayName,
+    TResult Function(DateTime date)? updateHrtStartDate,
     TResult Function()? wipeData,
     required TResult orElse(),
   }) {
@@ -332,6 +362,8 @@ class _$ToggleAppLockImpl implements ToggleAppLock {
     required TResult Function(ToggleAppLock value) toggleAppLock,
     required TResult Function(TogglePrivacyMode value) togglePrivacyMode,
     required TResult Function(ToggleBlurOverlay value) toggleBlurOverlay,
+    required TResult Function(UpdateDisplayName value) updateDisplayName,
+    required TResult Function(UpdateHrtStartDate value) updateHrtStartDate,
     required TResult Function(WipeSettingsData value) wipeData,
   }) {
     return toggleAppLock(this);
@@ -344,6 +376,8 @@ class _$ToggleAppLockImpl implements ToggleAppLock {
     TResult? Function(ToggleAppLock value)? toggleAppLock,
     TResult? Function(TogglePrivacyMode value)? togglePrivacyMode,
     TResult? Function(ToggleBlurOverlay value)? toggleBlurOverlay,
+    TResult? Function(UpdateDisplayName value)? updateDisplayName,
+    TResult? Function(UpdateHrtStartDate value)? updateHrtStartDate,
     TResult? Function(WipeSettingsData value)? wipeData,
   }) {
     return toggleAppLock?.call(this);
@@ -356,6 +390,8 @@ class _$ToggleAppLockImpl implements ToggleAppLock {
     TResult Function(ToggleAppLock value)? toggleAppLock,
     TResult Function(TogglePrivacyMode value)? togglePrivacyMode,
     TResult Function(ToggleBlurOverlay value)? toggleBlurOverlay,
+    TResult Function(UpdateDisplayName value)? updateDisplayName,
+    TResult Function(UpdateHrtStartDate value)? updateHrtStartDate,
     TResult Function(WipeSettingsData value)? wipeData,
     required TResult orElse(),
   }) {
@@ -452,6 +488,8 @@ class _$TogglePrivacyModeImpl implements TogglePrivacyMode {
     required TResult Function(bool enabled) toggleAppLock,
     required TResult Function(bool enabled) togglePrivacyMode,
     required TResult Function(bool enabled) toggleBlurOverlay,
+    required TResult Function(String name) updateDisplayName,
+    required TResult Function(DateTime date) updateHrtStartDate,
     required TResult Function() wipeData,
   }) {
     return togglePrivacyMode(enabled);
@@ -464,6 +502,8 @@ class _$TogglePrivacyModeImpl implements TogglePrivacyMode {
     TResult? Function(bool enabled)? toggleAppLock,
     TResult? Function(bool enabled)? togglePrivacyMode,
     TResult? Function(bool enabled)? toggleBlurOverlay,
+    TResult? Function(String name)? updateDisplayName,
+    TResult? Function(DateTime date)? updateHrtStartDate,
     TResult? Function()? wipeData,
   }) {
     return togglePrivacyMode?.call(enabled);
@@ -476,6 +516,8 @@ class _$TogglePrivacyModeImpl implements TogglePrivacyMode {
     TResult Function(bool enabled)? toggleAppLock,
     TResult Function(bool enabled)? togglePrivacyMode,
     TResult Function(bool enabled)? toggleBlurOverlay,
+    TResult Function(String name)? updateDisplayName,
+    TResult Function(DateTime date)? updateHrtStartDate,
     TResult Function()? wipeData,
     required TResult orElse(),
   }) {
@@ -492,6 +534,8 @@ class _$TogglePrivacyModeImpl implements TogglePrivacyMode {
     required TResult Function(ToggleAppLock value) toggleAppLock,
     required TResult Function(TogglePrivacyMode value) togglePrivacyMode,
     required TResult Function(ToggleBlurOverlay value) toggleBlurOverlay,
+    required TResult Function(UpdateDisplayName value) updateDisplayName,
+    required TResult Function(UpdateHrtStartDate value) updateHrtStartDate,
     required TResult Function(WipeSettingsData value) wipeData,
   }) {
     return togglePrivacyMode(this);
@@ -504,6 +548,8 @@ class _$TogglePrivacyModeImpl implements TogglePrivacyMode {
     TResult? Function(ToggleAppLock value)? toggleAppLock,
     TResult? Function(TogglePrivacyMode value)? togglePrivacyMode,
     TResult? Function(ToggleBlurOverlay value)? toggleBlurOverlay,
+    TResult? Function(UpdateDisplayName value)? updateDisplayName,
+    TResult? Function(UpdateHrtStartDate value)? updateHrtStartDate,
     TResult? Function(WipeSettingsData value)? wipeData,
   }) {
     return togglePrivacyMode?.call(this);
@@ -516,6 +562,8 @@ class _$TogglePrivacyModeImpl implements TogglePrivacyMode {
     TResult Function(ToggleAppLock value)? toggleAppLock,
     TResult Function(TogglePrivacyMode value)? togglePrivacyMode,
     TResult Function(ToggleBlurOverlay value)? toggleBlurOverlay,
+    TResult Function(UpdateDisplayName value)? updateDisplayName,
+    TResult Function(UpdateHrtStartDate value)? updateHrtStartDate,
     TResult Function(WipeSettingsData value)? wipeData,
     required TResult orElse(),
   }) {
@@ -612,6 +660,8 @@ class _$ToggleBlurOverlayImpl implements ToggleBlurOverlay {
     required TResult Function(bool enabled) toggleAppLock,
     required TResult Function(bool enabled) togglePrivacyMode,
     required TResult Function(bool enabled) toggleBlurOverlay,
+    required TResult Function(String name) updateDisplayName,
+    required TResult Function(DateTime date) updateHrtStartDate,
     required TResult Function() wipeData,
   }) {
     return toggleBlurOverlay(enabled);
@@ -624,6 +674,8 @@ class _$ToggleBlurOverlayImpl implements ToggleBlurOverlay {
     TResult? Function(bool enabled)? toggleAppLock,
     TResult? Function(bool enabled)? togglePrivacyMode,
     TResult? Function(bool enabled)? toggleBlurOverlay,
+    TResult? Function(String name)? updateDisplayName,
+    TResult? Function(DateTime date)? updateHrtStartDate,
     TResult? Function()? wipeData,
   }) {
     return toggleBlurOverlay?.call(enabled);
@@ -636,6 +688,8 @@ class _$ToggleBlurOverlayImpl implements ToggleBlurOverlay {
     TResult Function(bool enabled)? toggleAppLock,
     TResult Function(bool enabled)? togglePrivacyMode,
     TResult Function(bool enabled)? toggleBlurOverlay,
+    TResult Function(String name)? updateDisplayName,
+    TResult Function(DateTime date)? updateHrtStartDate,
     TResult Function()? wipeData,
     required TResult orElse(),
   }) {
@@ -652,6 +706,8 @@ class _$ToggleBlurOverlayImpl implements ToggleBlurOverlay {
     required TResult Function(ToggleAppLock value) toggleAppLock,
     required TResult Function(TogglePrivacyMode value) togglePrivacyMode,
     required TResult Function(ToggleBlurOverlay value) toggleBlurOverlay,
+    required TResult Function(UpdateDisplayName value) updateDisplayName,
+    required TResult Function(UpdateHrtStartDate value) updateHrtStartDate,
     required TResult Function(WipeSettingsData value) wipeData,
   }) {
     return toggleBlurOverlay(this);
@@ -664,6 +720,8 @@ class _$ToggleBlurOverlayImpl implements ToggleBlurOverlay {
     TResult? Function(ToggleAppLock value)? toggleAppLock,
     TResult? Function(TogglePrivacyMode value)? togglePrivacyMode,
     TResult? Function(ToggleBlurOverlay value)? toggleBlurOverlay,
+    TResult? Function(UpdateDisplayName value)? updateDisplayName,
+    TResult? Function(UpdateHrtStartDate value)? updateHrtStartDate,
     TResult? Function(WipeSettingsData value)? wipeData,
   }) {
     return toggleBlurOverlay?.call(this);
@@ -676,6 +734,8 @@ class _$ToggleBlurOverlayImpl implements ToggleBlurOverlay {
     TResult Function(ToggleAppLock value)? toggleAppLock,
     TResult Function(TogglePrivacyMode value)? togglePrivacyMode,
     TResult Function(ToggleBlurOverlay value)? toggleBlurOverlay,
+    TResult Function(UpdateDisplayName value)? updateDisplayName,
+    TResult Function(UpdateHrtStartDate value)? updateHrtStartDate,
     TResult Function(WipeSettingsData value)? wipeData,
     required TResult orElse(),
   }) {
@@ -696,6 +756,350 @@ abstract class ToggleBlurOverlay implements SettingsEvent {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ToggleBlurOverlayImplCopyWith<_$ToggleBlurOverlayImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UpdateDisplayNameImplCopyWith<$Res> {
+  factory _$$UpdateDisplayNameImplCopyWith(_$UpdateDisplayNameImpl value,
+          $Res Function(_$UpdateDisplayNameImpl) then) =
+      __$$UpdateDisplayNameImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String name});
+}
+
+/// @nodoc
+class __$$UpdateDisplayNameImplCopyWithImpl<$Res>
+    extends _$SettingsEventCopyWithImpl<$Res, _$UpdateDisplayNameImpl>
+    implements _$$UpdateDisplayNameImplCopyWith<$Res> {
+  __$$UpdateDisplayNameImplCopyWithImpl(_$UpdateDisplayNameImpl _value,
+      $Res Function(_$UpdateDisplayNameImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of SettingsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = null,
+  }) {
+    return _then(_$UpdateDisplayNameImpl(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateDisplayNameImpl implements UpdateDisplayName {
+  const _$UpdateDisplayNameImpl({required this.name});
+
+  @override
+  final String name;
+
+  @override
+  String toString() {
+    return 'SettingsEvent.updateDisplayName(name: $name)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateDisplayNameImpl &&
+            (identical(other.name, name) || other.name == name));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, name);
+
+  /// Create a copy of SettingsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdateDisplayNameImplCopyWith<_$UpdateDisplayNameImpl> get copyWith =>
+      __$$UpdateDisplayNameImplCopyWithImpl<_$UpdateDisplayNameImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadDashboard,
+    required TResult Function(bool enabled) toggleAppLock,
+    required TResult Function(bool enabled) togglePrivacyMode,
+    required TResult Function(bool enabled) toggleBlurOverlay,
+    required TResult Function(String name) updateDisplayName,
+    required TResult Function(DateTime date) updateHrtStartDate,
+    required TResult Function() wipeData,
+  }) {
+    return updateDisplayName(name);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loadDashboard,
+    TResult? Function(bool enabled)? toggleAppLock,
+    TResult? Function(bool enabled)? togglePrivacyMode,
+    TResult? Function(bool enabled)? toggleBlurOverlay,
+    TResult? Function(String name)? updateDisplayName,
+    TResult? Function(DateTime date)? updateHrtStartDate,
+    TResult? Function()? wipeData,
+  }) {
+    return updateDisplayName?.call(name);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadDashboard,
+    TResult Function(bool enabled)? toggleAppLock,
+    TResult Function(bool enabled)? togglePrivacyMode,
+    TResult Function(bool enabled)? toggleBlurOverlay,
+    TResult Function(String name)? updateDisplayName,
+    TResult Function(DateTime date)? updateHrtStartDate,
+    TResult Function()? wipeData,
+    required TResult orElse(),
+  }) {
+    if (updateDisplayName != null) {
+      return updateDisplayName(name);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadSettingsDashboard value) loadDashboard,
+    required TResult Function(ToggleAppLock value) toggleAppLock,
+    required TResult Function(TogglePrivacyMode value) togglePrivacyMode,
+    required TResult Function(ToggleBlurOverlay value) toggleBlurOverlay,
+    required TResult Function(UpdateDisplayName value) updateDisplayName,
+    required TResult Function(UpdateHrtStartDate value) updateHrtStartDate,
+    required TResult Function(WipeSettingsData value) wipeData,
+  }) {
+    return updateDisplayName(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LoadSettingsDashboard value)? loadDashboard,
+    TResult? Function(ToggleAppLock value)? toggleAppLock,
+    TResult? Function(TogglePrivacyMode value)? togglePrivacyMode,
+    TResult? Function(ToggleBlurOverlay value)? toggleBlurOverlay,
+    TResult? Function(UpdateDisplayName value)? updateDisplayName,
+    TResult? Function(UpdateHrtStartDate value)? updateHrtStartDate,
+    TResult? Function(WipeSettingsData value)? wipeData,
+  }) {
+    return updateDisplayName?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadSettingsDashboard value)? loadDashboard,
+    TResult Function(ToggleAppLock value)? toggleAppLock,
+    TResult Function(TogglePrivacyMode value)? togglePrivacyMode,
+    TResult Function(ToggleBlurOverlay value)? toggleBlurOverlay,
+    TResult Function(UpdateDisplayName value)? updateDisplayName,
+    TResult Function(UpdateHrtStartDate value)? updateHrtStartDate,
+    TResult Function(WipeSettingsData value)? wipeData,
+    required TResult orElse(),
+  }) {
+    if (updateDisplayName != null) {
+      return updateDisplayName(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UpdateDisplayName implements SettingsEvent {
+  const factory UpdateDisplayName({required final String name}) =
+      _$UpdateDisplayNameImpl;
+
+  String get name;
+
+  /// Create a copy of SettingsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UpdateDisplayNameImplCopyWith<_$UpdateDisplayNameImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UpdateHrtStartDateImplCopyWith<$Res> {
+  factory _$$UpdateHrtStartDateImplCopyWith(_$UpdateHrtStartDateImpl value,
+          $Res Function(_$UpdateHrtStartDateImpl) then) =
+      __$$UpdateHrtStartDateImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({DateTime date});
+}
+
+/// @nodoc
+class __$$UpdateHrtStartDateImplCopyWithImpl<$Res>
+    extends _$SettingsEventCopyWithImpl<$Res, _$UpdateHrtStartDateImpl>
+    implements _$$UpdateHrtStartDateImplCopyWith<$Res> {
+  __$$UpdateHrtStartDateImplCopyWithImpl(_$UpdateHrtStartDateImpl _value,
+      $Res Function(_$UpdateHrtStartDateImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of SettingsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? date = null,
+  }) {
+    return _then(_$UpdateHrtStartDateImpl(
+      date: null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateHrtStartDateImpl implements UpdateHrtStartDate {
+  const _$UpdateHrtStartDateImpl({required this.date});
+
+  @override
+  final DateTime date;
+
+  @override
+  String toString() {
+    return 'SettingsEvent.updateHrtStartDate(date: $date)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateHrtStartDateImpl &&
+            (identical(other.date, date) || other.date == date));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, date);
+
+  /// Create a copy of SettingsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdateHrtStartDateImplCopyWith<_$UpdateHrtStartDateImpl> get copyWith =>
+      __$$UpdateHrtStartDateImplCopyWithImpl<_$UpdateHrtStartDateImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadDashboard,
+    required TResult Function(bool enabled) toggleAppLock,
+    required TResult Function(bool enabled) togglePrivacyMode,
+    required TResult Function(bool enabled) toggleBlurOverlay,
+    required TResult Function(String name) updateDisplayName,
+    required TResult Function(DateTime date) updateHrtStartDate,
+    required TResult Function() wipeData,
+  }) {
+    return updateHrtStartDate(date);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loadDashboard,
+    TResult? Function(bool enabled)? toggleAppLock,
+    TResult? Function(bool enabled)? togglePrivacyMode,
+    TResult? Function(bool enabled)? toggleBlurOverlay,
+    TResult? Function(String name)? updateDisplayName,
+    TResult? Function(DateTime date)? updateHrtStartDate,
+    TResult? Function()? wipeData,
+  }) {
+    return updateHrtStartDate?.call(date);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadDashboard,
+    TResult Function(bool enabled)? toggleAppLock,
+    TResult Function(bool enabled)? togglePrivacyMode,
+    TResult Function(bool enabled)? toggleBlurOverlay,
+    TResult Function(String name)? updateDisplayName,
+    TResult Function(DateTime date)? updateHrtStartDate,
+    TResult Function()? wipeData,
+    required TResult orElse(),
+  }) {
+    if (updateHrtStartDate != null) {
+      return updateHrtStartDate(date);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadSettingsDashboard value) loadDashboard,
+    required TResult Function(ToggleAppLock value) toggleAppLock,
+    required TResult Function(TogglePrivacyMode value) togglePrivacyMode,
+    required TResult Function(ToggleBlurOverlay value) toggleBlurOverlay,
+    required TResult Function(UpdateDisplayName value) updateDisplayName,
+    required TResult Function(UpdateHrtStartDate value) updateHrtStartDate,
+    required TResult Function(WipeSettingsData value) wipeData,
+  }) {
+    return updateHrtStartDate(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LoadSettingsDashboard value)? loadDashboard,
+    TResult? Function(ToggleAppLock value)? toggleAppLock,
+    TResult? Function(TogglePrivacyMode value)? togglePrivacyMode,
+    TResult? Function(ToggleBlurOverlay value)? toggleBlurOverlay,
+    TResult? Function(UpdateDisplayName value)? updateDisplayName,
+    TResult? Function(UpdateHrtStartDate value)? updateHrtStartDate,
+    TResult? Function(WipeSettingsData value)? wipeData,
+  }) {
+    return updateHrtStartDate?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadSettingsDashboard value)? loadDashboard,
+    TResult Function(ToggleAppLock value)? toggleAppLock,
+    TResult Function(TogglePrivacyMode value)? togglePrivacyMode,
+    TResult Function(ToggleBlurOverlay value)? toggleBlurOverlay,
+    TResult Function(UpdateDisplayName value)? updateDisplayName,
+    TResult Function(UpdateHrtStartDate value)? updateHrtStartDate,
+    TResult Function(WipeSettingsData value)? wipeData,
+    required TResult orElse(),
+  }) {
+    if (updateHrtStartDate != null) {
+      return updateHrtStartDate(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UpdateHrtStartDate implements SettingsEvent {
+  const factory UpdateHrtStartDate({required final DateTime date}) =
+      _$UpdateHrtStartDateImpl;
+
+  DateTime get date;
+
+  /// Create a copy of SettingsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UpdateHrtStartDateImplCopyWith<_$UpdateHrtStartDateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -744,6 +1148,8 @@ class _$WipeSettingsDataImpl implements WipeSettingsData {
     required TResult Function(bool enabled) toggleAppLock,
     required TResult Function(bool enabled) togglePrivacyMode,
     required TResult Function(bool enabled) toggleBlurOverlay,
+    required TResult Function(String name) updateDisplayName,
+    required TResult Function(DateTime date) updateHrtStartDate,
     required TResult Function() wipeData,
   }) {
     return wipeData();
@@ -756,6 +1162,8 @@ class _$WipeSettingsDataImpl implements WipeSettingsData {
     TResult? Function(bool enabled)? toggleAppLock,
     TResult? Function(bool enabled)? togglePrivacyMode,
     TResult? Function(bool enabled)? toggleBlurOverlay,
+    TResult? Function(String name)? updateDisplayName,
+    TResult? Function(DateTime date)? updateHrtStartDate,
     TResult? Function()? wipeData,
   }) {
     return wipeData?.call();
@@ -768,6 +1176,8 @@ class _$WipeSettingsDataImpl implements WipeSettingsData {
     TResult Function(bool enabled)? toggleAppLock,
     TResult Function(bool enabled)? togglePrivacyMode,
     TResult Function(bool enabled)? toggleBlurOverlay,
+    TResult Function(String name)? updateDisplayName,
+    TResult Function(DateTime date)? updateHrtStartDate,
     TResult Function()? wipeData,
     required TResult orElse(),
   }) {
@@ -784,6 +1194,8 @@ class _$WipeSettingsDataImpl implements WipeSettingsData {
     required TResult Function(ToggleAppLock value) toggleAppLock,
     required TResult Function(TogglePrivacyMode value) togglePrivacyMode,
     required TResult Function(ToggleBlurOverlay value) toggleBlurOverlay,
+    required TResult Function(UpdateDisplayName value) updateDisplayName,
+    required TResult Function(UpdateHrtStartDate value) updateHrtStartDate,
     required TResult Function(WipeSettingsData value) wipeData,
   }) {
     return wipeData(this);
@@ -796,6 +1208,8 @@ class _$WipeSettingsDataImpl implements WipeSettingsData {
     TResult? Function(ToggleAppLock value)? toggleAppLock,
     TResult? Function(TogglePrivacyMode value)? togglePrivacyMode,
     TResult? Function(ToggleBlurOverlay value)? toggleBlurOverlay,
+    TResult? Function(UpdateDisplayName value)? updateDisplayName,
+    TResult? Function(UpdateHrtStartDate value)? updateHrtStartDate,
     TResult? Function(WipeSettingsData value)? wipeData,
   }) {
     return wipeData?.call(this);
@@ -808,6 +1222,8 @@ class _$WipeSettingsDataImpl implements WipeSettingsData {
     TResult Function(ToggleAppLock value)? toggleAppLock,
     TResult Function(TogglePrivacyMode value)? togglePrivacyMode,
     TResult Function(ToggleBlurOverlay value)? toggleBlurOverlay,
+    TResult Function(UpdateDisplayName value)? updateDisplayName,
+    TResult Function(UpdateHrtStartDate value)? updateHrtStartDate,
     TResult Function(WipeSettingsData value)? wipeData,
     required TResult orElse(),
   }) {

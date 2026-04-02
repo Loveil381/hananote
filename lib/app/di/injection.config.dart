@@ -139,6 +139,8 @@ import 'package:hananote/features/settings/domain/usecases/get_profile_dashboard
     as _i287;
 import 'package:hananote/features/settings/domain/usecases/update_app_settings.dart'
     as _i695;
+import 'package:hananote/features/settings/domain/usecases/update_user_profile.dart'
+    as _i254;
 import 'package:hananote/features/settings/domain/usecases/wipe_all_data.dart'
     as _i135;
 import 'package:hananote/features/settings/presentation/bloc/settings_bloc.dart'
@@ -341,6 +343,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i695.UpdateAppSettings(gh<_i755.SettingsRepository>()));
     gh.factory<_i135.WipeAllData>(
         () => _i135.WipeAllData(gh<_i755.SettingsRepository>()));
+    gh.factory<_i254.UpdateUserProfile>(
+        () => _i254.UpdateUserProfile(gh<_i755.SettingsRepository>()));
     gh.lazySingleton<_i697.RecordBloc>(() => _i697.RecordBloc(
           gh<_i910.GetJournalStreak>(),
           gh<_i1032.JournalRepository>(),
@@ -355,6 +359,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i994.SettingsBloc>(() => _i994.SettingsBloc(
           gh<_i287.GetProfileDashboard>(),
           gh<_i695.UpdateAppSettings>(),
+          gh<_i254.UpdateUserProfile>(),
           gh<_i135.WipeAllData>(),
         ));
     return this;

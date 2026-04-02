@@ -270,5 +270,19 @@
   "tabRecord": "記録",
   "tabTimeline": "軌跡",
   "tabData": "データ",
-  "tabProfile": "マイページ"
+  "tabProfile": "マイページ",
+
+  "settingsTitle": "設定",
+  "notificationSettings": "通知設定",
+  "globalNotification": "グローバル通知",
+  "medicationReminders": "服薬リマインダー",
+  "reminderEnabled": "有効",
+  "reminderDisabled": "無効",
+  "personalInfo": "個人情報",
+  "editDisplayName": "表示名を編集",
+  "editHrtStartDate": "HRT開始日を編集",
+  "appearance": "外観",
+  "languageSetting": "言語",
+  "darkMode": "ダークモード",
+  "darkModeComingSoon": "ダークモードは近日公開"
 }

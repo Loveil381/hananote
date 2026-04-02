@@ -1,0 +1,363 @@
+﻿00:00 +0: loading C:/projects/HanaNote/test/core/crypto/crypto_engine_test.dart
+00:00 +0: C:/projects/HanaNote/test/core/crypto/crypto_engine_test.dart: CryptoEngine AES-256-GCM should encrypt and decrypt correctly
+00:00 +1: C:/projects/HanaNote/test/core/crypto/crypto_engine_test.dart: CryptoEngine AES-256-GCM should fail decryption with wrong key
+00:00 +2: C:/projects/HanaNote/test/core/crypto/crypto_engine_test.dart: CryptoEngine AES-256-GCM should encrypt and decrypt empty plaintext
+00:00 +3: C:/projects/HanaNote/test/core/crypto/crypto_engine_test.dart: CryptoEngine AES-256-GCM should encrypt and decrypt with aad
+00:00 +4: C:/projects/HanaNote/test/core/crypto/crypto_engine_test.dart: CryptoEngine AES-256-GCM should fail decryption when aad does not match
+00:00 +5: C:/projects/HanaNote/test/core/crypto/key_manager_test.dart: KeyManager initializeKey then getKey should return a 32-byte key
+00:00 +6: C:/projects/HanaNote/test/core/crypto/key_manager_test.dart: KeyManager verifyPassword should return true for the correct password
+00:00 +7: C:/projects/HanaNote/test/core/crypto/key_manager_test.dart: KeyManager verifyPassword should return true for the correct password
+00:00 +7: C:/projects/HanaNote/test/core/error/error_boundary_test.dart: ErrorBoundary.init installs a platform error handler
+[ErrorBoundary] PlatformError: Bad state: boom
+
+00:00 +8: C:/projects/HanaNote/test/core/crypto/key_manager_test.dart: KeyManager verifyPassword should return true for the correct password
+00:00 +9: C:/projects/HanaNote/test/core/crypto/key_manager_test.dart: KeyManager verifyPassword should return true for the correct password
+00:00 +10: C:/projects/HanaNote/test/core/crypto/key_manager_test.dart: KeyManager verifyPassword should return true for the correct password
+00:00 +11: C:/projects/HanaNote/test/core/crypto/key_manager_test.dart: KeyManager verifyPassword should return true for the correct password
+00:00 +12: C:/projects/HanaNote/test/core/crypto/key_manager_test.dart: KeyManager verifyPassword should return true for the correct password
+00:00 +13: C:/projects/HanaNote/test/core/crypto/key_manager_test.dart: KeyManager verifyPassword should return true for the correct password
+00:00 +14: C:/projects/HanaNote/test/core/error/error_boundary_test.dart: ErrorFallbackPage renders localized fallback copy
+00:00 +15: C:/projects/HanaNote/test/core/error/error_boundary_test.dart: ErrorFallbackPage renders localized fallback copy
+00:00 +16: C:/projects/HanaNote/test/core/crypto/key_manager_test.dart: KeyManager verifyPassword should return false for a wrong password
+00:01 +16: C:/projects/HanaNote/test/core/error/error_boundary_test.dart: ErrorWidget.builder returns the fallback page after init
+[ErrorBoundary] FlutterError: The value of ErrorWidget.builder was changed by the test.
+00:01 +17: C:/projects/HanaNote/test/core/crypto/key_manager_test.dart: KeyManager verifyPassword should return false for a wrong password
+00:01 +17: C:/projects/HanaNote/test/core/error/error_boundary_test.dart: ErrorBoundary.init shows fallback UI when appRunner throws
+[ErrorBoundary] ZoneError: Bad state: init failed
+#0      main.<anonymous closure>.<anonymous closure> (file:///C:/projects/HanaNote/test/core/error/error_boundary_test.dart:102:9)
+#1      ErrorBoundary.init.<anonymous closure> (package:hananote/core/error/error_boundary.dart:61:24)
+#2      _rootRun (dart:async/zone.dart:1525:13)
+#3      _CustomZone.run (dart:async/zone.dart:1422:19)
+#4      _runZoned (dart:async/zone.dart:2034:6)
+#5      runZonedGuarded (dart:async/zone.dart:2020:12)
+#6      ErrorBoundary.init (package:hananote/core/error/error_boundary.dart:59:11)
+#7      main.<anonymous closure> (file:///C:/projects/HanaNote/test/core/error/error_boundary_test.dart:101:21)
+#8      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:29)
+<asynchronous suspension>
+#9      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1059:5)
+<asynchronous suspension>
+#10     StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+
+[ErrorBoundary] FlutterError: The value of ErrorWidget.builder was changed by the test.
+00:01 +18: C:/projects/HanaNote/test/core/crypto/key_manager_test.dart: KeyManager verifyPassword should return false for a wrong password
+00:01 +19: C:/projects/HanaNote/test/core/crypto/key_manager_test.dart: KeyManager verifyPassword should return false for a wrong password
+00:01 +20: C:/projects/HanaNote/test/core/crypto/key_manager_test.dart: KeyManager verifyPassword should return false for a wrong password
+00:01 +21: C:/projects/HanaNote/test/core/crypto/key_manager_test.dart: KeyManager verifyPassword should return false for a wrong password
+00:01 +22: C:/projects/HanaNote/test/core/privacy/app_blur_overlay_test.dart: shows and hides the privacy overlay on lifecycle changes
+00:01 +23: C:/projects/HanaNote/test/core/privacy/app_blur_overlay_test.dart: shows and hides the privacy overlay on lifecycle changes
+00:01 +24: C:/projects/HanaNote/test/core/privacy/app_blur_overlay_test.dart: shows and hides the privacy overlay on lifecycle changes
+00:01 +25: C:/projects/HanaNote/test/core/privacy/app_blur_overlay_test.dart: shows and hides the privacy overlay on lifecycle changes
+00:01 +26: C:/projects/HanaNote/test/core/privacy/app_blur_overlay_test.dart: shows and hides the privacy overlay on lifecycle changes
+00:01 +27: C:/projects/HanaNote/test/core/privacy/app_blur_overlay_test.dart: shows and hides the privacy overlay on lifecycle changes
+00:01 +28: C:/projects/HanaNote/test/features/auth/domain/usecases/unlock_app_test.dart: UnlockApp returns false when PIN format is invalid
+00:01 +29: C:/projects/HanaNote/test/features/auth/domain/usecases/unlock_app_test.dart: UnlockApp opens database when PIN is correct
+00:02 +30: C:/projects/HanaNote/test/features/auth/presentation/bloc/auth_cubit_test.dart: (setUpAll)
+00:02 +30: C:/projects/HanaNote/test/features/auth/presentation/bloc/auth_cubit_test.dart: emits needsSetup when app is not configured
+00:02 +31: C:/projects/HanaNote/test/features/auth/presentation/bloc/auth_cubit_test.dart: sets up PIN and unlocks on success
+00:02 +32: C:/projects/HanaNote/test/features/auth/presentation/bloc/auth_cubit_test.dart: emits locked state then error fallback on invalid PIN
+00:02 +33: C:/projects/HanaNote/test/features/auth/presentation/bloc/auth_cubit_test.dart: wipes data successfully
+00:02 +34: C:/projects/HanaNote/test/features/auth/presentation/bloc/auth_cubit_test.dart: (tearDownAll)
+00:02 +34: C:/projects/HanaNote/test/features/auth/presentation/pages/auth_wrapper_page_test.dart: (setUpAll)
+00:02 +34: C:/projects/HanaNote/test/features/auth/presentation/pages/auth_wrapper_page_test.dart: loads settings before navigating to today after unlock
+00:02 +35: C:/projects/HanaNote/test/features/auth/presentation/pages/lock_screen_page_test.dart: submits the PIN automatically after the sixth digit
+00:02 +36: C:/projects/HanaNote/test/features/auth/presentation/pages/lock_screen_page_test.dart: submits the PIN automatically after the sixth digit
+00:02 +37: C:/projects/HanaNote/test/features/auth/presentation/pages/lock_screen_page_test.dart: submits the PIN automatically after the sixth digit
+00:02 +38: C:/projects/HanaNote/test/features/auth/presentation/pages/lock_screen_page_test.dart: submits the PIN automatically after the sixth digit
+00:02 +39: C:/projects/HanaNote/test/features/auth/presentation/pages/lock_screen_page_test.dart: submits the PIN automatically after the sixth digit
+00:03 +40: C:/projects/HanaNote/test/features/auth/presentation/pages/lock_screen_page_test.dart: submits the PIN automatically after the sixth digit
+00:03 +41: C:/projects/HanaNote/test/features/auth/presentation/pages/setup_page_test.dart: shows inline error instead of submitting mismatched pins
+00:03 +42: C:/projects/HanaNote/test/features/auth/presentation/pages/setup_page_test.dart: shows inline error instead of submitting mismatched pins
+00:03 +43: C:/projects/HanaNote/test/features/auth/presentation/pages/setup_page_test.dart: shows inline error instead of submitting mismatched pins
+00:03 +44: C:/projects/HanaNote/test/features/auth/presentation/pages/setup_page_test.dart: shows inline error instead of submitting mismatched pins
+00:03 +45: C:/projects/HanaNote/test/features/auth/presentation/pages/setup_page_test.dart: shows inline error instead of submitting mismatched pins
+00:03 +46: C:/projects/HanaNote/test/features/auth/presentation/pages/setup_page_test.dart: shows inline error instead of submitting mismatched pins
+00:03 +47: C:/projects/HanaNote/test/features/auth/presentation/pages/setup_page_test.dart: shows inline error instead of submitting mismatched pins
+00:03 +48: C:/projects/HanaNote/test/features/auth/presentation/pages/setup_page_test.dart: shows inline error instead of submitting mismatched pins
+00:03 +49: C:/projects/HanaNote/test/features/auth/presentation/pages/setup_page_test.dart: shows inline error instead of submitting mismatched pins
+00:03 +50: C:/projects/HanaNote/test/features/auth/presentation/pages/setup_page_test.dart: shows inline error instead of submitting mismatched pins
+00:03 +51: C:/projects/HanaNote/test/features/auth/presentation/pages/setup_page_test.dart: shows inline error instead of submitting mismatched pins
+00:03 +52: C:/projects/HanaNote/test/features/auth/presentation/pages/setup_page_test.dart: shows inline error instead of submitting mismatched pins
+00:03 +53: C:/projects/HanaNote/test/features/auth/presentation/pages/setup_page_test.dart: shows inline error instead of submitting mismatched pins
+00:03 +54: C:/projects/HanaNote/test/features/auth/presentation/pages/setup_page_test.dart: shows inline error instead of submitting mismatched pins
+00:03 +55: C:/projects/HanaNote/test/features/auth/presentation/pages/setup_page_test.dart: shows inline error instead of submitting mismatched pins
+00:03 +56: C:/projects/HanaNote/test/features/auth/presentation/pages/setup_page_test.dart: shows inline error instead of submitting mismatched pins
+00:03 +57: C:/projects/HanaNote/test/features/auth/presentation/pages/setup_page_test.dart: shows inline error instead of submitting mismatched pins
+00:03 +58: C:/projects/HanaNote/test/features/auth/presentation/pages/setup_page_test.dart: shows inline error instead of submitting mismatched pins
+00:03 +59: C:/projects/HanaNote/test/features/auth/presentation/pages/setup_page_test.dart: shows inline error instead of submitting mismatched pins
+00:03 +60: C:/projects/HanaNote/test/features/blood_test/domain/usecases/add_blood_test_report_test.dart: (setUpAll)
+00:03 +60: C:/projects/HanaNote/test/features/blood_test/domain/usecases/add_blood_test_report_test.dart: AddBloodTestReport returns validation failure when readings are empty
+00:03 +61: C:/projects/HanaNote/test/features/blood_test/domain/usecases/add_blood_test_report_test.dart: AddBloodTestReport stores the report when validation succeeds
+00:03 +62: C:/projects/HanaNote/test/features/blood_test/domain/usecases/add_blood_test_report_test.dart: (tearDownAll)
+00:03 +62: C:/projects/HanaNote/test/features/blood_test/domain/usecases/get_all_blood_test_reports_test.dart: GetAllBloodTestReports returns reports when repository succeeds
+00:03 +63: C:/projects/HanaNote/test/features/blood_test/domain/usecases/get_all_blood_test_reports_test.dart: GetAllBloodTestReports returns failure when repository fails
+00:03 +64: C:/projects/HanaNote/test/features/blood_test/domain/usecases/get_hormone_trend_test.dart: GetHormoneTrend returns readings ordered by test date for the requested range
+00:04 +65: C:/projects/HanaNote/test/features/blood_test/domain/usecases/get_hormone_trend_test.dart: GetHormoneTrend returns an empty list when no readings match the requested range
+00:04 +66: C:/projects/HanaNote/test/features/blood_test/domain/usecases/get_hormone_trend_test.dart: GetHormoneTrend returns failure when repository fails
+00:04 +67: C:/projects/HanaNote/test/features/blood_test/presentation/bloc/blood_test_bloc_test.dart: (setUpAll)
+00:04 +67: C:/projects/HanaNote/test/features/blood_test/presentation/bloc/blood_test_bloc_test.dart: initial state is BloodTestInitial
+00:04 +68: C:/projects/HanaNote/test/features/blood_test/presentation/bloc/blood_test_bloc_test.dart: LoadBloodTestDashboard emits [loading, loaded] with default hormone and range
+00:04 +69: C:/projects/HanaNote/test/features/blood_test/presentation/bloc/blood_test_bloc_test.dart: SelectHormoneForTrend updates the selected hormone and trend data
+00:04 +70: C:/projects/HanaNote/test/features/blood_test/presentation/bloc/blood_test_bloc_test.dart: SelectTrendRange updates the selected range and trend data
+00:04 +71: C:/projects/HanaNote/test/features/blood_test/presentation/bloc/blood_test_bloc_test.dart: (tearDownAll)
+00:04 +71: C:/projects/HanaNote/test/features/blood_test/presentation/pages/data_page_test.dart: (setUpAll)
+00:04 +71: C:/projects/HanaNote/test/features/blood_test/presentation/pages/data_page_test.dart: shows no trend data when fewer than two reports exist
+00:04 +72: C:/projects/HanaNote/test/features/blood_test/presentation/pages/data_page_test.dart: shows no trend data when fewer than two reports exist
+00:04 +73: C:/projects/HanaNote/test/features/blood_test/presentation/pages/data_page_test.dart: shows no trend data when fewer than two reports exist
+00:04 +74: C:/projects/HanaNote/test/features/blood_test/presentation/pages/data_page_test.dart: shows no trend data when fewer than two reports exist
+00:04 +75: C:/projects/HanaNote/test/features/blood_test/presentation/pages/data_page_test.dart: shows no trend data when fewer than two reports exist
+00:04 +76: C:/projects/HanaNote/test/features/blood_test/presentation/pages/data_page_test.dart: shows no trend data when fewer than two reports exist
+00:04 +77: C:/projects/HanaNote/test/features/blood_test/presentation/pages/data_page_test.dart: shows no trend data when fewer than two reports exist
+00:04 +78: C:/projects/HanaNote/test/features/blood_test/presentation/pages/data_page_test.dart: shows no trend data when fewer than two reports exist
+00:04 +79: C:/projects/HanaNote/test/features/blood_test/presentation/pages/data_page_test.dart: shows no trend data when fewer than two reports exist
+00:04 +80: C:/projects/HanaNote/test/features/blood_test/presentation/pages/data_page_test.dart: shows no trend data when fewer than two reports exist
+00:04 +81: C:/projects/HanaNote/test/features/blood_test/presentation/pages/data_page_test.dart: shows no trend data when fewer than two reports exist
+00:04 +82: C:/projects/HanaNote/test/features/blood_test/presentation/pages/data_page_test.dart: shows no trend data when fewer than two reports exist
+00:04 +83: C:/projects/HanaNote/test/features/blood_test/presentation/pages/data_page_test.dart: shows no trend data when fewer than two reports exist
+00:04 +84: C:/projects/HanaNote/test/features/blood_test/presentation/pages/data_page_test.dart: shows no trend data when fewer than two reports exist
+00:04 +85: C:/projects/HanaNote/test/features/blood_test/presentation/pages/data_page_test.dart: shows no trend data when fewer than two reports exist
+00:04 +86: C:/projects/HanaNote/test/features/blood_test/presentation/pages/data_page_test.dart: shows no trend data when fewer than two reports exist
+00:04 +87: C:/projects/HanaNote/test/features/blood_test/presentation/pages/data_page_test.dart: shows no trend data when fewer than two reports exist
+00:04 +88: C:/projects/HanaNote/test/features/blood_test/presentation/pages/data_page_test.dart: shows no trend data when fewer than two reports exist
+00:04 +89: C:/projects/HanaNote/test/features/blood_test/presentation/pages/data_page_test.dart: shows no trend data when fewer than two reports exist
+00:05 +90: C:/projects/HanaNote/test/features/blood_test/presentation/pages/data_page_test.dart: shows no trend data when fewer than two reports exist
+00:05 +91: C:/projects/HanaNote/test/features/blood_test/presentation/pages/data_page_test.dart: shows no trend data when fewer than two reports exist
+00:05 +92: C:/projects/HanaNote/test/features/blood_test/presentation/pages/data_page_test.dart: shows no trend data when fewer than two reports exist
+00:05 +93: C:/projects/HanaNote/test/features/blood_test/presentation/pages/data_page_test.dart: (tearDownAll)
+00:05 +93: C:/projects/HanaNote/test/features/journal/domain/usecases/add_journal_entry_test.dart: AddJournalEntry trims content before persisting
+00:05 +94: C:/projects/HanaNote/test/features/journal/domain/usecases/add_journal_entry_test.dart: AddJournalEntry rejects empty content after trimming
+00:05 +95: C:/projects/HanaNote/test/features/journal/domain/usecases/get_all_journal_entries_test.dart: GetAllJournalEntries forwards the optional date range to the repository
+00:05 +96: C:/projects/HanaNote/test/features/journal/domain/usecases/get_journal_streak_test.dart: GetJournalStreak returns the repository streak value
+00:05 +97: C:/projects/HanaNote/test/features/journal/domain/usecases/update_journal_entry_test.dart: UpdateJournalEntry trims content before updating
+00:05 +98: C:/projects/HanaNote/test/features/journal/domain/usecases/update_journal_entry_test.dart: UpdateJournalEntry rejects empty content after trimming
+00:06 +99: C:/projects/HanaNote/test/features/journal/presentation/bloc/record_bloc_test.dart: initial state is RecordInitial
+00:06 +100: C:/projects/HanaNote/test/features/journal/presentation/bloc/record_bloc_test.dart: LoadRecordSummary emits [loading, loaded] with journal metadata
+00:06 +101: C:/projects/HanaNote/test/features/journal/presentation/bloc/record_bloc_test.dart: RefreshRecordSummary re-loads record summary state
+00:06 +102: C:/projects/HanaNote/test/features/journal/presentation/bloc/record_bloc_test.dart: LoadRecordSummary fills lastMeasurementSummary from latest measurement
+00:06 +103: C:/projects/HanaNote/test/features/journal/presentation/bloc/record_bloc_test.dart: LoadRecordSummary fills lastPhotoDate from latest photo
+00:06 +104: C:/projects/HanaNote/test/features/measurement/domain/entities/measurement_entry_test.dart: creates a measurement entry with optional fields
+00:06 +105: C:/projects/HanaNote/test/features/measurement/domain/entities/measurement_entry_test.dart: copyWith updates only the provided fields
+00:06 +106: C:/projects/HanaNote/test/features/measurement/domain/entities/measurement_entry_test.dart: supports value equality
+00:07 +107: C:/projects/HanaNote/test/features/measurement/domain/usecases/delete_measurement_test.dart: deletes a measurement entry by id
+00:07 +108: C:/projects/HanaNote/test/features/measurement/domain/usecases/delete_measurement_test.dart: forwards repository failures
+00:07 +109: C:/projects/HanaNote/test/features/measurement/domain/usecases/get_latest_measurement_test.dart: returns the latest measurement entry
+00:07 +110: C:/projects/HanaNote/test/features/measurement/domain/usecases/get_latest_measurement_test.dart: forwards repository failures
+00:07 +111: C:/projects/HanaNote/test/features/measurement/domain/usecases/get_measurement_history_test.dart: returns entries sorted by date descending
+00:07 +112: C:/projects/HanaNote/test/features/measurement/domain/usecases/get_measurement_history_test.dart: forwards repository failures
+00:07 +113: C:/projects/HanaNote/test/features/measurement/domain/usecases/save_measurement_test.dart: (setUpAll)
+00:07 +113: C:/projects/HanaNote/test/features/measurement/domain/usecases/save_measurement_test.dart: saves a valid measurement entry
+00:07 +114: C:/projects/HanaNote/test/features/measurement/domain/usecases/save_measurement_test.dart: returns validation failure when all measurement values are empty
+00:07 +115: C:/projects/HanaNote/test/features/measurement/domain/usecases/save_measurement_test.dart: (tearDownAll)
+00:07 +115: C:/projects/HanaNote/test/features/measurement/presentation/bloc/measurement_bloc_test.dart: initial state is MeasurementInitial
+00:07 +116: C:/projects/HanaNote/test/features/measurement/presentation/bloc/measurement_bloc_test.dart: loadHistory emits loading then loaded on success
+00:07 +117: C:/projects/HanaNote/test/features/measurement/presentation/bloc/measurement_bloc_test.dart: loadHistory emits error on failure
+00:07 +118: C:/projects/HanaNote/test/features/measurement/presentation/bloc/measurement_bloc_test.dart: saveMeasurement emits saved then reloads the list
+00:07 +119: C:/projects/HanaNote/test/features/measurement/presentation/bloc/measurement_bloc_test.dart: deleteMeasurement emits updated loaded list
+00:08 +120: C:/projects/HanaNote/test/features/medication/data/datasources/medication_local_datasource_test.dart: MedicationLocalDataSource gets all drugs from the drugs table
+00:08 +121: C:/projects/HanaNote/test/features/medication/data/datasources/medication_local_datasource_test.dart: MedicationLocalDataSource loads the latest schedule for a drug
+00:08 +122: C:/projects/HanaNote/test/features/medication/data/datasources/medication_local_datasource_test.dart: MedicationLocalDataSource builds parameterized date queries for drug logs
+00:08 +123: C:/projects/HanaNote/test/features/medication/data/datasources/medication_local_datasource_test.dart: MedicationLocalDataSource upserts inventory with replace conflict strategy
+00:08 +124: C:/projects/HanaNote/test/features/medication/data/models/drug_model_test.dart: DrugModel round-trips between json and domain
+00:08 +125: C:/projects/HanaNote/test/features/medication/data/models/drug_model_test.dart: DrugModel serializes sqlite field names correctly
+00:08 +126: C:/projects/HanaNote/test/features/medication/data/models/medication_schedule_model_test.dart: MedicationScheduleModel serializes and deserializes daily frequency
+00:08 +127: C:/projects/HanaNote/test/features/medication/data/models/medication_schedule_model_test.dart: MedicationScheduleModel serializes and deserializes everyNDays frequency
+00:08 +128: C:/projects/HanaNote/test/features/medication/data/models/medication_schedule_model_test.dart: MedicationScheduleModel serializes and deserializes weekly frequency
+00:08 +129: C:/projects/HanaNote/test/features/medication/data/models/medication_schedule_model_test.dart: MedicationScheduleModel serializes and deserializes custom frequency and schedule times
+00:08 +130: C:/projects/HanaNote/test/features/medication/data/repositories/medication_repository_impl_test.dart: MedicationRepositoryImpl maps getAllDrugs to domain entities
+00:08 +131: C:/projects/HanaNote/test/features/medication/data/repositories/medication_repository_impl_test.dart: MedicationRepositoryImpl wraps datasource exceptions as failures
+00:08 +132: C:/projects/HanaNote/test/features/medication/data/repositories/medication_repository_impl_test.dart: MedicationRepositoryImpl adds drugs using model mapping
+00:08 +133: C:/projects/HanaNote/test/features/medication/data/repositories/medication_repository_impl_test.dart: MedicationRepositoryImpl calculates adherence rate from expected and actual doses
+00:08 +134: C:/projects/HanaNote/test/features/medication/data/repositories/medication_repository_impl_test.dart: MedicationRepositoryImpl calculates days until empty from inventory and schedule
+00:08 +135: C:/projects/HanaNote/test/features/medication/domain/entities/enums_test.dart: DrugCategory displayName exposes localized labels
+00:08 +136: C:/projects/HanaNote/test/features/medication/domain/entities/enums_test.dart: AdministrationRoute displayName exposes localized labels
+00:08 +137: C:/projects/HanaNote/test/features/medication/domain/entities/enums_test.dart: DosageUnit displayName exposes localized labels
+00:09 +138: C:/projects/HanaNote/test/features/medication/domain/usecases/add_drug_test.dart: AddDrug trims and persists a valid drug
+00:09 +139: C:/projects/HanaNote/test/features/medication/domain/usecases/add_drug_test.dart: AddDrug returns validation failure when name is empty
+00:09 +140: C:/projects/HanaNote/test/features/medication/domain/usecases/add_drug_test.dart: AddDrug returns validation failure when unit does not match route
+00:09 +141: C:/projects/HanaNote/test/features/medication/domain/usecases/calculate_next_dose_test.dart: CalculateNextDose calculates next time for a daily schedule
+00:09 +142: C:/projects/HanaNote/test/features/medication/domain/usecases/calculate_next_dose_test.dart: CalculateNextDose calculates next time for an every-N-days schedule
+00:09 +143: C:/projects/HanaNote/test/features/medication/domain/usecases/calculate_next_dose_test.dart: CalculateNextDose calculates next time for a weekly schedule
+00:09 +144: C:/projects/HanaNote/test/features/medication/domain/usecases/calculate_next_dose_test.dart: CalculateNextDose returns null for a custom schedule
+00:09 +145: C:/projects/HanaNote/test/features/medication/domain/usecases/calculate_next_dose_test.dart: CalculateNextDose returns failure when repository fails
+00:09 +146: C:/projects/HanaNote/test/features/medication/domain/usecases/check_inventory_test.dart: CheckInventory marks stock below 14 days as low and 14 days as normal
+00:09 +147: C:/projects/HanaNote/test/features/medication/domain/usecases/check_inventory_test.dart: CheckInventory returns failure when repository fails
+00:09 +148: C:/projects/HanaNote/test/features/medication/domain/usecases/delete_drug_test.dart: DeleteDrug returns success when repository deletes the drug
+00:09 +149: C:/projects/HanaNote/test/features/medication/domain/usecases/delete_drug_test.dart: DeleteDrug returns failure when repository fails
+00:09 +150: C:/projects/HanaNote/test/features/medication/domain/usecases/get_adherence_stats_test.dart: GetAdherenceStats returns adherence for active drugs
+00:09 +151: C:/projects/HanaNote/test/features/medication/domain/usecases/get_adherence_stats_test.dart: GetAdherenceStats returns failure when loading drugs fails
+00:10 +152: C:/projects/HanaNote/test/features/medication/domain/usecases/get_all_drugs_test.dart: GetAllDrugs returns drugs when repository succeeds
+00:10 +153: C:/projects/HanaNote/test/features/medication/domain/usecases/get_all_drugs_test.dart: GetAllDrugs returns failure when repository fails
+00:10 +154: C:/projects/HanaNote/test/features/medication/domain/usecases/get_medication_logs_test.dart: GetMedicationLogs returns logs in the requested range
+00:10 +155: C:/projects/HanaNote/test/features/medication/domain/usecases/get_medication_logs_test.dart: GetMedicationLogs returns failure when repository fails
+00:10 +156: C:/projects/HanaNote/test/features/medication/domain/usecases/get_today_schedule_test.dart: GetTodaySchedule returns due items and completion state for today
+00:10 +157: C:/projects/HanaNote/test/features/medication/domain/usecases/get_today_schedule_test.dart: GetTodaySchedule returns failure when loading drugs fails
+00:10 +158: C:/projects/HanaNote/test/features/medication/domain/usecases/log_medication_test.dart: LogMedication adds the log and deducts inventory
+00:10 +159: C:/projects/HanaNote/test/features/medication/domain/usecases/log_medication_test.dart: LogMedication returns validation failure when inventory would go negative
+00:10 +160: C:/projects/HanaNote/test/features/medication/domain/usecases/log_medication_test.dart: LogMedication returns validation failure when injection site is missing
+00:10 +161: C:/projects/HanaNote/test/features/medication/domain/usecases/sync_medication_reminders_test.dart: SyncMedicationReminders synchronizes 2 active drugs with 2 times each
+00:10 +162: C:/projects/HanaNote/test/features/medication/domain/usecases/sync_medication_reminders_test.dart: SyncMedicationReminders returns right(0) when there are no active drugs
+00:10 +163: C:/projects/HanaNote/test/features/medication/domain/usecases/sync_medication_reminders_test.dart: SyncMedicationReminders returns Failure.notification when the repository fails
+00:10 +164: C:/projects/HanaNote/test/features/medication/domain/usecases/update_drug_test.dart: UpdateDrug returns updated drug on success
+00:10 +165: C:/projects/HanaNote/test/features/medication/domain/usecases/update_drug_test.dart: UpdateDrug returns failure on repository error
+00:11 +166: C:/projects/HanaNote/test/features/medication/presentation/bloc/adherence_cubit_test.dart: initial state is AdherenceInitial
+00:11 +167: C:/projects/HanaNote/test/features/medication/presentation/bloc/adherence_cubit_test.dart: loadStats emits [loading, loaded] on success
+00:11 +168: C:/projects/HanaNote/test/features/medication/presentation/bloc/adherence_cubit_test.dart: loadStats computes overallRate as mean across drugs
+00:11 +169: C:/projects/HanaNote/test/features/medication/presentation/bloc/adherence_cubit_test.dart: loadStats overallRate is 0.0 when no drugs
+00:11 +170: C:/projects/HanaNote/test/features/medication/presentation/bloc/adherence_cubit_test.dart: loadStats emits [loading, error] on failure
+00:11 +171: C:/projects/HanaNote/test/features/medication/presentation/bloc/drug_list_cubit_test.dart: initial state is DrugListInitial
+00:11 +172: C:/projects/HanaNote/test/features/medication/presentation/bloc/drug_list_cubit_test.dart: loadDrugs emits [loading, loaded] on success
+00:11 +173: C:/projects/HanaNote/test/features/medication/presentation/bloc/drug_list_cubit_test.dart: loadDrugs emits [loading, error] on failure
+00:11 +174: C:/projects/HanaNote/test/features/medication/presentation/bloc/drug_list_cubit_test.dart: loadDrugs emits loaded with empty list when no drugs exist
+00:11 +175: C:/projects/HanaNote/test/features/medication/presentation/bloc/drug_list_cubit_test.dart: addDrug reloads list on success
+00:11 +176: C:/projects/HanaNote/test/features/medication/presentation/bloc/drug_list_cubit_test.dart: addDrug emits error on failure
+00:11 +177: C:/projects/HanaNote/test/features/medication/presentation/bloc/drug_list_cubit_test.dart: updateDrug reloads list on success
+00:11 +178: C:/projects/HanaNote/test/features/medication/presentation/bloc/drug_list_cubit_test.dart: deleteDrug reloads list on success
+00:11 +179: C:/projects/HanaNote/test/features/medication/presentation/bloc/drug_list_cubit_test.dart: toggleDrugActive flips isActive and reloads
+00:11 +180: C:/projects/HanaNote/test/features/medication/presentation/bloc/inventory_cubit_test.dart: initial state is InventoryInitial
+00:11 +181: C:/projects/HanaNote/test/features/medication/presentation/bloc/inventory_cubit_test.dart: loadInventory emits [loading, loaded] on success
+00:11 +182: C:/projects/HanaNote/test/features/medication/presentation/bloc/inventory_cubit_test.dart: loadInventory computes lowStockCount correctly
+00:11 +183: C:/projects/HanaNote/test/features/medication/presentation/bloc/inventory_cubit_test.dart: loadInventory emits [loading, error] on failure
+00:11 +184: C:/projects/HanaNote/test/features/medication/presentation/bloc/inventory_cubit_test.dart: updateStock updates stock and reloads on success
+00:11 +185: C:/projects/HanaNote/test/features/medication/presentation/bloc/inventory_cubit_test.dart: updateStock emits error when repository fails
+00:11 +186: C:/projects/HanaNote/test/features/medication/presentation/bloc/schedule_editor_cubit_test.dart: initial state is ScheduleEditorIdle
+00:11 +187: C:/projects/HanaNote/test/features/medication/presentation/bloc/schedule_editor_cubit_test.dart: initNew emits ScheduleEditorEditing with isNew=true
+00:11 +188: C:/projects/HanaNote/test/features/medication/presentation/bloc/schedule_editor_cubit_test.dart: initEdit emits ScheduleEditorEditing populated from existing schedule
+00:11 +189: C:/projects/HanaNote/test/features/medication/presentation/bloc/schedule_editor_cubit_test.dart: loadForDrug emits editing state with drug defaults when no schedule exists
+00:11 +190: C:/projects/HanaNote/test/features/medication/presentation/bloc/schedule_editor_cubit_test.dart: loadForDrug emits editing state from existing schedule when one exists
+00:11 +191: C:/projects/HanaNote/test/features/medication/presentation/bloc/schedule_editor_cubit_test.dart: validate returns false when dosageAmount is null
+00:11 +192: C:/projects/HanaNote/test/features/medication/presentation/bloc/schedule_editor_cubit_test.dart: validate returns true when all required fields are set
+00:11 +193: C:/projects/HanaNote/test/features/medication/presentation/bloc/schedule_editor_cubit_test.dart: save emits [saving, saved] on success for new schedule
+00:11 +194: C:/projects/HanaNote/test/features/medication/presentation/bloc/schedule_editor_cubit_test.dart: save emits [saving, error] on repository failure
+00:11 +195: C:/projects/HanaNote/test/features/medication/presentation/bloc/schedule_editor_cubit_test.dart: save emits [saving, saved] when editing existing schedule
+00:11 +196: C:/projects/HanaNote/test/features/medication/presentation/bloc/today_schedule_bloc_test.dart: initial state is TodayScheduleInitial
+00:11 +197: C:/projects/HanaNote/test/features/medication/presentation/bloc/today_schedule_bloc_test.dart: LoadTodaySchedule emits [loading, loaded] on success
+00:11 +198: C:/projects/HanaNote/test/features/medication/presentation/bloc/today_schedule_bloc_test.dart: LoadTodaySchedule emits [loading, error] on failure
+00:11 +199: C:/projects/HanaNote/test/features/medication/presentation/bloc/today_schedule_bloc_test.dart: LoadTodaySchedule emits loaded with 0/0 counts for empty list
+00:11 +200: C:/projects/HanaNote/test/features/medication/presentation/bloc/today_schedule_bloc_test.dart: LoadTodaySchedule counts completed items correctly
+00:11 +201: C:/projects/HanaNote/test/features/medication/presentation/bloc/today_schedule_bloc_test.dart: LogDoseTodaySchedule logs dose and reloads on success
+00:11 +202: C:/projects/HanaNote/test/features/medication/presentation/bloc/today_schedule_bloc_test.dart: LogDoseTodaySchedule emits error when logMedication fails
+00:11 +203: C:/projects/HanaNote/test/features/medication/presentation/bloc/today_schedule_bloc_test.dart: LogDoseTodaySchedule marks a logged dose as late when the scheduled time has passed
+00:11 +204: C:/projects/HanaNote/test/features/medication/presentation/bloc/today_schedule_bloc_test.dart: SkipDoseTodaySchedule skips dose and reloads on success
+00:12 +205: C:/projects/HanaNote/test/features/medication/presentation/pages/today_page_test.dart: (setUpAll)
+00:12 +205: C:/projects/HanaNote/test/features/medication/presentation/pages/today_page_test.dart: renders greeting and HRT day count from settings state
+00:12 +206: C:/projects/HanaNote/test/features/medication/presentation/widgets/drug_card_test.dart: renders localized category and route labels
+00:12 +207: C:/projects/HanaNote/test/features/medication/presentation/widgets/drug_card_test.dart: renders localized category and route labels
+00:12 +208: C:/projects/HanaNote/test/features/medication/presentation/widgets/upcoming_dose_card_test.dart: renders the take button label in Chinese
+00:12 +209: C:/projects/HanaNote/test/features/medication/presentation/widgets/upcoming_dose_card_test.dart: renders the take button label in Chinese
+00:12 +210: C:/projects/HanaNote/test/features/medication/presentation/widgets/upcoming_dose_card_test.dart: renders the take button label in Chinese
+00:12 +211: C:/projects/HanaNote/test/features/medication/presentation/widgets/upcoming_dose_card_test.dart: renders the take button label in Chinese
+00:13 +212: C:/projects/HanaNote/test/features/medication/presentation/widgets/upcoming_dose_card_test.dart: renders the take button label in Chinese
+00:13 +213: C:/projects/HanaNote/test/features/medication/presentation/widgets/upcoming_dose_card_test.dart: renders the take button label in Chinese
+00:13 +214: C:/projects/HanaNote/test/features/medication/presentation/pages/today_page_test.dart: renders the daily quote selected from the rotation list
+00:13 +215: C:/projects/HanaNote/test/features/photo/domain/services/photo_crypto_service_test.dart: generateThumbnail caps the longest side to 200px
+00:13 +216: C:/projects/HanaNote/test/features/medication/presentation/pages/today_page_test.dart: avatar navigates to the profile page
+00:13 +217: C:/projects/HanaNote/test/features/medication/presentation/pages/today_page_test.dart: avatar navigates to the profile page
+00:13 +218: C:/projects/HanaNote/test/features/photo/domain/usecases/get_latest_photo_test.dart: returns the latest photo entry
+00:13 +219: C:/projects/HanaNote/test/features/photo/domain/usecases/get_latest_photo_test.dart: forwards repository failures
+00:13 +220: C:/projects/HanaNote/test/features/photo/domain/usecases/get_photo_history_test.dart: returns photo history sorted by date descending
+00:13 +221: C:/projects/HanaNote/test/features/photo/domain/usecases/get_photo_history_test.dart: forwards repository failures
+00:13 +222: C:/projects/HanaNote/test/features/photo/domain/usecases/load_photo_full_test.dart: loads the decrypted full photo bytes
+00:13 +223: C:/projects/HanaNote/test/features/photo/domain/usecases/load_photo_full_test.dart: forwards full photo decryption failures
+00:13 +224: C:/projects/HanaNote/test/features/photo/domain/usecases/load_photo_thumbnail_test.dart: loads the decrypted thumbnail bytes
+00:13 +225: C:/projects/HanaNote/test/features/photo/domain/usecases/load_photo_thumbnail_test.dart: forwards thumbnail decryption failures
+00:14 +226: C:/projects/HanaNote/test/features/photo/domain/usecases/save_photo_test.dart: (setUpAll)
+00:14 +226: C:/projects/HanaNote/test/features/photo/domain/usecases/save_photo_test.dart: saves photo metadata after encrypting both files
+00:14 +227: C:/projects/HanaNote/test/features/photo/domain/usecases/save_photo_test.dart: propagates encryption failures
+00:14 +228: C:/projects/HanaNote/test/features/photo/domain/usecases/save_photo_test.dart: rolls back encrypted files when repository save fails
+00:14 +229: C:/projects/HanaNote/test/features/photo/domain/usecases/save_photo_test.dart: (tearDownAll)
+00:14 +229: C:/projects/HanaNote/test/features/photo/presentation/blocs/photo_bloc_test.dart: (setUpAll)
+00:14 +229: C:/projects/HanaNote/test/features/photo/presentation/blocs/photo_bloc_test.dart: initial state is PhotoState.initial
+00:14 +230: C:/projects/HanaNote/test/features/photo/presentation/blocs/photo_bloc_test.dart: loadHistory success emits loaded with empty thumbnail cache
+00:14 +231: C:/projects/HanaNote/test/features/photo/presentation/blocs/photo_bloc_test.dart: loadHistory failure emits error
+00:14 +232: C:/projects/HanaNote/test/features/photo/presentation/blocs/photo_bloc_test.dart: deletePhoto success removes entry and cached thumbnail
+00:14 +233: C:/projects/HanaNote/test/features/photo/presentation/blocs/photo_bloc_test.dart: loadThumbnail success updates thumbnail cache
+00:14 +234: C:/projects/HanaNote/test/features/photo/presentation/blocs/photo_bloc_test.dart: capturePhoto cancelled keeps state unchanged
+00:14 +235: C:/projects/HanaNote/test/features/photo/presentation/blocs/photo_bloc_test.dart: capturePhoto success saves and reloads history
+00:14 +236: C:/projects/HanaNote/test/features/photo/presentation/blocs/photo_bloc_test.dart: capturePhoto failure restores the previous loaded state
+00:14 +237: C:/projects/HanaNote/test/features/photo/presentation/blocs/photo_bloc_test.dart: pickFromGallery success saves and reloads history
+00:14 +238: C:/projects/HanaNote/test/features/settings/domain/entities/user_profile_test.dart: UserProfile.withCalculatedHrtDayCount derives hrtDayCount from the start date
+00:14 +239: C:/projects/HanaNote/test/features/settings/domain/entities/user_profile_test.dart: UserProfile.withCalculatedHrtDayCount clamps hrtDayCount to zero for a future start date
+00:14 +240: C:/projects/HanaNote/test/features/settings/domain/entities/user_profile_test.dart: UserProfile.normalized recalculates hrtDayCount from hrtStartDate
+00:14 +241: C:/projects/HanaNote/test/features/settings/domain/usecases/get_profile_dashboard_test.dart: GetProfileDashboard returns the aggregated dashboard when all queries succeed
+00:14 +242: C:/projects/HanaNote/test/features/settings/domain/usecases/get_profile_dashboard_test.dart: GetProfileDashboard returns the first failure when loading the profile fails
+00:14 +243: C:/projects/HanaNote/test/features/settings/presentation/bloc/settings_bloc_test.dart: (setUpAll)
+00:14 +243: C:/projects/HanaNote/test/features/settings/presentation/bloc/settings_bloc_test.dart: initial state is SettingsInitial
+00:14 +244: C:/projects/HanaNote/test/features/settings/presentation/bloc/settings_bloc_test.dart: LoadSettingsDashboard emits [loading, loaded] when dashboard data loads successfully
+00:14 +245: C:/projects/HanaNote/test/features/settings/presentation/bloc/settings_bloc_test.dart: ToggleAppLock updates settings when app lock toggle succeeds
+00:14 +246: C:/projects/HanaNote/test/features/settings/presentation/bloc/settings_bloc_test.dart: UpdateDisplayName updates profile when name update succeeds
+00:14 +247: C:/projects/HanaNote/test/features/settings/presentation/bloc/settings_bloc_test.dart: UpdateHrtStartDate updates profile when HRT start date update succeeds
+00:14 +248: C:/projects/HanaNote/test/features/settings/presentation/bloc/settings_bloc_test.dart: WipeSettingsData emits wiped when data wipe succeeds
+00:14 +249: C:/projects/HanaNote/test/features/settings/presentation/bloc/settings_bloc_test.dart: failure handling emits error when dashboard loading fails
+00:14 +250: C:/projects/HanaNote/test/features/settings/presentation/bloc/settings_bloc_test.dart: failure handling emits error when wiping data fails
+00:14 +251: C:/projects/HanaNote/test/features/settings/presentation/bloc/settings_bloc_test.dart: (tearDownAll)
+00:15 +251: C:/projects/HanaNote/test/features/settings/presentation/pages/profile_page_test.dart: (setUpAll)
+00:15 +251: C:/projects/HanaNote/test/features/settings/presentation/pages/profile_page_test.dart: shows retry UI when loading the profile dashboard fails
+00:15 +252: C:/projects/HanaNote/test/features/settings/presentation/pages/profile_page_test.dart: shows retry UI when loading the profile dashboard fails
+00:15 +253: C:/projects/HanaNote/test/features/settings/presentation/pages/profile_page_test.dart: shows retry UI when loading the profile dashboard fails
+00:15 +254: C:/projects/HanaNote/test/features/settings/presentation/pages/profile_page_test.dart: shows retry UI when loading the profile dashboard fails
+00:15 +255: C:/projects/HanaNote/test/features/settings/presentation/pages/profile_page_test.dart: shows retry UI when loading the profile dashboard fails
+00:15 +255: C:/projects/HanaNote/test/features/simulator/domain/services/hana_pk_engine_test.dart: weibullInjection EV Tmax 竏・[24, 72]h
+EV Tmax: 40.0h
+00:15 +256: C:/projects/HanaNote/test/features/settings/presentation/pages/profile_page_test.dart: shows retry UI when loading the profile dashboard fails
+00:15 +256: C:/projects/HanaNote/test/features/simulator/domain/services/hana_pk_engine_test.dart: weibullInjection EC Tmax 竏・[48, 168]h
+EC Tmax: 66.0h
+00:15 +257: C:/projects/HanaNote/test/features/settings/presentation/pages/profile_page_test.dart: shows retry UI when loading the profile dashboard fails
+00:15 +257: C:/projects/HanaNote/test/features/simulator/domain/services/hana_pk_engine_test.dart: weibullInjection EN Tmax 竏・[72, 240]h
+EN Tmax: 76.0h
+00:15 +258: C:/projects/HanaNote/test/features/settings/presentation/pages/profile_page_test.dart: shows retry UI when loading the profile dashboard fails
+00:15 +258: C:/projects/HanaNote/test/features/simulator/domain/services/hana_pk_engine_test.dart: weibullInjection Tmax ordering: EV < EC < EN
+Tmax ordering => EV: 40.0h, EC: 66.0h, EN: 76.0h
+00:15 +259: C:/projects/HanaNote/test/features/settings/presentation/pages/profile_page_test.dart: shows retry UI when loading the profile dashboard fails
+00:15 +260: C:/projects/HanaNote/test/features/settings/presentation/pages/profile_page_test.dart: shows retry UI when loading the profile dashboard fails
+00:15 +261: C:/projects/HanaNote/test/features/settings/presentation/pages/profile_page_test.dart: shows retry UI when loading the profile dashboard fails
+00:15 +262: C:/projects/HanaNote/test/features/settings/presentation/pages/profile_page_test.dart: shows retry UI when loading the profile dashboard fails
+00:15 +263: C:/projects/HanaNote/test/features/settings/presentation/pages/profile_page_test.dart: shows retry UI when loading the profile dashboard fails
+00:15 +264: C:/projects/HanaNote/test/features/settings/presentation/pages/profile_page_test.dart: shows retry UI when loading the profile dashboard fails
+00:15 +265: C:/projects/HanaNote/test/features/settings/presentation/pages/profile_page_test.dart: shows retry UI when loading the profile dashboard fails
+00:15 +266: C:/projects/HanaNote/test/features/settings/presentation/pages/profile_page_test.dart: shows retry UI when loading the profile dashboard fails
+00:15 +267: C:/projects/HanaNote/test/features/settings/presentation/pages/profile_page_test.dart: shows retry UI when loading the profile dashboard fails
+00:15 +268: C:/projects/HanaNote/test/features/settings/presentation/pages/profile_page_test.dart: shows retry UI when loading the profile dashboard fails
+00:15 +269: C:/projects/HanaNote/test/features/settings/presentation/pages/profile_page_test.dart: shows retry UI when loading the profile dashboard fails
+00:15 +270: C:/projects/HanaNote/test/features/settings/presentation/pages/profile_page_test.dart: shows retry UI when loading the profile dashboard fails
+00:15 +271: C:/projects/HanaNote/test/features/settings/presentation/pages/profile_page_test.dart: shows retry UI when loading the profile dashboard fails
+00:15 +272: C:/projects/HanaNote/test/features/settings/presentation/pages/profile_page_test.dart: shows retry UI when loading the profile dashboard fails
+00:15 +273: C:/projects/HanaNote/test/features/settings/presentation/pages/profile_page_test.dart: shows retry UI when loading the profile dashboard fails
+00:15 +274: C:/projects/HanaNote/test/features/settings/presentation/pages/profile_page_test.dart: shows retry UI when loading the profile dashboard fails
+00:15 +275: C:/projects/HanaNote/test/features/settings/presentation/pages/profile_page_test.dart: shows retry UI when loading the profile dashboard fails
+00:15 +276: C:/projects/HanaNote/test/features/settings/presentation/pages/profile_page_test.dart: shows retry UI when loading the profile dashboard fails
+00:15 +277: C:/projects/HanaNote/test/features/settings/presentation/pages/profile_page_test.dart: shows retry UI when loading the profile dashboard fails
+00:15 +278: C:/projects/HanaNote/test/features/settings/presentation/pages/profile_page_test.dart: shows retry UI when loading the profile dashboard fails
+00:15 +279: C:/projects/HanaNote/test/features/settings/presentation/pages/profile_page_test.dart: shows retry UI when loading the profile dashboard fails
+00:15 +280: C:/projects/HanaNote/test/features/settings/presentation/pages/profile_page_test.dart: shows retry UI when loading the profile dashboard fails
+00:15 +281: C:/projects/HanaNote/test/features/settings/presentation/pages/profile_page_test.dart: shows retry UI when loading the profile dashboard fails
+00:15 +282: C:/projects/HanaNote/test/features/settings/presentation/pages/profile_page_test.dart: shows retry UI when loading the profile dashboard fails
+00:15 +283: C:/projects/HanaNote/test/features/settings/presentation/pages/profile_page_test.dart: shows retry UI when loading the profile dashboard fails
+00:15 +284: C:/projects/HanaNote/test/features/simulator/domain/services/hana_pk_engine_test.dart: comparison: Hana-PK vs V2 PkEngine steady-state peak remains positive for weekly EV dosing
+00:15 +285: C:/projects/HanaNote/test/features/simulator/domain/services/hana_pk_engine_test.dart: comparison: Hana-PK vs V2 PkEngine steady-state peak remains positive for weekly EV dosing
+00:15 +286: C:/projects/HanaNote/test/features/simulator/domain/services/hana_pk_engine_test.dart: comparison: Hana-PK vs V2 PkEngine steady-state peak remains positive for weekly EV dosing
+00:15 +287: C:/projects/HanaNote/test/features/simulator/domain/services/hana_pk_engine_test.dart: comparison: Hana-PK vs V2 PkEngine steady-state peak remains positive for weekly EV dosing
+00:15 +288: C:/projects/HanaNote/test/features/settings/presentation/pages/profile_page_test.dart: shows a snackbar for unfinished tool actions
+00:15 +289: C:/projects/HanaNote/test/features/settings/presentation/pages/profile_page_test.dart: shows a snackbar for unfinished tool actions
+00:15 +290: C:/projects/HanaNote/test/features/settings/presentation/pages/profile_page_test.dart: shows a snackbar for unfinished tool actions
+00:16 +291: C:/projects/HanaNote/test/features/settings/presentation/pages/profile_page_test.dart: (tearDownAll)
+00:16 +291: C:/projects/HanaNote/test/features/simulator/presentation/blocs/simulator_bloc_test.dart: initial state is SimulatorState.initial
+00:16 +292: C:/projects/HanaNote/test/features/simulator/presentation/blocs/simulator_bloc_test.dart: started emits error when repository-backed load fails
+00:16 +293: C:/projects/HanaNote/test/features/simulator/presentation/blocs/simulator_bloc_test.dart: started emits loaded when the initial simulation succeeds
+00:16 +294: C:/projects/HanaNote/test/features/simulator/presentation/blocs/simulator_bloc_test.dart: started emits loaded when the initial simulation succeeds
+00:16 +295: C:/projects/HanaNote/test/features/simulator/presentation/blocs/simulator_bloc_test.dart: started emits loaded when the initial simulation succeeds
+00:16 +296: C:/projects/HanaNote/test/features/simulator/presentation/blocs/simulator_bloc_test.dart: started emits loaded when the initial simulation succeeds
+00:16 +297: C:/projects/HanaNote/test/features/simulator/presentation/blocs/simulator_bloc_test.dart: started emits loaded when the initial simulation succeeds
+00:16 +298: C:/projects/HanaNote/test/features/simulator/presentation/blocs/simulator_bloc_test.dart: started emits loaded when the initial simulation succeeds
+00:16 +299: C:/projects/HanaNote/test/features/simulator/presentation/blocs/simulator_bloc_test.dart: started emits loaded when the initial simulation succeeds
+00:16 +300: C:/projects/HanaNote/test/features/simulator/presentation/blocs/simulator_bloc_test.dart: started emits loaded when the initial simulation succeeds
+00:16 +301: C:/projects/HanaNote/test/features/simulator/presentation/blocs/simulator_bloc_test.dart: started emits loaded when the initial simulation succeeds
+00:17 +302: C:/projects/HanaNote/test/features/simulator/presentation/blocs/simulator_bloc_test.dart: started emits loaded when the initial simulation succeeds
+00:17 +303: C:/projects/HanaNote/test/features/simulator/presentation/blocs/simulator_bloc_test.dart: started emits loaded when the initial simulation succeeds
+00:17 +304: C:/projects/HanaNote/test/features/simulator/presentation/blocs/simulator_bloc_test.dart: started emits loaded when the initial simulation succeeds
+00:17 +305: C:/projects/HanaNote/test/features/simulator/presentation/blocs/simulator_bloc_test.dart: started emits loaded when the initial simulation succeeds
+00:18 +306: C:/projects/HanaNote/test/features/simulator/presentation/blocs/simulator_bloc_test.dart: regimenUpdated with extreme parameters emits finite loaded values
+00:28 +307: C:/projects/HanaNote/test/features/simulator/presentation/blocs/simulator_bloc_test.dart: engineToggled keeps state unchanged when hanaPkResult is null
+00:28 +308: C:/projects/HanaNote/test/features/simulator/presentation/blocs/simulator_bloc_test.dart: regimenUpdated emits error when recalculation fails
+00:28 +309: C:/projects/HanaNote/test/features/simulator/presentation/blocs/simulator_bloc_test.dart: esterTypeChanged rebuilds the regimen with the selected ester type
+00:30 +310: C:/projects/HanaNote/test/features/simulator/presentation/blocs/simulator_bloc_test.dart: rapid consecutive regimenUpdated events settle on the last regimen
+00:38 +311: All tests passed!
