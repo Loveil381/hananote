@@ -17,4 +17,8 @@ sealed class SettingsState with _$SettingsState {
   }) = SettingsLoaded;
   const factory SettingsState.error(String message) = SettingsError;
   const factory SettingsState.wiped() = SettingsWiped;
+  const factory SettingsState.actionResult({
+    required String actionKey,
+    required SettingsState previousState,
+  }) = SettingsActionResult;
 }

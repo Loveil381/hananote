@@ -43,6 +43,8 @@ import 'package:hananote/features/simulator/presentation/pages/simulator_page.da
 import 'package:hananote/features/timeline/presentation/bloc/timeline_bloc.dart';
 import 'package:hananote/features/timeline/presentation/bloc/timeline_event.dart';
 import 'package:hananote/features/timeline/presentation/pages/timeline_page.dart';
+import 'package:hananote/features/notification/presentation/bloc/notification_settings_cubit.dart';
+import 'package:hananote/features/notification/presentation/pages/notification_settings_page.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'root');
@@ -244,6 +246,14 @@ final GoRouter appRouter = GoRouter(
       builder: (context, state) => BlocProvider.value(
         value: getIt<SettingsBloc>()..add(const LoadSettingsDashboard()),
         child: const SettingsDetailPage(),
+      ),
+    ),
+    GoRoute(
+      path: '/notification_settings',
+      parentNavigatorKey: _rootNavigatorKey,
+      builder: (context, state) => BlocProvider(
+        create: (_) => getIt<NotificationSettingsCubit>()..loadData(),
+        child: const NotificationSettingsPage(),
       ),
     ),
   ],

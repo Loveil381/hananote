@@ -25,6 +25,8 @@ mixin _$SettingsState {
         loaded,
     required TResult Function(String message) error,
     required TResult Function() wiped,
+    required TResult Function(String actionKey, SettingsState previousState)
+        actionResult,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -36,6 +38,8 @@ mixin _$SettingsState {
         loaded,
     TResult? Function(String message)? error,
     TResult? Function()? wiped,
+    TResult? Function(String actionKey, SettingsState previousState)?
+        actionResult,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -47,6 +51,8 @@ mixin _$SettingsState {
         loaded,
     TResult Function(String message)? error,
     TResult Function()? wiped,
+    TResult Function(String actionKey, SettingsState previousState)?
+        actionResult,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -57,6 +63,7 @@ mixin _$SettingsState {
     required TResult Function(SettingsLoaded value) loaded,
     required TResult Function(SettingsError value) error,
     required TResult Function(SettingsWiped value) wiped,
+    required TResult Function(SettingsActionResult value) actionResult,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -66,6 +73,7 @@ mixin _$SettingsState {
     TResult? Function(SettingsLoaded value)? loaded,
     TResult? Function(SettingsError value)? error,
     TResult? Function(SettingsWiped value)? wiped,
+    TResult? Function(SettingsActionResult value)? actionResult,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -75,6 +83,7 @@ mixin _$SettingsState {
     TResult Function(SettingsLoaded value)? loaded,
     TResult Function(SettingsError value)? error,
     TResult Function(SettingsWiped value)? wiped,
+    TResult Function(SettingsActionResult value)? actionResult,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -149,6 +158,8 @@ class _$SettingsInitialImpl implements SettingsInitial {
         loaded,
     required TResult Function(String message) error,
     required TResult Function() wiped,
+    required TResult Function(String actionKey, SettingsState previousState)
+        actionResult,
   }) {
     return initial();
   }
@@ -163,6 +174,8 @@ class _$SettingsInitialImpl implements SettingsInitial {
         loaded,
     TResult? Function(String message)? error,
     TResult? Function()? wiped,
+    TResult? Function(String actionKey, SettingsState previousState)?
+        actionResult,
   }) {
     return initial?.call();
   }
@@ -177,6 +190,8 @@ class _$SettingsInitialImpl implements SettingsInitial {
         loaded,
     TResult Function(String message)? error,
     TResult Function()? wiped,
+    TResult Function(String actionKey, SettingsState previousState)?
+        actionResult,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -193,6 +208,7 @@ class _$SettingsInitialImpl implements SettingsInitial {
     required TResult Function(SettingsLoaded value) loaded,
     required TResult Function(SettingsError value) error,
     required TResult Function(SettingsWiped value) wiped,
+    required TResult Function(SettingsActionResult value) actionResult,
   }) {
     return initial(this);
   }
@@ -205,6 +221,7 @@ class _$SettingsInitialImpl implements SettingsInitial {
     TResult? Function(SettingsLoaded value)? loaded,
     TResult? Function(SettingsError value)? error,
     TResult? Function(SettingsWiped value)? wiped,
+    TResult? Function(SettingsActionResult value)? actionResult,
   }) {
     return initial?.call(this);
   }
@@ -217,6 +234,7 @@ class _$SettingsInitialImpl implements SettingsInitial {
     TResult Function(SettingsLoaded value)? loaded,
     TResult Function(SettingsError value)? error,
     TResult Function(SettingsWiped value)? wiped,
+    TResult Function(SettingsActionResult value)? actionResult,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -278,6 +296,8 @@ class _$SettingsLoadingImpl implements SettingsLoading {
         loaded,
     required TResult Function(String message) error,
     required TResult Function() wiped,
+    required TResult Function(String actionKey, SettingsState previousState)
+        actionResult,
   }) {
     return loading();
   }
@@ -292,6 +312,8 @@ class _$SettingsLoadingImpl implements SettingsLoading {
         loaded,
     TResult? Function(String message)? error,
     TResult? Function()? wiped,
+    TResult? Function(String actionKey, SettingsState previousState)?
+        actionResult,
   }) {
     return loading?.call();
   }
@@ -306,6 +328,8 @@ class _$SettingsLoadingImpl implements SettingsLoading {
         loaded,
     TResult Function(String message)? error,
     TResult Function()? wiped,
+    TResult Function(String actionKey, SettingsState previousState)?
+        actionResult,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -322,6 +346,7 @@ class _$SettingsLoadingImpl implements SettingsLoading {
     required TResult Function(SettingsLoaded value) loaded,
     required TResult Function(SettingsError value) error,
     required TResult Function(SettingsWiped value) wiped,
+    required TResult Function(SettingsActionResult value) actionResult,
   }) {
     return loading(this);
   }
@@ -334,6 +359,7 @@ class _$SettingsLoadingImpl implements SettingsLoading {
     TResult? Function(SettingsLoaded value)? loaded,
     TResult? Function(SettingsError value)? error,
     TResult? Function(SettingsWiped value)? wiped,
+    TResult? Function(SettingsActionResult value)? actionResult,
   }) {
     return loading?.call(this);
   }
@@ -346,6 +372,7 @@ class _$SettingsLoadingImpl implements SettingsLoading {
     TResult Function(SettingsLoaded value)? loaded,
     TResult Function(SettingsError value)? error,
     TResult Function(SettingsWiped value)? wiped,
+    TResult Function(SettingsActionResult value)? actionResult,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -494,6 +521,8 @@ class _$SettingsLoadedImpl implements SettingsLoaded {
         loaded,
     required TResult Function(String message) error,
     required TResult Function() wiped,
+    required TResult Function(String actionKey, SettingsState previousState)
+        actionResult,
   }) {
     return loaded(profile, settings, activeDrugCount, inventoryDaysRemaining);
   }
@@ -508,6 +537,8 @@ class _$SettingsLoadedImpl implements SettingsLoaded {
         loaded,
     TResult? Function(String message)? error,
     TResult? Function()? wiped,
+    TResult? Function(String actionKey, SettingsState previousState)?
+        actionResult,
   }) {
     return loaded?.call(
         profile, settings, activeDrugCount, inventoryDaysRemaining);
@@ -523,6 +554,8 @@ class _$SettingsLoadedImpl implements SettingsLoaded {
         loaded,
     TResult Function(String message)? error,
     TResult Function()? wiped,
+    TResult Function(String actionKey, SettingsState previousState)?
+        actionResult,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -539,6 +572,7 @@ class _$SettingsLoadedImpl implements SettingsLoaded {
     required TResult Function(SettingsLoaded value) loaded,
     required TResult Function(SettingsError value) error,
     required TResult Function(SettingsWiped value) wiped,
+    required TResult Function(SettingsActionResult value) actionResult,
   }) {
     return loaded(this);
   }
@@ -551,6 +585,7 @@ class _$SettingsLoadedImpl implements SettingsLoaded {
     TResult? Function(SettingsLoaded value)? loaded,
     TResult? Function(SettingsError value)? error,
     TResult? Function(SettingsWiped value)? wiped,
+    TResult? Function(SettingsActionResult value)? actionResult,
   }) {
     return loaded?.call(this);
   }
@@ -563,6 +598,7 @@ class _$SettingsLoadedImpl implements SettingsLoaded {
     TResult Function(SettingsLoaded value)? loaded,
     TResult Function(SettingsError value)? error,
     TResult Function(SettingsWiped value)? wiped,
+    TResult Function(SettingsActionResult value)? actionResult,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -666,6 +702,8 @@ class _$SettingsErrorImpl implements SettingsError {
         loaded,
     required TResult Function(String message) error,
     required TResult Function() wiped,
+    required TResult Function(String actionKey, SettingsState previousState)
+        actionResult,
   }) {
     return error(message);
   }
@@ -680,6 +718,8 @@ class _$SettingsErrorImpl implements SettingsError {
         loaded,
     TResult? Function(String message)? error,
     TResult? Function()? wiped,
+    TResult? Function(String actionKey, SettingsState previousState)?
+        actionResult,
   }) {
     return error?.call(message);
   }
@@ -694,6 +734,8 @@ class _$SettingsErrorImpl implements SettingsError {
         loaded,
     TResult Function(String message)? error,
     TResult Function()? wiped,
+    TResult Function(String actionKey, SettingsState previousState)?
+        actionResult,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -710,6 +752,7 @@ class _$SettingsErrorImpl implements SettingsError {
     required TResult Function(SettingsLoaded value) loaded,
     required TResult Function(SettingsError value) error,
     required TResult Function(SettingsWiped value) wiped,
+    required TResult Function(SettingsActionResult value) actionResult,
   }) {
     return error(this);
   }
@@ -722,6 +765,7 @@ class _$SettingsErrorImpl implements SettingsError {
     TResult? Function(SettingsLoaded value)? loaded,
     TResult? Function(SettingsError value)? error,
     TResult? Function(SettingsWiped value)? wiped,
+    TResult? Function(SettingsActionResult value)? actionResult,
   }) {
     return error?.call(this);
   }
@@ -734,6 +778,7 @@ class _$SettingsErrorImpl implements SettingsError {
     TResult Function(SettingsLoaded value)? loaded,
     TResult Function(SettingsError value)? error,
     TResult Function(SettingsWiped value)? wiped,
+    TResult Function(SettingsActionResult value)? actionResult,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -803,6 +848,8 @@ class _$SettingsWipedImpl implements SettingsWiped {
         loaded,
     required TResult Function(String message) error,
     required TResult Function() wiped,
+    required TResult Function(String actionKey, SettingsState previousState)
+        actionResult,
   }) {
     return wiped();
   }
@@ -817,6 +864,8 @@ class _$SettingsWipedImpl implements SettingsWiped {
         loaded,
     TResult? Function(String message)? error,
     TResult? Function()? wiped,
+    TResult? Function(String actionKey, SettingsState previousState)?
+        actionResult,
   }) {
     return wiped?.call();
   }
@@ -831,6 +880,8 @@ class _$SettingsWipedImpl implements SettingsWiped {
         loaded,
     TResult Function(String message)? error,
     TResult Function()? wiped,
+    TResult Function(String actionKey, SettingsState previousState)?
+        actionResult,
     required TResult orElse(),
   }) {
     if (wiped != null) {
@@ -847,6 +898,7 @@ class _$SettingsWipedImpl implements SettingsWiped {
     required TResult Function(SettingsLoaded value) loaded,
     required TResult Function(SettingsError value) error,
     required TResult Function(SettingsWiped value) wiped,
+    required TResult Function(SettingsActionResult value) actionResult,
   }) {
     return wiped(this);
   }
@@ -859,6 +911,7 @@ class _$SettingsWipedImpl implements SettingsWiped {
     TResult? Function(SettingsLoaded value)? loaded,
     TResult? Function(SettingsError value)? error,
     TResult? Function(SettingsWiped value)? wiped,
+    TResult? Function(SettingsActionResult value)? actionResult,
   }) {
     return wiped?.call(this);
   }
@@ -871,6 +924,7 @@ class _$SettingsWipedImpl implements SettingsWiped {
     TResult Function(SettingsLoaded value)? loaded,
     TResult Function(SettingsError value)? error,
     TResult Function(SettingsWiped value)? wiped,
+    TResult Function(SettingsActionResult value)? actionResult,
     required TResult orElse(),
   }) {
     if (wiped != null) {
@@ -882,4 +936,205 @@ class _$SettingsWipedImpl implements SettingsWiped {
 
 abstract class SettingsWiped implements SettingsState {
   const factory SettingsWiped() = _$SettingsWipedImpl;
+}
+
+/// @nodoc
+abstract class _$$SettingsActionResultImplCopyWith<$Res> {
+  factory _$$SettingsActionResultImplCopyWith(_$SettingsActionResultImpl value,
+          $Res Function(_$SettingsActionResultImpl) then) =
+      __$$SettingsActionResultImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String actionKey, SettingsState previousState});
+
+  $SettingsStateCopyWith<$Res> get previousState;
+}
+
+/// @nodoc
+class __$$SettingsActionResultImplCopyWithImpl<$Res>
+    extends _$SettingsStateCopyWithImpl<$Res, _$SettingsActionResultImpl>
+    implements _$$SettingsActionResultImplCopyWith<$Res> {
+  __$$SettingsActionResultImplCopyWithImpl(_$SettingsActionResultImpl _value,
+      $Res Function(_$SettingsActionResultImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of SettingsState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? actionKey = null,
+    Object? previousState = null,
+  }) {
+    return _then(_$SettingsActionResultImpl(
+      actionKey: null == actionKey
+          ? _value.actionKey
+          : actionKey // ignore: cast_nullable_to_non_nullable
+              as String,
+      previousState: null == previousState
+          ? _value.previousState
+          : previousState // ignore: cast_nullable_to_non_nullable
+              as SettingsState,
+    ));
+  }
+
+  /// Create a copy of SettingsState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SettingsStateCopyWith<$Res> get previousState {
+    return $SettingsStateCopyWith<$Res>(_value.previousState, (value) {
+      return _then(_value.copyWith(previousState: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$SettingsActionResultImpl implements SettingsActionResult {
+  const _$SettingsActionResultImpl(
+      {required this.actionKey, required this.previousState});
+
+  @override
+  final String actionKey;
+  @override
+  final SettingsState previousState;
+
+  @override
+  String toString() {
+    return 'SettingsState.actionResult(actionKey: $actionKey, previousState: $previousState)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SettingsActionResultImpl &&
+            (identical(other.actionKey, actionKey) ||
+                other.actionKey == actionKey) &&
+            (identical(other.previousState, previousState) ||
+                other.previousState == previousState));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, actionKey, previousState);
+
+  /// Create a copy of SettingsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SettingsActionResultImplCopyWith<_$SettingsActionResultImpl>
+      get copyWith =>
+          __$$SettingsActionResultImplCopyWithImpl<_$SettingsActionResultImpl>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(UserProfile profile, AppSettings settings,
+            int activeDrugCount, int? inventoryDaysRemaining)
+        loaded,
+    required TResult Function(String message) error,
+    required TResult Function() wiped,
+    required TResult Function(String actionKey, SettingsState previousState)
+        actionResult,
+  }) {
+    return actionResult(actionKey, previousState);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(UserProfile profile, AppSettings settings,
+            int activeDrugCount, int? inventoryDaysRemaining)?
+        loaded,
+    TResult? Function(String message)? error,
+    TResult? Function()? wiped,
+    TResult? Function(String actionKey, SettingsState previousState)?
+        actionResult,
+  }) {
+    return actionResult?.call(actionKey, previousState);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(UserProfile profile, AppSettings settings,
+            int activeDrugCount, int? inventoryDaysRemaining)?
+        loaded,
+    TResult Function(String message)? error,
+    TResult Function()? wiped,
+    TResult Function(String actionKey, SettingsState previousState)?
+        actionResult,
+    required TResult orElse(),
+  }) {
+    if (actionResult != null) {
+      return actionResult(actionKey, previousState);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SettingsInitial value) initial,
+    required TResult Function(SettingsLoading value) loading,
+    required TResult Function(SettingsLoaded value) loaded,
+    required TResult Function(SettingsError value) error,
+    required TResult Function(SettingsWiped value) wiped,
+    required TResult Function(SettingsActionResult value) actionResult,
+  }) {
+    return actionResult(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(SettingsInitial value)? initial,
+    TResult? Function(SettingsLoading value)? loading,
+    TResult? Function(SettingsLoaded value)? loaded,
+    TResult? Function(SettingsError value)? error,
+    TResult? Function(SettingsWiped value)? wiped,
+    TResult? Function(SettingsActionResult value)? actionResult,
+  }) {
+    return actionResult?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SettingsInitial value)? initial,
+    TResult Function(SettingsLoading value)? loading,
+    TResult Function(SettingsLoaded value)? loaded,
+    TResult Function(SettingsError value)? error,
+    TResult Function(SettingsWiped value)? wiped,
+    TResult Function(SettingsActionResult value)? actionResult,
+    required TResult orElse(),
+  }) {
+    if (actionResult != null) {
+      return actionResult(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SettingsActionResult implements SettingsState {
+  const factory SettingsActionResult(
+      {required final String actionKey,
+      required final SettingsState previousState}) = _$SettingsActionResultImpl;
+
+  String get actionKey;
+  SettingsState get previousState;
+
+  /// Create a copy of SettingsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SettingsActionResultImplCopyWith<_$SettingsActionResultImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

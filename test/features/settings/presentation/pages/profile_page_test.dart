@@ -74,7 +74,7 @@ void main() {
     verify(() => settingsBloc.add(const LoadSettingsDashboard())).called(1);
   });
 
-  testWidgets('shows a snackbar for unfinished tool actions', (tester) async {
+  testWidgets('adds export data event when backup clicked', (tester) async {
     when(() => settingsBloc.state).thenReturn(loadedState);
 
     await tester.pumpWidget(
@@ -100,6 +100,6 @@ void main() {
     await tester.tap(inkWell, warnIfMissed: false);
     await tester.pump(const Duration(milliseconds: 500));
 
-    expect(find.text('备份工具仍在开发中'), findsOneWidget);
+    verify(() => settingsBloc.add(const SettingsEvent.exportData())).called(1);
   });
 }

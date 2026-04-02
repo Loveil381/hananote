@@ -12,6 +12,8 @@ import 'package:hananote/core/l10n/arb/app_localizations.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_bloc.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_event.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_state.dart';
+import 'package:hananote/core/constants/app_urls.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:intl/intl.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -56,10 +58,20 @@ class ProfilePage extends StatelessWidget {
           context.go('/');
         } else if (state is SettingsError) {
           _showSnackBar(context, state.message);
+        } else if (state is SettingsActionResult) {
+          final l10n = AppLocalizations.of(context)!;
+          if (state.actionKey == 'export_in_progress') {
+            _showSnackBar(context, l10n.exportInProgress);
+          } else if (state.actionKey == 'export_success') {
+            _showSnackBar(context, l10n.exportSuccess);
+          } else if (state.actionKey == 'export_failed') {
+            _showSnackBar(context, l10n.exportFailed);
+          }
         }
       },
-      builder: (context, state) {
+      builder: (context, rootState) {
         final l10n = AppLocalizations.of(context)!;
+        final state = rootState is SettingsActionResult ? rootState.previousState : rootState;
 
         if (state is SettingsError) {
           return Scaffold(
@@ -146,7 +158,7 @@ class ProfilePage extends StatelessWidget {
                         color: HanaColors.primary,
                       ),
                       onPressed: () =>
-                          _showSnackBar(context, l10n.notificationsComingSoon),
+                          context.push('/notification_settings'),
                     ),
                   ],
                 ),
@@ -411,7 +423,7 @@ class ProfilePage extends StatelessWidget {
                     trailingText: lastBackupText,
                     decoration: _bentoDecoration(),
                     onTap: () =>
-                        _showSnackBar(context, l10n.backupToolsComingSoon),
+                        context.read<SettingsBloc>().add(const ExportDataEvent()),
                   ),
                   const SizedBox(height: 12),
                   _ButtonRowItem(
@@ -453,15 +465,19 @@ class ProfilePage extends StatelessWidget {
                         _ListTileItem(
                           title: l10n.privacyPolicy,
                           isChevron: true,
-                          onTap: () =>
-                              _showSnackBar(context, l10n.privacyPolicyPending),
+                          onTap: () => launchUrl(
+                            Uri.parse(AppUrls.privacyPolicy),
+                            mode: LaunchMode.externalApplication,
+                          ),
                         ),
                         _bentoSeparator(),
                         _ListTileItem(
                           title: l10n.termsOfUse,
                           isChevron: true,
-                          onTap: () =>
-                              _showSnackBar(context, l10n.termsPending),
+                          onTap: () => launchUrl(
+                            Uri.parse(AppUrls.termsOfService),
+                            mode: LaunchMode.externalApplication,
+                          ),
                         ),
                       ],
                     ),

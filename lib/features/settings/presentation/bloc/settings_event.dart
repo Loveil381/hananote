@@ -30,4 +30,7 @@ sealed class SettingsEvent with _$SettingsEvent {
 
   /// Wipes all protected application data.
   const factory SettingsEvent.wipeData() = WipeSettingsData;
+
+  /// Exports local data to a JSON file.
+  const factory SettingsEvent.exportData() = ExportDataEvent;
 }

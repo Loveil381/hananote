@@ -321,6 +321,27 @@ class AppLocalizationsEn extends AppLocalizations {
   String get addBloodTest => 'Add blood test';
 
   @override
+  String get notificationSettings => 'Notification Settings';
+
+  @override
+  String get medicationReminders => 'Medication Reminders';
+
+  @override
+  String get noActiveReminders => 'No active medication reminders';
+
+  @override
+  String get reminderTimes => 'Reminder times';
+
+  @override
+  String get exportInProgress => 'Exporting data...';
+
+  @override
+  String get exportSuccess => 'Data exported successfully';
+
+  @override
+  String get exportFailed => 'Export failed';
+
+  @override
   String get data => 'Data';
 
   @override
@@ -669,13 +690,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsTitle => 'Settings';
 
   @override
-  String get notificationSettings => 'Notification Settings';
-
-  @override
   String get globalNotification => 'Global Notifications';
-
-  @override
-  String get medicationReminders => 'Medication Reminders';
 
   @override
   String get reminderEnabled => 'Enabled';

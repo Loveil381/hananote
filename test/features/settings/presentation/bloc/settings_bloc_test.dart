@@ -11,6 +11,7 @@ import 'package:hananote/features/settings/domain/usecases/wipe_all_data.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_bloc.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_event.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_state.dart';
+import 'package:hananote/features/settings/domain/usecases/export_data.dart';
 import 'package:mocktail/mocktail.dart';
 
 class _MockGetProfileDashboard extends Mock implements GetProfileDashboard {}
@@ -21,11 +22,14 @@ class _MockUpdateUserProfile extends Mock implements UpdateUserProfile {}
 
 class _MockWipeAllData extends Mock implements WipeAllData {}
 
+class _MockExportData extends Mock implements ExportData {}
+
 void main() {
   late _MockGetProfileDashboard getProfileDashboard;
   late _MockUpdateAppSettings updateAppSettings;
   late _MockUpdateUserProfile updateUserProfile;
   late _MockWipeAllData wipeAllData;
+  late _MockExportData exportData;
 
   final profile = UserProfile.withCalculatedHrtDayCount(
     displayName: '小花',
@@ -44,6 +48,7 @@ void main() {
         updateAppSettings,
         updateUserProfile,
         wipeAllData,
+        exportData,
       );
 
   SettingsState buildLoadedState() {
@@ -65,6 +70,7 @@ void main() {
     updateAppSettings = _MockUpdateAppSettings();
     updateUserProfile = _MockUpdateUserProfile();
     wipeAllData = _MockWipeAllData();
+    exportData = _MockExportData();
   });
 
   test('initial state is SettingsInitial', () {

@@ -1,5 +1,7 @@
+import 'dart:io';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hananote/core/error/failures.dart';
+import 'package:hananote/features/settings/domain/usecases/export_data.dart';
 import 'package:hananote/features/settings/domain/usecases/get_profile_dashboard.dart';
 import 'package:hananote/features/settings/domain/usecases/update_app_settings.dart';
 import 'package:hananote/features/settings/domain/usecases/update_user_profile.dart';
@@ -7,6 +9,8 @@ import 'package:hananote/features/settings/domain/usecases/wipe_all_data.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_event.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_state.dart';
 import 'package:injectable/injectable.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:share_plus/share_plus.dart';
 
 /// BLoC for managing the settings dashboard state.
 @lazySingleton
@@ -17,6 +21,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     this._updateAppSettings,
     this._updateUserProfile,
     this._wipeAllData,
+    this._exportData,
   ) : super(const SettingsInitial()) {
     on<LoadSettingsDashboard>(_onLoadDashboard);
     on<ToggleAppLock>(_onToggleAppLock);
@@ -25,12 +30,14 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     on<UpdateDisplayName>(_onUpdateDisplayName);
     on<UpdateHrtStartDate>(_onUpdateHrtStartDate);
     on<WipeSettingsData>(_onWipeData);
+    on<ExportDataEvent>(_onExportData);
   }
 
   final GetProfileDashboard _getProfileDashboard;
   final UpdateAppSettings _updateAppSettings;
   final UpdateUserProfile _updateUserProfile;
   final WipeAllData _wipeAllData;
+  final ExportData _exportData;
 
   Future<void> _onLoadDashboard(
     LoadSettingsDashboard event,
@@ -168,5 +175,51 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
       (failure) => emit(SettingsError(failureMessage(failure))),
       (_) => emit(const SettingsWiped()),
     );
+  }
+
+  Future<void> _onExportData(
+    ExportDataEvent event,
+    Emitter<SettingsState> emit,
+  ) async {
+    final currentState = state;
+    if (currentState is! SettingsLoaded) return;
+
+    emit(SettingsState.actionResult(
+      actionKey: 'export_in_progress',
+      previousState: currentState,
+    ));
+
+    final failureOrExport = await _exportData();
+
+    await failureOrExport.fold(
+      (failure) async {
+        emit(SettingsState.actionResult(
+          actionKey: 'export_failed',
+          previousState: currentState,
+        ));
+      },
+      (jsonString) async {
+        try {
+          final tempDir = await getTemporaryDirectory();
+          final fileName = 'hananote_backup_${DateTime.now().millisecondsSinceEpoch}.json';
+          final file = File('${tempDir.path}/$fileName');
+          await file.writeAsString(jsonString);
+
+          await Share.shareXFiles([XFile(file.path)], text: 'HanaNote Backup');
+          emit(SettingsState.actionResult(
+            actionKey: 'export_success',
+            previousState: currentState,
+          ));
+        } catch (e) {
+          emit(SettingsState.actionResult(
+            actionKey: 'export_failed',
+            previousState: currentState,
+          ));
+        }
+      },
+    );
+
+    // After handling the action and showing snackbar, restore visual state
+    emit(currentState);
   }
 }

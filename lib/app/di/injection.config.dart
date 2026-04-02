@@ -105,6 +105,8 @@ import 'package:hananote/features/medication/presentation/bloc/inventory_cubit.d
     as _i848;
 import 'package:hananote/features/medication/presentation/bloc/today_schedule_bloc.dart'
     as _i14;
+import 'package:hananote/features/notification/presentation/bloc/notification_settings_cubit.dart'
+    as _i922;
 import 'package:hananote/features/photo/data/datasources/photo_local_data_source.dart'
     as _i432;
 import 'package:hananote/features/photo/data/repositories/photo_repository_impl.dart'
@@ -135,6 +137,8 @@ import 'package:hananote/features/settings/data/repositories/settings_repository
     as _i1024;
 import 'package:hananote/features/settings/domain/repositories/settings_repository.dart'
     as _i755;
+import 'package:hananote/features/settings/domain/usecases/export_data.dart'
+    as _i671;
 import 'package:hananote/features/settings/domain/usecases/get_profile_dashboard.dart'
     as _i287;
 import 'package:hananote/features/settings/domain/usecases/update_app_settings.dart'
@@ -251,6 +255,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i1050.LogMedication(gh<_i160.MedicationRepository>()));
     gh.factory<_i246.UpdateDrug>(
         () => _i246.UpdateDrug(gh<_i160.MedicationRepository>()));
+    gh.factory<_i922.NotificationSettingsCubit>(() =>
+        _i922.NotificationSettingsCubit(gh<_i160.MedicationRepository>()));
     gh.factory<_i691.RunPkSimulation>(
         () => _i691.RunPkSimulation(gh<_i160.MedicationRepository>()));
     gh.lazySingleton<_i843.SettingsLocalDataSource>(
@@ -326,6 +332,13 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i965.GetTimelineEvents>(),
           gh<_i755.SettingsRepository>(),
         ));
+    gh.factory<_i671.ExportData>(() => _i671.ExportData(
+          gh<_i160.MedicationRepository>(),
+          gh<_i1032.JournalRepository>(),
+          gh<_i979.BloodTestRepository>(),
+          gh<_i502.MeasurementRepository>(),
+          gh<_i755.SettingsRepository>(),
+        ));
     gh.factory<_i1026.BloodTestBloc>(() => _i1026.BloodTestBloc(
           getAllReports: gh<_i712.GetAllBloodTestReports>(),
           getTrend: gh<_i341.GetHormoneTrend>(),
@@ -341,10 +354,10 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i287.GetProfileDashboard(gh<_i755.SettingsRepository>()));
     gh.factory<_i695.UpdateAppSettings>(
         () => _i695.UpdateAppSettings(gh<_i755.SettingsRepository>()));
-    gh.factory<_i135.WipeAllData>(
-        () => _i135.WipeAllData(gh<_i755.SettingsRepository>()));
     gh.factory<_i254.UpdateUserProfile>(
         () => _i254.UpdateUserProfile(gh<_i755.SettingsRepository>()));
+    gh.factory<_i135.WipeAllData>(
+        () => _i135.WipeAllData(gh<_i755.SettingsRepository>()));
     gh.lazySingleton<_i697.RecordBloc>(() => _i697.RecordBloc(
           gh<_i910.GetJournalStreak>(),
           gh<_i1032.JournalRepository>(),
@@ -361,6 +374,7 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i695.UpdateAppSettings>(),
           gh<_i254.UpdateUserProfile>(),
           gh<_i135.WipeAllData>(),
+          gh<_i671.ExportData>(),
         ));
     return this;
   }

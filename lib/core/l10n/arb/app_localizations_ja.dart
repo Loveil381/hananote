@@ -315,6 +315,27 @@ class AppLocalizationsJa extends AppLocalizations {
   String get addBloodTest => '血液検査を追加';
 
   @override
+  String get notificationSettings => '通知設定';
+
+  @override
+  String get medicationReminders => '服薬リマインダー';
+
+  @override
+  String get noActiveReminders => 'アクティブな服薬リマインダーはありません';
+
+  @override
+  String get reminderTimes => 'リマインダー時間';
+
+  @override
+  String get exportInProgress => 'データをエクスポート中...';
+
+  @override
+  String get exportSuccess => 'データのエクスポートが完了しました';
+
+  @override
+  String get exportFailed => 'エクスポートに失敗しました';
+
+  @override
   String get data => 'データ';
 
   @override
@@ -648,13 +669,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get settingsTitle => '設定';
 
   @override
-  String get notificationSettings => '通知設定';
-
-  @override
   String get globalNotification => 'グローバル通知';
-
-  @override
-  String get medicationReminders => '服薬リマインダー';
 
   @override
   String get reminderEnabled => '有効';

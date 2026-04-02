@@ -7,6 +7,8 @@ import 'package:hananote/core/l10n/arb/app_localizations.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_bloc.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_event.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_state.dart';
+import 'package:hananote/core/constants/app_urls.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:intl/intl.dart';
 
 /// The settings detail page.
@@ -205,6 +207,26 @@ class SettingsDetailPage extends StatelessWidget {
                               color: HanaColors.onSurfaceVariant,
                               fontWeight: FontWeight.w500,
                             ),
+                          ),
+                        ),
+                        const Divider(height: 1, indent: 56),
+                        _SettingsTile(
+                          icon: Icons.privacy_tip_outlined,
+                          title: l10n.privacyPolicy,
+                          trailing: const Icon(Icons.chevron_right, color: HanaColors.outlineVariant),
+                          onTap: () => launchUrl(
+                            Uri.parse(AppUrls.privacyPolicy),
+                            mode: LaunchMode.externalApplication,
+                          ),
+                        ),
+                        const Divider(height: 1, indent: 56),
+                        _SettingsTile(
+                          icon: Icons.description_outlined,
+                          title: l10n.termsOfUse,
+                          trailing: const Icon(Icons.chevron_right, color: HanaColors.outlineVariant),
+                          onTap: () => launchUrl(
+                            Uri.parse(AppUrls.termsOfService),
+                            mode: LaunchMode.externalApplication,
                           ),
                         ),
                       ],

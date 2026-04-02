@@ -688,6 +688,48 @@ abstract class AppLocalizations {
   /// **'Add blood test'**
   String get addBloodTest;
 
+  /// No description provided for @notificationSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Notification Settings'**
+  String get notificationSettings;
+
+  /// No description provided for @medicationReminders.
+  ///
+  /// In en, this message translates to:
+  /// **'Medication Reminders'**
+  String get medicationReminders;
+
+  /// No description provided for @noActiveReminders.
+  ///
+  /// In en, this message translates to:
+  /// **'No active medication reminders'**
+  String get noActiveReminders;
+
+  /// No description provided for @reminderTimes.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminder times'**
+  String get reminderTimes;
+
+  /// No description provided for @exportInProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Exporting data...'**
+  String get exportInProgress;
+
+  /// No description provided for @exportSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Data exported successfully'**
+  String get exportSuccess;
+
+  /// No description provided for @exportFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Export failed'**
+  String get exportFailed;
+
   /// No description provided for @data.
   ///
   /// In en, this message translates to:
@@ -1342,23 +1384,11 @@ abstract class AppLocalizations {
   /// **'Settings'**
   String get settingsTitle;
 
-  /// No description provided for @notificationSettings.
-  ///
-  /// In en, this message translates to:
-  /// **'Notification Settings'**
-  String get notificationSettings;
-
   /// No description provided for @globalNotification.
   ///
   /// In en, this message translates to:
   /// **'Global Notifications'**
   String get globalNotification;
-
-  /// No description provided for @medicationReminders.
-  ///
-  /// In en, this message translates to:
-  /// **'Medication Reminders'**
-  String get medicationReminders;
 
   /// No description provided for @reminderEnabled.
   ///

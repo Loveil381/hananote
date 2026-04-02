@@ -25,6 +25,7 @@ mixin _$SettingsEvent {
     required TResult Function(String name) updateDisplayName,
     required TResult Function(DateTime date) updateHrtStartDate,
     required TResult Function() wipeData,
+    required TResult Function() exportData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -36,6 +37,7 @@ mixin _$SettingsEvent {
     TResult? Function(String name)? updateDisplayName,
     TResult? Function(DateTime date)? updateHrtStartDate,
     TResult? Function()? wipeData,
+    TResult? Function()? exportData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -47,6 +49,7 @@ mixin _$SettingsEvent {
     TResult Function(String name)? updateDisplayName,
     TResult Function(DateTime date)? updateHrtStartDate,
     TResult Function()? wipeData,
+    TResult Function()? exportData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -59,6 +62,7 @@ mixin _$SettingsEvent {
     required TResult Function(UpdateDisplayName value) updateDisplayName,
     required TResult Function(UpdateHrtStartDate value) updateHrtStartDate,
     required TResult Function(WipeSettingsData value) wipeData,
+    required TResult Function(ExportDataEvent value) exportData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -70,6 +74,7 @@ mixin _$SettingsEvent {
     TResult? Function(UpdateDisplayName value)? updateDisplayName,
     TResult? Function(UpdateHrtStartDate value)? updateHrtStartDate,
     TResult? Function(WipeSettingsData value)? wipeData,
+    TResult? Function(ExportDataEvent value)? exportData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -81,6 +86,7 @@ mixin _$SettingsEvent {
     TResult Function(UpdateDisplayName value)? updateDisplayName,
     TResult Function(UpdateHrtStartDate value)? updateHrtStartDate,
     TResult Function(WipeSettingsData value)? wipeData,
+    TResult Function(ExportDataEvent value)? exportData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -157,6 +163,7 @@ class _$LoadSettingsDashboardImpl implements LoadSettingsDashboard {
     required TResult Function(String name) updateDisplayName,
     required TResult Function(DateTime date) updateHrtStartDate,
     required TResult Function() wipeData,
+    required TResult Function() exportData,
   }) {
     return loadDashboard();
   }
@@ -171,6 +178,7 @@ class _$LoadSettingsDashboardImpl implements LoadSettingsDashboard {
     TResult? Function(String name)? updateDisplayName,
     TResult? Function(DateTime date)? updateHrtStartDate,
     TResult? Function()? wipeData,
+    TResult? Function()? exportData,
   }) {
     return loadDashboard?.call();
   }
@@ -185,6 +193,7 @@ class _$LoadSettingsDashboardImpl implements LoadSettingsDashboard {
     TResult Function(String name)? updateDisplayName,
     TResult Function(DateTime date)? updateHrtStartDate,
     TResult Function()? wipeData,
+    TResult Function()? exportData,
     required TResult orElse(),
   }) {
     if (loadDashboard != null) {
@@ -203,6 +212,7 @@ class _$LoadSettingsDashboardImpl implements LoadSettingsDashboard {
     required TResult Function(UpdateDisplayName value) updateDisplayName,
     required TResult Function(UpdateHrtStartDate value) updateHrtStartDate,
     required TResult Function(WipeSettingsData value) wipeData,
+    required TResult Function(ExportDataEvent value) exportData,
   }) {
     return loadDashboard(this);
   }
@@ -217,6 +227,7 @@ class _$LoadSettingsDashboardImpl implements LoadSettingsDashboard {
     TResult? Function(UpdateDisplayName value)? updateDisplayName,
     TResult? Function(UpdateHrtStartDate value)? updateHrtStartDate,
     TResult? Function(WipeSettingsData value)? wipeData,
+    TResult? Function(ExportDataEvent value)? exportData,
   }) {
     return loadDashboard?.call(this);
   }
@@ -231,6 +242,7 @@ class _$LoadSettingsDashboardImpl implements LoadSettingsDashboard {
     TResult Function(UpdateDisplayName value)? updateDisplayName,
     TResult Function(UpdateHrtStartDate value)? updateHrtStartDate,
     TResult Function(WipeSettingsData value)? wipeData,
+    TResult Function(ExportDataEvent value)? exportData,
     required TResult orElse(),
   }) {
     if (loadDashboard != null) {
@@ -319,6 +331,7 @@ class _$ToggleAppLockImpl implements ToggleAppLock {
     required TResult Function(String name) updateDisplayName,
     required TResult Function(DateTime date) updateHrtStartDate,
     required TResult Function() wipeData,
+    required TResult Function() exportData,
   }) {
     return toggleAppLock(enabled);
   }
@@ -333,6 +346,7 @@ class _$ToggleAppLockImpl implements ToggleAppLock {
     TResult? Function(String name)? updateDisplayName,
     TResult? Function(DateTime date)? updateHrtStartDate,
     TResult? Function()? wipeData,
+    TResult? Function()? exportData,
   }) {
     return toggleAppLock?.call(enabled);
   }
@@ -347,6 +361,7 @@ class _$ToggleAppLockImpl implements ToggleAppLock {
     TResult Function(String name)? updateDisplayName,
     TResult Function(DateTime date)? updateHrtStartDate,
     TResult Function()? wipeData,
+    TResult Function()? exportData,
     required TResult orElse(),
   }) {
     if (toggleAppLock != null) {
@@ -365,6 +380,7 @@ class _$ToggleAppLockImpl implements ToggleAppLock {
     required TResult Function(UpdateDisplayName value) updateDisplayName,
     required TResult Function(UpdateHrtStartDate value) updateHrtStartDate,
     required TResult Function(WipeSettingsData value) wipeData,
+    required TResult Function(ExportDataEvent value) exportData,
   }) {
     return toggleAppLock(this);
   }
@@ -379,6 +395,7 @@ class _$ToggleAppLockImpl implements ToggleAppLock {
     TResult? Function(UpdateDisplayName value)? updateDisplayName,
     TResult? Function(UpdateHrtStartDate value)? updateHrtStartDate,
     TResult? Function(WipeSettingsData value)? wipeData,
+    TResult? Function(ExportDataEvent value)? exportData,
   }) {
     return toggleAppLock?.call(this);
   }
@@ -393,6 +410,7 @@ class _$ToggleAppLockImpl implements ToggleAppLock {
     TResult Function(UpdateDisplayName value)? updateDisplayName,
     TResult Function(UpdateHrtStartDate value)? updateHrtStartDate,
     TResult Function(WipeSettingsData value)? wipeData,
+    TResult Function(ExportDataEvent value)? exportData,
     required TResult orElse(),
   }) {
     if (toggleAppLock != null) {
@@ -491,6 +509,7 @@ class _$TogglePrivacyModeImpl implements TogglePrivacyMode {
     required TResult Function(String name) updateDisplayName,
     required TResult Function(DateTime date) updateHrtStartDate,
     required TResult Function() wipeData,
+    required TResult Function() exportData,
   }) {
     return togglePrivacyMode(enabled);
   }
@@ -505,6 +524,7 @@ class _$TogglePrivacyModeImpl implements TogglePrivacyMode {
     TResult? Function(String name)? updateDisplayName,
     TResult? Function(DateTime date)? updateHrtStartDate,
     TResult? Function()? wipeData,
+    TResult? Function()? exportData,
   }) {
     return togglePrivacyMode?.call(enabled);
   }
@@ -519,6 +539,7 @@ class _$TogglePrivacyModeImpl implements TogglePrivacyMode {
     TResult Function(String name)? updateDisplayName,
     TResult Function(DateTime date)? updateHrtStartDate,
     TResult Function()? wipeData,
+    TResult Function()? exportData,
     required TResult orElse(),
   }) {
     if (togglePrivacyMode != null) {
@@ -537,6 +558,7 @@ class _$TogglePrivacyModeImpl implements TogglePrivacyMode {
     required TResult Function(UpdateDisplayName value) updateDisplayName,
     required TResult Function(UpdateHrtStartDate value) updateHrtStartDate,
     required TResult Function(WipeSettingsData value) wipeData,
+    required TResult Function(ExportDataEvent value) exportData,
   }) {
     return togglePrivacyMode(this);
   }
@@ -551,6 +573,7 @@ class _$TogglePrivacyModeImpl implements TogglePrivacyMode {
     TResult? Function(UpdateDisplayName value)? updateDisplayName,
     TResult? Function(UpdateHrtStartDate value)? updateHrtStartDate,
     TResult? Function(WipeSettingsData value)? wipeData,
+    TResult? Function(ExportDataEvent value)? exportData,
   }) {
     return togglePrivacyMode?.call(this);
   }
@@ -565,6 +588,7 @@ class _$TogglePrivacyModeImpl implements TogglePrivacyMode {
     TResult Function(UpdateDisplayName value)? updateDisplayName,
     TResult Function(UpdateHrtStartDate value)? updateHrtStartDate,
     TResult Function(WipeSettingsData value)? wipeData,
+    TResult Function(ExportDataEvent value)? exportData,
     required TResult orElse(),
   }) {
     if (togglePrivacyMode != null) {
@@ -663,6 +687,7 @@ class _$ToggleBlurOverlayImpl implements ToggleBlurOverlay {
     required TResult Function(String name) updateDisplayName,
     required TResult Function(DateTime date) updateHrtStartDate,
     required TResult Function() wipeData,
+    required TResult Function() exportData,
   }) {
     return toggleBlurOverlay(enabled);
   }
@@ -677,6 +702,7 @@ class _$ToggleBlurOverlayImpl implements ToggleBlurOverlay {
     TResult? Function(String name)? updateDisplayName,
     TResult? Function(DateTime date)? updateHrtStartDate,
     TResult? Function()? wipeData,
+    TResult? Function()? exportData,
   }) {
     return toggleBlurOverlay?.call(enabled);
   }
@@ -691,6 +717,7 @@ class _$ToggleBlurOverlayImpl implements ToggleBlurOverlay {
     TResult Function(String name)? updateDisplayName,
     TResult Function(DateTime date)? updateHrtStartDate,
     TResult Function()? wipeData,
+    TResult Function()? exportData,
     required TResult orElse(),
   }) {
     if (toggleBlurOverlay != null) {
@@ -709,6 +736,7 @@ class _$ToggleBlurOverlayImpl implements ToggleBlurOverlay {
     required TResult Function(UpdateDisplayName value) updateDisplayName,
     required TResult Function(UpdateHrtStartDate value) updateHrtStartDate,
     required TResult Function(WipeSettingsData value) wipeData,
+    required TResult Function(ExportDataEvent value) exportData,
   }) {
     return toggleBlurOverlay(this);
   }
@@ -723,6 +751,7 @@ class _$ToggleBlurOverlayImpl implements ToggleBlurOverlay {
     TResult? Function(UpdateDisplayName value)? updateDisplayName,
     TResult? Function(UpdateHrtStartDate value)? updateHrtStartDate,
     TResult? Function(WipeSettingsData value)? wipeData,
+    TResult? Function(ExportDataEvent value)? exportData,
   }) {
     return toggleBlurOverlay?.call(this);
   }
@@ -737,6 +766,7 @@ class _$ToggleBlurOverlayImpl implements ToggleBlurOverlay {
     TResult Function(UpdateDisplayName value)? updateDisplayName,
     TResult Function(UpdateHrtStartDate value)? updateHrtStartDate,
     TResult Function(WipeSettingsData value)? wipeData,
+    TResult Function(ExportDataEvent value)? exportData,
     required TResult orElse(),
   }) {
     if (toggleBlurOverlay != null) {
@@ -835,6 +865,7 @@ class _$UpdateDisplayNameImpl implements UpdateDisplayName {
     required TResult Function(String name) updateDisplayName,
     required TResult Function(DateTime date) updateHrtStartDate,
     required TResult Function() wipeData,
+    required TResult Function() exportData,
   }) {
     return updateDisplayName(name);
   }
@@ -849,6 +880,7 @@ class _$UpdateDisplayNameImpl implements UpdateDisplayName {
     TResult? Function(String name)? updateDisplayName,
     TResult? Function(DateTime date)? updateHrtStartDate,
     TResult? Function()? wipeData,
+    TResult? Function()? exportData,
   }) {
     return updateDisplayName?.call(name);
   }
@@ -863,6 +895,7 @@ class _$UpdateDisplayNameImpl implements UpdateDisplayName {
     TResult Function(String name)? updateDisplayName,
     TResult Function(DateTime date)? updateHrtStartDate,
     TResult Function()? wipeData,
+    TResult Function()? exportData,
     required TResult orElse(),
   }) {
     if (updateDisplayName != null) {
@@ -881,6 +914,7 @@ class _$UpdateDisplayNameImpl implements UpdateDisplayName {
     required TResult Function(UpdateDisplayName value) updateDisplayName,
     required TResult Function(UpdateHrtStartDate value) updateHrtStartDate,
     required TResult Function(WipeSettingsData value) wipeData,
+    required TResult Function(ExportDataEvent value) exportData,
   }) {
     return updateDisplayName(this);
   }
@@ -895,6 +929,7 @@ class _$UpdateDisplayNameImpl implements UpdateDisplayName {
     TResult? Function(UpdateDisplayName value)? updateDisplayName,
     TResult? Function(UpdateHrtStartDate value)? updateHrtStartDate,
     TResult? Function(WipeSettingsData value)? wipeData,
+    TResult? Function(ExportDataEvent value)? exportData,
   }) {
     return updateDisplayName?.call(this);
   }
@@ -909,6 +944,7 @@ class _$UpdateDisplayNameImpl implements UpdateDisplayName {
     TResult Function(UpdateDisplayName value)? updateDisplayName,
     TResult Function(UpdateHrtStartDate value)? updateHrtStartDate,
     TResult Function(WipeSettingsData value)? wipeData,
+    TResult Function(ExportDataEvent value)? exportData,
     required TResult orElse(),
   }) {
     if (updateDisplayName != null) {
@@ -1007,6 +1043,7 @@ class _$UpdateHrtStartDateImpl implements UpdateHrtStartDate {
     required TResult Function(String name) updateDisplayName,
     required TResult Function(DateTime date) updateHrtStartDate,
     required TResult Function() wipeData,
+    required TResult Function() exportData,
   }) {
     return updateHrtStartDate(date);
   }
@@ -1021,6 +1058,7 @@ class _$UpdateHrtStartDateImpl implements UpdateHrtStartDate {
     TResult? Function(String name)? updateDisplayName,
     TResult? Function(DateTime date)? updateHrtStartDate,
     TResult? Function()? wipeData,
+    TResult? Function()? exportData,
   }) {
     return updateHrtStartDate?.call(date);
   }
@@ -1035,6 +1073,7 @@ class _$UpdateHrtStartDateImpl implements UpdateHrtStartDate {
     TResult Function(String name)? updateDisplayName,
     TResult Function(DateTime date)? updateHrtStartDate,
     TResult Function()? wipeData,
+    TResult Function()? exportData,
     required TResult orElse(),
   }) {
     if (updateHrtStartDate != null) {
@@ -1053,6 +1092,7 @@ class _$UpdateHrtStartDateImpl implements UpdateHrtStartDate {
     required TResult Function(UpdateDisplayName value) updateDisplayName,
     required TResult Function(UpdateHrtStartDate value) updateHrtStartDate,
     required TResult Function(WipeSettingsData value) wipeData,
+    required TResult Function(ExportDataEvent value) exportData,
   }) {
     return updateHrtStartDate(this);
   }
@@ -1067,6 +1107,7 @@ class _$UpdateHrtStartDateImpl implements UpdateHrtStartDate {
     TResult? Function(UpdateDisplayName value)? updateDisplayName,
     TResult? Function(UpdateHrtStartDate value)? updateHrtStartDate,
     TResult? Function(WipeSettingsData value)? wipeData,
+    TResult? Function(ExportDataEvent value)? exportData,
   }) {
     return updateHrtStartDate?.call(this);
   }
@@ -1081,6 +1122,7 @@ class _$UpdateHrtStartDateImpl implements UpdateHrtStartDate {
     TResult Function(UpdateDisplayName value)? updateDisplayName,
     TResult Function(UpdateHrtStartDate value)? updateHrtStartDate,
     TResult Function(WipeSettingsData value)? wipeData,
+    TResult Function(ExportDataEvent value)? exportData,
     required TResult orElse(),
   }) {
     if (updateHrtStartDate != null) {
@@ -1151,6 +1193,7 @@ class _$WipeSettingsDataImpl implements WipeSettingsData {
     required TResult Function(String name) updateDisplayName,
     required TResult Function(DateTime date) updateHrtStartDate,
     required TResult Function() wipeData,
+    required TResult Function() exportData,
   }) {
     return wipeData();
   }
@@ -1165,6 +1208,7 @@ class _$WipeSettingsDataImpl implements WipeSettingsData {
     TResult? Function(String name)? updateDisplayName,
     TResult? Function(DateTime date)? updateHrtStartDate,
     TResult? Function()? wipeData,
+    TResult? Function()? exportData,
   }) {
     return wipeData?.call();
   }
@@ -1179,6 +1223,7 @@ class _$WipeSettingsDataImpl implements WipeSettingsData {
     TResult Function(String name)? updateDisplayName,
     TResult Function(DateTime date)? updateHrtStartDate,
     TResult Function()? wipeData,
+    TResult Function()? exportData,
     required TResult orElse(),
   }) {
     if (wipeData != null) {
@@ -1197,6 +1242,7 @@ class _$WipeSettingsDataImpl implements WipeSettingsData {
     required TResult Function(UpdateDisplayName value) updateDisplayName,
     required TResult Function(UpdateHrtStartDate value) updateHrtStartDate,
     required TResult Function(WipeSettingsData value) wipeData,
+    required TResult Function(ExportDataEvent value) exportData,
   }) {
     return wipeData(this);
   }
@@ -1211,6 +1257,7 @@ class _$WipeSettingsDataImpl implements WipeSettingsData {
     TResult? Function(UpdateDisplayName value)? updateDisplayName,
     TResult? Function(UpdateHrtStartDate value)? updateHrtStartDate,
     TResult? Function(WipeSettingsData value)? wipeData,
+    TResult? Function(ExportDataEvent value)? exportData,
   }) {
     return wipeData?.call(this);
   }
@@ -1225,6 +1272,7 @@ class _$WipeSettingsDataImpl implements WipeSettingsData {
     TResult Function(UpdateDisplayName value)? updateDisplayName,
     TResult Function(UpdateHrtStartDate value)? updateHrtStartDate,
     TResult Function(WipeSettingsData value)? wipeData,
+    TResult Function(ExportDataEvent value)? exportData,
     required TResult orElse(),
   }) {
     if (wipeData != null) {
@@ -1236,4 +1284,145 @@ class _$WipeSettingsDataImpl implements WipeSettingsData {
 
 abstract class WipeSettingsData implements SettingsEvent {
   const factory WipeSettingsData() = _$WipeSettingsDataImpl;
+}
+
+/// @nodoc
+abstract class _$$ExportDataEventImplCopyWith<$Res> {
+  factory _$$ExportDataEventImplCopyWith(_$ExportDataEventImpl value,
+          $Res Function(_$ExportDataEventImpl) then) =
+      __$$ExportDataEventImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ExportDataEventImplCopyWithImpl<$Res>
+    extends _$SettingsEventCopyWithImpl<$Res, _$ExportDataEventImpl>
+    implements _$$ExportDataEventImplCopyWith<$Res> {
+  __$$ExportDataEventImplCopyWithImpl(
+      _$ExportDataEventImpl _value, $Res Function(_$ExportDataEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of SettingsEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$ExportDataEventImpl implements ExportDataEvent {
+  const _$ExportDataEventImpl();
+
+  @override
+  String toString() {
+    return 'SettingsEvent.exportData()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ExportDataEventImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadDashboard,
+    required TResult Function(bool enabled) toggleAppLock,
+    required TResult Function(bool enabled) togglePrivacyMode,
+    required TResult Function(bool enabled) toggleBlurOverlay,
+    required TResult Function(String name) updateDisplayName,
+    required TResult Function(DateTime date) updateHrtStartDate,
+    required TResult Function() wipeData,
+    required TResult Function() exportData,
+  }) {
+    return exportData();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loadDashboard,
+    TResult? Function(bool enabled)? toggleAppLock,
+    TResult? Function(bool enabled)? togglePrivacyMode,
+    TResult? Function(bool enabled)? toggleBlurOverlay,
+    TResult? Function(String name)? updateDisplayName,
+    TResult? Function(DateTime date)? updateHrtStartDate,
+    TResult? Function()? wipeData,
+    TResult? Function()? exportData,
+  }) {
+    return exportData?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadDashboard,
+    TResult Function(bool enabled)? toggleAppLock,
+    TResult Function(bool enabled)? togglePrivacyMode,
+    TResult Function(bool enabled)? toggleBlurOverlay,
+    TResult Function(String name)? updateDisplayName,
+    TResult Function(DateTime date)? updateHrtStartDate,
+    TResult Function()? wipeData,
+    TResult Function()? exportData,
+    required TResult orElse(),
+  }) {
+    if (exportData != null) {
+      return exportData();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadSettingsDashboard value) loadDashboard,
+    required TResult Function(ToggleAppLock value) toggleAppLock,
+    required TResult Function(TogglePrivacyMode value) togglePrivacyMode,
+    required TResult Function(ToggleBlurOverlay value) toggleBlurOverlay,
+    required TResult Function(UpdateDisplayName value) updateDisplayName,
+    required TResult Function(UpdateHrtStartDate value) updateHrtStartDate,
+    required TResult Function(WipeSettingsData value) wipeData,
+    required TResult Function(ExportDataEvent value) exportData,
+  }) {
+    return exportData(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LoadSettingsDashboard value)? loadDashboard,
+    TResult? Function(ToggleAppLock value)? toggleAppLock,
+    TResult? Function(TogglePrivacyMode value)? togglePrivacyMode,
+    TResult? Function(ToggleBlurOverlay value)? toggleBlurOverlay,
+    TResult? Function(UpdateDisplayName value)? updateDisplayName,
+    TResult? Function(UpdateHrtStartDate value)? updateHrtStartDate,
+    TResult? Function(WipeSettingsData value)? wipeData,
+    TResult? Function(ExportDataEvent value)? exportData,
+  }) {
+    return exportData?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadSettingsDashboard value)? loadDashboard,
+    TResult Function(ToggleAppLock value)? toggleAppLock,
+    TResult Function(TogglePrivacyMode value)? togglePrivacyMode,
+    TResult Function(ToggleBlurOverlay value)? toggleBlurOverlay,
+    TResult Function(UpdateDisplayName value)? updateDisplayName,
+    TResult Function(UpdateHrtStartDate value)? updateHrtStartDate,
+    TResult Function(WipeSettingsData value)? wipeData,
+    TResult Function(ExportDataEvent value)? exportData,
+    required TResult orElse(),
+  }) {
+    if (exportData != null) {
+      return exportData(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ExportDataEvent implements SettingsEvent {
+  const factory ExportDataEvent() = _$ExportDataEventImpl;
 }

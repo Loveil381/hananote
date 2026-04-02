@@ -312,7 +312,28 @@ class AppLocalizationsZh extends AppLocalizations {
   String get writeJournal => '写日记';
 
   @override
-  String get addBloodTest => '添加血检';
+  String get addBloodTest => '添加验血报告';
+
+  @override
+  String get notificationSettings => '通知设置';
+
+  @override
+  String get medicationReminders => '服药提醒';
+
+  @override
+  String get noActiveReminders => '暂无活跃用药提醒';
+
+  @override
+  String get reminderTimes => '提醒时间';
+
+  @override
+  String get exportInProgress => '正在导出数据...';
+
+  @override
+  String get exportSuccess => '数据已导出';
+
+  @override
+  String get exportFailed => '导出失败';
 
   @override
   String get data => '数据';
@@ -648,13 +669,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settingsTitle => '设置';
 
   @override
-  String get notificationSettings => '通知设置';
-
-  @override
   String get globalNotification => '全局通知';
-
-  @override
-  String get medicationReminders => '服药提醒';
 
   @override
   String get reminderEnabled => '已启用';
