@@ -22,11 +22,7 @@ class TimelinePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    void showComingSoon() {
-      ScaffoldMessenger.of(context)
-        ..hideCurrentSnackBar()
-        ..showSnackBar(SnackBar(content: Text(l10n.settingsComingSoon)));
-    }
+    // Removed showComingSoon as buttons now use real navigation
 
     return Scaffold(
       backgroundColor: HanaColors.background,
@@ -44,7 +40,7 @@ class TimelinePage extends StatelessWidget {
               centerTitle: true,
               leading: IconButton(
                 icon: const Icon(Icons.settings, color: HanaColors.primary),
-                onPressed: showComingSoon,
+                onPressed: () => context.push('/settings'),
               ),
               title: Text(
                 l10n.myGrowthTrajectory,
@@ -62,7 +58,12 @@ class TimelinePage extends StatelessWidget {
                     Icons.calendar_today,
                     color: HanaColors.primary,
                   ),
-                  onPressed: showComingSoon,
+                  onPressed: () => showDatePicker(
+                    context: context,
+                    initialDate: DateTime.now(),
+                    firstDate: DateTime(2000),
+                    lastDate: DateTime.now().add(const Duration(days: 3650)),
+                  ),
                 ),
               ],
             ),
