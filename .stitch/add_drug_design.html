@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HanaNote - 添加药物</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;family=Be+Vietnam+Pro:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary-container": "#fcd3fa",
+              "outline-variant": "#d6c2c4",
+              "on-primary-container": "#ffcbd4",
+              "on-background": "#1e1b17",
+              "on-secondary-container": "#785879",
+              "on-secondary-fixed-variant": "#5a3c5c",
+              "on-surface": "#1e1b17",
+              "on-primary-fixed-variant": "#6b3743",
+              "surface-variant": "#e9e1da",
+              "on-tertiary-fixed-variant": "#254f31",
+              "on-tertiary-fixed": "#00210c",
+              "surface-container-lowest": "#ffffff",
+              "secondary-fixed": "#ffd6fd",
+              "tertiary-fixed": "#beeec4",
+              "tertiary-container": "#3d6847",
+              "secondary-fixed-dim": "#e2bae0",
+              "on-surface-variant": "#514345",
+              "surface-dim": "#e0d9d2",
+              "surface": "#fff8f3",
+              "outline": "#837375",
+              "background": "#fff8f3",
+              "on-error-container": "#93000a",
+              "inverse-surface": "#33302b",
+              "surface-container-low": "#faf2eb",
+              "tertiary": "#255031",
+              "surface-tint": "#864e5a",
+              "primary-fixed": "#ffd9df",
+              "on-error": "#ffffff",
+              "primary-fixed-dim": "#fbb3c1",
+              "primary": "#6b3743",
+              "on-primary": "#ffffff",
+              "tertiary-fixed-dim": "#a3d2aa",
+              "surface-container": "#f4ede6",
+              "surface-bright": "#fff8f3",
+              "error": "#ba1a1a",
+              "on-tertiary-container": "#b5e5bb",
+              "on-secondary-fixed": "#2b112e",
+              "on-secondary": "#ffffff",
+              "surface-container-high": "#efe7e0",
+              "surface-container-highest": "#e9e1da",
+              "error-container": "#ffdad6",
+              "secondary": "#745475",
+              "inverse-on-surface": "#f7efe8",
+              "on-tertiary": "#ffffff",
+              "inverse-primary": "#fbb3c1",
+              "primary-container": "#864e5a",
+              "on-primary-fixed": "#360d18"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Be Vietnam Pro"],
+              "label": ["Be Vietnam Pro"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      body {
+        font-family: 'Be Vietnam Pro', sans-serif;
+        background-color: #FFF8F1; /* Specific requested background */
+      }
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .sakura-focus:focus-within {
+        border-bottom: 2px solid #864E5A;
+      }
+      /* Hide standard scrollbars for mobile aesthetic */
+      ::-webkit-scrollbar {
+        display: none;
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="text-on-surface antialiased max-w-[390px] mx-auto min-h-screen pb-24">
+<!-- TopAppBar: Frosted Glass & Tonal Layering -->
+<header class="bg-[#FFF8F3]/80 backdrop-blur-md sticky top-0 z-50 flex items-center justify-between w-full px-6 h-16 shadow-[0_8px_32px_rgba(30,27,23,0.04)]">
+<div class="flex items-center gap-4">
+<button class="flex items-center justify-center p-2 rounded-full hover:bg-[#F4EDE6]/50 transition-colors active:scale-[0.98] duration-200">
+<span class="material-symbols-outlined text-[#864E5A]" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-['Plus_Jakarta_Suns'] font-semibold text-lg tracking-tight text-[#864E5A]">添加药物</h1>
+</div>
+<button class="flex items-center justify-center p-2 rounded-full hover:bg-[#F4EDE6]/50 transition-colors active:scale-[0.98] duration-200">
+<span class="material-symbols-outlined text-[#864E5A]" data-icon="check">check</span>
+</button>
+</header>
+<main class="px-6 py-6 space-y-8">
+<!-- Medication Information Section -->
+<div class="space-y-6">
+<div class="space-y-2">
+<label class="font-label text-sm font-medium text-on-surface-variant ml-1">药物名称 *</label>
+<div class="bg-[#F4EDE5] rounded-[16px] px-4 pt-1 pb-2 sakura-focus transition-all duration-200 border-b-2 border-transparent">
+<input class="w-full bg-transparent border-none focus:ring-0 p-0 text-on-surface placeholder:text-on-surface-variant/40 font-body py-2" placeholder="例如：补佳乐" type="text"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-label text-sm font-medium text-on-surface-variant ml-1">通用名</label>
+<div class="bg-[#F4EDE5] rounded-[16px] px-4 pt-1 pb-2 sakura-focus transition-all duration-200 border-b-2 border-transparent">
+<input class="w-full bg-transparent border-none focus:ring-0 p-0 text-on-surface placeholder:text-on-surface-variant/40 font-body py-2" placeholder="例如：戊酸雌二醇片" type="text"/>
+</div>
+</div>
+</div>
+<!-- Category Section -->
+<div class="space-y-4">
+<h3 class="font-headline font-semibold text-base text-on-surface ml-1">分类</h3>
+<div class="flex flex-wrap gap-3">
+<button class="px-5 py-2.5 rounded-full bg-primary-container text-white text-sm font-medium transition-all active:scale-95">雌激素</button>
+<button class="px-5 py-2.5 rounded-full bg-[#F4EDE5] text-[#514345] text-sm font-medium transition-all hover:bg-[#E9E1D8] active:scale-95">抗雄</button>
+<button class="px-5 py-2.5 rounded-full bg-[#F4EDE5] text-[#514345] text-sm font-medium transition-all hover:bg-[#E9E1D8] active:scale-95">孕激素</button>
+</div>
+</div>
+<!-- Route Section -->
+<div class="space-y-4">
+<h3 class="font-headline font-semibold text-base text-on-surface ml-1">给药途径</h3>
+<div class="flex flex-wrap gap-3">
+<button class="px-5 py-2.5 rounded-full bg-primary-container text-white text-sm font-medium transition-all active:scale-95">口服</button>
+<button class="px-5 py-2.5 rounded-full bg-[#F4EDE5] text-[#514345] text-sm font-medium transition-all hover:bg-[#E9E1D8] active:scale-95">舌下</button>
+<button class="px-5 py-2.5 rounded-full bg-[#F4EDE5] text-[#514345] text-sm font-medium transition-all hover:bg-[#E9E1D8] active:scale-95">注射</button>
+<button class="px-5 py-2.5 rounded-full bg-[#F4EDE5] text-[#514345] text-sm font-medium transition-all hover:bg-[#E9E1D8] active:scale-95">贴片</button>
+<button class="px-5 py-2.5 rounded-full bg-[#F4EDE5] text-[#514345] text-sm font-medium transition-all hover:bg-[#E9E1D8] active:scale-95">凝胶</button>
+</div>
+</div>
+<!-- Dosage Unit Section -->
+<div class="space-y-4">
+<h3 class="font-headline font-semibold text-base text-on-surface ml-1">剂量单位</h3>
+<div class="flex flex-wrap gap-3">
+<button class="px-5 py-2.5 rounded-full bg-primary-container text-white text-sm font-medium transition-all active:scale-95">mg</button>
+<button class="px-5 py-2.5 rounded-full bg-[#F4EDE5] text-[#514345] text-sm font-medium transition-all hover:bg-[#E9E1D8] active:scale-95">ml</button>
+<button class="px-5 py-2.5 rounded-full bg-[#F4EDE5] text-[#514345] text-sm font-medium transition-all hover:bg-[#E9E1D8] active:scale-95">μg</button>
+<button class="px-5 py-2.5 rounded-full bg-[#F4EDE5] text-[#514345] text-sm font-medium transition-all hover:bg-[#E9E1D8] active:scale-95">g</button>
+<button class="px-5 py-2.5 rounded-full bg-[#F4EDE5] text-[#514345] text-sm font-medium transition-all hover:bg-[#E9E1D8] active:scale-95">unit</button>
+</div>
+</div>
+<!-- Notes Section -->
+<div class="space-y-2">
+<label class="font-label text-sm font-medium text-on-surface-variant ml-1">备注</label>
+<div class="bg-[#F4EDE5] rounded-[16px] px-4 py-3 sakura-focus transition-all duration-200 border-b-2 border-transparent">
+<textarea class="w-full bg-transparent border-none focus:ring-0 p-0 text-on-surface placeholder:text-on-surface-variant/40 font-body resize-none" placeholder="添加补充说明..." rows="4"></textarea>
+</div>
+</div>
+<!-- Visual Decorative Anchor (Digital Stationery Style) -->
+<div class="pt-4 flex justify-center opacity-20">
+<span class="material-symbols-outlined text-[#864E5A] text-4xl" data-icon="auto_awesome">auto_awesome</span>
+</div>
+</main>
+<!-- Fixed Bottom Action -->
+<div class="fixed bottom-0 left-0 right-0 max-w-[390px] mx-auto p-6 bg-gradient-to-t from-[#FFF8F1] via-[#FFF8F1] to-transparent pointer-events-none">
+<button class="pointer-events-auto w-full bg-[#864E5A] text-white py-4 rounded-full font-headline font-semibold text-base shadow-lg shadow-[#864E5A]/10 active:scale-[0.98] transition-transform">
+            保存
+        </button>
+</div>
+</body></html>

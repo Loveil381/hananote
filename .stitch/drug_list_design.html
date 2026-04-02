@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=390, height=844, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&amp;family=Be+Vietnam+Pro:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-surface-variant": "#514345",
+              "surface-container-low": "#faf2eb",
+              "on-secondary": "#ffffff",
+              "on-secondary-fixed-variant": "#5a3c5c",
+              "on-primary-fixed": "#360d18",
+              "tertiary-fixed-dim": "#a3d2aa",
+              "surface-tint": "#864e5a",
+              "primary-fixed": "#ffd9df",
+              "secondary": "#745475",
+              "background": "#fff8f3",
+              "on-tertiary-fixed": "#00210c",
+              "surface-variant": "#e9e1da",
+              "tertiary-container": "#3d6847",
+              "error-container": "#ffdad6",
+              "outline-variant": "#d6c2c4",
+              "surface-container": "#f4ede6",
+              "on-background": "#1e1b17",
+              "on-secondary-fixed": "#2b112e",
+              "on-primary-fixed-variant": "#6b3743",
+              "on-primary": "#ffffff",
+              "outline": "#837375",
+              "surface": "#fff8f3",
+              "on-tertiary": "#ffffff",
+              "error": "#ba1a1a",
+              "tertiary-fixed": "#beeec4",
+              "on-surface": "#1e1b17",
+              "secondary-container": "#fcd3fa",
+              "surface-bright": "#fff8f3",
+              "on-error": "#ffffff",
+              "inverse-primary": "#fbb3c1",
+              "on-tertiary-container": "#b5e5bb",
+              "secondary-fixed-dim": "#e2bae0",
+              "inverse-on-surface": "#f7efe8",
+              "secondary-fixed": "#ffd6fd",
+              "surface-dim": "#e0d9d2",
+              "surface-container-lowest": "#ffffff",
+              "primary-fixed-dim": "#fbb3c1",
+              "on-error-container": "#93000a",
+              "surface-container-high": "#efe7e0",
+              "inverse-surface": "#33302b",
+              "on-secondary-container": "#785879",
+              "tertiary": "#255031",
+              "on-primary-container": "#ffcbd4",
+              "primary": "#6b3743",
+              "primary-container": "#864e5a",
+              "surface-container-highest": "#e9e1da",
+              "on-tertiary-fixed-variant": "#254f31"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Be Vietnam Pro"],
+              "label": ["Be Vietnam Pro"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      body {
+        background-color: #FFF8F3;
+        color: #1E1B17;
+        -webkit-font-smoothing: antialiased;
+      }
+      .custom-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body selection:bg-primary-fixed">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-stone-50/80 dark:bg-stone-900/80 backdrop-blur-md">
+<div class="flex items-center px-4 h-16 w-full max-w-7xl mx-auto">
+<button class="p-2 -ml-2 text-[#864E5A] active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-['Plus_Jakarta_Sans'] font-semibold text-lg text-[#864E5A] ml-2">我的药物</h1>
+</div>
+</header>
+<main class="pt-20 pb-32 px-4 min-h-screen">
+<!-- Section: 使用中 -->
+<section class="mb-8">
+<h2 class="font-headline font-semibold text-[14px] text-[#864E5A] mb-4 px-1">使用中</h2>
+<div class="flex flex-col gap-3">
+<!-- Card 1 -->
+<div class="group relative overflow-hidden active:scale-[0.98] transition-all duration-200">
+<div class="bg-surface-container-lowest rounded-xl p-4 flex justify-between items-center relative z-10">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="font-headline font-semibold text-on-surface text-base">补佳乐 2mg</span>
+<div class="w-2 h-2 rounded-full bg-tertiary"></div>
+</div>
+<div class="flex gap-2 mt-1">
+<span class="bg-surface-container font-label text-xs text-on-surface-variant px-3 py-0.5 rounded-full">口服</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group relative overflow-hidden active:scale-[0.98] transition-all duration-200">
+<div class="bg-surface-container-lowest rounded-xl p-4 flex justify-between items-center relative z-10">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="font-headline font-semibold text-on-surface text-base">螺内酯 50mg</span>
+<div class="w-2 h-2 rounded-full bg-tertiary"></div>
+</div>
+<div class="flex gap-2 mt-1">
+<span class="bg-surface-container font-label text-xs text-on-surface-variant px-3 py-0.5 rounded-full">口服</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<!-- Card 3 with Swipe Hint -->
+<div class="group relative overflow-hidden active:scale-[0.98] transition-all duration-200">
+<!-- Swipe Action Area -->
+<div class="absolute right-0 top-0 bottom-0 w-16 bg-error flex items-center justify-center rounded-r-xl">
+<span class="material-symbols-outlined text-white" data-icon="delete">delete</span>
+</div>
+<!-- Main Card content (shifted left as visual hint) -->
+<div class="bg-surface-container-lowest rounded-xl p-4 flex justify-between items-center relative z-10 translate-x-[-8px]">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="font-headline font-semibold text-on-surface text-base">雌二醇凝胶 0.75mg</span>
+<div class="w-2 h-2 rounded-full bg-tertiary"></div>
+</div>
+<div class="flex gap-2 mt-1">
+<span class="bg-surface-container font-label text-xs text-on-surface-variant px-3 py-0.5 rounded-full">外用</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Section: 已停用 -->
+<section>
+<h2 class="font-headline font-semibold text-[14px] text-on-surface-variant mb-4 px-1">已停用</h2>
+<div class="flex flex-col gap-3 opacity-70">
+<!-- Inactive Card -->
+<div class="bg-surface-container-lowest rounded-xl p-4 flex justify-between items-center active:scale-[0.98] transition-all duration-200">
+<div class="flex flex-col gap-1">
+<span class="font-headline font-semibold text-on-surface text-base">环丙孕酮 50mg</span>
+<div class="flex gap-2 mt-1">
+<span class="bg-surface-container font-label text-xs text-on-surface-variant px-3 py-0.5 rounded-full">口服</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant" data-icon="history">history</span>
+</div>
+</div>
+</section>
+</main>
+<!-- FAB: Specialty Component -->
+<button class="fixed bottom-24 right-6 bg-[#864E5A] text-white flex items-center gap-2 px-6 py-4 rounded-full shadow-[0_8px_32px_rgba(134,78,90,0.24)] active:scale-95 transition-all z-50">
+<span class="material-symbols-outlined" data-icon="add" style="font-variation-settings: 'FILL' 0, 'wght' 600;">add</span>
+<span class="font-label font-medium">添加药物</span>
+</button>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full h-20 flex justify-around items-center px-6 pb-2 bg-[#F4EDE6] dark:bg-stone-800 rounded-t-2xl z-50 shadow-[0_-4px_20px_rgba(30,27,23,0.04)]">
+<a class="flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 hover:text-[#864E5A] transition-colors active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-['Be_Vietnam_Pro'] text-xs font-medium">主页</span>
+</a>
+<a class="flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 hover:text-[#864E5A] transition-colors active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="edit_note">edit_note</span>
+<span class="font-['Be_Vietnam_Pro'] text-xs font-medium">日志</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-white dark:bg-stone-700 text-[#864E5A] rounded-xl px-4 py-1 active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="medication" style="font-variation-settings: 'FILL' 1;">medication</span>
+<span class="font-['Be_Vietnam_Pro'] text-xs font-medium">药物</span>
+</a>
+<a class="flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 hover:text-[#864E5A] transition-colors active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-['Be_Vietnam_Pro'] text-xs font-medium">设置</span>
+</a>
+</nav>
+</body></html>

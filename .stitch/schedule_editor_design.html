@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Be+Vietnam+Pro:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "secondary-fixed": "#ffd6fd",
+                        "on-secondary-fixed-variant": "#5a3c5c",
+                        "on-primary-container": "#ffcbd4",
+                        "secondary-fixed-dim": "#e2bae0",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "outline": "#837375",
+                        "surface-variant": "#e9e1da",
+                        "surface-dim": "#e0d9d2",
+                        "on-primary-fixed-variant": "#6b3743",
+                        "tertiary": "#255031",
+                        "surface": "#fff8f3",
+                        "inverse-primary": "#fbb3c1",
+                        "primary": "#6b3743",
+                        "on-surface-variant": "#514345",
+                        "inverse-surface": "#33302b",
+                        "surface-tint": "#864e5a",
+                        "error": "#ba1a1a",
+                        "error-container": "#ffdad6",
+                        "surface-container-low": "#faf2eb",
+                        "on-secondary-fixed": "#2b112e",
+                        "surface-container": "#f4ede6",
+                        "on-secondary-container": "#785879",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#f7efe8",
+                        "on-background": "#1e1b17",
+                        "secondary": "#745475",
+                        "outline-variant": "#d6c2c4",
+                        "primary-fixed-dim": "#fbb3c1",
+                        "on-surface": "#1e1b17",
+                        "surface-container-high": "#efe7e0",
+                        "surface-bright": "#fff8f3",
+                        "primary-container": "#864e5a",
+                        "on-primary-fixed": "#360d18",
+                        "on-tertiary-fixed-variant": "#254f31",
+                        "on-tertiary-fixed": "#00210c",
+                        "surface-container-highest": "#e9e1da",
+                        "background": "#fff8f3",
+                        "secondary-container": "#fcd3fa",
+                        "tertiary-fixed-dim": "#a3d2aa",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed": "#beeec4",
+                        "primary-fixed": "#ffd9df",
+                        "tertiary-container": "#3d6847",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-container": "#b5e5bb"
+                    },
+                    fontFamily: {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Be Vietnam Pro"],
+                        "label": ["Be Vietnam Pro"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body { font-family: 'Be Vietnam Pro', sans-serif; }
+        h1, h2, h3 { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-stone-50/80 dark:bg-stone-900/80 backdrop-blur-xl flex items-center justify-between px-4 h-16 w-full">
+<div class="flex items-center gap-4">
+<button class="hover:opacity-70 transition-opacity scale-95 active:scale-90 transition-transform duration-200 text-rose-900 dark:text-rose-200">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-plus-jakarta-sans font-semibold text-lg text-rose-900 dark:text-rose-200">编辑用药计划</h1>
+</div>
+<button class="hover:opacity-70 transition-opacity scale-95 active:scale-90 transition-transform duration-200 text-rose-900 dark:text-rose-200">
+<span class="material-symbols-outlined" data-icon="check">check</span>
+</button>
+</header>
+<main class="mt-16 px-4 pt-6 max-w-[390px] mx-auto">
+<!-- Dosage Section -->
+<section class="mb-8">
+<label class="block text-sm font-semibold text-on-surface-variant mb-3 px-1">用药剂量</label>
+<div class="flex items-center gap-3">
+<div class="flex-1 bg-surface-container rounded-xl p-4 flex items-center relative group">
+<input class="w-full bg-transparent border-none focus:ring-0 text-xl font-semibold p-0 text-primary" type="number" value="2"/>
+<div class="absolute bottom-0 left-0 right-0 h-[2px] bg-primary-fixed-dim scale-x-0 group-focus-within:scale-x-100 transition-transform origin-center"></div>
+</div>
+<div class="bg-surface-container rounded-full px-5 py-3 flex items-center gap-2 cursor-pointer hover:bg-surface-container-high transition-colors">
+<span class="text-primary font-medium">mg</span>
+<span class="material-symbols-outlined text-sm text-outline">expand_more</span>
+</div>
+</div>
+</section>
+<!-- Frequency Section -->
+<section class="mb-8 bg-surface-container p-5 rounded-[2rem]">
+<h2 class="text-base font-headline font-semibold mb-4 text-on-surface">频率</h2>
+<div class="flex gap-2 mb-6">
+<button class="flex-1 bg-primary-container text-on-primary-container py-2 rounded-full text-sm font-medium transition-all shadow-sm">每日</button>
+<button class="flex-1 bg-surface-container-lowest text-on-surface-variant py-2 rounded-full text-sm font-medium transition-all">每N天</button>
+<button class="flex-1 bg-surface-container-lowest text-on-surface-variant py-2 rounded-full text-sm font-medium transition-all">每周</button>
+</div>
+<!-- Frequency Dropdown Inline -->
+<div class="flex items-center justify-between bg-surface-container-lowest/50 rounded-2xl px-4 py-3 cursor-pointer hover:bg-white transition-all">
+<span class="text-sm font-medium text-on-surface">每日 3 次</span>
+<span class="material-symbols-outlined text-outline">unfold_more</span>
+</div>
+</section>
+<!-- Date Range Section -->
+<section class="mb-8 space-y-3">
+<div class="bg-surface-container-lowest rounded-2xl p-4 flex items-center justify-between shadow-[0_4px_24px_rgba(30,27,23,0.04)] border border-outline-variant/10">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-surface-container rounded-xl flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">calendar_today</span>
+</div>
+<div>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider font-semibold">开始日期</p>
+<p class="text-base font-semibold text-on-surface">2026.03.25</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant">chevron_right</span>
+</div>
+<div class="bg-surface-container-lowest rounded-2xl p-4 flex items-center justify-between shadow-[0_4px_24px_rgba(30,27,23,0.04)] border border-outline-variant/10">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-surface-container rounded-xl flex items-center justify-center text-outline">
+<span class="material-symbols-outlined">event_busy</span>
+</div>
+<div>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider font-semibold">结束日期 (选填)</p>
+<p class="text-base font-semibold text-outline-variant">未设置</p>
+</div>
+</div>
+<button class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-outline-variant">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+</div>
+</section>
+<!-- Schedule Times -->
+<section class="mb-8">
+<div class="flex items-center justify-between mb-3 px-1">
+<label class="text-sm font-semibold text-on-surface-variant">用药时间</label>
+<button class="text-xs font-bold text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">add_circle</span>
+                    添加时间
+                </button>
+</div>
+<div class="grid grid-cols-1 gap-3">
+<div class="flex items-center gap-4 bg-surface-container-lowest rounded-2xl p-4 shadow-[0_4px_24px_rgba(30,27,23,0.04)] active:scale-[0.98] transition-transform cursor-pointer">
+<span class="material-symbols-outlined text-primary-fixed-dim">schedule</span>
+<span class="text-lg font-headline font-semibold text-on-surface">08:00</span>
+<div class="ml-auto text-xs text-on-surface-variant bg-surface-container px-3 py-1 rounded-full font-medium">早餐后</div>
+</div>
+<div class="flex items-center gap-4 bg-surface-container-lowest rounded-2xl p-4 shadow-[0_4px_24px_rgba(30,27,23,0.04)] active:scale-[0.98] transition-transform cursor-pointer">
+<span class="material-symbols-outlined text-primary-fixed-dim">schedule</span>
+<span class="text-lg font-headline font-semibold text-on-surface">14:00</span>
+<div class="ml-auto text-xs text-on-surface-variant bg-surface-container px-3 py-1 rounded-full font-medium">午餐后</div>
+</div>
+<div class="flex items-center gap-4 bg-surface-container-lowest rounded-2xl p-4 shadow-[0_4px_24px_rgba(30,27,23,0.04)] active:scale-[0.98] transition-transform cursor-pointer border border-error/10">
+<span class="material-symbols-outlined text-error">error</span>
+<span class="text-lg font-headline font-semibold text-on-surface">-- : --</span>
+<div class="ml-auto text-xs text-error font-semibold">请设置具体时间</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Action -->
+<div class="fixed bottom-0 left-0 w-full p-4 bg-gradient-to-t from-surface via-surface to-transparent pt-10">
+<button class="w-full bg-primary text-on-primary py-4 rounded-full font-headline font-bold text-lg shadow-xl shadow-primary/20 active:scale-95 transition-all">
+            保存计划
+        </button>
+</div>
+<!-- Hidden BottomNavBar (Included for shell context but technically suppressed as this is a focused task) -->
+<div class="hidden md:flex justify-around items-center px-4 pb-4 pt-2 fixed bottom-0 left-0 w-full z-50 bg-stone-50/80 dark:bg-stone-900/80 backdrop-blur-xl rounded-t-2xl shadow-[0_-4px_24px_rgba(30,27,23,0.04)]">
+<div class="flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 px-4 py-1">
+<span class="material-symbols-outlined" data-icon="edit_note">edit_note</span>
+<span class="font-be-vietnam-pro text-[10px] font-medium">记录</span>
+</div>
+<div class="flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 px-4 py-1">
+<span class="material-symbols-outlined" data-icon="auto_graph">auto_graph</span>
+<span class="font-be-vietnam-pro text-[10px] font-medium">趋势</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-rose-100 dark:bg-rose-900/40 text-rose-950 dark:text-rose-50 rounded-xl px-4 py-1">
+<span class="material-symbols-outlined" data-icon="medication">medication</span>
+<span class="font-be-vietnam-pro text-[10px] font-medium">用药</span>
+</div>
+<div class="flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 px-4 py-1">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-be-vietnam-pro text-[10px] font-medium">设置</span>
+</div>
+</div>
+</body></html>
