@@ -50,7 +50,7 @@ class DataPage extends StatelessWidget {
                   Icons.notifications_none,
                   color: HanaColors.primary,
                 ),
-                onPressed: () => showComingSoon(l10n.notificationsComingSoon),
+                onPressed: () => context.push('/settings'),
               ),
               title: Text(
                 l10n.dataAndTrends,
