@@ -25,6 +25,69 @@ class ProfilePage extends StatelessWidget {
       ..showSnackBar(SnackBar(content: Text(message)));
   }
 
+  void _showFeaturePlannedSheet(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    showModalBottomSheet<void>(
+      context: context,
+      backgroundColor: HanaColors.surfaceContainerLowest,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
+      ),
+      builder: (sheetContext) {
+        return SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(24, 20, 24, 24),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  width: 40,
+                  height: 4,
+                  margin: const EdgeInsets.only(bottom: 32),
+                  decoration: BoxDecoration(
+                    color: HanaColors.outlineVariant.withAlpha(128),
+                    borderRadius: BorderRadius.circular(999),
+                  ),
+                ),
+                const Icon(
+                  Icons.construction_outlined,
+                  size: 64,
+                  color: HanaColors.primary,
+                ),
+                const SizedBox(height: 24),
+                Text(
+                  l10n.featureInDevelopment,
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700,
+                    color: HanaColors.onSurface,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                Text(
+                  l10n.featureInDevelopmentDesc,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    color: HanaColors.onSurfaceVariant,
+                  ),
+                ),
+                const SizedBox(height: 32),
+                SizedBox(
+                  width: double.infinity,
+                  child: FilledButton(
+                    onPressed: () => Navigator.of(sheetContext).pop(),
+                    child: Text(l10n.closeAction),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   BoxDecoration _bentoDecoration() {
     return BoxDecoration(
       color: HanaColors.surfaceContainerLowest,
@@ -432,7 +495,7 @@ class ProfilePage extends StatelessWidget {
                     isChevron: true,
                     decoration: _bentoDecoration(),
                     onTap: () =>
-                        _showSnackBar(context, l10n.backupToolsComingSoon),
+                        _showFeaturePlannedSheet(context),
                   ),
                   const SizedBox(height: 12),
                   _ButtonRowItem(
@@ -441,7 +504,7 @@ class ProfilePage extends StatelessWidget {
                     isChevron: true,
                     decoration: _bentoDecoration(),
                     onTap: () =>
-                        _showSnackBar(context, l10n.backupToolsComingSoon),
+                        _showFeaturePlannedSheet(context),
                   ),
                   const SizedBox(height: 40),
                   Text(

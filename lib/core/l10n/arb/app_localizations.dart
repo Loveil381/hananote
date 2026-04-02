@@ -1443,6 +1443,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Dark Mode coming soon'**
   String get darkModeComingSoon;
+
+  /// No description provided for @featureInDevelopment.
+  ///
+  /// In en, this message translates to:
+  /// **'Under Development'**
+  String get featureInDevelopment;
+
+  /// No description provided for @featureInDevelopmentDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'This feature is under development and will be available in the next release'**
+  String get featureInDevelopmentDesc;
 }
 
 class _AppLocalizationsDelegate

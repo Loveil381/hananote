@@ -291,5 +291,8 @@
   "appearance": "外観",
   "languageSetting": "言語",
   "darkMode": "ダークモード",
-  "darkModeComingSoon": "ダークモードは近日公開"
+  "darkModeComingSoon": "ダークモードは近日公開",
+  "featureInDevelopment": "開発中",
+  "featureInDevelopmentDesc": "この機能は開発中です。次のバージョンで利用可能になります",
+  "closeAction": "閉じる"
 }

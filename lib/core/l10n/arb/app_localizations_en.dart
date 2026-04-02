@@ -718,4 +718,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get darkModeComingSoon => 'Dark Mode coming soon';
+
+  @override
+  String get featureInDevelopment => 'Under Development';
+
+  @override
+  String get featureInDevelopmentDesc =>
+      'This feature is under development and will be available in the next release';
 }

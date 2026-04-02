@@ -333,7 +333,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get exportSuccess => '数据已导出';
 
   @override
-  String get exportFailed => '导出失败';
+  String get exportFailed => '导出失败，请重试';
 
   @override
   String get data => '数据';
@@ -697,4 +697,10 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get darkModeComingSoon => '深色模式敬请期待';
+
+  @override
+  String get featureInDevelopment => '功能开发中';
+
+  @override
+  String get featureInDevelopmentDesc => '此功能正在开发中，将在下个版本推出';
 }

@@ -291,5 +291,8 @@
   "appearance": "Appearance",
   "languageSetting": "Language",
   "darkMode": "Dark Mode",
-  "darkModeComingSoon": "Dark Mode coming soon"
+  "darkModeComingSoon": "Dark Mode coming soon",
+  "featureInDevelopment": "Under Development",
+  "featureInDevelopmentDesc": "This feature is under development and will be available in the next release",
+  "closeAction": "Close"
 }

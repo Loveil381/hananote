@@ -697,4 +697,10 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get darkModeComingSoon => 'ダークモードは近日公開';
+
+  @override
+  String get featureInDevelopment => '開発中';
+
+  @override
+  String get featureInDevelopmentDesc => 'この機能は開発中です。次のバージョンで利用可能になります';
 }
