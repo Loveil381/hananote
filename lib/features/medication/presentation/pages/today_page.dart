@@ -86,7 +86,7 @@ class TodayPage extends StatelessWidget {
                       Icons.calendar_today,
                       color: HanaColors.primary,
                     ),
-                    onPressed: () => showComingSoon(l10n.settingsComingSoon),
+                    onPressed: () => context.go('/timeline'),
                   ),
                   const SizedBox(width: 8),
                 ],
