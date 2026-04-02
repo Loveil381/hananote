@@ -245,3 +245,20 @@
 - **理由**: `/inventory` 在 R41 接入后因为 `InventoryCubit` 和 `CheckInventory` 未注册而运行时 crash。路由可达即代表依赖图必须完整，不能把 DI 验证留到真机阶段。
 - **执行约束**: Agent 在新增路由时必须同步检查 `router.dart` 中的每个 `getIt<T>()` 是否已在 `injection.config.dart` 中生成注册；禁止手改生成文件。
 - **日期**: 第42轮
+
+## DEC-048: 所有 AppBar 按钮必须有真实导航目标
+- **决定**: 禁止 AppBar 按钮使用空 Coming Soon SnackBar，必须导航到真实页面或执行真实逻辑
+- **理由**: Dead-end 按钮严重损害用户信任，暗示功能存在但实际不可用
+- **例外**: 功能确实未实现时使用美观的 BottomSheet 明确告知"开发中"
+- **日期**: Round 43
+
+## DEC-049: 数据导出采用手动序列化绕过 domain 层 toJson 约束
+- **决定**: ExportData UseCase 手动提取实体字段构建 JSON Map，不在 domain 实体上添加 toJson
+- **理由**: Clean Architecture 要求 domain 层零外部依赖，toJson 属于 data 层职责
+- **日期**: Round 44
+
+## DEC-050: 通知设置页 MVP 使用本地状态
+- **决定**: NotificationSettingsPage 的 per-drug 通知开关暂用 StatefulWidget 本地状态，不持久化
+- **理由**: AppSettings 中尚无 per-drug 通知字段，持久化需要扩展 entity + migration，MVP 先跑通 UI
+- **日期**: Round 44
+

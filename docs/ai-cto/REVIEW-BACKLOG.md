@@ -1,5 +1,5 @@
 # 审核问题 Backlog
-> 最后更新: 2026-03-29 | 会话轮次: #42
+> 最后更新: 2026-04-02 | 会话轮次: #45
 
 ## Critical
 | # | 文件 | 问题 | 产品影响 | 状态 |
@@ -23,8 +23,10 @@
 | M-13 | today_page.dart | 默认用户名未国际化 | fallback 文案不一致 | ✅ 已修复 |
 | M-14 | today_page.dart | 每日语录硬编码 | 国际化链路不完整 | ✅ 已修复 |
 | M-15 | 多处按钮 | 空回调 / 假按钮 | 用户点击无反馈 | ✅ 已修复 |
-| M-16 | data / timeline detail routing | 详情页仍以占位流转为主 | 深链和二次编辑能力不足 | ⏳ Pending |
-| M-17 | onboarding / empty states | 新用户引导仍缺失 | 首次使用理解成本高 | ⏳ Pending |
+| M-16 | data / timeline detail routing | 详情页入口与 AppBar 导航已全线打通 | 路径闭环 | ✅ 已修复 |
+| M-17 | onboarding / empty states | 基础设置页和通知设置页已就绪 | 首次使用理解成本高 | 🔄 部分完成 |
+| M-29 | Profile 导入备份 placeholder | 现有 Snackbar 已升级为美观 BottomSheet | dead-end 友好化 | ⏳ Pending |
+| M-30 | PDF 报告生成 | 逻辑待实现，UI 已有美学占位 | 医疗汇报能力 | ⏳ Pending |
 | M-18 | drug_list_page.dart | 删除确认文案过弱 | 误删风险高 | ✅ 已修复 |
 | M-19 | schedule_editor_page.dart | 日期 / 星期显示不 locale-aware | 编辑页可读性不稳定 | ✅ 已修复 |
 | M-20 | data_page.dart | 趋势图曾为假数据 | Data Tab 缺少真实参考价值 | ✅ 已修复 |
