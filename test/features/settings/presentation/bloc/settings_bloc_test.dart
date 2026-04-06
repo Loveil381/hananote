@@ -4,6 +4,7 @@ import 'package:fpdart/fpdart.dart';
 import 'package:hananote/core/error/failures.dart';
 import 'package:hananote/features/settings/domain/entities/app_settings.dart';
 import 'package:hananote/features/settings/domain/entities/user_profile.dart';
+import 'package:hananote/features/settings/domain/usecases/export_data.dart';
 import 'package:hananote/features/settings/domain/usecases/get_profile_dashboard.dart';
 import 'package:hananote/features/settings/domain/usecases/update_app_settings.dart';
 import 'package:hananote/features/settings/domain/usecases/update_user_profile.dart';
@@ -11,7 +12,6 @@ import 'package:hananote/features/settings/domain/usecases/wipe_all_data.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_bloc.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_event.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_state.dart';
-import 'package:hananote/features/settings/domain/usecases/export_data.dart';
 import 'package:mocktail/mocktail.dart';
 
 class _MockGetProfileDashboard extends Mock implements GetProfileDashboard {}
@@ -188,8 +188,7 @@ void main() {
           (_) async => right(updatedProfile),
         );
       },
-      act: (bloc) =>
-          bloc.add(SettingsEvent.updateHrtStartDate(date: newDate)),
+      act: (bloc) => bloc.add(SettingsEvent.updateHrtStartDate(date: newDate)),
       expect: () => [
         isA<SettingsLoaded>()
             .having(

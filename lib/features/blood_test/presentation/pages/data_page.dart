@@ -81,9 +81,9 @@ class DataPage extends StatelessWidget {
             ),
             error: (error) => Center(child: Text(error.message)),
             loaded: (loaded) => _LoadedView(
-                state: loaded,
-                topPadding: topPadding,
-              ),
+              state: loaded,
+              topPadding: topPadding,
+            ),
           );
         },
       ),
@@ -518,9 +518,10 @@ class _TrendChart extends StatelessWidget {
     final points = _extractPoints();
     final hasTrendData = points.length >= 2;
     final currentUnit = selectedHormone.defaultUnit;
-    final trendLabel = hasTrendData && points.last.value < points[points.length - 2].value
-        ? l10n.trendDecreasing
-        : l10n.trendStable;
+    final trendLabel =
+        hasTrendData && points.last.value < points[points.length - 2].value
+            ? l10n.trendDecreasing
+            : l10n.trendStable;
 
     final spots = [
       for (var i = 0; i < points.length; i++)
@@ -726,8 +727,7 @@ class _TrendChart extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
-                            color:
-                                HanaColors.onSurfaceVariant.withAlpha(204),
+                            color: HanaColors.onSurfaceVariant.withAlpha(204),
                           ),
                         ),
                       ],

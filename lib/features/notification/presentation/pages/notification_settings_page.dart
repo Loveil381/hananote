@@ -13,7 +13,7 @@ class NotificationSettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    
+
     return Scaffold(
       backgroundColor: HanaColors.background,
       extendBodyBehindAppBar: true,
@@ -23,7 +23,8 @@ class NotificationSettingsPage extends StatelessWidget {
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
             child: AppBar(
-              backgroundColor: HanaColors.background.withAlpha((255 * 0.8).round()),
+              backgroundColor:
+                  HanaColors.background.withAlpha((255 * 0.8).round()),
               elevation: 0,
               scrolledUnderElevation: 0,
               centerTitle: true,
@@ -47,14 +48,19 @@ class NotificationSettingsPage extends StatelessWidget {
       ),
       body: BlocBuilder<NotificationSettingsCubit, NotificationSettingsState>(
         builder: (context, state) {
-          final topPadding = MediaQuery.of(context).padding.top + kToolbarHeight + 16;
-          
+          final topPadding =
+              MediaQuery.of(context).padding.top + kToolbarHeight + 16;
+
           return switch (state) {
-            NotificationSettingsInitial() || NotificationSettingsLoading() => const Center(
+            NotificationSettingsInitial() ||
+            NotificationSettingsLoading() =>
+              const Center(
                 child: CircularProgressIndicator(color: HanaColors.primary),
               ),
-            NotificationSettingsError(:final message) => Center(child: Text(message)),
-            NotificationSettingsLoaded(:final drugs, :final schedules) => SingleChildScrollView(
+            NotificationSettingsError(:final message) =>
+              Center(child: Text(message)),
+            NotificationSettingsLoaded(:final drugs, :final schedules) =>
+              SingleChildScrollView(
                 padding: EdgeInsets.fromLTRB(24, topPadding, 24, 24),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -78,7 +84,10 @@ class NotificationSettingsPage extends StatelessWidget {
                           child: _DrugNotificationCard(
                             drugName: drug.name,
                             scheduleTimes: schedule?.scheduleTimes
-                                    .map((t) => '${t.hour.toString().padLeft(2, '0')}:${t.minute.toString().padLeft(2, '0')}')
+                                    .map(
+                                      (t) =>
+                                          '${t.hour.toString().padLeft(2, '0')}:${t.minute.toString().padLeft(2, '0')}',
+                                    )
                                     .toList() ??
                                 [],
                             l10n: l10n,
@@ -203,24 +212,26 @@ class _DrugNotificationCardState extends State<_DrugNotificationCard> {
                     spacing: 8,
                     runSpacing: 8,
                     children: widget.scheduleTimes
-                        .map((time) => Container(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 10,
-                                vertical: 4,
+                        .map(
+                          (time) => Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 10,
+                              vertical: 4,
+                            ),
+                            decoration: BoxDecoration(
+                              color: HanaColors.primaryContainer,
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Text(
+                              time,
+                              style: const TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                                color: HanaColors.primary,
                               ),
-                              decoration: BoxDecoration(
-                                color: HanaColors.primaryContainer,
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              child: Text(
-                                time,
-                                style: const TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.bold,
-                                  color: HanaColors.primary,
-                                ),
-                              ),
-                            ))
+                            ),
+                          ),
+                        )
                         .toList(),
                   )
                 else

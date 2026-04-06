@@ -32,6 +32,7 @@ class TodayPage extends StatelessWidget {
         ..hideCurrentSnackBar()
         ..showSnackBar(SnackBar(content: Text(message)));
     }
+
     final settingsState = context.watch<SettingsBloc>().state;
     final displayName = settingsState is SettingsLoaded
         ? settingsState.profile.displayName

@@ -184,37 +184,51 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     final currentState = state;
     if (currentState is! SettingsLoaded) return;
 
-    emit(SettingsState.actionResult(
-      actionKey: 'export_in_progress',
-      previousState: currentState,
-    ));
+    emit(
+      SettingsState.actionResult(
+        actionKey: 'export_in_progress',
+        previousState: currentState,
+      ),
+    );
 
     final failureOrExport = await _exportData();
 
     await failureOrExport.fold(
       (failure) async {
-        emit(SettingsState.actionResult(
-          actionKey: 'export_failed',
-          previousState: currentState,
-        ));
+        emit(
+          SettingsState.actionResult(
+            actionKey: 'export_failed',
+            previousState: currentState,
+          ),
+        );
       },
       (jsonString) async {
         try {
           final tempDir = await getTemporaryDirectory();
-          final fileName = 'hananote_backup_${DateTime.now().millisecondsSinceEpoch}.json';
+          final fileName =
+              'hananote_backup_${DateTime.now().millisecondsSinceEpoch}.json';
           final file = File('${tempDir.path}/$fileName');
           await file.writeAsString(jsonString);
 
-          await Share.shareXFiles([XFile(file.path)], text: 'HanaNote Backup');
-          emit(SettingsState.actionResult(
-            actionKey: 'export_success',
-            previousState: currentState,
-          ));
+          await SharePlus.instance.share(
+            ShareParams(
+              files: [XFile(file.path)],
+              text: 'HanaNote Backup',
+            ),
+          );
+          emit(
+            SettingsState.actionResult(
+              actionKey: 'export_success',
+              previousState: currentState,
+            ),
+          );
         } catch (e) {
-          emit(SettingsState.actionResult(
-            actionKey: 'export_failed',
-            previousState: currentState,
-          ));
+          emit(
+            SettingsState.actionResult(
+              actionKey: 'export_failed',
+              previousState: currentState,
+            ),
+          );
         }
       },
     );

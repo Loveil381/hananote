@@ -8,13 +8,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hananote/app/theme/hana_colors.dart';
+import 'package:hananote/core/constants/app_urls.dart';
 import 'package:hananote/core/l10n/arb/app_localizations.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_bloc.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_event.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_state.dart';
-import 'package:hananote/core/constants/app_urls.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -134,7 +134,9 @@ class ProfilePage extends StatelessWidget {
       },
       builder: (context, rootState) {
         final l10n = AppLocalizations.of(context)!;
-        final state = rootState is SettingsActionResult ? rootState.previousState : rootState;
+        final state = rootState is SettingsActionResult
+            ? rootState.previousState
+            : rootState;
 
         if (state is SettingsError) {
           return Scaffold(
@@ -220,8 +222,7 @@ class ProfilePage extends StatelessWidget {
                         Icons.notifications,
                         color: HanaColors.primary,
                       ),
-                      onPressed: () =>
-                          context.push('/notification_settings'),
+                      onPressed: () => context.push('/notification_settings'),
                     ),
                   ],
                 ),
@@ -485,8 +486,9 @@ class ProfilePage extends StatelessWidget {
                     title: l10n.exportBackup,
                     trailingText: lastBackupText,
                     decoration: _bentoDecoration(),
-                    onTap: () =>
-                        context.read<SettingsBloc>().add(const ExportDataEvent()),
+                    onTap: () => context
+                        .read<SettingsBloc>()
+                        .add(const ExportDataEvent()),
                   ),
                   const SizedBox(height: 12),
                   _ButtonRowItem(
@@ -494,8 +496,7 @@ class ProfilePage extends StatelessWidget {
                     title: l10n.importBackup,
                     isChevron: true,
                     decoration: _bentoDecoration(),
-                    onTap: () =>
-                        _showFeaturePlannedSheet(context),
+                    onTap: () => _showFeaturePlannedSheet(context),
                   ),
                   const SizedBox(height: 12),
                   _ButtonRowItem(
@@ -503,8 +504,7 @@ class ProfilePage extends StatelessWidget {
                     title: l10n.generatePdf,
                     isChevron: true,
                     decoration: _bentoDecoration(),
-                    onTap: () =>
-                        _showFeaturePlannedSheet(context),
+                    onTap: () => _showFeaturePlannedSheet(context),
                   ),
                   const SizedBox(height: 40),
                   Text(
