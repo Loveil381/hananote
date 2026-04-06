@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [main, improve/*, feat/*, fix/*]
+  pull_request:
+    branches: [main]
+
+jobs:
+  analyze-test-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 'stable'
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Verify formatting
+        run: dart format --set-exit-if-changed .
+
+      - name: Analyze
+        run: flutter analyze --fatal-warnings
+
+      - name: Run tests
+        run: flutter test
+
+      - name: Build APK (debug)
+        run: flutter build apk --debug
