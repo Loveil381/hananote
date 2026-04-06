@@ -703,4 +703,163 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get featureInDevelopmentDesc => '此功能正在开发中，将在下个版本推出';
+
+  @override
+  String get languageSystemDefault => '跟随系统';
+
+  @override
+  String get measurementTitle => '身体测量';
+
+  @override
+  String get measurementNew => '新建测量';
+
+  @override
+  String get measurementEmptyTitle => '开始记录你的身体变化';
+
+  @override
+  String get measurementEmptyDescription => '保存第一条测量后，这里会显示围度和体重的历史变化。';
+
+  @override
+  String get measurementDeleteTitle => '删除测量记录';
+
+  @override
+  String get measurementDeleteConfirm => '确认删除这条身体测量记录吗？';
+
+  @override
+  String get measurementFallbackSummary => '已记录一次身体测量';
+
+  @override
+  String get lockScreenWelcome => '欢迎回来';
+
+  @override
+  String get lockScreenPinIncomplete => '请输入完整的6位密码';
+
+  @override
+  String get setupTitle => '创建安全密码';
+
+  @override
+  String get setupDescription => '设置 6 位 PIN 以保护你的私密健康数据。';
+
+  @override
+  String get setupPinLabel => '密码';
+
+  @override
+  String get setupConfirmLabel => '确认密码';
+
+  @override
+  String get setupPinLengthError => '请输入 6 位 PIN';
+
+  @override
+  String get setupPinMismatchError => '两次输入的密码不一致';
+
+  @override
+  String get setupBiometricToggle => '启用后使用生物识别';
+
+  @override
+  String get journalNew => '写日记';
+
+  @override
+  String get journalEdit => '编辑日记';
+
+  @override
+  String get journalHint => '今天想说点什么...';
+
+  @override
+  String get journalAddTag => '添加标签';
+
+  @override
+  String get moodHappy => '开心';
+
+  @override
+  String get moodAnxious => '焦虑';
+
+  @override
+  String get moodCalm => '平静';
+
+  @override
+  String get moodTired => '疲惫';
+
+  @override
+  String get moodHopeful => '充满希望';
+
+  @override
+  String get measurementEditTitle => '编辑测量';
+
+  @override
+  String get measurementNewTitle => '新建测量';
+
+  @override
+  String get measurementCoreSection => '核心围度';
+
+  @override
+  String get measurementExtendedSection => '扩展指标';
+
+  @override
+  String get measurementNotes => '备注';
+
+  @override
+  String get measurementDateLabel => '测量日期';
+
+  @override
+  String get bloodTestEditTitle => '编辑血检报告';
+
+  @override
+  String get bloodTestNewTitle => '添加血检报告';
+
+  @override
+  String get bloodTestDateLabel => '检测日期';
+
+  @override
+  String get bloodTestLabLabel => '检测机构';
+
+  @override
+  String get bloodTestSummaryLabel => '结果摘要';
+
+  @override
+  String get bloodTestSummaryHint => '正式表单将在后续轮次接入，这里先保留入口。';
+
+  @override
+  String get bloodTestFormWip => '血检表单正在完善中';
+
+  @override
+  String get bloodTestSavePlaceholder => '保存占位内容';
+
+  @override
+  String get bloodTestCreatePlaceholder => '创建占位内容';
+
+  @override
+  String get simulatorTitle => 'PK 模拟器';
+
+  @override
+  String get simulatorEngineToggle => '切换 Hana-PK 实验引擎';
+
+  @override
+  String get simulatorSublingualHoldTime => '舌下含服时间';
+
+  @override
+  String get simulatorHoldQuick => '极快';
+
+  @override
+  String get simulatorHoldCasual => '随意';
+
+  @override
+  String get simulatorHoldStandard => '标准';
+
+  @override
+  String get simulatorHoldStrict => '严格';
+
+  @override
+  String get simulatorUpdateButton => '更新模拟';
+
+  @override
+  String get simulatorChartTitle => '浓度-时间曲线';
+
+  @override
+  String get simulatorChartAxisLabel => 'Y轴: 雌二醇体循环浓度 (pg/mL)   X轴: 持续天数';
+
+  @override
+  String get simulatorLegendStandard => 'V2 标准';
+
+  @override
+  String get simulatorLegendHanaPk => 'Hana-PK';
 }

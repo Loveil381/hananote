@@ -49,6 +49,7 @@ dart format --set-exit-if-changed .
 See the project-specific rules here:
 - `.agents/rules/flutter-project.md`
 - `.agents/rules/privacy-security.md`
+- `.agents/rules/frontend-design-gate.md` — **UI 必读**: 任何 presentation 层改动必须先读 DESIGN.md + 跑 design-system-enforcement 检查
 
 ## Critical Safety Rules
 
@@ -70,8 +71,8 @@ See the project-specific rules here:
 
 Playbook skills are installed under `.agents/skills/`:
 
+- `design-system-enforcement` (UI 合规门卫 — 融合 DESIGN.md 北极星 + 反模式红线检查)
 - `accessibility-checklist`
-- `design-system-enforcement`
 - `i18n-enforcement`
 - `release-readiness`
 - `ux-quality-checklist`

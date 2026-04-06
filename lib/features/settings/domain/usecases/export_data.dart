@@ -10,8 +10,10 @@ import 'package:hananote/features/medication/domain/repositories/medication_repo
 import 'package:hananote/features/settings/domain/repositories/settings_repository.dart';
 import 'package:injectable/injectable.dart';
 
+/// Use case that exports all user data as a JSON string for backup.
 @injectable
 class ExportData {
+  /// Creates an [ExportData] use case.
   const ExportData(
     this._medicationRepo,
     this._journalRepo,
@@ -26,6 +28,7 @@ class ExportData {
   final MeasurementRepository _measurementRepo;
   final SettingsRepository _settingsRepo;
 
+  /// Collects and serialises all user data into a JSON backup string.
   Future<Either<Failure, String>> call() async {
     try {
       final drugsResult = await _medicationRepo.getAllDrugs();

@@ -17,6 +17,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hananote/app/di/injection.dart';
 import 'package:hananote/app/theme/hana_colors.dart';
 import 'package:hananote/app/theme/hana_shadows.dart';
+import 'package:hananote/core/l10n/arb/app_localizations.dart';
 import 'package:hananote/features/simulator/domain/entities/dosing_regimen.dart';
 import 'package:hananote/features/simulator/domain/entities/ester_type.dart';
 import 'package:hananote/features/simulator/domain/entities/pk_result.dart';
@@ -50,7 +51,7 @@ class _SimulatorScan extends StatelessWidget {
         return Scaffold(
           backgroundColor: HanaColors.background,
           appBar: AppBar(
-            title: const Text('PK 模拟器'),
+            title: Text(AppLocalizations.of(context)!.simulatorTitle),
             backgroundColor: HanaColors.surface,
             actions: [
               if (state.maybeMap(loaded: (_) => true, orElse: () => false))
@@ -63,7 +64,7 @@ class _SimulatorScan extends StatelessWidget {
                       Icons.science,
                       color: isHanaPk ? HanaColors.primary : HanaColors.outline,
                     ),
-                    tooltip: '切换 Hana-PK 实验引擎',
+                    tooltip: AppLocalizations.of(context)!.simulatorEngineToggle,
                     onPressed: () {
                       context
                           .read<SimulatorBloc>()
@@ -323,21 +324,21 @@ class _ParamsCardState extends State<_ParamsCard> {
                 ),
                 if (_esterType == EsterType.sublingualEstradiol) ...[
                   const SizedBox(height: 16),
-                  const Text('舌下含服时间',
-                      style:
+                  Text(AppLocalizations.of(context)!.simulatorSublingualHoldTime,
+                      style: const
                           TextStyle(fontSize: 12, color: HanaColors.outline)),
                   const SizedBox(height: 8),
                   SegmentedButton<SublingualHoldTime>(
-                    segments: const [
+                    segments: [
                       ButtonSegment(
-                          value: SublingualHoldTime.quick, label: Text('极快')),
+                          value: SublingualHoldTime.quick, label: Text(AppLocalizations.of(context)!.simulatorHoldQuick)),
                       ButtonSegment(
-                          value: SublingualHoldTime.casual, label: Text('随意')),
+                          value: SublingualHoldTime.casual, label: Text(AppLocalizations.of(context)!.simulatorHoldCasual)),
                       ButtonSegment(
                           value: SublingualHoldTime.standard,
-                          label: Text('标准')),
+                          label: Text(AppLocalizations.of(context)!.simulatorHoldStandard)),
                       ButtonSegment(
-                          value: SublingualHoldTime.strict, label: Text('严格')),
+                          value: SublingualHoldTime.strict, label: Text(AppLocalizations.of(context)!.simulatorHoldStrict)),
                     ],
                     selected: {_holdTime ?? SublingualHoldTime.standard},
                     onSelectionChanged: (set) {
@@ -362,7 +363,7 @@ class _ParamsCardState extends State<_ParamsCard> {
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  child: const Text('更新模拟'),
+                  child: Text(AppLocalizations.of(context)!.simulatorUpdateButton),
                 ),
               ],
             ),
@@ -400,9 +401,9 @@ class _ChartCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
-                '浓度-时间曲线',
-                style: TextStyle(
+              Text(
+                AppLocalizations.of(context)!.simulatorChartTitle,
+                style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
                   color: HanaColors.onSurface,
@@ -412,7 +413,7 @@ class _ChartCard extends StatelessWidget {
                 children: [
                   _LegendItem(
                     color: isHanaPk ? HanaColors.secondary : HanaColors.primary,
-                    label: isHanaPk ? 'Hana-PK' : 'V2 标准',
+                    label: isHanaPk ? AppLocalizations.of(context)!.simulatorLegendHanaPk : AppLocalizations.of(context)!.simulatorLegendStandard,
                     isDashed: false,
                   ),
                   const SizedBox(width: 8),
@@ -420,7 +421,7 @@ class _ChartCard extends StatelessWidget {
                     _LegendItem(
                       color:
                           isHanaPk ? HanaColors.primary : HanaColors.secondary,
-                      label: isHanaPk ? 'V2 标准' : 'Hana-PK',
+                      label: isHanaPk ? AppLocalizations.of(context)!.simulatorLegendStandard : AppLocalizations.of(context)!.simulatorLegendHanaPk,
                       isDashed: true,
                     ),
                 ],
@@ -433,9 +434,9 @@ class _ChartCard extends StatelessWidget {
             child: LineChart(_buildChartData(context)),
           ),
           const SizedBox(height: 8),
-          const Text(
-            'Y轴: 雌二醇体循环浓度 (pg/mL)   X轴: 持续天数',
-            style: TextStyle(fontSize: 11, color: HanaColors.outline),
+          Text(
+            AppLocalizations.of(context)!.simulatorChartAxisLabel,
+            style: const TextStyle(fontSize: 11, color: HanaColors.outline),
             textAlign: TextAlign.center,
           ),
         ],

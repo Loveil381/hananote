@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hananote/core/l10n/arb/app_localizations.dart';
 
 /// Minimal placeholder page for creating or editing a blood test report.
 class BloodTestEditPage extends StatelessWidget {
@@ -14,45 +15,52 @@ class BloodTestEditPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isEditing = reportId != null && reportId!.isNotEmpty;
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(isEditing ? '编辑血检报告' : '添加血检报告'),
+        title: Text(
+          isEditing ? l10n.bloodTestEditTitle : l10n.bloodTestNewTitle,
+        ),
       ),
       body: ListView(
         padding: const EdgeInsets.all(24),
         children: [
           TextFormField(
-            decoration: const InputDecoration(
-              labelText: '检测日期',
-              border: OutlineInputBorder(),
+            decoration: InputDecoration(
+              labelText: l10n.bloodTestDateLabel,
+              border: const OutlineInputBorder(),
             ),
           ),
           const SizedBox(height: 16),
           TextFormField(
-            decoration: const InputDecoration(
-              labelText: '检测机构',
-              border: OutlineInputBorder(),
+            decoration: InputDecoration(
+              labelText: l10n.bloodTestLabLabel,
+              border: const OutlineInputBorder(),
             ),
           ),
           const SizedBox(height: 16),
           TextFormField(
             minLines: 4,
             maxLines: 6,
-            decoration: const InputDecoration(
-              labelText: '结果摘要',
-              hintText: '正式表单将在后续轮次接入，这里先保留入口。',
-              border: OutlineInputBorder(),
+            decoration: InputDecoration(
+              labelText: l10n.bloodTestSummaryLabel,
+              hintText: l10n.bloodTestSummaryHint,
+              border: const OutlineInputBorder(),
             ),
           ),
           const SizedBox(height: 24),
           FilledButton(
             onPressed: () {
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('血检表单正在完善中')),
+                SnackBar(content: Text(l10n.bloodTestFormWip)),
               );
             },
-            child: Text(isEditing ? '保存占位内容' : '创建占位内容'),
+            child: Text(
+              isEditing
+                  ? l10n.bloodTestSavePlaceholder
+                  : l10n.bloodTestCreatePlaceholder,
+            ),
           ),
         ],
       ),

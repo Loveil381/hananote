@@ -204,6 +204,7 @@ class ProfilePage extends StatelessWidget {
                   centerTitle: true,
                   leading: IconButton(
                     icon: const Icon(Icons.settings, color: HanaColors.primary),
+                    tooltip: l10n.settingsTitle,
                     onPressed: () => context.push('/settings'),
                   ),
                   title: Text(
@@ -222,6 +223,7 @@ class ProfilePage extends StatelessWidget {
                         Icons.notifications,
                         color: HanaColors.primary,
                       ),
+                      tooltip: l10n.notificationSettings,
                       onPressed: () => context.push('/notification_settings'),
                     ),
                   ],

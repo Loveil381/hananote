@@ -180,7 +180,7 @@ class UpcomingDoseCard extends StatelessWidget {
                               child: Text(
                                 takeLabel,
                                 style: const TextStyle(
-                                  color: Colors.white,
+                                  color: HanaColors.onPrimary,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),

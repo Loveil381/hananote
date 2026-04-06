@@ -136,53 +136,57 @@ class _NavItem extends StatelessWidget {
       end: Alignment.bottomRight,
     );
 
-    return GestureDetector(
-      onTap: onTap,
-      behavior: HitTestBehavior.opaque,
-      child: AnimatedScale(
-        scale: isSelected ? 1.1 : 1.0, // scale-110 for active
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeOutCubic,
-        child: AnimatedContainer(
+    return Semantics(
+      button: true,
+      label: label,
+      child: GestureDetector(
+        onTap: onTap,
+        behavior: HitTestBehavior.opaque,
+        child: AnimatedScale(
+          scale: isSelected ? 1.1 : 1.0, // scale-110 for active
           duration: const Duration(milliseconds: 300),
           curve: Curves.easeOutCubic,
-          padding: isSelected
-              ? const EdgeInsets.symmetric(horizontal: 20, vertical: 8)
-              : const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          decoration: isSelected
-              ? BoxDecoration(
-                  gradient: activeGradient,
-                  borderRadius: BorderRadius.circular(9999),
-                )
-              : const BoxDecoration(
-                  color: Colors.transparent,
-                ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(
-                icon,
-                color: isSelected
-                    ? HanaColors.primary
-                    : HanaColors.primary.withAlpha(
-                        102,
-                      ), // 40% opacity = 102 alpha as per HTML text-[#864E5A]/40
-                size: 24,
-              ),
-              const SizedBox(height: 2),
-              Text(
-                label,
-                style: TextStyle(
-                  fontFamily: 'Plus Jakarta Sans',
-                  fontSize: 10,
-                  fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
-                  letterSpacing: isSelected ? 0.5 : 0.2, // tracking-wide
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.easeOutCubic,
+            padding: isSelected
+                ? const EdgeInsets.symmetric(horizontal: 20, vertical: 8)
+                : const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            decoration: isSelected
+                ? BoxDecoration(
+                    gradient: activeGradient,
+                    borderRadius: BorderRadius.circular(9999),
+                  )
+                : const BoxDecoration(
+                    color: Colors.transparent,
+                  ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  icon,
                   color: isSelected
                       ? HanaColors.primary
-                      : HanaColors.primary.withAlpha(102),
+                      : HanaColors.primary.withAlpha(
+                          102,
+                        ), // 40% opacity = 102 alpha as per HTML text-[#864E5A]/40
+                  size: 24,
                 ),
-              ),
-            ],
+                const SizedBox(height: 2),
+                Text(
+                  label,
+                  style: TextStyle(
+                    fontFamily: 'Plus Jakarta Sans',
+                    fontSize: 10,
+                    fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
+                    letterSpacing: isSelected ? 0.5 : 0.2, // tracking-wide
+                    color: isSelected
+                        ? HanaColors.primary
+                        : HanaColors.primary.withAlpha(102),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

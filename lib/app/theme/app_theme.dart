@@ -61,23 +61,23 @@ class AppTheme {
 
     const textTheme = TextTheme(
       headlineLarge: TextStyle(
-        fontFamily: 'PlusJakartaSans',
+        fontFamily: 'Plus Jakarta Sans',
         fontWeight: FontWeight.w800,
       ),
       headlineMedium: TextStyle(
-        fontFamily: 'PlusJakartaSans',
+        fontFamily: 'Plus Jakarta Sans',
         fontWeight: FontWeight.bold,
       ),
       headlineSmall: TextStyle(
-        fontFamily: 'PlusJakartaSans',
+        fontFamily: 'Plus Jakarta Sans',
         fontWeight: FontWeight.bold,
       ),
-      bodyLarge: TextStyle(fontFamily: 'BeVietnamPro'),
-      bodyMedium: TextStyle(fontFamily: 'BeVietnamPro'),
-      bodySmall: TextStyle(fontFamily: 'BeVietnamPro'),
-      labelLarge: TextStyle(fontFamily: 'BeVietnamPro'),
-      labelMedium: TextStyle(fontFamily: 'BeVietnamPro'),
-      labelSmall: TextStyle(fontFamily: 'BeVietnamPro'),
+      bodyLarge: TextStyle(fontFamily: 'Be Vietnam Pro'),
+      bodyMedium: TextStyle(fontFamily: 'Be Vietnam Pro'),
+      bodySmall: TextStyle(fontFamily: 'Be Vietnam Pro'),
+      labelLarge: TextStyle(fontFamily: 'Be Vietnam Pro'),
+      labelMedium: TextStyle(fontFamily: 'Be Vietnam Pro'),
+      labelSmall: TextStyle(fontFamily: 'Be Vietnam Pro'),
     );
 
     return ThemeData(

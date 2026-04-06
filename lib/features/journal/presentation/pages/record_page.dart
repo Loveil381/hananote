@@ -68,6 +68,7 @@ class RecordPage extends StatelessWidget {
                   centerTitle: true,
                   leading: IconButton(
                     icon: const Icon(Icons.notes, color: HanaColors.primary),
+                    tooltip: l10n.featureComingSoon,
                     onPressed: showComingSoon,
                   ),
                   title: Column(
@@ -103,6 +104,7 @@ class RecordPage extends StatelessWidget {
                         Icons.history_edu,
                         color: HanaColors.primary,
                       ),
+                      tooltip: l10n.featureComingSoon,
                       onPressed: showComingSoon,
                     ),
                   ],

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hananote/app/theme/hana_colors.dart';
+import 'package:hananote/core/l10n/arb/app_localizations.dart';
 import 'package:hananote/features/auth/presentation/bloc/auth_cubit.dart';
 import 'package:hananote/features/auth/presentation/bloc/auth_state.dart';
 
@@ -27,6 +28,7 @@ class _LockScreenPageState extends State<LockScreenPage> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final dots = List.generate(
       6,
       (index) => AnimatedContainer(
@@ -84,7 +86,7 @@ class _LockScreenPageState extends State<LockScreenPage> {
                       ),
                       const SizedBox(height: 28),
                       Text(
-                        '欢迎回来',
+                        l10n.lockScreenWelcome,
                         style: theme.textTheme.headlineMedium?.copyWith(
                               fontWeight: FontWeight.w700,
                               color: HanaColors.onSurface,
@@ -164,7 +166,7 @@ class _LockScreenPageState extends State<LockScreenPage> {
 
   void _handleConfirm() {
     if (_pin.length != 6) {
-      showError('请输入完整的6位密码');
+      showError(AppLocalizations.of(context)!.lockScreenPinIncomplete);
       return;
     }
     final pin = _pin;
@@ -226,22 +228,30 @@ class _PinKeypad extends StatelessWidget {
           return const SizedBox.shrink();
         }
         if (token == 'bio') {
-          return _KeyButton(
-            onTap: onBiometric,
-            child: const Icon(
-              Icons.fingerprint_rounded,
-              size: 28,
-              color: HanaColors.primary,
+          return Semantics(
+            button: true,
+            label: 'Biometric unlock',
+            child: _KeyButton(
+              onTap: onBiometric,
+              child: const Icon(
+                Icons.fingerprint_rounded,
+                size: 28,
+                color: HanaColors.primary,
+              ),
             ),
           );
         }
         if (token == 'back') {
-          return _KeyButton(
-            onTap: onBackspace,
-            child: const Icon(
-              Icons.backspace_outlined,
-              size: 24,
-              color: HanaColors.onSurfaceVariant,
+          return Semantics(
+            button: true,
+            label: 'Backspace',
+            child: _KeyButton(
+              onTap: onBackspace,
+              child: const Icon(
+                Icons.backspace_outlined,
+                size: 24,
+                color: HanaColors.onSurfaceVariant,
+              ),
             ),
           );
         }

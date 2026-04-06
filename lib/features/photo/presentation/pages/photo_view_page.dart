@@ -63,10 +63,10 @@ class _PhotoViewPageState extends State<PhotoViewPage> {
     final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: HanaColors.inverseSurface,
       appBar: AppBar(
-        backgroundColor: Colors.black,
-        foregroundColor: Colors.white,
+        backgroundColor: HanaColors.inverseSurface,
+        foregroundColor: HanaColors.inverseOnSurface,
         title: Text(DateFormat('yyyy.MM.dd').format(widget.entry.date)),
         actions: [
           IconButton(
@@ -92,12 +92,12 @@ class _PhotoViewPageState extends State<PhotoViewPage> {
             width: double.infinity,
             padding: const EdgeInsets.fromLTRB(16, 16, 16, 28),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: HanaColors.inverseOnSurface,
               borderRadius:
                   const BorderRadius.vertical(top: Radius.circular(24)),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withAlpha(40),
+                  color: HanaColors.inverseSurface.withAlpha(40),
                   blurRadius: 16,
                   offset: const Offset(0, -4),
                 ),
@@ -157,11 +157,14 @@ class _PhotoViewPageState extends State<PhotoViewPage> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(Icons.broken_image_outlined, color: Colors.white70),
+            const Icon(
+              Icons.broken_image_outlined,
+              color: HanaColors.inverseOnSurface,
+            ),
             const SizedBox(height: 12),
             Text(
               _errorMessage!,
-              style: const TextStyle(color: Colors.white),
+              style: const TextStyle(color: HanaColors.inverseOnSurface),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 16),
@@ -191,22 +194,24 @@ class _PhotoViewPageState extends State<PhotoViewPage> {
             width: 220,
             height: 220,
             decoration: BoxDecoration(
-              color: Colors.white.withAlpha(16),
+              color: HanaColors.inverseOnSurface.withAlpha(16),
               borderRadius: BorderRadius.circular(24),
             ),
             child: const Icon(
               Icons.photo_outlined,
-              color: Colors.white54,
+              color: HanaColors.inverseOnSurface,
               size: 72,
             ),
           ),
         Container(
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
-            color: Colors.black.withAlpha(120),
+            color: HanaColors.inverseSurface.withAlpha(120),
             shape: BoxShape.circle,
           ),
-          child: const CircularProgressIndicator(color: Colors.white),
+          child: const CircularProgressIndicator(
+            color: HanaColors.inverseOnSurface,
+          ),
         ),
       ],
     );

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hananote/app/di/injection.dart';
 import 'package:hananote/app/theme/hana_colors.dart';
+import 'package:hananote/core/l10n/arb/app_localizations.dart';
 import 'package:hananote/core/utils/id_generator.dart';
 import 'package:hananote/features/journal/domain/entities/enums.dart';
 import 'package:hananote/features/journal/domain/entities/journal_entry.dart';
@@ -29,7 +30,7 @@ class _JournalEditPageState extends State<JournalEditPage> {
   final List<String> _selectedTags = [];
   bool _isSaving = false;
 
-  final List<String> _presetTags = ['开心', '焦虑', '平静', '疲惫', '充满希望'];
+  List<String> _presetTags = [];
 
   @override
   void initState() {
@@ -92,6 +93,14 @@ class _JournalEditPageState extends State<JournalEditPage> {
   @override
   Widget build(BuildContext context) {
     final isNew = widget.existingEntry == null;
+    final l10n = AppLocalizations.of(context)!;
+    _presetTags = [
+      l10n.moodHappy,
+      l10n.moodAnxious,
+      l10n.moodCalm,
+      l10n.moodTired,
+      l10n.moodHopeful,
+    ];
     return Scaffold(
       backgroundColor: HanaColors.surfaceContainerLow,
       appBar: AppBar(
@@ -104,7 +113,7 @@ class _JournalEditPageState extends State<JournalEditPage> {
           onPressed: () => context.pop(),
         ),
         title: Text(
-          isNew ? '写日记' : '编辑日记',
+          isNew ? l10n.journalNew : l10n.journalEdit,
           style: const TextStyle(
             fontFamily: 'Plus Jakarta Sans',
             fontWeight: FontWeight.w600,
@@ -130,6 +139,7 @@ class _JournalEditPageState extends State<JournalEditPage> {
                 Icons.check_circle_outline,
                 color: HanaColors.primary,
               ),
+              tooltip: l10n.save,
               onPressed: _saveEntry,
             ),
         ],
@@ -153,7 +163,7 @@ class _JournalEditPageState extends State<JournalEditPage> {
                         height: 1.6,
                       ),
                   decoration: InputDecoration(
-                    hintText: '今天想说点什么...',
+                    hintText: l10n.journalHint,
                     hintStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(
                           color: HanaColors.onSurfaceVariant
                               .withAlpha((255 * 0.5).round()),
@@ -217,7 +227,7 @@ class _JournalEditPageState extends State<JournalEditPage> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
-            '添加标签',
+            AppLocalizations.of(context)!.journalAddTag,
             style: Theme.of(context).textTheme.labelMedium?.copyWith(
                   color: HanaColors.onSurfaceVariant,
                   fontWeight: FontWeight.w600,

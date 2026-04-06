@@ -93,7 +93,7 @@ class TimelinePage extends StatelessWidget {
                 end: Alignment.bottomRight,
               ),
             ),
-            child: const Icon(Icons.add, color: Colors.white, size: 32),
+            child: const Icon(Icons.add, color: HanaColors.onPrimary, size: 32),
           ),
         ),
       ),
@@ -369,7 +369,7 @@ class _TimelineEventRow extends StatelessWidget {
           width: 16,
           height: 16,
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: HanaColors.surfaceContainerLowest,
             shape: BoxShape.circle,
             border: Border.all(
               color: event.type.borderColor,

@@ -9,6 +9,7 @@ import 'package:hananote/features/settings/presentation/bloc/settings_bloc.dart'
 import 'package:hananote/features/settings/presentation/bloc/settings_event.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_state.dart';
 import 'package:intl/intl.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 /// The settings detail page.
@@ -95,7 +96,6 @@ class SettingsDetailPage extends StatelessWidget {
                             l10n,
                           ),
                         ),
-                        const Divider(height: 1, indent: 56),
                         _SettingsTile(
                           icon: Icons.cake_outlined,
                           title: l10n.editHrtStartDate,
@@ -124,9 +124,9 @@ class SettingsDetailPage extends StatelessWidget {
                         _SettingsTile(
                           icon: Icons.language,
                           title: l10n.languageSetting,
-                          trailing: const Text(
-                            'System', // Placeholder
-                            style: TextStyle(
+                          trailing: Text(
+                            l10n.languageSystemDefault,
+                            style: const TextStyle(
                               color: HanaColors.onSurfaceVariant,
                               fontWeight: FontWeight.w500,
                             ),
@@ -141,7 +141,6 @@ class SettingsDetailPage extends StatelessWidget {
                               );
                           },
                         ),
-                        const Divider(height: 1, indent: 56),
                         _SettingsTile(
                           icon: Icons.dark_mode_outlined,
                           title: l10n.darkMode,
@@ -170,23 +169,30 @@ class SettingsDetailPage extends StatelessWidget {
                         _SettingsTile(
                           icon: Icons.lock_outline,
                           title: l10n.appLock,
-                          trailing: Switch(
-                            value: settings.appLockEnabled,
-                            onChanged: (val) => context
-                                .read<SettingsBloc>()
-                                .add(ToggleAppLock(enabled: val)),
+                          trailing: Semantics(
+                            toggled: settings.appLockEnabled,
+                            label: l10n.appLock,
+                            child: Switch(
+                              value: settings.appLockEnabled,
+                              onChanged: (val) => context
+                                  .read<SettingsBloc>()
+                                  .add(ToggleAppLock(enabled: val)),
+                            ),
                           ),
                         ),
-                        const Divider(height: 1, indent: 56),
                         _SettingsTile(
                           icon: Icons.visibility_off_outlined,
                           title: l10n.privacyMode,
                           subtitle: l10n.privacyModeEnabled,
-                          trailing: Switch(
-                            value: settings.privacyModeEnabled,
-                            onChanged: (val) => context
-                                .read<SettingsBloc>()
-                                .add(TogglePrivacyMode(enabled: val)),
+                          trailing: Semantics(
+                            toggled: settings.privacyModeEnabled,
+                            label: l10n.privacyMode,
+                            child: Switch(
+                              value: settings.privacyModeEnabled,
+                              onChanged: (val) => context
+                                  .read<SettingsBloc>()
+                                  .add(TogglePrivacyMode(enabled: val)),
+                            ),
                           ),
                         ),
                       ],
@@ -201,15 +207,20 @@ class SettingsDetailPage extends StatelessWidget {
                         _SettingsTile(
                           icon: Icons.info_outline,
                           title: l10n.version,
-                          trailing: const Text(
-                            '1.0.0', // Placeholder
-                            style: TextStyle(
-                              color: HanaColors.onSurfaceVariant,
-                              fontWeight: FontWeight.w500,
-                            ),
+                          trailing: FutureBuilder<PackageInfo>(
+                            future: PackageInfo.fromPlatform(),
+                            builder: (context, snapshot) {
+                              final version = snapshot.data?.version ?? '...';
+                              return Text(
+                                version,
+                                style: const TextStyle(
+                                  color: HanaColors.onSurfaceVariant,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              );
+                            },
                           ),
                         ),
-                        const Divider(height: 1, indent: 56),
                         _SettingsTile(
                           icon: Icons.privacy_tip_outlined,
                           title: l10n.privacyPolicy,
@@ -222,7 +233,6 @@ class SettingsDetailPage extends StatelessWidget {
                             mode: LaunchMode.externalApplication,
                           ),
                         ),
-                        const Divider(height: 1, indent: 56),
                         _SettingsTile(
                           icon: Icons.description_outlined,
                           title: l10n.termsOfUse,

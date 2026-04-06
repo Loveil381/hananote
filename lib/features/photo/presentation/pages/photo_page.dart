@@ -325,7 +325,7 @@ class _PhotoGridItem extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withAlpha(15),
+                color: HanaColors.primary.withAlpha(15),
                 blurRadius: 18,
                 offset: const Offset(0, 8),
               ),
@@ -353,7 +353,7 @@ class _PhotoGridItem extends StatelessWidget {
                   bottom: 12,
                   child: DecoratedBox(
                     decoration: BoxDecoration(
-                      color: Colors.black.withAlpha(150),
+                      color: HanaColors.inverseSurface.withAlpha(150),
                       borderRadius: BorderRadius.circular(999),
                     ),
                     child: Padding(
@@ -364,7 +364,7 @@ class _PhotoGridItem extends StatelessWidget {
                       child: Text(
                         DateFormat('yyyy.MM.dd').format(entry.date),
                         style: const TextStyle(
-                          color: Colors.white,
+                          color: HanaColors.inverseOnSurface,
                           fontSize: 12,
                           fontWeight: FontWeight.w600,
                         ),

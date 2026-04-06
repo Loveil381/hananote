@@ -27,11 +27,6 @@ class TodayPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final l10n = AppLocalizations.of(context)!;
-    void showComingSoon(String message) {
-      ScaffoldMessenger.of(context)
-        ..hideCurrentSnackBar()
-        ..showSnackBar(SnackBar(content: Text(message)));
-    }
 
     final settingsState = context.watch<SettingsBloc>().state;
     final displayName = settingsState is SettingsLoaded
@@ -73,7 +68,7 @@ class TodayPage extends StatelessWidget {
                     Text(
                       l10n.appTitle,
                       style: const TextStyle(
-                        fontFamily: 'PlusJakartaSans',
+                        fontFamily: 'Plus Jakarta Sans',
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                         color: HanaColors.primary,
@@ -87,6 +82,7 @@ class TodayPage extends StatelessWidget {
                       Icons.calendar_today,
                       color: HanaColors.primary,
                     ),
+                    tooltip: l10n.tabTimeline,
                     onPressed: () => context.go('/timeline'),
                   ),
                   const SizedBox(width: 8),
@@ -111,7 +107,7 @@ class TodayPage extends StatelessWidget {
                               style: const TextStyle(
                                 fontSize: 30,
                                 fontWeight: FontWeight.w800,
-                                fontFamily: 'PlusJakartaSans',
+                                fontFamily: 'Plus Jakarta Sans',
                                 color: HanaColors.primary,
                                 letterSpacing: -0.5,
                               ),

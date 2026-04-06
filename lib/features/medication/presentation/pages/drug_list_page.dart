@@ -102,10 +102,12 @@ class _DrugListPageState extends State<DrugListPage> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
-            Icons.medication_outlined,
-            size: 64,
-            color: theme.colorScheme.onSurfaceVariant.withAlpha(100),
+          ExcludeSemantics(
+            child: Icon(
+              Icons.medication_outlined,
+              size: 64,
+              color: theme.colorScheme.onSurfaceVariant.withAlpha(100),
+            ),
           ),
           const SizedBox(height: 16),
           Text(

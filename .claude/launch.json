@@ -1,0 +1,35 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "Flutter Web (Chrome)",
+      "runtimeExecutable": "flutter",
+      "runtimeArgs": ["run", "-d", "chrome", "--web-port", "8080"],
+      "port": 8080
+    },
+    {
+      "name": "Flutter Web (Headless Server)",
+      "runtimeExecutable": "flutter",
+      "runtimeArgs": ["run", "-d", "web-server", "--web-port", "8080"],
+      "port": 8080
+    },
+    {
+      "name": "Flutter Windows (Desktop)",
+      "runtimeExecutable": "flutter",
+      "runtimeArgs": ["run", "-d", "windows"],
+      "port": 0
+    },
+    {
+      "name": "Flutter Android (Emulator)",
+      "runtimeExecutable": "flutter",
+      "runtimeArgs": ["run", "-d", "android"],
+      "port": 0
+    },
+    {
+      "name": "Dart Build Runner (Code Gen)",
+      "runtimeExecutable": "dart",
+      "runtimeArgs": ["run", "build_runner", "watch", "--delete-conflicting-outputs"],
+      "port": 0
+    }
+  ]
+}

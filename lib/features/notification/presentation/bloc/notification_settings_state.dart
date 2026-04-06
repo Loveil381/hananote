@@ -4,6 +4,7 @@ import 'package:hananote/features/medication/domain/entities/medication_schedule
 
 part 'notification_settings_state.freezed.dart';
 
+/// States for the notification settings screen.
 @freezed
 sealed class NotificationSettingsState with _$NotificationSettingsState {
   const factory NotificationSettingsState.initial() =

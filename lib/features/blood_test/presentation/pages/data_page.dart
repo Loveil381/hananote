@@ -25,11 +25,6 @@ class DataPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final topPadding = MediaQuery.of(context).padding.top + kToolbarHeight + 16;
-    void showComingSoon(String message) {
-      ScaffoldMessenger.of(context)
-        ..hideCurrentSnackBar()
-        ..showSnackBar(SnackBar(content: Text(message)));
-    }
 
     return Scaffold(
       backgroundColor: HanaColors.background,
@@ -50,6 +45,7 @@ class DataPage extends StatelessWidget {
                   Icons.notifications_none,
                   color: HanaColors.primary,
                 ),
+                tooltip: l10n.settingsTitle,
                 onPressed: () => context.push('/settings'),
               ),
               title: Text(
@@ -65,6 +61,7 @@ class DataPage extends StatelessWidget {
               actions: [
                 IconButton(
                   icon: const Icon(Icons.add_circle, color: HanaColors.primary),
+                  tooltip: l10n.addReport,
                   onPressed: () => context.push('/data/add_report'),
                 ),
               ],
@@ -164,7 +161,7 @@ class _LoadedView extends StatelessWidget {
                 unit: unitText,
                 subtitle: status.localizedName(l10n),
                 statusColor: switch (status) {
-                  HormoneStatus.normal => const Color(0xFF34D399),
+                  HormoneStatus.normal => HanaColors.success,
                   HormoneStatus.warning => HanaColors.tertiary,
                   HormoneStatus.critical => HanaColors.error,
                 },
@@ -439,7 +436,7 @@ class _StitchSimulatorCard extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  color: Colors.white.withAlpha(128), // 50%
+                  color: HanaColors.surfaceContainerLowest.withAlpha(128), // 50%
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: const Icon(Icons.science, color: HanaColors.primary),
@@ -471,7 +468,7 @@ class _StitchSimulatorCard extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: Colors.white.withAlpha(128), // 50%
+                  color: HanaColors.surfaceContainerLowest.withAlpha(128), // 50%
                   shape: BoxShape.circle,
                 ),
                 child: const Icon(
@@ -548,7 +545,7 @@ class _TrendChart extends StatelessWidget {
       decoration: BoxDecoration(
         color: HanaColors.surfaceContainerLowest,
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: Colors.white, width: 2),
+        border: Border.all(color: HanaColors.surfaceContainerLowest, width: 2),
         boxShadow: [
           BoxShadow(
             color: HanaColors.primary.withAlpha(10), // 4%
@@ -705,7 +702,7 @@ class _TrendChart extends StatelessWidget {
                               radius: 4,
                               color: HanaColors.primary,
                               strokeWidth: 1.5,
-                              strokeColor: Colors.white,
+                              strokeColor: HanaColors.surfaceContainerLowest,
                             ),
                           ),
                         ),

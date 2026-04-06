@@ -4,13 +4,16 @@ import 'package:hananote/features/medication/domain/repositories/medication_repo
 import 'package:hananote/features/notification/presentation/bloc/notification_settings_state.dart';
 import 'package:injectable/injectable.dart';
 
+/// Manages notification settings by loading active drugs and their schedules.
 @injectable
 class NotificationSettingsCubit extends Cubit<NotificationSettingsState> {
+  /// Creates a [NotificationSettingsCubit].
   NotificationSettingsCubit(this._repository)
       : super(const NotificationSettingsState.initial());
 
   final MedicationRepository _repository;
 
+  /// Loads active drugs and their associated medication schedules.
   Future<void> loadData() async {
     emit(const NotificationSettingsState.loading());
     try {

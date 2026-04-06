@@ -31,6 +31,8 @@ import 'package:hananote/features/medication/presentation/pages/drug_list_page.d
 import 'package:hananote/features/medication/presentation/pages/inventory_page.dart';
 import 'package:hananote/features/medication/presentation/pages/schedule_editor_page.dart';
 import 'package:hananote/features/medication/presentation/pages/today_page.dart';
+import 'package:hananote/features/notification/presentation/bloc/notification_settings_cubit.dart';
+import 'package:hananote/features/notification/presentation/pages/notification_settings_page.dart';
 import 'package:hananote/features/photo/domain/entities/photo_entry.dart';
 import 'package:hananote/features/photo/presentation/blocs/photo_bloc.dart';
 import 'package:hananote/features/photo/presentation/pages/photo_page.dart';
@@ -39,8 +41,6 @@ import 'package:hananote/features/settings/presentation/bloc/settings_bloc.dart'
 import 'package:hananote/features/settings/presentation/bloc/settings_event.dart';
 import 'package:hananote/features/settings/presentation/pages/profile_page.dart';
 import 'package:hananote/features/settings/presentation/pages/settings_detail_page.dart';
-import 'package:hananote/features/notification/presentation/bloc/notification_settings_cubit.dart';
-import 'package:hananote/features/notification/presentation/pages/notification_settings_page.dart';
 import 'package:hananote/features/simulator/presentation/pages/simulator_page.dart';
 import 'package:hananote/features/timeline/presentation/bloc/timeline_bloc.dart';
 import 'package:hananote/features/timeline/presentation/bloc/timeline_event.dart';

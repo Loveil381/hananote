@@ -725,4 +725,168 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get featureInDevelopmentDesc =>
       'This feature is under development and will be available in the next release';
+
+  @override
+  String get languageSystemDefault => 'System';
+
+  @override
+  String get measurementTitle => 'Body Measurements';
+
+  @override
+  String get measurementNew => 'New Measurement';
+
+  @override
+  String get measurementEmptyTitle => 'Start tracking your body changes';
+
+  @override
+  String get measurementEmptyDescription =>
+      'After saving your first measurement, you\'ll see your body and weight history here.';
+
+  @override
+  String get measurementDeleteTitle => 'Delete measurement';
+
+  @override
+  String get measurementDeleteConfirm =>
+      'Are you sure you want to delete this measurement record?';
+
+  @override
+  String get measurementFallbackSummary => 'One body measurement recorded';
+
+  @override
+  String get lockScreenWelcome => 'Welcome back';
+
+  @override
+  String get lockScreenPinIncomplete => 'Please enter the full 6-digit PIN';
+
+  @override
+  String get setupTitle => 'Create a secure password';
+
+  @override
+  String get setupDescription =>
+      'Set a 6-digit PIN to protect your private health data.';
+
+  @override
+  String get setupPinLabel => 'Password';
+
+  @override
+  String get setupConfirmLabel => 'Confirm password';
+
+  @override
+  String get setupPinLengthError => 'Please enter a 6-digit PIN';
+
+  @override
+  String get setupPinMismatchError => 'PINs do not match';
+
+  @override
+  String get setupBiometricToggle => 'Enable biometric unlock';
+
+  @override
+  String get journalNew => 'Write Journal';
+
+  @override
+  String get journalEdit => 'Edit Journal';
+
+  @override
+  String get journalHint => 'What would you like to say today...';
+
+  @override
+  String get journalAddTag => 'Add Tags';
+
+  @override
+  String get moodHappy => 'Happy';
+
+  @override
+  String get moodAnxious => 'Anxious';
+
+  @override
+  String get moodCalm => 'Calm';
+
+  @override
+  String get moodTired => 'Tired';
+
+  @override
+  String get moodHopeful => 'Hopeful';
+
+  @override
+  String get measurementEditTitle => 'Edit Measurement';
+
+  @override
+  String get measurementNewTitle => 'New Measurement';
+
+  @override
+  String get measurementCoreSection => 'Core Measurements';
+
+  @override
+  String get measurementExtendedSection => 'Extended Metrics';
+
+  @override
+  String get measurementNotes => 'Notes';
+
+  @override
+  String get measurementDateLabel => 'Measurement Date';
+
+  @override
+  String get bloodTestEditTitle => 'Edit Blood Test Report';
+
+  @override
+  String get bloodTestNewTitle => 'Add Blood Test Report';
+
+  @override
+  String get bloodTestDateLabel => 'Test Date';
+
+  @override
+  String get bloodTestLabLabel => 'Testing Facility';
+
+  @override
+  String get bloodTestSummaryLabel => 'Results Summary';
+
+  @override
+  String get bloodTestSummaryHint =>
+      'The full form will be implemented in a future update.';
+
+  @override
+  String get bloodTestFormWip => 'Blood test form is being improved';
+
+  @override
+  String get bloodTestSavePlaceholder => 'Save Placeholder';
+
+  @override
+  String get bloodTestCreatePlaceholder => 'Create Placeholder';
+
+  @override
+  String get simulatorTitle => 'PK Simulator';
+
+  @override
+  String get simulatorEngineToggle => 'Toggle Hana-PK Experimental Engine';
+
+  @override
+  String get simulatorSublingualHoldTime => 'Sublingual holding time';
+
+  @override
+  String get simulatorHoldQuick => 'Quick';
+
+  @override
+  String get simulatorHoldCasual => 'Casual';
+
+  @override
+  String get simulatorHoldStandard => 'Standard';
+
+  @override
+  String get simulatorHoldStrict => 'Strict';
+
+  @override
+  String get simulatorUpdateButton => 'Update Simulation';
+
+  @override
+  String get simulatorChartTitle => 'Concentration-Time Curve';
+
+  @override
+  String get simulatorChartAxisLabel =>
+      'Y: Estradiol plasma conc. (pg/mL)   X: Days';
+
+  @override
+  String get simulatorLegendStandard => 'V2 Standard';
+
+  @override
+  String get simulatorLegendHanaPk => 'Hana-PK';
 }

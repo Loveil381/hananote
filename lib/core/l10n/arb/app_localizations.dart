@@ -1455,6 +1455,324 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'This feature is under development and will be available in the next release'**
   String get featureInDevelopmentDesc;
+
+  /// No description provided for @languageSystemDefault.
+  ///
+  /// In en, this message translates to:
+  /// **'System'**
+  String get languageSystemDefault;
+
+  /// No description provided for @measurementTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Body Measurements'**
+  String get measurementTitle;
+
+  /// No description provided for @measurementNew.
+  ///
+  /// In en, this message translates to:
+  /// **'New Measurement'**
+  String get measurementNew;
+
+  /// No description provided for @measurementEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Start tracking your body changes'**
+  String get measurementEmptyTitle;
+
+  /// No description provided for @measurementEmptyDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'After saving your first measurement, you\'ll see your body and weight history here.'**
+  String get measurementEmptyDescription;
+
+  /// No description provided for @measurementDeleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete measurement'**
+  String get measurementDeleteTitle;
+
+  /// No description provided for @measurementDeleteConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete this measurement record?'**
+  String get measurementDeleteConfirm;
+
+  /// No description provided for @measurementFallbackSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'One body measurement recorded'**
+  String get measurementFallbackSummary;
+
+  /// No description provided for @lockScreenWelcome.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome back'**
+  String get lockScreenWelcome;
+
+  /// No description provided for @lockScreenPinIncomplete.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter the full 6-digit PIN'**
+  String get lockScreenPinIncomplete;
+
+  /// No description provided for @setupTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Create a secure password'**
+  String get setupTitle;
+
+  /// No description provided for @setupDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Set a 6-digit PIN to protect your private health data.'**
+  String get setupDescription;
+
+  /// No description provided for @setupPinLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get setupPinLabel;
+
+  /// No description provided for @setupConfirmLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm password'**
+  String get setupConfirmLabel;
+
+  /// No description provided for @setupPinLengthError.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a 6-digit PIN'**
+  String get setupPinLengthError;
+
+  /// No description provided for @setupPinMismatchError.
+  ///
+  /// In en, this message translates to:
+  /// **'PINs do not match'**
+  String get setupPinMismatchError;
+
+  /// No description provided for @setupBiometricToggle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable biometric unlock'**
+  String get setupBiometricToggle;
+
+  /// No description provided for @journalNew.
+  ///
+  /// In en, this message translates to:
+  /// **'Write Journal'**
+  String get journalNew;
+
+  /// No description provided for @journalEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Journal'**
+  String get journalEdit;
+
+  /// No description provided for @journalHint.
+  ///
+  /// In en, this message translates to:
+  /// **'What would you like to say today...'**
+  String get journalHint;
+
+  /// No description provided for @journalAddTag.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Tags'**
+  String get journalAddTag;
+
+  /// No description provided for @moodHappy.
+  ///
+  /// In en, this message translates to:
+  /// **'Happy'**
+  String get moodHappy;
+
+  /// No description provided for @moodAnxious.
+  ///
+  /// In en, this message translates to:
+  /// **'Anxious'**
+  String get moodAnxious;
+
+  /// No description provided for @moodCalm.
+  ///
+  /// In en, this message translates to:
+  /// **'Calm'**
+  String get moodCalm;
+
+  /// No description provided for @moodTired.
+  ///
+  /// In en, this message translates to:
+  /// **'Tired'**
+  String get moodTired;
+
+  /// No description provided for @moodHopeful.
+  ///
+  /// In en, this message translates to:
+  /// **'Hopeful'**
+  String get moodHopeful;
+
+  /// No description provided for @measurementEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Measurement'**
+  String get measurementEditTitle;
+
+  /// No description provided for @measurementNewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'New Measurement'**
+  String get measurementNewTitle;
+
+  /// No description provided for @measurementCoreSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Core Measurements'**
+  String get measurementCoreSection;
+
+  /// No description provided for @measurementExtendedSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Extended Metrics'**
+  String get measurementExtendedSection;
+
+  /// No description provided for @measurementNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes'**
+  String get measurementNotes;
+
+  /// No description provided for @measurementDateLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Measurement Date'**
+  String get measurementDateLabel;
+
+  /// No description provided for @bloodTestEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Blood Test Report'**
+  String get bloodTestEditTitle;
+
+  /// No description provided for @bloodTestNewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Blood Test Report'**
+  String get bloodTestNewTitle;
+
+  /// No description provided for @bloodTestDateLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Test Date'**
+  String get bloodTestDateLabel;
+
+  /// No description provided for @bloodTestLabLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Testing Facility'**
+  String get bloodTestLabLabel;
+
+  /// No description provided for @bloodTestSummaryLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Results Summary'**
+  String get bloodTestSummaryLabel;
+
+  /// No description provided for @bloodTestSummaryHint.
+  ///
+  /// In en, this message translates to:
+  /// **'The full form will be implemented in a future update.'**
+  String get bloodTestSummaryHint;
+
+  /// No description provided for @bloodTestFormWip.
+  ///
+  /// In en, this message translates to:
+  /// **'Blood test form is being improved'**
+  String get bloodTestFormWip;
+
+  /// No description provided for @bloodTestSavePlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Placeholder'**
+  String get bloodTestSavePlaceholder;
+
+  /// No description provided for @bloodTestCreatePlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Placeholder'**
+  String get bloodTestCreatePlaceholder;
+
+  /// No description provided for @simulatorTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'PK Simulator'**
+  String get simulatorTitle;
+
+  /// No description provided for @simulatorEngineToggle.
+  ///
+  /// In en, this message translates to:
+  /// **'Toggle Hana-PK Experimental Engine'**
+  String get simulatorEngineToggle;
+
+  /// No description provided for @simulatorSublingualHoldTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Sublingual holding time'**
+  String get simulatorSublingualHoldTime;
+
+  /// No description provided for @simulatorHoldQuick.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick'**
+  String get simulatorHoldQuick;
+
+  /// No description provided for @simulatorHoldCasual.
+  ///
+  /// In en, this message translates to:
+  /// **'Casual'**
+  String get simulatorHoldCasual;
+
+  /// No description provided for @simulatorHoldStandard.
+  ///
+  /// In en, this message translates to:
+  /// **'Standard'**
+  String get simulatorHoldStandard;
+
+  /// No description provided for @simulatorHoldStrict.
+  ///
+  /// In en, this message translates to:
+  /// **'Strict'**
+  String get simulatorHoldStrict;
+
+  /// No description provided for @simulatorUpdateButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Update Simulation'**
+  String get simulatorUpdateButton;
+
+  /// No description provided for @simulatorChartTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Concentration-Time Curve'**
+  String get simulatorChartTitle;
+
+  /// No description provided for @simulatorChartAxisLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Y: Estradiol plasma conc. (pg/mL)   X: Days'**
+  String get simulatorChartAxisLabel;
+
+  /// No description provided for @simulatorLegendStandard.
+  ///
+  /// In en, this message translates to:
+  /// **'V2 Standard'**
+  String get simulatorLegendStandard;
+
+  /// No description provided for @simulatorLegendHanaPk.
+  ///
+  /// In en, this message translates to:
+  /// **'Hana-PK'**
+  String get simulatorLegendHanaPk;
 }
 
 class _AppLocalizationsDelegate

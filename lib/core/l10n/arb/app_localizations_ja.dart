@@ -703,4 +703,163 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get featureInDevelopmentDesc => 'この機能は開発中です。次のバージョンで利用可能になります';
+
+  @override
+  String get languageSystemDefault => 'システム設定に従う';
+
+  @override
+  String get measurementTitle => 'ボディ測定';
+
+  @override
+  String get measurementNew => '新規測定';
+
+  @override
+  String get measurementEmptyTitle => 'からだの変化を記録しよう';
+
+  @override
+  String get measurementEmptyDescription => '最初の測定を保存すると、体型と体重の変化がここに表示されます。';
+
+  @override
+  String get measurementDeleteTitle => '測定記録を削除';
+
+  @override
+  String get measurementDeleteConfirm => 'この測定記録を削除してもよろしいですか？';
+
+  @override
+  String get measurementFallbackSummary => '1件の測定を記録済み';
+
+  @override
+  String get lockScreenWelcome => 'おかえりなさい';
+
+  @override
+  String get lockScreenPinIncomplete => '6桁のPINを入力してください';
+
+  @override
+  String get setupTitle => 'セキュアなパスワードを作成';
+
+  @override
+  String get setupDescription => '6桁のPINを設定して、プライベートな健康データを保護しましょう。';
+
+  @override
+  String get setupPinLabel => 'パスワード';
+
+  @override
+  String get setupConfirmLabel => 'パスワード確認';
+
+  @override
+  String get setupPinLengthError => '6桁のPINを入力してください';
+
+  @override
+  String get setupPinMismatchError => 'PINが一致しません';
+
+  @override
+  String get setupBiometricToggle => '生体認証を有効にする';
+
+  @override
+  String get journalNew => '日記を書く';
+
+  @override
+  String get journalEdit => '日記を編集';
+
+  @override
+  String get journalHint => '今日は何を書きたいですか...';
+
+  @override
+  String get journalAddTag => 'タグを追加';
+
+  @override
+  String get moodHappy => '嬉しい';
+
+  @override
+  String get moodAnxious => '不安';
+
+  @override
+  String get moodCalm => '穏やか';
+
+  @override
+  String get moodTired => '疲れた';
+
+  @override
+  String get moodHopeful => '希望に満ちた';
+
+  @override
+  String get measurementEditTitle => '測定を編集';
+
+  @override
+  String get measurementNewTitle => '新規測定';
+
+  @override
+  String get measurementCoreSection => '基本測定';
+
+  @override
+  String get measurementExtendedSection => '拡張指標';
+
+  @override
+  String get measurementNotes => 'メモ';
+
+  @override
+  String get measurementDateLabel => '測定日';
+
+  @override
+  String get bloodTestEditTitle => '血液検査レポートを編集';
+
+  @override
+  String get bloodTestNewTitle => '血液検査レポートを追加';
+
+  @override
+  String get bloodTestDateLabel => '検査日';
+
+  @override
+  String get bloodTestLabLabel => '検査機関';
+
+  @override
+  String get bloodTestSummaryLabel => '結果概要';
+
+  @override
+  String get bloodTestSummaryHint => '正式なフォームは今後のアップデートで実装されます。';
+
+  @override
+  String get bloodTestFormWip => '血液検査フォームは改善中です';
+
+  @override
+  String get bloodTestSavePlaceholder => 'プレースホルダーを保存';
+
+  @override
+  String get bloodTestCreatePlaceholder => 'プレースホルダーを作成';
+
+  @override
+  String get simulatorTitle => 'PKシミュレーター';
+
+  @override
+  String get simulatorEngineToggle => 'Hana-PK実験エンジンを切り替え';
+
+  @override
+  String get simulatorSublingualHoldTime => '舌下保持時間';
+
+  @override
+  String get simulatorHoldQuick => '超速';
+
+  @override
+  String get simulatorHoldCasual => 'カジュアル';
+
+  @override
+  String get simulatorHoldStandard => '標準';
+
+  @override
+  String get simulatorHoldStrict => '厳密';
+
+  @override
+  String get simulatorUpdateButton => 'シミュレーション更新';
+
+  @override
+  String get simulatorChartTitle => '濃度-時間曲線';
+
+  @override
+  String get simulatorChartAxisLabel => 'Y軸: エストラジオール血漿濃度 (pg/mL)   X軸: 経過日数';
+
+  @override
+  String get simulatorLegendStandard => 'V2 標準';
+
+  @override
+  String get simulatorLegendHanaPk => 'Hana-PK';
 }

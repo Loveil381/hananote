@@ -1,5 +1,5 @@
 # 审核问题 Backlog
-> 最后更新: 2026-04-06 | 会话轮次: #46
+> 最后更新: 2026-04-06 | 会话轮次: #51
 
 ## Critical
 | # | 文件 | 问题 | 产品影响 | 状态 |
@@ -8,7 +8,7 @@
 | C-2 | key_manager.dart | 存储实际密钥而非验证 hash | root 场景下存在安全风险 | 🟡 降级为 Minor — R46 复查确认使用 Argon2id 派生密钥 + constantTimeEquals，非明文密码存储 |
 | C-10 | 全局 | 零集成测试 | 多步用户流程完全未覆盖 | ⏳ Pending |
 | C-11 | .github/workflows/ | CI/CD 流水线缺失 | 质量退化无法自动捕获 | ✅ R46 已创建 |
-| C-12 | 全局 | 零无障碍支持 | 无 semanticLabel/Semantics widget | ⏳ Pending |
+| C-12 | 全局 | 零无障碍支持 | 无 semanticLabel/Semantics widget | 🔄 R48-R50 基础覆盖完成，仍需扩展 |
 | C-3 | secure_database.dart | `open()` 语义上残留无效 password | API 含义混乱 | ✅ 已修复 |
 | C-4 | simulator_page.dart + schedule_editor_page.dart | DropdownButtonFormField 参数历史不一致 | SDK 升级时有编译风险 | ✅ 已修复 |
 | C-5 | schedule_editor_cubit.dart | 验证消息未接入 i18n | locale 切换后仍出现固定文案 | ✅ 已修复 |
@@ -38,11 +38,11 @@
 | M-23 | inventory_page.dart | Inventory 页面未接通路由 | Profile 入口不可用 | ✅ 已修复 |
 | M-24 | 多个页面 | `extendBodyBehindAppBar` + 硬编码 top padding | 刘海屏 / 状态栏设备布局漂移 | ✅ 已修复 |
 | M-25 | main_shell.dart | 毛玻璃导航实现曾依赖 `extendBody` | 容易和内容遮挡互相打架 | ✅ 已修复 |
-| M-31 | measurement_page.dart | 6 处中文硬编码字符串未接 l10n | 多语言用户看到固定中文 | ⏳ Pending |
-| M-32 | settings_detail_page.dart | 'System' 和 '1.0.0' 硬编码 | 多语言不一致 | ⏳ Pending |
-| M-33 | notification feature | NotificationSettingsCubit 零测试覆盖 | 回归风险 | ⏳ Pending |
-| M-34 | data_page.dart:167 | Color(0xFF34D399) 硬编码绿色 | 设计系统不一致 | ⏳ Pending |
-| M-35 | drug_card.dart:100,154 | Colors.grey/blue 硬编码 | 设计系统不一致 | ⏳ Pending |
+| M-31 | measurement_page.dart | 6 处中文硬编码字符串未接 l10n | 多语言用户看到固定中文 | ✅ R47 已修复 |
+| M-32 | settings_detail_page.dart | 'System' 硬编码 | 多语言不一致 | ✅ R47 已修复 |
+| M-33 | notification feature | NotificationSettingsCubit 零测试覆盖 | 回归风险 | ✅ R48 已修复 (7 tests) |
+| M-34 | data_page.dart:167 | Color(0xFF34D399) 硬编码绿色 | 设计系统不一致 | ✅ R47 已修复 |
+| M-35 | drug_card.dart:100,154 | Colors.grey/blue 硬编码 | 设计系统不一致 | ✅ R47 已修复 |
 
 ## Minor
 | # | 文件 | 问题 | 状态 |
@@ -51,7 +51,7 @@
 | m-2 | error_fallback_page.dart | fallback 文案英文 | ✅ 已修复 |
 | m-3 | auth_repository_impl.dart | localizedReason / 权限提示未完全统一 | ✅ 已修复 |
 | m-4 | profile_page.dart | 清除数据按钮视觉仍可再调 | ⏳ Pending |
-| m-5 | main_shell.dart | PlusJakartaSans 字体声明链路待最终收口 | ⏳ Pending |
+| m-5 | main_shell.dart | PlusJakartaSans 字体声明链路待最终收口 | ✅ R50 已修复: 下载字体文件 + pubspec 注册 + 名称统一 |
 | m-6 | today_page.dart | QuoteCard 后续应接 CMS/内容管理 | ⏳ Pending |
 | m-7 | STATUS.md | 轮次交付标记不同步 | ✅ 已修复 |
 | m-8 | measurement_edit_page.dart | Measurement 新建 ID 一致性 | ✅ 已修复 |

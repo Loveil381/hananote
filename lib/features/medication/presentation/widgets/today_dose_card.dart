@@ -3,6 +3,7 @@
 // ignore_for_file: public_member_api_docs, lines_longer_than_80_chars, comment_references
 
 import 'package:flutter/material.dart';
+import 'package:hananote/app/theme/hana_colors.dart';
 import 'package:hananote/core/l10n/arb/app_localizations.dart';
 import 'package:hananote/features/medication/domain/entities/enums.dart';
 import 'package:hananote/features/medication/domain/usecases/get_today_schedule.dart';
@@ -100,7 +101,7 @@ class TodayDoseCard extends StatelessWidget {
                     isDone ? l10n.completedDose : _getNextTimePlaceholder(l10n),
                     style: theme.textTheme.bodyMedium?.copyWith(
                       color: isDone
-                          ? Colors.green
+                          ? HanaColors.success
                           : theme.colorScheme.onSurfaceVariant,
                       fontWeight: FontWeight.bold,
                     ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hananote/app/theme/hana_colors.dart';
 import 'package:hananote/core/l10n/arb/app_localizations.dart';
 import 'package:hananote/core/l10n/enum_l10n.dart';
 import 'package:hananote/features/medication/domain/entities/drug.dart';
@@ -97,7 +98,7 @@ class DrugCard extends StatelessWidget {
                     _buildChip(
                       context,
                       label: l10n.inactive,
-                      color: Colors.grey,
+                      color: HanaColors.outline,
                     ),
                 ],
               ),
@@ -150,10 +151,10 @@ class DrugCard extends StatelessWidget {
 
   Color _getCategoryColor(DrugCategory category) {
     return switch (category) {
-      DrugCategory.estrogen => Colors.pink,
-      DrugCategory.antiAndrogen => Colors.blue,
-      DrugCategory.progestogen => Colors.purple,
-      DrugCategory.auxiliary => Colors.teal,
+      DrugCategory.estrogen => HanaColors.categoryEstrogen,
+      DrugCategory.antiAndrogen => HanaColors.categoryAntiAndrogen,
+      DrugCategory.progestogen => HanaColors.categoryProgestogen,
+      DrugCategory.auxiliary => HanaColors.categoryAuxiliary,
     };
   }
 

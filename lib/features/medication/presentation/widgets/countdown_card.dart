@@ -94,7 +94,7 @@ class _CountdownCardState extends State<CountdownCard> {
       decoration: BoxDecoration(
         gradient: HanaGradients.countdownGradient,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.white.withAlpha((255 * 0.2).round())),
+        border: Border.all(color: HanaColors.onPrimary.withAlpha((255 * 0.2).round())),
         boxShadow: const [
           BoxShadow(
             color: Color.fromRGBO(134, 78, 90, 0.12),
@@ -116,7 +116,7 @@ class _CountdownCardState extends State<CountdownCard> {
                 height: 128,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: Colors.white.withAlpha((255 * 0.2).round()),
+                  color: HanaColors.onPrimary.withAlpha((255 * 0.2).round()),
                 ),
                 child: BackdropFilter(
                   filter: ImageFilter.blur(
@@ -138,7 +138,7 @@ class _CountdownCardState extends State<CountdownCard> {
                   child: Icon(
                     Icons.medication,
                     size: 96,
-                    color: Colors.white.withAlpha((255 * 0.4).round()),
+                    color: HanaColors.onPrimary.withAlpha((255 * 0.4).round()),
                   ),
                 ),
               ),
@@ -173,7 +173,7 @@ class _CountdownCardState extends State<CountdownCard> {
                     Text(
                       widget.completedLabel,
                       style: const TextStyle(
-                        fontFamily: 'PlusJakartaSans',
+                        fontFamily: 'Plus Jakarta Sans',
                         fontSize: 32,
                         fontWeight: FontWeight.w800,
                         color: HanaColors.onPrimaryContainer,
@@ -187,7 +187,7 @@ class _CountdownCardState extends State<CountdownCard> {
                         Text(
                           '${remaining.$1}',
                           style: const TextStyle(
-                            fontFamily: 'PlusJakartaSans',
+                            fontFamily: 'Plus Jakarta Sans',
                             fontSize: 40,
                             fontWeight: FontWeight.w800,
                             color: HanaColors.onPrimaryContainer,
@@ -208,7 +208,7 @@ class _CountdownCardState extends State<CountdownCard> {
                         Text(
                           '${remaining.$2}',
                           style: const TextStyle(
-                            fontFamily: 'PlusJakartaSans',
+                            fontFamily: 'Plus Jakarta Sans',
                             fontSize: 40,
                             fontWeight: FontWeight.w800,
                             color: HanaColors.onPrimaryContainer,
@@ -232,10 +232,10 @@ class _CountdownCardState extends State<CountdownCard> {
                       vertical: 6,
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.white.withAlpha((255 * 0.4).round()),
+                      color: HanaColors.onPrimary.withAlpha((255 * 0.4).round()),
                       borderRadius: BorderRadius.circular(24),
                       border: Border.all(
-                        color: Colors.white.withAlpha((255 * 0.3).round()),
+                        color: HanaColors.onPrimary.withAlpha((255 * 0.3).round()),
                       ),
                     ),
                     child: ClipRRect(

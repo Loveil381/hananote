@@ -58,6 +58,15 @@ class HanaColors {
   static const Color onSecondaryFixed = Color(0xFF2B112F);
   static const Color onSecondaryFixedVariant = Color(0xFF5A3C5D);
 
+  // Semantic status
+  static const Color success = Color(0xFF34D399);
+
+  // Drug category colors
+  static const Color categoryEstrogen = Color(0xFFE91E63);
+  static const Color categoryAntiAndrogen = Color(0xFF2196F3);
+  static const Color categoryProgestogen = Color(0xFF9C27B0);
+  static const Color categoryAuxiliary = Color(0xFF009688);
+
   static const Color tertiaryFixed = Color(0xFFFFDAD5);
   static const Color tertiaryFixedDim = Color(0xFFFFB4AA);
   static const Color onTertiaryFixed = Color(0xFF410001);

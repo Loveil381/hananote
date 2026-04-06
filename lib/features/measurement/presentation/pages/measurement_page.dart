@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hananote/app/theme/hana_colors.dart';
+import 'package:hananote/core/l10n/arb/app_localizations.dart';
 import 'package:hananote/features/measurement/domain/entities/measurement_entry.dart';
 import 'package:hananote/features/measurement/domain/entities/measurement_type.dart';
 import 'package:hananote/features/measurement/presentation/blocs/measurement_bloc.dart';
@@ -22,48 +23,55 @@ class MeasurementPage extends StatelessWidget {
           );
         }
       },
-      child: Scaffold(
-        backgroundColor: HanaColors.background,
-        appBar: AppBar(
-          title: const Text('身体测量'),
-          backgroundColor: HanaColors.surface,
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.add),
-              onPressed: () => _openEditor(context),
+      child: Builder(
+        builder: (context) {
+          final l10n = AppLocalizations.of(context)!;
+          return Scaffold(
+            backgroundColor: HanaColors.background,
+            appBar: AppBar(
+              title: Text(l10n.measurementTitle),
+              backgroundColor: HanaColors.surface,
+              actions: [
+                IconButton(
+                  icon: const Icon(Icons.add),
+                  tooltip: l10n.measurementNew,
+                  onPressed: () => _openEditor(context),
+                ),
+              ],
             ),
-          ],
-        ),
-        floatingActionButton: FloatingActionButton.extended(
-          onPressed: () => _openEditor(context),
-          icon: const Icon(Icons.add),
-          label: const Text('新建测量'),
-        ),
-        body: BlocBuilder<MeasurementBloc, MeasurementState>(
-          builder: (context, state) {
-            return switch (state) {
-              MeasurementInitial() || MeasurementLoading() => const Center(
-                  child: CircularProgressIndicator(),
-                ),
-              MeasurementError() => const SizedBox.shrink(),
-              MeasurementSaving() => const Center(
-                  child: CircularProgressIndicator(),
-                ),
-              MeasurementSaved() => const SizedBox.shrink(),
-              MeasurementLoaded(:final entries) => entries.isEmpty
-                  ? const _MeasurementEmptyState()
-                  : ListView.separated(
-                      padding: const EdgeInsets.all(16),
-                      itemBuilder: (context, index) {
-                        final entry = entries[index];
-                        return _MeasurementHistoryCard(entry: entry);
-                      },
-                      separatorBuilder: (_, __) => const SizedBox(height: 12),
-                      itemCount: entries.length,
+            floatingActionButton: FloatingActionButton.extended(
+              onPressed: () => _openEditor(context),
+              icon: const Icon(Icons.add),
+              label: Text(l10n.measurementNew),
+            ),
+            body: BlocBuilder<MeasurementBloc, MeasurementState>(
+              builder: (context, state) {
+                return switch (state) {
+                  MeasurementInitial() || MeasurementLoading() => const Center(
+                      child: CircularProgressIndicator(),
                     ),
-            };
-          },
-        ),
+                  MeasurementError() => const SizedBox.shrink(),
+                  MeasurementSaving() => const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  MeasurementSaved() => const SizedBox.shrink(),
+                  MeasurementLoaded(:final entries) => entries.isEmpty
+                      ? const _MeasurementEmptyState()
+                      : ListView.separated(
+                          padding: const EdgeInsets.all(16),
+                          itemBuilder: (context, index) {
+                            final entry = entries[index];
+                            return _MeasurementHistoryCard(entry: entry);
+                          },
+                          separatorBuilder: (_, __) =>
+                              const SizedBox(height: 12),
+                          itemCount: entries.length,
+                        ),
+                };
+              },
+            ),
+          );
+        },
       ),
     );
   }
@@ -89,28 +97,31 @@ class _MeasurementEmptyState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(32),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              width: 120,
-              height: 120,
-              decoration: BoxDecoration(
-                color: HanaColors.secondaryContainer.withAlpha(90),
-                shape: BoxShape.circle,
-              ),
-              child: const Icon(
-                Icons.straighten,
-                size: 56,
-                color: HanaColors.secondary,
+            ExcludeSemantics(
+              child: Container(
+                width: 120,
+                height: 120,
+                decoration: BoxDecoration(
+                  color: HanaColors.secondaryContainer.withAlpha(90),
+                  shape: BoxShape.circle,
+                ),
+                child: const Icon(
+                  Icons.straighten,
+                  size: 56,
+                  color: HanaColors.secondary,
+                ),
               ),
             ),
             const SizedBox(height: 24),
             Text(
-              '开始记录你的身体变化',
+              l10n.measurementEmptyTitle,
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                     fontWeight: FontWeight.bold,
                     color: HanaColors.primary,
@@ -118,7 +129,7 @@ class _MeasurementEmptyState extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              '保存第一条测量后，这里会显示围度和体重的历史变化。',
+              l10n.measurementEmptyDescription,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: HanaColors.onSurfaceVariant,
                   ),
@@ -169,7 +180,7 @@ class _MeasurementHistoryCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      _buildSummary(entry),
+                      _buildSummary(entry, AppLocalizations.of(context)!),
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             color: HanaColors.onSurfaceVariant,
                           ),
@@ -188,22 +199,24 @@ class _MeasurementHistoryCard extends StatelessWidget {
               ),
               IconButton(
                 icon: const Icon(Icons.delete_outline),
+                tooltip: AppLocalizations.of(context)!.delete,
                 onPressed: () async {
+                  final l10n = AppLocalizations.of(context)!;
                   final confirmed = await showDialog<bool>(
                     context: context,
                     builder: (dialogContext) => AlertDialog(
-                      title: const Text('删除测量记录'),
-                      content: const Text('确认删除这条身体测量记录吗？'),
+                      title: Text(l10n.measurementDeleteTitle),
+                      content: Text(l10n.measurementDeleteConfirm),
                       actions: [
                         TextButton(
                           onPressed: () =>
                               Navigator.of(dialogContext).pop(false),
-                          child: const Text('取消'),
+                          child: Text(l10n.cancel),
                         ),
                         TextButton(
                           onPressed: () =>
                               Navigator.of(dialogContext).pop(true),
-                          child: const Text('删除'),
+                          child: Text(l10n.delete),
                         ),
                       ],
                     ),
@@ -223,7 +236,10 @@ class _MeasurementHistoryCard extends StatelessWidget {
     );
   }
 
-  static String _buildSummary(MeasurementEntry entry) {
+  static String _buildSummary(
+    MeasurementEntry entry,
+    AppLocalizations l10n,
+  ) {
     final parts = <String>[];
     for (final type in MeasurementTypes.summary) {
       final value = entry.valueFor(type);
@@ -244,7 +260,7 @@ class _MeasurementHistoryCard extends StatelessWidget {
       }
     }
 
-    return parts.isEmpty ? '已记录一次身体测量' : parts.join(' · ');
+    return parts.isEmpty ? l10n.measurementFallbackSummary : parts.join(' · ');
   }
 
   static String _formatValue(double value) {

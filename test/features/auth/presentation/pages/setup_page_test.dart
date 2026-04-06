@@ -1,7 +1,9 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:hananote/core/l10n/arb/app_localizations.dart';
 import 'package:hananote/features/auth/presentation/bloc/auth_cubit.dart';
 import 'package:hananote/features/auth/presentation/bloc/auth_state.dart';
 import 'package:hananote/features/auth/presentation/pages/setup_page.dart';
@@ -30,12 +32,21 @@ void main() {
   ) async {
     await tester.pumpWidget(
       MaterialApp(
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: AppLocalizations.supportedLocales,
+        locale: const Locale('zh'),
         home: BlocProvider<AuthCubit>.value(
           value: authCubit,
           child: const SetupPage(),
         ),
       ),
     );
+    await tester.pumpAndSettle();
 
     await tester.enterText(find.byType(TextField).at(0), '123456');
     await tester.enterText(find.byType(TextField).at(1), '654321');

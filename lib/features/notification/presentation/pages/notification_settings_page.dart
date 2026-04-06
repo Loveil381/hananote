@@ -7,7 +7,9 @@ import 'package:hananote/core/l10n/arb/app_localizations.dart';
 import 'package:hananote/features/notification/presentation/bloc/notification_settings_cubit.dart';
 import 'package:hananote/features/notification/presentation/bloc/notification_settings_state.dart';
 
+/// Page for configuring medication reminder notifications.
 class NotificationSettingsPage extends StatelessWidget {
+  /// Creates a [NotificationSettingsPage].
   const NotificationSettingsPage({super.key});
 
   @override
@@ -84,10 +86,15 @@ class NotificationSettingsPage extends StatelessWidget {
                           child: _DrugNotificationCard(
                             drugName: drug.name,
                             scheduleTimes: schedule?.scheduleTimes
-                                    .map(
-                                      (t) =>
-                                          '${t.hour.toString().padLeft(2, '0')}:${t.minute.toString().padLeft(2, '0')}',
-                                    )
+                                    .map((t) {
+                                      final h = t.hour
+                                          .toString()
+                                          .padLeft(2, '0');
+                                      final m = t.minute
+                                          .toString()
+                                          .padLeft(2, '0');
+                                      return '$h:$m';
+                                    })
                                     .toList() ??
                                 [],
                             l10n: l10n,
@@ -116,7 +123,7 @@ class _EmptyState extends StatelessWidget {
       decoration: BoxDecoration(
         color: HanaColors.surfaceContainerLowest,
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: Colors.white, width: 2),
+        border: Border.all(color: HanaColors.surfaceContainerLowest, width: 2),
         boxShadow: [
           BoxShadow(
             color: HanaColors.primary.withAlpha(10),
@@ -181,7 +188,7 @@ class _DrugNotificationCardState extends State<_DrugNotificationCard> {
       decoration: BoxDecoration(
         color: HanaColors.surfaceContainerLowest,
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: Colors.white, width: 2),
+        border: Border.all(color: HanaColors.surfaceContainerLowest, width: 2),
         boxShadow: [
           BoxShadow(
             color: HanaColors.primary.withAlpha(10),
@@ -236,7 +243,7 @@ class _DrugNotificationCardState extends State<_DrugNotificationCard> {
                   )
                 else
                   Text(
-                    widget.l10n.reminderTimes + ': -',
+                    '${widget.l10n.reminderTimes}: -',
                     style: TextStyle(
                       fontSize: 13,
                       color: HanaColors.onSurfaceVariant.withAlpha(204),
@@ -251,7 +258,8 @@ class _DrugNotificationCardState extends State<_DrugNotificationCard> {
             onChanged: (value) {
               setState(() => _isNotificationEnabled = value);
             },
-            activeColor: HanaColors.primary,
+            activeTrackColor: HanaColors.primaryContainer,
+            activeThumbColor: HanaColors.primary,
           ),
         ],
       ),

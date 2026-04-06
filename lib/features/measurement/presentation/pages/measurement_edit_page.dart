@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hananote/app/theme/hana_colors.dart';
+import 'package:hananote/core/l10n/arb/app_localizations.dart';
 import 'package:hananote/core/utils/id_generator.dart';
 import 'package:hananote/features/measurement/domain/entities/measurement_entry.dart';
 import 'package:hananote/features/measurement/domain/entities/measurement_type.dart';
@@ -52,6 +53,7 @@ class _MeasurementEditPageState extends State<MeasurementEditPage> {
   @override
   Widget build(BuildContext context) {
     final isEditing = widget.existingEntry != null;
+    final l10n = AppLocalizations.of(context)!;
 
     return BlocListener<MeasurementBloc, MeasurementState>(
       listener: (context, state) {
@@ -67,7 +69,11 @@ class _MeasurementEditPageState extends State<MeasurementEditPage> {
         backgroundColor: HanaColors.background,
         appBar: AppBar(
           backgroundColor: HanaColors.surface,
-          title: Text(isEditing ? '编辑测量' : '新建测量'),
+          title: Text(
+            isEditing
+                ? l10n.measurementEditTitle
+                : l10n.measurementNewTitle,
+          ),
         ),
         body: ListView(
           padding: const EdgeInsets.all(16),
@@ -78,13 +84,13 @@ class _MeasurementEditPageState extends State<MeasurementEditPage> {
             ),
             const SizedBox(height: 16),
             _MeasurementSection(
-              title: '核心围度',
+              title: l10n.measurementCoreSection,
               types: MeasurementTypes.core,
               controllers: _controllers,
             ),
             const SizedBox(height: 16),
             ExpansionTile(
-              title: const Text('扩展指标'),
+              title: Text(l10n.measurementExtendedSection),
               backgroundColor: HanaColors.surfaceContainerLowest,
               collapsedBackgroundColor: HanaColors.surfaceContainerLowest,
               shape: RoundedRectangleBorder(
@@ -108,9 +114,9 @@ class _MeasurementEditPageState extends State<MeasurementEditPage> {
             TextField(
               controller: _notesController,
               maxLines: 3,
-              decoration: const InputDecoration(
-                labelText: '备注',
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                labelText: l10n.measurementNotes,
+                border: const OutlineInputBorder(),
               ),
             ),
             const SizedBox(height: 24),
@@ -127,7 +133,7 @@ class _MeasurementEditPageState extends State<MeasurementEditPage> {
                             height: 20,
                             child: CircularProgressIndicator(strokeWidth: 2),
                           )
-                        : const Text('保存'),
+                        : Text(l10n.save),
                   ),
                 );
               },
@@ -217,7 +223,9 @@ class _DatePickerTile extends StatelessWidget {
       color: HanaColors.surfaceContainerLowest,
       child: ListTile(
         leading: const Icon(Icons.calendar_month),
-        title: const Text('测量日期'),
+        title: Text(
+          AppLocalizations.of(context)!.measurementDateLabel,
+        ),
         subtitle: Text(DateFormat('yyyy.MM.dd').format(date)),
         trailing: const Icon(Icons.chevron_right),
         onTap: onTap,
