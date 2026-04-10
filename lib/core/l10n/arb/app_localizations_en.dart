@@ -1041,6 +1041,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get openKnowledgeBase => 'Open HRT Reference';
 
   @override
+  String get languageSystem => 'System';
+
+  @override
+  String get selectLanguage => 'Select Language';
+
+  @override
   String get updateAvailable => 'Update Available';
 
   @override

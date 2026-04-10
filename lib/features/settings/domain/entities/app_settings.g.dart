@@ -15,6 +15,7 @@ _$AppSettingsImpl _$$AppSettingsImplFromJson(Map<String, dynamic> json) =>
           ? null
           : DateTime.parse(json['lastBackupDate'] as String),
       notificationsEnabled: json['notificationsEnabled'] as bool? ?? true,
+      language: json['language'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$AppSettingsImplToJson(_$AppSettingsImpl instance) =>
@@ -24,4 +25,5 @@ Map<String, dynamic> _$$AppSettingsImplToJson(_$AppSettingsImpl instance) =>
       'blurOverlayEnabled': instance.blurOverlayEnabled,
       'lastBackupDate': instance.lastBackupDate?.toIso8601String(),
       'notificationsEnabled': instance.notificationsEnabled,
+      'language': instance.language,
     };

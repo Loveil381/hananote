@@ -37,4 +37,8 @@ sealed class SettingsEvent with _$SettingsEvent {
 
   /// Exports local data to a JSON file.
   const factory SettingsEvent.exportData() = ExportDataEvent;
+
+  /// Changes the app display language.
+  const factory SettingsEvent.changeLanguage({required String languageCode}) =
+      ChangeLanguage;
 }

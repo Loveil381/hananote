@@ -13,6 +13,7 @@ class AppSettings with _$AppSettings {
     required bool blurOverlayEnabled,
     required DateTime? lastBackupDate,
     @Default(true) bool notificationsEnabled,
+    @Default('') String language,
   }) = _AppSettings;
 
   /// Creates an [AppSettings] from JSON.

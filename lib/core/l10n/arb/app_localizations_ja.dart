@@ -1017,6 +1017,12 @@ class AppLocalizationsJa extends AppLocalizations {
   String get openKnowledgeBase => 'HRT薬典を開く';
 
   @override
+  String get languageSystem => 'システム設定に従う';
+
+  @override
+  String get selectLanguage => '言語を選択';
+
+  @override
   String get updateAvailable => '新バージョンがあります';
 
   @override

@@ -446,6 +446,9 @@
   "knowledgeBaseSubtitle": "Evidence-based HRT safety guide",
   "openKnowledgeBase": "Open HRT Reference",
 
+  "languageSystem": "System",
+  "selectLanguage": "Select Language",
+
   "updateAvailable": "Update Available",
   "updateNow": "Update Now",
   "updateLater": "Later"

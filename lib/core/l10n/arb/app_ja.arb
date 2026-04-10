@@ -446,6 +446,9 @@
   "knowledgeBaseSubtitle": "エビデンスに基づくHRT安全ガイド",
   "openKnowledgeBase": "HRT薬典を開く",
 
+  "languageSystem": "システム設定に従う",
+  "selectLanguage": "言語を選択",
+
   "updateAvailable": "新バージョンがあります",
   "updateNow": "今すぐ更新",
   "updateLater": "あとで"

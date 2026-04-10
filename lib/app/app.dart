@@ -20,20 +20,32 @@ class HanaNote extends StatelessWidget {
       create: (_) => getIt<SettingsBloc>(),
       child: BlocProvider(
         create: (_) => getIt<AuthCubit>()..checkAuthStatus(),
-        child: MaterialApp.router(
-          routerConfig: appRouter,
-          title: 'HanaNote',
-          theme: AppTheme.getTheme(AppThemeType.sakura),
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
-          supportedLocales: AppLocalizations.supportedLocales,
-          builder: (context, child) {
-            final settingsState = context.watch<SettingsBloc>().state;
-            final blurEnabled = settingsState is SettingsLoaded &&
-                settingsState.settings.blurOverlayEnabled;
+        child: BlocBuilder<SettingsBloc, SettingsState>(
+          builder: (context, settingsState) {
+            Locale? locale;
+            if (settingsState is SettingsLoaded) {
+              final langCode = settingsState.settings.language;
+              if (langCode.isNotEmpty) {
+                locale = Locale(langCode);
+              }
+            }
 
-            return AppBlurOverlay(
-              enabled: blurEnabled,
-              child: child ?? const SizedBox.shrink(),
+            return MaterialApp.router(
+              routerConfig: appRouter,
+              title: 'HanaNote',
+              theme: AppTheme.getTheme(AppThemeType.sakura),
+              locale: locale,
+              localizationsDelegates: AppLocalizations.localizationsDelegates,
+              supportedLocales: AppLocalizations.supportedLocales,
+              builder: (context, child) {
+                final blurEnabled = settingsState is SettingsLoaded &&
+                    settingsState.settings.blurOverlayEnabled;
+
+                return AppBlurOverlay(
+                  enabled: blurEnabled,
+                  child: child ?? const SizedBox.shrink(),
+                );
+              },
             );
           },
         ),

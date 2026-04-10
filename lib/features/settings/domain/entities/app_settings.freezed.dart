@@ -25,6 +25,7 @@ mixin _$AppSettings {
   bool get blurOverlayEnabled => throw _privateConstructorUsedError;
   DateTime? get lastBackupDate => throw _privateConstructorUsedError;
   bool get notificationsEnabled => throw _privateConstructorUsedError;
+  String get language => throw _privateConstructorUsedError;
 
   /// Serializes this AppSettings to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -47,7 +48,8 @@ abstract class $AppSettingsCopyWith<$Res> {
       bool privacyModeEnabled,
       bool blurOverlayEnabled,
       DateTime? lastBackupDate,
-      bool notificationsEnabled});
+      bool notificationsEnabled,
+      String language});
 }
 
 /// @nodoc
@@ -70,6 +72,7 @@ class _$AppSettingsCopyWithImpl<$Res, $Val extends AppSettings>
     Object? blurOverlayEnabled = null,
     Object? lastBackupDate = freezed,
     Object? notificationsEnabled = null,
+    Object? language = null,
   }) {
     return _then(_value.copyWith(
       appLockEnabled: null == appLockEnabled
@@ -92,6 +95,10 @@ class _$AppSettingsCopyWithImpl<$Res, $Val extends AppSettings>
           ? _value.notificationsEnabled
           : notificationsEnabled // ignore: cast_nullable_to_non_nullable
               as bool,
+      language: null == language
+          ? _value.language
+          : language // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -109,7 +116,8 @@ abstract class _$$AppSettingsImplCopyWith<$Res>
       bool privacyModeEnabled,
       bool blurOverlayEnabled,
       DateTime? lastBackupDate,
-      bool notificationsEnabled});
+      bool notificationsEnabled,
+      String language});
 }
 
 /// @nodoc
@@ -130,6 +138,7 @@ class __$$AppSettingsImplCopyWithImpl<$Res>
     Object? blurOverlayEnabled = null,
     Object? lastBackupDate = freezed,
     Object? notificationsEnabled = null,
+    Object? language = null,
   }) {
     return _then(_$AppSettingsImpl(
       appLockEnabled: null == appLockEnabled
@@ -152,6 +161,10 @@ class __$$AppSettingsImplCopyWithImpl<$Res>
           ? _value.notificationsEnabled
           : notificationsEnabled // ignore: cast_nullable_to_non_nullable
               as bool,
+      language: null == language
+          ? _value.language
+          : language // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -164,7 +177,8 @@ class _$AppSettingsImpl implements _AppSettings {
       required this.privacyModeEnabled,
       required this.blurOverlayEnabled,
       required this.lastBackupDate,
-      this.notificationsEnabled = true});
+      this.notificationsEnabled = true,
+      this.language = ''});
 
   factory _$AppSettingsImpl.fromJson(Map<String, dynamic> json) =>
       _$$AppSettingsImplFromJson(json);
@@ -180,10 +194,13 @@ class _$AppSettingsImpl implements _AppSettings {
   @override
   @JsonKey()
   final bool notificationsEnabled;
+  @override
+  @JsonKey()
+  final String language;
 
   @override
   String toString() {
-    return 'AppSettings(appLockEnabled: $appLockEnabled, privacyModeEnabled: $privacyModeEnabled, blurOverlayEnabled: $blurOverlayEnabled, lastBackupDate: $lastBackupDate, notificationsEnabled: $notificationsEnabled)';
+    return 'AppSettings(appLockEnabled: $appLockEnabled, privacyModeEnabled: $privacyModeEnabled, blurOverlayEnabled: $blurOverlayEnabled, lastBackupDate: $lastBackupDate, notificationsEnabled: $notificationsEnabled, language: $language)';
   }
 
   @override
@@ -200,7 +217,9 @@ class _$AppSettingsImpl implements _AppSettings {
             (identical(other.lastBackupDate, lastBackupDate) ||
                 other.lastBackupDate == lastBackupDate) &&
             (identical(other.notificationsEnabled, notificationsEnabled) ||
-                other.notificationsEnabled == notificationsEnabled));
+                other.notificationsEnabled == notificationsEnabled) &&
+            (identical(other.language, language) ||
+                other.language == language));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -211,7 +230,8 @@ class _$AppSettingsImpl implements _AppSettings {
       privacyModeEnabled,
       blurOverlayEnabled,
       lastBackupDate,
-      notificationsEnabled);
+      notificationsEnabled,
+      language);
 
   /// Create a copy of AppSettings
   /// with the given fields replaced by the non-null parameter values.
@@ -235,7 +255,8 @@ abstract class _AppSettings implements AppSettings {
       required final bool privacyModeEnabled,
       required final bool blurOverlayEnabled,
       required final DateTime? lastBackupDate,
-      final bool notificationsEnabled}) = _$AppSettingsImpl;
+      final bool notificationsEnabled,
+      final String language}) = _$AppSettingsImpl;
 
   factory _AppSettings.fromJson(Map<String, dynamic> json) =
       _$AppSettingsImpl.fromJson;
@@ -250,6 +271,8 @@ abstract class _AppSettings implements AppSettings {
   DateTime? get lastBackupDate;
   @override
   bool get notificationsEnabled;
+  @override
+  String get language;
 
   /// Create a copy of AppSettings
   /// with the given fields replaced by the non-null parameter values.

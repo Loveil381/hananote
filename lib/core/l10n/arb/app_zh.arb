@@ -448,6 +448,9 @@
   "knowledgeBaseSubtitle": "循证安全用药指南",
   "openKnowledgeBase": "查看 HRT 药典",
 
+  "languageSystem": "跟随系统",
+  "selectLanguage": "选择语言",
+
   "updateAvailable": "发现新版本",
   "updateNow": "立即更新",
   "updateLater": "稍后再说"

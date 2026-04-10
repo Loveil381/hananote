@@ -1017,6 +1017,12 @@ class AppLocalizationsZh extends AppLocalizations {
   String get openKnowledgeBase => '查看 HRT 药典';
 
   @override
+  String get languageSystem => '跟随系统';
+
+  @override
+  String get selectLanguage => '选择语言';
+
+  @override
   String get updateAvailable => '发现新版本';
 
   @override

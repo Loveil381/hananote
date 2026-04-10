@@ -2062,6 +2062,18 @@ abstract class AppLocalizations {
   /// **'Open HRT Reference'**
   String get openKnowledgeBase;
 
+  /// No description provided for @languageSystem.
+  ///
+  /// In en, this message translates to:
+  /// **'System'**
+  String get languageSystem;
+
+  /// No description provided for @selectLanguage.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Language'**
+  String get selectLanguage;
+
   /// No description provided for @updateAvailable.
   ///
   /// In en, this message translates to:

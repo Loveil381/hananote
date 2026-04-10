@@ -27,6 +27,7 @@ mixin _$SettingsEvent {
     required TResult Function() wipeData,
     required TResult Function(bool enabled) toggleNotifications,
     required TResult Function() exportData,
+    required TResult Function(String languageCode) changeLanguage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -40,6 +41,7 @@ mixin _$SettingsEvent {
     TResult? Function()? wipeData,
     TResult? Function(bool enabled)? toggleNotifications,
     TResult? Function()? exportData,
+    TResult? Function(String languageCode)? changeLanguage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -53,6 +55,7 @@ mixin _$SettingsEvent {
     TResult Function()? wipeData,
     TResult Function(bool enabled)? toggleNotifications,
     TResult Function()? exportData,
+    TResult Function(String languageCode)? changeLanguage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -67,6 +70,7 @@ mixin _$SettingsEvent {
     required TResult Function(WipeSettingsData value) wipeData,
     required TResult Function(ToggleNotifications value) toggleNotifications,
     required TResult Function(ExportDataEvent value) exportData,
+    required TResult Function(ChangeLanguage value) changeLanguage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -80,6 +84,7 @@ mixin _$SettingsEvent {
     TResult? Function(WipeSettingsData value)? wipeData,
     TResult? Function(ToggleNotifications value)? toggleNotifications,
     TResult? Function(ExportDataEvent value)? exportData,
+    TResult? Function(ChangeLanguage value)? changeLanguage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -93,6 +98,7 @@ mixin _$SettingsEvent {
     TResult Function(WipeSettingsData value)? wipeData,
     TResult Function(ToggleNotifications value)? toggleNotifications,
     TResult Function(ExportDataEvent value)? exportData,
+    TResult Function(ChangeLanguage value)? changeLanguage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -171,6 +177,7 @@ class _$LoadSettingsDashboardImpl implements LoadSettingsDashboard {
     required TResult Function() wipeData,
     required TResult Function(bool enabled) toggleNotifications,
     required TResult Function() exportData,
+    required TResult Function(String languageCode) changeLanguage,
   }) {
     return loadDashboard();
   }
@@ -187,6 +194,7 @@ class _$LoadSettingsDashboardImpl implements LoadSettingsDashboard {
     TResult? Function()? wipeData,
     TResult? Function(bool enabled)? toggleNotifications,
     TResult? Function()? exportData,
+    TResult? Function(String languageCode)? changeLanguage,
   }) {
     return loadDashboard?.call();
   }
@@ -203,6 +211,7 @@ class _$LoadSettingsDashboardImpl implements LoadSettingsDashboard {
     TResult Function()? wipeData,
     TResult Function(bool enabled)? toggleNotifications,
     TResult Function()? exportData,
+    TResult Function(String languageCode)? changeLanguage,
     required TResult orElse(),
   }) {
     if (loadDashboard != null) {
@@ -223,6 +232,7 @@ class _$LoadSettingsDashboardImpl implements LoadSettingsDashboard {
     required TResult Function(WipeSettingsData value) wipeData,
     required TResult Function(ToggleNotifications value) toggleNotifications,
     required TResult Function(ExportDataEvent value) exportData,
+    required TResult Function(ChangeLanguage value) changeLanguage,
   }) {
     return loadDashboard(this);
   }
@@ -239,6 +249,7 @@ class _$LoadSettingsDashboardImpl implements LoadSettingsDashboard {
     TResult? Function(WipeSettingsData value)? wipeData,
     TResult? Function(ToggleNotifications value)? toggleNotifications,
     TResult? Function(ExportDataEvent value)? exportData,
+    TResult? Function(ChangeLanguage value)? changeLanguage,
   }) {
     return loadDashboard?.call(this);
   }
@@ -255,6 +266,7 @@ class _$LoadSettingsDashboardImpl implements LoadSettingsDashboard {
     TResult Function(WipeSettingsData value)? wipeData,
     TResult Function(ToggleNotifications value)? toggleNotifications,
     TResult Function(ExportDataEvent value)? exportData,
+    TResult Function(ChangeLanguage value)? changeLanguage,
     required TResult orElse(),
   }) {
     if (loadDashboard != null) {
@@ -345,6 +357,7 @@ class _$ToggleAppLockImpl implements ToggleAppLock {
     required TResult Function() wipeData,
     required TResult Function(bool enabled) toggleNotifications,
     required TResult Function() exportData,
+    required TResult Function(String languageCode) changeLanguage,
   }) {
     return toggleAppLock(enabled);
   }
@@ -361,6 +374,7 @@ class _$ToggleAppLockImpl implements ToggleAppLock {
     TResult? Function()? wipeData,
     TResult? Function(bool enabled)? toggleNotifications,
     TResult? Function()? exportData,
+    TResult? Function(String languageCode)? changeLanguage,
   }) {
     return toggleAppLock?.call(enabled);
   }
@@ -377,6 +391,7 @@ class _$ToggleAppLockImpl implements ToggleAppLock {
     TResult Function()? wipeData,
     TResult Function(bool enabled)? toggleNotifications,
     TResult Function()? exportData,
+    TResult Function(String languageCode)? changeLanguage,
     required TResult orElse(),
   }) {
     if (toggleAppLock != null) {
@@ -397,6 +412,7 @@ class _$ToggleAppLockImpl implements ToggleAppLock {
     required TResult Function(WipeSettingsData value) wipeData,
     required TResult Function(ToggleNotifications value) toggleNotifications,
     required TResult Function(ExportDataEvent value) exportData,
+    required TResult Function(ChangeLanguage value) changeLanguage,
   }) {
     return toggleAppLock(this);
   }
@@ -413,6 +429,7 @@ class _$ToggleAppLockImpl implements ToggleAppLock {
     TResult? Function(WipeSettingsData value)? wipeData,
     TResult? Function(ToggleNotifications value)? toggleNotifications,
     TResult? Function(ExportDataEvent value)? exportData,
+    TResult? Function(ChangeLanguage value)? changeLanguage,
   }) {
     return toggleAppLock?.call(this);
   }
@@ -429,6 +446,7 @@ class _$ToggleAppLockImpl implements ToggleAppLock {
     TResult Function(WipeSettingsData value)? wipeData,
     TResult Function(ToggleNotifications value)? toggleNotifications,
     TResult Function(ExportDataEvent value)? exportData,
+    TResult Function(ChangeLanguage value)? changeLanguage,
     required TResult orElse(),
   }) {
     if (toggleAppLock != null) {
@@ -529,6 +547,7 @@ class _$TogglePrivacyModeImpl implements TogglePrivacyMode {
     required TResult Function() wipeData,
     required TResult Function(bool enabled) toggleNotifications,
     required TResult Function() exportData,
+    required TResult Function(String languageCode) changeLanguage,
   }) {
     return togglePrivacyMode(enabled);
   }
@@ -545,6 +564,7 @@ class _$TogglePrivacyModeImpl implements TogglePrivacyMode {
     TResult? Function()? wipeData,
     TResult? Function(bool enabled)? toggleNotifications,
     TResult? Function()? exportData,
+    TResult? Function(String languageCode)? changeLanguage,
   }) {
     return togglePrivacyMode?.call(enabled);
   }
@@ -561,6 +581,7 @@ class _$TogglePrivacyModeImpl implements TogglePrivacyMode {
     TResult Function()? wipeData,
     TResult Function(bool enabled)? toggleNotifications,
     TResult Function()? exportData,
+    TResult Function(String languageCode)? changeLanguage,
     required TResult orElse(),
   }) {
     if (togglePrivacyMode != null) {
@@ -581,6 +602,7 @@ class _$TogglePrivacyModeImpl implements TogglePrivacyMode {
     required TResult Function(WipeSettingsData value) wipeData,
     required TResult Function(ToggleNotifications value) toggleNotifications,
     required TResult Function(ExportDataEvent value) exportData,
+    required TResult Function(ChangeLanguage value) changeLanguage,
   }) {
     return togglePrivacyMode(this);
   }
@@ -597,6 +619,7 @@ class _$TogglePrivacyModeImpl implements TogglePrivacyMode {
     TResult? Function(WipeSettingsData value)? wipeData,
     TResult? Function(ToggleNotifications value)? toggleNotifications,
     TResult? Function(ExportDataEvent value)? exportData,
+    TResult? Function(ChangeLanguage value)? changeLanguage,
   }) {
     return togglePrivacyMode?.call(this);
   }
@@ -613,6 +636,7 @@ class _$TogglePrivacyModeImpl implements TogglePrivacyMode {
     TResult Function(WipeSettingsData value)? wipeData,
     TResult Function(ToggleNotifications value)? toggleNotifications,
     TResult Function(ExportDataEvent value)? exportData,
+    TResult Function(ChangeLanguage value)? changeLanguage,
     required TResult orElse(),
   }) {
     if (togglePrivacyMode != null) {
@@ -713,6 +737,7 @@ class _$ToggleBlurOverlayImpl implements ToggleBlurOverlay {
     required TResult Function() wipeData,
     required TResult Function(bool enabled) toggleNotifications,
     required TResult Function() exportData,
+    required TResult Function(String languageCode) changeLanguage,
   }) {
     return toggleBlurOverlay(enabled);
   }
@@ -729,6 +754,7 @@ class _$ToggleBlurOverlayImpl implements ToggleBlurOverlay {
     TResult? Function()? wipeData,
     TResult? Function(bool enabled)? toggleNotifications,
     TResult? Function()? exportData,
+    TResult? Function(String languageCode)? changeLanguage,
   }) {
     return toggleBlurOverlay?.call(enabled);
   }
@@ -745,6 +771,7 @@ class _$ToggleBlurOverlayImpl implements ToggleBlurOverlay {
     TResult Function()? wipeData,
     TResult Function(bool enabled)? toggleNotifications,
     TResult Function()? exportData,
+    TResult Function(String languageCode)? changeLanguage,
     required TResult orElse(),
   }) {
     if (toggleBlurOverlay != null) {
@@ -765,6 +792,7 @@ class _$ToggleBlurOverlayImpl implements ToggleBlurOverlay {
     required TResult Function(WipeSettingsData value) wipeData,
     required TResult Function(ToggleNotifications value) toggleNotifications,
     required TResult Function(ExportDataEvent value) exportData,
+    required TResult Function(ChangeLanguage value) changeLanguage,
   }) {
     return toggleBlurOverlay(this);
   }
@@ -781,6 +809,7 @@ class _$ToggleBlurOverlayImpl implements ToggleBlurOverlay {
     TResult? Function(WipeSettingsData value)? wipeData,
     TResult? Function(ToggleNotifications value)? toggleNotifications,
     TResult? Function(ExportDataEvent value)? exportData,
+    TResult? Function(ChangeLanguage value)? changeLanguage,
   }) {
     return toggleBlurOverlay?.call(this);
   }
@@ -797,6 +826,7 @@ class _$ToggleBlurOverlayImpl implements ToggleBlurOverlay {
     TResult Function(WipeSettingsData value)? wipeData,
     TResult Function(ToggleNotifications value)? toggleNotifications,
     TResult Function(ExportDataEvent value)? exportData,
+    TResult Function(ChangeLanguage value)? changeLanguage,
     required TResult orElse(),
   }) {
     if (toggleBlurOverlay != null) {
@@ -897,6 +927,7 @@ class _$UpdateDisplayNameImpl implements UpdateDisplayName {
     required TResult Function() wipeData,
     required TResult Function(bool enabled) toggleNotifications,
     required TResult Function() exportData,
+    required TResult Function(String languageCode) changeLanguage,
   }) {
     return updateDisplayName(name);
   }
@@ -913,6 +944,7 @@ class _$UpdateDisplayNameImpl implements UpdateDisplayName {
     TResult? Function()? wipeData,
     TResult? Function(bool enabled)? toggleNotifications,
     TResult? Function()? exportData,
+    TResult? Function(String languageCode)? changeLanguage,
   }) {
     return updateDisplayName?.call(name);
   }
@@ -929,6 +961,7 @@ class _$UpdateDisplayNameImpl implements UpdateDisplayName {
     TResult Function()? wipeData,
     TResult Function(bool enabled)? toggleNotifications,
     TResult Function()? exportData,
+    TResult Function(String languageCode)? changeLanguage,
     required TResult orElse(),
   }) {
     if (updateDisplayName != null) {
@@ -949,6 +982,7 @@ class _$UpdateDisplayNameImpl implements UpdateDisplayName {
     required TResult Function(WipeSettingsData value) wipeData,
     required TResult Function(ToggleNotifications value) toggleNotifications,
     required TResult Function(ExportDataEvent value) exportData,
+    required TResult Function(ChangeLanguage value) changeLanguage,
   }) {
     return updateDisplayName(this);
   }
@@ -965,6 +999,7 @@ class _$UpdateDisplayNameImpl implements UpdateDisplayName {
     TResult? Function(WipeSettingsData value)? wipeData,
     TResult? Function(ToggleNotifications value)? toggleNotifications,
     TResult? Function(ExportDataEvent value)? exportData,
+    TResult? Function(ChangeLanguage value)? changeLanguage,
   }) {
     return updateDisplayName?.call(this);
   }
@@ -981,6 +1016,7 @@ class _$UpdateDisplayNameImpl implements UpdateDisplayName {
     TResult Function(WipeSettingsData value)? wipeData,
     TResult Function(ToggleNotifications value)? toggleNotifications,
     TResult Function(ExportDataEvent value)? exportData,
+    TResult Function(ChangeLanguage value)? changeLanguage,
     required TResult orElse(),
   }) {
     if (updateDisplayName != null) {
@@ -1081,6 +1117,7 @@ class _$UpdateHrtStartDateImpl implements UpdateHrtStartDate {
     required TResult Function() wipeData,
     required TResult Function(bool enabled) toggleNotifications,
     required TResult Function() exportData,
+    required TResult Function(String languageCode) changeLanguage,
   }) {
     return updateHrtStartDate(date);
   }
@@ -1097,6 +1134,7 @@ class _$UpdateHrtStartDateImpl implements UpdateHrtStartDate {
     TResult? Function()? wipeData,
     TResult? Function(bool enabled)? toggleNotifications,
     TResult? Function()? exportData,
+    TResult? Function(String languageCode)? changeLanguage,
   }) {
     return updateHrtStartDate?.call(date);
   }
@@ -1113,6 +1151,7 @@ class _$UpdateHrtStartDateImpl implements UpdateHrtStartDate {
     TResult Function()? wipeData,
     TResult Function(bool enabled)? toggleNotifications,
     TResult Function()? exportData,
+    TResult Function(String languageCode)? changeLanguage,
     required TResult orElse(),
   }) {
     if (updateHrtStartDate != null) {
@@ -1133,6 +1172,7 @@ class _$UpdateHrtStartDateImpl implements UpdateHrtStartDate {
     required TResult Function(WipeSettingsData value) wipeData,
     required TResult Function(ToggleNotifications value) toggleNotifications,
     required TResult Function(ExportDataEvent value) exportData,
+    required TResult Function(ChangeLanguage value) changeLanguage,
   }) {
     return updateHrtStartDate(this);
   }
@@ -1149,6 +1189,7 @@ class _$UpdateHrtStartDateImpl implements UpdateHrtStartDate {
     TResult? Function(WipeSettingsData value)? wipeData,
     TResult? Function(ToggleNotifications value)? toggleNotifications,
     TResult? Function(ExportDataEvent value)? exportData,
+    TResult? Function(ChangeLanguage value)? changeLanguage,
   }) {
     return updateHrtStartDate?.call(this);
   }
@@ -1165,6 +1206,7 @@ class _$UpdateHrtStartDateImpl implements UpdateHrtStartDate {
     TResult Function(WipeSettingsData value)? wipeData,
     TResult Function(ToggleNotifications value)? toggleNotifications,
     TResult Function(ExportDataEvent value)? exportData,
+    TResult Function(ChangeLanguage value)? changeLanguage,
     required TResult orElse(),
   }) {
     if (updateHrtStartDate != null) {
@@ -1237,6 +1279,7 @@ class _$WipeSettingsDataImpl implements WipeSettingsData {
     required TResult Function() wipeData,
     required TResult Function(bool enabled) toggleNotifications,
     required TResult Function() exportData,
+    required TResult Function(String languageCode) changeLanguage,
   }) {
     return wipeData();
   }
@@ -1253,6 +1296,7 @@ class _$WipeSettingsDataImpl implements WipeSettingsData {
     TResult? Function()? wipeData,
     TResult? Function(bool enabled)? toggleNotifications,
     TResult? Function()? exportData,
+    TResult? Function(String languageCode)? changeLanguage,
   }) {
     return wipeData?.call();
   }
@@ -1269,6 +1313,7 @@ class _$WipeSettingsDataImpl implements WipeSettingsData {
     TResult Function()? wipeData,
     TResult Function(bool enabled)? toggleNotifications,
     TResult Function()? exportData,
+    TResult Function(String languageCode)? changeLanguage,
     required TResult orElse(),
   }) {
     if (wipeData != null) {
@@ -1289,6 +1334,7 @@ class _$WipeSettingsDataImpl implements WipeSettingsData {
     required TResult Function(WipeSettingsData value) wipeData,
     required TResult Function(ToggleNotifications value) toggleNotifications,
     required TResult Function(ExportDataEvent value) exportData,
+    required TResult Function(ChangeLanguage value) changeLanguage,
   }) {
     return wipeData(this);
   }
@@ -1305,6 +1351,7 @@ class _$WipeSettingsDataImpl implements WipeSettingsData {
     TResult? Function(WipeSettingsData value)? wipeData,
     TResult? Function(ToggleNotifications value)? toggleNotifications,
     TResult? Function(ExportDataEvent value)? exportData,
+    TResult? Function(ChangeLanguage value)? changeLanguage,
   }) {
     return wipeData?.call(this);
   }
@@ -1321,6 +1368,7 @@ class _$WipeSettingsDataImpl implements WipeSettingsData {
     TResult Function(WipeSettingsData value)? wipeData,
     TResult Function(ToggleNotifications value)? toggleNotifications,
     TResult Function(ExportDataEvent value)? exportData,
+    TResult Function(ChangeLanguage value)? changeLanguage,
     required TResult orElse(),
   }) {
     if (wipeData != null) {
@@ -1412,6 +1460,7 @@ class _$ToggleNotificationsImpl implements ToggleNotifications {
     required TResult Function() wipeData,
     required TResult Function(bool enabled) toggleNotifications,
     required TResult Function() exportData,
+    required TResult Function(String languageCode) changeLanguage,
   }) {
     return toggleNotifications(enabled);
   }
@@ -1428,6 +1477,7 @@ class _$ToggleNotificationsImpl implements ToggleNotifications {
     TResult? Function()? wipeData,
     TResult? Function(bool enabled)? toggleNotifications,
     TResult? Function()? exportData,
+    TResult? Function(String languageCode)? changeLanguage,
   }) {
     return toggleNotifications?.call(enabled);
   }
@@ -1444,6 +1494,7 @@ class _$ToggleNotificationsImpl implements ToggleNotifications {
     TResult Function()? wipeData,
     TResult Function(bool enabled)? toggleNotifications,
     TResult Function()? exportData,
+    TResult Function(String languageCode)? changeLanguage,
     required TResult orElse(),
   }) {
     if (toggleNotifications != null) {
@@ -1464,6 +1515,7 @@ class _$ToggleNotificationsImpl implements ToggleNotifications {
     required TResult Function(WipeSettingsData value) wipeData,
     required TResult Function(ToggleNotifications value) toggleNotifications,
     required TResult Function(ExportDataEvent value) exportData,
+    required TResult Function(ChangeLanguage value) changeLanguage,
   }) {
     return toggleNotifications(this);
   }
@@ -1480,6 +1532,7 @@ class _$ToggleNotificationsImpl implements ToggleNotifications {
     TResult? Function(WipeSettingsData value)? wipeData,
     TResult? Function(ToggleNotifications value)? toggleNotifications,
     TResult? Function(ExportDataEvent value)? exportData,
+    TResult? Function(ChangeLanguage value)? changeLanguage,
   }) {
     return toggleNotifications?.call(this);
   }
@@ -1496,6 +1549,7 @@ class _$ToggleNotificationsImpl implements ToggleNotifications {
     TResult Function(WipeSettingsData value)? wipeData,
     TResult Function(ToggleNotifications value)? toggleNotifications,
     TResult Function(ExportDataEvent value)? exportData,
+    TResult Function(ChangeLanguage value)? changeLanguage,
     required TResult orElse(),
   }) {
     if (toggleNotifications != null) {
@@ -1568,6 +1622,7 @@ class _$ExportDataEventImpl implements ExportDataEvent {
     required TResult Function() wipeData,
     required TResult Function(bool enabled) toggleNotifications,
     required TResult Function() exportData,
+    required TResult Function(String languageCode) changeLanguage,
   }) {
     return exportData();
   }
@@ -1584,6 +1639,7 @@ class _$ExportDataEventImpl implements ExportDataEvent {
     TResult? Function()? wipeData,
     TResult? Function(bool enabled)? toggleNotifications,
     TResult? Function()? exportData,
+    TResult? Function(String languageCode)? changeLanguage,
   }) {
     return exportData?.call();
   }
@@ -1600,6 +1656,7 @@ class _$ExportDataEventImpl implements ExportDataEvent {
     TResult Function()? wipeData,
     TResult Function(bool enabled)? toggleNotifications,
     TResult Function()? exportData,
+    TResult Function(String languageCode)? changeLanguage,
     required TResult orElse(),
   }) {
     if (exportData != null) {
@@ -1620,6 +1677,7 @@ class _$ExportDataEventImpl implements ExportDataEvent {
     required TResult Function(WipeSettingsData value) wipeData,
     required TResult Function(ToggleNotifications value) toggleNotifications,
     required TResult Function(ExportDataEvent value) exportData,
+    required TResult Function(ChangeLanguage value) changeLanguage,
   }) {
     return exportData(this);
   }
@@ -1636,6 +1694,7 @@ class _$ExportDataEventImpl implements ExportDataEvent {
     TResult? Function(WipeSettingsData value)? wipeData,
     TResult? Function(ToggleNotifications value)? toggleNotifications,
     TResult? Function(ExportDataEvent value)? exportData,
+    TResult? Function(ChangeLanguage value)? changeLanguage,
   }) {
     return exportData?.call(this);
   }
@@ -1652,6 +1711,7 @@ class _$ExportDataEventImpl implements ExportDataEvent {
     TResult Function(WipeSettingsData value)? wipeData,
     TResult Function(ToggleNotifications value)? toggleNotifications,
     TResult Function(ExportDataEvent value)? exportData,
+    TResult Function(ChangeLanguage value)? changeLanguage,
     required TResult orElse(),
   }) {
     if (exportData != null) {
@@ -1663,4 +1723,195 @@ class _$ExportDataEventImpl implements ExportDataEvent {
 
 abstract class ExportDataEvent implements SettingsEvent {
   const factory ExportDataEvent() = _$ExportDataEventImpl;
+}
+
+/// @nodoc
+abstract class _$$ChangeLanguageImplCopyWith<$Res> {
+  factory _$$ChangeLanguageImplCopyWith(_$ChangeLanguageImpl value,
+          $Res Function(_$ChangeLanguageImpl) then) =
+      __$$ChangeLanguageImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String languageCode});
+}
+
+/// @nodoc
+class __$$ChangeLanguageImplCopyWithImpl<$Res>
+    extends _$SettingsEventCopyWithImpl<$Res, _$ChangeLanguageImpl>
+    implements _$$ChangeLanguageImplCopyWith<$Res> {
+  __$$ChangeLanguageImplCopyWithImpl(
+      _$ChangeLanguageImpl _value, $Res Function(_$ChangeLanguageImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of SettingsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? languageCode = null,
+  }) {
+    return _then(_$ChangeLanguageImpl(
+      languageCode: null == languageCode
+          ? _value.languageCode
+          : languageCode // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ChangeLanguageImpl implements ChangeLanguage {
+  const _$ChangeLanguageImpl({required this.languageCode});
+
+  @override
+  final String languageCode;
+
+  @override
+  String toString() {
+    return 'SettingsEvent.changeLanguage(languageCode: $languageCode)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChangeLanguageImpl &&
+            (identical(other.languageCode, languageCode) ||
+                other.languageCode == languageCode));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, languageCode);
+
+  /// Create a copy of SettingsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChangeLanguageImplCopyWith<_$ChangeLanguageImpl> get copyWith =>
+      __$$ChangeLanguageImplCopyWithImpl<_$ChangeLanguageImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadDashboard,
+    required TResult Function(bool enabled) toggleAppLock,
+    required TResult Function(bool enabled) togglePrivacyMode,
+    required TResult Function(bool enabled) toggleBlurOverlay,
+    required TResult Function(String name) updateDisplayName,
+    required TResult Function(DateTime date) updateHrtStartDate,
+    required TResult Function() wipeData,
+    required TResult Function(bool enabled) toggleNotifications,
+    required TResult Function() exportData,
+    required TResult Function(String languageCode) changeLanguage,
+  }) {
+    return changeLanguage(languageCode);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loadDashboard,
+    TResult? Function(bool enabled)? toggleAppLock,
+    TResult? Function(bool enabled)? togglePrivacyMode,
+    TResult? Function(bool enabled)? toggleBlurOverlay,
+    TResult? Function(String name)? updateDisplayName,
+    TResult? Function(DateTime date)? updateHrtStartDate,
+    TResult? Function()? wipeData,
+    TResult? Function(bool enabled)? toggleNotifications,
+    TResult? Function()? exportData,
+    TResult? Function(String languageCode)? changeLanguage,
+  }) {
+    return changeLanguage?.call(languageCode);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadDashboard,
+    TResult Function(bool enabled)? toggleAppLock,
+    TResult Function(bool enabled)? togglePrivacyMode,
+    TResult Function(bool enabled)? toggleBlurOverlay,
+    TResult Function(String name)? updateDisplayName,
+    TResult Function(DateTime date)? updateHrtStartDate,
+    TResult Function()? wipeData,
+    TResult Function(bool enabled)? toggleNotifications,
+    TResult Function()? exportData,
+    TResult Function(String languageCode)? changeLanguage,
+    required TResult orElse(),
+  }) {
+    if (changeLanguage != null) {
+      return changeLanguage(languageCode);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadSettingsDashboard value) loadDashboard,
+    required TResult Function(ToggleAppLock value) toggleAppLock,
+    required TResult Function(TogglePrivacyMode value) togglePrivacyMode,
+    required TResult Function(ToggleBlurOverlay value) toggleBlurOverlay,
+    required TResult Function(UpdateDisplayName value) updateDisplayName,
+    required TResult Function(UpdateHrtStartDate value) updateHrtStartDate,
+    required TResult Function(WipeSettingsData value) wipeData,
+    required TResult Function(ToggleNotifications value) toggleNotifications,
+    required TResult Function(ExportDataEvent value) exportData,
+    required TResult Function(ChangeLanguage value) changeLanguage,
+  }) {
+    return changeLanguage(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LoadSettingsDashboard value)? loadDashboard,
+    TResult? Function(ToggleAppLock value)? toggleAppLock,
+    TResult? Function(TogglePrivacyMode value)? togglePrivacyMode,
+    TResult? Function(ToggleBlurOverlay value)? toggleBlurOverlay,
+    TResult? Function(UpdateDisplayName value)? updateDisplayName,
+    TResult? Function(UpdateHrtStartDate value)? updateHrtStartDate,
+    TResult? Function(WipeSettingsData value)? wipeData,
+    TResult? Function(ToggleNotifications value)? toggleNotifications,
+    TResult? Function(ExportDataEvent value)? exportData,
+    TResult? Function(ChangeLanguage value)? changeLanguage,
+  }) {
+    return changeLanguage?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadSettingsDashboard value)? loadDashboard,
+    TResult Function(ToggleAppLock value)? toggleAppLock,
+    TResult Function(TogglePrivacyMode value)? togglePrivacyMode,
+    TResult Function(ToggleBlurOverlay value)? toggleBlurOverlay,
+    TResult Function(UpdateDisplayName value)? updateDisplayName,
+    TResult Function(UpdateHrtStartDate value)? updateHrtStartDate,
+    TResult Function(WipeSettingsData value)? wipeData,
+    TResult Function(ToggleNotifications value)? toggleNotifications,
+    TResult Function(ExportDataEvent value)? exportData,
+    TResult Function(ChangeLanguage value)? changeLanguage,
+    required TResult orElse(),
+  }) {
+    if (changeLanguage != null) {
+      return changeLanguage(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ChangeLanguage implements SettingsEvent {
+  const factory ChangeLanguage({required final String languageCode}) =
+      _$ChangeLanguageImpl;
+
+  String get languageCode;
+
+  /// Create a copy of SettingsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ChangeLanguageImplCopyWith<_$ChangeLanguageImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

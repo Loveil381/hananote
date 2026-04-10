@@ -124,14 +124,17 @@ class SettingsDetailPage extends StatelessWidget {
                         _SettingsTile(
                           icon: Icons.language,
                           title: l10n.languageSetting,
-                          trailing: const Text(
-                            'System', // Placeholder
-                            style: TextStyle(
+                          trailing: Text(
+                            _languageLabel(settings.language, l10n),
+                            style: const TextStyle(
                               color: HanaColors.onSurfaceVariant,
                               fontWeight: FontWeight.w500,
                             ),
                           ),
-                          onTap: () => _showFeaturePlannedSheet(context),
+                          onTap: () => _showLanguagePicker(
+                            context,
+                            settings.language,
+                          ),
                         ),
                         const Divider(height: 1, indent: 56),
                         _SettingsTile(
@@ -223,6 +226,93 @@ class SettingsDetailPage extends StatelessWidget {
           );
         },
       ),
+    );
+  }
+
+  static String _languageLabel(String code, AppLocalizations l10n) {
+    return switch (code) {
+      'zh' => '中文',
+      'en' => 'English',
+      'ja' => '日本語',
+      _ => l10n.languageSystem,
+    };
+  }
+
+  static void _showLanguagePicker(BuildContext context, String current) {
+    final l10n = AppLocalizations.of(context)!;
+    final options = [
+      ('', l10n.languageSystem),
+      ('zh', '中文'),
+      ('en', 'English'),
+      ('ja', '日本語'),
+    ];
+
+    showModalBottomSheet<void>(
+      context: context,
+      backgroundColor: HanaColors.surfaceContainerLowest,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
+      ),
+      builder: (sheetContext) {
+        return SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(0, 20, 0, 8),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  width: 40,
+                  height: 4,
+                  margin: const EdgeInsets.only(bottom: 24),
+                  decoration: BoxDecoration(
+                    color: HanaColors.outlineVariant.withAlpha(128),
+                    borderRadius: BorderRadius.circular(999),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: Text(
+                    l10n.selectLanguage,
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w700,
+                      color: HanaColors.onSurface,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                ...options.map(
+                  (option) => ListTile(
+                    contentPadding:
+                        const EdgeInsets.symmetric(horizontal: 24),
+                    title: Text(
+                      option.$2,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    trailing: current == option.$1
+                        ? const Icon(
+                            Icons.check_circle,
+                            color: HanaColors.primary,
+                          )
+                        : null,
+                    onTap: () {
+                      context.read<SettingsBloc>().add(
+                            SettingsEvent.changeLanguage(
+                              languageCode: option.$1,
+                            ),
+                          );
+                      Navigator.of(sheetContext).pop();
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 
