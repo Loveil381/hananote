@@ -93,8 +93,8 @@ void main() {
     )..called(1))
         .captured;
     expect(captured[0], 42);
-    expect(captured[1], 'HanaNote 服药提醒');
-    expect(captured[2], 'Estradiol 2mg — 该吃药啦 💊');
+    expect(captured[1], 'HanaNote');
+    expect(captured[2], 'Estradiol 2mg');
     expect(captured[4], isA<NotificationDetails>());
     expect(
       captured[5],

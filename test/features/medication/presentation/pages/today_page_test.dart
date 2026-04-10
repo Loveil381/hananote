@@ -206,4 +206,70 @@ void main() {
 
     expect(find.text('profile'), findsOneWidget);
   });
+
+  testWidgets('shows loading indicator for initial schedule state', (
+    tester,
+  ) async {
+    when(() => todayScheduleBloc.state)
+        .thenReturn(const TodayScheduleState.initial());
+
+    await tester.pumpWidget(
+      buildLocalizedApp(
+        MultiBlocProvider(
+          providers: [
+            BlocProvider<SettingsBloc>.value(value: settingsBloc),
+            BlocProvider<TodayScheduleBloc>.value(value: todayScheduleBloc),
+          ],
+          child: const TodayPage(),
+        ),
+      ),
+    );
+
+    expect(find.byType(CircularProgressIndicator), findsOneWidget);
+  });
+
+  testWidgets('calendar icon navigates to the timeline page', (tester) async {
+    when(() => todayScheduleBloc.state).thenReturn(
+      TodayScheduleState.loaded(
+        items: const [],
+        date: DateTime.now(),
+        completedCount: 0,
+        totalCount: 0,
+      ),
+    );
+
+    final router = GoRouter(
+      routes: [
+        GoRoute(
+          path: '/',
+          builder: (context, state) => MultiBlocProvider(
+            providers: [
+              BlocProvider<SettingsBloc>.value(value: settingsBloc),
+              BlocProvider<TodayScheduleBloc>.value(value: todayScheduleBloc),
+            ],
+            child: const TodayPage(),
+          ),
+        ),
+        GoRoute(
+          path: '/timeline',
+          builder: (context, state) =>
+              const Scaffold(body: Text('timeline')),
+        ),
+      ],
+    );
+
+    await tester.pumpWidget(
+      MaterialApp.router(
+        routerConfig: router,
+        locale: const Locale('zh'),
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+      ),
+    );
+
+    await tester.tap(find.byIcon(Icons.calendar_today));
+    await tester.pumpAndSettle();
+
+    expect(find.text('timeline'), findsOneWidget);
+  });
 }

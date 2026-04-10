@@ -21,15 +21,30 @@ class RecordPage extends StatelessWidget {
     final l10n = AppLocalizations.of(context)!;
     final localeTag = Localizations.localeOf(context).toLanguageTag();
     final topPadding = MediaQuery.of(context).padding.top + kToolbarHeight + 16;
-    void showComingSoon() {
-      ScaffoldMessenger.of(context)
-        ..hideCurrentSnackBar()
-        ..showSnackBar(SnackBar(content: Text(l10n.featureComingSoon)));
-    }
-
     return BlocBuilder<RecordBloc, RecordState>(
       builder: (context, state) {
         final todayStr = DateFormat.MMMd(localeTag).format(DateTime.now());
+
+        if (state is RecordInitial || state is RecordLoading) {
+          return Scaffold(
+            backgroundColor: HanaColors.background,
+            body: const Center(
+              child: CircularProgressIndicator(color: HanaColors.primary),
+            ),
+          );
+        }
+
+        if (state case RecordError(:final message)) {
+          return Scaffold(
+            backgroundColor: HanaColors.background,
+            body: Center(
+              child: Text(
+                message,
+                style: const TextStyle(color: HanaColors.onSurfaceVariant),
+              ),
+            ),
+          );
+        }
 
         var moodTag = l10n.recordDiaryEmpty;
         var photoTag = l10n.recordPhotoEmpty;
@@ -66,10 +81,6 @@ class RecordPage extends StatelessWidget {
                   elevation: 0,
                   scrolledUnderElevation: 0,
                   centerTitle: true,
-                  leading: IconButton(
-                    icon: const Icon(Icons.notes, color: HanaColors.primary),
-                    onPressed: showComingSoon,
-                  ),
                   title: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -97,15 +108,7 @@ class RecordPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  actions: [
-                    IconButton(
-                      icon: const Icon(
-                        Icons.history_edu,
-                        color: HanaColors.primary,
-                      ),
-                      onPressed: showComingSoon,
-                    ),
-                  ],
+                  actions: const [SizedBox(width: 8)],
                 ),
               ),
             ),

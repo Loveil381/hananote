@@ -12,6 +12,7 @@ class AppSettings with _$AppSettings {
     required bool privacyModeEnabled,
     required bool blurOverlayEnabled,
     required DateTime? lastBackupDate,
+    @Default(true) bool notificationsEnabled,
   }) = _AppSettings;
 
   /// Creates an [AppSettings] from JSON.

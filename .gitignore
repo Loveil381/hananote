@@ -44,6 +44,9 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
+# Release signing
+android/key.properties
+
 # Debug/temp output
 analyze*.txt
 *_stat.txt

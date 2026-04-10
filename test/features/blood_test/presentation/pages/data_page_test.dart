@@ -90,4 +90,61 @@ void main() {
 
     expect(find.text('暂无趋势数据'), findsOneWidget);
   });
+
+  testWidgets('shows trend chart when two or more reports exist', (
+    tester,
+  ) async {
+    final report1 = buildReport(
+      id: 'report-1',
+      date: DateTime(2026, 1),
+      estradiol: 100,
+    );
+    final report2 = buildReport(
+      id: 'report-2',
+      date: DateTime(2026, 2),
+      estradiol: 150,
+    );
+
+    when(() => bloodTestBloc.state).thenReturn(
+      BloodTestState.loaded(
+        reports: [report1, report2],
+        latestReadings: {
+          HormoneType.estradiol: report2.readings.first,
+        },
+        selectedTrendHormone: HormoneType.estradiol,
+        selectedRange: TrendRange.threeMonths,
+        trendData: [report1.readings.first, report2.readings.first],
+        lastUpdated: report2.testDate,
+      ),
+    );
+
+    await tester.pumpWidget(
+      buildApp(
+        BlocProvider<BloodTestBloc>.value(
+          value: bloodTestBloc,
+          child: const DataPage(),
+        ),
+      ),
+    );
+
+    // When there are 2+ reports, the "no trend data" text should not show
+    expect(find.text('暂无趋势数据'), findsNothing);
+  });
+
+  testWidgets('shows error message in error state', (tester) async {
+    when(() => bloodTestBloc.state).thenReturn(
+      const BloodTestState.error('数据加载失败'),
+    );
+
+    await tester.pumpWidget(
+      buildApp(
+        BlocProvider<BloodTestBloc>.value(
+          value: bloodTestBloc,
+          child: const DataPage(),
+        ),
+      ),
+    );
+
+    expect(find.text('数据加载失败'), findsOneWidget);
+  });
 }

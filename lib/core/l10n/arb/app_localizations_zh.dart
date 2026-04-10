@@ -703,4 +703,325 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get featureInDevelopmentDesc => '此功能正在开发中，将在下个版本推出';
+
+  @override
+  String get enumMeasureBust => '胸围';
+
+  @override
+  String get enumMeasureUnderbust => '下胸围';
+
+  @override
+  String get enumMeasureWaist => '腰围';
+
+  @override
+  String get enumMeasureHip => '臀围';
+
+  @override
+  String get enumMeasureThigh => '大腿围';
+
+  @override
+  String get enumMeasureUpperArm => '上臂围';
+
+  @override
+  String get enumMeasureShoulder => '肩宽';
+
+  @override
+  String get enumMeasureNeck => '颈围';
+
+  @override
+  String get enumMeasureWeight => '体重';
+
+  @override
+  String get enumMoodVeryBad => '很差';
+
+  @override
+  String get enumMoodBad => '不太好';
+
+  @override
+  String get enumMoodNeutral => '一般';
+
+  @override
+  String get enumMoodGood => '不错';
+
+  @override
+  String get enumMoodVeryGood => '很好';
+
+  @override
+  String get enumEsterValerate => '戊酸雌二醇肌注';
+
+  @override
+  String get enumEsterCypionate => '环戊丙酸雌二醇肌注';
+
+  @override
+  String get enumEsterEnanthate => '庚酸雌二醇肌注';
+
+  @override
+  String get enumEsterOral => '口服雌二醇';
+
+  @override
+  String get enumEsterSublingual => '舌下雌二醇';
+
+  @override
+  String get enumEsterPatch => '雌二醇贴片';
+
+  @override
+  String get enumEsterGel => '雌二醇凝胶';
+
+  @override
+  String get toggleHanaPkEngine => '切换 Hana-PK 实验引擎';
+
+  @override
+  String get simulatorDisclaimer =>
+      '免责声明：模拟结果基于药代动力学模型，仅供参考，不构成医疗建议。由于个体差异（如代谢率、体重、注射部位脂肪比例），真实血药浓度可能存在较大偏差。调整方案前请务必咨询专业医生。';
+
+  @override
+  String get simulatorSchemeParams => '方案参数';
+
+  @override
+  String get simulatorDrugType => '药物类型';
+
+  @override
+  String get simulatorSingleDose => '单次剂量 (mg)';
+
+  @override
+  String get simulatorInterval => '间隔 (天)';
+
+  @override
+  String get simulatorWeight => '体重 (kg)';
+
+  @override
+  String get simulatorPatchWear => '贴片佩戴 (天)';
+
+  @override
+  String get simulatorSublingualHold => '舌下含服时间';
+
+  @override
+  String get holdTimeVeryFast => '极快';
+
+  @override
+  String get holdTimeCasual => '随意';
+
+  @override
+  String get holdTimeStandard => '标准';
+
+  @override
+  String get holdTimeStrict => '严格';
+
+  @override
+  String get updateSimulation => '更新模拟';
+
+  @override
+  String get concentrationCurve => '浓度-时间曲线';
+
+  @override
+  String get hanaPkLabel => 'Hana-PK';
+
+  @override
+  String get v2StandardLabel => 'V2 标准';
+
+  @override
+  String get chartAxisLabel => 'Y轴: 雌二醇体循环浓度 (pg/mL)   X轴: 持续天数';
+
+  @override
+  String get steadyStateSummary => '稳态摘要';
+
+  @override
+  String get peakLabel => '峰值 (Peak)';
+
+  @override
+  String get troughLabel => '谷值 (Trough)';
+
+  @override
+  String get averageLabel => '均值 (Avg)';
+
+  @override
+  String reachSteadyDays(String days) {
+    return '达稳: $days天';
+  }
+
+  @override
+  String get bodyMeasurementsTitle => '身体测量';
+
+  @override
+  String get newMeasurement => '新建测量';
+
+  @override
+  String get startRecordingChanges => '开始记录你的身体变化';
+
+  @override
+  String get measurementEmptyHint => '保存第一条测量后，这里会显示围度和体重的历史变化。';
+
+  @override
+  String get deleteMeasurementTitle => '删除测量记录';
+
+  @override
+  String get deleteMeasurementConfirm => '确认删除这条身体测量记录吗？';
+
+  @override
+  String get measurementRecorded => '已记录一次身体测量';
+
+  @override
+  String get editMeasurement => '编辑测量';
+
+  @override
+  String get createMeasurement => '新建测量';
+
+  @override
+  String get coreMeasurements => '核心围度';
+
+  @override
+  String get extendedIndicators => '扩展指标';
+
+  @override
+  String get measurementDate => '测量日期';
+
+  @override
+  String get welcomeBack => '欢迎回来';
+
+  @override
+  String get enterFullPin => '请输入完整的6位密码';
+
+  @override
+  String get setupSecurePassword => '创建安全密码';
+
+  @override
+  String get setupPinDescription => '设置 6 位 PIN 以保护你的私密健康数据。';
+
+  @override
+  String get password => '密码';
+
+  @override
+  String get confirmPassword => '確認密码';
+
+  @override
+  String get enableBiometric => '启用后使用生物识别';
+
+  @override
+  String get pinFormatRequired => '请输入 6 位 PIN';
+
+  @override
+  String get pinMismatch => '两次输入的密码不一致';
+
+  @override
+  String get editDiary => '编辑日记';
+
+  @override
+  String get diaryPlaceholder => '今天想说点什么...';
+
+  @override
+  String get addTags => '添加标签';
+
+  @override
+  String get presetTagHappy => '开心';
+
+  @override
+  String get presetTagAnxious => '焦虑';
+
+  @override
+  String get presetTagCalm => '平静';
+
+  @override
+  String get presetTagTired => '疲惫';
+
+  @override
+  String get presetTagHopeful => '充满希望';
+
+  @override
+  String get reminderChannelName => '服药提醒';
+
+  @override
+  String get reminderChannelDesc => '每日服药提醒通知';
+
+  @override
+  String get reminderNotifTitle => 'HanaNote 服药提醒';
+
+  @override
+  String reminderNotifBody(String drugName, String dosage, String unit) {
+    return '$drugName $dosage$unit — 该吃药啦 💊';
+  }
+
+  @override
+  String get milestoneSubtitle => '一路走到这里，已经很了不起了';
+
+  @override
+  String get noReadingSummary => '暂无指标摘要';
+
+  @override
+  String get medicationStatusTaken => '已记录服用';
+
+  @override
+  String get medicationStatusSkipped => '本次已跳过';
+
+  @override
+  String get medicationStatusLate => '延迟服用';
+
+  @override
+  String get medicationStatusDefault => '服药记录';
+
+  @override
+  String medicationLogTitle(String drugName, String dosage) {
+    return '服药: $drugName $dosage';
+  }
+
+  @override
+  String get abbrevBust => '胸';
+
+  @override
+  String get abbrevWaist => '腰';
+
+  @override
+  String get abbrevHip => '臀';
+
+  @override
+  String get editBloodReport => '编辑血检报告';
+
+  @override
+  String get addBloodReport => '添加血检报告';
+
+  @override
+  String get testDate => '检测日期';
+
+  @override
+  String get labName => '检测机构';
+
+  @override
+  String get addReading => '添加指标';
+
+  @override
+  String get hormoneValue => '数值';
+
+  @override
+  String get selectHormone => '选择激素类型';
+
+  @override
+  String get atLeastOneReading => '请至少添加一项指标';
+
+  @override
+  String get invalidValue => '请输入有效数字';
+
+  @override
+  String saveFailed(String message) {
+    return '保存失败：$message';
+  }
+
+  @override
+  String get loadFailed => '加载报告失败';
+
+  @override
+  String get knowledgeBase => '用药参考';
+
+  @override
+  String get knowledgeBaseSubtitle => '循证安全用药指南';
+
+  @override
+  String get openKnowledgeBase => '查看 HRT 药典';
+
+  @override
+  String get updateAvailable => '发现新版本';
+
+  @override
+  String get updateNow => '立即更新';
+
+  @override
+  String get updateLater => '稍后再说';
 }

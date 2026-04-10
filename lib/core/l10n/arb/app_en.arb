@@ -294,5 +294,159 @@
   "darkModeComingSoon": "Dark Mode coming soon",
   "featureInDevelopment": "Under Development",
   "featureInDevelopmentDesc": "This feature is under development and will be available in the next release",
-  "closeAction": "Close"
+  "closeAction": "Close",
+
+  "enumMeasureBust": "Bust",
+  "enumMeasureUnderbust": "Underbust",
+  "enumMeasureWaist": "Waist",
+  "enumMeasureHip": "Hip",
+  "enumMeasureThigh": "Thigh",
+  "enumMeasureUpperArm": "Upper Arm",
+  "enumMeasureShoulder": "Shoulder",
+  "enumMeasureNeck": "Neck",
+  "enumMeasureWeight": "Weight",
+
+  "enumMoodVeryBad": "Very bad",
+  "enumMoodBad": "Not great",
+  "enumMoodNeutral": "Neutral",
+  "enumMoodGood": "Good",
+  "enumMoodVeryGood": "Very good",
+
+  "enumEsterValerate": "Estradiol Valerate (IM)",
+  "enumEsterCypionate": "Estradiol Cypionate (IM)",
+  "enumEsterEnanthate": "Estradiol Enanthate (IM)",
+  "enumEsterOral": "Oral Estradiol",
+  "enumEsterSublingual": "Sublingual Estradiol",
+  "enumEsterPatch": "Estradiol Patch",
+  "enumEsterGel": "Estradiol Gel",
+
+  "toggleHanaPkEngine": "Toggle Hana-PK Experimental Engine",
+  "simulatorDisclaimer": "Disclaimer: Simulation results are based on pharmacokinetic models and are for reference only. They do not constitute medical advice. Due to individual differences (metabolism, weight, injection site fat ratio), actual blood levels may vary significantly. Always consult your doctor before adjusting your regimen.",
+  "simulatorSchemeParams": "Regimen Parameters",
+  "simulatorDrugType": "Drug Type",
+  "simulatorSingleDose": "Single Dose (mg)",
+  "simulatorInterval": "Interval (days)",
+  "simulatorWeight": "Body Weight (kg)",
+  "simulatorPatchWear": "Patch Wear (days)",
+  "simulatorSublingualHold": "Sublingual Hold Time",
+  "holdTimeVeryFast": "Very fast",
+  "holdTimeCasual": "Casual",
+  "holdTimeStandard": "Standard",
+  "holdTimeStrict": "Strict",
+  "updateSimulation": "Update Simulation",
+  "concentrationCurve": "Concentration-Time Curve",
+  "hanaPkLabel": "Hana-PK",
+  "v2StandardLabel": "V2 Standard",
+  "chartAxisLabel": "Y: Systemic E2 (pg/mL)   X: Days",
+  "steadyStateSummary": "Steady-State Summary",
+  "peakLabel": "Peak",
+  "troughLabel": "Trough",
+  "averageLabel": "Average",
+  "reachSteadyDays": "Steady state: {days} days",
+  "@reachSteadyDays": {
+    "placeholders": {
+      "days": {
+        "type": "String"
+      }
+    }
+  },
+
+  "bodyMeasurementsTitle": "Body Measurements",
+  "newMeasurement": "New Measurement",
+  "startRecordingChanges": "Start recording your body changes",
+  "measurementEmptyHint": "After your first measurement, you'll see your history here.",
+  "deleteMeasurementTitle": "Delete Measurement",
+  "deleteMeasurementConfirm": "Delete this body measurement record?",
+  "measurementRecorded": "Measurement recorded",
+  "editMeasurement": "Edit Measurement",
+  "createMeasurement": "New Measurement",
+  "coreMeasurements": "Core Measurements",
+  "extendedIndicators": "Extended Indicators",
+  "measurementDate": "Measurement Date",
+
+  "welcomeBack": "Welcome back",
+  "enterFullPin": "Please enter the full 6-digit PIN",
+  "setupSecurePassword": "Create Secure Password",
+  "setupPinDescription": "Set a 6-digit PIN to protect your private health data.",
+  "password": "Password",
+  "confirmPassword": "Confirm Password",
+  "enableBiometric": "Enable biometric unlock",
+  "pinFormatRequired": "Please enter a 6-digit PIN",
+  "pinMismatch": "PINs do not match",
+
+  "editDiary": "Edit Diary",
+  "diaryPlaceholder": "What's on your mind today...",
+  "addTags": "Add Tags",
+  "presetTagHappy": "Happy",
+  "presetTagAnxious": "Anxious",
+  "presetTagCalm": "Calm",
+  "presetTagTired": "Tired",
+  "presetTagHopeful": "Hopeful",
+
+  "reminderChannelName": "Medication Reminder",
+  "reminderChannelDesc": "Daily medication reminder notifications",
+  "reminderNotifTitle": "HanaNote Medication Reminder",
+  "reminderNotifBody": "{drugName} {dosage}{unit} — Time to take your meds 💊",
+  "@reminderNotifBody": {
+    "placeholders": {
+      "drugName": {
+        "type": "String"
+      },
+      "dosage": {
+        "type": "String"
+      },
+      "unit": {
+        "type": "String"
+      }
+    }
+  },
+
+  "milestoneSubtitle": "You've come so far — that's amazing",
+  "noReadingSummary": "No reading summary",
+  "medicationStatusTaken": "Taken",
+  "medicationStatusSkipped": "Skipped",
+  "medicationStatusLate": "Taken late",
+  "medicationStatusDefault": "Medication log",
+  "medicationLogTitle": "Medication: {drugName} {dosage}",
+  "@medicationLogTitle": {
+    "placeholders": {
+      "drugName": {
+        "type": "String"
+      },
+      "dosage": {
+        "type": "String"
+      }
+    }
+  },
+
+  "abbrevBust": "Bust",
+  "abbrevWaist": "Waist",
+  "abbrevHip": "Hip",
+
+  "editBloodReport": "Edit Blood Report",
+  "addBloodReport": "Add Blood Report",
+  "testDate": "Test Date",
+  "labName": "Lab / Clinic",
+  "addReading": "Add Reading",
+  "hormoneValue": "Value",
+  "selectHormone": "Select Hormone",
+  "atLeastOneReading": "Add at least one reading",
+  "invalidValue": "Enter a valid number",
+  "saveFailed": "Save failed: {message}",
+  "@saveFailed": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "loadFailed": "Failed to load report",
+
+  "knowledgeBase": "Drug Reference",
+  "knowledgeBaseSubtitle": "Evidence-based HRT safety guide",
+  "openKnowledgeBase": "Open HRT Reference",
+
+  "updateAvailable": "Update Available",
+  "updateNow": "Update Now",
+  "updateLater": "Later"
 }

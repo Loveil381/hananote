@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hananote/core/constants/app_urls.dart';
+import 'package:hananote/core/update/update_dialog.dart';
+import 'package:hananote/core/update/update_service.dart';
 import 'package:hananote/features/auth/presentation/bloc/auth_cubit.dart';
 import 'package:hananote/features/auth/presentation/bloc/auth_state.dart';
 import 'package:hananote/features/auth/presentation/pages/lock_screen_page.dart';
@@ -24,6 +28,15 @@ class AuthWrapperPage extends StatelessWidget {
         } else if (state is AuthUnlocked) {
           context.read<SettingsBloc>().add(const LoadSettingsDashboard());
           context.go('/today');
+          // Check for updates after the navigation settles.
+          SchedulerBinding.instance.addPostFrameCallback((_) async {
+            final info = await UpdateService.checkForUpdate(
+              AppConstants.appVersion,
+            );
+            if (info != null && context.mounted) {
+              showUpdateDialog(context, info);
+            }
+          });
         }
       },
       child: BlocBuilder<AuthCubit, AuthState>(

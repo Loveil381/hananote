@@ -107,10 +107,10 @@ class RecordBloc extends Bloc<RecordEvent, RecordState> {
 
   static String _summaryLabel(MeasurementType type) {
     return switch (type) {
-      MeasurementType.bust => '胸',
-      MeasurementType.waist => '腰',
-      MeasurementType.hip => '臀',
-      _ => type.displayName,
+      MeasurementType.bust => 'B',
+      MeasurementType.waist => 'W',
+      MeasurementType.hip => 'H',
+      _ => type.name,
     };
   }
 

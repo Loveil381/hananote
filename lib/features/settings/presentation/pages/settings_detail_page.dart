@@ -131,15 +131,7 @@ class SettingsDetailPage extends StatelessWidget {
                               fontWeight: FontWeight.w500,
                             ),
                           ),
-                          onTap: () {
-                            // TODO(user): Implement language switching logic.
-                            // Currently using system locale.
-                            ScaffoldMessenger.of(context)
-                              ..hideCurrentSnackBar()
-                              ..showSnackBar(
-                                SnackBar(content: Text(l10n.featureComingSoon)),
-                              );
-                          },
+                          onTap: () => _showFeaturePlannedSheet(context),
                         ),
                         const Divider(height: 1, indent: 56),
                         _SettingsTile(
@@ -147,15 +139,8 @@ class SettingsDetailPage extends StatelessWidget {
                           title: l10n.darkMode,
                           trailing: Switch(
                             value: false,
-                            onChanged: (val) {
-                              ScaffoldMessenger.of(context)
-                                ..hideCurrentSnackBar()
-                                ..showSnackBar(
-                                  SnackBar(
-                                    content: Text(l10n.darkModeComingSoon),
-                                  ),
-                                );
-                            },
+                            onChanged: (val) =>
+                                _showFeaturePlannedSheet(context),
                           ),
                         ),
                       ],
@@ -202,7 +187,7 @@ class SettingsDetailPage extends StatelessWidget {
                           icon: Icons.info_outline,
                           title: l10n.version,
                           trailing: const Text(
-                            '1.0.0', // Placeholder
+                            AppConstants.appVersion,
                             style: TextStyle(
                               color: HanaColors.onSurfaceVariant,
                               fontWeight: FontWeight.w500,
@@ -238,6 +223,69 @@ class SettingsDetailPage extends StatelessWidget {
           );
         },
       ),
+    );
+  }
+
+  static void _showFeaturePlannedSheet(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    showModalBottomSheet<void>(
+      context: context,
+      backgroundColor: HanaColors.surfaceContainerLowest,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
+      ),
+      builder: (sheetContext) {
+        return SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(24, 20, 24, 24),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  width: 40,
+                  height: 4,
+                  margin: const EdgeInsets.only(bottom: 32),
+                  decoration: BoxDecoration(
+                    color: HanaColors.outlineVariant.withAlpha(128),
+                    borderRadius: BorderRadius.circular(999),
+                  ),
+                ),
+                const Icon(
+                  Icons.construction_outlined,
+                  size: 64,
+                  color: HanaColors.primary,
+                ),
+                const SizedBox(height: 24),
+                Text(
+                  l10n.featureInDevelopment,
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700,
+                    color: HanaColors.onSurface,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                Text(
+                  l10n.featureInDevelopmentDesc,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    color: HanaColors.onSurfaceVariant,
+                  ),
+                ),
+                const SizedBox(height: 32),
+                SizedBox(
+                  width: double.infinity,
+                  child: FilledButton(
+                    onPressed: () => Navigator.of(sheetContext).pop(),
+                    child: Text(l10n.closeAction),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 

@@ -141,7 +141,7 @@ void main() {
         lastJournalDate: latestEntry.date,
         lastPhotoDate: null,
         lastMeasurementDate: latestMeasurement.date,
-        lastMeasurementSummary: '胸: 86cm · 腰: 72cm · 臀: 92cm',
+        lastMeasurementSummary: 'B: 86cm · W: 72cm · H: 92cm',
       ),
     ],
   );

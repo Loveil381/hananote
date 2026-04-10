@@ -25,12 +25,6 @@ class DataPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final topPadding = MediaQuery.of(context).padding.top + kToolbarHeight + 16;
-    void showComingSoon(String message) {
-      ScaffoldMessenger.of(context)
-        ..hideCurrentSnackBar()
-        ..showSnackBar(SnackBar(content: Text(message)));
-    }
-
     return Scaffold(
       backgroundColor: HanaColors.background,
       extendBodyBehindAppBar: true,
@@ -164,7 +158,7 @@ class _LoadedView extends StatelessWidget {
                 unit: unitText,
                 subtitle: status.localizedName(l10n),
                 statusColor: switch (status) {
-                  HormoneStatus.normal => const Color(0xFF34D399),
+                  HormoneStatus.normal => HanaColors.statusGreen,
                   HormoneStatus.warning => HanaColors.tertiary,
                   HormoneStatus.critical => HanaColors.error,
                 },
@@ -182,6 +176,10 @@ class _LoadedView extends StatelessWidget {
           const SizedBox(height: 24),
           // Simulator Card
           _StitchSimulatorCard(onTap: () => context.push('/data/simulator')),
+
+          const SizedBox(height: 16),
+          // Knowledge Base Card
+          _StitchKnowledgeCard(onTap: () => context.push('/knowledge')),
 
           const SizedBox(height: 32),
           // Trends Section Placeholder
@@ -460,6 +458,97 @@ class _StitchSimulatorCard extends StatelessWidget {
                     const SizedBox(height: 4),
                     Text(
                       l10n.pkSimulatorSubtitle,
+                      style: TextStyle(
+                        color: HanaColors.primary.withAlpha(153), // 60%
+                        fontSize: 12,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: Colors.white.withAlpha(128), // 50%
+                  shape: BoxShape.circle,
+                ),
+                child: const Icon(
+                  Icons.arrow_forward_ios,
+                  color: HanaColors.primary,
+                  size: 14,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _StitchKnowledgeCard extends StatelessWidget {
+  const _StitchKnowledgeCard({required this.onTap});
+
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(24),
+        child: Container(
+          padding: const EdgeInsets.all(24),
+          decoration: BoxDecoration(
+            gradient: const LinearGradient(
+              colors: [
+                HanaColors.primaryContainer,
+                HanaColors.secondaryContainer,
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+            borderRadius: BorderRadius.circular(24),
+            boxShadow: [
+              BoxShadow(
+                color: HanaColors.primaryContainer.withAlpha(77), // 30%
+                blurRadius: 16,
+                offset: const Offset(0, 8),
+              ),
+            ],
+          ),
+          child: Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: Colors.white.withAlpha(128), // 50%
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: const Icon(
+                  Icons.menu_book_rounded,
+                  color: HanaColors.primary,
+                ),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      l10n.knowledgeBase,
+                      style: const TextStyle(
+                        color: HanaColors.primary,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      l10n.knowledgeBaseSubtitle,
                       style: TextStyle(
                         color: HanaColors.primary.withAlpha(153), // 60%
                         fontSize: 12,

@@ -58,6 +58,8 @@ class HanaColors {
   static const Color onSecondaryFixed = Color(0xFF2B112F);
   static const Color onSecondaryFixedVariant = Color(0xFF5A3C5D);
 
+  static const Color statusGreen = Color(0xFF34D399);
+
   static const Color tertiaryFixed = Color(0xFFFFDAD5);
   static const Color tertiaryFixedDim = Color(0xFFFFB4AA);
   static const Color onTertiaryFixed = Color(0xFF410001);

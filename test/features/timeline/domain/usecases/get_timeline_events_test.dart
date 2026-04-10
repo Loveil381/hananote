@@ -155,7 +155,9 @@ void main() {
       expect(events[0].type, TimelineEventType.bloodTest);
       expect(events[1].type, TimelineEventType.medication);
       expect(events[2].type, TimelineEventType.journal);
-      expect(events[1].title, '服药: Estradiol 2mg');
+      expect(events[1].title, 'medication');
+      expect(events[1].subtitle, 'taken');
+      expect(events[0].title, 'blood_test');
       expect(events[0].subtitle, contains('pg/mL'));
       expect(events[2].subtitle, isNotEmpty);
     });

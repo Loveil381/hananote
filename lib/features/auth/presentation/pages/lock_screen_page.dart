@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hananote/app/theme/hana_colors.dart';
+import 'package:hananote/core/l10n/arb/app_localizations.dart';
 import 'package:hananote/features/auth/presentation/bloc/auth_cubit.dart';
 import 'package:hananote/features/auth/presentation/bloc/auth_state.dart';
 
@@ -84,7 +85,7 @@ class _LockScreenPageState extends State<LockScreenPage> {
                       ),
                       const SizedBox(height: 28),
                       Text(
-                        '欢迎回来',
+                        AppLocalizations.of(context)!.welcomeBack,
                         style: theme.textTheme.headlineMedium?.copyWith(
                               fontWeight: FontWeight.w700,
                               color: HanaColors.onSurface,
@@ -164,7 +165,7 @@ class _LockScreenPageState extends State<LockScreenPage> {
 
   void _handleConfirm() {
     if (_pin.length != 6) {
-      showError('请输入完整的6位密码');
+      showError(AppLocalizations.of(context)!.enterFullPin);
       return;
     }
     final pin = _pin;

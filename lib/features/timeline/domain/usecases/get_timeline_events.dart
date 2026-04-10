@@ -144,8 +144,7 @@ class GetTimelineEvents {
                 id: 'milestone-$dayCount',
                 date: milestoneDate,
                 type: TimelineEventType.milestone,
-                title: 'HRT $dayCount 天',
-                subtitle: '一路走到这里，已经很了不起了',
+                title: 'milestone',
                 metadata: <String, dynamic>{
                   'milestoneDays': dayCount,
                   'startDate': startDate.toIso8601String(),
@@ -165,9 +164,8 @@ class GetTimelineEvents {
       id: 'medication-${log.id}',
       date: log.timestamp,
       type: TimelineEventType.medication,
-      title: '服药: ${drug.name} ${_formatDosage(log.dosageAmount)}'
-          '${log.dosageUnit.name}',
-      subtitle: _medicationSubtitle(log),
+      title: 'medication',
+      subtitle: log.status.name,
       metadata: <String, dynamic>{
         'drugId': drug.id,
         'drugName': drug.name,
@@ -181,7 +179,7 @@ class GetTimelineEvents {
 
   TimelineEvent _mapBloodTestReport(BloodTestReport report) {
     final readingSummary = report.readings.take(3).map((reading) {
-      return '${reading.type.displayName} ${_formatReadingValue(reading.value)}'
+      return '${reading.type.name}: ${_formatReadingValue(reading.value)}'
           ' ${reading.unit}';
     }).join(' · ');
     final normalCount = report.readings
@@ -197,8 +195,8 @@ class GetTimelineEvents {
       id: 'blood-test-${report.id}',
       date: report.testDate,
       type: TimelineEventType.bloodTest,
-      title: '血液检测',
-      subtitle: readingSummary.isEmpty ? '暂无指标摘要' : readingSummary,
+      title: 'blood_test',
+      subtitle: readingSummary.isEmpty ? '' : readingSummary,
       metadata: <String, dynamic>{
         'reportId': report.id,
         'labName': report.labName,
@@ -224,27 +222,12 @@ class GetTimelineEvents {
     );
   }
 
-  String _medicationSubtitle(MedicationLog log) => switch (log.status.name) {
-        'taken' => '已记录服用',
-        'skipped' => '本次已跳过',
-        'late' => '延迟服用',
-        _ => '服药记录',
-      };
-
   String _truncate(String text, int maxLength) {
     if (text.length <= maxLength) {
       return text;
     }
 
     return '${text.substring(0, maxLength)}…';
-  }
-
-  String _formatDosage(double dosageAmount) {
-    if (dosageAmount == dosageAmount.roundToDouble()) {
-      return dosageAmount.toInt().toString();
-    }
-
-    return dosageAmount.toString();
   }
 
   String _formatReadingValue(double value) {

@@ -296,5 +296,159 @@
   "darkModeComingSoon": "深色模式敬请期待",
   "featureInDevelopment": "功能开发中",
   "featureInDevelopmentDesc": "此功能正在开发中，将在下个版本推出",
-  "closeAction": "关闭"
+  "closeAction": "关闭",
+
+  "enumMeasureBust": "胸围",
+  "enumMeasureUnderbust": "下胸围",
+  "enumMeasureWaist": "腰围",
+  "enumMeasureHip": "臀围",
+  "enumMeasureThigh": "大腿围",
+  "enumMeasureUpperArm": "上臂围",
+  "enumMeasureShoulder": "肩宽",
+  "enumMeasureNeck": "颈围",
+  "enumMeasureWeight": "体重",
+
+  "enumMoodVeryBad": "很差",
+  "enumMoodBad": "不太好",
+  "enumMoodNeutral": "一般",
+  "enumMoodGood": "不错",
+  "enumMoodVeryGood": "很好",
+
+  "enumEsterValerate": "戊酸雌二醇肌注",
+  "enumEsterCypionate": "环戊丙酸雌二醇肌注",
+  "enumEsterEnanthate": "庚酸雌二醇肌注",
+  "enumEsterOral": "口服雌二醇",
+  "enumEsterSublingual": "舌下雌二醇",
+  "enumEsterPatch": "雌二醇贴片",
+  "enumEsterGel": "雌二醇凝胶",
+
+  "toggleHanaPkEngine": "切换 Hana-PK 实验引擎",
+  "simulatorDisclaimer": "免责声明：模拟结果基于药代动力学模型，仅供参考，不构成医疗建议。由于个体差异（如代谢率、体重、注射部位脂肪比例），真实血药浓度可能存在较大偏差。调整方案前请务必咨询专业医生。",
+  "simulatorSchemeParams": "方案参数",
+  "simulatorDrugType": "药物类型",
+  "simulatorSingleDose": "单次剂量 (mg)",
+  "simulatorInterval": "间隔 (天)",
+  "simulatorWeight": "体重 (kg)",
+  "simulatorPatchWear": "贴片佩戴 (天)",
+  "simulatorSublingualHold": "舌下含服时间",
+  "holdTimeVeryFast": "极快",
+  "holdTimeCasual": "随意",
+  "holdTimeStandard": "标准",
+  "holdTimeStrict": "严格",
+  "updateSimulation": "更新模拟",
+  "concentrationCurve": "浓度-时间曲线",
+  "hanaPkLabel": "Hana-PK",
+  "v2StandardLabel": "V2 标准",
+  "chartAxisLabel": "Y轴: 雌二醇体循环浓度 (pg/mL)   X轴: 持续天数",
+  "steadyStateSummary": "稳态摘要",
+  "peakLabel": "峰值 (Peak)",
+  "troughLabel": "谷值 (Trough)",
+  "averageLabel": "均值 (Avg)",
+  "reachSteadyDays": "达稳: {days}天",
+  "@reachSteadyDays": {
+    "placeholders": {
+      "days": {
+        "type": "String"
+      }
+    }
+  },
+
+  "bodyMeasurementsTitle": "身体测量",
+  "newMeasurement": "新建测量",
+  "startRecordingChanges": "开始记录你的身体变化",
+  "measurementEmptyHint": "保存第一条测量后，这里会显示围度和体重的历史变化。",
+  "deleteMeasurementTitle": "删除测量记录",
+  "deleteMeasurementConfirm": "确认删除这条身体测量记录吗？",
+  "measurementRecorded": "已记录一次身体测量",
+  "editMeasurement": "编辑测量",
+  "createMeasurement": "新建测量",
+  "coreMeasurements": "核心围度",
+  "extendedIndicators": "扩展指标",
+  "measurementDate": "测量日期",
+
+  "welcomeBack": "欢迎回来",
+  "enterFullPin": "请输入完整的6位密码",
+  "setupSecurePassword": "创建安全密码",
+  "setupPinDescription": "设置 6 位 PIN 以保护你的私密健康数据。",
+  "password": "密码",
+  "confirmPassword": "確認密码",
+  "enableBiometric": "启用后使用生物识别",
+  "pinFormatRequired": "请输入 6 位 PIN",
+  "pinMismatch": "两次输入的密码不一致",
+
+  "editDiary": "编辑日记",
+  "diaryPlaceholder": "今天想说点什么...",
+  "addTags": "添加标签",
+  "presetTagHappy": "开心",
+  "presetTagAnxious": "焦虑",
+  "presetTagCalm": "平静",
+  "presetTagTired": "疲惫",
+  "presetTagHopeful": "充满希望",
+
+  "reminderChannelName": "服药提醒",
+  "reminderChannelDesc": "每日服药提醒通知",
+  "reminderNotifTitle": "HanaNote 服药提醒",
+  "reminderNotifBody": "{drugName} {dosage}{unit} — 该吃药啦 💊",
+  "@reminderNotifBody": {
+    "placeholders": {
+      "drugName": {
+        "type": "String"
+      },
+      "dosage": {
+        "type": "String"
+      },
+      "unit": {
+        "type": "String"
+      }
+    }
+  },
+
+  "milestoneSubtitle": "一路走到这里，已经很了不起了",
+  "noReadingSummary": "暂无指标摘要",
+  "medicationStatusTaken": "已记录服用",
+  "medicationStatusSkipped": "本次已跳过",
+  "medicationStatusLate": "延迟服用",
+  "medicationStatusDefault": "服药记录",
+  "medicationLogTitle": "服药: {drugName} {dosage}",
+  "@medicationLogTitle": {
+    "placeholders": {
+      "drugName": {
+        "type": "String"
+      },
+      "dosage": {
+        "type": "String"
+      }
+    }
+  },
+
+  "abbrevBust": "胸",
+  "abbrevWaist": "腰",
+  "abbrevHip": "臀",
+
+  "editBloodReport": "编辑血检报告",
+  "addBloodReport": "添加血检报告",
+  "testDate": "检测日期",
+  "labName": "检测机构",
+  "addReading": "添加指标",
+  "hormoneValue": "数值",
+  "selectHormone": "选择激素类型",
+  "atLeastOneReading": "请至少添加一项指标",
+  "invalidValue": "请输入有效数字",
+  "saveFailed": "保存失败：{message}",
+  "@saveFailed": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "loadFailed": "加载报告失败",
+
+  "knowledgeBase": "用药参考",
+  "knowledgeBaseSubtitle": "循证安全用药指南",
+  "openKnowledgeBase": "查看 HRT 药典",
+
+  "updateAvailable": "发现新版本",
+  "updateNow": "立即更新",
+  "updateLater": "稍后再说"
 }

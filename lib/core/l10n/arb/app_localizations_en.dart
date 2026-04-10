@@ -725,4 +725,327 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get featureInDevelopmentDesc =>
       'This feature is under development and will be available in the next release';
+
+  @override
+  String get enumMeasureBust => 'Bust';
+
+  @override
+  String get enumMeasureUnderbust => 'Underbust';
+
+  @override
+  String get enumMeasureWaist => 'Waist';
+
+  @override
+  String get enumMeasureHip => 'Hip';
+
+  @override
+  String get enumMeasureThigh => 'Thigh';
+
+  @override
+  String get enumMeasureUpperArm => 'Upper Arm';
+
+  @override
+  String get enumMeasureShoulder => 'Shoulder';
+
+  @override
+  String get enumMeasureNeck => 'Neck';
+
+  @override
+  String get enumMeasureWeight => 'Weight';
+
+  @override
+  String get enumMoodVeryBad => 'Very bad';
+
+  @override
+  String get enumMoodBad => 'Not great';
+
+  @override
+  String get enumMoodNeutral => 'Neutral';
+
+  @override
+  String get enumMoodGood => 'Good';
+
+  @override
+  String get enumMoodVeryGood => 'Very good';
+
+  @override
+  String get enumEsterValerate => 'Estradiol Valerate (IM)';
+
+  @override
+  String get enumEsterCypionate => 'Estradiol Cypionate (IM)';
+
+  @override
+  String get enumEsterEnanthate => 'Estradiol Enanthate (IM)';
+
+  @override
+  String get enumEsterOral => 'Oral Estradiol';
+
+  @override
+  String get enumEsterSublingual => 'Sublingual Estradiol';
+
+  @override
+  String get enumEsterPatch => 'Estradiol Patch';
+
+  @override
+  String get enumEsterGel => 'Estradiol Gel';
+
+  @override
+  String get toggleHanaPkEngine => 'Toggle Hana-PK Experimental Engine';
+
+  @override
+  String get simulatorDisclaimer =>
+      'Disclaimer: Simulation results are based on pharmacokinetic models and are for reference only. They do not constitute medical advice. Due to individual differences (metabolism, weight, injection site fat ratio), actual blood levels may vary significantly. Always consult your doctor before adjusting your regimen.';
+
+  @override
+  String get simulatorSchemeParams => 'Regimen Parameters';
+
+  @override
+  String get simulatorDrugType => 'Drug Type';
+
+  @override
+  String get simulatorSingleDose => 'Single Dose (mg)';
+
+  @override
+  String get simulatorInterval => 'Interval (days)';
+
+  @override
+  String get simulatorWeight => 'Body Weight (kg)';
+
+  @override
+  String get simulatorPatchWear => 'Patch Wear (days)';
+
+  @override
+  String get simulatorSublingualHold => 'Sublingual Hold Time';
+
+  @override
+  String get holdTimeVeryFast => 'Very fast';
+
+  @override
+  String get holdTimeCasual => 'Casual';
+
+  @override
+  String get holdTimeStandard => 'Standard';
+
+  @override
+  String get holdTimeStrict => 'Strict';
+
+  @override
+  String get updateSimulation => 'Update Simulation';
+
+  @override
+  String get concentrationCurve => 'Concentration-Time Curve';
+
+  @override
+  String get hanaPkLabel => 'Hana-PK';
+
+  @override
+  String get v2StandardLabel => 'V2 Standard';
+
+  @override
+  String get chartAxisLabel => 'Y: Systemic E2 (pg/mL)   X: Days';
+
+  @override
+  String get steadyStateSummary => 'Steady-State Summary';
+
+  @override
+  String get peakLabel => 'Peak';
+
+  @override
+  String get troughLabel => 'Trough';
+
+  @override
+  String get averageLabel => 'Average';
+
+  @override
+  String reachSteadyDays(String days) {
+    return 'Steady state: $days days';
+  }
+
+  @override
+  String get bodyMeasurementsTitle => 'Body Measurements';
+
+  @override
+  String get newMeasurement => 'New Measurement';
+
+  @override
+  String get startRecordingChanges => 'Start recording your body changes';
+
+  @override
+  String get measurementEmptyHint =>
+      'After your first measurement, you\'ll see your history here.';
+
+  @override
+  String get deleteMeasurementTitle => 'Delete Measurement';
+
+  @override
+  String get deleteMeasurementConfirm => 'Delete this body measurement record?';
+
+  @override
+  String get measurementRecorded => 'Measurement recorded';
+
+  @override
+  String get editMeasurement => 'Edit Measurement';
+
+  @override
+  String get createMeasurement => 'New Measurement';
+
+  @override
+  String get coreMeasurements => 'Core Measurements';
+
+  @override
+  String get extendedIndicators => 'Extended Indicators';
+
+  @override
+  String get measurementDate => 'Measurement Date';
+
+  @override
+  String get welcomeBack => 'Welcome back';
+
+  @override
+  String get enterFullPin => 'Please enter the full 6-digit PIN';
+
+  @override
+  String get setupSecurePassword => 'Create Secure Password';
+
+  @override
+  String get setupPinDescription =>
+      'Set a 6-digit PIN to protect your private health data.';
+
+  @override
+  String get password => 'Password';
+
+  @override
+  String get confirmPassword => 'Confirm Password';
+
+  @override
+  String get enableBiometric => 'Enable biometric unlock';
+
+  @override
+  String get pinFormatRequired => 'Please enter a 6-digit PIN';
+
+  @override
+  String get pinMismatch => 'PINs do not match';
+
+  @override
+  String get editDiary => 'Edit Diary';
+
+  @override
+  String get diaryPlaceholder => 'What\'s on your mind today...';
+
+  @override
+  String get addTags => 'Add Tags';
+
+  @override
+  String get presetTagHappy => 'Happy';
+
+  @override
+  String get presetTagAnxious => 'Anxious';
+
+  @override
+  String get presetTagCalm => 'Calm';
+
+  @override
+  String get presetTagTired => 'Tired';
+
+  @override
+  String get presetTagHopeful => 'Hopeful';
+
+  @override
+  String get reminderChannelName => 'Medication Reminder';
+
+  @override
+  String get reminderChannelDesc => 'Daily medication reminder notifications';
+
+  @override
+  String get reminderNotifTitle => 'HanaNote Medication Reminder';
+
+  @override
+  String reminderNotifBody(String drugName, String dosage, String unit) {
+    return '$drugName $dosage$unit — Time to take your meds 💊';
+  }
+
+  @override
+  String get milestoneSubtitle => 'You\'ve come so far — that\'s amazing';
+
+  @override
+  String get noReadingSummary => 'No reading summary';
+
+  @override
+  String get medicationStatusTaken => 'Taken';
+
+  @override
+  String get medicationStatusSkipped => 'Skipped';
+
+  @override
+  String get medicationStatusLate => 'Taken late';
+
+  @override
+  String get medicationStatusDefault => 'Medication log';
+
+  @override
+  String medicationLogTitle(String drugName, String dosage) {
+    return 'Medication: $drugName $dosage';
+  }
+
+  @override
+  String get abbrevBust => 'Bust';
+
+  @override
+  String get abbrevWaist => 'Waist';
+
+  @override
+  String get abbrevHip => 'Hip';
+
+  @override
+  String get editBloodReport => 'Edit Blood Report';
+
+  @override
+  String get addBloodReport => 'Add Blood Report';
+
+  @override
+  String get testDate => 'Test Date';
+
+  @override
+  String get labName => 'Lab / Clinic';
+
+  @override
+  String get addReading => 'Add Reading';
+
+  @override
+  String get hormoneValue => 'Value';
+
+  @override
+  String get selectHormone => 'Select Hormone';
+
+  @override
+  String get atLeastOneReading => 'Add at least one reading';
+
+  @override
+  String get invalidValue => 'Enter a valid number';
+
+  @override
+  String saveFailed(String message) {
+    return 'Save failed: $message';
+  }
+
+  @override
+  String get loadFailed => 'Failed to load report';
+
+  @override
+  String get knowledgeBase => 'Drug Reference';
+
+  @override
+  String get knowledgeBaseSubtitle => 'Evidence-based HRT safety guide';
+
+  @override
+  String get openKnowledgeBase => 'Open HRT Reference';
+
+  @override
+  String get updateAvailable => 'Update Available';
+
+  @override
+  String get updateNow => 'Update Now';
+
+  @override
+  String get updateLater => 'Later';
 }

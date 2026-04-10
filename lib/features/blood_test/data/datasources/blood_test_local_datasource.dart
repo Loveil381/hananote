@@ -16,6 +16,9 @@ abstract interface class BloodTestLocalDataSource {
   /// Inserts a report and all of its nested readings transactionally.
   Future<void> insertReport(BloodTestReportModel report);
 
+  /// Updates a report and replaces all of its readings transactionally.
+  Future<void> updateReport(BloodTestReportModel report);
+
   /// Deletes the report with [id].
   Future<void> deleteReport(String id);
 
@@ -87,6 +90,26 @@ class BloodTestLocalDataSourceImpl implements BloodTestLocalDataSource {
       for (final reading in report.readings) {
         await txn.insert('hormone_readings', reading.toJson());
       }
+    });
+  }
+
+  @override
+  Future<void> updateReport(BloodTestReportModel report) async {
+    await _db.transaction<void>((txn) async {
+      await txn.delete(
+        'hormone_readings',
+        where: 'report_id = ?',
+        whereArgs: [report.id],
+      );
+      for (final reading in report.readings) {
+        await txn.insert('hormone_readings', reading.toJson());
+      }
+      await txn.update(
+        'blood_test_reports',
+        report.toJson(),
+        where: 'id = ?',
+        whereArgs: [report.id],
+      );
     });
   }
 

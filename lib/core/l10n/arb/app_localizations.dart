@@ -1455,6 +1455,630 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'This feature is under development and will be available in the next release'**
   String get featureInDevelopmentDesc;
+
+  /// No description provided for @enumMeasureBust.
+  ///
+  /// In en, this message translates to:
+  /// **'Bust'**
+  String get enumMeasureBust;
+
+  /// No description provided for @enumMeasureUnderbust.
+  ///
+  /// In en, this message translates to:
+  /// **'Underbust'**
+  String get enumMeasureUnderbust;
+
+  /// No description provided for @enumMeasureWaist.
+  ///
+  /// In en, this message translates to:
+  /// **'Waist'**
+  String get enumMeasureWaist;
+
+  /// No description provided for @enumMeasureHip.
+  ///
+  /// In en, this message translates to:
+  /// **'Hip'**
+  String get enumMeasureHip;
+
+  /// No description provided for @enumMeasureThigh.
+  ///
+  /// In en, this message translates to:
+  /// **'Thigh'**
+  String get enumMeasureThigh;
+
+  /// No description provided for @enumMeasureUpperArm.
+  ///
+  /// In en, this message translates to:
+  /// **'Upper Arm'**
+  String get enumMeasureUpperArm;
+
+  /// No description provided for @enumMeasureShoulder.
+  ///
+  /// In en, this message translates to:
+  /// **'Shoulder'**
+  String get enumMeasureShoulder;
+
+  /// No description provided for @enumMeasureNeck.
+  ///
+  /// In en, this message translates to:
+  /// **'Neck'**
+  String get enumMeasureNeck;
+
+  /// No description provided for @enumMeasureWeight.
+  ///
+  /// In en, this message translates to:
+  /// **'Weight'**
+  String get enumMeasureWeight;
+
+  /// No description provided for @enumMoodVeryBad.
+  ///
+  /// In en, this message translates to:
+  /// **'Very bad'**
+  String get enumMoodVeryBad;
+
+  /// No description provided for @enumMoodBad.
+  ///
+  /// In en, this message translates to:
+  /// **'Not great'**
+  String get enumMoodBad;
+
+  /// No description provided for @enumMoodNeutral.
+  ///
+  /// In en, this message translates to:
+  /// **'Neutral'**
+  String get enumMoodNeutral;
+
+  /// No description provided for @enumMoodGood.
+  ///
+  /// In en, this message translates to:
+  /// **'Good'**
+  String get enumMoodGood;
+
+  /// No description provided for @enumMoodVeryGood.
+  ///
+  /// In en, this message translates to:
+  /// **'Very good'**
+  String get enumMoodVeryGood;
+
+  /// No description provided for @enumEsterValerate.
+  ///
+  /// In en, this message translates to:
+  /// **'Estradiol Valerate (IM)'**
+  String get enumEsterValerate;
+
+  /// No description provided for @enumEsterCypionate.
+  ///
+  /// In en, this message translates to:
+  /// **'Estradiol Cypionate (IM)'**
+  String get enumEsterCypionate;
+
+  /// No description provided for @enumEsterEnanthate.
+  ///
+  /// In en, this message translates to:
+  /// **'Estradiol Enanthate (IM)'**
+  String get enumEsterEnanthate;
+
+  /// No description provided for @enumEsterOral.
+  ///
+  /// In en, this message translates to:
+  /// **'Oral Estradiol'**
+  String get enumEsterOral;
+
+  /// No description provided for @enumEsterSublingual.
+  ///
+  /// In en, this message translates to:
+  /// **'Sublingual Estradiol'**
+  String get enumEsterSublingual;
+
+  /// No description provided for @enumEsterPatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Estradiol Patch'**
+  String get enumEsterPatch;
+
+  /// No description provided for @enumEsterGel.
+  ///
+  /// In en, this message translates to:
+  /// **'Estradiol Gel'**
+  String get enumEsterGel;
+
+  /// No description provided for @toggleHanaPkEngine.
+  ///
+  /// In en, this message translates to:
+  /// **'Toggle Hana-PK Experimental Engine'**
+  String get toggleHanaPkEngine;
+
+  /// No description provided for @simulatorDisclaimer.
+  ///
+  /// In en, this message translates to:
+  /// **'Disclaimer: Simulation results are based on pharmacokinetic models and are for reference only. They do not constitute medical advice. Due to individual differences (metabolism, weight, injection site fat ratio), actual blood levels may vary significantly. Always consult your doctor before adjusting your regimen.'**
+  String get simulatorDisclaimer;
+
+  /// No description provided for @simulatorSchemeParams.
+  ///
+  /// In en, this message translates to:
+  /// **'Regimen Parameters'**
+  String get simulatorSchemeParams;
+
+  /// No description provided for @simulatorDrugType.
+  ///
+  /// In en, this message translates to:
+  /// **'Drug Type'**
+  String get simulatorDrugType;
+
+  /// No description provided for @simulatorSingleDose.
+  ///
+  /// In en, this message translates to:
+  /// **'Single Dose (mg)'**
+  String get simulatorSingleDose;
+
+  /// No description provided for @simulatorInterval.
+  ///
+  /// In en, this message translates to:
+  /// **'Interval (days)'**
+  String get simulatorInterval;
+
+  /// No description provided for @simulatorWeight.
+  ///
+  /// In en, this message translates to:
+  /// **'Body Weight (kg)'**
+  String get simulatorWeight;
+
+  /// No description provided for @simulatorPatchWear.
+  ///
+  /// In en, this message translates to:
+  /// **'Patch Wear (days)'**
+  String get simulatorPatchWear;
+
+  /// No description provided for @simulatorSublingualHold.
+  ///
+  /// In en, this message translates to:
+  /// **'Sublingual Hold Time'**
+  String get simulatorSublingualHold;
+
+  /// No description provided for @holdTimeVeryFast.
+  ///
+  /// In en, this message translates to:
+  /// **'Very fast'**
+  String get holdTimeVeryFast;
+
+  /// No description provided for @holdTimeCasual.
+  ///
+  /// In en, this message translates to:
+  /// **'Casual'**
+  String get holdTimeCasual;
+
+  /// No description provided for @holdTimeStandard.
+  ///
+  /// In en, this message translates to:
+  /// **'Standard'**
+  String get holdTimeStandard;
+
+  /// No description provided for @holdTimeStrict.
+  ///
+  /// In en, this message translates to:
+  /// **'Strict'**
+  String get holdTimeStrict;
+
+  /// No description provided for @updateSimulation.
+  ///
+  /// In en, this message translates to:
+  /// **'Update Simulation'**
+  String get updateSimulation;
+
+  /// No description provided for @concentrationCurve.
+  ///
+  /// In en, this message translates to:
+  /// **'Concentration-Time Curve'**
+  String get concentrationCurve;
+
+  /// No description provided for @hanaPkLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Hana-PK'**
+  String get hanaPkLabel;
+
+  /// No description provided for @v2StandardLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'V2 Standard'**
+  String get v2StandardLabel;
+
+  /// No description provided for @chartAxisLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Y: Systemic E2 (pg/mL)   X: Days'**
+  String get chartAxisLabel;
+
+  /// No description provided for @steadyStateSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'Steady-State Summary'**
+  String get steadyStateSummary;
+
+  /// No description provided for @peakLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Peak'**
+  String get peakLabel;
+
+  /// No description provided for @troughLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Trough'**
+  String get troughLabel;
+
+  /// No description provided for @averageLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Average'**
+  String get averageLabel;
+
+  /// No description provided for @reachSteadyDays.
+  ///
+  /// In en, this message translates to:
+  /// **'Steady state: {days} days'**
+  String reachSteadyDays(String days);
+
+  /// No description provided for @bodyMeasurementsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Body Measurements'**
+  String get bodyMeasurementsTitle;
+
+  /// No description provided for @newMeasurement.
+  ///
+  /// In en, this message translates to:
+  /// **'New Measurement'**
+  String get newMeasurement;
+
+  /// No description provided for @startRecordingChanges.
+  ///
+  /// In en, this message translates to:
+  /// **'Start recording your body changes'**
+  String get startRecordingChanges;
+
+  /// No description provided for @measurementEmptyHint.
+  ///
+  /// In en, this message translates to:
+  /// **'After your first measurement, you\'ll see your history here.'**
+  String get measurementEmptyHint;
+
+  /// No description provided for @deleteMeasurementTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Measurement'**
+  String get deleteMeasurementTitle;
+
+  /// No description provided for @deleteMeasurementConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this body measurement record?'**
+  String get deleteMeasurementConfirm;
+
+  /// No description provided for @measurementRecorded.
+  ///
+  /// In en, this message translates to:
+  /// **'Measurement recorded'**
+  String get measurementRecorded;
+
+  /// No description provided for @editMeasurement.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Measurement'**
+  String get editMeasurement;
+
+  /// No description provided for @createMeasurement.
+  ///
+  /// In en, this message translates to:
+  /// **'New Measurement'**
+  String get createMeasurement;
+
+  /// No description provided for @coreMeasurements.
+  ///
+  /// In en, this message translates to:
+  /// **'Core Measurements'**
+  String get coreMeasurements;
+
+  /// No description provided for @extendedIndicators.
+  ///
+  /// In en, this message translates to:
+  /// **'Extended Indicators'**
+  String get extendedIndicators;
+
+  /// No description provided for @measurementDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Measurement Date'**
+  String get measurementDate;
+
+  /// No description provided for @welcomeBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome back'**
+  String get welcomeBack;
+
+  /// No description provided for @enterFullPin.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter the full 6-digit PIN'**
+  String get enterFullPin;
+
+  /// No description provided for @setupSecurePassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Secure Password'**
+  String get setupSecurePassword;
+
+  /// No description provided for @setupPinDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Set a 6-digit PIN to protect your private health data.'**
+  String get setupPinDescription;
+
+  /// No description provided for @password.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get password;
+
+  /// No description provided for @confirmPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm Password'**
+  String get confirmPassword;
+
+  /// No description provided for @enableBiometric.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable biometric unlock'**
+  String get enableBiometric;
+
+  /// No description provided for @pinFormatRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a 6-digit PIN'**
+  String get pinFormatRequired;
+
+  /// No description provided for @pinMismatch.
+  ///
+  /// In en, this message translates to:
+  /// **'PINs do not match'**
+  String get pinMismatch;
+
+  /// No description provided for @editDiary.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Diary'**
+  String get editDiary;
+
+  /// No description provided for @diaryPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'What\'s on your mind today...'**
+  String get diaryPlaceholder;
+
+  /// No description provided for @addTags.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Tags'**
+  String get addTags;
+
+  /// No description provided for @presetTagHappy.
+  ///
+  /// In en, this message translates to:
+  /// **'Happy'**
+  String get presetTagHappy;
+
+  /// No description provided for @presetTagAnxious.
+  ///
+  /// In en, this message translates to:
+  /// **'Anxious'**
+  String get presetTagAnxious;
+
+  /// No description provided for @presetTagCalm.
+  ///
+  /// In en, this message translates to:
+  /// **'Calm'**
+  String get presetTagCalm;
+
+  /// No description provided for @presetTagTired.
+  ///
+  /// In en, this message translates to:
+  /// **'Tired'**
+  String get presetTagTired;
+
+  /// No description provided for @presetTagHopeful.
+  ///
+  /// In en, this message translates to:
+  /// **'Hopeful'**
+  String get presetTagHopeful;
+
+  /// No description provided for @reminderChannelName.
+  ///
+  /// In en, this message translates to:
+  /// **'Medication Reminder'**
+  String get reminderChannelName;
+
+  /// No description provided for @reminderChannelDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily medication reminder notifications'**
+  String get reminderChannelDesc;
+
+  /// No description provided for @reminderNotifTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'HanaNote Medication Reminder'**
+  String get reminderNotifTitle;
+
+  /// No description provided for @reminderNotifBody.
+  ///
+  /// In en, this message translates to:
+  /// **'{drugName} {dosage}{unit} — Time to take your meds 💊'**
+  String reminderNotifBody(String drugName, String dosage, String unit);
+
+  /// No description provided for @milestoneSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ve come so far — that\'s amazing'**
+  String get milestoneSubtitle;
+
+  /// No description provided for @noReadingSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'No reading summary'**
+  String get noReadingSummary;
+
+  /// No description provided for @medicationStatusTaken.
+  ///
+  /// In en, this message translates to:
+  /// **'Taken'**
+  String get medicationStatusTaken;
+
+  /// No description provided for @medicationStatusSkipped.
+  ///
+  /// In en, this message translates to:
+  /// **'Skipped'**
+  String get medicationStatusSkipped;
+
+  /// No description provided for @medicationStatusLate.
+  ///
+  /// In en, this message translates to:
+  /// **'Taken late'**
+  String get medicationStatusLate;
+
+  /// No description provided for @medicationStatusDefault.
+  ///
+  /// In en, this message translates to:
+  /// **'Medication log'**
+  String get medicationStatusDefault;
+
+  /// No description provided for @medicationLogTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Medication: {drugName} {dosage}'**
+  String medicationLogTitle(String drugName, String dosage);
+
+  /// No description provided for @abbrevBust.
+  ///
+  /// In en, this message translates to:
+  /// **'Bust'**
+  String get abbrevBust;
+
+  /// No description provided for @abbrevWaist.
+  ///
+  /// In en, this message translates to:
+  /// **'Waist'**
+  String get abbrevWaist;
+
+  /// No description provided for @abbrevHip.
+  ///
+  /// In en, this message translates to:
+  /// **'Hip'**
+  String get abbrevHip;
+
+  /// No description provided for @editBloodReport.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Blood Report'**
+  String get editBloodReport;
+
+  /// No description provided for @addBloodReport.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Blood Report'**
+  String get addBloodReport;
+
+  /// No description provided for @testDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Test Date'**
+  String get testDate;
+
+  /// No description provided for @labName.
+  ///
+  /// In en, this message translates to:
+  /// **'Lab / Clinic'**
+  String get labName;
+
+  /// No description provided for @addReading.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Reading'**
+  String get addReading;
+
+  /// No description provided for @hormoneValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Value'**
+  String get hormoneValue;
+
+  /// No description provided for @selectHormone.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Hormone'**
+  String get selectHormone;
+
+  /// No description provided for @atLeastOneReading.
+  ///
+  /// In en, this message translates to:
+  /// **'Add at least one reading'**
+  String get atLeastOneReading;
+
+  /// No description provided for @invalidValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid number'**
+  String get invalidValue;
+
+  /// No description provided for @saveFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Save failed: {message}'**
+  String saveFailed(String message);
+
+  /// No description provided for @loadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load report'**
+  String get loadFailed;
+
+  /// No description provided for @knowledgeBase.
+  ///
+  /// In en, this message translates to:
+  /// **'Drug Reference'**
+  String get knowledgeBase;
+
+  /// No description provided for @knowledgeBaseSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Evidence-based HRT safety guide'**
+  String get knowledgeBaseSubtitle;
+
+  /// No description provided for @openKnowledgeBase.
+  ///
+  /// In en, this message translates to:
+  /// **'Open HRT Reference'**
+  String get openKnowledgeBase;
+
+  /// No description provided for @updateAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Update Available'**
+  String get updateAvailable;
+
+  /// No description provided for @updateNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Update Now'**
+  String get updateNow;
+
+  /// No description provided for @updateLater.
+  ///
+  /// In en, this message translates to:
+  /// **'Later'**
+  String get updateLater;
 }
 
 class _AppLocalizationsDelegate

@@ -15,6 +15,9 @@ abstract interface class BloodTestRepository {
   /// Persists [report] and returns the stored entity.
   Future<Either<Failure, BloodTestReport>> addReport(BloodTestReport report);
 
+  /// Updates an existing [report] (replaces readings atomically).
+  Future<Either<Failure, void>> updateReport(BloodTestReport report);
+
   /// Deletes the report identified by [id].
   Future<Either<Failure, void>> deleteReport(String id);
 

@@ -17,6 +17,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hananote/app/di/injection.dart';
 import 'package:hananote/app/theme/hana_colors.dart';
 import 'package:hananote/app/theme/hana_shadows.dart';
+import 'package:hananote/core/l10n/arb/app_localizations.dart';
+import 'package:hananote/core/l10n/enum_l10n.dart';
 import 'package:hananote/features/simulator/domain/entities/dosing_regimen.dart';
 import 'package:hananote/features/simulator/domain/entities/ester_type.dart';
 import 'package:hananote/features/simulator/domain/entities/pk_result.dart';
@@ -40,6 +42,7 @@ class _SimulatorScan extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return BlocBuilder<SimulatorBloc, SimulatorState>(
       builder: (context, state) {
         final isHanaPk = state.maybeMap(
@@ -50,7 +53,7 @@ class _SimulatorScan extends StatelessWidget {
         return Scaffold(
           backgroundColor: HanaColors.background,
           appBar: AppBar(
-            title: const Text('PK 模拟器'),
+            title: Text(l10n.pkSimulator),
             backgroundColor: HanaColors.surface,
             actions: [
               if (state.maybeMap(loaded: (_) => true, orElse: () => false))
@@ -63,7 +66,7 @@ class _SimulatorScan extends StatelessWidget {
                       Icons.science,
                       color: isHanaPk ? HanaColors.primary : HanaColors.outline,
                     ),
-                    tooltip: '切换 Hana-PK 实验引擎',
+                    tooltip: l10n.toggleHanaPkEngine,
                     onPressed: () {
                       context
                           .read<SimulatorBloc>()
@@ -119,11 +122,11 @@ class _SimulatorScan extends StatelessWidget {
           const SizedBox(height: 16),
           _SummaryCard(result: result),
           const SizedBox(height: 24),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.0),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Text(
-              '免责声明：模拟结果基于药代动力学模型，仅供参考，不构成医疗建议。由于个体差异（如代谢率、体重、注射部位脂肪比例），真实血药浓度可能存在较大偏差。调整方案前请务必咨询专业医生。',
-              style: TextStyle(
+              AppLocalizations.of(context)!.simulatorDisclaimer,
+              style: const TextStyle(
                 color: HanaColors.outline,
                 fontSize: 12,
                 height: 1.5,
@@ -213,6 +216,7 @@ class _ParamsCardState extends State<_ParamsCard> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Container(
       decoration: BoxDecoration(
         color: HanaColors.surfaceContainerLowest,
@@ -220,15 +224,15 @@ class _ParamsCardState extends State<_ParamsCard> {
         boxShadow: HanaShadows.cardShadow,
       ),
       child: ExpansionTile(
-        title: const Text(
-          '方案参数',
-          style: TextStyle(
+        title: Text(
+          l10n.simulatorSchemeParams,
+          style: const TextStyle(
             fontWeight: FontWeight.w600,
             color: HanaColors.primary,
           ),
         ),
         subtitle: Text(
-          '${_esterType.displayName} · ${_doseCtrl.text}mg / ${_intervalCtrl.text}天',
+          '${_esterType.localizedName(l10n)} · ${_doseCtrl.text}mg / ${_intervalCtrl.text}${l10n.daySuffix.trim()}',
           style:
               const TextStyle(fontSize: 13, color: HanaColors.onSurfaceVariant),
         ),
@@ -243,15 +247,15 @@ class _ParamsCardState extends State<_ParamsCard> {
                 DropdownButtonFormField<EsterType>(
                   // ignore: deprecated_member_use
                   value: _esterType,
-                  decoration: const InputDecoration(
-                    labelText: '药物类型',
-                    border: OutlineInputBorder(),
-                    contentPadding: EdgeInsets.symmetric(horizontal: 12),
+                  decoration: InputDecoration(
+                    labelText: l10n.simulatorDrugType,
+                    border: const OutlineInputBorder(),
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 12),
                   ),
                   items: EsterType.values
                       .map((e) => DropdownMenuItem(
                             value: e,
-                            child: Text(e.displayName),
+                            child: Text(e.localizedName(l10n)),
                           ))
                       .toList(),
                   onChanged: (v) {
@@ -268,9 +272,9 @@ class _ParamsCardState extends State<_ParamsCard> {
                       child: TextFormField(
                         controller: _doseCtrl,
                         keyboardType: TextInputType.number,
-                        decoration: const InputDecoration(
-                          labelText: '单次剂量 (mg)',
-                          border: OutlineInputBorder(),
+                        decoration: InputDecoration(
+                          labelText: l10n.simulatorSingleDose,
+                          border: const OutlineInputBorder(),
                         ),
                         // Only apply when done
                         onEditingComplete: _applyParams,
@@ -281,9 +285,9 @@ class _ParamsCardState extends State<_ParamsCard> {
                       child: TextFormField(
                         controller: _intervalCtrl,
                         keyboardType: TextInputType.number,
-                        decoration: const InputDecoration(
-                          labelText: '间隔 (天)',
-                          border: OutlineInputBorder(),
+                        decoration: InputDecoration(
+                          labelText: l10n.simulatorInterval,
+                          border: const OutlineInputBorder(),
                         ),
                         onEditingComplete: _applyParams,
                       ),
@@ -297,9 +301,9 @@ class _ParamsCardState extends State<_ParamsCard> {
                       child: TextFormField(
                         controller: _weightCtrl,
                         keyboardType: TextInputType.number,
-                        decoration: const InputDecoration(
-                          labelText: '体重 (kg)',
-                          border: OutlineInputBorder(),
+                        decoration: InputDecoration(
+                          labelText: l10n.simulatorWeight,
+                          border: const OutlineInputBorder(),
                         ),
                         onEditingComplete: _applyParams,
                       ),
@@ -310,9 +314,9 @@ class _ParamsCardState extends State<_ParamsCard> {
                         child: TextFormField(
                           controller: _wearCtrl,
                           keyboardType: TextInputType.number,
-                          decoration: const InputDecoration(
-                            labelText: '贴片佩戴 (天)',
-                            border: OutlineInputBorder(),
+                          decoration: InputDecoration(
+                            labelText: l10n.simulatorPatchWear,
+                            border: const OutlineInputBorder(),
                           ),
                           onEditingComplete: _applyParams,
                         ),
@@ -323,21 +327,21 @@ class _ParamsCardState extends State<_ParamsCard> {
                 ),
                 if (_esterType == EsterType.sublingualEstradiol) ...[
                   const SizedBox(height: 16),
-                  const Text('舌下含服时间',
-                      style:
+                  Text(l10n.simulatorSublingualHold,
+                      style: const
                           TextStyle(fontSize: 12, color: HanaColors.outline)),
                   const SizedBox(height: 8),
                   SegmentedButton<SublingualHoldTime>(
-                    segments: const [
+                    segments: [
                       ButtonSegment(
-                          value: SublingualHoldTime.quick, label: Text('极快')),
+                          value: SublingualHoldTime.quick, label: Text(SublingualHoldTime.quick.localizedName(l10n))),
                       ButtonSegment(
-                          value: SublingualHoldTime.casual, label: Text('随意')),
+                          value: SublingualHoldTime.casual, label: Text(SublingualHoldTime.casual.localizedName(l10n))),
                       ButtonSegment(
                           value: SublingualHoldTime.standard,
-                          label: Text('标准')),
+                          label: Text(SublingualHoldTime.standard.localizedName(l10n))),
                       ButtonSegment(
-                          value: SublingualHoldTime.strict, label: Text('严格')),
+                          value: SublingualHoldTime.strict, label: Text(SublingualHoldTime.strict.localizedName(l10n))),
                     ],
                     selected: {_holdTime ?? SublingualHoldTime.standard},
                     onSelectionChanged: (set) {
@@ -362,7 +366,7 @@ class _ParamsCardState extends State<_ParamsCard> {
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  child: const Text('更新模拟'),
+                  child: Text(l10n.updateSimulation),
                 ),
               ],
             ),
@@ -385,6 +389,7 @@ class _ChartCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Container(
       decoration: BoxDecoration(
         color: HanaColors.surfaceContainerLowest,
@@ -400,9 +405,9 @@ class _ChartCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
-                '浓度-时间曲线',
-                style: TextStyle(
+              Text(
+                l10n.concentrationCurve,
+                style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
                   color: HanaColors.onSurface,
@@ -412,7 +417,7 @@ class _ChartCard extends StatelessWidget {
                 children: [
                   _LegendItem(
                     color: isHanaPk ? HanaColors.secondary : HanaColors.primary,
-                    label: isHanaPk ? 'Hana-PK' : 'V2 标准',
+                    label: isHanaPk ? l10n.hanaPkLabel : l10n.v2StandardLabel,
                     isDashed: false,
                   ),
                   const SizedBox(width: 8),
@@ -420,7 +425,7 @@ class _ChartCard extends StatelessWidget {
                     _LegendItem(
                       color:
                           isHanaPk ? HanaColors.primary : HanaColors.secondary,
-                      label: isHanaPk ? 'V2 标准' : 'Hana-PK',
+                      label: isHanaPk ? l10n.v2StandardLabel : l10n.hanaPkLabel,
                       isDashed: true,
                     ),
                 ],
@@ -433,9 +438,9 @@ class _ChartCard extends StatelessWidget {
             child: LineChart(_buildChartData(context)),
           ),
           const SizedBox(height: 8),
-          const Text(
-            'Y轴: 雌二醇体循环浓度 (pg/mL)   X轴: 持续天数',
-            style: TextStyle(fontSize: 11, color: HanaColors.outline),
+          Text(
+            l10n.chartAxisLabel,
+            style: const TextStyle(fontSize: 11, color: HanaColors.outline),
             textAlign: TextAlign.center,
           ),
         ],
@@ -678,6 +683,7 @@ class _SummaryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final avg = result.steadyStateAverage;
 
     // Status color
@@ -705,9 +711,9 @@ class _SummaryCard extends StatelessWidget {
             children: [
               Icon(statusIcon, color: statusColor, size: 20),
               const SizedBox(width: 8),
-              const Text(
-                '稳态摘要',
-                style: TextStyle(
+              Text(
+                l10n.steadyStateSummary,
+                style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
                   color: HanaColors.onSurface,
@@ -715,7 +721,7 @@ class _SummaryCard extends StatelessWidget {
               ),
               const Spacer(),
               Text(
-                '达稳: ${result.timeToSteadyState.toStringAsFixed(0)}天',
+                l10n.reachSteadyDays(result.timeToSteadyState.toStringAsFixed(0)),
                 style: const TextStyle(
                   fontSize: 12,
                   color: HanaColors.outline,
@@ -728,16 +734,16 @@ class _SummaryCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               _StatIndicator(
-                label: '峰值 (Peak)',
+                label: l10n.peakLabel,
                 value: result.steadyStatePeak.toStringAsFixed(1),
               ),
               _StatIndicator(
-                label: '谷值 (Trough)',
+                label: l10n.troughLabel,
                 value: result.steadyStateTrough.toStringAsFixed(1),
                 color: result.steadyStateTrough < 100 ? Colors.orange : null,
               ),
               _StatIndicator(
-                label: '均值 (Avg)',
+                label: l10n.averageLabel,
                 value: avg.toStringAsFixed(1),
                 color: statusColor,
               ),

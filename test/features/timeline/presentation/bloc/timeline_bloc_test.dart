@@ -31,7 +31,7 @@ void main() {
       id: 'event-1',
       date: DateTime(2026, 3, 20),
       type: TimelineEventType.bloodTest,
-      title: '血液检测',
+      title: 'blood_test',
       subtitle: 'E2 150 pg/mL',
     ),
   ];

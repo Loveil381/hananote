@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hananote/app/theme/hana_colors.dart';
+import 'package:hananote/core/l10n/arb/app_localizations.dart';
+import 'package:hananote/core/l10n/enum_l10n.dart';
 import 'package:hananote/features/measurement/domain/entities/measurement_entry.dart';
 import 'package:hananote/features/measurement/domain/entities/measurement_type.dart';
 import 'package:hananote/features/measurement/presentation/blocs/measurement_bloc.dart';
@@ -25,7 +27,7 @@ class MeasurementPage extends StatelessWidget {
       child: Scaffold(
         backgroundColor: HanaColors.background,
         appBar: AppBar(
-          title: const Text('身体测量'),
+          title: Text(AppLocalizations.of(context)!.bodyMeasurementsTitle),
           backgroundColor: HanaColors.surface,
           actions: [
             IconButton(
@@ -37,7 +39,7 @@ class MeasurementPage extends StatelessWidget {
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () => _openEditor(context),
           icon: const Icon(Icons.add),
-          label: const Text('新建测量'),
+          label: Text(AppLocalizations.of(context)!.newMeasurement),
         ),
         body: BlocBuilder<MeasurementBloc, MeasurementState>(
           builder: (context, state) {
@@ -110,7 +112,7 @@ class _MeasurementEmptyState extends StatelessWidget {
             ),
             const SizedBox(height: 24),
             Text(
-              '开始记录你的身体变化',
+              AppLocalizations.of(context)!.startRecordingChanges,
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                     fontWeight: FontWeight.bold,
                     color: HanaColors.primary,
@@ -118,7 +120,7 @@ class _MeasurementEmptyState extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              '保存第一条测量后，这里会显示围度和体重的历史变化。',
+              AppLocalizations.of(context)!.measurementEmptyHint,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: HanaColors.onSurfaceVariant,
                   ),
@@ -169,7 +171,10 @@ class _MeasurementHistoryCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      _buildSummary(entry),
+                      _buildSummary(
+                        entry,
+                        AppLocalizations.of(context)!,
+                      ),
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             color: HanaColors.onSurfaceVariant,
                           ),
@@ -189,21 +194,22 @@ class _MeasurementHistoryCard extends StatelessWidget {
               IconButton(
                 icon: const Icon(Icons.delete_outline),
                 onPressed: () async {
+                  final l10n = AppLocalizations.of(context)!;
                   final confirmed = await showDialog<bool>(
                     context: context,
                     builder: (dialogContext) => AlertDialog(
-                      title: const Text('删除测量记录'),
-                      content: const Text('确认删除这条身体测量记录吗？'),
+                      title: Text(l10n.deleteMeasurementTitle),
+                      content: Text(l10n.deleteMeasurementConfirm),
                       actions: [
                         TextButton(
                           onPressed: () =>
                               Navigator.of(dialogContext).pop(false),
-                          child: const Text('取消'),
+                          child: Text(l10n.cancel),
                         ),
                         TextButton(
                           onPressed: () =>
                               Navigator.of(dialogContext).pop(true),
-                          child: const Text('删除'),
+                          child: Text(l10n.delete),
                         ),
                       ],
                     ),
@@ -223,12 +229,18 @@ class _MeasurementHistoryCard extends StatelessWidget {
     );
   }
 
-  static String _buildSummary(MeasurementEntry entry) {
+  static String _buildSummary(
+    MeasurementEntry entry,
+    AppLocalizations l10n,
+  ) {
     final parts = <String>[];
     for (final type in MeasurementTypes.summary) {
       final value = entry.valueFor(type);
       if (value != null) {
-        parts.add('${type.displayName}: ${_formatValue(value)}${type.unit}');
+        parts.add(
+          '${type.localizedName(l10n)}: '
+          '${_formatValue(value)}${type.unit}',
+        );
       }
     }
 
@@ -236,7 +248,10 @@ class _MeasurementHistoryCard extends StatelessWidget {
       for (final type in MeasurementTypes.all) {
         final value = entry.valueFor(type);
         if (value != null) {
-          parts.add('${type.displayName}: ${_formatValue(value)}${type.unit}');
+          parts.add(
+            '${type.localizedName(l10n)}: '
+            '${_formatValue(value)}${type.unit}',
+          );
         }
         if (parts.length == 3) {
           break;
@@ -244,7 +259,7 @@ class _MeasurementHistoryCard extends StatelessWidget {
       }
     }
 
-    return parts.isEmpty ? '已记录一次身体测量' : parts.join(' · ');
+    return parts.isEmpty ? l10n.measurementRecorded : parts.join(' · ');
   }
 
   static String _formatValue(double value) {

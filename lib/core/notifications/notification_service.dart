@@ -67,6 +67,9 @@ class NotificationService {
   }
 
   /// Schedules a daily repeating medication reminder.
+  ///
+  /// Callers with a [BuildContext] should pass localized [title] and [body].
+  /// When omitted the service falls back to a drug-name based default.
   Future<void> scheduleMedicationReminder({
     required int id,
     required String drugName,
@@ -74,7 +77,13 @@ class NotificationService {
     required String unit,
     required int hour,
     required int minute,
+    String? title,
+    String? body,
   }) async {
+    final resolvedTitle = title ?? 'HanaNote';
+    final resolvedBody =
+        body ?? '$drugName ${_formatDosage(dosage)}$unit';
+
     final now = tz.TZDateTime.now(tz.local);
     var scheduledDate = tz.TZDateTime(
       tz.local,
@@ -90,18 +99,18 @@ class NotificationService {
 
     await _plugin.zonedSchedule(
       id,
-      'HanaNote 服药提醒',
-      '$drugName ${_formatDosage(dosage)}$unit — 该吃药啦 💊',
+      resolvedTitle,
+      resolvedBody,
       scheduledDate,
-      const NotificationDetails(
+      NotificationDetails(
         android: AndroidNotificationDetails(
-          'medication_reminders',
-          '服药提醒',
-          channelDescription: '每日服药提醒通知',
+          _medicationChannel.id,
+          _medicationChannel.name,
+          channelDescription: _medicationChannel.description,
           importance: Importance.high,
           priority: Priority.high,
         ),
-        iOS: DarwinNotificationDetails(),
+        iOS: const DarwinNotificationDetails(),
       ),
       uiLocalNotificationDateInterpretation:
           UILocalNotificationDateInterpretation.absoluteTime,

@@ -485,17 +485,17 @@ class _EventCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 20),
                     Text(
-                      event.title,
+                      _resolveTitle(event, l10n),
                       style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w700,
                         color: HanaColors.onSurface,
                       ),
                     ),
-                    if (event.subtitle != null) ...[
+                    if (_resolveSubtitle(event, l10n).isNotEmpty) ...[
                       const SizedBox(height: 8),
                       Text(
-                        event.subtitle!,
+                        _resolveSubtitle(event, l10n),
                         style: const TextStyle(
                           fontSize: 14,
                           color: HanaColors.onSurfaceVariant,
@@ -593,7 +593,7 @@ class _EventCard extends StatelessWidget {
               ),
               const SizedBox(height: 4),
               Text(
-                event.title,
+                _resolveTitle(event, l10n),
                 textAlign: isAlignedRight ? TextAlign.left : TextAlign.right,
                 style: const TextStyle(
                   fontSize: 14,
@@ -601,10 +601,10 @@ class _EventCard extends StatelessWidget {
                   color: HanaColors.onSurface,
                 ),
               ),
-              if (event.subtitle != null) ...[
+              if (_resolveSubtitle(event, l10n).isNotEmpty) ...[
                 const SizedBox(height: 4),
                 Text(
-                  event.subtitle!,
+                  _resolveSubtitle(event, l10n),
                   textAlign: isAlignedRight ? TextAlign.left : TextAlign.right,
                   style: TextStyle(
                     fontSize: 10,
@@ -618,6 +618,48 @@ class _EventCard extends StatelessWidget {
       ),
     );
   }
+}
+
+String _resolveTitle(TimelineEvent event, AppLocalizations l10n) {
+  return switch (event.type) {
+    TimelineEventType.milestone => l10n.hrtDay(
+      event.metadata?['milestoneDays'] as int? ?? 0,
+    ),
+    TimelineEventType.medication => l10n.medicationLogTitle(
+      event.metadata?['drugName'] as String? ?? '',
+      _formatDosage(
+        event.metadata?['dosageAmount'] as double? ?? 0,
+        event.metadata?['dosageUnit'] as String? ?? '',
+      ),
+    ),
+    TimelineEventType.bloodTest => l10n.enumTimelineBloodTest,
+    TimelineEventType.journal => event.title,
+  };
+}
+
+String _resolveSubtitle(TimelineEvent event, AppLocalizations l10n) {
+  if (event.type == TimelineEventType.milestone) {
+    return l10n.milestoneSubtitle;
+  }
+  if (event.type == TimelineEventType.medication) {
+    return switch (event.subtitle) {
+      'taken' => l10n.medicationStatusTaken,
+      'skipped' => l10n.medicationStatusSkipped,
+      'late' => l10n.medicationStatusLate,
+      _ => l10n.medicationStatusDefault,
+    };
+  }
+  if (event.type == TimelineEventType.bloodTest &&
+      (event.subtitle == null || event.subtitle!.isEmpty)) {
+    return l10n.noReadingSummary;
+  }
+  return event.subtitle ?? '';
+}
+
+String _formatDosage(double amount, String unit) {
+  final formatted =
+      amount == amount.roundToDouble() ? amount.toInt().toString() : amount.toString();
+  return '$formatted$unit';
 }
 
 class _TimelineStartPoint extends StatelessWidget {

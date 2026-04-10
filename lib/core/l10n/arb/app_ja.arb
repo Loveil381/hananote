@@ -294,5 +294,159 @@
   "darkModeComingSoon": "ダークモードは近日公開",
   "featureInDevelopment": "開発中",
   "featureInDevelopmentDesc": "この機能は開発中です。次のバージョンで利用可能になります",
-  "closeAction": "閉じる"
+  "closeAction": "閉じる",
+
+  "enumMeasureBust": "バスト",
+  "enumMeasureUnderbust": "アンダーバスト",
+  "enumMeasureWaist": "ウエスト",
+  "enumMeasureHip": "ヒップ",
+  "enumMeasureThigh": "太もも",
+  "enumMeasureUpperArm": "上腕",
+  "enumMeasureShoulder": "肩幅",
+  "enumMeasureNeck": "首回り",
+  "enumMeasureWeight": "体重",
+
+  "enumMoodVeryBad": "とても悪い",
+  "enumMoodBad": "あまり良くない",
+  "enumMoodNeutral": "普通",
+  "enumMoodGood": "良い",
+  "enumMoodVeryGood": "とても良い",
+
+  "enumEsterValerate": "吉草酸エストラジオール（筋注）",
+  "enumEsterCypionate": "エストラジオールシピオン酸（筋注）",
+  "enumEsterEnanthate": "エストラジオールエナント酸（筋注）",
+  "enumEsterOral": "経口エストラジオール",
+  "enumEsterSublingual": "舌下エストラジオール",
+  "enumEsterPatch": "エストラジオールパッチ",
+  "enumEsterGel": "エストラジオールジェル",
+
+  "toggleHanaPkEngine": "Hana-PK実験エンジン切替",
+  "simulatorDisclaimer": "免責事項：シミュレーション結果は薬物動態モデルに基づく参考値であり、医療的助言ではありません。代謝率・体重・注射部位の脂肪比率など個体差により実際の血中濃度は大きく異なる場合があります。処方変更前に必ず医師にご相談ください。",
+  "simulatorSchemeParams": "レジメンパラメータ",
+  "simulatorDrugType": "薬剤タイプ",
+  "simulatorSingleDose": "1回投与量 (mg)",
+  "simulatorInterval": "間隔（日）",
+  "simulatorWeight": "体重 (kg)",
+  "simulatorPatchWear": "パッチ装着（日）",
+  "simulatorSublingualHold": "舌下保持時間",
+  "holdTimeVeryFast": "極速",
+  "holdTimeCasual": "適当",
+  "holdTimeStandard": "標準",
+  "holdTimeStrict": "厳密",
+  "updateSimulation": "シミュレーション更新",
+  "concentrationCurve": "濃度-時間曲線",
+  "hanaPkLabel": "Hana-PK",
+  "v2StandardLabel": "V2 標準",
+  "chartAxisLabel": "Y軸: エストラジオール血中濃度 (pg/mL)  X軸: 日数",
+  "steadyStateSummary": "定常状態サマリー",
+  "peakLabel": "ピーク",
+  "troughLabel": "トラフ",
+  "averageLabel": "平均値",
+  "reachSteadyDays": "定常到達: {days}日",
+  "@reachSteadyDays": {
+    "placeholders": {
+      "days": {
+        "type": "String"
+      }
+    }
+  },
+
+  "bodyMeasurementsTitle": "ボディ測定",
+  "newMeasurement": "新規測定",
+  "startRecordingChanges": "体の変化を記録しよう",
+  "measurementEmptyHint": "最初の測定を保存すると、ここに履歴が表示されます。",
+  "deleteMeasurementTitle": "測定記録を削除",
+  "deleteMeasurementConfirm": "このボディ測定記録を削除しますか？",
+  "measurementRecorded": "測定を記録しました",
+  "editMeasurement": "測定を編集",
+  "createMeasurement": "新規測定",
+  "coreMeasurements": "基本測定",
+  "extendedIndicators": "拡張指標",
+  "measurementDate": "測定日",
+
+  "welcomeBack": "おかえりなさい",
+  "enterFullPin": "6桁のPINを入力してください",
+  "setupSecurePassword": "セキュアパスワードを作成",
+  "setupPinDescription": "プライベートな健康データを守る6桁PINを設定してください。",
+  "password": "パスワード",
+  "confirmPassword": "パスワード確認",
+  "enableBiometric": "生体認証を有効にする",
+  "pinFormatRequired": "6桁のPINを入力してください",
+  "pinMismatch": "PINが一致しません",
+
+  "editDiary": "日記を編集",
+  "diaryPlaceholder": "今日は何を書きたい…",
+  "addTags": "タグを追加",
+  "presetTagHappy": "嬉しい",
+  "presetTagAnxious": "不安",
+  "presetTagCalm": "穏やか",
+  "presetTagTired": "疲れた",
+  "presetTagHopeful": "希望に満ちた",
+
+  "reminderChannelName": "服薬リマインダー",
+  "reminderChannelDesc": "毎日の服薬リマインダー通知",
+  "reminderNotifTitle": "HanaNote 服薬リマインダー",
+  "reminderNotifBody": "{drugName} {dosage}{unit} — お薬の時間です 💊",
+  "@reminderNotifBody": {
+    "placeholders": {
+      "drugName": {
+        "type": "String"
+      },
+      "dosage": {
+        "type": "String"
+      },
+      "unit": {
+        "type": "String"
+      }
+    }
+  },
+
+  "milestoneSubtitle": "ここまで来たあなたは素晴らしい",
+  "noReadingSummary": "検査値サマリーなし",
+  "medicationStatusTaken": "服薬済み",
+  "medicationStatusSkipped": "スキップ",
+  "medicationStatusLate": "遅延服薬",
+  "medicationStatusDefault": "服薬記録",
+  "medicationLogTitle": "服薬: {drugName} {dosage}",
+  "@medicationLogTitle": {
+    "placeholders": {
+      "drugName": {
+        "type": "String"
+      },
+      "dosage": {
+        "type": "String"
+      }
+    }
+  },
+
+  "abbrevBust": "胸",
+  "abbrevWaist": "腰",
+  "abbrevHip": "臀",
+
+  "editBloodReport": "血液検査を編集",
+  "addBloodReport": "血液検査を追加",
+  "testDate": "検査日",
+  "labName": "検査機関",
+  "addReading": "項目を追加",
+  "hormoneValue": "数値",
+  "selectHormone": "ホルモンを選択",
+  "atLeastOneReading": "少なくとも1つの項目を追加してください",
+  "invalidValue": "有効な数値を入力してください",
+  "saveFailed": "保存に失敗しました：{message}",
+  "@saveFailed": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "loadFailed": "レポートの読み込みに失敗しました",
+
+  "knowledgeBase": "薬物リファレンス",
+  "knowledgeBaseSubtitle": "エビデンスに基づくHRT安全ガイド",
+  "openKnowledgeBase": "HRT薬典を開く",
+
+  "updateAvailable": "新バージョンがあります",
+  "updateNow": "今すぐ更新",
+  "updateLater": "あとで"
 }

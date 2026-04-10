@@ -1,6 +1,9 @@
 import 'package:hananote/core/l10n/arb/app_localizations.dart';
 import 'package:hananote/features/blood_test/domain/entities/enums.dart';
+import 'package:hananote/features/journal/domain/entities/enums.dart';
+import 'package:hananote/features/measurement/domain/entities/measurement_type.dart';
 import 'package:hananote/features/medication/domain/entities/enums.dart';
+import 'package:hananote/features/simulator/domain/entities/ester_type.dart';
 import 'package:hananote/features/timeline/domain/entities/enums.dart';
 import 'package:hananote/features/timeline/presentation/bloc/timeline_event.dart';
 
@@ -85,5 +88,58 @@ extension TimelineRangeL10n on TimelineRange {
         TimelineRange.sixMonths => l10n.filterSixMonths,
         TimelineRange.oneYear => l10n.filterOneYear,
         TimelineRange.all => l10n.filterAll,
+      };
+}
+
+/// Localized labels for [MeasurementType].
+extension MeasurementTypeL10n on MeasurementType {
+  /// Returns the localized measurement type name for the current locale.
+  String localizedName(AppLocalizations l10n) => switch (this) {
+        MeasurementType.bust => l10n.enumMeasureBust,
+        MeasurementType.underbust => l10n.enumMeasureUnderbust,
+        MeasurementType.waist => l10n.enumMeasureWaist,
+        MeasurementType.hip => l10n.enumMeasureHip,
+        MeasurementType.thigh => l10n.enumMeasureThigh,
+        MeasurementType.bicep => l10n.enumMeasureUpperArm,
+        MeasurementType.shoulder => l10n.enumMeasureShoulder,
+        MeasurementType.neck => l10n.enumMeasureNeck,
+        MeasurementType.weight => l10n.enumMeasureWeight,
+      };
+}
+
+/// Localized labels for [MoodLevel].
+extension MoodLevelL10n on MoodLevel {
+  /// Returns the localized mood label for the current locale.
+  String localizedName(AppLocalizations l10n) => switch (this) {
+        MoodLevel.veryBad => l10n.enumMoodVeryBad,
+        MoodLevel.bad => l10n.enumMoodBad,
+        MoodLevel.neutral => l10n.enumMoodNeutral,
+        MoodLevel.good => l10n.enumMoodGood,
+        MoodLevel.veryGood => l10n.enumMoodVeryGood,
+      };
+}
+
+/// Localized labels for [EsterType].
+extension EsterTypeL10n on EsterType {
+  /// Returns the localized ester type name for the current locale.
+  String localizedName(AppLocalizations l10n) => switch (this) {
+        EsterType.estradiolValerate => l10n.enumEsterValerate,
+        EsterType.estradiolCypionate => l10n.enumEsterCypionate,
+        EsterType.estradiolEnanthate => l10n.enumEsterEnanthate,
+        EsterType.oralEstradiol => l10n.enumEsterOral,
+        EsterType.sublingualEstradiol => l10n.enumEsterSublingual,
+        EsterType.transdermalPatch => l10n.enumEsterPatch,
+        EsterType.transdermalGel => l10n.enumEsterGel,
+      };
+}
+
+/// Localized labels for [SublingualHoldTime].
+extension SublingualHoldTimeL10n on SublingualHoldTime {
+  /// Returns the localized hold time label for the current locale.
+  String localizedName(AppLocalizations l10n) => switch (this) {
+        SublingualHoldTime.quick => l10n.holdTimeVeryFast,
+        SublingualHoldTime.casual => l10n.holdTimeCasual,
+        SublingualHoldTime.standard => l10n.holdTimeStandard,
+        SublingualHoldTime.strict => l10n.holdTimeStrict,
       };
 }

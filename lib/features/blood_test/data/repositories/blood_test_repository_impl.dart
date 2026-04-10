@@ -45,6 +45,14 @@ class BloodTestRepositoryImpl implements BloodTestRepository {
   }
 
   @override
+  Future<Either<Failure, void>> updateReport(BloodTestReport report) {
+    return _guard(() async {
+      final model = BloodTestReportModel.fromDomain(report);
+      await _localDataSource.updateReport(model);
+    });
+  }
+
+  @override
   Future<Either<Failure, void>> deleteReport(String id) {
     return _guard(() => _localDataSource.deleteReport(id));
   }

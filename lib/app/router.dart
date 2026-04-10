@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hananote/app/di/injection.dart';
 import 'package:hananote/app/presentation/main_shell.dart';
+import 'package:hananote/app/theme/hana_colors.dart';
+import 'package:hananote/core/l10n/arb/app_localizations.dart';
 import 'package:hananote/features/auth/presentation/pages/auth_wrapper_page.dart';
 import 'package:hananote/features/blood_test/presentation/bloc/blood_test_bloc.dart';
 import 'package:hananote/features/blood_test/presentation/bloc/blood_test_event.dart';
@@ -12,6 +14,7 @@ import 'package:hananote/features/journal/presentation/bloc/record_bloc.dart';
 import 'package:hananote/features/journal/presentation/bloc/record_event.dart';
 import 'package:hananote/features/journal/presentation/pages/journal_edit_page.dart';
 import 'package:hananote/features/journal/presentation/pages/record_page.dart';
+import 'package:hananote/features/knowledge/presentation/pages/knowledge_webview_page.dart';
 import 'package:hananote/features/measurement/domain/entities/measurement_entry.dart';
 import 'package:hananote/features/measurement/presentation/blocs/measurement_bloc.dart';
 import 'package:hananote/features/measurement/presentation/pages/measurement_edit_page.dart';
@@ -31,6 +34,8 @@ import 'package:hananote/features/medication/presentation/pages/drug_list_page.d
 import 'package:hananote/features/medication/presentation/pages/inventory_page.dart';
 import 'package:hananote/features/medication/presentation/pages/schedule_editor_page.dart';
 import 'package:hananote/features/medication/presentation/pages/today_page.dart';
+import 'package:hananote/features/notification/presentation/bloc/notification_settings_cubit.dart';
+import 'package:hananote/features/notification/presentation/pages/notification_settings_page.dart';
 import 'package:hananote/features/photo/domain/entities/photo_entry.dart';
 import 'package:hananote/features/photo/presentation/blocs/photo_bloc.dart';
 import 'package:hananote/features/photo/presentation/pages/photo_page.dart';
@@ -43,8 +48,6 @@ import 'package:hananote/features/simulator/presentation/pages/simulator_page.da
 import 'package:hananote/features/timeline/presentation/bloc/timeline_bloc.dart';
 import 'package:hananote/features/timeline/presentation/bloc/timeline_event.dart';
 import 'package:hananote/features/timeline/presentation/pages/timeline_page.dart';
-import 'package:hananote/features/notification/presentation/bloc/notification_settings_cubit.dart';
-import 'package:hananote/features/notification/presentation/pages/notification_settings_page.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'root');
@@ -251,10 +254,38 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: '/notification_settings',
       parentNavigatorKey: _rootNavigatorKey,
-      builder: (context, state) => BlocProvider(
-        create: (_) => getIt<NotificationSettingsCubit>()..loadData(),
+      builder: (context, state) => MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (_) => getIt<NotificationSettingsCubit>()..loadData(),
+          ),
+          BlocProvider.value(
+            value: getIt<SettingsBloc>()..add(const LoadSettingsDashboard()),
+          ),
+        ],
         child: const NotificationSettingsPage(),
       ),
     ),
+    GoRoute(
+      path: '/knowledge',
+      parentNavigatorKey: _rootNavigatorKey,
+      builder: (context, state) => const KnowledgeWebViewPage(),
+    ),
   ],
+  errorBuilder: (context, state) => Scaffold(
+    backgroundColor: HanaColors.background,
+    body: Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const Icon(Icons.error_outline, size: 64, color: HanaColors.primary),
+          const SizedBox(height: 16),
+          Text(
+            AppLocalizations.of(context)?.error ?? 'Error',
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+          ),
+        ],
+      ),
+    ),
+  ),
 );

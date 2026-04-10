@@ -703,4 +703,325 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get featureInDevelopmentDesc => 'この機能は開発中です。次のバージョンで利用可能になります';
+
+  @override
+  String get enumMeasureBust => 'バスト';
+
+  @override
+  String get enumMeasureUnderbust => 'アンダーバスト';
+
+  @override
+  String get enumMeasureWaist => 'ウエスト';
+
+  @override
+  String get enumMeasureHip => 'ヒップ';
+
+  @override
+  String get enumMeasureThigh => '太もも';
+
+  @override
+  String get enumMeasureUpperArm => '上腕';
+
+  @override
+  String get enumMeasureShoulder => '肩幅';
+
+  @override
+  String get enumMeasureNeck => '首回り';
+
+  @override
+  String get enumMeasureWeight => '体重';
+
+  @override
+  String get enumMoodVeryBad => 'とても悪い';
+
+  @override
+  String get enumMoodBad => 'あまり良くない';
+
+  @override
+  String get enumMoodNeutral => '普通';
+
+  @override
+  String get enumMoodGood => '良い';
+
+  @override
+  String get enumMoodVeryGood => 'とても良い';
+
+  @override
+  String get enumEsterValerate => '吉草酸エストラジオール（筋注）';
+
+  @override
+  String get enumEsterCypionate => 'エストラジオールシピオン酸（筋注）';
+
+  @override
+  String get enumEsterEnanthate => 'エストラジオールエナント酸（筋注）';
+
+  @override
+  String get enumEsterOral => '経口エストラジオール';
+
+  @override
+  String get enumEsterSublingual => '舌下エストラジオール';
+
+  @override
+  String get enumEsterPatch => 'エストラジオールパッチ';
+
+  @override
+  String get enumEsterGel => 'エストラジオールジェル';
+
+  @override
+  String get toggleHanaPkEngine => 'Hana-PK実験エンジン切替';
+
+  @override
+  String get simulatorDisclaimer =>
+      '免責事項：シミュレーション結果は薬物動態モデルに基づく参考値であり、医療的助言ではありません。代謝率・体重・注射部位の脂肪比率など個体差により実際の血中濃度は大きく異なる場合があります。処方変更前に必ず医師にご相談ください。';
+
+  @override
+  String get simulatorSchemeParams => 'レジメンパラメータ';
+
+  @override
+  String get simulatorDrugType => '薬剤タイプ';
+
+  @override
+  String get simulatorSingleDose => '1回投与量 (mg)';
+
+  @override
+  String get simulatorInterval => '間隔（日）';
+
+  @override
+  String get simulatorWeight => '体重 (kg)';
+
+  @override
+  String get simulatorPatchWear => 'パッチ装着（日）';
+
+  @override
+  String get simulatorSublingualHold => '舌下保持時間';
+
+  @override
+  String get holdTimeVeryFast => '極速';
+
+  @override
+  String get holdTimeCasual => '適当';
+
+  @override
+  String get holdTimeStandard => '標準';
+
+  @override
+  String get holdTimeStrict => '厳密';
+
+  @override
+  String get updateSimulation => 'シミュレーション更新';
+
+  @override
+  String get concentrationCurve => '濃度-時間曲線';
+
+  @override
+  String get hanaPkLabel => 'Hana-PK';
+
+  @override
+  String get v2StandardLabel => 'V2 標準';
+
+  @override
+  String get chartAxisLabel => 'Y軸: エストラジオール血中濃度 (pg/mL)  X軸: 日数';
+
+  @override
+  String get steadyStateSummary => '定常状態サマリー';
+
+  @override
+  String get peakLabel => 'ピーク';
+
+  @override
+  String get troughLabel => 'トラフ';
+
+  @override
+  String get averageLabel => '平均値';
+
+  @override
+  String reachSteadyDays(String days) {
+    return '定常到達: $days日';
+  }
+
+  @override
+  String get bodyMeasurementsTitle => 'ボディ測定';
+
+  @override
+  String get newMeasurement => '新規測定';
+
+  @override
+  String get startRecordingChanges => '体の変化を記録しよう';
+
+  @override
+  String get measurementEmptyHint => '最初の測定を保存すると、ここに履歴が表示されます。';
+
+  @override
+  String get deleteMeasurementTitle => '測定記録を削除';
+
+  @override
+  String get deleteMeasurementConfirm => 'このボディ測定記録を削除しますか？';
+
+  @override
+  String get measurementRecorded => '測定を記録しました';
+
+  @override
+  String get editMeasurement => '測定を編集';
+
+  @override
+  String get createMeasurement => '新規測定';
+
+  @override
+  String get coreMeasurements => '基本測定';
+
+  @override
+  String get extendedIndicators => '拡張指標';
+
+  @override
+  String get measurementDate => '測定日';
+
+  @override
+  String get welcomeBack => 'おかえりなさい';
+
+  @override
+  String get enterFullPin => '6桁のPINを入力してください';
+
+  @override
+  String get setupSecurePassword => 'セキュアパスワードを作成';
+
+  @override
+  String get setupPinDescription => 'プライベートな健康データを守る6桁PINを設定してください。';
+
+  @override
+  String get password => 'パスワード';
+
+  @override
+  String get confirmPassword => 'パスワード確認';
+
+  @override
+  String get enableBiometric => '生体認証を有効にする';
+
+  @override
+  String get pinFormatRequired => '6桁のPINを入力してください';
+
+  @override
+  String get pinMismatch => 'PINが一致しません';
+
+  @override
+  String get editDiary => '日記を編集';
+
+  @override
+  String get diaryPlaceholder => '今日は何を書きたい…';
+
+  @override
+  String get addTags => 'タグを追加';
+
+  @override
+  String get presetTagHappy => '嬉しい';
+
+  @override
+  String get presetTagAnxious => '不安';
+
+  @override
+  String get presetTagCalm => '穏やか';
+
+  @override
+  String get presetTagTired => '疲れた';
+
+  @override
+  String get presetTagHopeful => '希望に満ちた';
+
+  @override
+  String get reminderChannelName => '服薬リマインダー';
+
+  @override
+  String get reminderChannelDesc => '毎日の服薬リマインダー通知';
+
+  @override
+  String get reminderNotifTitle => 'HanaNote 服薬リマインダー';
+
+  @override
+  String reminderNotifBody(String drugName, String dosage, String unit) {
+    return '$drugName $dosage$unit — お薬の時間です 💊';
+  }
+
+  @override
+  String get milestoneSubtitle => 'ここまで来たあなたは素晴らしい';
+
+  @override
+  String get noReadingSummary => '検査値サマリーなし';
+
+  @override
+  String get medicationStatusTaken => '服薬済み';
+
+  @override
+  String get medicationStatusSkipped => 'スキップ';
+
+  @override
+  String get medicationStatusLate => '遅延服薬';
+
+  @override
+  String get medicationStatusDefault => '服薬記録';
+
+  @override
+  String medicationLogTitle(String drugName, String dosage) {
+    return '服薬: $drugName $dosage';
+  }
+
+  @override
+  String get abbrevBust => '胸';
+
+  @override
+  String get abbrevWaist => '腰';
+
+  @override
+  String get abbrevHip => '臀';
+
+  @override
+  String get editBloodReport => '血液検査を編集';
+
+  @override
+  String get addBloodReport => '血液検査を追加';
+
+  @override
+  String get testDate => '検査日';
+
+  @override
+  String get labName => '検査機関';
+
+  @override
+  String get addReading => '項目を追加';
+
+  @override
+  String get hormoneValue => '数値';
+
+  @override
+  String get selectHormone => 'ホルモンを選択';
+
+  @override
+  String get atLeastOneReading => '少なくとも1つの項目を追加してください';
+
+  @override
+  String get invalidValue => '有効な数値を入力してください';
+
+  @override
+  String saveFailed(String message) {
+    return '保存に失敗しました：$message';
+  }
+
+  @override
+  String get loadFailed => 'レポートの読み込みに失敗しました';
+
+  @override
+  String get knowledgeBase => '薬物リファレンス';
+
+  @override
+  String get knowledgeBaseSubtitle => 'エビデンスに基づくHRT安全ガイド';
+
+  @override
+  String get openKnowledgeBase => 'HRT薬典を開く';
+
+  @override
+  String get updateAvailable => '新バージョンがあります';
+
+  @override
+  String get updateNow => '今すぐ更新';
+
+  @override
+  String get updateLater => 'あとで';
 }

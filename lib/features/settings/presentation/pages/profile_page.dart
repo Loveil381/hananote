@@ -522,7 +522,7 @@ class ProfilePage extends StatelessWidget {
                       children: [
                         _ListTileItem(
                           title: l10n.version,
-                          trailingText: 'v1.0.0',
+                          trailingText: 'v${AppConstants.appVersion}',
                         ),
                         _bentoSeparator(),
                         _ListTileItem(

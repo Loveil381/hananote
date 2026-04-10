@@ -27,6 +27,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     on<ToggleAppLock>(_onToggleAppLock);
     on<TogglePrivacyMode>(_onTogglePrivacyMode);
     on<ToggleBlurOverlay>(_onToggleBlurOverlay);
+    on<ToggleNotifications>(_onToggleNotifications);
     on<UpdateDisplayName>(_onUpdateDisplayName);
     on<UpdateHrtStartDate>(_onUpdateHrtStartDate);
     on<WipeSettingsData>(_onWipeData);
@@ -123,6 +124,27 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     }
   }
 
+  Future<void> _onToggleNotifications(
+    ToggleNotifications event,
+    Emitter<SettingsState> emit,
+  ) async {
+    if (state is SettingsLoaded) {
+      final currentState = state as SettingsLoaded;
+      final newSettings = currentState.settings.copyWith(
+        notificationsEnabled: event.enabled,
+      );
+
+      final failureOrSettings = await _updateAppSettings(newSettings);
+
+      failureOrSettings.fold(
+        (failure) => emit(SettingsError(failureMessage(failure))),
+        (updatedSettings) => emit(
+          currentState.copyWith(settings: updatedSettings),
+        ),
+      );
+    }
+  }
+
   Future<void> _onUpdateDisplayName(
     UpdateDisplayName event,
     Emitter<SettingsState> emit,
@@ -205,7 +227,12 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
           final file = File('${tempDir.path}/$fileName');
           await file.writeAsString(jsonString);
 
-          await Share.shareXFiles([XFile(file.path)], text: 'HanaNote Backup');
+          await SharePlus.instance.share(
+            ShareParams(
+              files: [XFile(file.path)],
+              text: 'HanaNote Backup',
+            ),
+          );
           emit(SettingsState.actionResult(
             actionKey: 'export_success',
             previousState: currentState,
