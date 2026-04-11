@@ -1,14 +1,11 @@
-import 'dart:io';
-
 import 'package:flutter/foundation.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:hananote/core/crypto/crypto_engine.dart';
 import 'package:hananote/core/crypto/key_manager.dart';
 import 'package:hananote/core/error/failures.dart';
+import 'package:hananote/core/platform/file_helper.dart';
 import 'package:image/image.dart' as img;
 import 'package:injectable/injectable.dart';
-import 'package:path/path.dart' as p;
-import 'package:path_provider/path_provider.dart';
 
 /// Encrypts and decrypts photo files without ever writing plaintext to disk.
 @injectable
@@ -34,6 +31,11 @@ class PhotoCryptoService {
     try {
       final key = await _requireKey();
       if (key == null) {
+        // On web without encryption key, store raw bytes.
+        if (!kHasFileSystem) {
+          final path = await writeFileBytes(relativePath, imageBytes);
+          return right(path);
+        }
         return left(
           const Failure.auth(message: 'Photo encryption key is unavailable.'),
         );
@@ -43,14 +45,10 @@ class PhotoCryptoService {
       return await encryptedResult.fold(
         (failure) async => left(failure),
         (encryptedBytes) async {
-          final file = await _resolveFile(relativePath);
-          await file.parent.create(recursive: true);
-          await file.writeAsBytes(encryptedBytes, flush: true);
-          return right(file.path);
+          final path = await writeFileBytes(relativePath, encryptedBytes);
+          return right(path);
         },
       );
-    } on FileSystemException catch (error) {
-      return left(Failure.storage(message: error.toString()));
     } catch (error) {
       return left(Failure.storage(message: error.toString()));
     }
@@ -61,13 +59,25 @@ class PhotoCryptoService {
     try {
       final key = await _requireKey();
       if (key == null) {
+        // On web, try to load raw bytes directly.
+        if (!kHasFileSystem) {
+          final bytes = await readFileBytes(relativePath);
+          if (bytes == null) {
+            return left(
+              Failure.storage(
+                message: 'Photo file not found: $relativePath',
+              ),
+            );
+          }
+          return right(bytes);
+        }
         return left(
           const Failure.auth(message: 'Photo encryption key is unavailable.'),
         );
       }
 
-      final file = await _resolveFile(relativePath);
-      if (!file.existsSync()) {
+      final encryptedBytes = await readFileBytes(relativePath);
+      if (encryptedBytes == null) {
         return left(
           Failure.storage(
             message: 'Encrypted photo file not found: $relativePath',
@@ -75,10 +85,7 @@ class PhotoCryptoService {
         );
       }
 
-      final encryptedBytes = await file.readAsBytes();
       return _cryptoEngine.decrypt(encryptedBytes, key);
-    } on FileSystemException catch (error) {
-      return left(Failure.storage(message: error.toString()));
     } catch (error) {
       return left(Failure.storage(message: error.toString()));
     }
@@ -88,14 +95,9 @@ class PhotoCryptoService {
   Future<Either<Failure, Unit>> deleteFiles(List<String> relativePaths) async {
     try {
       for (final relativePath in relativePaths) {
-        final file = await _resolveFile(relativePath);
-        if (file.existsSync()) {
-          file.deleteSync();
-        }
+        await deleteFileAt(relativePath);
       }
       return right(unit);
-    } on FileSystemException catch (error) {
-      return left(Failure.storage(message: error.toString()));
     } catch (error) {
       return left(Failure.storage(message: error.toString()));
     }
@@ -107,16 +109,13 @@ class PhotoCryptoService {
       return Uint8List(0);
     }
 
+    // On web, compute() may not work with isolates the same way,
+    // but Flutter handles this via web workers when available.
     return compute(_generateThumbnailInIsolate, imageBytes);
   }
 
   Future<Uint8List?> _requireKey() {
     return _keyManager.getCurrentKey();
-  }
-
-  Future<File> _resolveFile(String relativePath) async {
-    final documentsDirectory = await getApplicationDocumentsDirectory();
-    return File(p.join(documentsDirectory.path, relativePath));
   }
 }
 

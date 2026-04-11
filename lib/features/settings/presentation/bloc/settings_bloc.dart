@@ -1,5 +1,5 @@
-import 'dart:io';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hananote/core/platform/file_helper.dart';
 import 'package:hananote/core/error/failures.dart';
 import 'package:hananote/features/settings/domain/usecases/export_data.dart';
 import 'package:hananote/features/settings/domain/usecases/get_profile_dashboard.dart';
@@ -9,7 +9,6 @@ import 'package:hananote/features/settings/domain/usecases/wipe_all_data.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_event.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_state.dart';
 import 'package:injectable/injectable.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 
 /// BLoC for managing the settings dashboard state.
@@ -310,17 +309,19 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
       },
       (jsonString) async {
         try {
-          final tempDir = await getTemporaryDirectory();
-          final fileName = 'hananote_backup_${DateTime.now().millisecondsSinceEpoch}.json';
-          final file = File('${tempDir.path}/$fileName');
-          await file.writeAsString(jsonString);
+          final fileName =
+              'hananote_backup_'
+              '${DateTime.now().millisecondsSinceEpoch}.json';
+          final filePath = await writeTempFile(fileName, jsonString);
 
-          await SharePlus.instance.share(
-            ShareParams(
-              files: [XFile(file.path)],
-              text: 'HanaNote Backup',
-            ),
-          );
+          if (kHasFileSystem) {
+            await SharePlus.instance.share(
+              ShareParams(
+                files: [XFile(filePath)],
+                text: 'HanaNote Backup',
+              ),
+            );
+          }
           emit(SettingsState.actionResult(
             actionKey: 'export_success',
             previousState: currentState,

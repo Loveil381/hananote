@@ -1,9 +1,8 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:flutter/foundation.dart';
+import 'package:hananote/core/update/apk_downloader.dart';
 import 'package:http/http.dart' as http;
-import 'package:path_provider/path_provider.dart';
 
 /// Information about an available app update.
 class AppUpdateInfo {
@@ -180,52 +179,12 @@ class UpdateService {
   /// Downloads APK to cache directory, reporting detailed progress.
   ///
   /// Returns the local file path of the downloaded APK.
+  /// Throws [UnsupportedError] on web platforms.
   static Future<String> downloadApk(
     String url,
     void Function(DownloadProgress progress) onProgress,
-  ) async {
-    final client = HttpClient();
-    try {
-      final request = await client.getUrl(Uri.parse(url));
-      final response = await request.close();
-      final contentLength = response.contentLength;
-
-      final cacheDir = await getTemporaryDirectory();
-      final file = File('${cacheDir.path}/hananote_update.apk');
-      final sink = file.openWrite();
-      var received = 0;
-      var lastTime = DateTime.now();
-      var lastReceived = 0;
-      var currentSpeed = 0.0;
-
-      await for (final chunk in response) {
-        sink.add(chunk);
-        received += chunk.length;
-
-        // Calculate speed every 500ms
-        final now = DateTime.now();
-        final elapsed = now.difference(lastTime).inMilliseconds;
-        if (elapsed >= 500) {
-          final bytesInPeriod = received - lastReceived;
-          currentSpeed = bytesInPeriod / (elapsed / 1000);
-          lastTime = now;
-          lastReceived = received;
-        }
-
-        onProgress(
-          DownloadProgress(
-            received: received,
-            total: contentLength,
-            speed: currentSpeed,
-          ),
-        );
-      }
-
-      await sink.close();
-      return file.path;
-    } finally {
-      client.close();
-    }
+  ) {
+    return downloadApkFile(url, onProgress);
   }
 
   /// Returns `true` if [remote] is a newer semver than [local].

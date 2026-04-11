@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:hananote/core/crypto/key_manager.dart';
@@ -71,7 +72,9 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<Either<Failure, void>> deleteAllData() {
     return _guard(() async {
       await _secureDatabase.close();
-      await deleteDatabase(await _secureDatabase.getDatabasePath());
+      if (!kIsWeb) {
+        await deleteDatabase(await _secureDatabase.getDatabasePath());
+      }
       await _keyManager.deleteKey();
       await _secureStorage.deleteAll();
     });
@@ -80,6 +83,8 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<Either<Failure, bool>> isBiometricAvailable() {
     return _guard(() async {
+      // Biometric authentication is not available on web.
+      if (kIsWeb) return false;
       final canCheck = await _localAuthentication.canCheckBiometrics;
       final supported = await _localAuthentication.isDeviceSupported();
       return canCheck && supported;
@@ -89,6 +94,8 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<Either<Failure, bool>> authenticateBiometric() {
     return _guard(() async {
+      // Biometric authentication is not available on web.
+      if (kIsWeb) return false;
       return _localAuthentication.authenticate(
         localizedReason: '请验证身份以访问 HanaNote',
         options: const AuthenticationOptions(

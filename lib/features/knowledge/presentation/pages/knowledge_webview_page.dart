@@ -1,12 +1,16 @@
 import 'dart:ui';
 
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hananote/app/theme/hana_colors.dart';
 import 'package:hananote/core/l10n/arb/app_localizations.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 /// Full-screen WebView page for the HRT knowledge base.
+///
+/// On web, opens the URL in a new browser tab instead of using WebView.
 class KnowledgeWebViewPage extends StatefulWidget {
   /// Creates a [KnowledgeWebViewPage].
   const KnowledgeWebViewPage({super.key});
@@ -19,30 +23,61 @@ class KnowledgeWebViewPage extends StatefulWidget {
 }
 
 class _KnowledgeWebViewPageState extends State<KnowledgeWebViewPage> {
-  late final WebViewController _controller;
+  WebViewController? _controller;
   bool _isLoading = true;
 
   @override
   void initState() {
     super.initState();
-    _controller = WebViewController()
-      ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..setNavigationDelegate(
-        NavigationDelegate(
-          onPageStarted: (_) {
-            if (mounted) setState(() => _isLoading = true);
-          },
-          onPageFinished: (_) {
-            if (mounted) setState(() => _isLoading = false);
-          },
-        ),
-      )
-      ..loadRequest(Uri.parse(KnowledgeWebViewPage.url));
+    if (kIsWeb) {
+      // On web, open in new tab and pop back
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        launchUrl(
+          Uri.parse(KnowledgeWebViewPage.url),
+          mode: LaunchMode.externalApplication,
+        );
+        if (mounted) context.pop();
+      });
+    } else {
+      _controller = WebViewController()
+        ..setJavaScriptMode(JavaScriptMode.unrestricted)
+        ..setNavigationDelegate(
+          NavigationDelegate(
+            onPageStarted: (_) {
+              if (mounted) setState(() => _isLoading = true);
+            },
+            onPageFinished: (_) {
+              if (mounted) setState(() => _isLoading = false);
+            },
+          ),
+        )
+        ..loadRequest(Uri.parse(KnowledgeWebViewPage.url));
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+
+    // On web, show a brief loading screen before redirect
+    if (kIsWeb) {
+      return Scaffold(
+        backgroundColor: HanaColors.background,
+        body: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const CircularProgressIndicator(color: HanaColors.primary),
+              const SizedBox(height: 16),
+              Text(
+                l10n.knowledgeBase,
+                style: const TextStyle(color: HanaColors.onSurfaceVariant),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
 
     return Scaffold(
       backgroundColor: HanaColors.background,
@@ -74,9 +109,8 @@ class _KnowledgeWebViewPageState extends State<KnowledgeWebViewPage> {
               ),
               actions: [
                 IconButton(
-                  icon:
-                      const Icon(Icons.refresh, color: HanaColors.primary),
-                  onPressed: () => _controller.reload(),
+                  icon: const Icon(Icons.refresh, color: HanaColors.primary),
+                  onPressed: () => _controller?.reload(),
                 ),
                 const SizedBox(width: 8),
               ],
@@ -90,7 +124,9 @@ class _KnowledgeWebViewPageState extends State<KnowledgeWebViewPage> {
             padding: EdgeInsets.only(
               top: MediaQuery.of(context).padding.top + kToolbarHeight,
             ),
-            child: WebViewWidget(controller: _controller),
+            child: _controller != null
+                ? WebViewWidget(controller: _controller!)
+                : const SizedBox.shrink(),
           ),
           if (_isLoading)
             const Center(

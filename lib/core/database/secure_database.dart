@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:fpdart/fpdart.dart';
 import 'package:hananote/core/crypto/key_manager.dart';
+import 'package:hananote/core/database/database_factory.dart';
 import 'package:hananote/core/database/tables/blood_test_tables.dart';
 import 'package:hananote/core/database/tables/journal_tables.dart';
 import 'package:hananote/core/database/tables/measurement_tables.dart';
@@ -25,7 +26,7 @@ class SecureDatabase {
 
   /// Returns the full database file path used by the app.
   Future<String> getDatabasePath() async {
-    final dbPath = await getDatabasesPath();
+    final dbPath = await getPlatformDatabasesPath();
     return join(dbPath, 'hananote_secure.db');
   }
 
@@ -47,19 +48,23 @@ class SecureDatabase {
 
       final path = await getDatabasePath();
 
-      // Retrieve the 256-bit key from KeyManager, base64 encode it to use
-      // as SQLCipher password
-      final key = await _keyManager.getKey();
-      if (key == null) {
-        return left(
-          const DatabaseFailure(
-            message: 'Database key not available. Cannot open database.',
-          ),
-        );
+      // On web, skip encryption (SQLCipher not available).
+      String? dbPassword;
+      if (!kDatabaseIsWeb) {
+        // Retrieve the 256-bit key from KeyManager, base64 encode it to use
+        // as SQLCipher password
+        final key = await _keyManager.getKey();
+        if (key == null) {
+          return left(
+            const DatabaseFailure(
+              message: 'Database key not available. Cannot open database.',
+            ),
+          );
+        }
+        dbPassword = base64Encode(key);
       }
-      final dbPassword = base64Encode(key);
 
-      _db = await openDatabase(
+      _db = await openPlatformDatabase(
         path,
         password: dbPassword,
         version: _databaseVersion,

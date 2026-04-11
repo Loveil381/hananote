@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,6 +31,8 @@ class AuthWrapperPage extends StatelessWidget {
           context.read<SettingsBloc>().add(const LoadSettingsDashboard());
           context.go('/today');
           // Check for updates after the navigation settles.
+          // Skip update check on web (no APK installation).
+          if (kIsWeb) return;
           SchedulerBinding.instance.addPostFrameCallback((_) async {
             if (!context.mounted) return;
 

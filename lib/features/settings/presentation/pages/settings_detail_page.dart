@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -187,7 +188,8 @@ class SettingsDetailPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 24),
 
-                    // Updates
+                    // Updates (hidden on web — no APK installation)
+                    if (!kIsWeb) ...[
                     _SectionTitle(title: l10n.updateSectionTitle),
                     const SizedBox(height: 12),
                     _SettingsCard(
@@ -218,6 +220,7 @@ class SettingsDetailPage extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 24),
+                    ], // end if (!kIsWeb)
 
                     // About
                     _SectionTitle(title: l10n.about),
