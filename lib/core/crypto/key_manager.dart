@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:math';
 import 'dart:typed_data';
 
-import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:flutter/foundation.dart' show debugPrint, kIsWeb;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hashlib/hashlib.dart';
 import 'package:injectable/injectable.dart';
@@ -83,6 +83,9 @@ class KeyManager {
   /// was persisted instead of a hash.
   Future<bool> verifyPassword(String password) async {
     final encodedSalt = await _secureStorage.read(key: _saltStorageKey);
+    if (kIsWeb) {
+      debugPrint('[KeyManager] verifyPassword: salt=${encodedSalt != null}');
+    }
     if (encodedSalt == null) return false;
 
     final salt = base64Decode(encodedSalt);
@@ -109,10 +112,18 @@ class KeyManager {
 
     // --- New hash-based path ---
     final encodedStoredHash = await _secureStorage.read(key: _hashStorageKey);
+    if (kIsWeb) {
+      debugPrint('[KeyManager] verifyPassword: hash=${encodedStoredHash != null}');
+    }
     if (encodedStoredHash == null) return false;
 
     final storedHash = base64Decode(encodedStoredHash);
     final testHash = _computeHash(testKey);
+
+    if (kIsWeb) {
+      debugPrint('[KeyManager] storedHash=${base64Encode(storedHash).substring(0, 8)}...');
+      debugPrint('[KeyManager] testHash =${base64Encode(testHash).substring(0, 8)}...');
+    }
 
     if (_constantTimeEquals(testHash, storedHash)) {
       _cachedKey = testKey;

@@ -24,9 +24,8 @@
 </head>
 <body>
   <script>
-    // Disable Flutter service worker to prevent it from intercepting
-    // sqflite SharedWorker (sqflite_sw.js) and WASM (sqlite3.wasm) requests.
-    // These files must load directly from the network.
+    // Disable the Flutter service worker so sqlite3.wasm always loads
+    // directly from the network instead of a stale cached asset.
     window.flutterConfiguration = {
       serviceWorkerSettings: {
         serviceWorkerVersion: null,
