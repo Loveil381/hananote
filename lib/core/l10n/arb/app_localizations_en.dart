@@ -1074,6 +1074,51 @@ class AppLocalizationsEn extends AppLocalizations {
   String get downloadFailed => 'Download failed, please retry';
 
   @override
+  String get updateSectionTitle => 'Software Updates';
+
+  @override
+  String get updateAutoCheck => 'Auto-check for updates';
+
+  @override
+  String get updateAutoCheckDesc => 'Check for new versions on launch';
+
+  @override
+  String get updateCheckNow => 'Check for updates';
+
+  @override
+  String get updateChecking => 'Checking for updates...';
+
+  @override
+  String get updateAlreadyLatest => 'You\'re on the latest version';
+
+  @override
+  String get updateCheckFailed =>
+      'Update check failed, please check your network';
+
+  @override
+  String get updateCurrentVersion => 'Current';
+
+  @override
+  String get updateNewVersion => 'New';
+
+  @override
+  String get updateWhatsNew => 'WHAT\'S NEW';
+
+  @override
+  String get updateSkipVersion => 'Skip this version';
+
+  @override
+  String get updateRetry => 'Retry download';
+
+  @override
+  String get updateReadyToInstall => 'Ready to install';
+
+  @override
+  String updateEstimatedTime(String time) {
+    return 'About $time remaining';
+  }
+
+  @override
   String get termsOfUseContent =>
       'Terms of Use\n\nLast updated: April 2026\n\nBy using HanaNote (\"the App\"), you agree to these Terms of Use.\n\n1. Purpose\nThe App is a personal health tracking tool designed for hormone replacement therapy (HRT) management. It is not a medical device and does not provide medical advice.\n\n2. Medical Disclaimer\nThe App is not a substitute for professional medical advice, diagnosis, or treatment. Always consult your healthcare provider before making changes to your medication regimen. Pharmacokinetic simulation results are for reference only.\n\n3. User Responsibility\nYou are responsible for the accuracy of data you enter and for maintaining the security of your device and app password.\n\n4. Data Ownership\nYou retain full ownership of all data you create within the App. We do not claim any rights to your content.\n\n5. Availability\nThe App is provided \"as is\" without warranty of any kind. We do not guarantee uninterrupted or error-free operation.\n\n6. Limitation of Liability\nTo the maximum extent permitted by law, the developers of the App shall not be liable for any damages arising from the use or inability to use the App.\n\n7. Updates\nWe may release updates to improve functionality. Continued use after updates constitutes acceptance of any modified terms.\n\n8. Governing Law\nThese terms shall be governed by applicable local laws.\n\n9. Contact\nFor questions about these Terms, please contact us through our official channels.';
 }

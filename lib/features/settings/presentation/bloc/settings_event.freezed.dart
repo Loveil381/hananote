@@ -29,6 +29,8 @@ mixin _$SettingsEvent {
     required TResult Function() exportData,
     required TResult Function(String languageCode) changeLanguage,
     required TResult Function(bool enabled) toggleDarkMode,
+    required TResult Function(bool enabled) toggleAutoCheckUpdate,
+    required TResult Function(String version) skipVersion,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -44,6 +46,8 @@ mixin _$SettingsEvent {
     TResult? Function()? exportData,
     TResult? Function(String languageCode)? changeLanguage,
     TResult? Function(bool enabled)? toggleDarkMode,
+    TResult? Function(bool enabled)? toggleAutoCheckUpdate,
+    TResult? Function(String version)? skipVersion,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -59,6 +63,8 @@ mixin _$SettingsEvent {
     TResult Function()? exportData,
     TResult Function(String languageCode)? changeLanguage,
     TResult Function(bool enabled)? toggleDarkMode,
+    TResult Function(bool enabled)? toggleAutoCheckUpdate,
+    TResult Function(String version)? skipVersion,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -75,6 +81,9 @@ mixin _$SettingsEvent {
     required TResult Function(ExportDataEvent value) exportData,
     required TResult Function(ChangeLanguage value) changeLanguage,
     required TResult Function(ToggleDarkMode value) toggleDarkMode,
+    required TResult Function(ToggleAutoCheckUpdate value)
+        toggleAutoCheckUpdate,
+    required TResult Function(SkipVersion value) skipVersion,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -90,6 +99,8 @@ mixin _$SettingsEvent {
     TResult? Function(ExportDataEvent value)? exportData,
     TResult? Function(ChangeLanguage value)? changeLanguage,
     TResult? Function(ToggleDarkMode value)? toggleDarkMode,
+    TResult? Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
+    TResult? Function(SkipVersion value)? skipVersion,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -105,6 +116,8 @@ mixin _$SettingsEvent {
     TResult Function(ExportDataEvent value)? exportData,
     TResult Function(ChangeLanguage value)? changeLanguage,
     TResult Function(ToggleDarkMode value)? toggleDarkMode,
+    TResult Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
+    TResult Function(SkipVersion value)? skipVersion,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -185,6 +198,8 @@ class _$LoadSettingsDashboardImpl implements LoadSettingsDashboard {
     required TResult Function() exportData,
     required TResult Function(String languageCode) changeLanguage,
     required TResult Function(bool enabled) toggleDarkMode,
+    required TResult Function(bool enabled) toggleAutoCheckUpdate,
+    required TResult Function(String version) skipVersion,
   }) {
     return loadDashboard();
   }
@@ -203,6 +218,8 @@ class _$LoadSettingsDashboardImpl implements LoadSettingsDashboard {
     TResult? Function()? exportData,
     TResult? Function(String languageCode)? changeLanguage,
     TResult? Function(bool enabled)? toggleDarkMode,
+    TResult? Function(bool enabled)? toggleAutoCheckUpdate,
+    TResult? Function(String version)? skipVersion,
   }) {
     return loadDashboard?.call();
   }
@@ -221,6 +238,8 @@ class _$LoadSettingsDashboardImpl implements LoadSettingsDashboard {
     TResult Function()? exportData,
     TResult Function(String languageCode)? changeLanguage,
     TResult Function(bool enabled)? toggleDarkMode,
+    TResult Function(bool enabled)? toggleAutoCheckUpdate,
+    TResult Function(String version)? skipVersion,
     required TResult orElse(),
   }) {
     if (loadDashboard != null) {
@@ -243,6 +262,9 @@ class _$LoadSettingsDashboardImpl implements LoadSettingsDashboard {
     required TResult Function(ExportDataEvent value) exportData,
     required TResult Function(ChangeLanguage value) changeLanguage,
     required TResult Function(ToggleDarkMode value) toggleDarkMode,
+    required TResult Function(ToggleAutoCheckUpdate value)
+        toggleAutoCheckUpdate,
+    required TResult Function(SkipVersion value) skipVersion,
   }) {
     return loadDashboard(this);
   }
@@ -261,6 +283,8 @@ class _$LoadSettingsDashboardImpl implements LoadSettingsDashboard {
     TResult? Function(ExportDataEvent value)? exportData,
     TResult? Function(ChangeLanguage value)? changeLanguage,
     TResult? Function(ToggleDarkMode value)? toggleDarkMode,
+    TResult? Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
+    TResult? Function(SkipVersion value)? skipVersion,
   }) {
     return loadDashboard?.call(this);
   }
@@ -279,6 +303,8 @@ class _$LoadSettingsDashboardImpl implements LoadSettingsDashboard {
     TResult Function(ExportDataEvent value)? exportData,
     TResult Function(ChangeLanguage value)? changeLanguage,
     TResult Function(ToggleDarkMode value)? toggleDarkMode,
+    TResult Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
+    TResult Function(SkipVersion value)? skipVersion,
     required TResult orElse(),
   }) {
     if (loadDashboard != null) {
@@ -371,6 +397,8 @@ class _$ToggleAppLockImpl implements ToggleAppLock {
     required TResult Function() exportData,
     required TResult Function(String languageCode) changeLanguage,
     required TResult Function(bool enabled) toggleDarkMode,
+    required TResult Function(bool enabled) toggleAutoCheckUpdate,
+    required TResult Function(String version) skipVersion,
   }) {
     return toggleAppLock(enabled);
   }
@@ -389,6 +417,8 @@ class _$ToggleAppLockImpl implements ToggleAppLock {
     TResult? Function()? exportData,
     TResult? Function(String languageCode)? changeLanguage,
     TResult? Function(bool enabled)? toggleDarkMode,
+    TResult? Function(bool enabled)? toggleAutoCheckUpdate,
+    TResult? Function(String version)? skipVersion,
   }) {
     return toggleAppLock?.call(enabled);
   }
@@ -407,6 +437,8 @@ class _$ToggleAppLockImpl implements ToggleAppLock {
     TResult Function()? exportData,
     TResult Function(String languageCode)? changeLanguage,
     TResult Function(bool enabled)? toggleDarkMode,
+    TResult Function(bool enabled)? toggleAutoCheckUpdate,
+    TResult Function(String version)? skipVersion,
     required TResult orElse(),
   }) {
     if (toggleAppLock != null) {
@@ -429,6 +461,9 @@ class _$ToggleAppLockImpl implements ToggleAppLock {
     required TResult Function(ExportDataEvent value) exportData,
     required TResult Function(ChangeLanguage value) changeLanguage,
     required TResult Function(ToggleDarkMode value) toggleDarkMode,
+    required TResult Function(ToggleAutoCheckUpdate value)
+        toggleAutoCheckUpdate,
+    required TResult Function(SkipVersion value) skipVersion,
   }) {
     return toggleAppLock(this);
   }
@@ -447,6 +482,8 @@ class _$ToggleAppLockImpl implements ToggleAppLock {
     TResult? Function(ExportDataEvent value)? exportData,
     TResult? Function(ChangeLanguage value)? changeLanguage,
     TResult? Function(ToggleDarkMode value)? toggleDarkMode,
+    TResult? Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
+    TResult? Function(SkipVersion value)? skipVersion,
   }) {
     return toggleAppLock?.call(this);
   }
@@ -465,6 +502,8 @@ class _$ToggleAppLockImpl implements ToggleAppLock {
     TResult Function(ExportDataEvent value)? exportData,
     TResult Function(ChangeLanguage value)? changeLanguage,
     TResult Function(ToggleDarkMode value)? toggleDarkMode,
+    TResult Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
+    TResult Function(SkipVersion value)? skipVersion,
     required TResult orElse(),
   }) {
     if (toggleAppLock != null) {
@@ -567,6 +606,8 @@ class _$TogglePrivacyModeImpl implements TogglePrivacyMode {
     required TResult Function() exportData,
     required TResult Function(String languageCode) changeLanguage,
     required TResult Function(bool enabled) toggleDarkMode,
+    required TResult Function(bool enabled) toggleAutoCheckUpdate,
+    required TResult Function(String version) skipVersion,
   }) {
     return togglePrivacyMode(enabled);
   }
@@ -585,6 +626,8 @@ class _$TogglePrivacyModeImpl implements TogglePrivacyMode {
     TResult? Function()? exportData,
     TResult? Function(String languageCode)? changeLanguage,
     TResult? Function(bool enabled)? toggleDarkMode,
+    TResult? Function(bool enabled)? toggleAutoCheckUpdate,
+    TResult? Function(String version)? skipVersion,
   }) {
     return togglePrivacyMode?.call(enabled);
   }
@@ -603,6 +646,8 @@ class _$TogglePrivacyModeImpl implements TogglePrivacyMode {
     TResult Function()? exportData,
     TResult Function(String languageCode)? changeLanguage,
     TResult Function(bool enabled)? toggleDarkMode,
+    TResult Function(bool enabled)? toggleAutoCheckUpdate,
+    TResult Function(String version)? skipVersion,
     required TResult orElse(),
   }) {
     if (togglePrivacyMode != null) {
@@ -625,6 +670,9 @@ class _$TogglePrivacyModeImpl implements TogglePrivacyMode {
     required TResult Function(ExportDataEvent value) exportData,
     required TResult Function(ChangeLanguage value) changeLanguage,
     required TResult Function(ToggleDarkMode value) toggleDarkMode,
+    required TResult Function(ToggleAutoCheckUpdate value)
+        toggleAutoCheckUpdate,
+    required TResult Function(SkipVersion value) skipVersion,
   }) {
     return togglePrivacyMode(this);
   }
@@ -643,6 +691,8 @@ class _$TogglePrivacyModeImpl implements TogglePrivacyMode {
     TResult? Function(ExportDataEvent value)? exportData,
     TResult? Function(ChangeLanguage value)? changeLanguage,
     TResult? Function(ToggleDarkMode value)? toggleDarkMode,
+    TResult? Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
+    TResult? Function(SkipVersion value)? skipVersion,
   }) {
     return togglePrivacyMode?.call(this);
   }
@@ -661,6 +711,8 @@ class _$TogglePrivacyModeImpl implements TogglePrivacyMode {
     TResult Function(ExportDataEvent value)? exportData,
     TResult Function(ChangeLanguage value)? changeLanguage,
     TResult Function(ToggleDarkMode value)? toggleDarkMode,
+    TResult Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
+    TResult Function(SkipVersion value)? skipVersion,
     required TResult orElse(),
   }) {
     if (togglePrivacyMode != null) {
@@ -763,6 +815,8 @@ class _$ToggleBlurOverlayImpl implements ToggleBlurOverlay {
     required TResult Function() exportData,
     required TResult Function(String languageCode) changeLanguage,
     required TResult Function(bool enabled) toggleDarkMode,
+    required TResult Function(bool enabled) toggleAutoCheckUpdate,
+    required TResult Function(String version) skipVersion,
   }) {
     return toggleBlurOverlay(enabled);
   }
@@ -781,6 +835,8 @@ class _$ToggleBlurOverlayImpl implements ToggleBlurOverlay {
     TResult? Function()? exportData,
     TResult? Function(String languageCode)? changeLanguage,
     TResult? Function(bool enabled)? toggleDarkMode,
+    TResult? Function(bool enabled)? toggleAutoCheckUpdate,
+    TResult? Function(String version)? skipVersion,
   }) {
     return toggleBlurOverlay?.call(enabled);
   }
@@ -799,6 +855,8 @@ class _$ToggleBlurOverlayImpl implements ToggleBlurOverlay {
     TResult Function()? exportData,
     TResult Function(String languageCode)? changeLanguage,
     TResult Function(bool enabled)? toggleDarkMode,
+    TResult Function(bool enabled)? toggleAutoCheckUpdate,
+    TResult Function(String version)? skipVersion,
     required TResult orElse(),
   }) {
     if (toggleBlurOverlay != null) {
@@ -821,6 +879,9 @@ class _$ToggleBlurOverlayImpl implements ToggleBlurOverlay {
     required TResult Function(ExportDataEvent value) exportData,
     required TResult Function(ChangeLanguage value) changeLanguage,
     required TResult Function(ToggleDarkMode value) toggleDarkMode,
+    required TResult Function(ToggleAutoCheckUpdate value)
+        toggleAutoCheckUpdate,
+    required TResult Function(SkipVersion value) skipVersion,
   }) {
     return toggleBlurOverlay(this);
   }
@@ -839,6 +900,8 @@ class _$ToggleBlurOverlayImpl implements ToggleBlurOverlay {
     TResult? Function(ExportDataEvent value)? exportData,
     TResult? Function(ChangeLanguage value)? changeLanguage,
     TResult? Function(ToggleDarkMode value)? toggleDarkMode,
+    TResult? Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
+    TResult? Function(SkipVersion value)? skipVersion,
   }) {
     return toggleBlurOverlay?.call(this);
   }
@@ -857,6 +920,8 @@ class _$ToggleBlurOverlayImpl implements ToggleBlurOverlay {
     TResult Function(ExportDataEvent value)? exportData,
     TResult Function(ChangeLanguage value)? changeLanguage,
     TResult Function(ToggleDarkMode value)? toggleDarkMode,
+    TResult Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
+    TResult Function(SkipVersion value)? skipVersion,
     required TResult orElse(),
   }) {
     if (toggleBlurOverlay != null) {
@@ -959,6 +1024,8 @@ class _$UpdateDisplayNameImpl implements UpdateDisplayName {
     required TResult Function() exportData,
     required TResult Function(String languageCode) changeLanguage,
     required TResult Function(bool enabled) toggleDarkMode,
+    required TResult Function(bool enabled) toggleAutoCheckUpdate,
+    required TResult Function(String version) skipVersion,
   }) {
     return updateDisplayName(name);
   }
@@ -977,6 +1044,8 @@ class _$UpdateDisplayNameImpl implements UpdateDisplayName {
     TResult? Function()? exportData,
     TResult? Function(String languageCode)? changeLanguage,
     TResult? Function(bool enabled)? toggleDarkMode,
+    TResult? Function(bool enabled)? toggleAutoCheckUpdate,
+    TResult? Function(String version)? skipVersion,
   }) {
     return updateDisplayName?.call(name);
   }
@@ -995,6 +1064,8 @@ class _$UpdateDisplayNameImpl implements UpdateDisplayName {
     TResult Function()? exportData,
     TResult Function(String languageCode)? changeLanguage,
     TResult Function(bool enabled)? toggleDarkMode,
+    TResult Function(bool enabled)? toggleAutoCheckUpdate,
+    TResult Function(String version)? skipVersion,
     required TResult orElse(),
   }) {
     if (updateDisplayName != null) {
@@ -1017,6 +1088,9 @@ class _$UpdateDisplayNameImpl implements UpdateDisplayName {
     required TResult Function(ExportDataEvent value) exportData,
     required TResult Function(ChangeLanguage value) changeLanguage,
     required TResult Function(ToggleDarkMode value) toggleDarkMode,
+    required TResult Function(ToggleAutoCheckUpdate value)
+        toggleAutoCheckUpdate,
+    required TResult Function(SkipVersion value) skipVersion,
   }) {
     return updateDisplayName(this);
   }
@@ -1035,6 +1109,8 @@ class _$UpdateDisplayNameImpl implements UpdateDisplayName {
     TResult? Function(ExportDataEvent value)? exportData,
     TResult? Function(ChangeLanguage value)? changeLanguage,
     TResult? Function(ToggleDarkMode value)? toggleDarkMode,
+    TResult? Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
+    TResult? Function(SkipVersion value)? skipVersion,
   }) {
     return updateDisplayName?.call(this);
   }
@@ -1053,6 +1129,8 @@ class _$UpdateDisplayNameImpl implements UpdateDisplayName {
     TResult Function(ExportDataEvent value)? exportData,
     TResult Function(ChangeLanguage value)? changeLanguage,
     TResult Function(ToggleDarkMode value)? toggleDarkMode,
+    TResult Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
+    TResult Function(SkipVersion value)? skipVersion,
     required TResult orElse(),
   }) {
     if (updateDisplayName != null) {
@@ -1155,6 +1233,8 @@ class _$UpdateHrtStartDateImpl implements UpdateHrtStartDate {
     required TResult Function() exportData,
     required TResult Function(String languageCode) changeLanguage,
     required TResult Function(bool enabled) toggleDarkMode,
+    required TResult Function(bool enabled) toggleAutoCheckUpdate,
+    required TResult Function(String version) skipVersion,
   }) {
     return updateHrtStartDate(date);
   }
@@ -1173,6 +1253,8 @@ class _$UpdateHrtStartDateImpl implements UpdateHrtStartDate {
     TResult? Function()? exportData,
     TResult? Function(String languageCode)? changeLanguage,
     TResult? Function(bool enabled)? toggleDarkMode,
+    TResult? Function(bool enabled)? toggleAutoCheckUpdate,
+    TResult? Function(String version)? skipVersion,
   }) {
     return updateHrtStartDate?.call(date);
   }
@@ -1191,6 +1273,8 @@ class _$UpdateHrtStartDateImpl implements UpdateHrtStartDate {
     TResult Function()? exportData,
     TResult Function(String languageCode)? changeLanguage,
     TResult Function(bool enabled)? toggleDarkMode,
+    TResult Function(bool enabled)? toggleAutoCheckUpdate,
+    TResult Function(String version)? skipVersion,
     required TResult orElse(),
   }) {
     if (updateHrtStartDate != null) {
@@ -1213,6 +1297,9 @@ class _$UpdateHrtStartDateImpl implements UpdateHrtStartDate {
     required TResult Function(ExportDataEvent value) exportData,
     required TResult Function(ChangeLanguage value) changeLanguage,
     required TResult Function(ToggleDarkMode value) toggleDarkMode,
+    required TResult Function(ToggleAutoCheckUpdate value)
+        toggleAutoCheckUpdate,
+    required TResult Function(SkipVersion value) skipVersion,
   }) {
     return updateHrtStartDate(this);
   }
@@ -1231,6 +1318,8 @@ class _$UpdateHrtStartDateImpl implements UpdateHrtStartDate {
     TResult? Function(ExportDataEvent value)? exportData,
     TResult? Function(ChangeLanguage value)? changeLanguage,
     TResult? Function(ToggleDarkMode value)? toggleDarkMode,
+    TResult? Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
+    TResult? Function(SkipVersion value)? skipVersion,
   }) {
     return updateHrtStartDate?.call(this);
   }
@@ -1249,6 +1338,8 @@ class _$UpdateHrtStartDateImpl implements UpdateHrtStartDate {
     TResult Function(ExportDataEvent value)? exportData,
     TResult Function(ChangeLanguage value)? changeLanguage,
     TResult Function(ToggleDarkMode value)? toggleDarkMode,
+    TResult Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
+    TResult Function(SkipVersion value)? skipVersion,
     required TResult orElse(),
   }) {
     if (updateHrtStartDate != null) {
@@ -1323,6 +1414,8 @@ class _$WipeSettingsDataImpl implements WipeSettingsData {
     required TResult Function() exportData,
     required TResult Function(String languageCode) changeLanguage,
     required TResult Function(bool enabled) toggleDarkMode,
+    required TResult Function(bool enabled) toggleAutoCheckUpdate,
+    required TResult Function(String version) skipVersion,
   }) {
     return wipeData();
   }
@@ -1341,6 +1434,8 @@ class _$WipeSettingsDataImpl implements WipeSettingsData {
     TResult? Function()? exportData,
     TResult? Function(String languageCode)? changeLanguage,
     TResult? Function(bool enabled)? toggleDarkMode,
+    TResult? Function(bool enabled)? toggleAutoCheckUpdate,
+    TResult? Function(String version)? skipVersion,
   }) {
     return wipeData?.call();
   }
@@ -1359,6 +1454,8 @@ class _$WipeSettingsDataImpl implements WipeSettingsData {
     TResult Function()? exportData,
     TResult Function(String languageCode)? changeLanguage,
     TResult Function(bool enabled)? toggleDarkMode,
+    TResult Function(bool enabled)? toggleAutoCheckUpdate,
+    TResult Function(String version)? skipVersion,
     required TResult orElse(),
   }) {
     if (wipeData != null) {
@@ -1381,6 +1478,9 @@ class _$WipeSettingsDataImpl implements WipeSettingsData {
     required TResult Function(ExportDataEvent value) exportData,
     required TResult Function(ChangeLanguage value) changeLanguage,
     required TResult Function(ToggleDarkMode value) toggleDarkMode,
+    required TResult Function(ToggleAutoCheckUpdate value)
+        toggleAutoCheckUpdate,
+    required TResult Function(SkipVersion value) skipVersion,
   }) {
     return wipeData(this);
   }
@@ -1399,6 +1499,8 @@ class _$WipeSettingsDataImpl implements WipeSettingsData {
     TResult? Function(ExportDataEvent value)? exportData,
     TResult? Function(ChangeLanguage value)? changeLanguage,
     TResult? Function(ToggleDarkMode value)? toggleDarkMode,
+    TResult? Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
+    TResult? Function(SkipVersion value)? skipVersion,
   }) {
     return wipeData?.call(this);
   }
@@ -1417,6 +1519,8 @@ class _$WipeSettingsDataImpl implements WipeSettingsData {
     TResult Function(ExportDataEvent value)? exportData,
     TResult Function(ChangeLanguage value)? changeLanguage,
     TResult Function(ToggleDarkMode value)? toggleDarkMode,
+    TResult Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
+    TResult Function(SkipVersion value)? skipVersion,
     required TResult orElse(),
   }) {
     if (wipeData != null) {
@@ -1510,6 +1614,8 @@ class _$ToggleNotificationsImpl implements ToggleNotifications {
     required TResult Function() exportData,
     required TResult Function(String languageCode) changeLanguage,
     required TResult Function(bool enabled) toggleDarkMode,
+    required TResult Function(bool enabled) toggleAutoCheckUpdate,
+    required TResult Function(String version) skipVersion,
   }) {
     return toggleNotifications(enabled);
   }
@@ -1528,6 +1634,8 @@ class _$ToggleNotificationsImpl implements ToggleNotifications {
     TResult? Function()? exportData,
     TResult? Function(String languageCode)? changeLanguage,
     TResult? Function(bool enabled)? toggleDarkMode,
+    TResult? Function(bool enabled)? toggleAutoCheckUpdate,
+    TResult? Function(String version)? skipVersion,
   }) {
     return toggleNotifications?.call(enabled);
   }
@@ -1546,6 +1654,8 @@ class _$ToggleNotificationsImpl implements ToggleNotifications {
     TResult Function()? exportData,
     TResult Function(String languageCode)? changeLanguage,
     TResult Function(bool enabled)? toggleDarkMode,
+    TResult Function(bool enabled)? toggleAutoCheckUpdate,
+    TResult Function(String version)? skipVersion,
     required TResult orElse(),
   }) {
     if (toggleNotifications != null) {
@@ -1568,6 +1678,9 @@ class _$ToggleNotificationsImpl implements ToggleNotifications {
     required TResult Function(ExportDataEvent value) exportData,
     required TResult Function(ChangeLanguage value) changeLanguage,
     required TResult Function(ToggleDarkMode value) toggleDarkMode,
+    required TResult Function(ToggleAutoCheckUpdate value)
+        toggleAutoCheckUpdate,
+    required TResult Function(SkipVersion value) skipVersion,
   }) {
     return toggleNotifications(this);
   }
@@ -1586,6 +1699,8 @@ class _$ToggleNotificationsImpl implements ToggleNotifications {
     TResult? Function(ExportDataEvent value)? exportData,
     TResult? Function(ChangeLanguage value)? changeLanguage,
     TResult? Function(ToggleDarkMode value)? toggleDarkMode,
+    TResult? Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
+    TResult? Function(SkipVersion value)? skipVersion,
   }) {
     return toggleNotifications?.call(this);
   }
@@ -1604,6 +1719,8 @@ class _$ToggleNotificationsImpl implements ToggleNotifications {
     TResult Function(ExportDataEvent value)? exportData,
     TResult Function(ChangeLanguage value)? changeLanguage,
     TResult Function(ToggleDarkMode value)? toggleDarkMode,
+    TResult Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
+    TResult Function(SkipVersion value)? skipVersion,
     required TResult orElse(),
   }) {
     if (toggleNotifications != null) {
@@ -1678,6 +1795,8 @@ class _$ExportDataEventImpl implements ExportDataEvent {
     required TResult Function() exportData,
     required TResult Function(String languageCode) changeLanguage,
     required TResult Function(bool enabled) toggleDarkMode,
+    required TResult Function(bool enabled) toggleAutoCheckUpdate,
+    required TResult Function(String version) skipVersion,
   }) {
     return exportData();
   }
@@ -1696,6 +1815,8 @@ class _$ExportDataEventImpl implements ExportDataEvent {
     TResult? Function()? exportData,
     TResult? Function(String languageCode)? changeLanguage,
     TResult? Function(bool enabled)? toggleDarkMode,
+    TResult? Function(bool enabled)? toggleAutoCheckUpdate,
+    TResult? Function(String version)? skipVersion,
   }) {
     return exportData?.call();
   }
@@ -1714,6 +1835,8 @@ class _$ExportDataEventImpl implements ExportDataEvent {
     TResult Function()? exportData,
     TResult Function(String languageCode)? changeLanguage,
     TResult Function(bool enabled)? toggleDarkMode,
+    TResult Function(bool enabled)? toggleAutoCheckUpdate,
+    TResult Function(String version)? skipVersion,
     required TResult orElse(),
   }) {
     if (exportData != null) {
@@ -1736,6 +1859,9 @@ class _$ExportDataEventImpl implements ExportDataEvent {
     required TResult Function(ExportDataEvent value) exportData,
     required TResult Function(ChangeLanguage value) changeLanguage,
     required TResult Function(ToggleDarkMode value) toggleDarkMode,
+    required TResult Function(ToggleAutoCheckUpdate value)
+        toggleAutoCheckUpdate,
+    required TResult Function(SkipVersion value) skipVersion,
   }) {
     return exportData(this);
   }
@@ -1754,6 +1880,8 @@ class _$ExportDataEventImpl implements ExportDataEvent {
     TResult? Function(ExportDataEvent value)? exportData,
     TResult? Function(ChangeLanguage value)? changeLanguage,
     TResult? Function(ToggleDarkMode value)? toggleDarkMode,
+    TResult? Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
+    TResult? Function(SkipVersion value)? skipVersion,
   }) {
     return exportData?.call(this);
   }
@@ -1772,6 +1900,8 @@ class _$ExportDataEventImpl implements ExportDataEvent {
     TResult Function(ExportDataEvent value)? exportData,
     TResult Function(ChangeLanguage value)? changeLanguage,
     TResult Function(ToggleDarkMode value)? toggleDarkMode,
+    TResult Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
+    TResult Function(SkipVersion value)? skipVersion,
     required TResult orElse(),
   }) {
     if (exportData != null) {
@@ -1866,6 +1996,8 @@ class _$ChangeLanguageImpl implements ChangeLanguage {
     required TResult Function() exportData,
     required TResult Function(String languageCode) changeLanguage,
     required TResult Function(bool enabled) toggleDarkMode,
+    required TResult Function(bool enabled) toggleAutoCheckUpdate,
+    required TResult Function(String version) skipVersion,
   }) {
     return changeLanguage(languageCode);
   }
@@ -1884,6 +2016,8 @@ class _$ChangeLanguageImpl implements ChangeLanguage {
     TResult? Function()? exportData,
     TResult? Function(String languageCode)? changeLanguage,
     TResult? Function(bool enabled)? toggleDarkMode,
+    TResult? Function(bool enabled)? toggleAutoCheckUpdate,
+    TResult? Function(String version)? skipVersion,
   }) {
     return changeLanguage?.call(languageCode);
   }
@@ -1902,6 +2036,8 @@ class _$ChangeLanguageImpl implements ChangeLanguage {
     TResult Function()? exportData,
     TResult Function(String languageCode)? changeLanguage,
     TResult Function(bool enabled)? toggleDarkMode,
+    TResult Function(bool enabled)? toggleAutoCheckUpdate,
+    TResult Function(String version)? skipVersion,
     required TResult orElse(),
   }) {
     if (changeLanguage != null) {
@@ -1924,6 +2060,9 @@ class _$ChangeLanguageImpl implements ChangeLanguage {
     required TResult Function(ExportDataEvent value) exportData,
     required TResult Function(ChangeLanguage value) changeLanguage,
     required TResult Function(ToggleDarkMode value) toggleDarkMode,
+    required TResult Function(ToggleAutoCheckUpdate value)
+        toggleAutoCheckUpdate,
+    required TResult Function(SkipVersion value) skipVersion,
   }) {
     return changeLanguage(this);
   }
@@ -1942,6 +2081,8 @@ class _$ChangeLanguageImpl implements ChangeLanguage {
     TResult? Function(ExportDataEvent value)? exportData,
     TResult? Function(ChangeLanguage value)? changeLanguage,
     TResult? Function(ToggleDarkMode value)? toggleDarkMode,
+    TResult? Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
+    TResult? Function(SkipVersion value)? skipVersion,
   }) {
     return changeLanguage?.call(this);
   }
@@ -1960,6 +2101,8 @@ class _$ChangeLanguageImpl implements ChangeLanguage {
     TResult Function(ExportDataEvent value)? exportData,
     TResult Function(ChangeLanguage value)? changeLanguage,
     TResult Function(ToggleDarkMode value)? toggleDarkMode,
+    TResult Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
+    TResult Function(SkipVersion value)? skipVersion,
     required TResult orElse(),
   }) {
     if (changeLanguage != null) {
@@ -2062,6 +2205,8 @@ class _$ToggleDarkModeImpl implements ToggleDarkMode {
     required TResult Function() exportData,
     required TResult Function(String languageCode) changeLanguage,
     required TResult Function(bool enabled) toggleDarkMode,
+    required TResult Function(bool enabled) toggleAutoCheckUpdate,
+    required TResult Function(String version) skipVersion,
   }) {
     return toggleDarkMode(enabled);
   }
@@ -2080,6 +2225,8 @@ class _$ToggleDarkModeImpl implements ToggleDarkMode {
     TResult? Function()? exportData,
     TResult? Function(String languageCode)? changeLanguage,
     TResult? Function(bool enabled)? toggleDarkMode,
+    TResult? Function(bool enabled)? toggleAutoCheckUpdate,
+    TResult? Function(String version)? skipVersion,
   }) {
     return toggleDarkMode?.call(enabled);
   }
@@ -2098,6 +2245,8 @@ class _$ToggleDarkModeImpl implements ToggleDarkMode {
     TResult Function()? exportData,
     TResult Function(String languageCode)? changeLanguage,
     TResult Function(bool enabled)? toggleDarkMode,
+    TResult Function(bool enabled)? toggleAutoCheckUpdate,
+    TResult Function(String version)? skipVersion,
     required TResult orElse(),
   }) {
     if (toggleDarkMode != null) {
@@ -2120,6 +2269,9 @@ class _$ToggleDarkModeImpl implements ToggleDarkMode {
     required TResult Function(ExportDataEvent value) exportData,
     required TResult Function(ChangeLanguage value) changeLanguage,
     required TResult Function(ToggleDarkMode value) toggleDarkMode,
+    required TResult Function(ToggleAutoCheckUpdate value)
+        toggleAutoCheckUpdate,
+    required TResult Function(SkipVersion value) skipVersion,
   }) {
     return toggleDarkMode(this);
   }
@@ -2138,6 +2290,8 @@ class _$ToggleDarkModeImpl implements ToggleDarkMode {
     TResult? Function(ExportDataEvent value)? exportData,
     TResult? Function(ChangeLanguage value)? changeLanguage,
     TResult? Function(ToggleDarkMode value)? toggleDarkMode,
+    TResult? Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
+    TResult? Function(SkipVersion value)? skipVersion,
   }) {
     return toggleDarkMode?.call(this);
   }
@@ -2156,6 +2310,8 @@ class _$ToggleDarkModeImpl implements ToggleDarkMode {
     TResult Function(ExportDataEvent value)? exportData,
     TResult Function(ChangeLanguage value)? changeLanguage,
     TResult Function(ToggleDarkMode value)? toggleDarkMode,
+    TResult Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
+    TResult Function(SkipVersion value)? skipVersion,
     required TResult orElse(),
   }) {
     if (toggleDarkMode != null) {
@@ -2175,5 +2331,423 @@ abstract class ToggleDarkMode implements SettingsEvent {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ToggleDarkModeImplCopyWith<_$ToggleDarkModeImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ToggleAutoCheckUpdateImplCopyWith<$Res> {
+  factory _$$ToggleAutoCheckUpdateImplCopyWith(
+          _$ToggleAutoCheckUpdateImpl value,
+          $Res Function(_$ToggleAutoCheckUpdateImpl) then) =
+      __$$ToggleAutoCheckUpdateImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool enabled});
+}
+
+/// @nodoc
+class __$$ToggleAutoCheckUpdateImplCopyWithImpl<$Res>
+    extends _$SettingsEventCopyWithImpl<$Res, _$ToggleAutoCheckUpdateImpl>
+    implements _$$ToggleAutoCheckUpdateImplCopyWith<$Res> {
+  __$$ToggleAutoCheckUpdateImplCopyWithImpl(_$ToggleAutoCheckUpdateImpl _value,
+      $Res Function(_$ToggleAutoCheckUpdateImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of SettingsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? enabled = null,
+  }) {
+    return _then(_$ToggleAutoCheckUpdateImpl(
+      enabled: null == enabled
+          ? _value.enabled
+          : enabled // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ToggleAutoCheckUpdateImpl implements ToggleAutoCheckUpdate {
+  const _$ToggleAutoCheckUpdateImpl({required this.enabled});
+
+  @override
+  final bool enabled;
+
+  @override
+  String toString() {
+    return 'SettingsEvent.toggleAutoCheckUpdate(enabled: $enabled)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ToggleAutoCheckUpdateImpl &&
+            (identical(other.enabled, enabled) || other.enabled == enabled));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, enabled);
+
+  /// Create a copy of SettingsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ToggleAutoCheckUpdateImplCopyWith<_$ToggleAutoCheckUpdateImpl>
+      get copyWith => __$$ToggleAutoCheckUpdateImplCopyWithImpl<
+          _$ToggleAutoCheckUpdateImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadDashboard,
+    required TResult Function(bool enabled) toggleAppLock,
+    required TResult Function(bool enabled) togglePrivacyMode,
+    required TResult Function(bool enabled) toggleBlurOverlay,
+    required TResult Function(String name) updateDisplayName,
+    required TResult Function(DateTime date) updateHrtStartDate,
+    required TResult Function() wipeData,
+    required TResult Function(bool enabled) toggleNotifications,
+    required TResult Function() exportData,
+    required TResult Function(String languageCode) changeLanguage,
+    required TResult Function(bool enabled) toggleDarkMode,
+    required TResult Function(bool enabled) toggleAutoCheckUpdate,
+    required TResult Function(String version) skipVersion,
+  }) {
+    return toggleAutoCheckUpdate(enabled);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loadDashboard,
+    TResult? Function(bool enabled)? toggleAppLock,
+    TResult? Function(bool enabled)? togglePrivacyMode,
+    TResult? Function(bool enabled)? toggleBlurOverlay,
+    TResult? Function(String name)? updateDisplayName,
+    TResult? Function(DateTime date)? updateHrtStartDate,
+    TResult? Function()? wipeData,
+    TResult? Function(bool enabled)? toggleNotifications,
+    TResult? Function()? exportData,
+    TResult? Function(String languageCode)? changeLanguage,
+    TResult? Function(bool enabled)? toggleDarkMode,
+    TResult? Function(bool enabled)? toggleAutoCheckUpdate,
+    TResult? Function(String version)? skipVersion,
+  }) {
+    return toggleAutoCheckUpdate?.call(enabled);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadDashboard,
+    TResult Function(bool enabled)? toggleAppLock,
+    TResult Function(bool enabled)? togglePrivacyMode,
+    TResult Function(bool enabled)? toggleBlurOverlay,
+    TResult Function(String name)? updateDisplayName,
+    TResult Function(DateTime date)? updateHrtStartDate,
+    TResult Function()? wipeData,
+    TResult Function(bool enabled)? toggleNotifications,
+    TResult Function()? exportData,
+    TResult Function(String languageCode)? changeLanguage,
+    TResult Function(bool enabled)? toggleDarkMode,
+    TResult Function(bool enabled)? toggleAutoCheckUpdate,
+    TResult Function(String version)? skipVersion,
+    required TResult orElse(),
+  }) {
+    if (toggleAutoCheckUpdate != null) {
+      return toggleAutoCheckUpdate(enabled);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadSettingsDashboard value) loadDashboard,
+    required TResult Function(ToggleAppLock value) toggleAppLock,
+    required TResult Function(TogglePrivacyMode value) togglePrivacyMode,
+    required TResult Function(ToggleBlurOverlay value) toggleBlurOverlay,
+    required TResult Function(UpdateDisplayName value) updateDisplayName,
+    required TResult Function(UpdateHrtStartDate value) updateHrtStartDate,
+    required TResult Function(WipeSettingsData value) wipeData,
+    required TResult Function(ToggleNotifications value) toggleNotifications,
+    required TResult Function(ExportDataEvent value) exportData,
+    required TResult Function(ChangeLanguage value) changeLanguage,
+    required TResult Function(ToggleDarkMode value) toggleDarkMode,
+    required TResult Function(ToggleAutoCheckUpdate value)
+        toggleAutoCheckUpdate,
+    required TResult Function(SkipVersion value) skipVersion,
+  }) {
+    return toggleAutoCheckUpdate(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LoadSettingsDashboard value)? loadDashboard,
+    TResult? Function(ToggleAppLock value)? toggleAppLock,
+    TResult? Function(TogglePrivacyMode value)? togglePrivacyMode,
+    TResult? Function(ToggleBlurOverlay value)? toggleBlurOverlay,
+    TResult? Function(UpdateDisplayName value)? updateDisplayName,
+    TResult? Function(UpdateHrtStartDate value)? updateHrtStartDate,
+    TResult? Function(WipeSettingsData value)? wipeData,
+    TResult? Function(ToggleNotifications value)? toggleNotifications,
+    TResult? Function(ExportDataEvent value)? exportData,
+    TResult? Function(ChangeLanguage value)? changeLanguage,
+    TResult? Function(ToggleDarkMode value)? toggleDarkMode,
+    TResult? Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
+    TResult? Function(SkipVersion value)? skipVersion,
+  }) {
+    return toggleAutoCheckUpdate?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadSettingsDashboard value)? loadDashboard,
+    TResult Function(ToggleAppLock value)? toggleAppLock,
+    TResult Function(TogglePrivacyMode value)? togglePrivacyMode,
+    TResult Function(ToggleBlurOverlay value)? toggleBlurOverlay,
+    TResult Function(UpdateDisplayName value)? updateDisplayName,
+    TResult Function(UpdateHrtStartDate value)? updateHrtStartDate,
+    TResult Function(WipeSettingsData value)? wipeData,
+    TResult Function(ToggleNotifications value)? toggleNotifications,
+    TResult Function(ExportDataEvent value)? exportData,
+    TResult Function(ChangeLanguage value)? changeLanguage,
+    TResult Function(ToggleDarkMode value)? toggleDarkMode,
+    TResult Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
+    TResult Function(SkipVersion value)? skipVersion,
+    required TResult orElse(),
+  }) {
+    if (toggleAutoCheckUpdate != null) {
+      return toggleAutoCheckUpdate(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ToggleAutoCheckUpdate implements SettingsEvent {
+  const factory ToggleAutoCheckUpdate({required final bool enabled}) =
+      _$ToggleAutoCheckUpdateImpl;
+
+  bool get enabled;
+
+  /// Create a copy of SettingsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ToggleAutoCheckUpdateImplCopyWith<_$ToggleAutoCheckUpdateImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SkipVersionImplCopyWith<$Res> {
+  factory _$$SkipVersionImplCopyWith(
+          _$SkipVersionImpl value, $Res Function(_$SkipVersionImpl) then) =
+      __$$SkipVersionImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String version});
+}
+
+/// @nodoc
+class __$$SkipVersionImplCopyWithImpl<$Res>
+    extends _$SettingsEventCopyWithImpl<$Res, _$SkipVersionImpl>
+    implements _$$SkipVersionImplCopyWith<$Res> {
+  __$$SkipVersionImplCopyWithImpl(
+      _$SkipVersionImpl _value, $Res Function(_$SkipVersionImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of SettingsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? version = null,
+  }) {
+    return _then(_$SkipVersionImpl(
+      version: null == version
+          ? _value.version
+          : version // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SkipVersionImpl implements SkipVersion {
+  const _$SkipVersionImpl({required this.version});
+
+  @override
+  final String version;
+
+  @override
+  String toString() {
+    return 'SettingsEvent.skipVersion(version: $version)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SkipVersionImpl &&
+            (identical(other.version, version) || other.version == version));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, version);
+
+  /// Create a copy of SettingsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SkipVersionImplCopyWith<_$SkipVersionImpl> get copyWith =>
+      __$$SkipVersionImplCopyWithImpl<_$SkipVersionImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadDashboard,
+    required TResult Function(bool enabled) toggleAppLock,
+    required TResult Function(bool enabled) togglePrivacyMode,
+    required TResult Function(bool enabled) toggleBlurOverlay,
+    required TResult Function(String name) updateDisplayName,
+    required TResult Function(DateTime date) updateHrtStartDate,
+    required TResult Function() wipeData,
+    required TResult Function(bool enabled) toggleNotifications,
+    required TResult Function() exportData,
+    required TResult Function(String languageCode) changeLanguage,
+    required TResult Function(bool enabled) toggleDarkMode,
+    required TResult Function(bool enabled) toggleAutoCheckUpdate,
+    required TResult Function(String version) skipVersion,
+  }) {
+    return skipVersion(version);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loadDashboard,
+    TResult? Function(bool enabled)? toggleAppLock,
+    TResult? Function(bool enabled)? togglePrivacyMode,
+    TResult? Function(bool enabled)? toggleBlurOverlay,
+    TResult? Function(String name)? updateDisplayName,
+    TResult? Function(DateTime date)? updateHrtStartDate,
+    TResult? Function()? wipeData,
+    TResult? Function(bool enabled)? toggleNotifications,
+    TResult? Function()? exportData,
+    TResult? Function(String languageCode)? changeLanguage,
+    TResult? Function(bool enabled)? toggleDarkMode,
+    TResult? Function(bool enabled)? toggleAutoCheckUpdate,
+    TResult? Function(String version)? skipVersion,
+  }) {
+    return skipVersion?.call(version);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadDashboard,
+    TResult Function(bool enabled)? toggleAppLock,
+    TResult Function(bool enabled)? togglePrivacyMode,
+    TResult Function(bool enabled)? toggleBlurOverlay,
+    TResult Function(String name)? updateDisplayName,
+    TResult Function(DateTime date)? updateHrtStartDate,
+    TResult Function()? wipeData,
+    TResult Function(bool enabled)? toggleNotifications,
+    TResult Function()? exportData,
+    TResult Function(String languageCode)? changeLanguage,
+    TResult Function(bool enabled)? toggleDarkMode,
+    TResult Function(bool enabled)? toggleAutoCheckUpdate,
+    TResult Function(String version)? skipVersion,
+    required TResult orElse(),
+  }) {
+    if (skipVersion != null) {
+      return skipVersion(version);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadSettingsDashboard value) loadDashboard,
+    required TResult Function(ToggleAppLock value) toggleAppLock,
+    required TResult Function(TogglePrivacyMode value) togglePrivacyMode,
+    required TResult Function(ToggleBlurOverlay value) toggleBlurOverlay,
+    required TResult Function(UpdateDisplayName value) updateDisplayName,
+    required TResult Function(UpdateHrtStartDate value) updateHrtStartDate,
+    required TResult Function(WipeSettingsData value) wipeData,
+    required TResult Function(ToggleNotifications value) toggleNotifications,
+    required TResult Function(ExportDataEvent value) exportData,
+    required TResult Function(ChangeLanguage value) changeLanguage,
+    required TResult Function(ToggleDarkMode value) toggleDarkMode,
+    required TResult Function(ToggleAutoCheckUpdate value)
+        toggleAutoCheckUpdate,
+    required TResult Function(SkipVersion value) skipVersion,
+  }) {
+    return skipVersion(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LoadSettingsDashboard value)? loadDashboard,
+    TResult? Function(ToggleAppLock value)? toggleAppLock,
+    TResult? Function(TogglePrivacyMode value)? togglePrivacyMode,
+    TResult? Function(ToggleBlurOverlay value)? toggleBlurOverlay,
+    TResult? Function(UpdateDisplayName value)? updateDisplayName,
+    TResult? Function(UpdateHrtStartDate value)? updateHrtStartDate,
+    TResult? Function(WipeSettingsData value)? wipeData,
+    TResult? Function(ToggleNotifications value)? toggleNotifications,
+    TResult? Function(ExportDataEvent value)? exportData,
+    TResult? Function(ChangeLanguage value)? changeLanguage,
+    TResult? Function(ToggleDarkMode value)? toggleDarkMode,
+    TResult? Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
+    TResult? Function(SkipVersion value)? skipVersion,
+  }) {
+    return skipVersion?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadSettingsDashboard value)? loadDashboard,
+    TResult Function(ToggleAppLock value)? toggleAppLock,
+    TResult Function(TogglePrivacyMode value)? togglePrivacyMode,
+    TResult Function(ToggleBlurOverlay value)? toggleBlurOverlay,
+    TResult Function(UpdateDisplayName value)? updateDisplayName,
+    TResult Function(UpdateHrtStartDate value)? updateHrtStartDate,
+    TResult Function(WipeSettingsData value)? wipeData,
+    TResult Function(ToggleNotifications value)? toggleNotifications,
+    TResult Function(ExportDataEvent value)? exportData,
+    TResult Function(ChangeLanguage value)? changeLanguage,
+    TResult Function(ToggleDarkMode value)? toggleDarkMode,
+    TResult Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
+    TResult Function(SkipVersion value)? skipVersion,
+    required TResult orElse(),
+  }) {
+    if (skipVersion != null) {
+      return skipVersion(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SkipVersion implements SettingsEvent {
+  const factory SkipVersion({required final String version}) =
+      _$SkipVersionImpl;
+
+  String get version;
+
+  /// Create a copy of SettingsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SkipVersionImplCopyWith<_$SkipVersionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -2122,6 +2122,90 @@ abstract class AppLocalizations {
   /// **'Download failed, please retry'**
   String get downloadFailed;
 
+  /// No description provided for @updateSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Software Updates'**
+  String get updateSectionTitle;
+
+  /// No description provided for @updateAutoCheck.
+  ///
+  /// In en, this message translates to:
+  /// **'Auto-check for updates'**
+  String get updateAutoCheck;
+
+  /// No description provided for @updateAutoCheckDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Check for new versions on launch'**
+  String get updateAutoCheckDesc;
+
+  /// No description provided for @updateCheckNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Check for updates'**
+  String get updateCheckNow;
+
+  /// No description provided for @updateChecking.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking for updates...'**
+  String get updateChecking;
+
+  /// No description provided for @updateAlreadyLatest.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re on the latest version'**
+  String get updateAlreadyLatest;
+
+  /// No description provided for @updateCheckFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Update check failed, please check your network'**
+  String get updateCheckFailed;
+
+  /// No description provided for @updateCurrentVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Current'**
+  String get updateCurrentVersion;
+
+  /// No description provided for @updateNewVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'New'**
+  String get updateNewVersion;
+
+  /// No description provided for @updateWhatsNew.
+  ///
+  /// In en, this message translates to:
+  /// **'WHAT\'S NEW'**
+  String get updateWhatsNew;
+
+  /// No description provided for @updateSkipVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip this version'**
+  String get updateSkipVersion;
+
+  /// No description provided for @updateRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry download'**
+  String get updateRetry;
+
+  /// No description provided for @updateReadyToInstall.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready to install'**
+  String get updateReadyToInstall;
+
+  /// No description provided for @updateEstimatedTime.
+  ///
+  /// In en, this message translates to:
+  /// **'About {time} remaining'**
+  String updateEstimatedTime(String time);
+
   /// No description provided for @termsOfUseContent.
   ///
   /// In en, this message translates to:

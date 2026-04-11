@@ -5,6 +5,8 @@ import 'package:go_router/go_router.dart';
 import 'package:hananote/app/theme/hana_colors.dart';
 import 'package:hananote/core/constants/app_urls.dart';
 import 'package:hananote/core/l10n/arb/app_localizations.dart';
+import 'package:hananote/core/update/update_dialog.dart';
+import 'package:hananote/core/update/update_service.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_bloc.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_event.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_state.dart';
@@ -185,6 +187,38 @@ class SettingsDetailPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 24),
 
+                    // Updates
+                    _SectionTitle(title: l10n.updateSectionTitle),
+                    const SizedBox(height: 12),
+                    _SettingsCard(
+                      children: [
+                        _SettingsTile(
+                          icon: Icons.system_update_rounded,
+                          title: l10n.updateAutoCheck,
+                          subtitle: l10n.updateAutoCheckDesc,
+                          trailing: Switch(
+                            value: settings.autoCheckUpdate,
+                            onChanged: (val) =>
+                                context.read<SettingsBloc>().add(
+                                      ToggleAutoCheckUpdate(enabled: val),
+                                    ),
+                            activeTrackColor: HanaColors.primary,
+                          ),
+                        ),
+                        const Divider(height: 1, indent: 56),
+                        _SettingsTile(
+                          icon: Icons.refresh_rounded,
+                          title: l10n.updateCheckNow,
+                          trailing: const Icon(
+                            Icons.chevron_right,
+                            color: HanaColors.outlineVariant,
+                          ),
+                          onTap: () => _checkForUpdates(context, l10n),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 24),
+
                     // About
                     _SectionTitle(title: l10n.about),
                     const SizedBox(height: 12),
@@ -193,9 +227,9 @@ class SettingsDetailPage extends StatelessWidget {
                         _SettingsTile(
                           icon: Icons.info_outline,
                           title: l10n.version,
-                          trailing: const Text(
-                            AppConstants.appVersion,
-                            style: TextStyle(
+                          trailing: Text(
+                            'v${AppConstants.appVersion}',
+                            style: const TextStyle(
                               color: HanaColors.onSurfaceVariant,
                               fontWeight: FontWeight.w500,
                             ),
@@ -205,14 +239,20 @@ class SettingsDetailPage extends StatelessWidget {
                         _SettingsTile(
                           icon: Icons.privacy_tip_outlined,
                           title: l10n.privacyPolicy,
-                          trailing: const Icon(Icons.chevron_right, color: HanaColors.outlineVariant),
+                          trailing: const Icon(
+                            Icons.chevron_right,
+                            color: HanaColors.outlineVariant,
+                          ),
                           onTap: () => context.push('/legal/privacy'),
                         ),
                         const Divider(height: 1, indent: 56),
                         _SettingsTile(
                           icon: Icons.description_outlined,
                           title: l10n.termsOfUse,
-                          trailing: const Icon(Icons.chevron_right, color: HanaColors.outlineVariant),
+                          trailing: const Icon(
+                            Icons.chevron_right,
+                            color: HanaColors.outlineVariant,
+                          ),
                           onTap: () => context.push('/legal/terms'),
                         ),
                       ],
@@ -225,6 +265,104 @@ class SettingsDetailPage extends StatelessWidget {
         },
       ),
     );
+  }
+
+  static Future<void> _checkForUpdates(
+    BuildContext context,
+    AppLocalizations l10n,
+  ) async {
+    // Show loading indicator
+    // ignore: unawaited_futures
+    showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (_) => Center(
+        child: Container(
+          padding: const EdgeInsets.all(24),
+          decoration: BoxDecoration(
+            color: HanaColors.surfaceContainerLowest,
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const CircularProgressIndicator(
+                color: HanaColors.primary,
+                strokeWidth: 3,
+              ),
+              const SizedBox(height: 16),
+              Text(
+                l10n.updateChecking,
+                style: const TextStyle(
+                  fontSize: 14,
+                  color: HanaColors.onSurface,
+                  decoration: TextDecoration.none,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+
+    try {
+      final info = await UpdateService.checkForUpdate(
+        AppConstants.appVersion,
+      );
+
+      if (!context.mounted) return;
+      Navigator.of(context).pop(); // dismiss loading
+
+      if (info != null) {
+        await showUpdateDialog(context, info);
+      } else {
+        // Already up to date
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Row(
+              children: [
+                const Icon(
+                  Icons.check_circle_outline,
+                  color: Colors.white,
+                  size: 18,
+                ),
+                const SizedBox(width: 8),
+                Text(l10n.updateAlreadyLatest),
+              ],
+            ),
+            backgroundColor: HanaColors.statusGreen,
+            behavior: SnackBarBehavior.floating,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+          ),
+        );
+      }
+    } catch (_) {
+      if (!context.mounted) return;
+      Navigator.of(context).pop(); // dismiss loading
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Row(
+            children: [
+              const Icon(
+                Icons.error_outline,
+                color: Colors.white,
+                size: 18,
+              ),
+              const SizedBox(width: 8),
+              Text(l10n.updateCheckFailed),
+            ],
+          ),
+          backgroundColor: HanaColors.error,
+          behavior: SnackBarBehavior.floating,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ),
+      );
+    }
   }
 
   static String _languageLabel(String code, AppLocalizations l10n) {

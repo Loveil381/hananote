@@ -45,4 +45,12 @@ sealed class SettingsEvent with _$SettingsEvent {
   /// Toggles the dark mode setting.
   const factory SettingsEvent.toggleDarkMode({required bool enabled}) =
       ToggleDarkMode;
+
+  /// Toggles auto-check for updates setting.
+  const factory SettingsEvent.toggleAutoCheckUpdate({required bool enabled}) =
+      ToggleAutoCheckUpdate;
+
+  /// Sets the version the user chose to skip.
+  const factory SettingsEvent.skipVersion({required String version}) =
+      SkipVersion;
 }

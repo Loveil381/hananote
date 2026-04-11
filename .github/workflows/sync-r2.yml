@@ -25,14 +25,16 @@ jobs:
           # Rename to standard name
           mv ./dist/*.apk "./dist/HanaNote-${TAG}.apk"
 
-          # Generate version.json
+          # Generate version.json with file size
           NOTES=$(gh release view "$TAG" --repo "${{ github.repository }}" --json body -q .body)
+          APK_SIZE=$(stat -c%s "./dist/HanaNote-${TAG}.apk" 2>/dev/null || stat -f%z "./dist/HanaNote-${TAG}.apk")
           cat > ./dist/version.json << ENDJSON
           {
             "version": "${VERSION}",
             "url": "https://cdn.hrtyaku.com/hananote/HanaNote-${TAG}.apk",
             "notes": $(echo "$NOTES" | jq -Rs .),
-            "github_url": "https://github.com/${{ github.repository }}/releases/tag/${TAG}"
+            "github_url": "https://github.com/${{ github.repository }}/releases/tag/${TAG}",
+            "size": ${APK_SIZE}
           }
           ENDJSON
 

@@ -13,6 +13,7 @@ class AppUpdateInfo {
     required this.downloadUrl,
     required this.releaseNotes,
     required this.htmlUrl,
+    this.fileSize,
   });
 
   /// The latest version tag (e.g. "1.1.0").
@@ -26,6 +27,65 @@ class AppUpdateInfo {
 
   /// GitHub release page URL (fallback).
   final String htmlUrl;
+
+  /// APK file size in bytes (if available).
+  final int? fileSize;
+
+  /// Human-readable file size string.
+  String get fileSizeText {
+    if (fileSize == null) return '';
+    final mb = fileSize! / (1024 * 1024);
+    return '${mb.toStringAsFixed(1)} MB';
+  }
+}
+
+/// Progress details for download tracking.
+class DownloadProgress {
+  /// Creates a [DownloadProgress].
+  const DownloadProgress({
+    required this.received,
+    required this.total,
+    required this.speed,
+  });
+
+  /// Bytes received so far.
+  final int received;
+
+  /// Total bytes expected (-1 if unknown).
+  final int total;
+
+  /// Current download speed in bytes/second.
+  final double speed;
+
+  /// Progress fraction (0.0 to 1.0).
+  double get fraction => total > 0 ? (received / total).clamp(0.0, 1.0) : 0.0;
+
+  /// Percentage (0 to 100).
+  int get percent => (fraction * 100).round();
+
+  /// Received in MB.
+  String get receivedMB => (received / (1024 * 1024)).toStringAsFixed(1);
+
+  /// Total in MB.
+  String get totalMB =>
+      total > 0 ? (total / (1024 * 1024)).toStringAsFixed(1) : '?';
+
+  /// Speed in human-readable format.
+  String get speedText {
+    if (speed <= 0) return '';
+    if (speed > 1024 * 1024) {
+      return '${(speed / (1024 * 1024)).toStringAsFixed(1)} MB/s';
+    }
+    return '${(speed / 1024).toStringAsFixed(0)} KB/s';
+  }
+
+  /// Estimated remaining time.
+  String get remainingText {
+    if (speed <= 0 || total <= 0) return '';
+    final remaining = (total - received) / speed;
+    if (remaining < 60) return '${remaining.round()}s';
+    return '${(remaining / 60).round()}min';
+  }
 }
 
 /// Checks for app updates and downloads APK files.
@@ -67,6 +127,7 @@ class UpdateService {
         downloadUrl: data['url'] as String?,
         releaseNotes: data['notes'] as String? ?? '',
         htmlUrl: data['github_url'] as String? ?? '',
+        fileSize: data['size'] as int?,
       );
     } catch (_) {
       return null;
@@ -91,11 +152,14 @@ class UpdateService {
       if (!_isNewer(tagName, currentVersion)) return null;
 
       String? apkUrl;
+      int? apkSize;
       final assets = data['assets'] as List<dynamic>? ?? [];
-      for (final asset in assets) {
-        final name = asset['name'] as String? ?? '';
+      for (final dynamic asset in assets) {
+        final assetMap = asset as Map<String, dynamic>;
+        final name = assetMap['name'] as String? ?? '';
         if (name.endsWith('.apk')) {
-          apkUrl = asset['browser_download_url'] as String?;
+          apkUrl = assetMap['browser_download_url'] as String?;
+          apkSize = assetMap['size'] as int?;
           break;
         }
       }
@@ -105,6 +169,7 @@ class UpdateService {
         downloadUrl: apkUrl,
         releaseNotes: data['body'] as String? ?? '',
         htmlUrl: data['html_url'] as String? ?? '',
+        fileSize: apkSize,
       );
     } catch (e) {
       debugPrint('[UpdateService] GitHub check failed: $e');
@@ -112,12 +177,12 @@ class UpdateService {
     }
   }
 
-  /// Downloads APK to cache directory, reporting progress via [onProgress].
+  /// Downloads APK to cache directory, reporting detailed progress.
   ///
   /// Returns the local file path of the downloaded APK.
   static Future<String> downloadApk(
     String url,
-    void Function(double progress) onProgress,
+    void Function(DownloadProgress progress) onProgress,
   ) async {
     final client = HttpClient();
     try {
@@ -129,13 +194,31 @@ class UpdateService {
       final file = File('${cacheDir.path}/hananote_update.apk');
       final sink = file.openWrite();
       var received = 0;
+      var lastTime = DateTime.now();
+      var lastReceived = 0;
+      var currentSpeed = 0.0;
 
       await for (final chunk in response) {
         sink.add(chunk);
         received += chunk.length;
-        if (contentLength > 0) {
-          onProgress(received / contentLength);
+
+        // Calculate speed every 500ms
+        final now = DateTime.now();
+        final elapsed = now.difference(lastTime).inMilliseconds;
+        if (elapsed >= 500) {
+          final bytesInPeriod = received - lastReceived;
+          currentSpeed = bytesInPeriod / (elapsed / 1000);
+          lastTime = now;
+          lastReceived = received;
         }
+
+        onProgress(
+          DownloadProgress(
+            received: received,
+            total: contentLength,
+            speed: currentSpeed,
+          ),
+        );
       }
 
       await sink.close();

@@ -11,6 +11,7 @@ import 'package:hananote/features/auth/presentation/pages/lock_screen_page.dart'
 import 'package:hananote/features/auth/presentation/pages/setup_page.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_bloc.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_event.dart';
+import 'package:hananote/features/settings/presentation/bloc/settings_state.dart';
 
 /// Root page that switches between setup, lock, and home flows.
 class AuthWrapperPage extends StatelessWidget {
@@ -30,11 +31,33 @@ class AuthWrapperPage extends StatelessWidget {
           context.go('/today');
           // Check for updates after the navigation settles.
           SchedulerBinding.instance.addPostFrameCallback((_) async {
+            if (!context.mounted) return;
+
+            // Wait for settings to load before checking
+            final settingsBloc = context.read<SettingsBloc>();
+            final currentState = settingsBloc.state;
+
+            // Get settings — may need to wait a frame for settings load
+            bool autoCheck;
+            String skippedVersion;
+            if (currentState is SettingsLoaded) {
+              autoCheck = currentState.settings.autoCheckUpdate;
+              skippedVersion = currentState.settings.skippedVersion;
+            } else {
+              // Settings not loaded yet, default to auto-check enabled
+              autoCheck = true;
+              skippedVersion = '';
+            }
+
+            if (!autoCheck) return;
+
             final info = await UpdateService.checkForUpdate(
               AppConstants.appVersion,
             );
             if (info != null && context.mounted) {
-              showUpdateDialog(context, info);
+              // Skip if user has chosen to skip this version
+              if (skippedVersion == info.latestVersion) return;
+              await showUpdateDialog(context, info);
             }
           });
         }

@@ -1,40 +1,87 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hananote/app/theme/hana_colors.dart';
+import 'package:hananote/core/constants/app_urls.dart';
 import 'package:hananote/core/l10n/arb/app_localizations.dart';
 import 'package:hananote/core/update/apk_installer.dart';
 import 'package:hananote/core/update/update_service.dart';
+import 'package:hananote/features/settings/presentation/bloc/settings_bloc.dart';
+import 'package:hananote/features/settings/presentation/bloc/settings_event.dart';
 
-/// Shows the update bottom sheet with in-app download and install.
-Future<void> showUpdateDialog(
+/// Result of showing the update dialog.
+enum UpdateDialogResult {
+  /// User chose to install the update.
+  installed,
+
+  /// User chose to update later.
+  later,
+
+  /// User chose to skip this version.
+  skipped,
+}
+
+/// Shows the production-grade update bottom sheet.
+Future<UpdateDialogResult?> showUpdateDialog(
   BuildContext context,
-  AppUpdateInfo info,
-) {
-  return showModalBottomSheet<void>(
+  AppUpdateInfo info, {
+  bool allowSkip = true,
+}) {
+  return showModalBottomSheet<UpdateDialogResult>(
     context: context,
     isDismissible: false,
     enableDrag: false,
-    backgroundColor: HanaColors.surfaceContainerLowest,
-    shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
+    isScrollControlled: true,
+    backgroundColor: Colors.transparent,
+    builder: (_) => _UpdateSheet(
+      info: info,
+      parentContext: context,
+      allowSkip: allowSkip,
     ),
-    builder: (_) => _UpdateSheet(info: info),
   );
 }
 
 enum _UpdateState { initial, downloading, downloaded, error }
 
 class _UpdateSheet extends StatefulWidget {
-  const _UpdateSheet({required this.info});
+  const _UpdateSheet({
+    required this.info,
+    required this.parentContext,
+    this.allowSkip = true,
+  });
   final AppUpdateInfo info;
+  final BuildContext parentContext;
+  final bool allowSkip;
 
   @override
   State<_UpdateSheet> createState() => _UpdateSheetState();
 }
 
-class _UpdateSheetState extends State<_UpdateSheet> {
+class _UpdateSheetState extends State<_UpdateSheet>
+    with SingleTickerProviderStateMixin {
   _UpdateState _state = _UpdateState.initial;
-  double _progress = 0;
+  DownloadProgress? _progress;
   String? _apkPath;
+  late AnimationController _iconAnimController;
+  late Animation<double> _iconBounce;
+
+  @override
+  void initState() {
+    super.initState();
+    _iconAnimController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1200),
+    );
+    _iconBounce = Tween<double>(begin: 0, end: 1).animate(
+      CurvedAnimation(parent: _iconAnimController, curve: Curves.elasticOut),
+    );
+    _iconAnimController.forward();
+  }
+
+  @override
+  void dispose() {
+    _iconAnimController.dispose();
+    super.dispose();
+  }
 
   Future<void> _startDownload() async {
     final url = widget.info.downloadUrl;
@@ -42,7 +89,7 @@ class _UpdateSheetState extends State<_UpdateSheet> {
 
     setState(() {
       _state = _UpdateState.downloading;
-      _progress = 0;
+      _progress = null;
     });
 
     try {
@@ -63,153 +110,601 @@ class _UpdateSheetState extends State<_UpdateSheet> {
     }
   }
 
+  void _skipVersion() {
+    try {
+      widget.parentContext.read<SettingsBloc>().add(
+            SkipVersion(version: widget.info.latestVersion),
+          );
+    } catch (_) {
+      // Settings bloc may not be available in some contexts
+    }
+    Navigator.of(context).pop(UpdateDialogResult.skipped);
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
 
-    return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(24, 20, 24, 24),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              width: 40,
-              height: 4,
-              margin: const EdgeInsets.only(bottom: 24),
-              decoration: BoxDecoration(
-                color: HanaColors.outlineVariant.withAlpha(128),
-                borderRadius: BorderRadius.circular(999),
-              ),
-            ),
-            const Icon(
-              Icons.system_update_outlined,
-              size: 56,
-              color: HanaColors.primary,
-            ),
-            const SizedBox(height: 16),
-            Text(
-              l10n.updateAvailable,
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w700,
-                color: HanaColors.onSurface,
-              ),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              'v${widget.info.latestVersion}',
-              style: const TextStyle(
-                fontSize: 14,
-                color: HanaColors.primary,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            if (widget.info.releaseNotes.isNotEmpty) ...[
-              const SizedBox(height: 16),
+    return Container(
+      decoration: const BoxDecoration(
+        color: HanaColors.surfaceContainerLowest,
+        borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
+      ),
+      child: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(24, 12, 24, 24),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              // Drag handle
               Container(
-                constraints: const BoxConstraints(maxHeight: 100),
-                width: double.infinity,
-                padding: const EdgeInsets.all(12),
+                width: 40,
+                height: 4,
+                margin: const EdgeInsets.only(bottom: 20),
                 decoration: BoxDecoration(
-                  color: HanaColors.surfaceContainerLow,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: SingleChildScrollView(
-                  child: Text(
-                    widget.info.releaseNotes,
-                    style: const TextStyle(
-                      fontSize: 13,
-                      color: HanaColors.onSurfaceVariant,
-                      height: 1.5,
-                    ),
-                  ),
+                  color: HanaColors.outlineVariant.withAlpha(102),
+                  borderRadius: BorderRadius.circular(999),
                 ),
               ),
+              // Header icon with animation
+              _buildHeader(l10n),
+              const SizedBox(height: 20),
+              // Version comparison
+              _buildVersionComparison(l10n),
+              // File size badge
+              if (widget.info.fileSize != null) ...[
+                const SizedBox(height: 8),
+                _buildFileSizeBadge(),
+              ],
+              // Release notes
+              if (widget.info.releaseNotes.isNotEmpty) ...[
+                const SizedBox(height: 16),
+                _buildReleaseNotes(l10n),
+              ],
+              const SizedBox(height: 24),
+              // Actions area
+              _buildActionsArea(l10n),
             ],
-            const SizedBox(height: 24),
-            ..._buildActions(l10n),
-          ],
+          ),
         ),
       ),
     );
   }
 
-  List<Widget> _buildActions(AppLocalizations l10n) {
+  Widget _buildHeader(AppLocalizations l10n) {
+    final isDownloading = _state == _UpdateState.downloading;
+    final isDownloaded = _state == _UpdateState.downloaded;
+
+    return AnimatedBuilder(
+      animation: _iconBounce,
+      builder: (context, child) {
+        return Transform.scale(
+          scale: 0.5 + (_iconBounce.value * 0.5),
+          child: child,
+        );
+      },
+      child: Container(
+        width: 72,
+        height: 72,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: isDownloaded
+                ? [
+                    HanaColors.statusGreen.withAlpha(51),
+                    HanaColors.statusGreen.withAlpha(26),
+                  ]
+                : [
+                    HanaColors.primary.withAlpha(51),
+                    HanaColors.primaryContainer.withAlpha(77),
+                  ],
+          ),
+          shape: BoxShape.circle,
+        ),
+        child: Icon(
+          isDownloaded
+              ? Icons.check_circle_outline_rounded
+              : isDownloading
+                  ? Icons.downloading_rounded
+                  : Icons.system_update_rounded,
+          size: 36,
+          color: isDownloaded ? HanaColors.statusGreen : HanaColors.primary,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildVersionComparison(AppLocalizations l10n) {
+    final title = _state == _UpdateState.downloaded
+        ? l10n.updateReadyToInstall
+        : l10n.updateAvailable;
+
+    return Column(
+      children: [
+        Text(
+          title,
+          style: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w700,
+            color: HanaColors.onSurface,
+            letterSpacing: -0.3,
+          ),
+        ),
+        const SizedBox(height: 10),
+        // Version comparison row
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+          decoration: BoxDecoration(
+            color: HanaColors.surfaceContainerLow,
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _VersionBadge(
+                label: l10n.updateCurrentVersion,
+                version: 'v${AppConstants.appVersion}',
+                isOld: true,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: Icon(
+                  Icons.arrow_forward_rounded,
+                  size: 18,
+                  color: HanaColors.primary.withAlpha(179),
+                ),
+              ),
+              _VersionBadge(
+                label: l10n.updateNewVersion,
+                version: 'v${widget.info.latestVersion}',
+                isOld: false,
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildFileSizeBadge() {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+      decoration: BoxDecoration(
+        color: HanaColors.primaryContainer.withAlpha(77),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Text(
+        widget.info.fileSizeText,
+        style: const TextStyle(
+          fontSize: 12,
+          fontWeight: FontWeight.w600,
+          color: HanaColors.primary,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildReleaseNotes(AppLocalizations l10n) {
+    // Parse release notes into bullet points for better readability
+    final notes = widget.info.releaseNotes
+        .replaceAll('\r\n', '\n')
+        .split('\n')
+        .where((line) => line.trim().isNotEmpty)
+        .toList();
+
+    return Container(
+      width: double.infinity,
+      constraints: const BoxConstraints(maxHeight: 140),
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: HanaColors.surfaceContainerLow,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color: HanaColors.outlineVariant.withAlpha(51),
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Row(
+            children: [
+              Icon(
+                Icons.auto_awesome_rounded,
+                size: 14,
+                color: HanaColors.primary.withAlpha(179),
+              ),
+              const SizedBox(width: 6),
+              Text(
+                l10n.updateWhatsNew,
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w700,
+                  color: HanaColors.primary.withAlpha(179),
+                  letterSpacing: 0.5,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Flexible(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: notes
+                    .map(
+                      (line) => Padding(
+                        padding: const EdgeInsets.only(bottom: 4),
+                        child: Text(
+                          line.trim().startsWith('-') ||
+                                  line.trim().startsWith('*')
+                              ? line.trim()
+                              : line.trim(),
+                          style: const TextStyle(
+                            fontSize: 13,
+                            color: HanaColors.onSurfaceVariant,
+                            height: 1.5,
+                          ),
+                        ),
+                      ),
+                    )
+                    .toList(),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildActionsArea(AppLocalizations l10n) {
     return switch (_state) {
-      _UpdateState.initial => [
+      _UpdateState.initial => _buildInitialActions(l10n),
+      _UpdateState.downloading => _buildDownloadingState(l10n),
+      _UpdateState.downloaded => _buildDownloadedActions(l10n),
+      _UpdateState.error => _buildErrorActions(l10n),
+    };
+  }
+
+  Widget _buildInitialActions(AppLocalizations l10n) {
+    return Column(
+      children: [
+        // Primary action — Update Now
         SizedBox(
           width: double.infinity,
+          height: 52,
           child: FilledButton(
             onPressed: _startDownload,
-            child: Text(l10n.updateNow),
+            style: FilledButton.styleFrom(
+              backgroundColor: HanaColors.primary,
+              foregroundColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              elevation: 0,
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Icon(Icons.download_rounded, size: 20),
+                const SizedBox(width: 8),
+                Text(
+                  l10n.updateNow,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ],
+            ),
           ),
+        ),
+        const SizedBox(height: 10),
+        // Secondary actions row
+        Row(
+          children: [
+            // Skip this version
+            if (widget.allowSkip) ...[
+              Expanded(
+                child: SizedBox(
+                  height: 44,
+                  child: TextButton(
+                    onPressed: _skipVersion,
+                    style: TextButton.styleFrom(
+                      foregroundColor: HanaColors.onSurfaceVariant,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    child: Text(
+                      l10n.updateSkipVersion,
+                      style: const TextStyle(fontSize: 14),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(width: 8),
+            ],
+            // Later
+            Expanded(
+              child: SizedBox(
+                height: 44,
+                child: OutlinedButton(
+                  onPressed: () =>
+                      Navigator.of(context).pop(UpdateDialogResult.later),
+                  style: OutlinedButton.styleFrom(
+                    foregroundColor: HanaColors.onSurfaceVariant,
+                    side: BorderSide(
+                      color: HanaColors.outlineVariant.withAlpha(128),
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  child: Text(
+                    l10n.updateLater,
+                    style: const TextStyle(fontSize: 14),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _buildDownloadingState(AppLocalizations l10n) {
+    final p = _progress;
+    final percent = p?.percent ?? 0;
+    final fraction = p?.fraction ?? 0.0;
+
+    return Column(
+      children: [
+        // Progress info row
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              p != null
+                  ? '${p.receivedMB} / ${p.totalMB} MB'
+                  : l10n.downloadingUpdate,
+              style: const TextStyle(
+                fontSize: 13,
+                fontWeight: FontWeight.w600,
+                color: HanaColors.onSurface,
+              ),
+            ),
+            if (p != null && p.speedText.isNotEmpty)
+              Text(
+                p.speedText,
+                style: const TextStyle(
+                  fontSize: 12,
+                  color: HanaColors.onSurfaceVariant,
+                ),
+              ),
+          ],
+        ),
+        const SizedBox(height: 10),
+        // Progress bar
+        Stack(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(6),
+              child: LinearProgressIndicator(
+                value: fraction > 0 ? fraction : null,
+                minHeight: 10,
+                backgroundColor: HanaColors.surfaceContainerHigh,
+                valueColor:
+                    const AlwaysStoppedAnimation<Color>(HanaColors.primary),
+              ),
+            ),
+            if (fraction > 0)
+              Positioned.fill(
+                child: Center(
+                  child: Text(
+                    '$percent%',
+                    style: const TextStyle(
+                      fontSize: 8,
+                      fontWeight: FontWeight.w800,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+          ],
         ),
         const SizedBox(height: 8),
+        // Remaining time
+        if (p != null && p.remainingText.isNotEmpty)
+          Text(
+            l10n.updateEstimatedTime(p.remainingText),
+            style: const TextStyle(
+              fontSize: 12,
+              color: HanaColors.onSurfaceVariant,
+            ),
+          ),
+      ],
+    );
+  }
+
+  Widget _buildDownloadedActions(AppLocalizations l10n) {
+    return Column(
+      children: [
         SizedBox(
           width: double.infinity,
-          child: TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: Text(l10n.updateLater),
-          ),
-        ),
-      ],
-      _UpdateState.downloading => [
-        Text(
-          l10n.downloadProgress((_progress * 100).toStringAsFixed(0)),
-          style: const TextStyle(
-            fontSize: 14,
-            color: HanaColors.onSurfaceVariant,
-          ),
-        ),
-        const SizedBox(height: 12),
-        ClipRRect(
-          borderRadius: BorderRadius.circular(8),
-          child: LinearProgressIndicator(
-            value: _progress,
-            minHeight: 8,
-            backgroundColor: HanaColors.surfaceContainerHigh,
-            valueColor:
-                const AlwaysStoppedAnimation<Color>(HanaColors.primary),
-          ),
-        ),
-      ],
-      _UpdateState.downloaded => [
-        SizedBox(
-          width: double.infinity,
+          height: 52,
           child: FilledButton(
             onPressed: () {
-              if (_apkPath != null) ApkInstaller.install(_apkPath!);
+              if (_apkPath != null) {
+                ApkInstaller.install(_apkPath!);
+                Navigator.of(context).pop(UpdateDialogResult.installed);
+              }
             },
-            child: Text(l10n.installUpdate),
+            style: FilledButton.styleFrom(
+              backgroundColor: HanaColors.statusGreen,
+              foregroundColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              elevation: 0,
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Icon(Icons.install_mobile_rounded, size: 20),
+                const SizedBox(width: 8),
+                Text(
+                  l10n.installUpdate,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ],
-      _UpdateState.error => [
-        Text(
-          l10n.downloadFailed,
-          style: const TextStyle(
-            fontSize: 14,
-            color: HanaColors.onSurfaceVariant,
+    );
+  }
+
+  Widget _buildErrorActions(AppLocalizations l10n) {
+    return Column(
+      children: [
+        // Error message
+        Container(
+          width: double.infinity,
+          padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            color: HanaColors.error.withAlpha(26),
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Row(
+            children: [
+              const Icon(
+                Icons.error_outline_rounded,
+                size: 18,
+                color: HanaColors.error,
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  l10n.downloadFailed,
+                  style: const TextStyle(
+                    fontSize: 13,
+                    color: HanaColors.error,
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: 16),
+        // Retry
         SizedBox(
           width: double.infinity,
+          height: 52,
           child: FilledButton(
             onPressed: _startDownload,
-            child: Text(l10n.updateNow),
+            style: FilledButton.styleFrom(
+              backgroundColor: HanaColors.primary,
+              foregroundColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Icon(Icons.refresh_rounded, size: 20),
+                const SizedBox(width: 8),
+                Text(
+                  l10n.updateRetry,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
-        const SizedBox(height: 8),
+        const SizedBox(height: 10),
         SizedBox(
           width: double.infinity,
-          child: TextButton(
-            onPressed: () => Navigator.of(context).pop(),
+          height: 44,
+          child: OutlinedButton(
+            onPressed: () =>
+                Navigator.of(context).pop(UpdateDialogResult.later),
+            style: OutlinedButton.styleFrom(
+              foregroundColor: HanaColors.onSurfaceVariant,
+              side: BorderSide(
+                color: HanaColors.outlineVariant.withAlpha(128),
+              ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+            ),
             child: Text(l10n.updateLater),
           ),
         ),
       ],
-    };
+    );
+  }
+}
+
+// -- Sub-widgets --
+
+class _VersionBadge extends StatelessWidget {
+  const _VersionBadge({
+    required this.label,
+    required this.version,
+    required this.isOld,
+  });
+
+  final String label;
+  final String version;
+  final bool isOld;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text(
+          label,
+          style: TextStyle(
+            fontSize: 10,
+            fontWeight: FontWeight.w600,
+            color: isOld
+                ? HanaColors.onSurfaceVariant
+                : HanaColors.primary,
+            letterSpacing: 0.3,
+          ),
+        ),
+        const SizedBox(height: 4),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+          decoration: BoxDecoration(
+            color: isOld
+                ? HanaColors.surfaceContainerHigh
+                : HanaColors.primaryContainer.withAlpha(128),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Text(
+            version,
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w700,
+              color: isOld
+                  ? HanaColors.onSurfaceVariant
+                  : HanaColors.primary,
+              fontFamily: 'Plus Jakarta Sans',
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }

@@ -17,6 +17,8 @@ _$AppSettingsImpl _$$AppSettingsImplFromJson(Map<String, dynamic> json) =>
       notificationsEnabled: json['notificationsEnabled'] as bool? ?? true,
       language: json['language'] as String? ?? '',
       darkModeEnabled: json['darkModeEnabled'] as bool? ?? false,
+      autoCheckUpdate: json['autoCheckUpdate'] as bool? ?? true,
+      skippedVersion: json['skippedVersion'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$AppSettingsImplToJson(_$AppSettingsImpl instance) =>
@@ -28,4 +30,6 @@ Map<String, dynamic> _$$AppSettingsImplToJson(_$AppSettingsImpl instance) =>
       'notificationsEnabled': instance.notificationsEnabled,
       'language': instance.language,
       'darkModeEnabled': instance.darkModeEnabled,
+      'autoCheckUpdate': instance.autoCheckUpdate,
+      'skippedVersion': instance.skippedVersion,
     };
