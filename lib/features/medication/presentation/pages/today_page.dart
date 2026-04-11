@@ -10,6 +10,7 @@ import 'package:hananote/features/medication/domain/usecases/get_today_schedule.
 import 'package:hananote/features/medication/presentation/bloc/today_schedule_bloc.dart';
 import 'package:hananote/features/medication/presentation/bloc/today_schedule_event.dart';
 import 'package:hananote/features/medication/presentation/bloc/today_schedule_state.dart';
+import 'package:hananote/core/widgets/petal_celebration.dart';
 import 'package:hananote/features/medication/presentation/widgets/countdown_card.dart';
 import 'package:hananote/features/medication/presentation/widgets/medication_status_card.dart';
 import 'package:hananote/features/medication/presentation/widgets/quote_card.dart';
@@ -37,7 +38,20 @@ class TodayPage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: HanaColors.background,
-      body: BlocBuilder<TodayScheduleBloc, TodayScheduleState>(
+      body: BlocListener<TodayScheduleBloc, TodayScheduleState>(
+        listenWhen: (prev, curr) {
+          final prevCount = prev.mapOrNull(
+            loaded: (s) => s.completedCount,
+          ) ?? 0;
+          final currCount = curr.mapOrNull(
+            loaded: (s) => s.completedCount,
+          ) ?? 0;
+          return currCount > prevCount;
+        },
+        listener: (context, state) {
+          PetalCelebration.show(context);
+        },
+        child: BlocBuilder<TodayScheduleBloc, TodayScheduleState>(
         builder: (context, state) {
           return CustomScrollView(
             physics: const BouncingScrollPhysics(),
@@ -161,6 +175,7 @@ class TodayPage extends StatelessWidget {
             ],
           );
         },
+      ),
       ),
     );
   }

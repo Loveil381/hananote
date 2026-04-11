@@ -97,7 +97,11 @@ class SettingsDetailPage extends StatelessWidget {
                             l10n,
                           ),
                         ),
-                        const Divider(height: 1, indent: 56),
+                        Container(
+                          height: 1,
+                          margin: const EdgeInsets.only(left: 56),
+                          color: HanaColors.primaryOf(context).withAlpha(13),
+                        ),
                         _SettingsTile(
                           icon: Icons.cake_outlined,
                           title: l10n.editHrtStartDate,
@@ -138,7 +142,11 @@ class SettingsDetailPage extends StatelessWidget {
                             settings.language,
                           ),
                         ),
-                        const Divider(height: 1, indent: 56),
+                        Container(
+                          height: 1,
+                          margin: const EdgeInsets.only(left: 56),
+                          color: HanaColors.primaryOf(context).withAlpha(13),
+                        ),
                         _SettingsTile(
                           icon: Icons.dark_mode_outlined,
                           title: l10n.darkMode,
@@ -172,7 +180,11 @@ class SettingsDetailPage extends StatelessWidget {
                                 .add(ToggleAppLock(enabled: val)),
                           ),
                         ),
-                        const Divider(height: 1, indent: 56),
+                        Container(
+                          height: 1,
+                          margin: const EdgeInsets.only(left: 56),
+                          color: HanaColors.primaryOf(context).withAlpha(13),
+                        ),
                         _SettingsTile(
                           icon: Icons.visibility_off_outlined,
                           title: l10n.privacyMode,
@@ -207,7 +219,11 @@ class SettingsDetailPage extends StatelessWidget {
                             activeTrackColor: HanaColors.primary,
                           ),
                         ),
-                        const Divider(height: 1, indent: 56),
+                        Container(
+                          height: 1,
+                          margin: const EdgeInsets.only(left: 56),
+                          color: HanaColors.primaryOf(context).withAlpha(13),
+                        ),
                         _SettingsTile(
                           icon: Icons.refresh_rounded,
                           title: l10n.updateCheckNow,
@@ -238,7 +254,11 @@ class SettingsDetailPage extends StatelessWidget {
                             ),
                           ),
                         ),
-                        const Divider(height: 1, indent: 56),
+                        Container(
+                          height: 1,
+                          margin: const EdgeInsets.only(left: 56),
+                          color: HanaColors.primaryOf(context).withAlpha(13),
+                        ),
                         _SettingsTile(
                           icon: Icons.privacy_tip_outlined,
                           title: l10n.privacyPolicy,
@@ -248,7 +268,11 @@ class SettingsDetailPage extends StatelessWidget {
                           ),
                           onTap: () => context.push('/legal/privacy'),
                         ),
-                        const Divider(height: 1, indent: 56),
+                        Container(
+                          height: 1,
+                          margin: const EdgeInsets.only(left: 56),
+                          color: HanaColors.primaryOf(context).withAlpha(13),
+                        ),
                         _SettingsTile(
                           icon: Icons.description_outlined,
                           title: l10n.termsOfUse,
