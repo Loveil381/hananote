@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hashlib/hashlib.dart';
 import 'package:injectable/injectable.dart';
+import 'package:pointycastle/export.dart' as pc;
 
 /// Manages key derivation and secure storage.
 ///
@@ -138,6 +139,15 @@ class KeyManager {
   }
 
   Uint8List _deriveKey(String password, Uint8List salt) {
+    if (kIsWeb) {
+      // Web: use PBKDF2-SHA256 (fast, browser-friendly, no memory issues).
+      // Argon2 freezes the browser even at reduced params due to JS main thread.
+      final pbkdf2 = pc.PBKDF2KeyDerivator(pc.HMac(pc.SHA256Digest(), 64))
+        ..init(pc.Pbkdf2Parameters(salt, 100000, _hashLength));
+      return pbkdf2.process(Uint8List.fromList(utf8.encode(password)));
+    }
+
+    // Native: use Argon2id (strong memory-hard KDF).
     final derivator = Argon2(
       parallelism: _parallelism,
       memorySizeKB: _memorySizeKb,
