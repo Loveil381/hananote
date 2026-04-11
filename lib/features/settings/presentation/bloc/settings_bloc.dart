@@ -33,6 +33,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     on<WipeSettingsData>(_onWipeData);
     on<ExportDataEvent>(_onExportData);
     on<ChangeLanguage>(_onChangeLanguage);
+    on<ToggleDarkMode>(_onToggleDarkMode);
   }
 
   final GetProfileDashboard _getProfileDashboard;
@@ -133,6 +134,27 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
       final currentState = state as SettingsLoaded;
       final newSettings = currentState.settings.copyWith(
         notificationsEnabled: event.enabled,
+      );
+
+      final failureOrSettings = await _updateAppSettings(newSettings);
+
+      failureOrSettings.fold(
+        (failure) => emit(SettingsError(failureMessage(failure))),
+        (updatedSettings) => emit(
+          currentState.copyWith(settings: updatedSettings),
+        ),
+      );
+    }
+  }
+
+  Future<void> _onToggleDarkMode(
+    ToggleDarkMode event,
+    Emitter<SettingsState> emit,
+  ) async {
+    if (state is SettingsLoaded) {
+      final currentState = state as SettingsLoaded;
+      final newSettings = currentState.settings.copyWith(
+        darkModeEnabled: event.enabled,
       );
 
       final failureOrSettings = await _updateAppSettings(newSettings);

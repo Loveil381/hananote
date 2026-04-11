@@ -76,62 +76,87 @@ class _ScheduleEditorPageState extends State<ScheduleEditorPage> {
           body: ListView(
             padding: const EdgeInsets.all(24),
             children: [
+              if (state.drugName != null) ...[
+                Card(
+                  color: theme.colorScheme.surfaceContainerLow,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 12,
+                    ),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.medication_outlined,
+                          color: theme.colorScheme.primary,
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                state.drugName!,
+                                style: theme.textTheme.titleSmall,
+                              ),
+                              if (state.administrationRoute != null)
+                                Text(
+                                  state.administrationRoute!.localizedName(l10n),
+                                  style: theme.textTheme.bodySmall?.copyWith(
+                                    color: theme.colorScheme.onSurfaceVariant,
+                                  ),
+                                ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
+              ],
               if (state.validation?.dosageError != null)
                 Text(
                   _localizeValidation(state.validation!.dosageError!, l10n),
                   style: TextStyle(color: errorColor),
                 ),
-              Row(
-                children: [
-                  Expanded(
-                    child: TextField(
-                      controller: _dosageController,
-                      keyboardType: const TextInputType.numberWithOptions(
-                        decimal: true,
-                      ),
-                      decoration: InputDecoration(
-                        labelText: l10n.dosage,
-                        border: const OutlineInputBorder(),
-                      ),
-                      onChanged: (val) {
-                        final parsed = double.tryParse(val);
-                        if (parsed != null) {
-                          context
-                              .read<ScheduleEditorCubit>()
-                              .setDosageAmount(parsed);
-                        }
-                      },
-                    ),
-                  ),
-                  const SizedBox(width: 16),
-                  if (state.administrationRoute != null)
-                    Expanded(
-                      child: DropdownButtonFormField<DosageUnit>(
-                        // ignore: deprecated_member_use
-                        value: state.dosageUnit,
-                        decoration: InputDecoration(
-                          labelText: l10n.unit,
-                          border: const OutlineInputBorder(),
-                        ),
-                        items: state.administrationRoute!.supportedUnits
-                            .map(
-                              (unit) => DropdownMenuItem(
-                                value: unit,
-                                child: Text(unit.localizedName(l10n)),
-                              ),
-                            )
-                            .toList(),
-                        onChanged: (val) {
-                          if (val != null) {
-                            context
-                                .read<ScheduleEditorCubit>()
-                                .setDosageUnit(val);
-                          }
-                        },
-                      ),
-                    ),
-                ],
+              TextField(
+                controller: _dosageController,
+                keyboardType: const TextInputType.numberWithOptions(
+                  decimal: true,
+                ),
+                decoration: InputDecoration(
+                  labelText: l10n.dosage,
+                  border: const OutlineInputBorder(),
+                ),
+                onChanged: (val) {
+                  final parsed = double.tryParse(val);
+                  if (parsed != null) {
+                    context
+                        .read<ScheduleEditorCubit>()
+                        .setDosageAmount(parsed);
+                  }
+                },
               ),
+              if (state.administrationRoute != null) ...[
+                const SizedBox(height: 12),
+                Text(l10n.unit, style: theme.textTheme.titleMedium),
+                const SizedBox(height: 8),
+                Wrap(
+                  spacing: 8,
+                  children: state.administrationRoute!.supportedUnits
+                      .map(
+                        (unit) => ChoiceChip(
+                          label: Text(unit.localizedName(l10n)),
+                          selected: state.dosageUnit == unit,
+                          onSelected: (_) => context
+                              .read<ScheduleEditorCubit>()
+                              .setDosageUnit(unit),
+                        ),
+                      )
+                      .toList(),
+                ),
+              ],
               const SizedBox(height: 24),
               Text(l10n.frequency, style: theme.textTheme.titleMedium),
               if (state.validation?.frequencyError != null)

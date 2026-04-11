@@ -28,6 +28,7 @@ mixin _$SettingsEvent {
     required TResult Function(bool enabled) toggleNotifications,
     required TResult Function() exportData,
     required TResult Function(String languageCode) changeLanguage,
+    required TResult Function(bool enabled) toggleDarkMode,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -42,6 +43,7 @@ mixin _$SettingsEvent {
     TResult? Function(bool enabled)? toggleNotifications,
     TResult? Function()? exportData,
     TResult? Function(String languageCode)? changeLanguage,
+    TResult? Function(bool enabled)? toggleDarkMode,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -56,6 +58,7 @@ mixin _$SettingsEvent {
     TResult Function(bool enabled)? toggleNotifications,
     TResult Function()? exportData,
     TResult Function(String languageCode)? changeLanguage,
+    TResult Function(bool enabled)? toggleDarkMode,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -71,6 +74,7 @@ mixin _$SettingsEvent {
     required TResult Function(ToggleNotifications value) toggleNotifications,
     required TResult Function(ExportDataEvent value) exportData,
     required TResult Function(ChangeLanguage value) changeLanguage,
+    required TResult Function(ToggleDarkMode value) toggleDarkMode,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -85,6 +89,7 @@ mixin _$SettingsEvent {
     TResult? Function(ToggleNotifications value)? toggleNotifications,
     TResult? Function(ExportDataEvent value)? exportData,
     TResult? Function(ChangeLanguage value)? changeLanguage,
+    TResult? Function(ToggleDarkMode value)? toggleDarkMode,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -99,6 +104,7 @@ mixin _$SettingsEvent {
     TResult Function(ToggleNotifications value)? toggleNotifications,
     TResult Function(ExportDataEvent value)? exportData,
     TResult Function(ChangeLanguage value)? changeLanguage,
+    TResult Function(ToggleDarkMode value)? toggleDarkMode,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -178,6 +184,7 @@ class _$LoadSettingsDashboardImpl implements LoadSettingsDashboard {
     required TResult Function(bool enabled) toggleNotifications,
     required TResult Function() exportData,
     required TResult Function(String languageCode) changeLanguage,
+    required TResult Function(bool enabled) toggleDarkMode,
   }) {
     return loadDashboard();
   }
@@ -195,6 +202,7 @@ class _$LoadSettingsDashboardImpl implements LoadSettingsDashboard {
     TResult? Function(bool enabled)? toggleNotifications,
     TResult? Function()? exportData,
     TResult? Function(String languageCode)? changeLanguage,
+    TResult? Function(bool enabled)? toggleDarkMode,
   }) {
     return loadDashboard?.call();
   }
@@ -212,6 +220,7 @@ class _$LoadSettingsDashboardImpl implements LoadSettingsDashboard {
     TResult Function(bool enabled)? toggleNotifications,
     TResult Function()? exportData,
     TResult Function(String languageCode)? changeLanguage,
+    TResult Function(bool enabled)? toggleDarkMode,
     required TResult orElse(),
   }) {
     if (loadDashboard != null) {
@@ -233,6 +242,7 @@ class _$LoadSettingsDashboardImpl implements LoadSettingsDashboard {
     required TResult Function(ToggleNotifications value) toggleNotifications,
     required TResult Function(ExportDataEvent value) exportData,
     required TResult Function(ChangeLanguage value) changeLanguage,
+    required TResult Function(ToggleDarkMode value) toggleDarkMode,
   }) {
     return loadDashboard(this);
   }
@@ -250,6 +260,7 @@ class _$LoadSettingsDashboardImpl implements LoadSettingsDashboard {
     TResult? Function(ToggleNotifications value)? toggleNotifications,
     TResult? Function(ExportDataEvent value)? exportData,
     TResult? Function(ChangeLanguage value)? changeLanguage,
+    TResult? Function(ToggleDarkMode value)? toggleDarkMode,
   }) {
     return loadDashboard?.call(this);
   }
@@ -267,6 +278,7 @@ class _$LoadSettingsDashboardImpl implements LoadSettingsDashboard {
     TResult Function(ToggleNotifications value)? toggleNotifications,
     TResult Function(ExportDataEvent value)? exportData,
     TResult Function(ChangeLanguage value)? changeLanguage,
+    TResult Function(ToggleDarkMode value)? toggleDarkMode,
     required TResult orElse(),
   }) {
     if (loadDashboard != null) {
@@ -358,6 +370,7 @@ class _$ToggleAppLockImpl implements ToggleAppLock {
     required TResult Function(bool enabled) toggleNotifications,
     required TResult Function() exportData,
     required TResult Function(String languageCode) changeLanguage,
+    required TResult Function(bool enabled) toggleDarkMode,
   }) {
     return toggleAppLock(enabled);
   }
@@ -375,6 +388,7 @@ class _$ToggleAppLockImpl implements ToggleAppLock {
     TResult? Function(bool enabled)? toggleNotifications,
     TResult? Function()? exportData,
     TResult? Function(String languageCode)? changeLanguage,
+    TResult? Function(bool enabled)? toggleDarkMode,
   }) {
     return toggleAppLock?.call(enabled);
   }
@@ -392,6 +406,7 @@ class _$ToggleAppLockImpl implements ToggleAppLock {
     TResult Function(bool enabled)? toggleNotifications,
     TResult Function()? exportData,
     TResult Function(String languageCode)? changeLanguage,
+    TResult Function(bool enabled)? toggleDarkMode,
     required TResult orElse(),
   }) {
     if (toggleAppLock != null) {
@@ -413,6 +428,7 @@ class _$ToggleAppLockImpl implements ToggleAppLock {
     required TResult Function(ToggleNotifications value) toggleNotifications,
     required TResult Function(ExportDataEvent value) exportData,
     required TResult Function(ChangeLanguage value) changeLanguage,
+    required TResult Function(ToggleDarkMode value) toggleDarkMode,
   }) {
     return toggleAppLock(this);
   }
@@ -430,6 +446,7 @@ class _$ToggleAppLockImpl implements ToggleAppLock {
     TResult? Function(ToggleNotifications value)? toggleNotifications,
     TResult? Function(ExportDataEvent value)? exportData,
     TResult? Function(ChangeLanguage value)? changeLanguage,
+    TResult? Function(ToggleDarkMode value)? toggleDarkMode,
   }) {
     return toggleAppLock?.call(this);
   }
@@ -447,6 +464,7 @@ class _$ToggleAppLockImpl implements ToggleAppLock {
     TResult Function(ToggleNotifications value)? toggleNotifications,
     TResult Function(ExportDataEvent value)? exportData,
     TResult Function(ChangeLanguage value)? changeLanguage,
+    TResult Function(ToggleDarkMode value)? toggleDarkMode,
     required TResult orElse(),
   }) {
     if (toggleAppLock != null) {
@@ -548,6 +566,7 @@ class _$TogglePrivacyModeImpl implements TogglePrivacyMode {
     required TResult Function(bool enabled) toggleNotifications,
     required TResult Function() exportData,
     required TResult Function(String languageCode) changeLanguage,
+    required TResult Function(bool enabled) toggleDarkMode,
   }) {
     return togglePrivacyMode(enabled);
   }
@@ -565,6 +584,7 @@ class _$TogglePrivacyModeImpl implements TogglePrivacyMode {
     TResult? Function(bool enabled)? toggleNotifications,
     TResult? Function()? exportData,
     TResult? Function(String languageCode)? changeLanguage,
+    TResult? Function(bool enabled)? toggleDarkMode,
   }) {
     return togglePrivacyMode?.call(enabled);
   }
@@ -582,6 +602,7 @@ class _$TogglePrivacyModeImpl implements TogglePrivacyMode {
     TResult Function(bool enabled)? toggleNotifications,
     TResult Function()? exportData,
     TResult Function(String languageCode)? changeLanguage,
+    TResult Function(bool enabled)? toggleDarkMode,
     required TResult orElse(),
   }) {
     if (togglePrivacyMode != null) {
@@ -603,6 +624,7 @@ class _$TogglePrivacyModeImpl implements TogglePrivacyMode {
     required TResult Function(ToggleNotifications value) toggleNotifications,
     required TResult Function(ExportDataEvent value) exportData,
     required TResult Function(ChangeLanguage value) changeLanguage,
+    required TResult Function(ToggleDarkMode value) toggleDarkMode,
   }) {
     return togglePrivacyMode(this);
   }
@@ -620,6 +642,7 @@ class _$TogglePrivacyModeImpl implements TogglePrivacyMode {
     TResult? Function(ToggleNotifications value)? toggleNotifications,
     TResult? Function(ExportDataEvent value)? exportData,
     TResult? Function(ChangeLanguage value)? changeLanguage,
+    TResult? Function(ToggleDarkMode value)? toggleDarkMode,
   }) {
     return togglePrivacyMode?.call(this);
   }
@@ -637,6 +660,7 @@ class _$TogglePrivacyModeImpl implements TogglePrivacyMode {
     TResult Function(ToggleNotifications value)? toggleNotifications,
     TResult Function(ExportDataEvent value)? exportData,
     TResult Function(ChangeLanguage value)? changeLanguage,
+    TResult Function(ToggleDarkMode value)? toggleDarkMode,
     required TResult orElse(),
   }) {
     if (togglePrivacyMode != null) {
@@ -738,6 +762,7 @@ class _$ToggleBlurOverlayImpl implements ToggleBlurOverlay {
     required TResult Function(bool enabled) toggleNotifications,
     required TResult Function() exportData,
     required TResult Function(String languageCode) changeLanguage,
+    required TResult Function(bool enabled) toggleDarkMode,
   }) {
     return toggleBlurOverlay(enabled);
   }
@@ -755,6 +780,7 @@ class _$ToggleBlurOverlayImpl implements ToggleBlurOverlay {
     TResult? Function(bool enabled)? toggleNotifications,
     TResult? Function()? exportData,
     TResult? Function(String languageCode)? changeLanguage,
+    TResult? Function(bool enabled)? toggleDarkMode,
   }) {
     return toggleBlurOverlay?.call(enabled);
   }
@@ -772,6 +798,7 @@ class _$ToggleBlurOverlayImpl implements ToggleBlurOverlay {
     TResult Function(bool enabled)? toggleNotifications,
     TResult Function()? exportData,
     TResult Function(String languageCode)? changeLanguage,
+    TResult Function(bool enabled)? toggleDarkMode,
     required TResult orElse(),
   }) {
     if (toggleBlurOverlay != null) {
@@ -793,6 +820,7 @@ class _$ToggleBlurOverlayImpl implements ToggleBlurOverlay {
     required TResult Function(ToggleNotifications value) toggleNotifications,
     required TResult Function(ExportDataEvent value) exportData,
     required TResult Function(ChangeLanguage value) changeLanguage,
+    required TResult Function(ToggleDarkMode value) toggleDarkMode,
   }) {
     return toggleBlurOverlay(this);
   }
@@ -810,6 +838,7 @@ class _$ToggleBlurOverlayImpl implements ToggleBlurOverlay {
     TResult? Function(ToggleNotifications value)? toggleNotifications,
     TResult? Function(ExportDataEvent value)? exportData,
     TResult? Function(ChangeLanguage value)? changeLanguage,
+    TResult? Function(ToggleDarkMode value)? toggleDarkMode,
   }) {
     return toggleBlurOverlay?.call(this);
   }
@@ -827,6 +856,7 @@ class _$ToggleBlurOverlayImpl implements ToggleBlurOverlay {
     TResult Function(ToggleNotifications value)? toggleNotifications,
     TResult Function(ExportDataEvent value)? exportData,
     TResult Function(ChangeLanguage value)? changeLanguage,
+    TResult Function(ToggleDarkMode value)? toggleDarkMode,
     required TResult orElse(),
   }) {
     if (toggleBlurOverlay != null) {
@@ -928,6 +958,7 @@ class _$UpdateDisplayNameImpl implements UpdateDisplayName {
     required TResult Function(bool enabled) toggleNotifications,
     required TResult Function() exportData,
     required TResult Function(String languageCode) changeLanguage,
+    required TResult Function(bool enabled) toggleDarkMode,
   }) {
     return updateDisplayName(name);
   }
@@ -945,6 +976,7 @@ class _$UpdateDisplayNameImpl implements UpdateDisplayName {
     TResult? Function(bool enabled)? toggleNotifications,
     TResult? Function()? exportData,
     TResult? Function(String languageCode)? changeLanguage,
+    TResult? Function(bool enabled)? toggleDarkMode,
   }) {
     return updateDisplayName?.call(name);
   }
@@ -962,6 +994,7 @@ class _$UpdateDisplayNameImpl implements UpdateDisplayName {
     TResult Function(bool enabled)? toggleNotifications,
     TResult Function()? exportData,
     TResult Function(String languageCode)? changeLanguage,
+    TResult Function(bool enabled)? toggleDarkMode,
     required TResult orElse(),
   }) {
     if (updateDisplayName != null) {
@@ -983,6 +1016,7 @@ class _$UpdateDisplayNameImpl implements UpdateDisplayName {
     required TResult Function(ToggleNotifications value) toggleNotifications,
     required TResult Function(ExportDataEvent value) exportData,
     required TResult Function(ChangeLanguage value) changeLanguage,
+    required TResult Function(ToggleDarkMode value) toggleDarkMode,
   }) {
     return updateDisplayName(this);
   }
@@ -1000,6 +1034,7 @@ class _$UpdateDisplayNameImpl implements UpdateDisplayName {
     TResult? Function(ToggleNotifications value)? toggleNotifications,
     TResult? Function(ExportDataEvent value)? exportData,
     TResult? Function(ChangeLanguage value)? changeLanguage,
+    TResult? Function(ToggleDarkMode value)? toggleDarkMode,
   }) {
     return updateDisplayName?.call(this);
   }
@@ -1017,6 +1052,7 @@ class _$UpdateDisplayNameImpl implements UpdateDisplayName {
     TResult Function(ToggleNotifications value)? toggleNotifications,
     TResult Function(ExportDataEvent value)? exportData,
     TResult Function(ChangeLanguage value)? changeLanguage,
+    TResult Function(ToggleDarkMode value)? toggleDarkMode,
     required TResult orElse(),
   }) {
     if (updateDisplayName != null) {
@@ -1118,6 +1154,7 @@ class _$UpdateHrtStartDateImpl implements UpdateHrtStartDate {
     required TResult Function(bool enabled) toggleNotifications,
     required TResult Function() exportData,
     required TResult Function(String languageCode) changeLanguage,
+    required TResult Function(bool enabled) toggleDarkMode,
   }) {
     return updateHrtStartDate(date);
   }
@@ -1135,6 +1172,7 @@ class _$UpdateHrtStartDateImpl implements UpdateHrtStartDate {
     TResult? Function(bool enabled)? toggleNotifications,
     TResult? Function()? exportData,
     TResult? Function(String languageCode)? changeLanguage,
+    TResult? Function(bool enabled)? toggleDarkMode,
   }) {
     return updateHrtStartDate?.call(date);
   }
@@ -1152,6 +1190,7 @@ class _$UpdateHrtStartDateImpl implements UpdateHrtStartDate {
     TResult Function(bool enabled)? toggleNotifications,
     TResult Function()? exportData,
     TResult Function(String languageCode)? changeLanguage,
+    TResult Function(bool enabled)? toggleDarkMode,
     required TResult orElse(),
   }) {
     if (updateHrtStartDate != null) {
@@ -1173,6 +1212,7 @@ class _$UpdateHrtStartDateImpl implements UpdateHrtStartDate {
     required TResult Function(ToggleNotifications value) toggleNotifications,
     required TResult Function(ExportDataEvent value) exportData,
     required TResult Function(ChangeLanguage value) changeLanguage,
+    required TResult Function(ToggleDarkMode value) toggleDarkMode,
   }) {
     return updateHrtStartDate(this);
   }
@@ -1190,6 +1230,7 @@ class _$UpdateHrtStartDateImpl implements UpdateHrtStartDate {
     TResult? Function(ToggleNotifications value)? toggleNotifications,
     TResult? Function(ExportDataEvent value)? exportData,
     TResult? Function(ChangeLanguage value)? changeLanguage,
+    TResult? Function(ToggleDarkMode value)? toggleDarkMode,
   }) {
     return updateHrtStartDate?.call(this);
   }
@@ -1207,6 +1248,7 @@ class _$UpdateHrtStartDateImpl implements UpdateHrtStartDate {
     TResult Function(ToggleNotifications value)? toggleNotifications,
     TResult Function(ExportDataEvent value)? exportData,
     TResult Function(ChangeLanguage value)? changeLanguage,
+    TResult Function(ToggleDarkMode value)? toggleDarkMode,
     required TResult orElse(),
   }) {
     if (updateHrtStartDate != null) {
@@ -1280,6 +1322,7 @@ class _$WipeSettingsDataImpl implements WipeSettingsData {
     required TResult Function(bool enabled) toggleNotifications,
     required TResult Function() exportData,
     required TResult Function(String languageCode) changeLanguage,
+    required TResult Function(bool enabled) toggleDarkMode,
   }) {
     return wipeData();
   }
@@ -1297,6 +1340,7 @@ class _$WipeSettingsDataImpl implements WipeSettingsData {
     TResult? Function(bool enabled)? toggleNotifications,
     TResult? Function()? exportData,
     TResult? Function(String languageCode)? changeLanguage,
+    TResult? Function(bool enabled)? toggleDarkMode,
   }) {
     return wipeData?.call();
   }
@@ -1314,6 +1358,7 @@ class _$WipeSettingsDataImpl implements WipeSettingsData {
     TResult Function(bool enabled)? toggleNotifications,
     TResult Function()? exportData,
     TResult Function(String languageCode)? changeLanguage,
+    TResult Function(bool enabled)? toggleDarkMode,
     required TResult orElse(),
   }) {
     if (wipeData != null) {
@@ -1335,6 +1380,7 @@ class _$WipeSettingsDataImpl implements WipeSettingsData {
     required TResult Function(ToggleNotifications value) toggleNotifications,
     required TResult Function(ExportDataEvent value) exportData,
     required TResult Function(ChangeLanguage value) changeLanguage,
+    required TResult Function(ToggleDarkMode value) toggleDarkMode,
   }) {
     return wipeData(this);
   }
@@ -1352,6 +1398,7 @@ class _$WipeSettingsDataImpl implements WipeSettingsData {
     TResult? Function(ToggleNotifications value)? toggleNotifications,
     TResult? Function(ExportDataEvent value)? exportData,
     TResult? Function(ChangeLanguage value)? changeLanguage,
+    TResult? Function(ToggleDarkMode value)? toggleDarkMode,
   }) {
     return wipeData?.call(this);
   }
@@ -1369,6 +1416,7 @@ class _$WipeSettingsDataImpl implements WipeSettingsData {
     TResult Function(ToggleNotifications value)? toggleNotifications,
     TResult Function(ExportDataEvent value)? exportData,
     TResult Function(ChangeLanguage value)? changeLanguage,
+    TResult Function(ToggleDarkMode value)? toggleDarkMode,
     required TResult orElse(),
   }) {
     if (wipeData != null) {
@@ -1461,6 +1509,7 @@ class _$ToggleNotificationsImpl implements ToggleNotifications {
     required TResult Function(bool enabled) toggleNotifications,
     required TResult Function() exportData,
     required TResult Function(String languageCode) changeLanguage,
+    required TResult Function(bool enabled) toggleDarkMode,
   }) {
     return toggleNotifications(enabled);
   }
@@ -1478,6 +1527,7 @@ class _$ToggleNotificationsImpl implements ToggleNotifications {
     TResult? Function(bool enabled)? toggleNotifications,
     TResult? Function()? exportData,
     TResult? Function(String languageCode)? changeLanguage,
+    TResult? Function(bool enabled)? toggleDarkMode,
   }) {
     return toggleNotifications?.call(enabled);
   }
@@ -1495,6 +1545,7 @@ class _$ToggleNotificationsImpl implements ToggleNotifications {
     TResult Function(bool enabled)? toggleNotifications,
     TResult Function()? exportData,
     TResult Function(String languageCode)? changeLanguage,
+    TResult Function(bool enabled)? toggleDarkMode,
     required TResult orElse(),
   }) {
     if (toggleNotifications != null) {
@@ -1516,6 +1567,7 @@ class _$ToggleNotificationsImpl implements ToggleNotifications {
     required TResult Function(ToggleNotifications value) toggleNotifications,
     required TResult Function(ExportDataEvent value) exportData,
     required TResult Function(ChangeLanguage value) changeLanguage,
+    required TResult Function(ToggleDarkMode value) toggleDarkMode,
   }) {
     return toggleNotifications(this);
   }
@@ -1533,6 +1585,7 @@ class _$ToggleNotificationsImpl implements ToggleNotifications {
     TResult? Function(ToggleNotifications value)? toggleNotifications,
     TResult? Function(ExportDataEvent value)? exportData,
     TResult? Function(ChangeLanguage value)? changeLanguage,
+    TResult? Function(ToggleDarkMode value)? toggleDarkMode,
   }) {
     return toggleNotifications?.call(this);
   }
@@ -1550,6 +1603,7 @@ class _$ToggleNotificationsImpl implements ToggleNotifications {
     TResult Function(ToggleNotifications value)? toggleNotifications,
     TResult Function(ExportDataEvent value)? exportData,
     TResult Function(ChangeLanguage value)? changeLanguage,
+    TResult Function(ToggleDarkMode value)? toggleDarkMode,
     required TResult orElse(),
   }) {
     if (toggleNotifications != null) {
@@ -1623,6 +1677,7 @@ class _$ExportDataEventImpl implements ExportDataEvent {
     required TResult Function(bool enabled) toggleNotifications,
     required TResult Function() exportData,
     required TResult Function(String languageCode) changeLanguage,
+    required TResult Function(bool enabled) toggleDarkMode,
   }) {
     return exportData();
   }
@@ -1640,6 +1695,7 @@ class _$ExportDataEventImpl implements ExportDataEvent {
     TResult? Function(bool enabled)? toggleNotifications,
     TResult? Function()? exportData,
     TResult? Function(String languageCode)? changeLanguage,
+    TResult? Function(bool enabled)? toggleDarkMode,
   }) {
     return exportData?.call();
   }
@@ -1657,6 +1713,7 @@ class _$ExportDataEventImpl implements ExportDataEvent {
     TResult Function(bool enabled)? toggleNotifications,
     TResult Function()? exportData,
     TResult Function(String languageCode)? changeLanguage,
+    TResult Function(bool enabled)? toggleDarkMode,
     required TResult orElse(),
   }) {
     if (exportData != null) {
@@ -1678,6 +1735,7 @@ class _$ExportDataEventImpl implements ExportDataEvent {
     required TResult Function(ToggleNotifications value) toggleNotifications,
     required TResult Function(ExportDataEvent value) exportData,
     required TResult Function(ChangeLanguage value) changeLanguage,
+    required TResult Function(ToggleDarkMode value) toggleDarkMode,
   }) {
     return exportData(this);
   }
@@ -1695,6 +1753,7 @@ class _$ExportDataEventImpl implements ExportDataEvent {
     TResult? Function(ToggleNotifications value)? toggleNotifications,
     TResult? Function(ExportDataEvent value)? exportData,
     TResult? Function(ChangeLanguage value)? changeLanguage,
+    TResult? Function(ToggleDarkMode value)? toggleDarkMode,
   }) {
     return exportData?.call(this);
   }
@@ -1712,6 +1771,7 @@ class _$ExportDataEventImpl implements ExportDataEvent {
     TResult Function(ToggleNotifications value)? toggleNotifications,
     TResult Function(ExportDataEvent value)? exportData,
     TResult Function(ChangeLanguage value)? changeLanguage,
+    TResult Function(ToggleDarkMode value)? toggleDarkMode,
     required TResult orElse(),
   }) {
     if (exportData != null) {
@@ -1805,6 +1865,7 @@ class _$ChangeLanguageImpl implements ChangeLanguage {
     required TResult Function(bool enabled) toggleNotifications,
     required TResult Function() exportData,
     required TResult Function(String languageCode) changeLanguage,
+    required TResult Function(bool enabled) toggleDarkMode,
   }) {
     return changeLanguage(languageCode);
   }
@@ -1822,6 +1883,7 @@ class _$ChangeLanguageImpl implements ChangeLanguage {
     TResult? Function(bool enabled)? toggleNotifications,
     TResult? Function()? exportData,
     TResult? Function(String languageCode)? changeLanguage,
+    TResult? Function(bool enabled)? toggleDarkMode,
   }) {
     return changeLanguage?.call(languageCode);
   }
@@ -1839,6 +1901,7 @@ class _$ChangeLanguageImpl implements ChangeLanguage {
     TResult Function(bool enabled)? toggleNotifications,
     TResult Function()? exportData,
     TResult Function(String languageCode)? changeLanguage,
+    TResult Function(bool enabled)? toggleDarkMode,
     required TResult orElse(),
   }) {
     if (changeLanguage != null) {
@@ -1860,6 +1923,7 @@ class _$ChangeLanguageImpl implements ChangeLanguage {
     required TResult Function(ToggleNotifications value) toggleNotifications,
     required TResult Function(ExportDataEvent value) exportData,
     required TResult Function(ChangeLanguage value) changeLanguage,
+    required TResult Function(ToggleDarkMode value) toggleDarkMode,
   }) {
     return changeLanguage(this);
   }
@@ -1877,6 +1941,7 @@ class _$ChangeLanguageImpl implements ChangeLanguage {
     TResult? Function(ToggleNotifications value)? toggleNotifications,
     TResult? Function(ExportDataEvent value)? exportData,
     TResult? Function(ChangeLanguage value)? changeLanguage,
+    TResult? Function(ToggleDarkMode value)? toggleDarkMode,
   }) {
     return changeLanguage?.call(this);
   }
@@ -1894,6 +1959,7 @@ class _$ChangeLanguageImpl implements ChangeLanguage {
     TResult Function(ToggleNotifications value)? toggleNotifications,
     TResult Function(ExportDataEvent value)? exportData,
     TResult Function(ChangeLanguage value)? changeLanguage,
+    TResult Function(ToggleDarkMode value)? toggleDarkMode,
     required TResult orElse(),
   }) {
     if (changeLanguage != null) {
@@ -1913,5 +1979,201 @@ abstract class ChangeLanguage implements SettingsEvent {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ChangeLanguageImplCopyWith<_$ChangeLanguageImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ToggleDarkModeImplCopyWith<$Res> {
+  factory _$$ToggleDarkModeImplCopyWith(_$ToggleDarkModeImpl value,
+          $Res Function(_$ToggleDarkModeImpl) then) =
+      __$$ToggleDarkModeImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool enabled});
+}
+
+/// @nodoc
+class __$$ToggleDarkModeImplCopyWithImpl<$Res>
+    extends _$SettingsEventCopyWithImpl<$Res, _$ToggleDarkModeImpl>
+    implements _$$ToggleDarkModeImplCopyWith<$Res> {
+  __$$ToggleDarkModeImplCopyWithImpl(
+      _$ToggleDarkModeImpl _value, $Res Function(_$ToggleDarkModeImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of SettingsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? enabled = null,
+  }) {
+    return _then(_$ToggleDarkModeImpl(
+      enabled: null == enabled
+          ? _value.enabled
+          : enabled // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ToggleDarkModeImpl implements ToggleDarkMode {
+  const _$ToggleDarkModeImpl({required this.enabled});
+
+  @override
+  final bool enabled;
+
+  @override
+  String toString() {
+    return 'SettingsEvent.toggleDarkMode(enabled: $enabled)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ToggleDarkModeImpl &&
+            (identical(other.enabled, enabled) || other.enabled == enabled));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, enabled);
+
+  /// Create a copy of SettingsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ToggleDarkModeImplCopyWith<_$ToggleDarkModeImpl> get copyWith =>
+      __$$ToggleDarkModeImplCopyWithImpl<_$ToggleDarkModeImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadDashboard,
+    required TResult Function(bool enabled) toggleAppLock,
+    required TResult Function(bool enabled) togglePrivacyMode,
+    required TResult Function(bool enabled) toggleBlurOverlay,
+    required TResult Function(String name) updateDisplayName,
+    required TResult Function(DateTime date) updateHrtStartDate,
+    required TResult Function() wipeData,
+    required TResult Function(bool enabled) toggleNotifications,
+    required TResult Function() exportData,
+    required TResult Function(String languageCode) changeLanguage,
+    required TResult Function(bool enabled) toggleDarkMode,
+  }) {
+    return toggleDarkMode(enabled);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loadDashboard,
+    TResult? Function(bool enabled)? toggleAppLock,
+    TResult? Function(bool enabled)? togglePrivacyMode,
+    TResult? Function(bool enabled)? toggleBlurOverlay,
+    TResult? Function(String name)? updateDisplayName,
+    TResult? Function(DateTime date)? updateHrtStartDate,
+    TResult? Function()? wipeData,
+    TResult? Function(bool enabled)? toggleNotifications,
+    TResult? Function()? exportData,
+    TResult? Function(String languageCode)? changeLanguage,
+    TResult? Function(bool enabled)? toggleDarkMode,
+  }) {
+    return toggleDarkMode?.call(enabled);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadDashboard,
+    TResult Function(bool enabled)? toggleAppLock,
+    TResult Function(bool enabled)? togglePrivacyMode,
+    TResult Function(bool enabled)? toggleBlurOverlay,
+    TResult Function(String name)? updateDisplayName,
+    TResult Function(DateTime date)? updateHrtStartDate,
+    TResult Function()? wipeData,
+    TResult Function(bool enabled)? toggleNotifications,
+    TResult Function()? exportData,
+    TResult Function(String languageCode)? changeLanguage,
+    TResult Function(bool enabled)? toggleDarkMode,
+    required TResult orElse(),
+  }) {
+    if (toggleDarkMode != null) {
+      return toggleDarkMode(enabled);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadSettingsDashboard value) loadDashboard,
+    required TResult Function(ToggleAppLock value) toggleAppLock,
+    required TResult Function(TogglePrivacyMode value) togglePrivacyMode,
+    required TResult Function(ToggleBlurOverlay value) toggleBlurOverlay,
+    required TResult Function(UpdateDisplayName value) updateDisplayName,
+    required TResult Function(UpdateHrtStartDate value) updateHrtStartDate,
+    required TResult Function(WipeSettingsData value) wipeData,
+    required TResult Function(ToggleNotifications value) toggleNotifications,
+    required TResult Function(ExportDataEvent value) exportData,
+    required TResult Function(ChangeLanguage value) changeLanguage,
+    required TResult Function(ToggleDarkMode value) toggleDarkMode,
+  }) {
+    return toggleDarkMode(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LoadSettingsDashboard value)? loadDashboard,
+    TResult? Function(ToggleAppLock value)? toggleAppLock,
+    TResult? Function(TogglePrivacyMode value)? togglePrivacyMode,
+    TResult? Function(ToggleBlurOverlay value)? toggleBlurOverlay,
+    TResult? Function(UpdateDisplayName value)? updateDisplayName,
+    TResult? Function(UpdateHrtStartDate value)? updateHrtStartDate,
+    TResult? Function(WipeSettingsData value)? wipeData,
+    TResult? Function(ToggleNotifications value)? toggleNotifications,
+    TResult? Function(ExportDataEvent value)? exportData,
+    TResult? Function(ChangeLanguage value)? changeLanguage,
+    TResult? Function(ToggleDarkMode value)? toggleDarkMode,
+  }) {
+    return toggleDarkMode?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadSettingsDashboard value)? loadDashboard,
+    TResult Function(ToggleAppLock value)? toggleAppLock,
+    TResult Function(TogglePrivacyMode value)? togglePrivacyMode,
+    TResult Function(ToggleBlurOverlay value)? toggleBlurOverlay,
+    TResult Function(UpdateDisplayName value)? updateDisplayName,
+    TResult Function(UpdateHrtStartDate value)? updateHrtStartDate,
+    TResult Function(WipeSettingsData value)? wipeData,
+    TResult Function(ToggleNotifications value)? toggleNotifications,
+    TResult Function(ExportDataEvent value)? exportData,
+    TResult Function(ChangeLanguage value)? changeLanguage,
+    TResult Function(ToggleDarkMode value)? toggleDarkMode,
+    required TResult orElse(),
+  }) {
+    if (toggleDarkMode != null) {
+      return toggleDarkMode(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ToggleDarkMode implements SettingsEvent {
+  const factory ToggleDarkMode({required final bool enabled}) =
+      _$ToggleDarkModeImpl;
+
+  bool get enabled;
+
+  /// Create a copy of SettingsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ToggleDarkModeImplCopyWith<_$ToggleDarkModeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

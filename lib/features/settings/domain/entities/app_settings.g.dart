@@ -16,6 +16,7 @@ _$AppSettingsImpl _$$AppSettingsImplFromJson(Map<String, dynamic> json) =>
           : DateTime.parse(json['lastBackupDate'] as String),
       notificationsEnabled: json['notificationsEnabled'] as bool? ?? true,
       language: json['language'] as String? ?? '',
+      darkModeEnabled: json['darkModeEnabled'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$AppSettingsImplToJson(_$AppSettingsImpl instance) =>
@@ -26,4 +27,5 @@ Map<String, dynamic> _$$AppSettingsImplToJson(_$AppSettingsImpl instance) =>
       'lastBackupDate': instance.lastBackupDate?.toIso8601String(),
       'notificationsEnabled': instance.notificationsEnabled,
       'language': instance.language,
+      'darkModeEnabled': instance.darkModeEnabled,
     };

@@ -37,11 +37,13 @@ class ScheduleEditorCubit extends Cubit<ScheduleEditorState> {
 
     AdministrationRoute? drugRoute;
     DosageUnit? drugUnit;
+    String? drugName;
     drugResult.fold(
       (_) {},
       (drug) {
         drugRoute = drug.administrationRoute;
         drugUnit = drug.defaultDosageUnit;
+        drugName = drug.name;
       },
     );
 
@@ -51,6 +53,7 @@ class ScheduleEditorCubit extends Cubit<ScheduleEditorState> {
           ScheduleEditorEditing(
             drugId: drugId,
             isNew: true,
+            drugName: drugName,
             startDate: DateTime.now(),
             administrationRoute: drugRoute,
             dosageUnit: drugUnit,
@@ -59,7 +62,7 @@ class ScheduleEditorCubit extends Cubit<ScheduleEditorState> {
       },
       (schedule) {
         if (schedule != null) {
-          initEdit(schedule);
+          initEdit(schedule, drugName: drugName);
           return;
         }
 
@@ -67,6 +70,7 @@ class ScheduleEditorCubit extends Cubit<ScheduleEditorState> {
           ScheduleEditorEditing(
             drugId: drugId,
             isNew: true,
+            drugName: drugName,
             startDate: DateTime.now(),
             administrationRoute: drugRoute,
             dosageUnit: drugUnit,
@@ -77,12 +81,15 @@ class ScheduleEditorCubit extends Cubit<ScheduleEditorState> {
   }
 
   /// Initialises the editor from [schedule] for editing.
-  void initEdit(MedicationSchedule schedule) {
+  ///
+  /// When [drugName] is provided it is shown in the editor header card.
+  void initEdit(MedicationSchedule schedule, {String? drugName}) {
     emit(
       ScheduleEditorEditing(
         drugId: schedule.drugId,
         isNew: false,
         existingId: schedule.id,
+        drugName: drugName,
         dosageAmount: schedule.dosageAmount,
         dosageUnit: schedule.dosageUnit,
         frequency: schedule.frequency,

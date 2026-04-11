@@ -14,6 +14,7 @@ class AppSettings with _$AppSettings {
     required DateTime? lastBackupDate,
     @Default(true) bool notificationsEnabled,
     @Default('') String language,
+    @Default(false) bool darkModeEnabled,
   }) = _AppSettings;
 
   /// Creates an [AppSettings] from JSON.

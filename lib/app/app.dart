@@ -30,10 +30,19 @@ class HanaNote extends StatelessWidget {
               }
             }
 
+            final darkModeEnabled = settingsState is SettingsLoaded &&
+                settingsState.settings.darkModeEnabled;
+
             return MaterialApp.router(
               routerConfig: appRouter,
               title: 'HanaNote',
               theme: AppTheme.getTheme(AppThemeType.sakura),
+              darkTheme: AppTheme.getTheme(
+                AppThemeType.sakura,
+                brightness: Brightness.dark,
+              ),
+              themeMode:
+                  darkModeEnabled ? ThemeMode.dark : ThemeMode.light,
               locale: locale,
               localizationsDelegates: AppLocalizations.localizationsDelegates,
               supportedLocales: AppLocalizations.supportedLocales,

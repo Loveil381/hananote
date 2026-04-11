@@ -64,4 +64,51 @@ class HanaColors {
   static const Color tertiaryFixedDim = Color(0xFFFFB4AA);
   static const Color onTertiaryFixed = Color(0xFF410001);
   static const Color onTertiaryFixedVariant = Color(0xFF8B1A16);
+
+  /// Returns true when the current theme uses dark brightness.
+  static bool isDark(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark;
+}
+
+/// Warm dark palette for HanaNote (no pure black/white per DESIGN.md).
+abstract final class HanaColorsDark {
+  static const Color primary = Color(0xFFFBB3C1);
+  static const Color onPrimary = Color(0xFF5B1D2F);
+  static const Color primaryContainer = Color(0xFF76344A);
+  static const Color onPrimaryContainer = Color(0xFFFFD9E0);
+
+  static const Color secondary = Color(0xFFE4B8E8);
+  static const Color onSecondary = Color(0xFF432645);
+  static const Color secondaryContainer = Color(0xFF5B3D5D);
+  static const Color onSecondaryContainer = Color(0xFFFCD3FB);
+
+  static const Color tertiary = Color(0xFFFFB9B0);
+  static const Color onTertiary = Color(0xFF5C1410);
+  static const Color tertiaryContainer = Color(0xFF7D2C27);
+  static const Color onTertiaryContainer = Color(0xFFFFDAD6);
+
+  static const Color error = Color(0xFFFFB4AB);
+  static const Color onError = Color(0xFF690005);
+
+  static const Color background = Color(0xFF1A1512);
+  static const Color onBackground = Color(0xFFF7F0E8);
+  static const Color surface = Color(0xFF1A1512);
+  static const Color onSurface = Color(0xFFF7F0E8);
+  static const Color onSurfaceVariant = Color(0xFFD6C2C4);
+
+  static const Color surfaceDim = Color(0xFF171310);
+  static const Color surfaceContainerLowest = Color(0xFF110E0C);
+  static const Color surfaceContainerLow = Color(0xFF1F1A16);
+  static const Color surfaceContainer = Color(0xFF2B2420);
+  static const Color surfaceContainerHigh = Color(0xFF362E29);
+  static const Color surfaceContainerHighest = Color(0xFF413833);
+
+  static const Color outline = Color(0xFFA08A8C);
+  static const Color outlineVariant = Color(0xFF514345);
+
+  static const Color inverseSurface = Color(0xFFF7F0E8);
+  static const Color inverseOnSurface = Color(0xFF33302B);
+  static const Color inversePrimary = Color(0xFF864E5A);
+
+  static const Color statusGreen = Color(0xFF34D399);
 }

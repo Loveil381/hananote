@@ -49,6 +49,7 @@ final class ScheduleEditorEditing extends ScheduleEditorState {
     required this.drugId,
     required this.isNew,
     this.existingId,
+    this.drugName,
     this.dosageAmount,
     this.dosageUnit,
     this.frequency,
@@ -62,6 +63,9 @@ final class ScheduleEditorEditing extends ScheduleEditorState {
 
   /// Drug this schedule belongs to.
   final String drugId;
+
+  /// Display name of the drug (for UI context).
+  final String? drugName;
 
   /// True when creating a new schedule.
   final bool isNew;
@@ -98,6 +102,7 @@ final class ScheduleEditorEditing extends ScheduleEditorState {
 
   /// Returns a copy with the given fields replaced.
   ScheduleEditorEditing copyWith({
+    String? drugName,
     double? dosageAmount,
     DosageUnit? dosageUnit,
     MedicationFrequency? frequency,
@@ -112,6 +117,7 @@ final class ScheduleEditorEditing extends ScheduleEditorState {
       drugId: drugId,
       isNew: isNew,
       existingId: existingId,
+      drugName: drugName ?? this.drugName,
       dosageAmount: dosageAmount ?? this.dosageAmount,
       dosageUnit: dosageUnit ?? this.dosageUnit,
       frequency: frequency ?? this.frequency,

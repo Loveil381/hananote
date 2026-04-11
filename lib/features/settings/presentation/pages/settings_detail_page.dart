@@ -141,9 +141,14 @@ class SettingsDetailPage extends StatelessWidget {
                           icon: Icons.dark_mode_outlined,
                           title: l10n.darkMode,
                           trailing: Switch(
-                            value: false,
+                            value: settings.darkModeEnabled,
                             onChanged: (val) =>
-                                _showFeaturePlannedSheet(context),
+                                context.read<SettingsBloc>().add(
+                                      SettingsEvent.toggleDarkMode(
+                                        enabled: val,
+                                      ),
+                                    ),
+                            activeTrackColor: HanaColors.primary,
                           ),
                         ),
                       ],
@@ -306,69 +311,6 @@ class SettingsDetailPage extends StatelessWidget {
                           );
                       Navigator.of(sheetContext).pop();
                     },
-                  ),
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
-
-  static void _showFeaturePlannedSheet(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
-    showModalBottomSheet<void>(
-      context: context,
-      backgroundColor: HanaColors.surfaceContainerLowest,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
-      ),
-      builder: (sheetContext) {
-        return SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(24, 20, 24, 24),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Container(
-                  width: 40,
-                  height: 4,
-                  margin: const EdgeInsets.only(bottom: 32),
-                  decoration: BoxDecoration(
-                    color: HanaColors.outlineVariant.withAlpha(128),
-                    borderRadius: BorderRadius.circular(999),
-                  ),
-                ),
-                const Icon(
-                  Icons.construction_outlined,
-                  size: 64,
-                  color: HanaColors.primary,
-                ),
-                const SizedBox(height: 24),
-                Text(
-                  l10n.featureInDevelopment,
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w700,
-                    color: HanaColors.onSurface,
-                  ),
-                ),
-                const SizedBox(height: 12),
-                Text(
-                  l10n.featureInDevelopmentDesc,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 14,
-                    color: HanaColors.onSurfaceVariant,
-                  ),
-                ),
-                const SizedBox(height: 32),
-                SizedBox(
-                  width: double.infinity,
-                  child: FilledButton(
-                    onPressed: () => Navigator.of(sheetContext).pop(),
-                    child: Text(l10n.closeAction),
                   ),
                 ),
               ],

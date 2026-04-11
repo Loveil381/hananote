@@ -41,4 +41,8 @@ sealed class SettingsEvent with _$SettingsEvent {
   /// Changes the app display language.
   const factory SettingsEvent.changeLanguage({required String languageCode}) =
       ChangeLanguage;
+
+  /// Toggles the dark mode setting.
+  const factory SettingsEvent.toggleDarkMode({required bool enabled}) =
+      ToggleDarkMode;
 }
