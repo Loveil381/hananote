@@ -1,7 +1,9 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
+import 'package:path_provider/path_provider.dart';
 
 /// Information about an available app update.
 class AppUpdateInfo {
@@ -22,21 +24,56 @@ class AppUpdateInfo {
   /// Markdown release notes body.
   final String releaseNotes;
 
-  /// GitHub release page URL (fallback for download).
+  /// GitHub release page URL (fallback).
   final String htmlUrl;
 }
 
-/// Checks GitHub Releases for app updates.
+/// Checks for app updates and downloads APK files.
+///
+/// Tries Cloudflare R2 CDN first (fast in China), then falls back to
+/// GitHub Releases API.
 class UpdateService {
-  /// GitHub owner/repo for this project.
+  /// GitHub owner/repo.
   static const _owner = 'Loveil381';
   static const _repo = 'hananote';
+
+  /// Cloudflare R2 CDN base URL.
+  static const _cdnBase = 'https://cdn.hrtyaku.com/hananote';
 
   /// Checks whether a newer version is available.
   ///
   /// Returns [AppUpdateInfo] if an update exists, `null` otherwise.
-  /// Silently returns `null` on any network or parsing error.
   static Future<AppUpdateInfo?> checkForUpdate(String currentVersion) async {
+    // Try CDN first (fast in China).
+    final cdnResult = await _checkCdn(currentVersion);
+    if (cdnResult != null) return cdnResult;
+    // Fallback to GitHub.
+    return _checkGitHub(currentVersion);
+  }
+
+  static Future<AppUpdateInfo?> _checkCdn(String currentVersion) async {
+    try {
+      final response = await http
+          .get(Uri.parse('$_cdnBase/version.json'))
+          .timeout(const Duration(seconds: 5));
+      if (response.statusCode != 200) return null;
+
+      final data = jsonDecode(response.body) as Map<String, dynamic>;
+      final version = (data['version'] as String? ?? '').replaceAll('v', '');
+      if (!_isNewer(version, currentVersion)) return null;
+
+      return AppUpdateInfo(
+        latestVersion: version,
+        downloadUrl: data['url'] as String?,
+        releaseNotes: data['notes'] as String? ?? '',
+        htmlUrl: data['github_url'] as String? ?? '',
+      );
+    } catch (_) {
+      return null;
+    }
+  }
+
+  static Future<AppUpdateInfo?> _checkGitHub(String currentVersion) async {
     try {
       final response = await http
           .get(
@@ -51,10 +88,8 @@ class UpdateService {
 
       final data = jsonDecode(response.body) as Map<String, dynamic>;
       final tagName = (data['tag_name'] as String? ?? '').replaceAll('v', '');
-
       if (!_isNewer(tagName, currentVersion)) return null;
 
-      // Find the APK asset if present.
       String? apkUrl;
       final assets = data['assets'] as List<dynamic>? ?? [];
       for (final asset in assets) {
@@ -72,12 +107,45 @@ class UpdateService {
         htmlUrl: data['html_url'] as String? ?? '',
       );
     } catch (e) {
-      debugPrint('[UpdateService] Check failed: $e');
+      debugPrint('[UpdateService] GitHub check failed: $e');
       return null;
     }
   }
 
-  /// Compares two semver strings. Returns true if [remote] > [local].
+  /// Downloads APK to cache directory, reporting progress via [onProgress].
+  ///
+  /// Returns the local file path of the downloaded APK.
+  static Future<String> downloadApk(
+    String url,
+    void Function(double progress) onProgress,
+  ) async {
+    final client = HttpClient();
+    try {
+      final request = await client.getUrl(Uri.parse(url));
+      final response = await request.close();
+      final contentLength = response.contentLength;
+
+      final cacheDir = await getTemporaryDirectory();
+      final file = File('${cacheDir.path}/hananote_update.apk');
+      final sink = file.openWrite();
+      var received = 0;
+
+      await for (final chunk in response) {
+        sink.add(chunk);
+        received += chunk.length;
+        if (contentLength > 0) {
+          onProgress(received / contentLength);
+        }
+      }
+
+      await sink.close();
+      return file.path;
+    } finally {
+      client.close();
+    }
+  }
+
+  /// Returns `true` if [remote] is a newer semver than [local].
   static bool _isNewer(String remote, String local) {
     final remoteParts = remote.split('.').map(int.tryParse).toList();
     final localParts = local.split('.').map(int.tryParse).toList();

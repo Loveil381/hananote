@@ -8,12 +8,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hananote/app/theme/hana_colors.dart';
+import 'package:hananote/core/constants/app_urls.dart';
 import 'package:hananote/core/l10n/arb/app_localizations.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_bloc.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_event.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_state.dart';
-import 'package:hananote/core/constants/app_urls.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:intl/intl.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -528,19 +527,13 @@ class ProfilePage extends StatelessWidget {
                         _ListTileItem(
                           title: l10n.privacyPolicy,
                           isChevron: true,
-                          onTap: () => launchUrl(
-                            Uri.parse(AppUrls.privacyPolicy),
-                            mode: LaunchMode.externalApplication,
-                          ),
+                          onTap: () => context.push('/legal/privacy'),
                         ),
                         _bentoSeparator(),
                         _ListTileItem(
                           title: l10n.termsOfUse,
                           isChevron: true,
-                          onTap: () => launchUrl(
-                            Uri.parse(AppUrls.termsOfService),
-                            mode: LaunchMode.externalApplication,
-                          ),
+                          onTap: () => context.push('/legal/terms'),
                         ),
                       ],
                     ),

@@ -1,7 +1,7 @@
 name: hananote
 description: A privacy-first health tracking app for HRT management.
 publish_to: 'none'
-version: 1.1.0+3
+version: 1.1.1+4
 
 environment:
   sdk: ^3.5.0

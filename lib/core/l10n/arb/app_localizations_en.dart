@@ -1054,4 +1054,26 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get updateLater => 'Later';
+
+  @override
+  String get privacyPolicyContent =>
+      'Privacy Policy\n\nLast updated: April 2026\n\nHanaNote (\"the App\") is committed to protecting your privacy. This Privacy Policy explains how we handle your information.\n\n1. Data Storage\nAll personal health data, including medication records, journal entries, body measurements, photos, and blood test results, is stored locally on your device. We do not transmit your health data to any external servers.\n\n2. Encryption\nYour data is encrypted using industry-standard encryption. Photos are end-to-end encrypted and can only be viewed by you.\n\n3. Data Collection\nThe App does not collect, share, or sell any personally identifiable information. We do not use analytics trackers or advertising SDKs.\n\n4. Permissions\nThe App may request access to your camera (for photo records), biometric sensor (for app lock), and notification system (for medication reminders). These permissions are used solely for the stated purposes.\n\n5. Data Export\nYou may export your data at any time using the built-in export feature. You retain full ownership of your data.\n\n6. Data Deletion\nYou may permanently delete all data using the \"Wipe all data\" option in Settings. This action is irreversible.\n\n7. Changes\nWe may update this Privacy Policy from time to time. Continued use of the App constitutes acceptance of the updated policy.\n\n8. Contact\nIf you have questions about this Privacy Policy, please contact us through our official channels.';
+
+  @override
+  String get downloadingUpdate => 'Downloading update...';
+
+  @override
+  String downloadProgress(String percent) {
+    return 'Downloaded $percent%';
+  }
+
+  @override
+  String get installUpdate => 'Install Update';
+
+  @override
+  String get downloadFailed => 'Download failed, please retry';
+
+  @override
+  String get termsOfUseContent =>
+      'Terms of Use\n\nLast updated: April 2026\n\nBy using HanaNote (\"the App\"), you agree to these Terms of Use.\n\n1. Purpose\nThe App is a personal health tracking tool designed for hormone replacement therapy (HRT) management. It is not a medical device and does not provide medical advice.\n\n2. Medical Disclaimer\nThe App is not a substitute for professional medical advice, diagnosis, or treatment. Always consult your healthcare provider before making changes to your medication regimen. Pharmacokinetic simulation results are for reference only.\n\n3. User Responsibility\nYou are responsible for the accuracy of data you enter and for maintaining the security of your device and app password.\n\n4. Data Ownership\nYou retain full ownership of all data you create within the App. We do not claim any rights to your content.\n\n5. Availability\nThe App is provided \"as is\" without warranty of any kind. We do not guarantee uninterrupted or error-free operation.\n\n6. Limitation of Liability\nTo the maximum extent permitted by law, the developers of the App shall not be liable for any damages arising from the use or inability to use the App.\n\n7. Updates\nWe may release updates to improve functionality. Continued use after updates constitutes acceptance of any modified terms.\n\n8. Governing Law\nThese terms shall be governed by applicable local laws.\n\n9. Contact\nFor questions about these Terms, please contact us through our official channels.';
 }
