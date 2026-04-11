@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:math';
 import 'dart:typed_data';
 
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hashlib/hashlib.dart';
 import 'package:injectable/injectable.dart';
@@ -27,9 +28,12 @@ class KeyManager {
 
   static const int _saltLength = 16;
   static const int _hashLength = 32;
-  static const int _memorySizeKb = 65536;
-  static const int _iterations = 3;
-  static const int _parallelism = 4;
+
+  // Native: strong Argon2 (64 MB, 3 iterations, 4 threads).
+  // Web: lighter Argon2 (4 MB, 2 iterations, 1 thread) to avoid UI freeze.
+  static const int _memorySizeKb = kIsWeb ? 4096 : 65536;
+  static const int _iterations = kIsWeb ? 2 : 3;
+  static const int _parallelism = kIsWeb ? 1 : 4;
   Uint8List? _cachedKey;
 
   /// Derive key from password using Argon2id and save a verification hash.
