@@ -92,14 +92,14 @@ class _CountdownCardState extends State<CountdownCard> {
 
     return Container(
       decoration: BoxDecoration(
-        gradient: HanaGradients.countdownGradient,
+        gradient: HanaGradients.countdownOf(context),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: Colors.white.withAlpha((255 * 0.2).round())),
-        boxShadow: const [
+        boxShadow: [
           BoxShadow(
-            color: Color.fromRGBO(134, 78, 90, 0.12),
+            color: HanaColors.primaryOf(context).withAlpha(31),
             blurRadius: 32,
-            offset: Offset(0, 8),
+            offset: const Offset(0, 8),
           ),
         ],
       ),
@@ -150,9 +150,9 @@ class _CountdownCardState extends State<CountdownCard> {
                 children: [
                   Row(
                     children: [
-                      const Icon(
+                      Icon(
                         Icons.schedule,
-                        color: HanaColors.onPrimaryContainer,
+                        color: HanaColors.onPrimaryContainerOf(context),
                         size: 14, // text-sm is usually 14px
                       ),
                       const SizedBox(width: 8),
@@ -162,7 +162,7 @@ class _CountdownCardState extends State<CountdownCard> {
                           fontSize: 12,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2, // tracking-widest roughly
-                          color: HanaColors.onPrimaryContainer
+                          color: HanaColors.onPrimaryContainerOf(context)
                               .withAlpha((255 * 0.7).round()),
                         ),
                       ),
@@ -172,11 +172,11 @@ class _CountdownCardState extends State<CountdownCard> {
                   if (widget.isCompleteForToday)
                     Text(
                       widget.completedLabel,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontFamily: 'PlusJakartaSans',
                         fontSize: 32,
                         fontWeight: FontWeight.w800,
-                        color: HanaColors.onPrimaryContainer,
+                        color: HanaColors.onPrimaryContainerOf(context),
                       ),
                     )
                   else
@@ -186,20 +186,20 @@ class _CountdownCardState extends State<CountdownCard> {
                       children: [
                         Text(
                           '${remaining.$1}',
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontFamily: 'PlusJakartaSans',
                             fontSize: 40,
                             fontWeight: FontWeight.w800,
-                            color: HanaColors.onPrimaryContainer,
+                            color: HanaColors.onPrimaryContainerOf(context),
                           ),
                         ),
                         const SizedBox(width: 4),
                         Text(
                           widget.hourUnitLabel,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.bold,
-                            color: HanaColors.onPrimaryContainer,
+                            color: HanaColors.onPrimaryContainerOf(context),
                           ),
                         ),
                         const SizedBox(
@@ -207,20 +207,20 @@ class _CountdownCardState extends State<CountdownCard> {
                         ), // Let the spacing match a bit
                         Text(
                           '${remaining.$2}',
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontFamily: 'PlusJakartaSans',
                             fontSize: 40,
                             fontWeight: FontWeight.w800,
-                            color: HanaColors.onPrimaryContainer,
+                            color: HanaColors.onPrimaryContainerOf(context),
                           ),
                         ),
                         const SizedBox(width: 4),
                         Text(
                           widget.minuteUnitLabel,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.bold,
-                            color: HanaColors.onPrimaryContainer,
+                            color: HanaColors.onPrimaryContainerOf(context),
                           ),
                         ),
                       ],
@@ -245,10 +245,10 @@ class _CountdownCardState extends State<CountdownCard> {
                         child: Text(
                           '${widget.drugName} ${widget.dosage} · '
                           '${widget.route}',
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
-                            color: HanaColors.onPrimaryContainer,
+                            color: HanaColors.onPrimaryContainerOf(context),
                           ),
                         ),
                       ),

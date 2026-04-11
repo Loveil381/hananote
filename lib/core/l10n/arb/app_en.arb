@@ -465,6 +465,10 @@
   },
   "installUpdate": "Install Update",
   "downloadFailed": "Download failed, please retry",
+  "drugTemplateTitle": "Select Medication",
+  "drugTemplateSubtitle": "Tap a common HRT medication to add quickly, or create custom",
+  "drugCustomAdd": "Add custom medication",
+
   "updateSectionTitle": "Software Updates",
   "updateAutoCheck": "Auto-check for updates",
   "updateAutoCheckDesc": "Check for new versions on launch",

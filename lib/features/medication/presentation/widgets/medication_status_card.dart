@@ -34,7 +34,7 @@ class MedicationStatusCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: HanaColors.surfaceContainerLowest,
+        color: HanaColors.surfaceContainerLowestOf(context),
         borderRadius: BorderRadius.circular(16),
       ),
       child: Row(
@@ -49,10 +49,10 @@ class MedicationStatusCard extends StatelessWidget {
                   color: HanaColors.primaryFixed.withAlpha((255 * 0.3).round()),
                   shape: BoxShape.circle,
                 ),
-                child: const Center(
+                child: Center(
                   child: Icon(
                     Icons.medication,
-                    color: HanaColors.primary,
+                    color: HanaColors.primaryOf(context),
                   ),
                 ),
               ),
@@ -62,17 +62,17 @@ class MedicationStatusCard extends StatelessWidget {
                 children: [
                   Text(
                     '$name $dosage',
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
-                      color: HanaColors.onSurface,
+                      color: HanaColors.onSurfaceOf(context),
                     ),
                   ),
                   Text(
                     time,
                     style: TextStyle(
                       fontSize: 14,
-                      color: HanaColors.onSurfaceVariant
+                      color: HanaColors.onSurfaceVariantOf(context)
                           .withAlpha((255 * 0.7).round()),
                     ),
                   ),
@@ -85,14 +85,14 @@ class MedicationStatusCard extends StatelessWidget {
               width: 32,
               height: 32,
               decoration: BoxDecoration(
-                color: HanaColors.secondaryContainer
+                color: HanaColors.secondaryContainerOf(context)
                     .withAlpha((255 * 0.5).round()),
                 shape: BoxShape.circle,
               ),
-              child: const Center(
+              child: Center(
                 child: Icon(
                   Icons.check,
-                  color: HanaColors.secondary,
+                  color: HanaColors.secondaryOf(context),
                   size: 18,
                   weight: 700,
                 ),

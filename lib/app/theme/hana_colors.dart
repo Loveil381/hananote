@@ -68,6 +68,57 @@ class HanaColors {
   /// Returns true when the current theme uses dark brightness.
   static bool isDark(BuildContext context) =>
       Theme.of(context).brightness == Brightness.dark;
+
+  // -- Context-aware color accessors for dark mode support --
+
+  static Color backgroundOf(BuildContext c) =>
+      isDark(c) ? HanaColorsDark.background : background;
+  static Color surfaceOf(BuildContext c) =>
+      isDark(c) ? HanaColorsDark.surface : surface;
+  static Color surfaceContainerLowestOf(BuildContext c) =>
+      isDark(c) ? HanaColorsDark.surfaceContainerLowest : surfaceContainerLowest;
+  static Color surfaceContainerLowOf(BuildContext c) =>
+      isDark(c) ? HanaColorsDark.surfaceContainerLow : surfaceContainerLow;
+  static Color surfaceContainerOf(BuildContext c) =>
+      isDark(c) ? HanaColorsDark.surfaceContainer : surfaceContainer;
+  static Color surfaceContainerHighOf(BuildContext c) =>
+      isDark(c) ? HanaColorsDark.surfaceContainerHigh : surfaceContainerHigh;
+  static Color surfaceContainerHighestOf(BuildContext c) =>
+      isDark(c) ? HanaColorsDark.surfaceContainerHighest : surfaceContainerHighest;
+  static Color primaryOf(BuildContext c) =>
+      isDark(c) ? HanaColorsDark.primary : primary;
+  static Color onPrimaryOf(BuildContext c) =>
+      isDark(c) ? HanaColorsDark.onPrimary : onPrimary;
+  static Color primaryContainerOf(BuildContext c) =>
+      isDark(c) ? HanaColorsDark.primaryContainer : primaryContainer;
+  static Color onSurfaceOf(BuildContext c) =>
+      isDark(c) ? HanaColorsDark.onSurface : onSurface;
+  static Color onSurfaceVariantOf(BuildContext c) =>
+      isDark(c) ? HanaColorsDark.onSurfaceVariant : onSurfaceVariant;
+  static Color outlineOf(BuildContext c) =>
+      isDark(c) ? HanaColorsDark.outline : outline;
+  static Color outlineVariantOf(BuildContext c) =>
+      isDark(c) ? HanaColorsDark.outlineVariant : outlineVariant;
+  static Color secondaryOf(BuildContext c) =>
+      isDark(c) ? HanaColorsDark.secondary : secondary;
+  static Color secondaryContainerOf(BuildContext c) =>
+      isDark(c) ? HanaColorsDark.secondaryContainer : secondaryContainer;
+  static Color tertiaryOf(BuildContext c) =>
+      isDark(c) ? HanaColorsDark.tertiary : tertiary;
+  static Color tertiaryContainerOf(BuildContext c) =>
+      isDark(c) ? HanaColorsDark.tertiaryContainer : tertiaryContainer;
+  static Color errorOf(BuildContext c) =>
+      isDark(c) ? HanaColorsDark.error : error;
+  static Color inverseSurfaceOf(BuildContext c) =>
+      isDark(c) ? HanaColorsDark.inverseSurface : inverseSurface;
+  static Color inverseOnSurfaceOf(BuildContext c) =>
+      isDark(c) ? HanaColorsDark.inverseOnSurface : inverseOnSurface;
+  static Color surfaceDimOf(BuildContext c) =>
+      isDark(c) ? HanaColorsDark.surfaceDim : surfaceDim;
+  static Color onPrimaryContainerOf(BuildContext c) =>
+      isDark(c) ? HanaColorsDark.onPrimaryContainer : onPrimaryContainer;
+  static Color onTertiaryContainerOf(BuildContext c) =>
+      isDark(c) ? HanaColorsDark.onTertiaryContainer : onTertiaryContainer;
 }
 
 /// Warm dark palette for HanaNote (no pure black/white per DESIGN.md).

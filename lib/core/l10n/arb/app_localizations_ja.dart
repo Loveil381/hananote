@@ -1050,6 +1050,15 @@ class AppLocalizationsJa extends AppLocalizations {
   String get downloadFailed => 'ダウンロード失敗、再試行してください';
 
   @override
+  String get drugTemplateTitle => 'お薬を選択';
+
+  @override
+  String get drugTemplateSubtitle => 'よく使うHRT薬をタップして追加、またはカスタム';
+
+  @override
+  String get drugCustomAdd => 'カスタム薬を追加';
+
+  @override
   String get updateSectionTitle => 'ソフトウェア更新';
 
   @override

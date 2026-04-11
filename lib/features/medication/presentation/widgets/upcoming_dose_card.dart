@@ -38,10 +38,11 @@ class UpcomingDoseCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: HanaColors.surfaceContainerLowest,
+        color: HanaColors.surfaceContainerLowestOf(context),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: HanaColors.tertiaryContainer.withAlpha((255 * 0.3).round()),
+          color: HanaColors.tertiaryContainerOf(context)
+              .withAlpha((255 * 0.3).round()),
           width: 2,
         ),
       ),
@@ -57,7 +58,8 @@ class UpcomingDoseCard extends StatelessWidget {
                 width: 48,
                 height: 48,
                 decoration: BoxDecoration(
-                  color: HanaColors.tertiary.withAlpha((255 * 0.05).round()),
+                  color: HanaColors.tertiaryOf(context)
+                      .withAlpha((255 * 0.05).round()),
                   shape: BoxShape.circle,
                 ),
                 child: BackdropFilter(
@@ -79,14 +81,14 @@ class UpcomingDoseCard extends StatelessWidget {
                         width: 56,
                         height: 56,
                         decoration: BoxDecoration(
-                          color: HanaColors.tertiaryContainer
+                          color: HanaColors.tertiaryContainerOf(context)
                               .withAlpha((255 * 0.2).round()),
                           shape: BoxShape.circle,
                         ),
-                        child: const Center(
+                        child: Center(
                           child: Icon(
                             Icons.calendar_month,
-                            color: HanaColors.tertiary,
+                            color: HanaColors.tertiaryOf(context),
                             size: 30,
                           ),
                         ),
@@ -104,10 +106,10 @@ class UpcomingDoseCard extends StatelessWidget {
                               children: [
                                 Text(
                                   '$name $dosage',
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
-                                    color: HanaColors.onSurface,
+                                    color: HanaColors.onSurfaceOf(context),
                                   ),
                                 ),
                                 Container(
@@ -116,16 +118,20 @@ class UpcomingDoseCard extends StatelessWidget {
                                     vertical: 2,
                                   ),
                                   decoration: BoxDecoration(
-                                    color: HanaColors.tertiaryContainer
-                                        .withAlpha((255 * 0.4).round()),
+                                    color: HanaColors
+                                        .tertiaryContainerOf(context)
+                                        .withAlpha(
+                                          (255 * 0.4).round(),
+                                        ),
                                     borderRadius: BorderRadius.circular(999),
                                   ),
                                   child: Text(
                                     period.toUpperCase(),
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                       fontSize: 10,
                                       fontWeight: FontWeight.bold,
-                                      color: HanaColors.onTertiaryContainer,
+                                      color: HanaColors
+                                          .onTertiaryContainerOf(context),
                                     ),
                                   ),
                                 ),
@@ -134,10 +140,10 @@ class UpcomingDoseCard extends StatelessWidget {
                             const SizedBox(height: 2), // small visual gap
                             Text(
                               time,
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w500,
-                                color: HanaColors.onSurfaceVariant,
+                                color: HanaColors.onSurfaceVariantOf(context),
                               ),
                             ),
                           ],
@@ -153,11 +159,11 @@ class UpcomingDoseCard extends StatelessWidget {
                       alignment: Alignment.centerRight,
                       child: Container(
                         decoration: BoxDecoration(
-                          gradient: HanaGradients.takeDoseButtonGradient,
+                          gradient: HanaGradients.takeDoseOf(context),
                           borderRadius: BorderRadius.circular(999),
                           boxShadow: [
                             BoxShadow(
-                              color: HanaColors.tertiary
+                              color: HanaColors.tertiaryOf(context)
                                   .withAlpha((255 * 0.2).round()),
                               blurRadius: 16,
                               offset: const Offset(

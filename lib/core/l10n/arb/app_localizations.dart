@@ -2122,6 +2122,24 @@ abstract class AppLocalizations {
   /// **'Download failed, please retry'**
   String get downloadFailed;
 
+  /// No description provided for @drugTemplateTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Medication'**
+  String get drugTemplateTitle;
+
+  /// No description provided for @drugTemplateSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap a common HRT medication to add quickly, or create custom'**
+  String get drugTemplateSubtitle;
+
+  /// No description provided for @drugCustomAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add custom medication'**
+  String get drugCustomAdd;
+
   /// No description provided for @updateSectionTitle.
   ///
   /// In en, this message translates to:

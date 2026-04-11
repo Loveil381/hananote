@@ -1074,6 +1074,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get downloadFailed => 'Download failed, please retry';
 
   @override
+  String get drugTemplateTitle => 'Select Medication';
+
+  @override
+  String get drugTemplateSubtitle =>
+      'Tap a common HRT medication to add quickly, or create custom';
+
+  @override
+  String get drugCustomAdd => 'Add custom medication';
+
+  @override
   String get updateSectionTitle => 'Software Updates';
 
   @override

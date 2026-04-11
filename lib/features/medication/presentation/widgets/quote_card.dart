@@ -19,7 +19,7 @@ class QuoteCard extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       padding: const EdgeInsets.all(32),
       decoration: BoxDecoration(
-        color: HanaColors.surfaceContainerLow,
+        color: HanaColors.surfaceContainerLowOf(context),
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
@@ -27,7 +27,7 @@ class QuoteCard extends StatelessWidget {
         children: [
           Icon(
             Icons.format_quote,
-            color: HanaColors.primary.withAlpha(102), // primary/40%
+            color: HanaColors.primaryOf(context).withAlpha(102), // primary/40%
             size: 32,
           ),
           const SizedBox(height: 12), // mb-3 from icon equivalent
@@ -35,11 +35,11 @@ class QuoteCard extends StatelessWidget {
             quote,
             textAlign: TextAlign.center,
             // text-lg font-medium text-on-surface tracking-wide italic
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w500,
               fontStyle: FontStyle.italic,
-              color: HanaColors.onSurface,
+              color: HanaColors.onSurfaceOf(context),
               letterSpacing: 0.5, // tracking-wide roughly matches this
             ),
           ),

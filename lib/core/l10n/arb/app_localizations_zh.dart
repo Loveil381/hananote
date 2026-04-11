@@ -1050,6 +1050,15 @@ class AppLocalizationsZh extends AppLocalizations {
   String get downloadFailed => '下载失败，请重试';
 
   @override
+  String get drugTemplateTitle => '选择药品';
+
+  @override
+  String get drugTemplateSubtitle => '点击常用 HRT 药品快速添加，或自定义';
+
+  @override
+  String get drugCustomAdd => '手动添加自定义药品';
+
+  @override
   String get updateSectionTitle => '软件更新';
 
   @override

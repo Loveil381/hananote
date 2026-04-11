@@ -465,6 +465,10 @@
   },
   "installUpdate": "アップデートをインストール",
   "downloadFailed": "ダウンロード失敗、再試行してください",
+  "drugTemplateTitle": "お薬を選択",
+  "drugTemplateSubtitle": "よく使うHRT薬をタップして追加、またはカスタム",
+  "drugCustomAdd": "カスタム薬を追加",
+
   "updateSectionTitle": "ソフトウェア更新",
   "updateAutoCheck": "自動更新チェック",
   "updateAutoCheckDesc": "起動時に新バージョンを確認",

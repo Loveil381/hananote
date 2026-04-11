@@ -467,6 +467,10 @@
   },
   "installUpdate": "安装更新",
   "downloadFailed": "下载失败，请重试",
+  "drugTemplateTitle": "选择药品",
+  "drugTemplateSubtitle": "点击常用 HRT 药品快速添加，或自定义",
+  "drugCustomAdd": "手动添加自定义药品",
+
   "updateSectionTitle": "软件更新",
   "updateAutoCheck": "自动检查更新",
   "updateAutoCheckDesc": "启动时自动检测新版本",
