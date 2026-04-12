@@ -6,5 +6,5 @@ class AppUrls {
 /// Application-level constants.
 abstract final class AppConstants {
   /// Matches the `version` field in pubspec.yaml.
-  static const appVersion = '1.2.1';
+  static const appVersion = '1.2.2';
 }
