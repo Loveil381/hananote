@@ -2236,11 +2236,41 @@ abstract class AppLocalizations {
   /// **'About {time} remaining'**
   String updateEstimatedTime(String time);
 
-  /// No description provided for @termsOfUseContent.
+  /// No description provided for @webDownloadBannerTitle.
   ///
   /// In en, this message translates to:
-  /// **'Terms of Use\n\nLast updated: April 2026\n\nBy using HanaNote (\"the App\"), you agree to these Terms of Use.\n\n1. Purpose\nThe App is a personal health tracking tool designed for hormone replacement therapy (HRT) management. It is not a medical device and does not provide medical advice.\n\n2. Medical Disclaimer\nThe App is not a substitute for professional medical advice, diagnosis, or treatment. Always consult your healthcare provider before making changes to your medication regimen. Pharmacokinetic simulation results are for reference only.\n\n3. User Responsibility\nYou are responsible for the accuracy of data you enter and for maintaining the security of your device and app password.\n\n4. Data Ownership\nYou retain full ownership of all data you create within the App. We do not claim any rights to your content.\n\n5. Availability\nThe App is provided \"as is\" without warranty of any kind. We do not guarantee uninterrupted or error-free operation.\n\n6. Limitation of Liability\nTo the maximum extent permitted by law, the developers of the App shall not be liable for any damages arising from the use or inability to use the App.\n\n7. Updates\nWe may release updates to improve functionality. Continued use after updates constitutes acceptance of any modified terms.\n\n8. Governing Law\nThese terms shall be governed by applicable local laws.\n\n9. Contact\nFor questions about these Terms, please contact us through our official channels.'**
-  String get termsOfUseContent;
+  /// **'Download HanaNote for Android'**
+  String get webDownloadBannerTitle;
+
+  /// No description provided for @webDownloadBannerSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Get the full native experience'**
+  String get webDownloadBannerSubtitle;
+
+  /// No description provided for @webDownloadButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Download'**
+  String get webDownloadButton;
+
+  /// No description provided for @downloadApp.
+  ///
+  /// In en, this message translates to:
+  /// **'Download App'**
+  String get downloadApp;
+
+  /// No description provided for @downloadAndroidApp.
+  ///
+  /// In en, this message translates to:
+  /// **'Download Android App'**
+  String get downloadAndroidApp;
+
+  /// No description provided for @downloadAndroidAppDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Native app for the best experience'**
+  String get downloadAndroidAppDesc;
 
   /// No description provided for @onboardingNext.
   ///
@@ -2409,6 +2439,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Import'**
   String get importConfirmAction;
+
+  /// No description provided for @termsOfUseContent.
+  ///
+  /// In en, this message translates to:
+  /// **'Terms of Use\n\nLast updated: April 2026\n\nBy using HanaNote (\"the App\"), you agree to these Terms of Use.\n\n1. Purpose\nThe App is a personal health tracking tool designed for hormone replacement therapy (HRT) management. It is not a medical device and does not provide medical advice.\n\n2. Medical Disclaimer\nThe App is not a substitute for professional medical advice, diagnosis, or treatment. Always consult your healthcare provider before making changes to your medication regimen. Pharmacokinetic simulation results are for reference only.\n\n3. User Responsibility\nYou are responsible for the accuracy of data you enter and for maintaining the security of your device and app password.\n\n4. Data Ownership\nYou retain full ownership of all data you create within the App. We do not claim any rights to your content.\n\n5. Availability\nThe App is provided \"as is\" without warranty of any kind. We do not guarantee uninterrupted or error-free operation.\n\n6. Limitation of Liability\nTo the maximum extent permitted by law, the developers of the App shall not be liable for any damages arising from the use or inability to use the App.\n\n7. Updates\nWe may release updates to improve functionality. Continued use after updates constitutes acceptance of any modified terms.\n\n8. Governing Law\nThese terms shall be governed by applicable local laws.\n\n9. Contact\nFor questions about these Terms, please contact us through our official channels.'**
+  String get termsOfUseContent;
 }
 
 class _AppLocalizationsDelegate
