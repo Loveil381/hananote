@@ -22,7 +22,7 @@ void main() {
     profile: UserProfile(
       displayName: '小花',
       hrtDayCount: 100,
-      hrtStartDate: DateTime(2026, 1, 1),
+      hrtStartDate: DateTime(2026),
     ),
     settings: const AppSettings(
       appLockEnabled: true,

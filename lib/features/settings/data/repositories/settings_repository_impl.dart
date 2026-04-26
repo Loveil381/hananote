@@ -98,7 +98,6 @@ class SettingsRepositoryImpl implements SettingsRepository {
       privacyModeEnabled: false,
       blurOverlayEnabled: true,
       lastBackupDate: null,
-      notificationsEnabled: true,
     );
   }
 

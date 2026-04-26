@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:injectable/injectable.dart';
 import 'package:hananote/features/medication/domain/entities/medication_schedule.dart';
 import 'package:hananote/features/medication/domain/repositories/medication_repository.dart';
 import 'package:hananote/features/notification/presentation/bloc/notification_settings_state.dart';
+import 'package:injectable/injectable.dart';
 
 @injectable
 class NotificationSettingsCubit extends Cubit<NotificationSettingsState> {
@@ -39,7 +39,7 @@ class NotificationSettingsCubit extends Cubit<NotificationSettingsState> {
           emit(NotificationSettingsState.loaded(
             drugs: activeDrugs,
             schedules: schedules,
-          ));
+          ),);
         },
       );
     } catch (e) {

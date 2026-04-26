@@ -27,12 +27,12 @@ dependencies:
   image: ^4.2.0
   image_picker: ^1.1.2
   injectable: ^2.5.0
-  pdf: ^3.11.0
   intl: any
   json_annotation: ^4.9.0
   local_auth: ^2.3.0
   path: any
   path_provider: ^2.1.5
+  pdf: ^3.11.0
   pointycastle: ^3.9.0
   share_plus: ^12.0.2
   sqlite3: ^3.3.0

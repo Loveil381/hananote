@@ -96,7 +96,7 @@ void main() {
   ) async {
     final report1 = buildReport(
       id: 'report-1',
-      date: DateTime(2026, 1),
+      date: DateTime(2026),
       estradiol: 100,
     );
     final report2 = buildReport(

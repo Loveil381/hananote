@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hananote/core/platform/file_helper.dart';
 import 'package:hananote/core/error/failures.dart';
+import 'package:hananote/core/platform/file_helper.dart';
 import 'package:hananote/features/settings/domain/usecases/export_data.dart';
 import 'package:hananote/features/settings/domain/usecases/generate_pdf_report.dart';
 import 'package:hananote/features/settings/domain/usecases/get_profile_dashboard.dart';
@@ -305,7 +305,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     emit(SettingsState.actionResult(
       actionKey: 'export_in_progress',
       previousState: currentState,
-    ));
+    ),);
 
     final failureOrExport = await _exportData();
 
@@ -314,7 +314,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
         emit(SettingsState.actionResult(
           actionKey: 'export_failed',
           previousState: currentState,
-        ));
+        ),);
       },
       (jsonString) async {
         try {
@@ -334,12 +334,12 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
           emit(SettingsState.actionResult(
             actionKey: 'export_success',
             previousState: currentState,
-          ));
+          ),);
         } catch (e) {
           emit(SettingsState.actionResult(
             actionKey: 'export_failed',
             previousState: currentState,
-          ));
+          ),);
         }
       },
     );
@@ -379,7 +379,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     emit(SettingsState.actionResult(
       actionKey: 'pdf_in_progress',
       previousState: currentState,
-    ));
+    ),);
 
     final failureOrBytes = await _generatePdfReport(
       pdfTitle: event.pdfTitle,
@@ -395,7 +395,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
         emit(SettingsState.actionResult(
           actionKey: 'pdf_failed',
           previousState: currentState,
-        ));
+        ),);
       },
       (bytes) async {
         try {
@@ -414,12 +414,12 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
           emit(SettingsState.actionResult(
             actionKey: 'pdf_success',
             previousState: currentState,
-          ));
+          ),);
         } catch (e) {
           emit(SettingsState.actionResult(
             actionKey: 'pdf_failed',
             previousState: currentState,
-          ));
+          ),);
         }
       },
     );
@@ -437,7 +437,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     emit(SettingsState.actionResult(
       actionKey: 'import_in_progress',
       previousState: currentState,
-    ));
+    ),);
 
     final failureOrCount = await _importData(event.jsonString);
 
@@ -446,13 +446,13 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
         emit(SettingsState.actionResult(
           actionKey: 'import_failed',
           previousState: currentState,
-        ));
+        ),);
       },
       (count) {
         emit(SettingsState.actionResult(
           actionKey: 'import_success:$count',
           previousState: currentState,
-        ));
+        ),);
       },
     );
 
