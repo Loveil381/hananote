@@ -59,8 +59,29 @@
 ---
 
 ## R52 候选议题汇总
-1. **C-10** v1.1.0 Release Notes 落差（信任风险）→ 补齐三件套 or 修订 RN
-2. **M-17 / M-29 / M-30** Onboarding + Import + PDF（v1.1.0 承诺集合）
-3. **M-31** 崩溃监控（v1.2.2 盲飞）
-4. **M-32** Web Argon2 安全性（WebWorker 方案）
-5. **M-34** Cloud Sync 双向（最大产品价值）
+1. **C-10** v1.1.0 Release Notes 落差（信任风险）→ ✅ R52-A 已补齐三件套 (PR #3)
+2. **M-17 / M-29 / M-30** Onboarding + Import + PDF（v1.1.0 承诺集合）→ ✅ R52-A 已交付
+3. **M-31** 崩溃监控（v1.2.2 盲飞）→ R52-B 候选
+4. **M-32** Web Argon2 安全性（WebWorker 方案）→ R52 候选
+5. **M-34** Cloud Sync 双向（最大产品价值）→ R52-C 候选
+
+## R52-A 衍生发现（2026-04-26）
+
+### M-35 Lint info 技术债 71 项（已让 CI 不再门控）
+- **背景**：`dart analyze --fatal-infos` 在 main 上从 v1.2.0 起连续 5+ commit 失败；项目实际靠忽略 CI 红来发版
+- **R52-A 处置**：CI 关 `--fatal-infos`，改 `--fatal-warnings`（commit 5f5221d）
+- **剩余分类**：
+  - 34 × `public_member_api_docs`（缺 doc comment）
+  - 26 × `lines_longer_than_80_chars`
+  - 4 × `prefer_constructors_over_static_methods`
+  - 4 × `cascade_invocations`
+  - 1 × `use_late_for_private_fields_and_variables`
+  - 1 × `sort_pub_dependencies` (sqlite3 vs sqflite_*，pre-existing)
+  - 1 × `deprecated_member_use` (`dart:html`，Web 端必需，可加 ignore)
+- **建议**：单独立项做"lint cleanup sprint"，目标降到 0 个 info 后恢复 `--fatal-infos`
+
+### M-36 Pubspec 依赖排序（小但可见）
+- **位置**: pubspec.yaml line 39 (sqlite3 应在 sqflite_* 之后)
+- **R52-A 已修部分**：把 R52-A 加的 `pdf` 移到 path_provider 之后正确位置
+- **R52-A 未修**：sqlite3 vs sqflite_common 顺序（pre-existing）
+- **修复成本**：1 行编辑
