@@ -53,4 +53,22 @@ sealed class SettingsEvent with _$SettingsEvent {
   /// Sets the version the user chose to skip.
   const factory SettingsEvent.skipVersion({required String version}) =
       SkipVersion;
+
+  /// Marks the first-launch onboarding wizard as completed.
+  const factory SettingsEvent.markOnboardingComplete() =
+      MarkOnboardingComplete;
+
+  /// Generates a PDF health report and shares it via the system sheet.
+  const factory SettingsEvent.generatePdfReport({
+    required String pdfTitle,
+    required String medSection,
+    required String bloodSection,
+    required String measureSection,
+    required String journalSection,
+    required String noData,
+  }) = GeneratePdfReportEvent;
+
+  /// Imports a JSON backup string previously produced by export.
+  const factory SettingsEvent.importBackup({required String jsonString}) =
+      ImportBackupEvent;
 }

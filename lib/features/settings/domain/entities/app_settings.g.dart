@@ -19,6 +19,7 @@ _$AppSettingsImpl _$$AppSettingsImplFromJson(Map<String, dynamic> json) =>
       darkModeEnabled: json['darkModeEnabled'] as bool? ?? false,
       autoCheckUpdate: json['autoCheckUpdate'] as bool? ?? true,
       skippedVersion: json['skippedVersion'] as String? ?? '',
+      hasCompletedOnboarding: json['hasCompletedOnboarding'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$AppSettingsImplToJson(_$AppSettingsImpl instance) =>
@@ -32,4 +33,5 @@ Map<String, dynamic> _$$AppSettingsImplToJson(_$AppSettingsImpl instance) =>
       'darkModeEnabled': instance.darkModeEnabled,
       'autoCheckUpdate': instance.autoCheckUpdate,
       'skippedVersion': instance.skippedVersion,
+      'hasCompletedOnboarding': instance.hasCompletedOnboarding,
     };

@@ -2229,6 +2229,174 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Terms of Use\n\nLast updated: April 2026\n\nBy using HanaNote (\"the App\"), you agree to these Terms of Use.\n\n1. Purpose\nThe App is a personal health tracking tool designed for hormone replacement therapy (HRT) management. It is not a medical device and does not provide medical advice.\n\n2. Medical Disclaimer\nThe App is not a substitute for professional medical advice, diagnosis, or treatment. Always consult your healthcare provider before making changes to your medication regimen. Pharmacokinetic simulation results are for reference only.\n\n3. User Responsibility\nYou are responsible for the accuracy of data you enter and for maintaining the security of your device and app password.\n\n4. Data Ownership\nYou retain full ownership of all data you create within the App. We do not claim any rights to your content.\n\n5. Availability\nThe App is provided \"as is\" without warranty of any kind. We do not guarantee uninterrupted or error-free operation.\n\n6. Limitation of Liability\nTo the maximum extent permitted by law, the developers of the App shall not be liable for any damages arising from the use or inability to use the App.\n\n7. Updates\nWe may release updates to improve functionality. Continued use after updates constitutes acceptance of any modified terms.\n\n8. Governing Law\nThese terms shall be governed by applicable local laws.\n\n9. Contact\nFor questions about these Terms, please contact us through our official channels.'**
   String get termsOfUseContent;
+
+  /// No description provided for @onboardingNext.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get onboardingNext;
+
+  /// No description provided for @onboardingSkip.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get onboardingSkip;
+
+  /// No description provided for @onboardingSkipHrt.
+  ///
+  /// In en, this message translates to:
+  /// **'Set later'**
+  String get onboardingSkipHrt;
+
+  /// No description provided for @onboardingDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Get Started'**
+  String get onboardingDone;
+
+  /// No description provided for @onboardingDrugOptional.
+  ///
+  /// In en, this message translates to:
+  /// **'Add later'**
+  String get onboardingDrugOptional;
+
+  /// No description provided for @onboardingWelcome.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome to HanaNote'**
+  String get onboardingWelcome;
+
+  /// No description provided for @onboardingWelcomeSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Your private HRT health journal'**
+  String get onboardingWelcomeSub;
+
+  /// No description provided for @onboardingSetName.
+  ///
+  /// In en, this message translates to:
+  /// **'What should we call you?'**
+  String get onboardingSetName;
+
+  /// No description provided for @onboardingNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Nickname or alias'**
+  String get onboardingNameHint;
+
+  /// No description provided for @onboardingNameNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Editable later in Settings'**
+  String get onboardingNameNote;
+
+  /// No description provided for @onboardingSetHrtDate.
+  ///
+  /// In en, this message translates to:
+  /// **'When did you start HRT?'**
+  String get onboardingSetHrtDate;
+
+  /// No description provided for @onboardingAddDrug.
+  ///
+  /// In en, this message translates to:
+  /// **'Add your first medication'**
+  String get onboardingAddDrug;
+
+  /// No description provided for @pdfTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'HanaNote Health Report'**
+  String get pdfTitle;
+
+  /// No description provided for @pdfMedSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Medications'**
+  String get pdfMedSection;
+
+  /// No description provided for @pdfBloodSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Blood Tests'**
+  String get pdfBloodSection;
+
+  /// No description provided for @pdfMeasureSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Body Measurements'**
+  String get pdfMeasureSection;
+
+  /// No description provided for @pdfJournalSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent Journal'**
+  String get pdfJournalSection;
+
+  /// No description provided for @pdfNoData.
+  ///
+  /// In en, this message translates to:
+  /// **'No data'**
+  String get pdfNoData;
+
+  /// No description provided for @pdfGenerating.
+  ///
+  /// In en, this message translates to:
+  /// **'Generating PDF...'**
+  String get pdfGenerating;
+
+  /// No description provided for @pdfSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'PDF generated'**
+  String get pdfSuccess;
+
+  /// No description provided for @pdfFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'PDF generation failed'**
+  String get pdfFailed;
+
+  /// No description provided for @importInProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Importing...'**
+  String get importInProgress;
+
+  /// No description provided for @importSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} items imported'**
+  String importSuccess(int count);
+
+  /// No description provided for @importFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Import failed'**
+  String get importFailed;
+
+  /// No description provided for @importPickFile.
+  ///
+  /// In en, this message translates to:
+  /// **'Select backup file'**
+  String get importPickFile;
+
+  /// No description provided for @importConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Import data?'**
+  String get importConfirmTitle;
+
+  /// No description provided for @importConfirmMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'This will add backup data to your existing records. Existing items with matching IDs may be overwritten.'**
+  String get importConfirmMessage;
+
+  /// No description provided for @importConfirmAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Import'**
+  String get importConfirmAction;
 }
 
 class _AppLocalizationsDelegate

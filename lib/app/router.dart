@@ -6,6 +6,7 @@ import 'package:hananote/app/presentation/main_shell.dart';
 import 'package:hananote/app/theme/hana_colors.dart';
 import 'package:hananote/core/l10n/arb/app_localizations.dart';
 import 'package:hananote/features/auth/presentation/pages/auth_wrapper_page.dart';
+import 'package:hananote/features/auth/presentation/pages/onboarding_page.dart';
 import 'package:hananote/features/blood_test/presentation/bloc/blood_test_bloc.dart';
 import 'package:hananote/features/blood_test/presentation/bloc/blood_test_event.dart';
 import 'package:hananote/features/blood_test/presentation/pages/blood_test_edit_page.dart';
@@ -70,6 +71,14 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: '/',
       builder: (context, state) => const AuthWrapperPage(),
+    ),
+    GoRoute(
+      path: '/onboarding',
+      parentNavigatorKey: _rootNavigatorKey,
+      builder: (context, state) => BlocProvider.value(
+        value: getIt<SettingsBloc>(),
+        child: const OnboardingPage(),
+      ),
     ),
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {

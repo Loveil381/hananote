@@ -4,14 +4,16 @@ import 'package:fpdart/fpdart.dart';
 import 'package:hananote/core/error/failures.dart';
 import 'package:hananote/features/settings/domain/entities/app_settings.dart';
 import 'package:hananote/features/settings/domain/entities/user_profile.dart';
+import 'package:hananote/features/settings/domain/usecases/export_data.dart';
+import 'package:hananote/features/settings/domain/usecases/generate_pdf_report.dart';
 import 'package:hananote/features/settings/domain/usecases/get_profile_dashboard.dart';
+import 'package:hananote/features/settings/domain/usecases/import_data.dart';
 import 'package:hananote/features/settings/domain/usecases/update_app_settings.dart';
 import 'package:hananote/features/settings/domain/usecases/update_user_profile.dart';
 import 'package:hananote/features/settings/domain/usecases/wipe_all_data.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_bloc.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_event.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_state.dart';
-import 'package:hananote/features/settings/domain/usecases/export_data.dart';
 import 'package:mocktail/mocktail.dart';
 
 class _MockGetProfileDashboard extends Mock implements GetProfileDashboard {}
@@ -24,12 +26,18 @@ class _MockWipeAllData extends Mock implements WipeAllData {}
 
 class _MockExportData extends Mock implements ExportData {}
 
+class _MockGeneratePdfReport extends Mock implements GeneratePdfReport {}
+
+class _MockImportData extends Mock implements ImportData {}
+
 void main() {
   late _MockGetProfileDashboard getProfileDashboard;
   late _MockUpdateAppSettings updateAppSettings;
   late _MockUpdateUserProfile updateUserProfile;
   late _MockWipeAllData wipeAllData;
   late _MockExportData exportData;
+  late _MockGeneratePdfReport generatePdfReport;
+  late _MockImportData importData;
 
   final profile = UserProfile.withCalculatedHrtDayCount(
     displayName: '小花',
@@ -49,6 +57,8 @@ void main() {
         updateUserProfile,
         wipeAllData,
         exportData,
+        generatePdfReport,
+        importData,
       );
 
   SettingsState buildLoadedState() {
@@ -71,6 +81,8 @@ void main() {
     updateUserProfile = _MockUpdateUserProfile();
     wipeAllData = _MockWipeAllData();
     exportData = _MockExportData();
+    generatePdfReport = _MockGeneratePdfReport();
+    importData = _MockImportData();
   });
 
   test('initial state is SettingsInitial', () {

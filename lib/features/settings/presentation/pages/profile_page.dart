@@ -3,7 +3,9 @@
 // dartdoc coverage is deferred to the documentation pass.
 // ignore_for_file: public_member_api_docs
 
+import 'dart:convert';
 import 'dart:ui';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -24,67 +26,73 @@ class ProfilePage extends StatelessWidget {
       ..showSnackBar(SnackBar(content: Text(message)));
   }
 
-  void _showFeaturePlannedSheet(BuildContext context) {
+  Future<void> _handleGeneratePdf(BuildContext context) async {
     final l10n = AppLocalizations.of(context)!;
-    showModalBottomSheet<void>(
-      context: context,
-      backgroundColor: HanaColors.surfaceContainerLowest,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
-      ),
-      builder: (sheetContext) {
-        return SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(24, 20, 24, 24),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Container(
-                  width: 40,
-                  height: 4,
-                  margin: const EdgeInsets.only(bottom: 32),
-                  decoration: BoxDecoration(
-                    color: HanaColors.outlineVariant.withAlpha(128),
-                    borderRadius: BorderRadius.circular(999),
-                  ),
-                ),
-                const Icon(
-                  Icons.construction_outlined,
-                  size: 64,
-                  color: HanaColors.primary,
-                ),
-                const SizedBox(height: 24),
-                Text(
-                  l10n.featureInDevelopment,
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w700,
-                    color: HanaColors.onSurface,
-                  ),
-                ),
-                const SizedBox(height: 12),
-                Text(
-                  l10n.featureInDevelopmentDesc,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 14,
-                    color: HanaColors.onSurfaceVariant,
-                  ),
-                ),
-                const SizedBox(height: 32),
-                SizedBox(
-                  width: double.infinity,
-                  child: FilledButton(
-                    onPressed: () => Navigator.of(sheetContext).pop(),
-                    child: Text(l10n.closeAction),
-                  ),
-                ),
-              ],
-            ),
+    context.read<SettingsBloc>().add(
+          SettingsEvent.generatePdfReport(
+            pdfTitle: l10n.pdfTitle,
+            medSection: l10n.pdfMedSection,
+            bloodSection: l10n.pdfBloodSection,
+            measureSection: l10n.pdfMeasureSection,
+            journalSection: l10n.pdfJournalSection,
+            noData: l10n.pdfNoData,
           ),
         );
-      },
+  }
+
+  Future<void> _handleImportBackup(BuildContext context) async {
+    final l10n = AppLocalizations.of(context)!;
+    final messenger = ScaffoldMessenger.of(context);
+    final bloc = context.read<SettingsBloc>();
+
+    final result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['json'],
+      withData: true,
     );
+
+    if (result == null || result.files.isEmpty) return;
+    final bytes = result.files.first.bytes;
+    if (bytes == null) {
+      messenger
+        ..hideCurrentSnackBar()
+        ..showSnackBar(SnackBar(content: Text(l10n.importFailed)));
+      return;
+    }
+
+    if (!context.mounted) return;
+    final confirm = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        backgroundColor: HanaColors.surfaceContainerLowestOf(dialogContext),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(24),
+        ),
+        title: Text(l10n.importConfirmTitle),
+        content: Text(l10n.importConfirmMessage),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(dialogContext).pop(false),
+            child: Text(l10n.cancel),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(dialogContext).pop(true),
+            child: Text(
+              l10n.importConfirmAction,
+              style: TextStyle(
+                color: HanaColors.primaryOf(dialogContext),
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+
+    if (confirm ?? false) {
+      final jsonString = utf8.decode(bytes);
+      bloc.add(SettingsEvent.importBackup(jsonString: jsonString));
+    }
   }
 
   BoxDecoration _bentoDecoration() {
@@ -122,12 +130,26 @@ class ProfilePage extends StatelessWidget {
           _showSnackBar(context, state.message);
         } else if (state is SettingsActionResult) {
           final l10n = AppLocalizations.of(context)!;
-          if (state.actionKey == 'export_in_progress') {
+          final key = state.actionKey;
+          if (key == 'export_in_progress') {
             _showSnackBar(context, l10n.exportInProgress);
-          } else if (state.actionKey == 'export_success') {
+          } else if (key == 'export_success') {
             _showSnackBar(context, l10n.exportSuccess);
-          } else if (state.actionKey == 'export_failed') {
+          } else if (key == 'export_failed') {
             _showSnackBar(context, l10n.exportFailed);
+          } else if (key == 'pdf_in_progress') {
+            _showSnackBar(context, l10n.pdfGenerating);
+          } else if (key == 'pdf_success') {
+            _showSnackBar(context, l10n.pdfSuccess);
+          } else if (key == 'pdf_failed') {
+            _showSnackBar(context, l10n.pdfFailed);
+          } else if (key == 'import_in_progress') {
+            _showSnackBar(context, l10n.importInProgress);
+          } else if (key.startsWith('import_success:')) {
+            final count = int.tryParse(key.split(':').last) ?? 0;
+            _showSnackBar(context, l10n.importSuccess(count));
+          } else if (key == 'import_failed') {
+            _showSnackBar(context, l10n.importFailed);
           }
         }
       },
@@ -493,8 +515,7 @@ class ProfilePage extends StatelessWidget {
                     title: l10n.importBackup,
                     isChevron: true,
                     decoration: _bentoDecoration(),
-                    onTap: () =>
-                        _showFeaturePlannedSheet(context),
+                    onTap: () => _handleImportBackup(context),
                   ),
                   const SizedBox(height: 12),
                   _ButtonRowItem(
@@ -502,8 +523,7 @@ class ProfilePage extends StatelessWidget {
                     title: l10n.generatePdf,
                     isChevron: true,
                     decoration: _bentoDecoration(),
-                    onTap: () =>
-                        _showFeaturePlannedSheet(context),
+                    onTap: () => _handleGeneratePdf(context),
                   ),
                   const SizedBox(height: 40),
                   Text(

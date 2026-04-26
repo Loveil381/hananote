@@ -42,7 +42,23 @@ class SettingsRepositoryImpl implements SettingsRepository {
   @override
   Future<Either<Failure, AppSettings>> getAppSettings() {
     return _guardStorage(() async {
-      return await _localDataSource.getAppSettings() ?? _defaultAppSettings();
+      final stored = await _localDataSource.getAppSettings();
+      // Detect upgrades from versions without the onboarding flag:
+      // any existing drug means the user has already used the app.
+      final activeDrugCount = await _localDataSource.getActiveDrugCount();
+      final hasExistingData = activeDrugCount > 0;
+
+      if (stored == null) {
+        return _defaultAppSettings()
+            .copyWith(hasCompletedOnboarding: hasExistingData);
+      }
+
+      if (!stored.hasCompletedOnboarding && hasExistingData) {
+        final migrated = stored.copyWith(hasCompletedOnboarding: true);
+        await _localDataSource.saveAppSettings(migrated);
+        return migrated;
+      }
+      return stored;
     });
   }
 

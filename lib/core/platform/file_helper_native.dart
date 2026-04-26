@@ -41,3 +41,11 @@ Future<String> writeTempFile(String fileName, String content) async {
   await file.writeAsString(content);
   return file.path;
 }
+
+/// Writes binary bytes to a temp file and returns its path.
+Future<String> writeTempBytes(String fileName, Uint8List bytes) async {
+  final tempDir = await getTemporaryDirectory();
+  final file = File('${tempDir.path}/$fileName');
+  await file.writeAsBytes(bytes, flush: true);
+  return file.path;
+}
