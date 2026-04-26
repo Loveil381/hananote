@@ -262,3 +262,88 @@
 - **理由**: AppSettings 中尚无 per-drug 通知字段，持久化需要扩展 entity + migration，MVP 先跑通 UI
 - **日期**: Round 44
 
+## DEC-051: Flutter Web 平台直连 sqlite3.wasm
+- **决定**: Web 端数据库适配器从 `sqflite_common_ffi_web`（polyfill）改为直接绑定 `sqlite3.wasm`
+- **理由**: polyfill 在最新浏览器中存在 KDF 异常和初始化竞态，直连 WASM 可控性更高
+- **替代方案**: 继续用 polyfill（不稳定）或 IndexedDB 自实现（开发成本极高）
+- **依赖**: `web/sqlite3.wasm` (741KB) + `web/sqflite_sw.js` 服务工作线程
+- **日期**: Round 51 (2026-04-12, commit 21fc868)
+
+## DEC-052: 自动更新系统架构 — R2 CDN + version.json 轮询
+- **决定**: 自更新通过 Cloudflare R2 托管 `version.json` 元数据 + APK，应用启动时轮询 CDN（GitHub API 兜底）
+- **理由**: GitHub Releases 在中国大陆访问慢且不稳定，R2 全球节点 + 自定义域名 cdn.hrtyaku.com 可解
+- **替代方案**: 只用 GitHub API（中国大陆体验差）、自建对象存储（运维成本）
+- **核心组件**: `core/update/update_service.dart` + `update_dialog.dart` + `apk_downloader_*.dart` + `apk_installer.dart`
+- **CI 流程**: tag → release.yml 构建签名 APK → 上传 GitHub Release → sync-r2.yml 同步到 R2
+- **日期**: Round 49 (2026-04-11, v1.2.0 commit 5ac21de)
+
+## DEC-053: 服药完成花瓣粒子庆祝特效
+- **决定**: 服药打卡完成后触发樱花花瓣 Canvas 粒子动画
+- **理由**: DESIGN.md 二次元情感锚点要求；Canvas 自绘比 Lottie/Rive 资产体积小、可程序化控制
+- **替代方案**: Lottie（资产体积大、风格不易统一）、原生动画 API（表现力不足）
+- **位置**: `lib/core/widgets/petal_celebration.dart` (155 行)
+- **日期**: Round 51 (2026-04-12, v1.2.1 commit 708f026)
+
+## DEC-054: HRT 药物模板库内嵌 22 种循证药物
+- **决定**: 应用启动即提供 22 种 HRT 药物模板（estrogen×9 / anti-androgen×6 / progestogen×5 / 5α-reductase×2），来源 hrtyaku.com
+- **理由**: 用户首启即可一键添加，避免手动输入剂量/单位/给药途径出错
+- **位置**: `lib/features/medication/domain/entities/drug_templates.dart`
+- **日期**: Round 50 (2026-04-12, commit 4c212c2)
+
+## DEC-055: Web 端 Argon2 参数降级
+- **决定**: Web 端 Argon2id 参数从移动端 (mem=64MB, iter=3) 降至浏览器可承受范围
+- **理由**: 浏览器主线程同步执行 Argon2 会冻结 UI 数秒到数十秒，权衡安全性 vs 可用性
+- **风险**: Web 端密钥派生强度低于移动端
+- **替代方案**: WebWorker 离主线程（待考虑）
+- **日期**: Round 50 (2026-04-11, commit 06d587a)
+
+## DEC-056: Dark Mode 实现策略 — HanaColors.xxxOf(context)
+- **决定**: 所有颜色引用从 `HanaColors.xxx` 静态访问改为 `HanaColors.xxxOf(context)` 上下文感知
+- **理由**: 通过 `Theme.of(context).brightness` 判断返回 Light 或 Dark 调色板，无需各组件单独写 if-else
+- **配套**: `HanaColorsDark` 暖色暗色调（无纯黑/白，DESIGN.md 要求）+ `AppTheme(brightness: ...)` 双主题
+- **设置**: AppSettings.darkMode 字段持久化用户偏好
+- **日期**: Round 48 (2026-04-11~12, commit 03a832e + b5672db 修补)
+
+## DEC-057: v1.1.0 commit message 与实际交付不符（教训记录）
+- **背景**: commit 03a832e 标题为 "v1.1.0 — dark mode, onboarding wizard, import, PDF, schedule UX"，实际 diff 仅交付 dark mode + schedule UX
+- **影响**: GitHub Release 1.1.0 的 Release Notes 误导用户，预期落差风险
+- **教训**: commit message / Release Notes 必须与实际 diff 严格一致；后续遵守 CLAUDE.md 铁律 §9（硬编码占位 = 未完成）+ §11（禁止删除重建替代精确修复）
+- **遗留**: Onboarding/PDF/Import 草稿在 `.claude/worktrees/exciting-borg/lib/...`，未进入 git 历史；R52 实施时可参考但需重新审计
+- **日期**: 记录于 Round 51 (2026-04-26)
+
+## DEC-058: 应用内法律页 + 应用内 APK 安装
+- **决定**: 隐私政策/使用条款从外链 hananote.app 改为应用内原生页（三语 ARB），APK 更新从外链下载改为应用内进度条 + FileProvider 触发系统安装
+- **理由**: hananote.app 域名未上线时外链 404；应用内体验一致；FileProvider + REQUEST_INSTALL_PACKAGES 是 Android 8+ 标准做法
+- **位置**: `lib/features/settings/presentation/pages/legal_page.dart` + `MainActivity.kt` MethodChannel
+- **日期**: Round 49 (2026-04-11, v1.1.1 commit a2a57d9)
+
+## DEC-059: CI/CD 三流水线分工
+- **决定**: GitHub Actions 拆 3 个工作流：
+  - `ci.yml`: 每 push/PR 触发，analyze + test + build APK debug，Flutter 锁版 3.38.4
+  - `release.yml`: tag v* 触发，签名 APK + 上传 GitHub Release + 上传 R2
+  - `sync-r2.yml`: release published 触发，兜底从 GitHub Release 同步到 R2
+- **理由**: 关注点分离；release 失败时 sync-r2 提供容错
+- **Secrets 依赖**: KEYSTORE_BASE64, KEYSTORE_PASSWORD, KEY_ALIAS, KEY_PASSWORD, R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, R2_BUCKET
+- **日期**: Round 46 (2026-04-11, commit 13380d2 + 2fd6d84)
+
+## DEC-060: C-2 KeyManager 安全升级（验证 hash 替代原密钥）
+- **决定**: KeyManager 从存储原始密钥改为存储 verification hash，附带 legacy 数据迁移路径
+- **理由**: root 场景下 SecureStorage 可能被读取；hash 不可逆，泄露后无法解密用户数据
+- **影响**: 已有用户在升级时透明迁移，密钥仍可正确恢复
+- **解决**: REVIEW-BACKLOG C-2（自 R37 起 Pending 14 轮）
+- **日期**: Round 46 (2026-04-11, commit 13380d2)
+
+## DEC-061: i18n ARB-driven 三语全量
+- **决定**: 所有 UI 文本通过 `lib/core/l10n/arb/app_{en,zh,ja}.arb` 管理，AppLocalizations 自动生成
+- **理由**: 服务于产品愿景（中日东南亚华人圈）；ARB 是 Flutter 官方推荐
+- **覆盖**: 约 245 keys × 3 langs；enum 通过 `enum_l10n.dart` 的 `localizedName(l10n)` 扩展
+- **位置**: 设置页"语言"切换接通真实 locale
+- **日期**: Round 47 (2026-04-11, commits 7fb6e44 + 76aa65c)
+
+## DEC-062: Web 平台条件导入架构
+- **决定**: 平台差异通过条件导入 `_native.dart` / `_web.dart` 拆分，公共接口 `_factory.dart`
+- **覆盖**: database, file_helper, apk_downloader 三组
+- **理由**: 不污染移动端代码，Web 编译时自动选择对应实现
+- **位置**: `lib/core/database/database_factory_*.dart` + `lib/core/platform/file_helper_*.dart` + `lib/core/update/apk_downloader_*.dart`
+- **日期**: Round 50 (2026-04-11, commit 211e328)
+
