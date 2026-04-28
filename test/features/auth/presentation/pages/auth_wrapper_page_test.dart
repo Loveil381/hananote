@@ -6,6 +6,8 @@ import 'package:go_router/go_router.dart';
 import 'package:hananote/features/auth/presentation/bloc/auth_cubit.dart';
 import 'package:hananote/features/auth/presentation/bloc/auth_state.dart';
 import 'package:hananote/features/auth/presentation/pages/auth_wrapper_page.dart';
+import 'package:hananote/features/settings/domain/entities/app_settings.dart';
+import 'package:hananote/features/settings/domain/entities/user_profile.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_bloc.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_event.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_state.dart';
@@ -15,6 +17,29 @@ class _MockAuthCubit extends MockCubit<AuthState> implements AuthCubit {}
 
 class _MockSettingsBloc extends MockBloc<SettingsEvent, SettingsState>
     implements SettingsBloc {}
+
+SettingsState _loadedState({required bool hasCompletedOnboarding}) {
+  final profile = UserProfile.withCalculatedHrtDayCount(
+    displayName: '小花',
+    hrtStartDate: DateTime(2025, 11, 30),
+    today: DateTime(2026, 4, 26),
+  );
+  final settings = AppSettings(
+    appLockEnabled: true,
+    privacyModeEnabled: false,
+    blurOverlayEnabled: true,
+    lastBackupDate: null,
+    hasCompletedOnboarding: hasCompletedOnboarding,
+    // Disable update check to avoid network calls in tests.
+    autoCheckUpdate: false,
+  );
+  return SettingsState.loaded(
+    profile: profile,
+    settings: settings,
+    activeDrugCount: 1,
+    inventoryDaysRemaining: 30,
+  );
+}
 
 void main() {
   late _MockAuthCubit authCubit;
@@ -33,16 +58,8 @@ void main() {
     when(() => settingsBloc.stream).thenAnswer((_) => const Stream.empty());
   });
 
-  testWidgets('loads settings before navigating to today after unlock', (
-    tester,
-  ) async {
-    whenListen(
-      authCubit,
-      Stream<AuthState>.fromIterable(const [AuthState.unlocked()]),
-      initialState: const AuthState.initial(),
-    );
-
-    final router = GoRouter(
+  GoRouter buildRouter() {
+    return GoRouter(
       routes: [
         GoRoute(
           path: '/',
@@ -58,13 +75,68 @@ void main() {
           path: '/today',
           builder: (context, state) => const Scaffold(body: Text('today')),
         ),
+        GoRoute(
+          path: '/onboarding',
+          builder: (context, state) => const Scaffold(
+            body: Text('onboarding'),
+          ),
+        ),
       ],
     );
+  }
 
-    await tester.pumpWidget(MaterialApp.router(routerConfig: router));
-    await tester.pumpAndSettle();
+  testWidgets(
+    'loads settings then navigates to today when onboarding already done',
+    (tester) async {
+      final loaded = _loadedState(hasCompletedOnboarding: true);
 
-    verify(() => settingsBloc.add(const LoadSettingsDashboard())).called(1);
-    expect(find.text('today'), findsOneWidget);
-  });
+      whenListen(
+        authCubit,
+        Stream<AuthState>.fromIterable(const [AuthState.unlocked()]),
+        initialState: const AuthState.initial(),
+      );
+      whenListen(
+        settingsBloc,
+        Stream<SettingsState>.fromIterable([loaded]),
+        initialState: const SettingsState.initial(),
+      );
+      when(() => authCubit.state).thenReturn(const AuthState.unlocked());
+
+      await tester.pumpWidget(
+        MaterialApp.router(routerConfig: buildRouter()),
+      );
+      await tester.pumpAndSettle();
+
+      verify(() => settingsBloc.add(const LoadSettingsDashboard())).called(1);
+      expect(find.text('today'), findsOneWidget);
+    },
+  );
+
+  testWidgets(
+    'navigates to onboarding when first launch (hasCompletedOnboarding=false)',
+    (tester) async {
+      final loaded = _loadedState(hasCompletedOnboarding: false);
+
+      whenListen(
+        authCubit,
+        Stream<AuthState>.fromIterable(const [AuthState.unlocked()]),
+        initialState: const AuthState.initial(),
+      );
+      whenListen(
+        settingsBloc,
+        Stream<SettingsState>.fromIterable([loaded]),
+        initialState: const SettingsState.initial(),
+      );
+      when(() => authCubit.state).thenReturn(const AuthState.unlocked());
+
+      await tester.pumpWidget(
+        MaterialApp.router(routerConfig: buildRouter()),
+      );
+      await tester.pumpAndSettle();
+
+      verify(() => settingsBloc.add(const LoadSettingsDashboard())).called(1);
+      expect(find.text('onboarding'), findsOneWidget);
+      expect(find.text('today'), findsNothing);
+    },
+  );
 }

@@ -26,9 +26,9 @@ class RecordPage extends StatelessWidget {
         final todayStr = DateFormat.MMMd(localeTag).format(DateTime.now());
 
         if (state is RecordInitial || state is RecordLoading) {
-          return Scaffold(
+          return const Scaffold(
             backgroundColor: HanaColors.background,
-            body: const Center(
+            body: Center(
               child: CircularProgressIndicator(color: HanaColors.primary),
             ),
           );

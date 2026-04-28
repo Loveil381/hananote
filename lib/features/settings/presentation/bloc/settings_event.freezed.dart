@@ -31,6 +31,16 @@ mixin _$SettingsEvent {
     required TResult Function(bool enabled) toggleDarkMode,
     required TResult Function(bool enabled) toggleAutoCheckUpdate,
     required TResult Function(String version) skipVersion,
+    required TResult Function() markOnboardingComplete,
+    required TResult Function(
+            String pdfTitle,
+            String medSection,
+            String bloodSection,
+            String measureSection,
+            String journalSection,
+            String noData)
+        generatePdfReport,
+    required TResult Function(String jsonString) importBackup,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -48,6 +58,11 @@ mixin _$SettingsEvent {
     TResult? Function(bool enabled)? toggleDarkMode,
     TResult? Function(bool enabled)? toggleAutoCheckUpdate,
     TResult? Function(String version)? skipVersion,
+    TResult? Function()? markOnboardingComplete,
+    TResult? Function(String pdfTitle, String medSection, String bloodSection,
+            String measureSection, String journalSection, String noData)?
+        generatePdfReport,
+    TResult? Function(String jsonString)? importBackup,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -65,6 +80,11 @@ mixin _$SettingsEvent {
     TResult Function(bool enabled)? toggleDarkMode,
     TResult Function(bool enabled)? toggleAutoCheckUpdate,
     TResult Function(String version)? skipVersion,
+    TResult Function()? markOnboardingComplete,
+    TResult Function(String pdfTitle, String medSection, String bloodSection,
+            String measureSection, String journalSection, String noData)?
+        generatePdfReport,
+    TResult Function(String jsonString)? importBackup,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -84,6 +104,10 @@ mixin _$SettingsEvent {
     required TResult Function(ToggleAutoCheckUpdate value)
         toggleAutoCheckUpdate,
     required TResult Function(SkipVersion value) skipVersion,
+    required TResult Function(MarkOnboardingComplete value)
+        markOnboardingComplete,
+    required TResult Function(GeneratePdfReportEvent value) generatePdfReport,
+    required TResult Function(ImportBackupEvent value) importBackup,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -101,6 +125,9 @@ mixin _$SettingsEvent {
     TResult? Function(ToggleDarkMode value)? toggleDarkMode,
     TResult? Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
     TResult? Function(SkipVersion value)? skipVersion,
+    TResult? Function(MarkOnboardingComplete value)? markOnboardingComplete,
+    TResult? Function(GeneratePdfReportEvent value)? generatePdfReport,
+    TResult? Function(ImportBackupEvent value)? importBackup,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -118,6 +145,9 @@ mixin _$SettingsEvent {
     TResult Function(ToggleDarkMode value)? toggleDarkMode,
     TResult Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
     TResult Function(SkipVersion value)? skipVersion,
+    TResult Function(MarkOnboardingComplete value)? markOnboardingComplete,
+    TResult Function(GeneratePdfReportEvent value)? generatePdfReport,
+    TResult Function(ImportBackupEvent value)? importBackup,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -200,6 +230,16 @@ class _$LoadSettingsDashboardImpl implements LoadSettingsDashboard {
     required TResult Function(bool enabled) toggleDarkMode,
     required TResult Function(bool enabled) toggleAutoCheckUpdate,
     required TResult Function(String version) skipVersion,
+    required TResult Function() markOnboardingComplete,
+    required TResult Function(
+            String pdfTitle,
+            String medSection,
+            String bloodSection,
+            String measureSection,
+            String journalSection,
+            String noData)
+        generatePdfReport,
+    required TResult Function(String jsonString) importBackup,
   }) {
     return loadDashboard();
   }
@@ -220,6 +260,11 @@ class _$LoadSettingsDashboardImpl implements LoadSettingsDashboard {
     TResult? Function(bool enabled)? toggleDarkMode,
     TResult? Function(bool enabled)? toggleAutoCheckUpdate,
     TResult? Function(String version)? skipVersion,
+    TResult? Function()? markOnboardingComplete,
+    TResult? Function(String pdfTitle, String medSection, String bloodSection,
+            String measureSection, String journalSection, String noData)?
+        generatePdfReport,
+    TResult? Function(String jsonString)? importBackup,
   }) {
     return loadDashboard?.call();
   }
@@ -240,6 +285,11 @@ class _$LoadSettingsDashboardImpl implements LoadSettingsDashboard {
     TResult Function(bool enabled)? toggleDarkMode,
     TResult Function(bool enabled)? toggleAutoCheckUpdate,
     TResult Function(String version)? skipVersion,
+    TResult Function()? markOnboardingComplete,
+    TResult Function(String pdfTitle, String medSection, String bloodSection,
+            String measureSection, String journalSection, String noData)?
+        generatePdfReport,
+    TResult Function(String jsonString)? importBackup,
     required TResult orElse(),
   }) {
     if (loadDashboard != null) {
@@ -265,6 +315,10 @@ class _$LoadSettingsDashboardImpl implements LoadSettingsDashboard {
     required TResult Function(ToggleAutoCheckUpdate value)
         toggleAutoCheckUpdate,
     required TResult Function(SkipVersion value) skipVersion,
+    required TResult Function(MarkOnboardingComplete value)
+        markOnboardingComplete,
+    required TResult Function(GeneratePdfReportEvent value) generatePdfReport,
+    required TResult Function(ImportBackupEvent value) importBackup,
   }) {
     return loadDashboard(this);
   }
@@ -285,6 +339,9 @@ class _$LoadSettingsDashboardImpl implements LoadSettingsDashboard {
     TResult? Function(ToggleDarkMode value)? toggleDarkMode,
     TResult? Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
     TResult? Function(SkipVersion value)? skipVersion,
+    TResult? Function(MarkOnboardingComplete value)? markOnboardingComplete,
+    TResult? Function(GeneratePdfReportEvent value)? generatePdfReport,
+    TResult? Function(ImportBackupEvent value)? importBackup,
   }) {
     return loadDashboard?.call(this);
   }
@@ -305,6 +362,9 @@ class _$LoadSettingsDashboardImpl implements LoadSettingsDashboard {
     TResult Function(ToggleDarkMode value)? toggleDarkMode,
     TResult Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
     TResult Function(SkipVersion value)? skipVersion,
+    TResult Function(MarkOnboardingComplete value)? markOnboardingComplete,
+    TResult Function(GeneratePdfReportEvent value)? generatePdfReport,
+    TResult Function(ImportBackupEvent value)? importBackup,
     required TResult orElse(),
   }) {
     if (loadDashboard != null) {
@@ -399,6 +459,16 @@ class _$ToggleAppLockImpl implements ToggleAppLock {
     required TResult Function(bool enabled) toggleDarkMode,
     required TResult Function(bool enabled) toggleAutoCheckUpdate,
     required TResult Function(String version) skipVersion,
+    required TResult Function() markOnboardingComplete,
+    required TResult Function(
+            String pdfTitle,
+            String medSection,
+            String bloodSection,
+            String measureSection,
+            String journalSection,
+            String noData)
+        generatePdfReport,
+    required TResult Function(String jsonString) importBackup,
   }) {
     return toggleAppLock(enabled);
   }
@@ -419,6 +489,11 @@ class _$ToggleAppLockImpl implements ToggleAppLock {
     TResult? Function(bool enabled)? toggleDarkMode,
     TResult? Function(bool enabled)? toggleAutoCheckUpdate,
     TResult? Function(String version)? skipVersion,
+    TResult? Function()? markOnboardingComplete,
+    TResult? Function(String pdfTitle, String medSection, String bloodSection,
+            String measureSection, String journalSection, String noData)?
+        generatePdfReport,
+    TResult? Function(String jsonString)? importBackup,
   }) {
     return toggleAppLock?.call(enabled);
   }
@@ -439,6 +514,11 @@ class _$ToggleAppLockImpl implements ToggleAppLock {
     TResult Function(bool enabled)? toggleDarkMode,
     TResult Function(bool enabled)? toggleAutoCheckUpdate,
     TResult Function(String version)? skipVersion,
+    TResult Function()? markOnboardingComplete,
+    TResult Function(String pdfTitle, String medSection, String bloodSection,
+            String measureSection, String journalSection, String noData)?
+        generatePdfReport,
+    TResult Function(String jsonString)? importBackup,
     required TResult orElse(),
   }) {
     if (toggleAppLock != null) {
@@ -464,6 +544,10 @@ class _$ToggleAppLockImpl implements ToggleAppLock {
     required TResult Function(ToggleAutoCheckUpdate value)
         toggleAutoCheckUpdate,
     required TResult Function(SkipVersion value) skipVersion,
+    required TResult Function(MarkOnboardingComplete value)
+        markOnboardingComplete,
+    required TResult Function(GeneratePdfReportEvent value) generatePdfReport,
+    required TResult Function(ImportBackupEvent value) importBackup,
   }) {
     return toggleAppLock(this);
   }
@@ -484,6 +568,9 @@ class _$ToggleAppLockImpl implements ToggleAppLock {
     TResult? Function(ToggleDarkMode value)? toggleDarkMode,
     TResult? Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
     TResult? Function(SkipVersion value)? skipVersion,
+    TResult? Function(MarkOnboardingComplete value)? markOnboardingComplete,
+    TResult? Function(GeneratePdfReportEvent value)? generatePdfReport,
+    TResult? Function(ImportBackupEvent value)? importBackup,
   }) {
     return toggleAppLock?.call(this);
   }
@@ -504,6 +591,9 @@ class _$ToggleAppLockImpl implements ToggleAppLock {
     TResult Function(ToggleDarkMode value)? toggleDarkMode,
     TResult Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
     TResult Function(SkipVersion value)? skipVersion,
+    TResult Function(MarkOnboardingComplete value)? markOnboardingComplete,
+    TResult Function(GeneratePdfReportEvent value)? generatePdfReport,
+    TResult Function(ImportBackupEvent value)? importBackup,
     required TResult orElse(),
   }) {
     if (toggleAppLock != null) {
@@ -608,6 +698,16 @@ class _$TogglePrivacyModeImpl implements TogglePrivacyMode {
     required TResult Function(bool enabled) toggleDarkMode,
     required TResult Function(bool enabled) toggleAutoCheckUpdate,
     required TResult Function(String version) skipVersion,
+    required TResult Function() markOnboardingComplete,
+    required TResult Function(
+            String pdfTitle,
+            String medSection,
+            String bloodSection,
+            String measureSection,
+            String journalSection,
+            String noData)
+        generatePdfReport,
+    required TResult Function(String jsonString) importBackup,
   }) {
     return togglePrivacyMode(enabled);
   }
@@ -628,6 +728,11 @@ class _$TogglePrivacyModeImpl implements TogglePrivacyMode {
     TResult? Function(bool enabled)? toggleDarkMode,
     TResult? Function(bool enabled)? toggleAutoCheckUpdate,
     TResult? Function(String version)? skipVersion,
+    TResult? Function()? markOnboardingComplete,
+    TResult? Function(String pdfTitle, String medSection, String bloodSection,
+            String measureSection, String journalSection, String noData)?
+        generatePdfReport,
+    TResult? Function(String jsonString)? importBackup,
   }) {
     return togglePrivacyMode?.call(enabled);
   }
@@ -648,6 +753,11 @@ class _$TogglePrivacyModeImpl implements TogglePrivacyMode {
     TResult Function(bool enabled)? toggleDarkMode,
     TResult Function(bool enabled)? toggleAutoCheckUpdate,
     TResult Function(String version)? skipVersion,
+    TResult Function()? markOnboardingComplete,
+    TResult Function(String pdfTitle, String medSection, String bloodSection,
+            String measureSection, String journalSection, String noData)?
+        generatePdfReport,
+    TResult Function(String jsonString)? importBackup,
     required TResult orElse(),
   }) {
     if (togglePrivacyMode != null) {
@@ -673,6 +783,10 @@ class _$TogglePrivacyModeImpl implements TogglePrivacyMode {
     required TResult Function(ToggleAutoCheckUpdate value)
         toggleAutoCheckUpdate,
     required TResult Function(SkipVersion value) skipVersion,
+    required TResult Function(MarkOnboardingComplete value)
+        markOnboardingComplete,
+    required TResult Function(GeneratePdfReportEvent value) generatePdfReport,
+    required TResult Function(ImportBackupEvent value) importBackup,
   }) {
     return togglePrivacyMode(this);
   }
@@ -693,6 +807,9 @@ class _$TogglePrivacyModeImpl implements TogglePrivacyMode {
     TResult? Function(ToggleDarkMode value)? toggleDarkMode,
     TResult? Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
     TResult? Function(SkipVersion value)? skipVersion,
+    TResult? Function(MarkOnboardingComplete value)? markOnboardingComplete,
+    TResult? Function(GeneratePdfReportEvent value)? generatePdfReport,
+    TResult? Function(ImportBackupEvent value)? importBackup,
   }) {
     return togglePrivacyMode?.call(this);
   }
@@ -713,6 +830,9 @@ class _$TogglePrivacyModeImpl implements TogglePrivacyMode {
     TResult Function(ToggleDarkMode value)? toggleDarkMode,
     TResult Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
     TResult Function(SkipVersion value)? skipVersion,
+    TResult Function(MarkOnboardingComplete value)? markOnboardingComplete,
+    TResult Function(GeneratePdfReportEvent value)? generatePdfReport,
+    TResult Function(ImportBackupEvent value)? importBackup,
     required TResult orElse(),
   }) {
     if (togglePrivacyMode != null) {
@@ -817,6 +937,16 @@ class _$ToggleBlurOverlayImpl implements ToggleBlurOverlay {
     required TResult Function(bool enabled) toggleDarkMode,
     required TResult Function(bool enabled) toggleAutoCheckUpdate,
     required TResult Function(String version) skipVersion,
+    required TResult Function() markOnboardingComplete,
+    required TResult Function(
+            String pdfTitle,
+            String medSection,
+            String bloodSection,
+            String measureSection,
+            String journalSection,
+            String noData)
+        generatePdfReport,
+    required TResult Function(String jsonString) importBackup,
   }) {
     return toggleBlurOverlay(enabled);
   }
@@ -837,6 +967,11 @@ class _$ToggleBlurOverlayImpl implements ToggleBlurOverlay {
     TResult? Function(bool enabled)? toggleDarkMode,
     TResult? Function(bool enabled)? toggleAutoCheckUpdate,
     TResult? Function(String version)? skipVersion,
+    TResult? Function()? markOnboardingComplete,
+    TResult? Function(String pdfTitle, String medSection, String bloodSection,
+            String measureSection, String journalSection, String noData)?
+        generatePdfReport,
+    TResult? Function(String jsonString)? importBackup,
   }) {
     return toggleBlurOverlay?.call(enabled);
   }
@@ -857,6 +992,11 @@ class _$ToggleBlurOverlayImpl implements ToggleBlurOverlay {
     TResult Function(bool enabled)? toggleDarkMode,
     TResult Function(bool enabled)? toggleAutoCheckUpdate,
     TResult Function(String version)? skipVersion,
+    TResult Function()? markOnboardingComplete,
+    TResult Function(String pdfTitle, String medSection, String bloodSection,
+            String measureSection, String journalSection, String noData)?
+        generatePdfReport,
+    TResult Function(String jsonString)? importBackup,
     required TResult orElse(),
   }) {
     if (toggleBlurOverlay != null) {
@@ -882,6 +1022,10 @@ class _$ToggleBlurOverlayImpl implements ToggleBlurOverlay {
     required TResult Function(ToggleAutoCheckUpdate value)
         toggleAutoCheckUpdate,
     required TResult Function(SkipVersion value) skipVersion,
+    required TResult Function(MarkOnboardingComplete value)
+        markOnboardingComplete,
+    required TResult Function(GeneratePdfReportEvent value) generatePdfReport,
+    required TResult Function(ImportBackupEvent value) importBackup,
   }) {
     return toggleBlurOverlay(this);
   }
@@ -902,6 +1046,9 @@ class _$ToggleBlurOverlayImpl implements ToggleBlurOverlay {
     TResult? Function(ToggleDarkMode value)? toggleDarkMode,
     TResult? Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
     TResult? Function(SkipVersion value)? skipVersion,
+    TResult? Function(MarkOnboardingComplete value)? markOnboardingComplete,
+    TResult? Function(GeneratePdfReportEvent value)? generatePdfReport,
+    TResult? Function(ImportBackupEvent value)? importBackup,
   }) {
     return toggleBlurOverlay?.call(this);
   }
@@ -922,6 +1069,9 @@ class _$ToggleBlurOverlayImpl implements ToggleBlurOverlay {
     TResult Function(ToggleDarkMode value)? toggleDarkMode,
     TResult Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
     TResult Function(SkipVersion value)? skipVersion,
+    TResult Function(MarkOnboardingComplete value)? markOnboardingComplete,
+    TResult Function(GeneratePdfReportEvent value)? generatePdfReport,
+    TResult Function(ImportBackupEvent value)? importBackup,
     required TResult orElse(),
   }) {
     if (toggleBlurOverlay != null) {
@@ -1026,6 +1176,16 @@ class _$UpdateDisplayNameImpl implements UpdateDisplayName {
     required TResult Function(bool enabled) toggleDarkMode,
     required TResult Function(bool enabled) toggleAutoCheckUpdate,
     required TResult Function(String version) skipVersion,
+    required TResult Function() markOnboardingComplete,
+    required TResult Function(
+            String pdfTitle,
+            String medSection,
+            String bloodSection,
+            String measureSection,
+            String journalSection,
+            String noData)
+        generatePdfReport,
+    required TResult Function(String jsonString) importBackup,
   }) {
     return updateDisplayName(name);
   }
@@ -1046,6 +1206,11 @@ class _$UpdateDisplayNameImpl implements UpdateDisplayName {
     TResult? Function(bool enabled)? toggleDarkMode,
     TResult? Function(bool enabled)? toggleAutoCheckUpdate,
     TResult? Function(String version)? skipVersion,
+    TResult? Function()? markOnboardingComplete,
+    TResult? Function(String pdfTitle, String medSection, String bloodSection,
+            String measureSection, String journalSection, String noData)?
+        generatePdfReport,
+    TResult? Function(String jsonString)? importBackup,
   }) {
     return updateDisplayName?.call(name);
   }
@@ -1066,6 +1231,11 @@ class _$UpdateDisplayNameImpl implements UpdateDisplayName {
     TResult Function(bool enabled)? toggleDarkMode,
     TResult Function(bool enabled)? toggleAutoCheckUpdate,
     TResult Function(String version)? skipVersion,
+    TResult Function()? markOnboardingComplete,
+    TResult Function(String pdfTitle, String medSection, String bloodSection,
+            String measureSection, String journalSection, String noData)?
+        generatePdfReport,
+    TResult Function(String jsonString)? importBackup,
     required TResult orElse(),
   }) {
     if (updateDisplayName != null) {
@@ -1091,6 +1261,10 @@ class _$UpdateDisplayNameImpl implements UpdateDisplayName {
     required TResult Function(ToggleAutoCheckUpdate value)
         toggleAutoCheckUpdate,
     required TResult Function(SkipVersion value) skipVersion,
+    required TResult Function(MarkOnboardingComplete value)
+        markOnboardingComplete,
+    required TResult Function(GeneratePdfReportEvent value) generatePdfReport,
+    required TResult Function(ImportBackupEvent value) importBackup,
   }) {
     return updateDisplayName(this);
   }
@@ -1111,6 +1285,9 @@ class _$UpdateDisplayNameImpl implements UpdateDisplayName {
     TResult? Function(ToggleDarkMode value)? toggleDarkMode,
     TResult? Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
     TResult? Function(SkipVersion value)? skipVersion,
+    TResult? Function(MarkOnboardingComplete value)? markOnboardingComplete,
+    TResult? Function(GeneratePdfReportEvent value)? generatePdfReport,
+    TResult? Function(ImportBackupEvent value)? importBackup,
   }) {
     return updateDisplayName?.call(this);
   }
@@ -1131,6 +1308,9 @@ class _$UpdateDisplayNameImpl implements UpdateDisplayName {
     TResult Function(ToggleDarkMode value)? toggleDarkMode,
     TResult Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
     TResult Function(SkipVersion value)? skipVersion,
+    TResult Function(MarkOnboardingComplete value)? markOnboardingComplete,
+    TResult Function(GeneratePdfReportEvent value)? generatePdfReport,
+    TResult Function(ImportBackupEvent value)? importBackup,
     required TResult orElse(),
   }) {
     if (updateDisplayName != null) {
@@ -1235,6 +1415,16 @@ class _$UpdateHrtStartDateImpl implements UpdateHrtStartDate {
     required TResult Function(bool enabled) toggleDarkMode,
     required TResult Function(bool enabled) toggleAutoCheckUpdate,
     required TResult Function(String version) skipVersion,
+    required TResult Function() markOnboardingComplete,
+    required TResult Function(
+            String pdfTitle,
+            String medSection,
+            String bloodSection,
+            String measureSection,
+            String journalSection,
+            String noData)
+        generatePdfReport,
+    required TResult Function(String jsonString) importBackup,
   }) {
     return updateHrtStartDate(date);
   }
@@ -1255,6 +1445,11 @@ class _$UpdateHrtStartDateImpl implements UpdateHrtStartDate {
     TResult? Function(bool enabled)? toggleDarkMode,
     TResult? Function(bool enabled)? toggleAutoCheckUpdate,
     TResult? Function(String version)? skipVersion,
+    TResult? Function()? markOnboardingComplete,
+    TResult? Function(String pdfTitle, String medSection, String bloodSection,
+            String measureSection, String journalSection, String noData)?
+        generatePdfReport,
+    TResult? Function(String jsonString)? importBackup,
   }) {
     return updateHrtStartDate?.call(date);
   }
@@ -1275,6 +1470,11 @@ class _$UpdateHrtStartDateImpl implements UpdateHrtStartDate {
     TResult Function(bool enabled)? toggleDarkMode,
     TResult Function(bool enabled)? toggleAutoCheckUpdate,
     TResult Function(String version)? skipVersion,
+    TResult Function()? markOnboardingComplete,
+    TResult Function(String pdfTitle, String medSection, String bloodSection,
+            String measureSection, String journalSection, String noData)?
+        generatePdfReport,
+    TResult Function(String jsonString)? importBackup,
     required TResult orElse(),
   }) {
     if (updateHrtStartDate != null) {
@@ -1300,6 +1500,10 @@ class _$UpdateHrtStartDateImpl implements UpdateHrtStartDate {
     required TResult Function(ToggleAutoCheckUpdate value)
         toggleAutoCheckUpdate,
     required TResult Function(SkipVersion value) skipVersion,
+    required TResult Function(MarkOnboardingComplete value)
+        markOnboardingComplete,
+    required TResult Function(GeneratePdfReportEvent value) generatePdfReport,
+    required TResult Function(ImportBackupEvent value) importBackup,
   }) {
     return updateHrtStartDate(this);
   }
@@ -1320,6 +1524,9 @@ class _$UpdateHrtStartDateImpl implements UpdateHrtStartDate {
     TResult? Function(ToggleDarkMode value)? toggleDarkMode,
     TResult? Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
     TResult? Function(SkipVersion value)? skipVersion,
+    TResult? Function(MarkOnboardingComplete value)? markOnboardingComplete,
+    TResult? Function(GeneratePdfReportEvent value)? generatePdfReport,
+    TResult? Function(ImportBackupEvent value)? importBackup,
   }) {
     return updateHrtStartDate?.call(this);
   }
@@ -1340,6 +1547,9 @@ class _$UpdateHrtStartDateImpl implements UpdateHrtStartDate {
     TResult Function(ToggleDarkMode value)? toggleDarkMode,
     TResult Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
     TResult Function(SkipVersion value)? skipVersion,
+    TResult Function(MarkOnboardingComplete value)? markOnboardingComplete,
+    TResult Function(GeneratePdfReportEvent value)? generatePdfReport,
+    TResult Function(ImportBackupEvent value)? importBackup,
     required TResult orElse(),
   }) {
     if (updateHrtStartDate != null) {
@@ -1416,6 +1626,16 @@ class _$WipeSettingsDataImpl implements WipeSettingsData {
     required TResult Function(bool enabled) toggleDarkMode,
     required TResult Function(bool enabled) toggleAutoCheckUpdate,
     required TResult Function(String version) skipVersion,
+    required TResult Function() markOnboardingComplete,
+    required TResult Function(
+            String pdfTitle,
+            String medSection,
+            String bloodSection,
+            String measureSection,
+            String journalSection,
+            String noData)
+        generatePdfReport,
+    required TResult Function(String jsonString) importBackup,
   }) {
     return wipeData();
   }
@@ -1436,6 +1656,11 @@ class _$WipeSettingsDataImpl implements WipeSettingsData {
     TResult? Function(bool enabled)? toggleDarkMode,
     TResult? Function(bool enabled)? toggleAutoCheckUpdate,
     TResult? Function(String version)? skipVersion,
+    TResult? Function()? markOnboardingComplete,
+    TResult? Function(String pdfTitle, String medSection, String bloodSection,
+            String measureSection, String journalSection, String noData)?
+        generatePdfReport,
+    TResult? Function(String jsonString)? importBackup,
   }) {
     return wipeData?.call();
   }
@@ -1456,6 +1681,11 @@ class _$WipeSettingsDataImpl implements WipeSettingsData {
     TResult Function(bool enabled)? toggleDarkMode,
     TResult Function(bool enabled)? toggleAutoCheckUpdate,
     TResult Function(String version)? skipVersion,
+    TResult Function()? markOnboardingComplete,
+    TResult Function(String pdfTitle, String medSection, String bloodSection,
+            String measureSection, String journalSection, String noData)?
+        generatePdfReport,
+    TResult Function(String jsonString)? importBackup,
     required TResult orElse(),
   }) {
     if (wipeData != null) {
@@ -1481,6 +1711,10 @@ class _$WipeSettingsDataImpl implements WipeSettingsData {
     required TResult Function(ToggleAutoCheckUpdate value)
         toggleAutoCheckUpdate,
     required TResult Function(SkipVersion value) skipVersion,
+    required TResult Function(MarkOnboardingComplete value)
+        markOnboardingComplete,
+    required TResult Function(GeneratePdfReportEvent value) generatePdfReport,
+    required TResult Function(ImportBackupEvent value) importBackup,
   }) {
     return wipeData(this);
   }
@@ -1501,6 +1735,9 @@ class _$WipeSettingsDataImpl implements WipeSettingsData {
     TResult? Function(ToggleDarkMode value)? toggleDarkMode,
     TResult? Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
     TResult? Function(SkipVersion value)? skipVersion,
+    TResult? Function(MarkOnboardingComplete value)? markOnboardingComplete,
+    TResult? Function(GeneratePdfReportEvent value)? generatePdfReport,
+    TResult? Function(ImportBackupEvent value)? importBackup,
   }) {
     return wipeData?.call(this);
   }
@@ -1521,6 +1758,9 @@ class _$WipeSettingsDataImpl implements WipeSettingsData {
     TResult Function(ToggleDarkMode value)? toggleDarkMode,
     TResult Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
     TResult Function(SkipVersion value)? skipVersion,
+    TResult Function(MarkOnboardingComplete value)? markOnboardingComplete,
+    TResult Function(GeneratePdfReportEvent value)? generatePdfReport,
+    TResult Function(ImportBackupEvent value)? importBackup,
     required TResult orElse(),
   }) {
     if (wipeData != null) {
@@ -1616,6 +1856,16 @@ class _$ToggleNotificationsImpl implements ToggleNotifications {
     required TResult Function(bool enabled) toggleDarkMode,
     required TResult Function(bool enabled) toggleAutoCheckUpdate,
     required TResult Function(String version) skipVersion,
+    required TResult Function() markOnboardingComplete,
+    required TResult Function(
+            String pdfTitle,
+            String medSection,
+            String bloodSection,
+            String measureSection,
+            String journalSection,
+            String noData)
+        generatePdfReport,
+    required TResult Function(String jsonString) importBackup,
   }) {
     return toggleNotifications(enabled);
   }
@@ -1636,6 +1886,11 @@ class _$ToggleNotificationsImpl implements ToggleNotifications {
     TResult? Function(bool enabled)? toggleDarkMode,
     TResult? Function(bool enabled)? toggleAutoCheckUpdate,
     TResult? Function(String version)? skipVersion,
+    TResult? Function()? markOnboardingComplete,
+    TResult? Function(String pdfTitle, String medSection, String bloodSection,
+            String measureSection, String journalSection, String noData)?
+        generatePdfReport,
+    TResult? Function(String jsonString)? importBackup,
   }) {
     return toggleNotifications?.call(enabled);
   }
@@ -1656,6 +1911,11 @@ class _$ToggleNotificationsImpl implements ToggleNotifications {
     TResult Function(bool enabled)? toggleDarkMode,
     TResult Function(bool enabled)? toggleAutoCheckUpdate,
     TResult Function(String version)? skipVersion,
+    TResult Function()? markOnboardingComplete,
+    TResult Function(String pdfTitle, String medSection, String bloodSection,
+            String measureSection, String journalSection, String noData)?
+        generatePdfReport,
+    TResult Function(String jsonString)? importBackup,
     required TResult orElse(),
   }) {
     if (toggleNotifications != null) {
@@ -1681,6 +1941,10 @@ class _$ToggleNotificationsImpl implements ToggleNotifications {
     required TResult Function(ToggleAutoCheckUpdate value)
         toggleAutoCheckUpdate,
     required TResult Function(SkipVersion value) skipVersion,
+    required TResult Function(MarkOnboardingComplete value)
+        markOnboardingComplete,
+    required TResult Function(GeneratePdfReportEvent value) generatePdfReport,
+    required TResult Function(ImportBackupEvent value) importBackup,
   }) {
     return toggleNotifications(this);
   }
@@ -1701,6 +1965,9 @@ class _$ToggleNotificationsImpl implements ToggleNotifications {
     TResult? Function(ToggleDarkMode value)? toggleDarkMode,
     TResult? Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
     TResult? Function(SkipVersion value)? skipVersion,
+    TResult? Function(MarkOnboardingComplete value)? markOnboardingComplete,
+    TResult? Function(GeneratePdfReportEvent value)? generatePdfReport,
+    TResult? Function(ImportBackupEvent value)? importBackup,
   }) {
     return toggleNotifications?.call(this);
   }
@@ -1721,6 +1988,9 @@ class _$ToggleNotificationsImpl implements ToggleNotifications {
     TResult Function(ToggleDarkMode value)? toggleDarkMode,
     TResult Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
     TResult Function(SkipVersion value)? skipVersion,
+    TResult Function(MarkOnboardingComplete value)? markOnboardingComplete,
+    TResult Function(GeneratePdfReportEvent value)? generatePdfReport,
+    TResult Function(ImportBackupEvent value)? importBackup,
     required TResult orElse(),
   }) {
     if (toggleNotifications != null) {
@@ -1797,6 +2067,16 @@ class _$ExportDataEventImpl implements ExportDataEvent {
     required TResult Function(bool enabled) toggleDarkMode,
     required TResult Function(bool enabled) toggleAutoCheckUpdate,
     required TResult Function(String version) skipVersion,
+    required TResult Function() markOnboardingComplete,
+    required TResult Function(
+            String pdfTitle,
+            String medSection,
+            String bloodSection,
+            String measureSection,
+            String journalSection,
+            String noData)
+        generatePdfReport,
+    required TResult Function(String jsonString) importBackup,
   }) {
     return exportData();
   }
@@ -1817,6 +2097,11 @@ class _$ExportDataEventImpl implements ExportDataEvent {
     TResult? Function(bool enabled)? toggleDarkMode,
     TResult? Function(bool enabled)? toggleAutoCheckUpdate,
     TResult? Function(String version)? skipVersion,
+    TResult? Function()? markOnboardingComplete,
+    TResult? Function(String pdfTitle, String medSection, String bloodSection,
+            String measureSection, String journalSection, String noData)?
+        generatePdfReport,
+    TResult? Function(String jsonString)? importBackup,
   }) {
     return exportData?.call();
   }
@@ -1837,6 +2122,11 @@ class _$ExportDataEventImpl implements ExportDataEvent {
     TResult Function(bool enabled)? toggleDarkMode,
     TResult Function(bool enabled)? toggleAutoCheckUpdate,
     TResult Function(String version)? skipVersion,
+    TResult Function()? markOnboardingComplete,
+    TResult Function(String pdfTitle, String medSection, String bloodSection,
+            String measureSection, String journalSection, String noData)?
+        generatePdfReport,
+    TResult Function(String jsonString)? importBackup,
     required TResult orElse(),
   }) {
     if (exportData != null) {
@@ -1862,6 +2152,10 @@ class _$ExportDataEventImpl implements ExportDataEvent {
     required TResult Function(ToggleAutoCheckUpdate value)
         toggleAutoCheckUpdate,
     required TResult Function(SkipVersion value) skipVersion,
+    required TResult Function(MarkOnboardingComplete value)
+        markOnboardingComplete,
+    required TResult Function(GeneratePdfReportEvent value) generatePdfReport,
+    required TResult Function(ImportBackupEvent value) importBackup,
   }) {
     return exportData(this);
   }
@@ -1882,6 +2176,9 @@ class _$ExportDataEventImpl implements ExportDataEvent {
     TResult? Function(ToggleDarkMode value)? toggleDarkMode,
     TResult? Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
     TResult? Function(SkipVersion value)? skipVersion,
+    TResult? Function(MarkOnboardingComplete value)? markOnboardingComplete,
+    TResult? Function(GeneratePdfReportEvent value)? generatePdfReport,
+    TResult? Function(ImportBackupEvent value)? importBackup,
   }) {
     return exportData?.call(this);
   }
@@ -1902,6 +2199,9 @@ class _$ExportDataEventImpl implements ExportDataEvent {
     TResult Function(ToggleDarkMode value)? toggleDarkMode,
     TResult Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
     TResult Function(SkipVersion value)? skipVersion,
+    TResult Function(MarkOnboardingComplete value)? markOnboardingComplete,
+    TResult Function(GeneratePdfReportEvent value)? generatePdfReport,
+    TResult Function(ImportBackupEvent value)? importBackup,
     required TResult orElse(),
   }) {
     if (exportData != null) {
@@ -1998,6 +2298,16 @@ class _$ChangeLanguageImpl implements ChangeLanguage {
     required TResult Function(bool enabled) toggleDarkMode,
     required TResult Function(bool enabled) toggleAutoCheckUpdate,
     required TResult Function(String version) skipVersion,
+    required TResult Function() markOnboardingComplete,
+    required TResult Function(
+            String pdfTitle,
+            String medSection,
+            String bloodSection,
+            String measureSection,
+            String journalSection,
+            String noData)
+        generatePdfReport,
+    required TResult Function(String jsonString) importBackup,
   }) {
     return changeLanguage(languageCode);
   }
@@ -2018,6 +2328,11 @@ class _$ChangeLanguageImpl implements ChangeLanguage {
     TResult? Function(bool enabled)? toggleDarkMode,
     TResult? Function(bool enabled)? toggleAutoCheckUpdate,
     TResult? Function(String version)? skipVersion,
+    TResult? Function()? markOnboardingComplete,
+    TResult? Function(String pdfTitle, String medSection, String bloodSection,
+            String measureSection, String journalSection, String noData)?
+        generatePdfReport,
+    TResult? Function(String jsonString)? importBackup,
   }) {
     return changeLanguage?.call(languageCode);
   }
@@ -2038,6 +2353,11 @@ class _$ChangeLanguageImpl implements ChangeLanguage {
     TResult Function(bool enabled)? toggleDarkMode,
     TResult Function(bool enabled)? toggleAutoCheckUpdate,
     TResult Function(String version)? skipVersion,
+    TResult Function()? markOnboardingComplete,
+    TResult Function(String pdfTitle, String medSection, String bloodSection,
+            String measureSection, String journalSection, String noData)?
+        generatePdfReport,
+    TResult Function(String jsonString)? importBackup,
     required TResult orElse(),
   }) {
     if (changeLanguage != null) {
@@ -2063,6 +2383,10 @@ class _$ChangeLanguageImpl implements ChangeLanguage {
     required TResult Function(ToggleAutoCheckUpdate value)
         toggleAutoCheckUpdate,
     required TResult Function(SkipVersion value) skipVersion,
+    required TResult Function(MarkOnboardingComplete value)
+        markOnboardingComplete,
+    required TResult Function(GeneratePdfReportEvent value) generatePdfReport,
+    required TResult Function(ImportBackupEvent value) importBackup,
   }) {
     return changeLanguage(this);
   }
@@ -2083,6 +2407,9 @@ class _$ChangeLanguageImpl implements ChangeLanguage {
     TResult? Function(ToggleDarkMode value)? toggleDarkMode,
     TResult? Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
     TResult? Function(SkipVersion value)? skipVersion,
+    TResult? Function(MarkOnboardingComplete value)? markOnboardingComplete,
+    TResult? Function(GeneratePdfReportEvent value)? generatePdfReport,
+    TResult? Function(ImportBackupEvent value)? importBackup,
   }) {
     return changeLanguage?.call(this);
   }
@@ -2103,6 +2430,9 @@ class _$ChangeLanguageImpl implements ChangeLanguage {
     TResult Function(ToggleDarkMode value)? toggleDarkMode,
     TResult Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
     TResult Function(SkipVersion value)? skipVersion,
+    TResult Function(MarkOnboardingComplete value)? markOnboardingComplete,
+    TResult Function(GeneratePdfReportEvent value)? generatePdfReport,
+    TResult Function(ImportBackupEvent value)? importBackup,
     required TResult orElse(),
   }) {
     if (changeLanguage != null) {
@@ -2207,6 +2537,16 @@ class _$ToggleDarkModeImpl implements ToggleDarkMode {
     required TResult Function(bool enabled) toggleDarkMode,
     required TResult Function(bool enabled) toggleAutoCheckUpdate,
     required TResult Function(String version) skipVersion,
+    required TResult Function() markOnboardingComplete,
+    required TResult Function(
+            String pdfTitle,
+            String medSection,
+            String bloodSection,
+            String measureSection,
+            String journalSection,
+            String noData)
+        generatePdfReport,
+    required TResult Function(String jsonString) importBackup,
   }) {
     return toggleDarkMode(enabled);
   }
@@ -2227,6 +2567,11 @@ class _$ToggleDarkModeImpl implements ToggleDarkMode {
     TResult? Function(bool enabled)? toggleDarkMode,
     TResult? Function(bool enabled)? toggleAutoCheckUpdate,
     TResult? Function(String version)? skipVersion,
+    TResult? Function()? markOnboardingComplete,
+    TResult? Function(String pdfTitle, String medSection, String bloodSection,
+            String measureSection, String journalSection, String noData)?
+        generatePdfReport,
+    TResult? Function(String jsonString)? importBackup,
   }) {
     return toggleDarkMode?.call(enabled);
   }
@@ -2247,6 +2592,11 @@ class _$ToggleDarkModeImpl implements ToggleDarkMode {
     TResult Function(bool enabled)? toggleDarkMode,
     TResult Function(bool enabled)? toggleAutoCheckUpdate,
     TResult Function(String version)? skipVersion,
+    TResult Function()? markOnboardingComplete,
+    TResult Function(String pdfTitle, String medSection, String bloodSection,
+            String measureSection, String journalSection, String noData)?
+        generatePdfReport,
+    TResult Function(String jsonString)? importBackup,
     required TResult orElse(),
   }) {
     if (toggleDarkMode != null) {
@@ -2272,6 +2622,10 @@ class _$ToggleDarkModeImpl implements ToggleDarkMode {
     required TResult Function(ToggleAutoCheckUpdate value)
         toggleAutoCheckUpdate,
     required TResult Function(SkipVersion value) skipVersion,
+    required TResult Function(MarkOnboardingComplete value)
+        markOnboardingComplete,
+    required TResult Function(GeneratePdfReportEvent value) generatePdfReport,
+    required TResult Function(ImportBackupEvent value) importBackup,
   }) {
     return toggleDarkMode(this);
   }
@@ -2292,6 +2646,9 @@ class _$ToggleDarkModeImpl implements ToggleDarkMode {
     TResult? Function(ToggleDarkMode value)? toggleDarkMode,
     TResult? Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
     TResult? Function(SkipVersion value)? skipVersion,
+    TResult? Function(MarkOnboardingComplete value)? markOnboardingComplete,
+    TResult? Function(GeneratePdfReportEvent value)? generatePdfReport,
+    TResult? Function(ImportBackupEvent value)? importBackup,
   }) {
     return toggleDarkMode?.call(this);
   }
@@ -2312,6 +2669,9 @@ class _$ToggleDarkModeImpl implements ToggleDarkMode {
     TResult Function(ToggleDarkMode value)? toggleDarkMode,
     TResult Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
     TResult Function(SkipVersion value)? skipVersion,
+    TResult Function(MarkOnboardingComplete value)? markOnboardingComplete,
+    TResult Function(GeneratePdfReportEvent value)? generatePdfReport,
+    TResult Function(ImportBackupEvent value)? importBackup,
     required TResult orElse(),
   }) {
     if (toggleDarkMode != null) {
@@ -2417,6 +2777,16 @@ class _$ToggleAutoCheckUpdateImpl implements ToggleAutoCheckUpdate {
     required TResult Function(bool enabled) toggleDarkMode,
     required TResult Function(bool enabled) toggleAutoCheckUpdate,
     required TResult Function(String version) skipVersion,
+    required TResult Function() markOnboardingComplete,
+    required TResult Function(
+            String pdfTitle,
+            String medSection,
+            String bloodSection,
+            String measureSection,
+            String journalSection,
+            String noData)
+        generatePdfReport,
+    required TResult Function(String jsonString) importBackup,
   }) {
     return toggleAutoCheckUpdate(enabled);
   }
@@ -2437,6 +2807,11 @@ class _$ToggleAutoCheckUpdateImpl implements ToggleAutoCheckUpdate {
     TResult? Function(bool enabled)? toggleDarkMode,
     TResult? Function(bool enabled)? toggleAutoCheckUpdate,
     TResult? Function(String version)? skipVersion,
+    TResult? Function()? markOnboardingComplete,
+    TResult? Function(String pdfTitle, String medSection, String bloodSection,
+            String measureSection, String journalSection, String noData)?
+        generatePdfReport,
+    TResult? Function(String jsonString)? importBackup,
   }) {
     return toggleAutoCheckUpdate?.call(enabled);
   }
@@ -2457,6 +2832,11 @@ class _$ToggleAutoCheckUpdateImpl implements ToggleAutoCheckUpdate {
     TResult Function(bool enabled)? toggleDarkMode,
     TResult Function(bool enabled)? toggleAutoCheckUpdate,
     TResult Function(String version)? skipVersion,
+    TResult Function()? markOnboardingComplete,
+    TResult Function(String pdfTitle, String medSection, String bloodSection,
+            String measureSection, String journalSection, String noData)?
+        generatePdfReport,
+    TResult Function(String jsonString)? importBackup,
     required TResult orElse(),
   }) {
     if (toggleAutoCheckUpdate != null) {
@@ -2482,6 +2862,10 @@ class _$ToggleAutoCheckUpdateImpl implements ToggleAutoCheckUpdate {
     required TResult Function(ToggleAutoCheckUpdate value)
         toggleAutoCheckUpdate,
     required TResult Function(SkipVersion value) skipVersion,
+    required TResult Function(MarkOnboardingComplete value)
+        markOnboardingComplete,
+    required TResult Function(GeneratePdfReportEvent value) generatePdfReport,
+    required TResult Function(ImportBackupEvent value) importBackup,
   }) {
     return toggleAutoCheckUpdate(this);
   }
@@ -2502,6 +2886,9 @@ class _$ToggleAutoCheckUpdateImpl implements ToggleAutoCheckUpdate {
     TResult? Function(ToggleDarkMode value)? toggleDarkMode,
     TResult? Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
     TResult? Function(SkipVersion value)? skipVersion,
+    TResult? Function(MarkOnboardingComplete value)? markOnboardingComplete,
+    TResult? Function(GeneratePdfReportEvent value)? generatePdfReport,
+    TResult? Function(ImportBackupEvent value)? importBackup,
   }) {
     return toggleAutoCheckUpdate?.call(this);
   }
@@ -2522,6 +2909,9 @@ class _$ToggleAutoCheckUpdateImpl implements ToggleAutoCheckUpdate {
     TResult Function(ToggleDarkMode value)? toggleDarkMode,
     TResult Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
     TResult Function(SkipVersion value)? skipVersion,
+    TResult Function(MarkOnboardingComplete value)? markOnboardingComplete,
+    TResult Function(GeneratePdfReportEvent value)? generatePdfReport,
+    TResult Function(ImportBackupEvent value)? importBackup,
     required TResult orElse(),
   }) {
     if (toggleAutoCheckUpdate != null) {
@@ -2625,6 +3015,16 @@ class _$SkipVersionImpl implements SkipVersion {
     required TResult Function(bool enabled) toggleDarkMode,
     required TResult Function(bool enabled) toggleAutoCheckUpdate,
     required TResult Function(String version) skipVersion,
+    required TResult Function() markOnboardingComplete,
+    required TResult Function(
+            String pdfTitle,
+            String medSection,
+            String bloodSection,
+            String measureSection,
+            String journalSection,
+            String noData)
+        generatePdfReport,
+    required TResult Function(String jsonString) importBackup,
   }) {
     return skipVersion(version);
   }
@@ -2645,6 +3045,11 @@ class _$SkipVersionImpl implements SkipVersion {
     TResult? Function(bool enabled)? toggleDarkMode,
     TResult? Function(bool enabled)? toggleAutoCheckUpdate,
     TResult? Function(String version)? skipVersion,
+    TResult? Function()? markOnboardingComplete,
+    TResult? Function(String pdfTitle, String medSection, String bloodSection,
+            String measureSection, String journalSection, String noData)?
+        generatePdfReport,
+    TResult? Function(String jsonString)? importBackup,
   }) {
     return skipVersion?.call(version);
   }
@@ -2665,6 +3070,11 @@ class _$SkipVersionImpl implements SkipVersion {
     TResult Function(bool enabled)? toggleDarkMode,
     TResult Function(bool enabled)? toggleAutoCheckUpdate,
     TResult Function(String version)? skipVersion,
+    TResult Function()? markOnboardingComplete,
+    TResult Function(String pdfTitle, String medSection, String bloodSection,
+            String measureSection, String journalSection, String noData)?
+        generatePdfReport,
+    TResult Function(String jsonString)? importBackup,
     required TResult orElse(),
   }) {
     if (skipVersion != null) {
@@ -2690,6 +3100,10 @@ class _$SkipVersionImpl implements SkipVersion {
     required TResult Function(ToggleAutoCheckUpdate value)
         toggleAutoCheckUpdate,
     required TResult Function(SkipVersion value) skipVersion,
+    required TResult Function(MarkOnboardingComplete value)
+        markOnboardingComplete,
+    required TResult Function(GeneratePdfReportEvent value) generatePdfReport,
+    required TResult Function(ImportBackupEvent value) importBackup,
   }) {
     return skipVersion(this);
   }
@@ -2710,6 +3124,9 @@ class _$SkipVersionImpl implements SkipVersion {
     TResult? Function(ToggleDarkMode value)? toggleDarkMode,
     TResult? Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
     TResult? Function(SkipVersion value)? skipVersion,
+    TResult? Function(MarkOnboardingComplete value)? markOnboardingComplete,
+    TResult? Function(GeneratePdfReportEvent value)? generatePdfReport,
+    TResult? Function(ImportBackupEvent value)? importBackup,
   }) {
     return skipVersion?.call(this);
   }
@@ -2730,6 +3147,9 @@ class _$SkipVersionImpl implements SkipVersion {
     TResult Function(ToggleDarkMode value)? toggleDarkMode,
     TResult Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
     TResult Function(SkipVersion value)? skipVersion,
+    TResult Function(MarkOnboardingComplete value)? markOnboardingComplete,
+    TResult Function(GeneratePdfReportEvent value)? generatePdfReport,
+    TResult Function(ImportBackupEvent value)? importBackup,
     required TResult orElse(),
   }) {
     if (skipVersion != null) {
@@ -2749,5 +3169,762 @@ abstract class SkipVersion implements SettingsEvent {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SkipVersionImplCopyWith<_$SkipVersionImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$MarkOnboardingCompleteImplCopyWith<$Res> {
+  factory _$$MarkOnboardingCompleteImplCopyWith(
+          _$MarkOnboardingCompleteImpl value,
+          $Res Function(_$MarkOnboardingCompleteImpl) then) =
+      __$$MarkOnboardingCompleteImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$MarkOnboardingCompleteImplCopyWithImpl<$Res>
+    extends _$SettingsEventCopyWithImpl<$Res, _$MarkOnboardingCompleteImpl>
+    implements _$$MarkOnboardingCompleteImplCopyWith<$Res> {
+  __$$MarkOnboardingCompleteImplCopyWithImpl(
+      _$MarkOnboardingCompleteImpl _value,
+      $Res Function(_$MarkOnboardingCompleteImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of SettingsEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$MarkOnboardingCompleteImpl implements MarkOnboardingComplete {
+  const _$MarkOnboardingCompleteImpl();
+
+  @override
+  String toString() {
+    return 'SettingsEvent.markOnboardingComplete()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MarkOnboardingCompleteImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadDashboard,
+    required TResult Function(bool enabled) toggleAppLock,
+    required TResult Function(bool enabled) togglePrivacyMode,
+    required TResult Function(bool enabled) toggleBlurOverlay,
+    required TResult Function(String name) updateDisplayName,
+    required TResult Function(DateTime date) updateHrtStartDate,
+    required TResult Function() wipeData,
+    required TResult Function(bool enabled) toggleNotifications,
+    required TResult Function() exportData,
+    required TResult Function(String languageCode) changeLanguage,
+    required TResult Function(bool enabled) toggleDarkMode,
+    required TResult Function(bool enabled) toggleAutoCheckUpdate,
+    required TResult Function(String version) skipVersion,
+    required TResult Function() markOnboardingComplete,
+    required TResult Function(
+            String pdfTitle,
+            String medSection,
+            String bloodSection,
+            String measureSection,
+            String journalSection,
+            String noData)
+        generatePdfReport,
+    required TResult Function(String jsonString) importBackup,
+  }) {
+    return markOnboardingComplete();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loadDashboard,
+    TResult? Function(bool enabled)? toggleAppLock,
+    TResult? Function(bool enabled)? togglePrivacyMode,
+    TResult? Function(bool enabled)? toggleBlurOverlay,
+    TResult? Function(String name)? updateDisplayName,
+    TResult? Function(DateTime date)? updateHrtStartDate,
+    TResult? Function()? wipeData,
+    TResult? Function(bool enabled)? toggleNotifications,
+    TResult? Function()? exportData,
+    TResult? Function(String languageCode)? changeLanguage,
+    TResult? Function(bool enabled)? toggleDarkMode,
+    TResult? Function(bool enabled)? toggleAutoCheckUpdate,
+    TResult? Function(String version)? skipVersion,
+    TResult? Function()? markOnboardingComplete,
+    TResult? Function(String pdfTitle, String medSection, String bloodSection,
+            String measureSection, String journalSection, String noData)?
+        generatePdfReport,
+    TResult? Function(String jsonString)? importBackup,
+  }) {
+    return markOnboardingComplete?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadDashboard,
+    TResult Function(bool enabled)? toggleAppLock,
+    TResult Function(bool enabled)? togglePrivacyMode,
+    TResult Function(bool enabled)? toggleBlurOverlay,
+    TResult Function(String name)? updateDisplayName,
+    TResult Function(DateTime date)? updateHrtStartDate,
+    TResult Function()? wipeData,
+    TResult Function(bool enabled)? toggleNotifications,
+    TResult Function()? exportData,
+    TResult Function(String languageCode)? changeLanguage,
+    TResult Function(bool enabled)? toggleDarkMode,
+    TResult Function(bool enabled)? toggleAutoCheckUpdate,
+    TResult Function(String version)? skipVersion,
+    TResult Function()? markOnboardingComplete,
+    TResult Function(String pdfTitle, String medSection, String bloodSection,
+            String measureSection, String journalSection, String noData)?
+        generatePdfReport,
+    TResult Function(String jsonString)? importBackup,
+    required TResult orElse(),
+  }) {
+    if (markOnboardingComplete != null) {
+      return markOnboardingComplete();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadSettingsDashboard value) loadDashboard,
+    required TResult Function(ToggleAppLock value) toggleAppLock,
+    required TResult Function(TogglePrivacyMode value) togglePrivacyMode,
+    required TResult Function(ToggleBlurOverlay value) toggleBlurOverlay,
+    required TResult Function(UpdateDisplayName value) updateDisplayName,
+    required TResult Function(UpdateHrtStartDate value) updateHrtStartDate,
+    required TResult Function(WipeSettingsData value) wipeData,
+    required TResult Function(ToggleNotifications value) toggleNotifications,
+    required TResult Function(ExportDataEvent value) exportData,
+    required TResult Function(ChangeLanguage value) changeLanguage,
+    required TResult Function(ToggleDarkMode value) toggleDarkMode,
+    required TResult Function(ToggleAutoCheckUpdate value)
+        toggleAutoCheckUpdate,
+    required TResult Function(SkipVersion value) skipVersion,
+    required TResult Function(MarkOnboardingComplete value)
+        markOnboardingComplete,
+    required TResult Function(GeneratePdfReportEvent value) generatePdfReport,
+    required TResult Function(ImportBackupEvent value) importBackup,
+  }) {
+    return markOnboardingComplete(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LoadSettingsDashboard value)? loadDashboard,
+    TResult? Function(ToggleAppLock value)? toggleAppLock,
+    TResult? Function(TogglePrivacyMode value)? togglePrivacyMode,
+    TResult? Function(ToggleBlurOverlay value)? toggleBlurOverlay,
+    TResult? Function(UpdateDisplayName value)? updateDisplayName,
+    TResult? Function(UpdateHrtStartDate value)? updateHrtStartDate,
+    TResult? Function(WipeSettingsData value)? wipeData,
+    TResult? Function(ToggleNotifications value)? toggleNotifications,
+    TResult? Function(ExportDataEvent value)? exportData,
+    TResult? Function(ChangeLanguage value)? changeLanguage,
+    TResult? Function(ToggleDarkMode value)? toggleDarkMode,
+    TResult? Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
+    TResult? Function(SkipVersion value)? skipVersion,
+    TResult? Function(MarkOnboardingComplete value)? markOnboardingComplete,
+    TResult? Function(GeneratePdfReportEvent value)? generatePdfReport,
+    TResult? Function(ImportBackupEvent value)? importBackup,
+  }) {
+    return markOnboardingComplete?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadSettingsDashboard value)? loadDashboard,
+    TResult Function(ToggleAppLock value)? toggleAppLock,
+    TResult Function(TogglePrivacyMode value)? togglePrivacyMode,
+    TResult Function(ToggleBlurOverlay value)? toggleBlurOverlay,
+    TResult Function(UpdateDisplayName value)? updateDisplayName,
+    TResult Function(UpdateHrtStartDate value)? updateHrtStartDate,
+    TResult Function(WipeSettingsData value)? wipeData,
+    TResult Function(ToggleNotifications value)? toggleNotifications,
+    TResult Function(ExportDataEvent value)? exportData,
+    TResult Function(ChangeLanguage value)? changeLanguage,
+    TResult Function(ToggleDarkMode value)? toggleDarkMode,
+    TResult Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
+    TResult Function(SkipVersion value)? skipVersion,
+    TResult Function(MarkOnboardingComplete value)? markOnboardingComplete,
+    TResult Function(GeneratePdfReportEvent value)? generatePdfReport,
+    TResult Function(ImportBackupEvent value)? importBackup,
+    required TResult orElse(),
+  }) {
+    if (markOnboardingComplete != null) {
+      return markOnboardingComplete(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class MarkOnboardingComplete implements SettingsEvent {
+  const factory MarkOnboardingComplete() = _$MarkOnboardingCompleteImpl;
+}
+
+/// @nodoc
+abstract class _$$GeneratePdfReportEventImplCopyWith<$Res> {
+  factory _$$GeneratePdfReportEventImplCopyWith(
+          _$GeneratePdfReportEventImpl value,
+          $Res Function(_$GeneratePdfReportEventImpl) then) =
+      __$$GeneratePdfReportEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call(
+      {String pdfTitle,
+      String medSection,
+      String bloodSection,
+      String measureSection,
+      String journalSection,
+      String noData});
+}
+
+/// @nodoc
+class __$$GeneratePdfReportEventImplCopyWithImpl<$Res>
+    extends _$SettingsEventCopyWithImpl<$Res, _$GeneratePdfReportEventImpl>
+    implements _$$GeneratePdfReportEventImplCopyWith<$Res> {
+  __$$GeneratePdfReportEventImplCopyWithImpl(
+      _$GeneratePdfReportEventImpl _value,
+      $Res Function(_$GeneratePdfReportEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of SettingsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? pdfTitle = null,
+    Object? medSection = null,
+    Object? bloodSection = null,
+    Object? measureSection = null,
+    Object? journalSection = null,
+    Object? noData = null,
+  }) {
+    return _then(_$GeneratePdfReportEventImpl(
+      pdfTitle: null == pdfTitle
+          ? _value.pdfTitle
+          : pdfTitle // ignore: cast_nullable_to_non_nullable
+              as String,
+      medSection: null == medSection
+          ? _value.medSection
+          : medSection // ignore: cast_nullable_to_non_nullable
+              as String,
+      bloodSection: null == bloodSection
+          ? _value.bloodSection
+          : bloodSection // ignore: cast_nullable_to_non_nullable
+              as String,
+      measureSection: null == measureSection
+          ? _value.measureSection
+          : measureSection // ignore: cast_nullable_to_non_nullable
+              as String,
+      journalSection: null == journalSection
+          ? _value.journalSection
+          : journalSection // ignore: cast_nullable_to_non_nullable
+              as String,
+      noData: null == noData
+          ? _value.noData
+          : noData // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GeneratePdfReportEventImpl implements GeneratePdfReportEvent {
+  const _$GeneratePdfReportEventImpl(
+      {required this.pdfTitle,
+      required this.medSection,
+      required this.bloodSection,
+      required this.measureSection,
+      required this.journalSection,
+      required this.noData});
+
+  @override
+  final String pdfTitle;
+  @override
+  final String medSection;
+  @override
+  final String bloodSection;
+  @override
+  final String measureSection;
+  @override
+  final String journalSection;
+  @override
+  final String noData;
+
+  @override
+  String toString() {
+    return 'SettingsEvent.generatePdfReport(pdfTitle: $pdfTitle, medSection: $medSection, bloodSection: $bloodSection, measureSection: $measureSection, journalSection: $journalSection, noData: $noData)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GeneratePdfReportEventImpl &&
+            (identical(other.pdfTitle, pdfTitle) ||
+                other.pdfTitle == pdfTitle) &&
+            (identical(other.medSection, medSection) ||
+                other.medSection == medSection) &&
+            (identical(other.bloodSection, bloodSection) ||
+                other.bloodSection == bloodSection) &&
+            (identical(other.measureSection, measureSection) ||
+                other.measureSection == measureSection) &&
+            (identical(other.journalSection, journalSection) ||
+                other.journalSection == journalSection) &&
+            (identical(other.noData, noData) || other.noData == noData));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, pdfTitle, medSection,
+      bloodSection, measureSection, journalSection, noData);
+
+  /// Create a copy of SettingsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GeneratePdfReportEventImplCopyWith<_$GeneratePdfReportEventImpl>
+      get copyWith => __$$GeneratePdfReportEventImplCopyWithImpl<
+          _$GeneratePdfReportEventImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadDashboard,
+    required TResult Function(bool enabled) toggleAppLock,
+    required TResult Function(bool enabled) togglePrivacyMode,
+    required TResult Function(bool enabled) toggleBlurOverlay,
+    required TResult Function(String name) updateDisplayName,
+    required TResult Function(DateTime date) updateHrtStartDate,
+    required TResult Function() wipeData,
+    required TResult Function(bool enabled) toggleNotifications,
+    required TResult Function() exportData,
+    required TResult Function(String languageCode) changeLanguage,
+    required TResult Function(bool enabled) toggleDarkMode,
+    required TResult Function(bool enabled) toggleAutoCheckUpdate,
+    required TResult Function(String version) skipVersion,
+    required TResult Function() markOnboardingComplete,
+    required TResult Function(
+            String pdfTitle,
+            String medSection,
+            String bloodSection,
+            String measureSection,
+            String journalSection,
+            String noData)
+        generatePdfReport,
+    required TResult Function(String jsonString) importBackup,
+  }) {
+    return generatePdfReport(pdfTitle, medSection, bloodSection, measureSection,
+        journalSection, noData);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loadDashboard,
+    TResult? Function(bool enabled)? toggleAppLock,
+    TResult? Function(bool enabled)? togglePrivacyMode,
+    TResult? Function(bool enabled)? toggleBlurOverlay,
+    TResult? Function(String name)? updateDisplayName,
+    TResult? Function(DateTime date)? updateHrtStartDate,
+    TResult? Function()? wipeData,
+    TResult? Function(bool enabled)? toggleNotifications,
+    TResult? Function()? exportData,
+    TResult? Function(String languageCode)? changeLanguage,
+    TResult? Function(bool enabled)? toggleDarkMode,
+    TResult? Function(bool enabled)? toggleAutoCheckUpdate,
+    TResult? Function(String version)? skipVersion,
+    TResult? Function()? markOnboardingComplete,
+    TResult? Function(String pdfTitle, String medSection, String bloodSection,
+            String measureSection, String journalSection, String noData)?
+        generatePdfReport,
+    TResult? Function(String jsonString)? importBackup,
+  }) {
+    return generatePdfReport?.call(pdfTitle, medSection, bloodSection,
+        measureSection, journalSection, noData);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadDashboard,
+    TResult Function(bool enabled)? toggleAppLock,
+    TResult Function(bool enabled)? togglePrivacyMode,
+    TResult Function(bool enabled)? toggleBlurOverlay,
+    TResult Function(String name)? updateDisplayName,
+    TResult Function(DateTime date)? updateHrtStartDate,
+    TResult Function()? wipeData,
+    TResult Function(bool enabled)? toggleNotifications,
+    TResult Function()? exportData,
+    TResult Function(String languageCode)? changeLanguage,
+    TResult Function(bool enabled)? toggleDarkMode,
+    TResult Function(bool enabled)? toggleAutoCheckUpdate,
+    TResult Function(String version)? skipVersion,
+    TResult Function()? markOnboardingComplete,
+    TResult Function(String pdfTitle, String medSection, String bloodSection,
+            String measureSection, String journalSection, String noData)?
+        generatePdfReport,
+    TResult Function(String jsonString)? importBackup,
+    required TResult orElse(),
+  }) {
+    if (generatePdfReport != null) {
+      return generatePdfReport(pdfTitle, medSection, bloodSection,
+          measureSection, journalSection, noData);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadSettingsDashboard value) loadDashboard,
+    required TResult Function(ToggleAppLock value) toggleAppLock,
+    required TResult Function(TogglePrivacyMode value) togglePrivacyMode,
+    required TResult Function(ToggleBlurOverlay value) toggleBlurOverlay,
+    required TResult Function(UpdateDisplayName value) updateDisplayName,
+    required TResult Function(UpdateHrtStartDate value) updateHrtStartDate,
+    required TResult Function(WipeSettingsData value) wipeData,
+    required TResult Function(ToggleNotifications value) toggleNotifications,
+    required TResult Function(ExportDataEvent value) exportData,
+    required TResult Function(ChangeLanguage value) changeLanguage,
+    required TResult Function(ToggleDarkMode value) toggleDarkMode,
+    required TResult Function(ToggleAutoCheckUpdate value)
+        toggleAutoCheckUpdate,
+    required TResult Function(SkipVersion value) skipVersion,
+    required TResult Function(MarkOnboardingComplete value)
+        markOnboardingComplete,
+    required TResult Function(GeneratePdfReportEvent value) generatePdfReport,
+    required TResult Function(ImportBackupEvent value) importBackup,
+  }) {
+    return generatePdfReport(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LoadSettingsDashboard value)? loadDashboard,
+    TResult? Function(ToggleAppLock value)? toggleAppLock,
+    TResult? Function(TogglePrivacyMode value)? togglePrivacyMode,
+    TResult? Function(ToggleBlurOverlay value)? toggleBlurOverlay,
+    TResult? Function(UpdateDisplayName value)? updateDisplayName,
+    TResult? Function(UpdateHrtStartDate value)? updateHrtStartDate,
+    TResult? Function(WipeSettingsData value)? wipeData,
+    TResult? Function(ToggleNotifications value)? toggleNotifications,
+    TResult? Function(ExportDataEvent value)? exportData,
+    TResult? Function(ChangeLanguage value)? changeLanguage,
+    TResult? Function(ToggleDarkMode value)? toggleDarkMode,
+    TResult? Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
+    TResult? Function(SkipVersion value)? skipVersion,
+    TResult? Function(MarkOnboardingComplete value)? markOnboardingComplete,
+    TResult? Function(GeneratePdfReportEvent value)? generatePdfReport,
+    TResult? Function(ImportBackupEvent value)? importBackup,
+  }) {
+    return generatePdfReport?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadSettingsDashboard value)? loadDashboard,
+    TResult Function(ToggleAppLock value)? toggleAppLock,
+    TResult Function(TogglePrivacyMode value)? togglePrivacyMode,
+    TResult Function(ToggleBlurOverlay value)? toggleBlurOverlay,
+    TResult Function(UpdateDisplayName value)? updateDisplayName,
+    TResult Function(UpdateHrtStartDate value)? updateHrtStartDate,
+    TResult Function(WipeSettingsData value)? wipeData,
+    TResult Function(ToggleNotifications value)? toggleNotifications,
+    TResult Function(ExportDataEvent value)? exportData,
+    TResult Function(ChangeLanguage value)? changeLanguage,
+    TResult Function(ToggleDarkMode value)? toggleDarkMode,
+    TResult Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
+    TResult Function(SkipVersion value)? skipVersion,
+    TResult Function(MarkOnboardingComplete value)? markOnboardingComplete,
+    TResult Function(GeneratePdfReportEvent value)? generatePdfReport,
+    TResult Function(ImportBackupEvent value)? importBackup,
+    required TResult orElse(),
+  }) {
+    if (generatePdfReport != null) {
+      return generatePdfReport(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GeneratePdfReportEvent implements SettingsEvent {
+  const factory GeneratePdfReportEvent(
+      {required final String pdfTitle,
+      required final String medSection,
+      required final String bloodSection,
+      required final String measureSection,
+      required final String journalSection,
+      required final String noData}) = _$GeneratePdfReportEventImpl;
+
+  String get pdfTitle;
+  String get medSection;
+  String get bloodSection;
+  String get measureSection;
+  String get journalSection;
+  String get noData;
+
+  /// Create a copy of SettingsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$GeneratePdfReportEventImplCopyWith<_$GeneratePdfReportEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ImportBackupEventImplCopyWith<$Res> {
+  factory _$$ImportBackupEventImplCopyWith(_$ImportBackupEventImpl value,
+          $Res Function(_$ImportBackupEventImpl) then) =
+      __$$ImportBackupEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String jsonString});
+}
+
+/// @nodoc
+class __$$ImportBackupEventImplCopyWithImpl<$Res>
+    extends _$SettingsEventCopyWithImpl<$Res, _$ImportBackupEventImpl>
+    implements _$$ImportBackupEventImplCopyWith<$Res> {
+  __$$ImportBackupEventImplCopyWithImpl(_$ImportBackupEventImpl _value,
+      $Res Function(_$ImportBackupEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of SettingsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? jsonString = null,
+  }) {
+    return _then(_$ImportBackupEventImpl(
+      jsonString: null == jsonString
+          ? _value.jsonString
+          : jsonString // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ImportBackupEventImpl implements ImportBackupEvent {
+  const _$ImportBackupEventImpl({required this.jsonString});
+
+  @override
+  final String jsonString;
+
+  @override
+  String toString() {
+    return 'SettingsEvent.importBackup(jsonString: $jsonString)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ImportBackupEventImpl &&
+            (identical(other.jsonString, jsonString) ||
+                other.jsonString == jsonString));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, jsonString);
+
+  /// Create a copy of SettingsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ImportBackupEventImplCopyWith<_$ImportBackupEventImpl> get copyWith =>
+      __$$ImportBackupEventImplCopyWithImpl<_$ImportBackupEventImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadDashboard,
+    required TResult Function(bool enabled) toggleAppLock,
+    required TResult Function(bool enabled) togglePrivacyMode,
+    required TResult Function(bool enabled) toggleBlurOverlay,
+    required TResult Function(String name) updateDisplayName,
+    required TResult Function(DateTime date) updateHrtStartDate,
+    required TResult Function() wipeData,
+    required TResult Function(bool enabled) toggleNotifications,
+    required TResult Function() exportData,
+    required TResult Function(String languageCode) changeLanguage,
+    required TResult Function(bool enabled) toggleDarkMode,
+    required TResult Function(bool enabled) toggleAutoCheckUpdate,
+    required TResult Function(String version) skipVersion,
+    required TResult Function() markOnboardingComplete,
+    required TResult Function(
+            String pdfTitle,
+            String medSection,
+            String bloodSection,
+            String measureSection,
+            String journalSection,
+            String noData)
+        generatePdfReport,
+    required TResult Function(String jsonString) importBackup,
+  }) {
+    return importBackup(jsonString);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loadDashboard,
+    TResult? Function(bool enabled)? toggleAppLock,
+    TResult? Function(bool enabled)? togglePrivacyMode,
+    TResult? Function(bool enabled)? toggleBlurOverlay,
+    TResult? Function(String name)? updateDisplayName,
+    TResult? Function(DateTime date)? updateHrtStartDate,
+    TResult? Function()? wipeData,
+    TResult? Function(bool enabled)? toggleNotifications,
+    TResult? Function()? exportData,
+    TResult? Function(String languageCode)? changeLanguage,
+    TResult? Function(bool enabled)? toggleDarkMode,
+    TResult? Function(bool enabled)? toggleAutoCheckUpdate,
+    TResult? Function(String version)? skipVersion,
+    TResult? Function()? markOnboardingComplete,
+    TResult? Function(String pdfTitle, String medSection, String bloodSection,
+            String measureSection, String journalSection, String noData)?
+        generatePdfReport,
+    TResult? Function(String jsonString)? importBackup,
+  }) {
+    return importBackup?.call(jsonString);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadDashboard,
+    TResult Function(bool enabled)? toggleAppLock,
+    TResult Function(bool enabled)? togglePrivacyMode,
+    TResult Function(bool enabled)? toggleBlurOverlay,
+    TResult Function(String name)? updateDisplayName,
+    TResult Function(DateTime date)? updateHrtStartDate,
+    TResult Function()? wipeData,
+    TResult Function(bool enabled)? toggleNotifications,
+    TResult Function()? exportData,
+    TResult Function(String languageCode)? changeLanguage,
+    TResult Function(bool enabled)? toggleDarkMode,
+    TResult Function(bool enabled)? toggleAutoCheckUpdate,
+    TResult Function(String version)? skipVersion,
+    TResult Function()? markOnboardingComplete,
+    TResult Function(String pdfTitle, String medSection, String bloodSection,
+            String measureSection, String journalSection, String noData)?
+        generatePdfReport,
+    TResult Function(String jsonString)? importBackup,
+    required TResult orElse(),
+  }) {
+    if (importBackup != null) {
+      return importBackup(jsonString);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadSettingsDashboard value) loadDashboard,
+    required TResult Function(ToggleAppLock value) toggleAppLock,
+    required TResult Function(TogglePrivacyMode value) togglePrivacyMode,
+    required TResult Function(ToggleBlurOverlay value) toggleBlurOverlay,
+    required TResult Function(UpdateDisplayName value) updateDisplayName,
+    required TResult Function(UpdateHrtStartDate value) updateHrtStartDate,
+    required TResult Function(WipeSettingsData value) wipeData,
+    required TResult Function(ToggleNotifications value) toggleNotifications,
+    required TResult Function(ExportDataEvent value) exportData,
+    required TResult Function(ChangeLanguage value) changeLanguage,
+    required TResult Function(ToggleDarkMode value) toggleDarkMode,
+    required TResult Function(ToggleAutoCheckUpdate value)
+        toggleAutoCheckUpdate,
+    required TResult Function(SkipVersion value) skipVersion,
+    required TResult Function(MarkOnboardingComplete value)
+        markOnboardingComplete,
+    required TResult Function(GeneratePdfReportEvent value) generatePdfReport,
+    required TResult Function(ImportBackupEvent value) importBackup,
+  }) {
+    return importBackup(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LoadSettingsDashboard value)? loadDashboard,
+    TResult? Function(ToggleAppLock value)? toggleAppLock,
+    TResult? Function(TogglePrivacyMode value)? togglePrivacyMode,
+    TResult? Function(ToggleBlurOverlay value)? toggleBlurOverlay,
+    TResult? Function(UpdateDisplayName value)? updateDisplayName,
+    TResult? Function(UpdateHrtStartDate value)? updateHrtStartDate,
+    TResult? Function(WipeSettingsData value)? wipeData,
+    TResult? Function(ToggleNotifications value)? toggleNotifications,
+    TResult? Function(ExportDataEvent value)? exportData,
+    TResult? Function(ChangeLanguage value)? changeLanguage,
+    TResult? Function(ToggleDarkMode value)? toggleDarkMode,
+    TResult? Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
+    TResult? Function(SkipVersion value)? skipVersion,
+    TResult? Function(MarkOnboardingComplete value)? markOnboardingComplete,
+    TResult? Function(GeneratePdfReportEvent value)? generatePdfReport,
+    TResult? Function(ImportBackupEvent value)? importBackup,
+  }) {
+    return importBackup?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadSettingsDashboard value)? loadDashboard,
+    TResult Function(ToggleAppLock value)? toggleAppLock,
+    TResult Function(TogglePrivacyMode value)? togglePrivacyMode,
+    TResult Function(ToggleBlurOverlay value)? toggleBlurOverlay,
+    TResult Function(UpdateDisplayName value)? updateDisplayName,
+    TResult Function(UpdateHrtStartDate value)? updateHrtStartDate,
+    TResult Function(WipeSettingsData value)? wipeData,
+    TResult Function(ToggleNotifications value)? toggleNotifications,
+    TResult Function(ExportDataEvent value)? exportData,
+    TResult Function(ChangeLanguage value)? changeLanguage,
+    TResult Function(ToggleDarkMode value)? toggleDarkMode,
+    TResult Function(ToggleAutoCheckUpdate value)? toggleAutoCheckUpdate,
+    TResult Function(SkipVersion value)? skipVersion,
+    TResult Function(MarkOnboardingComplete value)? markOnboardingComplete,
+    TResult Function(GeneratePdfReportEvent value)? generatePdfReport,
+    TResult Function(ImportBackupEvent value)? importBackup,
+    required TResult orElse(),
+  }) {
+    if (importBackup != null) {
+      return importBackup(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ImportBackupEvent implements SettingsEvent {
+  const factory ImportBackupEvent({required final String jsonString}) =
+      _$ImportBackupEventImpl;
+
+  String get jsonString;
+
+  /// Create a copy of SettingsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ImportBackupEventImplCopyWith<_$ImportBackupEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

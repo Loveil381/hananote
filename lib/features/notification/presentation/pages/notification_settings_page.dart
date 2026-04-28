@@ -53,9 +53,7 @@ class NotificationSettingsPage extends StatelessWidget {
       ),
       body: BlocBuilder<SettingsBloc, SettingsState>(
         builder: (context, settingsState) {
-          final notificationsEnabled = settingsState is SettingsLoaded
-              ? settingsState.settings.notificationsEnabled
-              : true;
+          final notificationsEnabled = settingsState is! SettingsLoaded || settingsState.settings.notificationsEnabled;
 
           return BlocBuilder<NotificationSettingsCubit, NotificationSettingsState>(
             builder: (context, state) {
@@ -296,12 +294,12 @@ class _DrugNotificationCardState extends State<_DrugNotificationCard> {
                                   color: HanaColors.primary,
                                 ),
                               ),
-                            ))
+                            ),)
                         .toList(),
                   )
                 else
                   Text(
-                    widget.l10n.reminderTimes + ': -',
+                    '${widget.l10n.reminderTimes}: -',
                     style: TextStyle(
                       fontSize: 13,
                       color: HanaColors.onSurfaceVariant.withAlpha(204),

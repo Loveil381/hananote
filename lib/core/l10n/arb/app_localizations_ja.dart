@@ -1105,4 +1105,91 @@ class AppLocalizationsJa extends AppLocalizations {
   @override
   String get termsOfUseContent =>
       '利用規約\n\n最終更新日：2026年4月\n\nHanaNote（以下「本アプリ」）を使用することにより、以下の利用規約に同意したものとみなされます。\n\n1. 目的\n本アプリは、ホルモン補充療法（HRT）管理のために設計された個人健康追跡ツールです。医療機器ではなく、医療上のアドバイスを提供するものではありません。\n\n2. 医療上の免責事項\n本アプリは、専門的な医療アドバイス、診断、または治療の代替ではありません。服薬レジメンを変更する前に、必ず医療提供者にご相談ください。薬物動態シミュレーションの結果は参考値です。\n\n3. ユーザーの責任\n入力するデータの正確性、およびデバイスとアプリパスワードのセキュリティの維持は、お客様の責任です。\n\n4. データの所有権\n本アプリ内で作成されたすべてのデータの完全な所有権はお客様にあります。お客様のコンテンツに対する権利を主張しません。\n\n5. 可用性\n本アプリは、いかなる種類の保証もなく「現状のまま」提供されます。中断なしまたはエラーなしの動作を保証しません。\n\n6. 責任の制限\n法律で認められる最大限の範囲において、本アプリの開発者は、本アプリの使用または使用不能から生じるいかなる損害についても責任を負いません。\n\n7. 更新\n機能改善のためにアップデートをリリースする場合があります。アップデート後の継続使用は、変更された規約の承認とみなされます。\n\n8. 準拠法\n本規約は、適用される現地法に準拠します。\n\n9. お問い合わせ\n本規約についてご質問がある場合は、公式チャネルからお問い合わせください。';
+
+  @override
+  String get onboardingNext => '次へ';
+
+  @override
+  String get onboardingSkip => 'スキップ';
+
+  @override
+  String get onboardingSkipHrt => '後で設定';
+
+  @override
+  String get onboardingDone => '始める';
+
+  @override
+  String get onboardingDrugOptional => '後で追加';
+
+  @override
+  String get onboardingWelcome => 'HanaNote へようこそ';
+
+  @override
+  String get onboardingWelcomeSub => 'あなたのプライベート HRT 健康ノート';
+
+  @override
+  String get onboardingSetName => 'あなたの呼び名は？';
+
+  @override
+  String get onboardingNameHint => 'ニックネームでも OK';
+
+  @override
+  String get onboardingNameNote => '後で設定から変更できます';
+
+  @override
+  String get onboardingSetHrtDate => 'HRT 開始日は？';
+
+  @override
+  String get onboardingAddDrug => '最初のお薬を追加';
+
+  @override
+  String get pdfTitle => 'HanaNote 健康レポート';
+
+  @override
+  String get pdfMedSection => '服用中のお薬';
+
+  @override
+  String get pdfBloodSection => '血液検査';
+
+  @override
+  String get pdfMeasureSection => '身体測定';
+
+  @override
+  String get pdfJournalSection => '最近の日記';
+
+  @override
+  String get pdfNoData => 'データなし';
+
+  @override
+  String get pdfGenerating => 'PDF 生成中...';
+
+  @override
+  String get pdfSuccess => 'PDF を生成しました';
+
+  @override
+  String get pdfFailed => 'PDF 生成失敗';
+
+  @override
+  String get importInProgress => 'インポート中...';
+
+  @override
+  String importSuccess(int count) {
+    return '$count 件をインポートしました';
+  }
+
+  @override
+  String get importFailed => 'インポート失敗';
+
+  @override
+  String get importPickFile => 'バックアップファイルを選択';
+
+  @override
+  String get importConfirmTitle => 'インポートを実行？';
+
+  @override
+  String get importConfirmMessage =>
+      'バックアップを既存データに統合します。同じ ID の項目は上書きされる可能性があります。';
+
+  @override
+  String get importConfirmAction => 'インポート';
 }

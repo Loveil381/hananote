@@ -246,9 +246,9 @@ class SettingsDetailPage extends StatelessWidget {
                         _SettingsTile(
                           icon: Icons.info_outline,
                           title: l10n.version,
-                          trailing: Text(
+                          trailing: const Text(
                             'v${AppConstants.appVersion}',
-                            style: const TextStyle(
+                            style: TextStyle(
                               color: HanaColors.onSurfaceVariant,
                               fontWeight: FontWeight.w500,
                             ),

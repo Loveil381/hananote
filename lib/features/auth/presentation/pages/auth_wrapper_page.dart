@@ -15,56 +15,63 @@ import 'package:hananote/features/settings/presentation/bloc/settings_event.dart
 import 'package:hananote/features/settings/presentation/bloc/settings_state.dart';
 
 /// Root page that switches between setup, lock, and home flows.
+///
+/// After auth unlocks the app, this widget waits for [SettingsBloc] to load
+/// and then routes to either `/onboarding` (first launch) or `/today`.
 class AuthWrapperPage extends StatelessWidget {
   /// Creates [AuthWrapperPage].
   const AuthWrapperPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<AuthCubit, AuthState>(
-      listener: (context, state) {
-        if (state is AuthError) {
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(SnackBar(content: Text(state.message)));
-        } else if (state is AuthUnlocked) {
-          context.read<SettingsBloc>().add(const LoadSettingsDashboard());
-          context.go('/today');
-          // Check for updates after the navigation settles.
-          // Skip update check on web (no APK installation).
-          if (kIsWeb) return;
-          SchedulerBinding.instance.addPostFrameCallback((_) async {
-            if (!context.mounted) return;
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<AuthCubit, AuthState>(
+          listener: (context, state) {
+            if (state is AuthError) {
+              ScaffoldMessenger.of(context)
+                ..hideCurrentSnackBar()
+                ..showSnackBar(SnackBar(content: Text(state.message)));
+            } else if (state is AuthUnlocked) {
+              // Trigger settings load; navigation happens in the listener
+              // below once SettingsLoaded arrives.
+              context.read<SettingsBloc>().add(const LoadSettingsDashboard());
+            }
+          },
+        ),
+        BlocListener<SettingsBloc, SettingsState>(
+          listenWhen: (prev, curr) =>
+              prev is! SettingsLoaded && curr is SettingsLoaded,
+          listener: (context, state) {
+            if (state is! SettingsLoaded) return;
+            final auth = context.read<AuthCubit>().state;
+            if (auth is! AuthUnlocked) return;
 
-            // Wait for settings to load before checking
-            final settingsBloc = context.read<SettingsBloc>();
-            final currentState = settingsBloc.state;
-
-            // Get settings — may need to wait a frame for settings load
-            bool autoCheck;
-            String skippedVersion;
-            if (currentState is SettingsLoaded) {
-              autoCheck = currentState.settings.autoCheckUpdate;
-              skippedVersion = currentState.settings.skippedVersion;
-            } else {
-              // Settings not loaded yet, default to auto-check enabled
-              autoCheck = true;
-              skippedVersion = '';
+            if (!state.settings.hasCompletedOnboarding) {
+              context.go('/onboarding');
+              return;
             }
 
+            context.go('/today');
+
+            if (kIsWeb) return;
+            final autoCheck = state.settings.autoCheckUpdate;
+            final skippedVersion = state.settings.skippedVersion;
             if (!autoCheck) return;
 
-            final info = await UpdateService.checkForUpdate(
-              AppConstants.appVersion,
-            );
-            if (info != null && context.mounted) {
-              // Skip if user has chosen to skip this version
-              if (skippedVersion == info.latestVersion) return;
-              await showUpdateDialog(context, info);
-            }
-          });
-        }
-      },
+            SchedulerBinding.instance.addPostFrameCallback((_) async {
+              if (!context.mounted) return;
+              final info = await UpdateService.checkForUpdate(
+                AppConstants.appVersion,
+              );
+              if (info != null && context.mounted) {
+                if (skippedVersion == info.latestVersion) return;
+                await showUpdateDialog(context, info);
+              }
+            });
+          },
+        ),
+      ],
       child: BlocBuilder<AuthCubit, AuthState>(
         builder: (context, state) {
           return switch (state) {

@@ -1,8 +1,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hananote/core/platform/file_helper.dart';
 import 'package:hananote/core/error/failures.dart';
+import 'package:hananote/core/platform/file_helper.dart';
 import 'package:hananote/features/settings/domain/usecases/export_data.dart';
+import 'package:hananote/features/settings/domain/usecases/generate_pdf_report.dart';
 import 'package:hananote/features/settings/domain/usecases/get_profile_dashboard.dart';
+import 'package:hananote/features/settings/domain/usecases/import_data.dart';
 import 'package:hananote/features/settings/domain/usecases/update_app_settings.dart';
 import 'package:hananote/features/settings/domain/usecases/update_user_profile.dart';
 import 'package:hananote/features/settings/domain/usecases/wipe_all_data.dart';
@@ -21,6 +23,8 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     this._updateUserProfile,
     this._wipeAllData,
     this._exportData,
+    this._generatePdfReport,
+    this._importData,
   ) : super(const SettingsInitial()) {
     on<LoadSettingsDashboard>(_onLoadDashboard);
     on<ToggleAppLock>(_onToggleAppLock);
@@ -35,6 +39,9 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     on<ToggleDarkMode>(_onToggleDarkMode);
     on<ToggleAutoCheckUpdate>(_onToggleAutoCheckUpdate);
     on<SkipVersion>(_onSkipVersion);
+    on<MarkOnboardingComplete>(_onMarkOnboardingComplete);
+    on<GeneratePdfReportEvent>(_onGeneratePdfReport);
+    on<ImportBackupEvent>(_onImportBackup);
   }
 
   final GetProfileDashboard _getProfileDashboard;
@@ -42,6 +49,8 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   final UpdateUserProfile _updateUserProfile;
   final WipeAllData _wipeAllData;
   final ExportData _exportData;
+  final GeneratePdfReport _generatePdfReport;
+  final ImportData _importData;
 
   Future<void> _onLoadDashboard(
     LoadSettingsDashboard event,
@@ -296,7 +305,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     emit(SettingsState.actionResult(
       actionKey: 'export_in_progress',
       previousState: currentState,
-    ));
+    ),);
 
     final failureOrExport = await _exportData();
 
@@ -305,7 +314,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
         emit(SettingsState.actionResult(
           actionKey: 'export_failed',
           previousState: currentState,
-        ));
+        ),);
       },
       (jsonString) async {
         try {
@@ -325,17 +334,129 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
           emit(SettingsState.actionResult(
             actionKey: 'export_success',
             previousState: currentState,
-          ));
+          ),);
         } catch (e) {
           emit(SettingsState.actionResult(
             actionKey: 'export_failed',
             previousState: currentState,
-          ));
+          ),);
         }
       },
     );
 
     // After handling the action and showing snackbar, restore visual state
     emit(currentState);
+  }
+
+  Future<void> _onMarkOnboardingComplete(
+    MarkOnboardingComplete event,
+    Emitter<SettingsState> emit,
+  ) async {
+    final currentState = state;
+    if (currentState is! SettingsLoaded) return;
+
+    final newSettings = currentState.settings.copyWith(
+      hasCompletedOnboarding: true,
+    );
+
+    final failureOrSettings = await _updateAppSettings(newSettings);
+
+    failureOrSettings.fold(
+      (failure) => emit(SettingsError(failureMessage(failure))),
+      (updatedSettings) => emit(
+        currentState.copyWith(settings: updatedSettings),
+      ),
+    );
+  }
+
+  Future<void> _onGeneratePdfReport(
+    GeneratePdfReportEvent event,
+    Emitter<SettingsState> emit,
+  ) async {
+    final currentState = state;
+    if (currentState is! SettingsLoaded) return;
+
+    emit(SettingsState.actionResult(
+      actionKey: 'pdf_in_progress',
+      previousState: currentState,
+    ),);
+
+    final failureOrBytes = await _generatePdfReport(
+      pdfTitle: event.pdfTitle,
+      medSection: event.medSection,
+      bloodSection: event.bloodSection,
+      measureSection: event.measureSection,
+      journalSection: event.journalSection,
+      noData: event.noData,
+    );
+
+    await failureOrBytes.fold(
+      (failure) async {
+        emit(SettingsState.actionResult(
+          actionKey: 'pdf_failed',
+          previousState: currentState,
+        ),);
+      },
+      (bytes) async {
+        try {
+          final fileName =
+              'hananote_report_${DateTime.now().millisecondsSinceEpoch}.pdf';
+          final filePath = await writeTempBytes(fileName, bytes);
+
+          if (kHasFileSystem) {
+            await SharePlus.instance.share(
+              ShareParams(
+                files: [XFile(filePath)],
+                text: 'HanaNote Health Report',
+              ),
+            );
+          }
+          emit(SettingsState.actionResult(
+            actionKey: 'pdf_success',
+            previousState: currentState,
+          ),);
+        } catch (e) {
+          emit(SettingsState.actionResult(
+            actionKey: 'pdf_failed',
+            previousState: currentState,
+          ),);
+        }
+      },
+    );
+
+    emit(currentState);
+  }
+
+  Future<void> _onImportBackup(
+    ImportBackupEvent event,
+    Emitter<SettingsState> emit,
+  ) async {
+    final currentState = state;
+    if (currentState is! SettingsLoaded) return;
+
+    emit(SettingsState.actionResult(
+      actionKey: 'import_in_progress',
+      previousState: currentState,
+    ),);
+
+    final failureOrCount = await _importData(event.jsonString);
+
+    failureOrCount.fold(
+      (failure) {
+        emit(SettingsState.actionResult(
+          actionKey: 'import_failed',
+          previousState: currentState,
+        ),);
+      },
+      (count) {
+        emit(SettingsState.actionResult(
+          actionKey: 'import_success:$count',
+          previousState: currentState,
+        ),);
+      },
+    );
+
+    // Reload dashboard so newly imported items appear in counts.
+    add(const LoadSettingsDashboard());
   }
 }
