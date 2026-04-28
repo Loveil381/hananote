@@ -71,4 +71,8 @@ sealed class SettingsEvent with _$SettingsEvent {
   /// Imports a JSON backup string previously produced by export.
   const factory SettingsEvent.importBackup({required String jsonString}) =
       ImportBackupEvent;
+
+  /// Toggles crash reporting (opt-in, privacy-first).
+  const factory SettingsEvent.toggleCrashReporting({required bool enabled}) =
+      ToggleCrashReporting;
 }

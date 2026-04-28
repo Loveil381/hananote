@@ -42,6 +42,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     on<MarkOnboardingComplete>(_onMarkOnboardingComplete);
     on<GeneratePdfReportEvent>(_onGeneratePdfReport);
     on<ImportBackupEvent>(_onImportBackup);
+    on<ToggleCrashReporting>(_onToggleCrashReporting);
   }
 
   final GetProfileDashboard _getProfileDashboard;
@@ -282,6 +283,27 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
       final currentState = state as SettingsLoaded;
       final newSettings = currentState.settings.copyWith(
         skippedVersion: event.version,
+      );
+
+      final failureOrSettings = await _updateAppSettings(newSettings);
+
+      failureOrSettings.fold(
+        (failure) => emit(SettingsError(failureMessage(failure))),
+        (updatedSettings) => emit(
+          currentState.copyWith(settings: updatedSettings),
+        ),
+      );
+    }
+  }
+
+  Future<void> _onToggleCrashReporting(
+    ToggleCrashReporting event,
+    Emitter<SettingsState> emit,
+  ) async {
+    if (state is SettingsLoaded) {
+      final currentState = state as SettingsLoaded;
+      final newSettings = currentState.settings.copyWith(
+        crashReportingEnabled: event.enabled,
       );
 
       final failureOrSettings = await _updateAppSettings(newSettings);

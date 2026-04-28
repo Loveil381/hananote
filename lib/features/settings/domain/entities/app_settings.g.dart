@@ -20,6 +20,7 @@ _$AppSettingsImpl _$$AppSettingsImplFromJson(Map<String, dynamic> json) =>
       autoCheckUpdate: json['autoCheckUpdate'] as bool? ?? true,
       skippedVersion: json['skippedVersion'] as String? ?? '',
       hasCompletedOnboarding: json['hasCompletedOnboarding'] as bool? ?? false,
+      crashReportingEnabled: json['crashReportingEnabled'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$AppSettingsImplToJson(_$AppSettingsImpl instance) =>
@@ -34,4 +35,5 @@ Map<String, dynamic> _$$AppSettingsImplToJson(_$AppSettingsImpl instance) =>
       'autoCheckUpdate': instance.autoCheckUpdate,
       'skippedVersion': instance.skippedVersion,
       'hasCompletedOnboarding': instance.hasCompletedOnboarding,
+      'crashReportingEnabled': instance.crashReportingEnabled,
     };
