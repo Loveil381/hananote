@@ -18,6 +18,7 @@ class AppSettings with _$AppSettings {
     @Default(true) bool autoCheckUpdate,
     @Default('') String skippedVersion,
     @Default(false) bool hasCompletedOnboarding,
+    @Default(false) bool crashReportingEnabled,
   }) = _AppSettings;
 
   /// Creates an [AppSettings] from JSON.
