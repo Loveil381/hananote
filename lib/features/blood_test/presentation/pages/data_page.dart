@@ -3,7 +3,6 @@
 // blood test editor flow is being connected.
 // ignore_for_file: public_member_api_docs
 
-import 'dart:ui';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,6 +10,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hananote/app/theme/hana_colors.dart';
 import 'package:hananote/core/l10n/arb/app_localizations.dart';
 import 'package:hananote/core/l10n/enum_l10n.dart';
+import 'package:hananote/core/widgets/hoyo/hoyo_app_bar.dart';
 import 'package:hananote/features/blood_test/domain/entities/blood_test_report.dart';
 import 'package:hananote/features/blood_test/domain/entities/enums.dart';
 import 'package:hananote/features/blood_test/presentation/bloc/blood_test_bloc.dart';
@@ -26,45 +26,28 @@ class DataPage extends StatelessWidget {
     final l10n = AppLocalizations.of(context)!;
     final topPadding = MediaQuery.of(context).padding.top + kToolbarHeight + 16;
     return Scaffold(
-      backgroundColor: HanaColors.background,
+      backgroundColor: HanaColors.backgroundOf(context),
       extendBodyBehindAppBar: true,
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(64),
-        child: ClipRRect(
-          child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
-            child: AppBar(
-              backgroundColor:
-                  HanaColors.background.withAlpha((255 * 0.8).round()),
-              elevation: 0,
-              scrolledUnderElevation: 0,
-              centerTitle: true,
-              leading: IconButton(
-                icon: const Icon(
-                  Icons.notifications_none,
-                  color: HanaColors.primary,
-                ),
-                onPressed: () => context.push('/settings'),
-              ),
-              title: Text(
-                l10n.dataAndTrends,
-                style: const TextStyle(
-                  fontFamily: 'Plus Jakarta Sans',
-                  fontWeight: FontWeight.w600,
-                  fontSize: 18,
-                  color: HanaColors.primary,
-                  letterSpacing: -0.5,
-                ),
-              ),
-              actions: [
-                IconButton(
-                  icon: const Icon(Icons.add_circle, color: HanaColors.primary),
-                  onPressed: () => context.push('/data/add_report'),
-                ),
-              ],
-            ),
+      appBar: HoyoAppBar(
+        title: l10n.dataAndTrends,
+        leading: IconButton(
+          icon: Icon(
+            Icons.notifications_none,
+            size: 18,
+            color: HanaColors.primaryOf(context),
           ),
+          onPressed: () => context.push('/settings'),
         ),
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.add_circle,
+              size: 18,
+              color: HanaColors.primaryOf(context),
+            ),
+            onPressed: () => context.push('/data/add_report'),
+          ),
+        ],
       ),
       body: BlocBuilder<BloodTestBloc, BloodTestState>(
         builder: (context, state) {

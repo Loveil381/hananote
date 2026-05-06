@@ -4,7 +4,6 @@
 // ignore_for_file: public_member_api_docs
 
 import 'dart:convert';
-import 'dart:ui';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,6 +11,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hananote/app/theme/hana_colors.dart';
 import 'package:hananote/core/constants/app_urls.dart';
 import 'package:hananote/core/l10n/arb/app_localizations.dart';
+import 'package:hananote/core/widgets/hoyo/hoyo_app_bar.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_bloc.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_event.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_state.dart';
@@ -208,46 +208,28 @@ class ProfilePage extends StatelessWidget {
             : l10n.noUpdatesYet;
 
         return Scaffold(
-          backgroundColor: HanaColors.background,
+          backgroundColor: HanaColors.backgroundOf(context),
           extendBodyBehindAppBar: true,
-          appBar: PreferredSize(
-            preferredSize: const Size.fromHeight(64),
-            child: ClipRRect(
-              child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
-                child: AppBar(
-                  backgroundColor:
-                      HanaColors.background.withAlpha((255 * 0.8).round()),
-                  elevation: 0,
-                  scrolledUnderElevation: 0,
-                  centerTitle: true,
-                  leading: IconButton(
-                    icon: const Icon(Icons.settings, color: HanaColors.primary),
-                    onPressed: () => context.push('/settings'),
-                  ),
-                  title: Text(
-                    l10n.profile,
-                    style: const TextStyle(
-                      fontFamily: 'Plus Jakarta Sans',
-                      fontWeight: FontWeight.w600,
-                      fontSize: 18,
-                      color: HanaColors.primary,
-                      letterSpacing: -0.5,
-                    ),
-                  ),
-                  actions: [
-                    IconButton(
-                      icon: const Icon(
-                        Icons.notifications,
-                        color: HanaColors.primary,
-                      ),
-                      onPressed: () =>
-                          context.push('/notification_settings'),
-                    ),
-                  ],
-                ),
+          appBar: HoyoAppBar(
+            title: l10n.profile,
+            leading: IconButton(
+              icon: Icon(
+                Icons.settings,
+                size: 18,
+                color: HanaColors.primaryOf(context),
               ),
+              onPressed: () => context.push('/settings'),
             ),
+            actions: [
+              IconButton(
+                icon: Icon(
+                  Icons.notifications,
+                  size: 18,
+                  color: HanaColors.primaryOf(context),
+                ),
+                onPressed: () => context.push('/notification_settings'),
+              ),
+            ],
           ),
           body: SingleChildScrollView(
             child: Padding(
