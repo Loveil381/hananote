@@ -3,6 +3,7 @@
 // ignore_for_file: public_member_api_docs
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' show TextInputFormatter;
 
 import 'package:hananote/app/theme/hana_colors.dart';
 import 'package:hananote/app/theme/hana_colors_v2.dart';
@@ -18,7 +19,9 @@ class HoyoInput extends StatelessWidget {
     this.suffixIcon,
     this.obscureText = false,
     this.maxLines = 1,
+    this.maxLength,
     this.keyboardType,
+    this.inputFormatters,
     this.onChanged,
     this.onSubmitted,
   });
@@ -30,7 +33,9 @@ class HoyoInput extends StatelessWidget {
   final Widget? suffixIcon;
   final bool obscureText;
   final int maxLines;
+  final int? maxLength;
   final TextInputType? keyboardType;
+  final List<TextInputFormatter>? inputFormatters;
   final ValueChanged<String>? onChanged;
   final ValueChanged<String>? onSubmitted;
 
@@ -56,11 +61,14 @@ class HoyoInput extends StatelessWidget {
           controller: controller,
           obscureText: obscureText,
           maxLines: maxLines,
+          maxLength: maxLength,
           keyboardType: keyboardType,
+          inputFormatters: inputFormatters,
           onChanged: onChanged,
           onSubmitted: onSubmitted,
           style: HanaTypography.bodyMd.copyWith(color: fg),
           decoration: InputDecoration(
+            counterText: '',
             hintText: hint,
             hintStyle: HanaTypography.bodyMd.copyWith(color: fgVariant),
             prefixIcon: prefixIcon == null

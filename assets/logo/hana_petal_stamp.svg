@@ -11,20 +11,15 @@
       <stop offset="50%" stop-color="#E8C887"/>
       <stop offset="100%" stop-color="#C99A4D"/>
     </radialGradient>
-    <filter id="petalShadow" x="-10%" y="-10%" width="120%" height="120%">
-      <feGaussianBlur stdDeviation="1.2" result="blur"/>
-      <feOffset dx="0" dy="1.5"/>
-      <feComposite in="SourceGraphic"/>
-    </filter>
   </defs>
 
-  <!-- 5 petals around center; each petal is a stylized teardrop rotated. -->
+  <!-- 5 petals around center; each petal is a stylized teardrop rotated.
+       (filter element removed; flutter_svg does not support feGaussianBlur,
+       and the desktop browser shadow was minor.) -->
   <g transform="translate(60,60)">
-    <g filter="url(#petalShadow)">
-      <g>
-        <!-- petal 0° (top) -->
-        <path d="M0,-44 C12,-40 16,-22 0,-12 C-16,-22 -12,-40 0,-44 Z" fill="url(#petal)" stroke="#C99A4D" stroke-width="0.8" stroke-opacity="0.55"/>
-      </g>
+    <g>
+      <!-- petal 0° (top) -->
+      <path d="M0,-44 C12,-40 16,-22 0,-12 C-16,-22 -12,-40 0,-44 Z" fill="url(#petal)" stroke="#C99A4D" stroke-width="0.8" stroke-opacity="0.55"/>
       <g transform="rotate(72)">
         <path d="M0,-44 C12,-40 16,-22 0,-12 C-16,-22 -12,-40 0,-44 Z" fill="url(#petal)" stroke="#C99A4D" stroke-width="0.8" stroke-opacity="0.55"/>
       </g>
