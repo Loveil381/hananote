@@ -76,7 +76,10 @@ class _OnboardingPageState extends State<OnboardingPage> {
     bloc.add(const MarkOnboardingComplete());
 
     if (mounted) {
-      context.go('/today');
+      // R52: route to the cloud-sync landing (sign-up / sign-in /
+      // skip-local). The "skip" branch on /auth re-routes to /today,
+      // so users who decline cloud reach the same destination as v1.
+      context.go('/auth');
     }
   }
 
