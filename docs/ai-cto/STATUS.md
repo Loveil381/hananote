@@ -104,9 +104,17 @@
 2. **worktree 孤儿文件**：`.claude/worktrees/exciting-borg/` 下有 onboarding_page.dart / generate_pdf_report.dart / import_data.dart 草稿，未进入 git 历史。R52 实施 Onboarding/PDF/Import 时可参考。
 3. **Web 端缺生物识别**：仅 PIN 登录（条件适配，预期内）。
 4. **Web 端缺 file_picker**：导入功能在 Web 端实现策略未定。
+
 ---
-[2026-04-29T16:27:55+09:00] sub-agent finished
-[2026-04-29T16:29:54+09:00] sub-agent finished
-[2026-04-29T16:30:28+09:00] sub-agent finished
-[2026-04-29T16:33:39+09:00] sub-agent finished
-[2026-05-06T00:33:30+09:00] sub-agent finished
+
+## Harness 健康分（2026-05-06）
+
+| 指标 | 值 |
+|---|---|
+| 首次审计总分 | 54 / 100（之前未量化） |
+| P0/P1/P2 改进后 | 88 / 100（目标 ≥ 85） |
+| 审计明细 | `docs/ai-cto/HARNESS-CHANGELOG.md` |
+| Eval 集 | `evals/golden-trajectories/` (3 P0 cases) |
+| 下次审计 | R53 末或下一次合并前 |
+
+> SubagentStop hook 已迁移至 `.claude/agent-logs/subagents.jsonl`（不再污染本文件）。
