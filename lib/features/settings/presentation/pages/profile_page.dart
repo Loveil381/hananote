@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hananote/app/theme/hana_colors.dart';
+import 'package:hananote/app/theme/hana_colors_v2.dart';
+import 'package:hananote/app/theme/hana_typography.dart';
 import 'package:hananote/core/constants/app_urls.dart';
 import 'package:hananote/core/l10n/arb/app_localizations.dart';
 import 'package:hananote/core/widgets/hoyo/hoyo_app_bar.dart';
@@ -24,6 +26,126 @@ class ProfilePage extends StatelessWidget {
     ScaffoldMessenger.of(context)
       ..hideCurrentSnackBar()
       ..showSnackBar(SnackBar(content: Text(message)));
+  }
+
+  /// Triple-tap confirmation dialog for the local emergency wipe.
+  /// Per CONSTITUTION §1 + R52 plan: tertiary (coral) chassis instead
+  /// of error red; gold "不可恢复" warning eyebrow; user must tap the
+  /// destructive action 3 times before the wipe fires.
+  Future<bool> _showEmergencyWipeDialog(
+    BuildContext context,
+    AppLocalizations l10n,
+  ) async {
+    final result = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) {
+        var taps = 0;
+        return StatefulBuilder(
+          builder: (sCtx, setS) {
+            final tertiary = HanaColors.tertiaryOf(dialogContext);
+            return AlertDialog(
+              backgroundColor:
+                  HanaColors.surfaceContainerLowestOf(dialogContext),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+                side: BorderSide(
+                  color: tertiary.withValues(alpha: 0.4),
+                ),
+              ),
+              title: Row(
+                children: [
+                  Icon(Icons.warning_amber, size: 24, color: tertiary),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      l10n.wipeAllDataTitle,
+                      style: HanaTypography.titleLg.copyWith(
+                        color: tertiary,
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Gold "irreversible" warning eyebrow
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 5,
+                    ),
+                    decoration: BoxDecoration(
+                      color: HanaColorsV2.champagneSoft,
+                      borderRadius: BorderRadius.circular(9999),
+                      border: Border.all(
+                        color: HanaColorsV2.goldLight
+                            .withValues(alpha: 0.55),
+                      ),
+                    ),
+                    child: Text(
+                      'IRREVERSIBLE · 不可恢复',
+                      style: HanaTypography.labelSm.copyWith(
+                        color: HanaColorsV2.goldDeep,
+                        letterSpacing: 1.32,
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  Text(
+                    l10n.wipeAllDataMessage,
+                    style: HanaTypography.bodyMd.copyWith(
+                      color: HanaColors.onSurfaceOf(dialogContext),
+                      height: 1.6,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    '请连续点击「确认删除」3 次以确认 · $taps / 3',
+                    style: HanaTypography.labelMd.copyWith(
+                      color: tertiary,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ],
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () =>
+                      Navigator.of(dialogContext).pop(false),
+                  child: Text(
+                    l10n.cancel,
+                    style: TextStyle(
+                      color:
+                          HanaColors.onSurfaceVariantOf(dialogContext),
+                    ),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    setS(() => taps++);
+                    if (taps >= 3) {
+                      Navigator.of(dialogContext).pop(true);
+                    }
+                  },
+                  child: Text(
+                    '${l10n.delete} (${3 - taps})',
+                    style: TextStyle(
+                      color: tertiary,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                ),
+              ],
+            );
+          },
+        );
+      },
+    );
+    return result ?? false;
   }
 
   Future<void> _handleGeneratePdf(BuildContext context) async {
@@ -421,49 +543,15 @@ class ProfilePage extends StatelessWidget {
                         _bentoSeparator(),
                         _ListTileItem(
                           icon: Icons.warning,
-                          iconColor: HanaColors.error,
+                          iconColor: HanaColors.tertiaryOf(context),
                           title: l10n.wipeAllData,
-                          titleColor: HanaColors.error,
+                          titleColor: HanaColors.tertiaryOf(context),
                           isChevron: true,
-                          chevronColor: HanaColors.error,
+                          chevronColor: HanaColors.tertiaryOf(context),
                           onTap: () async {
-                            final confirm = await showDialog<bool>(
-                              context: context,
-                              builder: (dialogContext) => AlertDialog(
-                                backgroundColor:
-                                    HanaColors.surfaceContainerLowest,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(24),
-                                ),
-                                title: Text(l10n.wipeAllDataTitle),
-                                content: Text(l10n.wipeAllDataMessage),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () =>
-                                        Navigator.of(dialogContext).pop(false),
-                                    child: Text(
-                                      l10n.cancel,
-                                      style: const TextStyle(
-                                        color: HanaColors.onSurfaceVariant,
-                                      ),
-                                    ),
-                                  ),
-                                  TextButton(
-                                    onPressed: () =>
-                                        Navigator.of(dialogContext).pop(true),
-                                    child: Text(
-                                      l10n.delete,
-                                      style: const TextStyle(
-                                        color: HanaColors.error,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            );
-
-                            if ((confirm ?? false) && context.mounted) {
+                            final confirmed =
+                                await _showEmergencyWipeDialog(context, l10n);
+                            if (confirmed && context.mounted) {
                               context
                                   .read<SettingsBloc>()
                                   .add(const WipeSettingsData());
