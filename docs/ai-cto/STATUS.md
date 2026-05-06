@@ -1,10 +1,47 @@
 ---
 # HanaNote STATUS
 
-## 当前轮次: Round 51（恢复同步轮）
-## 当前阶段: 已上架 v1.2.2，规划 R52 主题
-## 产品完成度: 95%（Android 主体 + Web 端可用）
+## 当前轮次: Round 52 (HoYo × 数码纸笺 v2 redesign + 云同步)
+## 当前阶段: R52 落地完成 — 待视觉验证 + test 修复
+## 产品完成度: 97%（Android + Web + 云同步 backend ready）
 ## 数据绑定完成度: 5/5
+
+## R52 交付（feat/r52-hoyo-redesign 分支）
+| 维度 | 状态 | 备注 |
+|---|---|---|
+| Tokens v2 | ✅ | hana_colors_v2 / gradients_v2 / shadows_v2 / typography（gold + plum + champagne + pearl + star） |
+| 共享 widgets | ✅ | 23 个 lib/core/widgets/hoyo/ — card / hero / stars / eyebrow / section_title / stat / badge / chip / input / pin_pad / med_row / app_bar / bottom_nav / hana_daily_card / conic_avatar_ring / conic_halo / gold_petal_celebration / share_poster_card / quote / pill_button / glass_chip / corner_mark / gold_text |
+| 资源 | ✅ | 6 SVG logo + 30 天 flowers.json + 8 achievements.json |
+| Today | ✅ | 完整重做：plum hero countdown + Daily 花笺 + HoyoMedRow + ConicAvatarRing |
+| Record / Timeline / Data / Profile | 🟡 | 仅替换 AppBar 为 HoyoAppBar（保留全部 bloc 逻辑） |
+| Share Poster | ✅ | 9:16 commemorative card + RepaintBoundary 导出 PNG + 路由 /share-poster |
+| Lock / Onboarding / Emergency Wipe | ⚠️ | Backend ready；UI 重做留 R53 |
+| Supabase backend | ✅ | profiles + devices + encrypted_records + achievement_unlocks + flower_collections + shared_posters + RLS + 5 edge functions |
+| Auth (lib/core/auth/) | ✅ | supabase_client + auth_service + AuthBloc（email + Apple + Google） |
+| Sync engine (lib/core/sync/) | ✅ | E2EE codec（AES-256-GCM）+ sync_engine + sync_queue + conflict_resolver |
+| Cloud Auth UI | ✅ | sign_in / sign_up / landing / account 页面（HoyoCard + HoyoInput + 金 pill） |
+| CONSTITUTION.md | ✅ | 「默认本地，按需同步 + E2EE」承诺写入（不可破坏） |
+| supabase-deploy.yml | ✅ | GitHub Actions：merge to main → db push + 5 functions deploy |
+
+## R52 CN 可达策略（更新）
+旧方案「中国大陆保持纯本地」已废弃。新方案：
+- **Cloudflare Worker 反代 Supabase**（`cloudflare-proxy/worker.ts`）
+- 客户端 `RegionResolver`（zh-CN 自动走 cn-api.hrtyaku.com）
+- 海外不动；CN 用户走 CF anycast → 无需 ICP 备案 → 完全免费
+- PIPL 风险：服务器仍在境外，需 R54 ICP 备案后部署境内 region 才合规
+- 部署：`cd cloudflare-proxy && wrangler deploy`（DNS 加 CNAME cn-api → workers.dev）
+
+## R52 已知遗留
+1. **9 个 widget 测试需更新** — today_page_test / data_page_test 因页面重构需要新断言
+2. **Onboarding step 4 未接通** — auth landing 页路由就绪但 onboarding flow 未跳转
+3. **lock_screen / onboarding / emergency_wipe 视觉重做** — 留 R53
+4. **Sync queue 实现** — 当前是 NoopSyncQueue stub；R53 给 medication / journal / measurement / blood_test 各模块写实际 SyncQueue 实现
+5. **365 天花笺数据** — 仅 30 天 sample；R53 补满 335 天
+6. **Material Symbols Icons** — 引入 package 但暂未替换 Icons.* 调用
+7. **iOS 启动** — Sign in with Apple 已埋；iOS 项目本身未启动
+8. **隐私页 / 落地页文案修订** — 旧「零云端」需改为「默认本地，按需同步」
+
+## 已发布版本
 
 ## 已发布版本
 | 版本 | 日期 | 主题 |
@@ -68,3 +105,8 @@
 3. **Web 端缺生物识别**：仅 PIN 登录（条件适配，预期内）。
 4. **Web 端缺 file_picker**：导入功能在 Web 端实现策略未定。
 ---
+[2026-04-29T16:27:55+09:00] sub-agent finished
+[2026-04-29T16:29:54+09:00] sub-agent finished
+[2026-04-29T16:30:28+09:00] sub-agent finished
+[2026-04-29T16:33:39+09:00] sub-agent finished
+[2026-05-06T00:33:30+09:00] sub-agent finished
