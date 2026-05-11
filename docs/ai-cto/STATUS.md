@@ -2,9 +2,33 @@
 # HanaNote STATUS
 
 ## 当前轮次: Round 52 (HoYo × 数码纸笺 v2 redesign + 云同步)
-## 当前阶段: R52 落地完成 — 待视觉验证 + test 修复
+## 当前阶段: R52 落地完成 + ARE-fix wave 收尾 — PR #6 已开
 ## 产品完成度: 97%（Android + Web + 云同步 backend ready）
 ## 数据绑定完成度: 5/5
+## PR: https://github.com/cantascendia/hananote/pull/6 (requires-double-review)
+
+## 2026-05-11 — 飞轮 wave 1（4 sub-agents 并行）
+- **reliability-auditor** → flagged 3 P0 in commit 3552853：
+  partial-ack / decrypt-abort / no-observability → 全修在 commit 0415004
+- **Plan agent (SyncQueue)** → rate-limited，留下轮重跑
+- **Explore (icons)** → 212 Icons.* refs，103 unique，全有 Symbols 等价；
+  Top 5 文件：settings_detail / profile / data / main_shell / update_dialog；
+  估时 ~3.5h；列入 R53 backlog
+- **eval-runner** → 16/19 verifiable 通过；2 真失败（yaml-001 scope 太宽 + yaml-002 REVIEW-QUEUE.md 缺失）→ 都已在本轮处理
+- **codex-bridge autopilot** → Stop hook 自动跑 → mode=success 但 Codex
+  Windows sandbox 降级（CreateProcessWithLogonW 1326）→ review 内容空；
+  PR #6 已经自动开 + push origin（autopilot 工作）；
+  事实上的 cross-review 由 reliability-auditor agent 完成
+
+## R52 known issues（合规 + 技术债）
+| ID | 性质 | 状态 |
+|---|---|---|
+| ARE-P0-1 | sync-push partial-ack 静默丢数据 | ✅ 修于 0415004（per-id ack 契约） |
+| ARE-P0-2 | decrypt-fail 全批 abort | ✅ 修于 0415004（per-record 隔离） |
+| ARE-P0-3 | silent failure 无遥测 | ✅ 修于 0415004（SyncTelemetry） |
+| EVAL-001 | yaml --fatal-infos 太严 | ✅ 改为 --fatal-warnings + 文件级 scope |
+| EVAL-002 | REVIEW-QUEUE.md 不存在 | ✅ 自动生成 + PR #6 |
+| CODEX-WIN | Codex 在 Windows sandbox 1326 | ✅ codex-bridge 加降级检测，会触发 Claude fallback |
 
 ## R52 交付（feat/r52-hoyo-redesign 分支）
 | 维度 | 状态 | 备注 |

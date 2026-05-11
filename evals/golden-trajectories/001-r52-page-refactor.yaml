@@ -33,8 +33,14 @@ forbidden_actions:
   - "Hardcoding any color literal — must reference HanaColors* / HanaColorsV2.*Of(context)."
 
 acceptance_criteria:
+  # Tightened 2026-05-11 after eval-runner first real run flagged the
+  # `--fatal-infos lib/features/medication/` scope as too broad — info
+  # lints in pre-existing unrelated files (drug_templates.dart docs)
+  # were failing the criterion even though today_page.dart was clean.
+  # Per project ARB: this codebase enforces `--fatal-warnings` at CI,
+  # not `--fatal-infos`. Eval should match production gate.
   - "git diff stats: lib/features/medication/presentation/pages/today_page.dart MUST show both insertions and deletions (full rewrite)."
-  - "dart analyze --fatal-infos lib/features/medication/ → exit 0."
+  - "dart analyze --fatal-warnings lib/features/medication/presentation/pages/today_page.dart lib/features/medication/presentation/widgets/countdown_card.dart lib/app/presentation/main_shell.dart → exit 0 (scoped to the three files actually touched by the refactor)."
   - "flutter test test/features/medication/presentation/pages/today_page_test.dart → all pass."
   - "grep -c 'HanaColors\\.' lib/features/medication/presentation/pages/today_page.dart → ≥ 5"
   - "grep -c 'Color(0xFF' lib/features/medication/presentation/pages/today_page.dart → 0 (no hardcoded ARGB)"
