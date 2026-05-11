@@ -4,18 +4,21 @@
 // ignore_for_file: public_member_api_docs
 
 import 'dart:convert';
-import 'dart:ui';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hananote/app/theme/hana_colors.dart';
+import 'package:hananote/app/theme/hana_colors_v2.dart';
+import 'package:hananote/app/theme/hana_typography.dart';
 import 'package:hananote/core/constants/app_urls.dart';
 import 'package:hananote/core/l10n/arb/app_localizations.dart';
+import 'package:hananote/core/widgets/hoyo/hoyo_app_bar.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_bloc.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_event.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_state.dart';
 import 'package:intl/intl.dart';
+import 'package:material_symbols_icons/symbols.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -24,6 +27,126 @@ class ProfilePage extends StatelessWidget {
     ScaffoldMessenger.of(context)
       ..hideCurrentSnackBar()
       ..showSnackBar(SnackBar(content: Text(message)));
+  }
+
+  /// Triple-tap confirmation dialog for the local emergency wipe.
+  /// Per CONSTITUTION §1 + R52 plan: tertiary (coral) chassis instead
+  /// of error red; gold "不可恢复" warning eyebrow; user must tap the
+  /// destructive action 3 times before the wipe fires.
+  Future<bool> _showEmergencyWipeDialog(
+    BuildContext context,
+    AppLocalizations l10n,
+  ) async {
+    final result = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) {
+        var taps = 0;
+        return StatefulBuilder(
+          builder: (sCtx, setS) {
+            final tertiary = HanaColors.tertiaryOf(dialogContext);
+            return AlertDialog(
+              backgroundColor:
+                  HanaColors.surfaceContainerLowestOf(dialogContext),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+                side: BorderSide(
+                  color: tertiary.withValues(alpha: 0.4),
+                ),
+              ),
+              title: Row(
+                children: [
+                  Icon(Symbols.warning_amber, size: 24, color: tertiary),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      l10n.wipeAllDataTitle,
+                      style: HanaTypography.titleLg.copyWith(
+                        color: tertiary,
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Gold "irreversible" warning eyebrow
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 5,
+                    ),
+                    decoration: BoxDecoration(
+                      color: HanaColorsV2.champagneSoft,
+                      borderRadius: BorderRadius.circular(9999),
+                      border: Border.all(
+                        color: HanaColorsV2.goldLight
+                            .withValues(alpha: 0.55),
+                      ),
+                    ),
+                    child: Text(
+                      'IRREVERSIBLE · 不可恢复',
+                      style: HanaTypography.labelSm.copyWith(
+                        color: HanaColorsV2.goldDeep,
+                        letterSpacing: 1.32,
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  Text(
+                    l10n.wipeAllDataMessage,
+                    style: HanaTypography.bodyMd.copyWith(
+                      color: HanaColors.onSurfaceOf(dialogContext),
+                      height: 1.6,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    '请连续点击「确认删除」3 次以确认 · $taps / 3',
+                    style: HanaTypography.labelMd.copyWith(
+                      color: tertiary,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ],
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () =>
+                      Navigator.of(dialogContext).pop(false),
+                  child: Text(
+                    l10n.cancel,
+                    style: TextStyle(
+                      color:
+                          HanaColors.onSurfaceVariantOf(dialogContext),
+                    ),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    setS(() => taps++);
+                    if (taps >= 3) {
+                      Navigator.of(dialogContext).pop(true);
+                    }
+                  },
+                  child: Text(
+                    '${l10n.delete} (${3 - taps})',
+                    style: TextStyle(
+                      color: tertiary,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                ),
+              ],
+            );
+          },
+        );
+      },
+    );
+    return result ?? false;
   }
 
   Future<void> _handleGeneratePdf(BuildContext context) async {
@@ -208,46 +331,28 @@ class ProfilePage extends StatelessWidget {
             : l10n.noUpdatesYet;
 
         return Scaffold(
-          backgroundColor: HanaColors.background,
+          backgroundColor: HanaColors.backgroundOf(context),
           extendBodyBehindAppBar: true,
-          appBar: PreferredSize(
-            preferredSize: const Size.fromHeight(64),
-            child: ClipRRect(
-              child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
-                child: AppBar(
-                  backgroundColor:
-                      HanaColors.background.withAlpha((255 * 0.8).round()),
-                  elevation: 0,
-                  scrolledUnderElevation: 0,
-                  centerTitle: true,
-                  leading: IconButton(
-                    icon: const Icon(Icons.settings, color: HanaColors.primary),
-                    onPressed: () => context.push('/settings'),
-                  ),
-                  title: Text(
-                    l10n.profile,
-                    style: const TextStyle(
-                      fontFamily: 'Plus Jakarta Sans',
-                      fontWeight: FontWeight.w600,
-                      fontSize: 18,
-                      color: HanaColors.primary,
-                      letterSpacing: -0.5,
-                    ),
-                  ),
-                  actions: [
-                    IconButton(
-                      icon: const Icon(
-                        Icons.notifications,
-                        color: HanaColors.primary,
-                      ),
-                      onPressed: () =>
-                          context.push('/notification_settings'),
-                    ),
-                  ],
-                ),
+          appBar: HoyoAppBar(
+            title: l10n.profile,
+            leading: IconButton(
+              icon: Icon(
+                Symbols.settings,
+                size: 18,
+                color: HanaColors.primaryOf(context),
               ),
+              onPressed: () => context.push('/settings'),
             ),
+            actions: [
+              IconButton(
+                icon: Icon(
+                  Symbols.notifications,
+                  size: 18,
+                  color: HanaColors.primaryOf(context),
+                ),
+                onPressed: () => context.push('/notification_settings'),
+              ),
+            ],
           ),
           body: SingleChildScrollView(
             child: Padding(
@@ -261,7 +366,7 @@ class ProfilePage extends StatelessWidget {
                         radius: 48,
                         backgroundColor: HanaColors.primaryContainer,
                         child: Icon(
-                          Icons.person,
+                          Symbols.person,
                           size: 48,
                           color: HanaColors.primary,
                         ),
@@ -322,7 +427,7 @@ class ProfilePage extends StatelessWidget {
                               color: HanaColors.primaryContainer,
                             ),
                             child: const Icon(
-                              Icons.medication,
+                              Symbols.medication,
                               color: HanaColors.primary,
                             ),
                           ),
@@ -351,7 +456,7 @@ class ProfilePage extends StatelessWidget {
                             ),
                           ),
                           const Icon(
-                            Icons.chevron_right,
+                            Symbols.chevron_right,
                             color: HanaColors.outlineVariant,
                           ),
                         ],
@@ -363,7 +468,7 @@ class ProfilePage extends StatelessWidget {
                     children: [
                       Expanded(
                         child: _SquareCard(
-                          icon: Icons.inventory_2,
+                          icon: Symbols.inventory_2,
                           iconColor: HanaColors.secondary,
                           iconBgColor: HanaColors.secondaryContainer
                               .withAlpha(128), // 50%
@@ -377,7 +482,7 @@ class ProfilePage extends StatelessWidget {
                       const SizedBox(width: 16),
                       Expanded(
                         child: _SquareCard(
-                          icon: Icons.view_quilt,
+                          icon: Symbols.view_quilt,
                           iconColor: HanaColors.primary,
                           iconBgColor:
                               HanaColors.primaryContainer.withAlpha(128), // 50%
@@ -405,7 +510,7 @@ class ProfilePage extends StatelessWidget {
                     child: Column(
                       children: [
                         _ListTileItem(
-                          icon: Icons.lock,
+                          icon: Symbols.lock,
                           iconColor: HanaColors.primary,
                           title: l10n.appLock,
                           trailing: Switch(
@@ -421,7 +526,7 @@ class ProfilePage extends StatelessWidget {
                         ),
                         _bentoSeparator(),
                         _ListTileItem(
-                          icon: Icons.visibility_off,
+                          icon: Symbols.visibility_off,
                           iconColor: HanaColors.primary,
                           title: l10n.privacyMode,
                           subtitle: state.settings.privacyModeEnabled
@@ -438,50 +543,16 @@ class ProfilePage extends StatelessWidget {
                         ),
                         _bentoSeparator(),
                         _ListTileItem(
-                          icon: Icons.warning,
-                          iconColor: HanaColors.error,
+                          icon: Symbols.warning,
+                          iconColor: HanaColors.tertiaryOf(context),
                           title: l10n.wipeAllData,
-                          titleColor: HanaColors.error,
+                          titleColor: HanaColors.tertiaryOf(context),
                           isChevron: true,
-                          chevronColor: HanaColors.error,
+                          chevronColor: HanaColors.tertiaryOf(context),
                           onTap: () async {
-                            final confirm = await showDialog<bool>(
-                              context: context,
-                              builder: (dialogContext) => AlertDialog(
-                                backgroundColor:
-                                    HanaColors.surfaceContainerLowest,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(24),
-                                ),
-                                title: Text(l10n.wipeAllDataTitle),
-                                content: Text(l10n.wipeAllDataMessage),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () =>
-                                        Navigator.of(dialogContext).pop(false),
-                                    child: Text(
-                                      l10n.cancel,
-                                      style: const TextStyle(
-                                        color: HanaColors.onSurfaceVariant,
-                                      ),
-                                    ),
-                                  ),
-                                  TextButton(
-                                    onPressed: () =>
-                                        Navigator.of(dialogContext).pop(true),
-                                    child: Text(
-                                      l10n.delete,
-                                      style: const TextStyle(
-                                        color: HanaColors.error,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            );
-
-                            if ((confirm ?? false) && context.mounted) {
+                            final confirmed =
+                                await _showEmergencyWipeDialog(context, l10n);
+                            if (confirmed && context.mounted) {
                               context
                                   .read<SettingsBloc>()
                                   .add(const WipeSettingsData());
@@ -502,7 +573,7 @@ class ProfilePage extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   _ButtonRowItem(
-                    icon: Icons.cloud_upload,
+                    icon: Symbols.cloud_upload,
                     title: l10n.exportBackup,
                     trailingText: lastBackupText,
                     decoration: _bentoDecoration(),
@@ -511,7 +582,7 @@ class ProfilePage extends StatelessWidget {
                   ),
                   const SizedBox(height: 12),
                   _ButtonRowItem(
-                    icon: Icons.cloud_download,
+                    icon: Symbols.cloud_download,
                     title: l10n.importBackup,
                     isChevron: true,
                     decoration: _bentoDecoration(),
@@ -519,7 +590,7 @@ class ProfilePage extends StatelessWidget {
                   ),
                   const SizedBox(height: 12),
                   _ButtonRowItem(
-                    icon: Icons.description,
+                    icon: Symbols.description,
                     title: l10n.generatePdf,
                     isChevron: true,
                     decoration: _bentoDecoration(),
@@ -728,7 +799,7 @@ class _ListTileItem extends StatelessWidget {
               ),
             if (isChevron)
               Icon(
-                Icons.chevron_right,
+                Symbols.chevron_right,
                 size: 20,
                 color: chevronColor ?? HanaColors.outlineVariant,
               ),
@@ -800,7 +871,7 @@ class _ButtonRowItem extends StatelessWidget {
               ],
               if (isChevron)
                 const Icon(
-                  Icons.chevron_right,
+                  Symbols.chevron_right,
                   size: 20,
                   color: HanaColors.outlineVariant,
                 ),

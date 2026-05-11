@@ -3,7 +3,6 @@
 // blood test editor flow is being connected.
 // ignore_for_file: public_member_api_docs
 
-import 'dart:ui';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,12 +10,14 @@ import 'package:go_router/go_router.dart';
 import 'package:hananote/app/theme/hana_colors.dart';
 import 'package:hananote/core/l10n/arb/app_localizations.dart';
 import 'package:hananote/core/l10n/enum_l10n.dart';
+import 'package:hananote/core/widgets/hoyo/hoyo_app_bar.dart';
 import 'package:hananote/features/blood_test/domain/entities/blood_test_report.dart';
 import 'package:hananote/features/blood_test/domain/entities/enums.dart';
 import 'package:hananote/features/blood_test/presentation/bloc/blood_test_bloc.dart';
 import 'package:hananote/features/blood_test/presentation/bloc/blood_test_event.dart';
 import 'package:hananote/features/blood_test/presentation/bloc/blood_test_state.dart';
 import 'package:intl/intl.dart';
+import 'package:material_symbols_icons/symbols.dart';
 
 class DataPage extends StatelessWidget {
   const DataPage({super.key});
@@ -26,45 +27,28 @@ class DataPage extends StatelessWidget {
     final l10n = AppLocalizations.of(context)!;
     final topPadding = MediaQuery.of(context).padding.top + kToolbarHeight + 16;
     return Scaffold(
-      backgroundColor: HanaColors.background,
+      backgroundColor: HanaColors.backgroundOf(context),
       extendBodyBehindAppBar: true,
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(64),
-        child: ClipRRect(
-          child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
-            child: AppBar(
-              backgroundColor:
-                  HanaColors.background.withAlpha((255 * 0.8).round()),
-              elevation: 0,
-              scrolledUnderElevation: 0,
-              centerTitle: true,
-              leading: IconButton(
-                icon: const Icon(
-                  Icons.notifications_none,
-                  color: HanaColors.primary,
-                ),
-                onPressed: () => context.push('/settings'),
-              ),
-              title: Text(
-                l10n.dataAndTrends,
-                style: const TextStyle(
-                  fontFamily: 'Plus Jakarta Sans',
-                  fontWeight: FontWeight.w600,
-                  fontSize: 18,
-                  color: HanaColors.primary,
-                  letterSpacing: -0.5,
-                ),
-              ),
-              actions: [
-                IconButton(
-                  icon: const Icon(Icons.add_circle, color: HanaColors.primary),
-                  onPressed: () => context.push('/data/add_report'),
-                ),
-              ],
-            ),
+      appBar: HoyoAppBar(
+        title: l10n.dataAndTrends,
+        leading: IconButton(
+          icon: Icon(
+            Symbols.notifications,
+            size: 18,
+            color: HanaColors.primaryOf(context),
           ),
+          onPressed: () => context.push('/settings'),
         ),
+        actions: [
+          IconButton(
+            icon: Icon(
+              Symbols.add_circle,
+              size: 18,
+              color: HanaColors.primaryOf(context),
+            ),
+            onPressed: () => context.push('/data/add_report'),
+          ),
+        ],
       ),
       body: BlocBuilder<BloodTestBloc, BloodTestState>(
         builder: (context, state) {
@@ -163,7 +147,7 @@ class _LoadedView extends StatelessWidget {
                   HormoneStatus.critical => HanaColors.error,
                 },
                 bgIcon:
-                    isWarning ? Icons.warning_amber_rounded : Icons.water_drop,
+                    isWarning ? Symbols.warning_amber_rounded : Symbols.water_drop,
                 onTap: () {
                   context.read<BloodTestBloc>().add(
                         SelectHormoneForTrend(reading.type),
@@ -440,7 +424,7 @@ class _StitchSimulatorCard extends StatelessWidget {
                   color: Colors.white.withAlpha(128), // 50%
                   borderRadius: BorderRadius.circular(16),
                 ),
-                child: const Icon(Icons.science, color: HanaColors.primary),
+                child: const Icon(Symbols.science, color: HanaColors.primary),
               ),
               const SizedBox(width: 16),
               Expanded(
@@ -473,7 +457,7 @@ class _StitchSimulatorCard extends StatelessWidget {
                   shape: BoxShape.circle,
                 ),
                 child: const Icon(
-                  Icons.arrow_forward_ios,
+                  Symbols.arrow_forward_ios,
                   color: HanaColors.primary,
                   size: 14,
                 ),
@@ -529,7 +513,7 @@ class _StitchKnowledgeCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: const Icon(
-                  Icons.menu_book_rounded,
+                  Symbols.menu_book_rounded,
                   color: HanaColors.primary,
                 ),
               ),
@@ -564,7 +548,7 @@ class _StitchKnowledgeCard extends StatelessWidget {
                   shape: BoxShape.circle,
                 ),
                 child: const Icon(
-                  Icons.arrow_forward_ios,
+                  Symbols.arrow_forward_ios,
                   color: HanaColors.primary,
                   size: 14,
                 ),
@@ -659,7 +643,7 @@ class _TrendChart extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: const Icon(
-                      Icons.trending_up,
+                      Symbols.trending_up,
                       color: HanaColors.primary,
                       size: 20,
                     ),
@@ -696,7 +680,7 @@ class _TrendChart extends StatelessWidget {
                     ),
                     const SizedBox(width: 4),
                     Icon(
-                      Icons.keyboard_arrow_down,
+                      Symbols.keyboard_arrow_down,
                       size: 14,
                       color: HanaColors.onSurfaceVariant
                           .withAlpha((255 * 0.8).round()),
@@ -805,7 +789,7 @@ class _TrendChart extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Icon(
-                          Icons.show_chart_outlined,
+                          Symbols.show_chart,
                           size: 48,
                           color: HanaColors.onSurfaceVariant.withAlpha(128),
                         ),
@@ -902,7 +886,7 @@ class _StitchHistoryCardState extends State<_StitchHistoryCard>
                   color: HanaColors.primaryContainer.withAlpha(77), // 30%
                   borderRadius: BorderRadius.circular(16),
                 ),
-                child: const Icon(Icons.description, color: HanaColors.primary),
+                child: const Icon(Symbols.description, color: HanaColors.primary),
               ),
               const SizedBox(width: 16),
               Expanded(
@@ -948,7 +932,7 @@ class _StitchHistoryCardState extends State<_StitchHistoryCard>
                   ],
                 ),
               ),
-              const Icon(Icons.chevron_right, color: HanaColors.outlineVariant),
+              const Icon(Symbols.chevron_right, color: HanaColors.outlineVariant),
             ],
           ),
         ),

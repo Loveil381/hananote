@@ -1064,7 +1064,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get privacyPolicyContent =>
-      'Privacy Policy\n\nLast updated: April 2026\n\nHanaNote (\"the App\") is committed to protecting your privacy. This Privacy Policy explains how we handle your information.\n\n1. Data Storage\nAll personal health data, including medication records, journal entries, body measurements, photos, and blood test results, is stored locally on your device. We do not transmit your health data to any external servers.\n\n2. Encryption\nYour data is encrypted using industry-standard encryption. Photos are end-to-end encrypted and can only be viewed by you.\n\n3. Data Collection\nThe App does not collect, share, or sell any personally identifiable information. We do not use analytics trackers or advertising SDKs.\n\n4. Permissions\nThe App may request access to your camera (for photo records), biometric sensor (for app lock), and notification system (for medication reminders). These permissions are used solely for the stated purposes.\n\n5. Data Export\nYou may export your data at any time using the built-in export feature. You retain full ownership of your data.\n\n6. Data Deletion\nYou may permanently delete all data using the \"Wipe all data\" option in Settings. This action is irreversible.\n\n7. Changes\nWe may update this Privacy Policy from time to time. Continued use of the App constitutes acceptance of the updated policy.\n\n8. Contact\nIf you have questions about this Privacy Policy, please contact us through our official channels.';
+      'Privacy Policy\n\nLast updated: May 2026 (v2)\n\nHanaNote (\"the App\") is committed to protecting your privacy. This Privacy Policy explains how we handle your information.\n\n1. Storage Model: Local-First, Sync-on-Demand\nAll personal health data — medication records, journal entries, body measurements, photos, and blood test results — stays on your device by default. From v2 onward you may opt into encrypted cloud sync for cross-device access; this is a feature you control and can disable at any time. It is OFF by default.\n\n2. End-to-End Encryption (E2EE)\nIf you enable cloud sync, all uploaded data is encrypted ON YOUR DEVICE using a key derived from your PIN/biometric (Argon2id) plus AES-256-GCM. Our servers see only opaque ciphertext — even our engineers cannot read your health data. This guarantee is enshrined in the project Constitution and cannot be relaxed.\n\n3. Regional Routing\nUsers outside mainland China connect directly to Supabase Cloud (us-east). Mainland China users route through a Cloudflare Worker reverse proxy (cn-api.hrtyaku.com) terminated at overseas edge PoPs. Both regions use the same E2EE protocol; the server can never decrypt.\n\n4. Leaving the Cloud\nIn Settings → Account, one tap \"Sign out + wipe cloud\" deletes all server-side data immediately (cascade). Your local data stays.\n\n5. Emergency Wipe\nIn Settings → Emergency Wipe, after triple-tap confirmation we permanently delete: all local data + your cloud account + all server-side records + shared poster storage. Irreversible.\n\n6. Data Collection\nWe do not collect, share, or sell any personally identifiable information. We do not embed advertising SDKs. Optional crash monitoring (Sentry) is OFF by default; when enabled it strips PII before reporting.\n\n7. Permissions\nThe App may request camera (photo records), biometric sensor (app lock), and notification system (medication reminders). These permissions are used solely for the stated purposes.\n\n8. Data Export / Import\nUse the built-in export feature to obtain a full JSON backup at any time. You retain complete ownership of your data.\n\n9. Applicable Law — PRC PIPL Notice\nServers currently sit outside mainland China (Supabase us-east + Cloudflare edge), which does not strictly satisfy the \"data localization\" clause of the PRC Personal Information Protection Law. We commit to: (a) all cloud data is end-to-end encrypted and unreadable by us; (b) you can opt out or choose pure-local mode at any time; (c) we will provide a domestic region after completing ICP filing.\n\n10. Changes\nWe may update this Privacy Policy from time to time. Continued use constitutes acceptance.\n\n11. Contact\nQuestions: https://hrtyaku.com';
 
   @override
   String get downloadingUpdate => 'Downloading update...';
@@ -1136,8 +1136,22 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get termsOfUseContent =>
-      'Terms of Use\n\nLast updated: April 2026\n\nBy using HanaNote (\"the App\"), you agree to these Terms of Use.\n\n1. Purpose\nThe App is a personal health tracking tool designed for hormone replacement therapy (HRT) management. It is not a medical device and does not provide medical advice.\n\n2. Medical Disclaimer\nThe App is not a substitute for professional medical advice, diagnosis, or treatment. Always consult your healthcare provider before making changes to your medication regimen. Pharmacokinetic simulation results are for reference only.\n\n3. User Responsibility\nYou are responsible for the accuracy of data you enter and for maintaining the security of your device and app password.\n\n4. Data Ownership\nYou retain full ownership of all data you create within the App. We do not claim any rights to your content.\n\n5. Availability\nThe App is provided \"as is\" without warranty of any kind. We do not guarantee uninterrupted or error-free operation.\n\n6. Limitation of Liability\nTo the maximum extent permitted by law, the developers of the App shall not be liable for any damages arising from the use or inability to use the App.\n\n7. Updates\nWe may release updates to improve functionality. Continued use after updates constitutes acceptance of any modified terms.\n\n8. Governing Law\nThese terms shall be governed by applicable local laws.\n\n9. Contact\nFor questions about these Terms, please contact us through our official channels.';
+  String get webDownloadBannerTitle => 'Download HanaNote for Android';
+
+  @override
+  String get webDownloadBannerSubtitle => 'Get the full native experience';
+
+  @override
+  String get webDownloadButton => 'Download';
+
+  @override
+  String get downloadApp => 'Download App';
+
+  @override
+  String get downloadAndroidApp => 'Download Android App';
+
+  @override
+  String get downloadAndroidAppDesc => 'Native app for the best experience';
 
   @override
   String get onboardingNext => 'Next';
@@ -1225,4 +1239,8 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get importConfirmAction => 'Import';
+
+  @override
+  String get termsOfUseContent =>
+      'Terms of Use\n\nLast updated: April 2026\n\nBy using HanaNote (\"the App\"), you agree to these Terms of Use.\n\n1. Purpose\nThe App is a personal health tracking tool designed for hormone replacement therapy (HRT) management. It is not a medical device and does not provide medical advice.\n\n2. Medical Disclaimer\nThe App is not a substitute for professional medical advice, diagnosis, or treatment. Always consult your healthcare provider before making changes to your medication regimen. Pharmacokinetic simulation results are for reference only.\n\n3. User Responsibility\nYou are responsible for the accuracy of data you enter and for maintaining the security of your device and app password.\n\n4. Data Ownership\nYou retain full ownership of all data you create within the App. We do not claim any rights to your content.\n\n5. Availability\nThe App is provided \"as is\" without warranty of any kind. We do not guarantee uninterrupted or error-free operation.\n\n6. Limitation of Liability\nTo the maximum extent permitted by law, the developers of the App shall not be liable for any damages arising from the use or inability to use the App.\n\n7. Updates\nWe may release updates to improve functionality. Continued use after updates constitutes acceptance of any modified terms.\n\n8. Governing Law\nThese terms shall be governed by applicable local laws.\n\n9. Contact\nFor questions about these Terms, please contact us through our official channels.';
 }

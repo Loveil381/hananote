@@ -19,6 +19,8 @@ import 'package:hananote/core/crypto/key_manager.dart' as _i869;
 import 'package:hananote/core/database/secure_database.dart' as _i59;
 import 'package:hananote/core/notifications/notification_module.dart' as _i868;
 import 'package:hananote/core/notifications/notification_service.dart' as _i287;
+import 'package:hananote/core/sync/conflict_resolver.dart' as _i809;
+import 'package:hananote/core/sync/sync_queue.dart' as _i294;
 import 'package:hananote/features/auth/data/datasources/auth_local_datasource.dart'
     as _i260;
 import 'package:hananote/features/auth/data/repositories/auth_repository_impl.dart'
@@ -85,6 +87,8 @@ import 'package:hananote/features/medication/data/datasources/medication_local_d
     as _i1047;
 import 'package:hananote/features/medication/data/repositories/medication_repository_impl.dart'
     as _i1024;
+import 'package:hananote/features/medication/data/sync/medication_sync_queue.dart'
+    as _i531;
 import 'package:hananote/features/medication/domain/repositories/medication_repository.dart'
     as _i160;
 import 'package:hananote/features/medication/domain/usecases/add_drug.dart'
@@ -205,6 +209,10 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i496.LoadPhotoFull(gh<_i484.PhotoCryptoService>()));
     gh.factory<_i903.LoadPhotoThumbnail>(
         () => _i903.LoadPhotoThumbnail(gh<_i484.PhotoCryptoService>()));
+    gh.lazySingleton<_i531.MedicationSyncQueue>(() => _i531.MedicationSyncQueue(
+          gh<_i59.SecureDatabase>(),
+          gh<_i809.ConflictResolver>(),
+        ));
     gh.lazySingleton<_i1072.AuthRepository>(() => _i735.AuthRepositoryImpl(
           gh<_i260.AuthLocalDataSource>(),
           gh<_i869.KeyManager>(),
@@ -222,6 +230,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i596.BloodTestLocalDataSourceImpl(gh<_i59.SecureDatabase>()));
     gh.lazySingleton<_i203.PhotoRepository>(
         () => _i763.PhotoRepositoryImpl(gh<_i432.PhotoLocalDataSource>()));
+    gh.lazySingleton<_i294.SyncQueue>(
+        () => registerModule.syncQueue(gh<_i531.MedicationSyncQueue>()));
     gh.lazySingleton<_i929.JournalLocalDataSource>(
         () => _i929.JournalLocalDataSourceImpl(gh<_i59.SecureDatabase>()));
     gh.factory<_i465.ChangePin>(

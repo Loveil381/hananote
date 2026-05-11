@@ -12,6 +12,8 @@ import 'package:hananote/features/settings/presentation/bloc/settings_bloc.dart'
 import 'package:hananote/features/settings/presentation/bloc/settings_event.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_state.dart';
 import 'package:intl/intl.dart';
+import 'package:material_symbols_icons/symbols.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 /// The settings detail page.
 class SettingsDetailPage extends StatelessWidget {
@@ -37,7 +39,7 @@ class SettingsDetailPage extends StatelessWidget {
               scrolledUnderElevation: 0,
               centerTitle: true,
               leading: IconButton(
-                icon: const Icon(Icons.arrow_back, color: HanaColors.primary),
+                icon: const Icon(Symbols.arrow_back, color: HanaColors.primary),
                 onPressed: () => context.pop(),
               ),
               title: Text(
@@ -82,7 +84,7 @@ class SettingsDetailPage extends StatelessWidget {
                     _SettingsCard(
                       children: [
                         _SettingsTile(
-                          icon: Icons.person_outline,
+                          icon: Symbols.person_outline,
                           title: l10n.editDisplayName,
                           trailing: Text(
                             profile.displayName,
@@ -103,7 +105,7 @@ class SettingsDetailPage extends StatelessWidget {
                           color: HanaColors.primaryOf(context).withAlpha(13),
                         ),
                         _SettingsTile(
-                          icon: Icons.cake_outlined,
+                          icon: Symbols.cake,
                           title: l10n.editHrtStartDate,
                           trailing: Text(
                             DateFormat.yMMMd(localeName)
@@ -128,7 +130,7 @@ class SettingsDetailPage extends StatelessWidget {
                     _SettingsCard(
                       children: [
                         _SettingsTile(
-                          icon: Icons.language,
+                          icon: Symbols.language,
                           title: l10n.languageSetting,
                           trailing: Text(
                             _languageLabel(settings.language, l10n),
@@ -148,7 +150,7 @@ class SettingsDetailPage extends StatelessWidget {
                           color: HanaColors.primaryOf(context).withAlpha(13),
                         ),
                         _SettingsTile(
-                          icon: Icons.dark_mode_outlined,
+                          icon: Symbols.dark_mode,
                           title: l10n.darkMode,
                           trailing: Switch(
                             value: settings.darkModeEnabled,
@@ -171,7 +173,7 @@ class SettingsDetailPage extends StatelessWidget {
                     _SettingsCard(
                       children: [
                         _SettingsTile(
-                          icon: Icons.lock_outline,
+                          icon: Symbols.lock_outline,
                           title: l10n.appLock,
                           trailing: Switch(
                             value: settings.appLockEnabled,
@@ -186,7 +188,7 @@ class SettingsDetailPage extends StatelessWidget {
                           color: HanaColors.primaryOf(context).withAlpha(13),
                         ),
                         _SettingsTile(
-                          icon: Icons.visibility_off_outlined,
+                          icon: Symbols.visibility_off,
                           title: l10n.privacyMode,
                           subtitle: l10n.privacyModeEnabled,
                           trailing: Switch(
@@ -202,7 +204,7 @@ class SettingsDetailPage extends StatelessWidget {
                           color: HanaColors.primaryOf(context).withAlpha(13),
                         ),
                         _SettingsTile(
-                          icon: Icons.bug_report_outlined,
+                          icon: Symbols.bug_report,
                           title: l10n.settingsCrashReporting,
                           subtitle: l10n.settingsCrashReportingDesc,
                           trailing: Switch(
@@ -225,7 +227,7 @@ class SettingsDetailPage extends StatelessWidget {
                     _SettingsCard(
                       children: [
                         _SettingsTile(
-                          icon: Icons.system_update_rounded,
+                          icon: Symbols.system_update_rounded,
                           title: l10n.updateAutoCheck,
                           subtitle: l10n.updateAutoCheckDesc,
                           trailing: Switch(
@@ -243,10 +245,10 @@ class SettingsDetailPage extends StatelessWidget {
                           color: HanaColors.primaryOf(context).withAlpha(13),
                         ),
                         _SettingsTile(
-                          icon: Icons.refresh_rounded,
+                          icon: Symbols.refresh_rounded,
                           title: l10n.updateCheckNow,
                           trailing: const Icon(
-                            Icons.chevron_right,
+                            Symbols.chevron_right,
                             color: HanaColors.outlineVariant,
                           ),
                           onTap: () => _checkForUpdates(context, l10n),
@@ -256,13 +258,37 @@ class SettingsDetailPage extends StatelessWidget {
                     const SizedBox(height: 24),
                     ], // end if (!kIsWeb)
 
+                    // Download App (web only)
+                    if (kIsWeb) ...[
+                      _SectionTitle(title: l10n.downloadApp),
+                      const SizedBox(height: 12),
+                      _SettingsCard(
+                        children: [
+                          _SettingsTile(
+                            icon: Symbols.android,
+                            title: l10n.downloadAndroidApp,
+                            subtitle: l10n.downloadAndroidAppDesc,
+                            trailing: const Icon(
+                              Symbols.download_rounded,
+                              color: HanaColors.primary,
+                            ),
+                            onTap: () => launchUrl(
+                              Uri.parse(AppUrls.githubReleasesLatest),
+                              mode: LaunchMode.externalApplication,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 24),
+                    ],
+
                     // About
                     _SectionTitle(title: l10n.about),
                     const SizedBox(height: 12),
                     _SettingsCard(
                       children: [
                         _SettingsTile(
-                          icon: Icons.info_outline,
+                          icon: Symbols.info,
                           title: l10n.version,
                           trailing: const Text(
                             'v${AppConstants.appVersion}',
@@ -278,10 +304,10 @@ class SettingsDetailPage extends StatelessWidget {
                           color: HanaColors.primaryOf(context).withAlpha(13),
                         ),
                         _SettingsTile(
-                          icon: Icons.privacy_tip_outlined,
+                          icon: Symbols.privacy_tip,
                           title: l10n.privacyPolicy,
                           trailing: const Icon(
-                            Icons.chevron_right,
+                            Symbols.chevron_right,
                             color: HanaColors.outlineVariant,
                           ),
                           onTap: () => context.push('/legal/privacy'),
@@ -292,10 +318,10 @@ class SettingsDetailPage extends StatelessWidget {
                           color: HanaColors.primaryOf(context).withAlpha(13),
                         ),
                         _SettingsTile(
-                          icon: Icons.description_outlined,
+                          icon: Symbols.description,
                           title: l10n.termsOfUse,
                           trailing: const Icon(
-                            Icons.chevron_right,
+                            Symbols.chevron_right,
                             color: HanaColors.outlineVariant,
                           ),
                           onTap: () => context.push('/legal/terms'),
@@ -368,7 +394,7 @@ class SettingsDetailPage extends StatelessWidget {
             content: Row(
               children: [
                 const Icon(
-                  Icons.check_circle_outline,
+                  Symbols.check_circle_outline,
                   color: Colors.white,
                   size: 18,
                 ),
@@ -392,7 +418,7 @@ class SettingsDetailPage extends StatelessWidget {
           content: Row(
             children: [
               const Icon(
-                Icons.error_outline,
+                Symbols.error_outline,
                 color: Colors.white,
                 size: 18,
               ),
@@ -475,7 +501,7 @@ class SettingsDetailPage extends StatelessWidget {
                     ),
                     trailing: current == option.$1
                         ? const Icon(
-                            Icons.check_circle,
+                            Symbols.check_circle,
                             color: HanaColors.primary,
                           )
                         : null,

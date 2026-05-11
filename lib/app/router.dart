@@ -7,6 +7,12 @@ import 'package:hananote/app/theme/hana_colors.dart';
 import 'package:hananote/core/l10n/arb/app_localizations.dart';
 import 'package:hananote/features/auth/presentation/pages/auth_wrapper_page.dart';
 import 'package:hananote/features/auth/presentation/pages/onboarding_page.dart';
+import 'package:hananote/core/auth/auth_service.dart';
+import 'package:hananote/features/cloud_auth/presentation/bloc/auth_bloc.dart';
+import 'package:hananote/features/cloud_auth/presentation/pages/account_page.dart';
+import 'package:hananote/features/cloud_auth/presentation/pages/auth_landing_page.dart';
+import 'package:hananote/features/cloud_auth/presentation/pages/sign_in_page.dart';
+import 'package:hananote/features/cloud_auth/presentation/pages/sign_up_page.dart';
 import 'package:hananote/features/blood_test/presentation/bloc/blood_test_bloc.dart';
 import 'package:hananote/features/blood_test/presentation/bloc/blood_test_event.dart';
 import 'package:hananote/features/blood_test/presentation/pages/blood_test_edit_page.dart';
@@ -49,6 +55,7 @@ import 'package:hananote/features/settings/presentation/pages/settings_detail_pa
 import 'package:hananote/features/simulator/presentation/pages/simulator_page.dart';
 import 'package:hananote/features/timeline/presentation/bloc/timeline_bloc.dart';
 import 'package:hananote/features/timeline/presentation/bloc/timeline_event.dart';
+import 'package:hananote/features/timeline/presentation/pages/share_poster_page.dart';
 import 'package:hananote/features/timeline/presentation/pages/timeline_page.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey =
@@ -189,6 +196,46 @@ final GoRouter appRouter = GoRouter(
       path: '/journal/edit',
       parentNavigatorKey: _rootNavigatorKey,
       builder: (context, state) => const JournalEditPage(),
+    ),
+    GoRoute(
+      path: '/share-poster',
+      parentNavigatorKey: _rootNavigatorKey,
+      builder: (context, state) => BlocProvider.value(
+        value: getIt<SettingsBloc>(),
+        child: const SharePosterPage(),
+      ),
+    ),
+    GoRoute(
+      path: '/auth',
+      parentNavigatorKey: _rootNavigatorKey,
+      builder: (context, state) => const AuthLandingPage(),
+    ),
+    GoRoute(
+      path: '/auth/sign-in',
+      parentNavigatorKey: _rootNavigatorKey,
+      builder: (context, state) => BlocProvider(
+        create: (_) => AuthBloc(AuthService())
+          ..add(const AuthInitRequested()),
+        child: const SignInPage(),
+      ),
+    ),
+    GoRoute(
+      path: '/auth/sign-up',
+      parentNavigatorKey: _rootNavigatorKey,
+      builder: (context, state) => BlocProvider(
+        create: (_) => AuthBloc(AuthService())
+          ..add(const AuthInitRequested()),
+        child: const SignUpPage(),
+      ),
+    ),
+    GoRoute(
+      path: '/auth/account',
+      parentNavigatorKey: _rootNavigatorKey,
+      builder: (context, state) => BlocProvider(
+        create: (_) => AuthBloc(AuthService())
+          ..add(const AuthInitRequested()),
+        child: const AccountPage(),
+      ),
     ),
     GoRoute(
       path: '/record/journal/new',

@@ -1,5 +1,4 @@
 // ignore_for_file: lines_longer_than_80_chars
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -7,6 +6,7 @@ import 'package:hananote/app/presentation/main_shell.dart' show kNavBarContentHe
 import 'package:hananote/app/theme/hana_colors.dart';
 import 'package:hananote/core/l10n/arb/app_localizations.dart';
 import 'package:hananote/core/l10n/enum_l10n.dart';
+import 'package:hananote/core/widgets/hoyo/hoyo_app_bar.dart';
 import 'package:hananote/features/timeline/domain/entities/enums.dart';
 import 'package:hananote/features/timeline/domain/entities/timeline_event.dart';
 import 'package:hananote/features/timeline/presentation/bloc/timeline_bloc.dart';
@@ -25,50 +25,33 @@ class TimelinePage extends StatelessWidget {
     // Removed showComingSoon as buttons now use real navigation
 
     return Scaffold(
-      backgroundColor: HanaColors.background,
+      backgroundColor: HanaColors.backgroundOf(context),
       extendBodyBehindAppBar: true,
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(64),
-        child: ClipRRect(
-          child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
-            child: AppBar(
-              backgroundColor:
-                  HanaColors.background.withAlpha((255 * 0.8).round()),
-              elevation: 0,
-              scrolledUnderElevation: 0,
-              centerTitle: true,
-              leading: IconButton(
-                icon: const Icon(Icons.settings, color: HanaColors.primary),
-                onPressed: () => context.push('/settings'),
-              ),
-              title: Text(
-                l10n.myGrowthTrajectory,
-                style: const TextStyle(
-                  fontFamily: 'Plus Jakarta Sans',
-                  fontWeight: FontWeight.w600,
-                  fontSize: 18,
-                  color: HanaColors.primary,
-                  letterSpacing: -0.5,
-                ),
-              ),
-              actions: [
-                IconButton(
-                  icon: const Icon(
-                    Icons.calendar_today,
-                    color: HanaColors.primary,
-                  ),
-                  onPressed: () => showDatePicker(
-                    context: context,
-                    initialDate: DateTime.now(),
-                    firstDate: DateTime(2000),
-                    lastDate: DateTime.now().add(const Duration(days: 3650)),
-                  ),
-                ),
-              ],
+      appBar: HoyoAppBar(
+        title: l10n.myGrowthTrajectory,
+        leading: IconButton(
+          icon: Icon(
+            Icons.settings,
+            size: 18,
+            color: HanaColors.primaryOf(context),
+          ),
+          onPressed: () => context.push('/settings'),
+        ),
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.calendar_today,
+              size: 18,
+              color: HanaColors.primaryOf(context),
+            ),
+            onPressed: () => showDatePicker(
+              context: context,
+              initialDate: DateTime.now(),
+              firstDate: DateTime(2000),
+              lastDate: DateTime.now().add(const Duration(days: 3650)),
             ),
           ),
-        ),
+        ],
       ),
       floatingActionButton: Container(
         margin: EdgeInsets.only(

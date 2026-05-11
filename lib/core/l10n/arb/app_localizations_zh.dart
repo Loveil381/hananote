@@ -897,7 +897,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get password => '密码';
 
   @override
-  String get confirmPassword => '確認密码';
+  String get confirmPassword => '确认密码';
 
   @override
   String get enableBiometric => '启用后使用生物识别';
@@ -1039,7 +1039,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get privacyPolicyContent =>
-      '隐私政策\n\n最后更新：2026年4月\n\nHanaNote（以下简称\"本应用\"）致力于保护您的隐私。本隐私政策说明我们如何处理您的信息。\n\n1. 数据存储\n所有个人健康数据，包括用药记录、日记、身体测量、照片和血液检测结果，均存储在您的本地设备上。我们不会将您的健康数据传输到任何外部服务器。\n\n2. 加密\n您的数据使用行业标准加密保护。照片经过端到端加密，只有您才能查看。\n\n3. 数据收集\n本应用不收集、共享或出售任何个人身份信息。我们不使用分析追踪器或广告SDK。\n\n4. 权限\n本应用可能请求访问您的相机（用于拍照记录）、生物识别传感器（用于应用锁）和通知系统（用于服药提醒）。这些权限仅用于所述目的。\n\n5. 数据导出\n您可以随时使用内置导出功能导出您的数据。您保留对数据的完全所有权。\n\n6. 数据删除\n您可以在设置中使用\"清除全部数据\"选项永久删除所有数据。此操作不可撤销。\n\n7. 变更\n我们可能会不定期更新本隐私政策。继续使用本应用即表示接受更新后的政策。\n\n8. 联系\n如果您对本隐私政策有任何疑问，请通过我们的官方渠道联系我们。';
+      '隐私政策\n\n最后更新：2026年5月（v2）\n\nHanaNote（以下简称\"本应用\"）致力于保护您的隐私。本隐私政策说明我们如何处理您的信息。\n\n1. 数据存储模式：默认本地，按需同步\n所有个人健康数据，包括用药记录、日记、身体测量、照片和血液检测结果，默认仅存储在您的本地设备上。从 v2 起，您可以选择主动开启「加密云同步」用于跨设备访问 — 这是您可关闭的可选功能，默认关闭。\n\n2. 端到端加密（E2EE）\n如果您启用云同步：所有上传数据均在您的设备上使用 PIN/生物识别派生密钥（Argon2id）+ AES-256-GCM 加密后再上传。我们的服务器只能看到不可解读的密文，连我们的工程师也读不到您的健康数据。这一保证写入项目章程（CONSTITUTION.md），不可破坏。\n\n3. 区域路由\n海外用户使用 Supabase Cloud（us-east 区域）。中国大陆用户走 Cloudflare Worker 反代（cn-api.hrtyaku.com，境外终结，无 ICP 备案需求）。两区共用同一加密协议；服务端永不解密。\n\n4. 退出云端\n您可以在「设置 → 账号」一键「退出云端」：服务器侧数据立即删除（cascade），本地数据保留。\n\n5. 紧急清除\n您可以在「设置 → 紧急清除」三连按确认后永久删除：本地全部数据 + 云端账号 + 服务端全部记录 + 共享海报存储。此操作不可撤销。\n\n6. 数据收集\n本应用不收集、共享或出售任何个人身份信息（PII）。我们不使用广告 SDK。可选崩溃监控（Sentry）默认关闭，启用后会自动剥离 PII。\n\n7. 权限\n本应用可能请求访问相机（拍照记录）、生物识别（应用锁）和通知（服药提醒）。这些权限仅用于所述目的。\n\n8. 数据导出 / 导入\n您可以随时使用内置导出功能导出 JSON 备份。您保留对数据的完全所有权。\n\n9. 适用法律 — PIPL 风险声明\n当前阶段服务器位于境外（Supabase us-east + Cloudflare 边缘），不完全满足《个人信息保护法》「境内数据境内存储」严格条款。本应用承诺：(a) 所有云端数据均经端到端加密，服务器无法读取；(b) 您可随时退出云端或选择纯本地模式；(c) 后续完成 ICP 备案后将提供境内 region。\n\n10. 变更\n我们可能不定期更新本隐私政策。继续使用本应用即表示接受更新后的政策。\n\n11. 联系\n如有疑问请通过 https://hrtyaku.com 联系我们。';
 
   @override
   String get downloadingUpdate => '正在下载更新...';
@@ -1109,8 +1109,22 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get termsOfUseContent =>
-      '使用条款\n\n最后更新：2026年4月\n\n使用 HanaNote（以下简称\"本应用\"），即表示您同意以下使用条款。\n\n1. 用途\n本应用是一款个人健康追踪工具，专为激素替代治疗（HRT）管理而设计。它不是医疗设备，不提供医疗建议。\n\n2. 医疗免责声明\n本应用不能替代专业医疗建议、诊断或治疗。在更改用药方案前，请务必咨询您的医疗服务提供者。药代动力学模拟结果仅供参考。\n\n3. 用户责任\n您对输入的数据的准确性以及设备和应用密码的安全性负责。\n\n4. 数据所有权\n您保留在应用中创建的所有数据的完全所有权。我们不对您的内容主张任何权利。\n\n5. 可用性\n本应用按\"原样\"提供，不附带任何形式的保证。我们不保证不间断或无错误的运行。\n\n6. 责任限制\n在法律允许的最大范围内，本应用的开发者不对因使用或无法使用本应用而产生的任何损害承担责任。\n\n7. 更新\n我们可能会发布更新以改进功能。更新后继续使用即表示接受任何修改后的条款。\n\n8. 适用法律\n本条款受当地适用法律管辖。\n\n9. 联系\n如果您对本条款有任何疑问，请通过我们的官方渠道联系我们。';
+  String get webDownloadBannerTitle => '下载 HanaNote Android 版';
+
+  @override
+  String get webDownloadBannerSubtitle => '获得完整的原生体验';
+
+  @override
+  String get webDownloadButton => '下载';
+
+  @override
+  String get downloadApp => '下载应用';
+
+  @override
+  String get downloadAndroidApp => '下载 Android 应用';
+
+  @override
+  String get downloadAndroidAppDesc => '原生应用获得最佳体验';
 
   @override
   String get onboardingNext => '下一步';
@@ -1197,4 +1211,8 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get importConfirmAction => '导入';
+
+  @override
+  String get termsOfUseContent =>
+      '使用条款\n\n最后更新：2026年4月\n\n使用 HanaNote（以下简称\"本应用\"），即表示您同意以下使用条款。\n\n1. 用途\n本应用是一款个人健康追踪工具，专为激素替代治疗（HRT）管理而设计。它不是医疗设备，不提供医疗建议。\n\n2. 医疗免责声明\n本应用不能替代专业医疗建议、诊断或治疗。在更改用药方案前，请务必咨询您的医疗服务提供者。药代动力学模拟结果仅供参考。\n\n3. 用户责任\n您对输入的数据的准确性以及设备和应用密码的安全性负责。\n\n4. 数据所有权\n您保留在应用中创建的所有数据的完全所有权。我们不对您的内容主张任何权利。\n\n5. 可用性\n本应用按\"原样\"提供，不附带任何形式的保证。我们不保证不间断或无错误的运行。\n\n6. 责任限制\n在法律允许的最大范围内，本应用的开发者不对因使用或无法使用本应用而产生的任何损害承担责任。\n\n7. 更新\n我们可能会发布更新以改进功能。更新后继续使用即表示接受任何修改后的条款。\n\n8. 适用法律\n本条款受当地适用法律管辖。\n\n9. 联系\n如果您对本条款有任何疑问，请通过我们的官方渠道联系我们。';
 }

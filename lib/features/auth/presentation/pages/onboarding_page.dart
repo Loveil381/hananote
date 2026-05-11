@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hananote/app/di/injection.dart';
 import 'package:hananote/app/theme/hana_colors.dart';
 import 'package:hananote/core/l10n/arb/app_localizations.dart';
+import 'package:hananote/core/widgets/hoyo/hoyo_pill_button.dart';
 import 'package:hananote/features/medication/domain/entities/drug.dart';
 import 'package:hananote/features/medication/domain/entities/enums.dart';
 import 'package:hananote/features/medication/domain/repositories/medication_repository.dart';
@@ -76,7 +77,10 @@ class _OnboardingPageState extends State<OnboardingPage> {
     bloc.add(const MarkOnboardingComplete());
 
     if (mounted) {
-      context.go('/today');
+      // R52: route to the cloud-sync landing (sign-up / sign-in /
+      // skip-local). The "skip" branch on /auth re-routes to /today,
+      // so users who decline cloud reach the same destination as v1.
+      context.go('/auth');
     }
   }
 
@@ -170,38 +174,22 @@ class _OnboardingPageState extends State<OnboardingPage> {
 
   Widget _buildButtons(AppLocalizations l10n) {
     if (_currentPage == 0) {
-      return SizedBox(
-        width: double.infinity,
-        height: 52,
-        child: FilledButton(
-          onPressed: () => _goToPage(1),
-          style: FilledButton.styleFrom(
-            backgroundColor: HanaColors.primaryOf(context),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
-            ),
-          ),
-          child: Text(l10n.onboardingNext),
-        ),
+      return HoyoPillButton(
+        label: l10n.onboardingNext,
+        icon: Icons.arrow_forward,
+        expand: true,
+        onPressed: () => _goToPage(1),
       );
     }
 
     if (_currentPage == 1) {
       return Column(
         children: [
-          SizedBox(
-            width: double.infinity,
-            height: 52,
-            child: FilledButton(
-              onPressed: () => _goToPage(2),
-              style: FilledButton.styleFrom(
-                backgroundColor: HanaColors.primaryOf(context),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-              ),
-              child: Text(l10n.onboardingNext),
-            ),
+          HoyoPillButton(
+            label: l10n.onboardingNext,
+            icon: Icons.arrow_forward,
+            expand: true,
+            onPressed: () => _goToPage(2),
           ),
           const SizedBox(height: 8),
           TextButton(
@@ -219,19 +207,13 @@ class _OnboardingPageState extends State<OnboardingPage> {
 
     return Column(
       children: [
-        SizedBox(
-          width: double.infinity,
-          height: 52,
-          child: FilledButton(
-            onPressed: _completeOnboarding,
-            style: FilledButton.styleFrom(
-              backgroundColor: HanaColors.primaryOf(context),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
-              ),
-            ),
-            child: Text(l10n.onboardingDone),
-          ),
+        // Final CTA — gold variant marks the journey's threshold.
+        HoyoPillButton(
+          label: l10n.onboardingDone,
+          icon: Icons.auto_awesome,
+          variant: HoyoPillVariant.gold,
+          expand: true,
+          onPressed: _completeOnboarding,
         ),
         const SizedBox(height: 8),
         TextButton(
