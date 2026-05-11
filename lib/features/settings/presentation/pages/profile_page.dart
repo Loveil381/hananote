@@ -18,6 +18,7 @@ import 'package:hananote/features/settings/presentation/bloc/settings_bloc.dart'
 import 'package:hananote/features/settings/presentation/bloc/settings_event.dart';
 import 'package:hananote/features/settings/presentation/bloc/settings_state.dart';
 import 'package:intl/intl.dart';
+import 'package:material_symbols_icons/symbols.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -54,7 +55,7 @@ class ProfilePage extends StatelessWidget {
               ),
               title: Row(
                 children: [
-                  Icon(Icons.warning_amber, size: 24, color: tertiary),
+                  Icon(Symbols.warning_amber, size: 24, color: tertiary),
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
@@ -336,7 +337,7 @@ class ProfilePage extends StatelessWidget {
             title: l10n.profile,
             leading: IconButton(
               icon: Icon(
-                Icons.settings,
+                Symbols.settings,
                 size: 18,
                 color: HanaColors.primaryOf(context),
               ),
@@ -345,7 +346,7 @@ class ProfilePage extends StatelessWidget {
             actions: [
               IconButton(
                 icon: Icon(
-                  Icons.notifications,
+                  Symbols.notifications,
                   size: 18,
                   color: HanaColors.primaryOf(context),
                 ),
@@ -365,7 +366,7 @@ class ProfilePage extends StatelessWidget {
                         radius: 48,
                         backgroundColor: HanaColors.primaryContainer,
                         child: Icon(
-                          Icons.person,
+                          Symbols.person,
                           size: 48,
                           color: HanaColors.primary,
                         ),
@@ -426,7 +427,7 @@ class ProfilePage extends StatelessWidget {
                               color: HanaColors.primaryContainer,
                             ),
                             child: const Icon(
-                              Icons.medication,
+                              Symbols.medication,
                               color: HanaColors.primary,
                             ),
                           ),
@@ -455,7 +456,7 @@ class ProfilePage extends StatelessWidget {
                             ),
                           ),
                           const Icon(
-                            Icons.chevron_right,
+                            Symbols.chevron_right,
                             color: HanaColors.outlineVariant,
                           ),
                         ],
@@ -467,7 +468,7 @@ class ProfilePage extends StatelessWidget {
                     children: [
                       Expanded(
                         child: _SquareCard(
-                          icon: Icons.inventory_2,
+                          icon: Symbols.inventory_2,
                           iconColor: HanaColors.secondary,
                           iconBgColor: HanaColors.secondaryContainer
                               .withAlpha(128), // 50%
@@ -481,7 +482,7 @@ class ProfilePage extends StatelessWidget {
                       const SizedBox(width: 16),
                       Expanded(
                         child: _SquareCard(
-                          icon: Icons.view_quilt,
+                          icon: Symbols.view_quilt,
                           iconColor: HanaColors.primary,
                           iconBgColor:
                               HanaColors.primaryContainer.withAlpha(128), // 50%
@@ -509,7 +510,7 @@ class ProfilePage extends StatelessWidget {
                     child: Column(
                       children: [
                         _ListTileItem(
-                          icon: Icons.lock,
+                          icon: Symbols.lock,
                           iconColor: HanaColors.primary,
                           title: l10n.appLock,
                           trailing: Switch(
@@ -525,7 +526,7 @@ class ProfilePage extends StatelessWidget {
                         ),
                         _bentoSeparator(),
                         _ListTileItem(
-                          icon: Icons.visibility_off,
+                          icon: Symbols.visibility_off,
                           iconColor: HanaColors.primary,
                           title: l10n.privacyMode,
                           subtitle: state.settings.privacyModeEnabled
@@ -542,7 +543,7 @@ class ProfilePage extends StatelessWidget {
                         ),
                         _bentoSeparator(),
                         _ListTileItem(
-                          icon: Icons.warning,
+                          icon: Symbols.warning,
                           iconColor: HanaColors.tertiaryOf(context),
                           title: l10n.wipeAllData,
                           titleColor: HanaColors.tertiaryOf(context),
@@ -572,7 +573,7 @@ class ProfilePage extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   _ButtonRowItem(
-                    icon: Icons.cloud_upload,
+                    icon: Symbols.cloud_upload,
                     title: l10n.exportBackup,
                     trailingText: lastBackupText,
                     decoration: _bentoDecoration(),
@@ -581,7 +582,7 @@ class ProfilePage extends StatelessWidget {
                   ),
                   const SizedBox(height: 12),
                   _ButtonRowItem(
-                    icon: Icons.cloud_download,
+                    icon: Symbols.cloud_download,
                     title: l10n.importBackup,
                     isChevron: true,
                     decoration: _bentoDecoration(),
@@ -589,7 +590,7 @@ class ProfilePage extends StatelessWidget {
                   ),
                   const SizedBox(height: 12),
                   _ButtonRowItem(
-                    icon: Icons.description,
+                    icon: Symbols.description,
                     title: l10n.generatePdf,
                     isChevron: true,
                     decoration: _bentoDecoration(),
@@ -798,7 +799,7 @@ class _ListTileItem extends StatelessWidget {
               ),
             if (isChevron)
               Icon(
-                Icons.chevron_right,
+                Symbols.chevron_right,
                 size: 20,
                 color: chevronColor ?? HanaColors.outlineVariant,
               ),
@@ -870,7 +871,7 @@ class _ButtonRowItem extends StatelessWidget {
               ],
               if (isChevron)
                 const Icon(
-                  Icons.chevron_right,
+                  Symbols.chevron_right,
                   size: 20,
                   color: HanaColors.outlineVariant,
                 ),
