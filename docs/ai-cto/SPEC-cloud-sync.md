@@ -878,3 +878,20 @@ R52-C-1 落地后写入：
 
 > 本文档是 R52-C 系列的契约。任何实现偏离本 SPEC 必须先更新 SPEC，再写代码。
 > Spec-Driven 不允许"先做了再改文档"。
+
+
+## 附录 D: 2026-05-06 ARE 审计修复（实现合规）
+
+post-R52 reliability-auditor (handbook §43) flagged 3 places where the
+initial implementation diverged from this SPEC. None of the SPEC's
+contracts changed — only the code was brought into alignment.
+
+| # | SPEC 原条款 | 偏离 | 修复 |
+|---|---|---|---|
+| D-1 | §10.2 — 服务端必须返回 `accepted: [obj_77c, obj_78d, ...]`（ID 数组） | `supabase/functions/sync-push/index.ts` 返回 `accepted: <count>`（数字）；客户端 `sync_engine.dart` `markClean(dirty.map(.id))` 把全部 dirty 一刀切标 clean，partial-ack 丢数据 | sync-push 改返 `accepted: [id, id, ...]` + `rejected: [...]`；sync_engine 改用 List<String> 仅 markClean 服务端确认的；老的数字格式 fallback 为「保守全保留 dirty」+ telemetry 报 `legacy_count_response_no_ids` |
+| D-2 | §10.6 — 客户端 inbox 用 `decrypted=0/1` 标记，单条坏记录留待 R53 manual recovery | sync_engine pull 路径在第一条 GCM-tag mismatch / nonce corrupt 直接 `return Left(SyncCryptoFailed)` → 整批拉取 abort + 后续每次 pull 在同位置再 abort | sync_engine 改为 per-record try/catch；失败 ID 进 `decryptFailedIds`，cursor 推进；telemetry 累计 `decrypt_fail` |
+| D-3 | §43.4（手册） — 必须有 silent-failure detection；SPEC 验收清单 §C 提到「双设备 demo」但缺持久化遥测 | 无 last_successful_sync_at、无 counter、无 fail reason 持久化 → 用户感知不到 stall | 新文件 `lib/core/sync/sync_telemetry.dart`：FlutterSecureStorage 持久化 last_push_ok_at / last_pull_ok_at / last_failure_reason + at；内存 counter（push_ok/fail、pull_ok/fail、decrypt_fail、totalAccepted/Applied/Rejected）；Profile UI 后续读 `lastSuccessfulSyncAt()` 渲染「上次同步 X 分钟前」 |
+
+修复 commits（feat/r52-hoyo-redesign）：将在 ARE-fix commit 中一并落地。
+
+> 这是 SPEC-Driven 流程的正向闭环范例：审计 → 发现偏离 → 修代码（不改 SPEC）。

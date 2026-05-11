@@ -70,8 +70,21 @@ serve(async (req) => {
       return new Response(JSON.stringify({ error: error.message }), { status: 500, headers: corsHeaders });
     }
 
+    // Per SPEC §10.2: response contains EXPLICIT list of accepted IDs (not
+    // just a count). Client uses this list to mark only those rows clean —
+    // the post-R52 audit (ARE §43) flagged a silent-data-loss path where
+    // `markClean(dirty.map(.id))` ran regardless of how many the server
+    // actually upserted. Per-id ack is the only safe contract.
+    const acceptedIds = (data ?? []).map((row) => row.id);
+    const submittedIds = rows.map((r) => r.id);
+    const rejectedIds = submittedIds.filter((id) => !acceptedIds.includes(id));
+
     return new Response(
-      JSON.stringify({ accepted: data?.length ?? 0, conflicts: [] }),
+      JSON.stringify({
+        accepted: acceptedIds,
+        accepted_count: acceptedIds.length,
+        rejected: rejectedIds,
+      }),
       { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } },
     );
   } catch (e) {

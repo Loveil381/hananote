@@ -32,7 +32,12 @@ class EncryptedBlob {
 class E2eeCodec {
   /// Constructs the codec with a 32-byte master key (a DEK obtained
   /// from CryptoEngine.deriveKeyFromPin → KeyManager.unwrapDek).
-  E2eeCodec(this._masterKey) : assert(_masterKey.length == 32);
+  E2eeCodec(this._masterKey)
+      : assert(
+          _masterKey.length == 32,
+          'AES-256-GCM requires a 32-byte master key (got '
+          '${_masterKey.length}). See SPEC-cloud-sync.md §9.',
+        );
 
   final Uint8List _masterKey;
 

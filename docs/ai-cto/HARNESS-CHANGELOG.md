@@ -100,3 +100,12 @@ skills (`.agents/skills/`), 5 mirror skills (`.claude/skills/` —
 incomplete), 3 rules (eval-gate, forbidden-paths, test-lock), 12
 hooks. Foundation is solid; this changelog starts tracking changes
 from R52 onward.
+
+---
+
+## 2026-05-11 eval-runner: 14/16 criteria pass (first real gate run)
+
+Cases: 001-r52-page-refactor / 002-r52-forbidden-path-double-sign / 003-r52-arb-trilingual-sync
+- FAIL: 001 criterion 2 — dart analyze --fatal-infos exits non-zero (22 info issues in medication/)
+- FAIL: 002 criterion 7 — REVIEW-QUEUE.md absent (Stop/codex-bridge cross-review did not land output)
+- All other 14 criteria: PASS
