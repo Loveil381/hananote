@@ -1,5 +1,8 @@
 // HoYo · Glass bottom nav with 5 items + gold underline on active.
-// Mirrors hoyo.css `.hoyo-bottomnav`.
+// Mirrors hoyo.css `.hoyo-bottomnav`. Per design README:
+// "Material Symbols Outlined for every icon. Filled variant only when
+// active/selected." We use `material_symbols_icons.Symbols.*` and
+// flip the rendering `fill` axis from 0→1 on active.
 // ignore_for_file: public_member_api_docs
 
 import 'dart:ui' show ImageFilter;
@@ -13,12 +16,19 @@ import 'package:hananote/app/theme/hana_typography.dart';
 class HoyoBottomNavItem {
   const HoyoBottomNavItem({
     required this.icon,
-    required this.iconActive,
     required this.label,
+    this.iconActive,
   });
 
   final IconData icon;
-  final IconData iconActive;
+
+  /// Optional override icon for the active state. When null (the
+  /// recommended path), the same `icon` is rendered with the
+  /// Material-Symbols `fill: 1.0` axis flipped on. Pass a separate
+  /// `iconActive` only when you need to switch to a structurally
+  /// different glyph (e.g. Icons.person → Icons.person_outline).
+  final IconData? iconActive;
+
   final String label;
 }
 
@@ -130,9 +140,14 @@ class _NavItem extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Icon(
-                  active ? item.iconActive : item.icon,
+                  // If iconActive is provided, switch glyph entirely;
+                  // else keep the same icon and let `fill` axis carry
+                  // the active visual (Material Symbols path).
+                  active ? (item.iconActive ?? item.icon) : item.icon,
                   size: 22,
                   color: color,
+                  fill: active ? 1.0 : 0.0,
+                  weight: active ? 600 : 400,
                 ),
                 const SizedBox(height: 3),
                 Text(

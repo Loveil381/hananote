@@ -10,6 +10,7 @@ import 'package:hananote/app/theme/hana_colors.dart';
 import 'package:hananote/core/l10n/arb/app_localizations.dart';
 import 'package:hananote/core/widgets/hoyo/hoyo_bottom_nav.dart';
 import 'package:hananote/core/widgets/web_download_banner.dart';
+import 'package:material_symbols_icons/symbols.dart';
 
 /// Navigation bar content height, excluding the bottom safe area inset.
 const double kNavBarContentHeight = 72;
@@ -42,30 +43,29 @@ class MainShell extends StatelessWidget {
         child: HoyoBottomNav(
           activeIndex: navigationShell.currentIndex,
           onChanged: _onTap,
+          // Per design README: "Material Symbols Outlined for every
+          // icon. Filled variant only when active/selected." We pass
+          // ONE Symbols icon per item; HoyoBottomNav flips the
+          // `fill` axis 0→1 on active.
           items: [
             HoyoBottomNavItem(
-              icon: Icons.auto_awesome_outlined,
-              iconActive: Icons.auto_awesome,
+              icon: Symbols.auto_awesome,
               label: l10n.tabToday,
             ),
             HoyoBottomNavItem(
-              icon: Icons.edit_note,
-              iconActive: Icons.edit_note,
+              icon: Symbols.edit_note,
               label: l10n.tabRecord,
             ),
             HoyoBottomNavItem(
-              icon: Icons.timeline,
-              iconActive: Icons.timeline,
+              icon: Symbols.timeline,
               label: l10n.tabTimeline,
             ),
             HoyoBottomNavItem(
-              icon: Icons.analytics_outlined,
-              iconActive: Icons.analytics,
+              icon: Symbols.analytics,
               label: l10n.tabData,
             ),
             HoyoBottomNavItem(
-              icon: Icons.person_outline,
-              iconActive: Icons.person,
+              icon: Symbols.person,
               label: l10n.tabProfile,
             ),
           ],
@@ -74,4 +74,3 @@ class MainShell extends StatelessWidget {
     );
   }
 }
-

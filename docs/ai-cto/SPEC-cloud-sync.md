@@ -895,3 +895,107 @@ contracts changed — only the code was brought into alignment.
 修复 commits（feat/r52-hoyo-redesign）：将在 ARE-fix commit 中一并落地。
 
 > 这是 SPEC-Driven 流程的正向闭环范例：审计 → 发现偏离 → 修代码（不改 SPEC）。
+
+
+## 附录 E: MedicationSyncQueue 实现规范（R52-C-1 prototype）
+
+> Plan agent 2026-05-11 设计。这是 4 个 feature 模块 SyncQueue 真实实现的
+> **原型** — journal / measurement / blood_test 按此模式复制。
+>
+> 状态：spec 完成，代码未落地。Per CONSTITUTION §5：本附录必须先合并；
+> 然后才能动 `lib/features/medication/data/sync/` 和 schema 迁移。
+
+### E.1 Schema delta
+
+3 张本地 SQLCipher 表添加 sync 元数据列：
+
+| 表 | 新列 | 类型 | 默认 |
+|---|---|---|---|
+| drugs | dirty | INTEGER | 0 |
+| drugs | synced_at | TEXT | NULL |
+| drugs | is_deleted | INTEGER | 0 |
+| drugs | updated_at | TEXT | NOT NULL（backfill = created_at） |
+| medication_schedules | 同上 4 列 | 同 | 同 |
+| medication_logs | 同上 4 列 | 同 | 同 |
+
+`drug_inventory` **本轮不同步**（per-device 消耗追踪；R53 再决定）。
+
+新增部分索引：`CREATE INDEX idx_<table>_dirty ON <table>(dirty) WHERE dirty=1;`
+
+### E.2 写入规则
+
+`medication_repository_impl.dart` 每次 mutation：
+- `addX / updateX` → `dirty=1, updated_at=now()`
+- `deleteX` → **软删**：`UPDATE ... SET is_deleted=1, dirty=1, updated_at=now()`（避免删除-同步竞态）
+- 所有 SELECT 查询新增 `WHERE is_deleted=0` 过滤
+
+### E.3 SyncedRecord payload 契约
+
+```json
+{ "table": "drugs" | "medication_schedules" | "medication_logs",
+  "op": "upsert" | "delete",
+  "row": <DrugModel.toJson() | …> }
+```
+- `SyncedRecord.kind = "medication"`（与 supabase enum 单值）
+- `SyncedRecord.id = row.id`（域 UUID 直接复用，无需新 ID 空间）
+- `SyncedRecord.occurredAt = row.updated_at`（喂 ConflictResolver）
+
+### E.4 applyRemote 算法
+
+1. 按 `payload.table` 路由到本地表
+2. `SELECT WHERE id = ?`
+3. 若本地无 → INSERT（dirty=0）
+4. 若本地有 → 调 `ConflictResolver.remoteWins(local, remote)`：
+   - true → overwrite（dirty=0）
+   - false → 保留本地（仍 dirty=1，下次推）
+5. 若 `op = "delete"` 且远端胜 → `UPDATE SET is_deleted=1, dirty=0`
+
+### E.5 DI 模式：SyncQueueRegistry composite
+
+新增 `lib/core/sync/sync_queue_registry.dart`。它**本身实现 SyncQueue**：
+- `takeDirty()` → 聚合所有注册 queue 的脏行
+- `markClean(ids)` → 按 id 路由回各自的 queue
+- `applyRemote(record)` → 按 `payload.table` 派遣
+
+`SyncEngine` 构造参数仍是 `SyncQueue`（registry 透明）。新增 feature 模块时只需注册自己的 queue 实现，不改 SyncEngine。
+
+### E.6 任务清单（atomic，依赖序）
+
+| # | 任务 | 测试 |
+|---|---|---|
+| T-1 | 新增 migration 004：ALTER 3 表 + bump DB version 3→4 + 双路（initial / upgrade）| migration_004_test.dart（v3 → v4 数据无损） |
+| T-2 | `medication_tables.dart` DDL 同步加列（fresh install）| secure_database_test 扩展 |
+| T-3 | DrugModel / MedicationScheduleModel / MedicationLogModel 加 dirty/updatedAt/isDeleted（freezed regen）| JSON round-trip |
+| T-4 | `medication_local_datasource.dart`：插入/更新置脏；删除→软删；查询过滤 is_deleted=0 | datasource test |
+| T-5 | 新增 `lib/features/medication/data/sync/medication_sync_queue.dart` | takeDirty / markClean / applyRemote 全路径 |
+| T-6 | 新增 `lib/core/sync/sync_queue_registry.dart` composite | registry routing |
+| T-7 | DI：`injectable.config.dart` 把 NoopSyncQueue → registry + medication queue | injection_test |
+| T-8 | （本附录 = T-8）E2EE round-trip 测试 medication payload | e2ee_codec_medication_test |
+
+### E.7 风险（CONSTITUTION 引用）
+
+- **PII 泄漏**（§1）：DrugModel.toJson 含药名等敏感字段；payload 经 codec 已加密；但任何 `debugPrint(record)` 都会泄漏。Mitigation：lib/features/medication/data/sync/ 内禁止 print/debugPrint（CI grep gate）。
+- **Nonce 重用**：`E2eeCodec._randomBytes(12)` 用 `Random.secure()` 每记录新 nonce；12 字节 birthday bound 2^48 messages 安全。Web 端需验证 routes 到 `crypto.getRandomValues`。
+- **迁移数据丢失**：`ALTER ADD COLUMN` 无损；`updated_at` backfill 用 `COALESCE(created_at, now())`；migration_004_test 必须断言行数前后相等。
+- **Mark-clean-before-ack**：ARE-fix D-1 已保证 sync_engine 只用 server `acceptedIds` 标 clean；本设计直接消费此契约（无捷径）。
+- **§5 forbidden path**：本附录 + T-1..T-8 全部触及 `lib/core/sync/` + `lib/features/medication/data/`，PR 必须打 `requires-double-review` 标签 + 第二模型审。
+
+### E.8 Out of scope（本附录不做）
+
+- 照片同步（kind='photo'，R2 envelope crypto — 见 §8.3）
+- Realtime push（R53+）
+- journal / measurement / blood_test queue 实现（复制模式后续）
+- Conflict UI 提示（纯 LWW，无对话框）
+- drug_inventory 同步
+- Tombstone 物理清除（is_deleted=1 永久留存 MVP；R53 加 GC）
+- HLC 时钟（§10.4 — 当前 `updated_at` 时间戳即可；HLC 后置迁移）
+
+### E.9 Definition of Done（追加到 §C）
+
+- [ ] migration 004 跑通 fresh + upgrade（断言 SQL 不变错误）
+- [ ] medication_sync_queue_test 全绿（含 conflict matrix 6 cases）
+- [ ] e2ee_codec 双端 round-trip：Drug + Schedule + Log + delete payload
+- [ ] 双设备 demo：A 增删改 → B 拉到一致状态
+- [ ] dart analyze --fatal-warnings 0
+- [ ] 不破坏 324/324 baseline
+- [ ] CONSTITUTION §5 PR 标签 `requires-double-review` 应用
